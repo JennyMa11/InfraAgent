@@ -623,3 +623,9 @@ BGE向量检索         0.525     0.106        0.176  0.382  0.530         26.0
 结果：53项pytest通过；全仓Ruff lint/format通过；uv build及CLI生命周期通过；真实BGE/CLIP/reranker/Chroma验收通过，单篇更新最终索引新编码1/复用16；增量与重建向量差0/Top5一致；图注更新CLIP新编码0；真实仓库11168块dev50新旧上下文BM25排名/分数一致，v1/v2题集与快照hash不变；最终报告源码hash与当前代码、wheel与当前包源码一致；三份旧评估脚本仅规范格式
 问题：新版本Chroma/JSON仍完整写入，增量收益主要在解析编码；服务仍同步单进程；小合成语料计时不代表大库性能或准确率；长token输入诊断触发tokenizer长度提示，实际BGE/CLIP窗口编码与reranker截断完成；FastAPI测试既有弃用警告保留
 
+[2026-09-27T22:04:46+08:00]
+操作：初始化Git并上传到GitHub私有仓库 JennyMa11/InfraAgent
+原因：保存当前已验收项目并建立远程备份
+结果：main首次推送成功；198个文件；53项pytest与Ruff通过；补充忽略dist/build/.env.*与密钥文件
+问题：data、虚拟环境与构建产物保持本地；远程地址 https://github.com/JennyMa11/InfraAgent
+
