@@ -1,0 +1,21 @@
+{
+  "selection_split": "dev",
+  "selection_rule": "complete_evidence_hit@5, evidence_mrr@5, lower latency",
+  "strategy": "bm25",
+  "top_k": 5,
+  "settings": {
+    "data_dir": "data/repository-index/bge-e4579f5f84b9",
+    "backend": "bge",
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "reranker_model": "BAAI/bge-reranker-base",
+    "rerank": true,
+    "candidate_k": 30,
+    "fusion_candidates": "truncate",
+    "heading_context": false,
+    "chunk_size": 450,
+    "chunk_strategy": "semantic"
+  },
+  "model_decision": "retain current models; no replacement justified by this comparison",
+  "dev_complete_evidence_hit_at_5": 0.86,
+  "dev_failures": 7
+}

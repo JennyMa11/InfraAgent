@@ -1,0 +1,4573 @@
+{
+  "chunk_statistics": {
+    "count": 11168,
+    "characters": 1654545,
+    "length_percentiles": {
+      "10": 19.700000000000045,
+      "25": 53.0,
+      "50": 120.0,
+      "75": 209.0,
+      "90": 341.3000000000011
+    },
+    "under_80": 4022,
+    "under_40": 2045,
+    "separator_only": 404,
+    "fenced_code": 837
+  },
+  "splits": {
+    "dev": {
+      "by_question_type_at_5": {
+        "bm25": {
+          "knowledge": {
+            "recall": 0.64,
+            "precision": 0.128,
+            "f1": 0.21333333333333335,
+            "mrr": 0.4633333333333333,
+            "ndcg": 0.5073927573973821
+          },
+          "scenario": {
+            "recall": 0.72,
+            "precision": 0.14400000000000002,
+            "f1": 0.24000000000000002,
+            "mrr": 0.544,
+            "ndcg": 0.5873710974395782
+          }
+        },
+        "dense": {
+          "knowledge": {
+            "recall": 0.44,
+            "precision": 0.08800000000000001,
+            "f1": 0.1466666666666667,
+            "mrr": 0.328,
+            "ndcg": 0.35642287286081487
+          },
+          "scenario": {
+            "recall": 0.4,
+            "precision": 0.08,
+            "f1": 0.13333333333333336,
+            "mrr": 0.29133333333333333,
+            "ndcg": 0.3179383647551757
+          }
+        },
+        "hybrid": {
+          "knowledge": {
+            "recall": 0.52,
+            "precision": 0.10400000000000001,
+            "f1": 0.17333333333333334,
+            "mrr": 0.44333333333333336,
+            "ndcg": 0.46246425246579403
+          },
+          "scenario": {
+            "recall": 0.6,
+            "precision": 0.12000000000000001,
+            "f1": 0.2,
+            "mrr": 0.428,
+            "ndcg": 0.4708769975066863
+          }
+        },
+        "hybrid_rerank": {
+          "knowledge": {
+            "recall": 0.8,
+            "precision": 0.16,
+            "f1": 0.2666666666666667,
+            "mrr": 0.688,
+            "ndcg": 0.7154741122893816
+          },
+          "scenario": {
+            "recall": 0.76,
+            "precision": 0.152,
+            "f1": 0.25333333333333335,
+            "mrr": 0.57,
+            "ndcg": 0.6181758228943689
+          }
+        }
+      },
+      "bm25_to_hybrid": {
+        "gained": 3,
+        "lost": 9,
+        "both_hit": 25,
+        "both_miss": 13
+      },
+      "hybrid_to_rerank": {
+        "gained": 13,
+        "lost": 2,
+        "both_hit": 26,
+        "both_miss": 9
+      },
+      "at_k": {
+        "bm25": {
+          "1": {
+            "recall": 0.4,
+            "precision": 0.4,
+            "f1": 0.4,
+            "mrr": 0.4,
+            "ndcg": 0.4
+          },
+          "3": {
+            "recall": 0.56,
+            "precision": 0.18666666666666665,
+            "f1": 0.28,
+            "mrr": 0.4766666666666667,
+            "ndcg": 0.49833016550000403
+          },
+          "5": {
+            "recall": 0.68,
+            "precision": 0.136,
+            "f1": 0.22666666666666668,
+            "mrr": 0.5036666666666667,
+            "ndcg": 0.5473819274184801
+          },
+          "10": {
+            "recall": 0.78,
+            "precision": 0.078,
+            "f1": 0.14181818181818182,
+            "mrr": 0.5161666666666667,
+            "ndcg": 0.5788771684361941
+          }
+        },
+        "dense": {
+          "1": {
+            "recall": 0.24,
+            "precision": 0.24,
+            "f1": 0.24,
+            "mrr": 0.24,
+            "ndcg": 0.24
+          },
+          "3": {
+            "recall": 0.36,
+            "precision": 0.12,
+            "f1": 0.18,
+            "mrr": 0.2966666666666667,
+            "ndcg": 0.31309297535714575
+          },
+          "5": {
+            "recall": 0.42,
+            "precision": 0.084,
+            "f1": 0.14,
+            "mrr": 0.30966666666666665,
+            "ndcg": 0.33718061880799527
+          },
+          "10": {
+            "recall": 0.56,
+            "precision": 0.056,
+            "f1": 0.10181818181818182,
+            "mrr": 0.32904761904761903,
+            "ndcg": 0.3831621312234364
+          }
+        },
+        "hybrid": {
+          "1": {
+            "recall": 0.36,
+            "precision": 0.36,
+            "f1": 0.36,
+            "mrr": 0.36,
+            "ndcg": 0.36
+          },
+          "3": {
+            "recall": 0.48,
+            "precision": 0.16,
+            "f1": 0.24,
+            "mrr": 0.4166666666666667,
+            "ndcg": 0.43309297535714575
+          },
+          "5": {
+            "recall": 0.56,
+            "precision": 0.112,
+            "f1": 0.18666666666666668,
+            "mrr": 0.43566666666666665,
+            "ndcg": 0.4666706249862402
+          },
+          "10": {
+            "recall": 0.72,
+            "precision": 0.07200000000000001,
+            "f1": 0.13090909090909092,
+            "mrr": 0.45824603174603173,
+            "ndcg": 0.5196582153998115
+          }
+        },
+        "hybrid_rerank": {
+          "1": {
+            "recall": 0.54,
+            "precision": 0.54,
+            "f1": 0.54,
+            "mrr": 0.54,
+            "ndcg": 0.54
+          },
+          "3": {
+            "recall": 0.74,
+            "precision": 0.24666666666666665,
+            "f1": 0.37,
+            "mrr": 0.62,
+            "ndcg": 0.6504743802857166
+          },
+          "5": {
+            "recall": 0.78,
+            "precision": 0.156,
+            "f1": 0.26,
+            "mrr": 0.629,
+            "ndcg": 0.6668249675918753
+          },
+          "10": {
+            "recall": 0.84,
+            "precision": 0.084,
+            "f1": 0.15272727272727274,
+            "mrr": 0.6381666666666667,
+            "ndcg": 0.6873825526119107
+          }
+        }
+      },
+      "candidate_diagnostics": {
+        "bm25_hit30": 41,
+        "dense_ann_hit30": 32,
+        "dense_exact_hit30": 32,
+        "union_hit60": 45,
+        "fused_hit30": 43,
+        "rerank_failure_stages": {
+          "candidate_absent": 5,
+          "fusion_truncation": 2,
+          "reranker_below_top5": 4
+        },
+        "parent_hit_on_rerank_misses": 0,
+        "hybrid_top10_reproduced": 50
+      }
+    },
+    "test": {
+      "by_question_type_at_5": {
+        "bm25": {
+          "knowledge": {
+            "recall": 0.81,
+            "precision": 0.164,
+            "f1": 0.2723809523809524,
+            "mrr": 0.596,
+            "ndcg": 0.6487495406552565
+          },
+          "scenario": {
+            "recall": 0.62,
+            "precision": 0.12400000000000001,
+            "f1": 0.2066666666666667,
+            "mrr": 0.49166666666666664,
+            "ndcg": 0.5243251015900428
+          }
+        },
+        "dense": {
+          "knowledge": {
+            "recall": 0.65,
+            "precision": 0.132,
+            "f1": 0.21904761904761907,
+            "mrr": 0.498,
+            "ndcg": 0.5340698366828303
+          },
+          "scenario": {
+            "recall": 0.4,
+            "precision": 0.08,
+            "f1": 0.13333333333333336,
+            "mrr": 0.26566666666666666,
+            "ndcg": 0.29944356266330446
+          }
+        },
+        "hybrid": {
+          "knowledge": {
+            "recall": 0.75,
+            "precision": 0.152,
+            "f1": 0.25238095238095243,
+            "mrr": 0.579,
+            "ndcg": 0.6196448712737893
+          },
+          "scenario": {
+            "recall": 0.54,
+            "precision": 0.10800000000000001,
+            "f1": 0.18000000000000002,
+            "mrr": 0.4036666666666667,
+            "ndcg": 0.43753627002411527
+          }
+        },
+        "hybrid_rerank": {
+          "knowledge": {
+            "recall": 0.91,
+            "precision": 0.184,
+            "f1": 0.30571428571428577,
+            "mrr": 0.813,
+            "ndcg": 0.8320621577347336
+          },
+          "scenario": {
+            "recall": 0.62,
+            "precision": 0.12400000000000001,
+            "f1": 0.2066666666666667,
+            "mrr": 0.5166666666666667,
+            "ndcg": 0.5429386327515107
+          }
+        }
+      },
+      "bm25_to_hybrid": {
+        "gained": 2,
+        "lost": 9,
+        "both_hit": 63,
+        "both_miss": 26
+      },
+      "hybrid_to_rerank": {
+        "gained": 15,
+        "lost": 3,
+        "both_hit": 62,
+        "both_miss": 20
+      },
+      "at_k": {
+        "bm25": {
+          "1": {
+            "recall": 0.43,
+            "precision": 0.43,
+            "f1": 0.43,
+            "mrr": 0.43,
+            "ndcg": 0.43
+          },
+          "3": {
+            "recall": 0.65,
+            "precision": 0.21666666666666665,
+            "f1": 0.325,
+            "mrr": 0.5283333333333333,
+            "ndcg": 0.5596394630357187
+          },
+          "5": {
+            "recall": 0.715,
+            "precision": 0.14400000000000002,
+            "f1": 0.23952380952380956,
+            "mrr": 0.5438333333333333,
+            "ndcg": 0.5865373211226497
+          },
+          "10": {
+            "recall": 0.765,
+            "precision": 0.077,
+            "f1": 0.13984848484848486,
+            "mrr": 0.5500515873015873,
+            "ndcg": 0.6022595847769923
+          }
+        },
+        "dense": {
+          "1": {
+            "recall": 0.3,
+            "precision": 0.3,
+            "f1": 0.3,
+            "mrr": 0.3,
+            "ndcg": 0.3
+          },
+          "3": {
+            "recall": 0.465,
+            "precision": 0.15666666666666665,
+            "f1": 0.234,
+            "mrr": 0.36833333333333335,
+            "ndcg": 0.3922308187138293
+          },
+          "5": {
+            "recall": 0.525,
+            "precision": 0.10600000000000001,
+            "f1": 0.1761904761904762,
+            "mrr": 0.38183333333333336,
+            "ndcg": 0.41675669967306733
+          },
+          "10": {
+            "recall": 0.615,
+            "precision": 0.062000000000000006,
+            "f1": 0.11257575757575758,
+            "mrr": 0.39388492063492064,
+            "ndcg": 0.44591240460528503
+          }
+        },
+        "hybrid": {
+          "1": {
+            "recall": 0.39,
+            "precision": 0.39,
+            "f1": 0.39,
+            "mrr": 0.39,
+            "ndcg": 0.39
+          },
+          "3": {
+            "recall": 0.565,
+            "precision": 0.19,
+            "f1": 0.284,
+            "mrr": 0.47333333333333333,
+            "ndcg": 0.4958893960366349
+          },
+          "5": {
+            "recall": 0.645,
+            "precision": 0.13,
+            "f1": 0.2161904761904762,
+            "mrr": 0.49133333333333334,
+            "ndcg": 0.5285905706489523
+          },
+          "10": {
+            "recall": 0.765,
+            "precision": 0.077,
+            "f1": 0.13984848484848486,
+            "mrr": 0.5075515873015873,
+            "ndcg": 0.5675920216575352
+          }
+        },
+        "hybrid_rerank": {
+          "1": {
+            "recall": 0.585,
+            "precision": 0.59,
+            "f1": 0.5866666666666667,
+            "mrr": 0.59,
+            "ndcg": 0.59
+          },
+          "3": {
+            "recall": 0.715,
+            "precision": 0.24,
+            "f1": 0.359,
+            "mrr": 0.6533333333333333,
+            "ndcg": 0.6668430423562295
+          },
+          "5": {
+            "recall": 0.765,
+            "precision": 0.154,
+            "f1": 0.25619047619047625,
+            "mrr": 0.6648333333333334,
+            "ndcg": 0.6875003952431221
+          },
+          "10": {
+            "recall": 0.85,
+            "precision": 0.08600000000000001,
+            "f1": 0.15606060606060607,
+            "mrr": 0.6747896825396825,
+            "ndcg": 0.7145856072702778
+          }
+        }
+      },
+      "candidate_diagnostics": {
+        "bm25_hit30": 85,
+        "dense_ann_hit30": 75,
+        "dense_exact_hit30": 76,
+        "union_hit60": 91,
+        "fused_hit30": 86,
+        "rerank_failure_stages": {
+          "reranker_below_top5": 9,
+          "candidate_absent": 9,
+          "fusion_truncation": 5
+        },
+        "parent_hit_on_rerank_misses": 2,
+        "hybrid_top10_reproduced": 100
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "repo-002-1",
+      "split": "dev",
+      "query": "CUDA 全局内存访问合并是以什么线程单位进行的？",
+      "group_id": "cuda-coalescing",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        106
+      ]
+    },
+    {
+      "id": "repo-002-2",
+      "split": "dev",
+      "query": "32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？",
+      "group_id": "cuda-coalescing",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 6,
+      "fused_candidate_gold_rank30": 6,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        106
+      ]
+    },
+    {
+      "id": "repo-014-1",
+      "split": "dev",
+      "query": "Row Parallel线性层如何合并各卡的局部输出？",
+      "group_id": "tensor-parallel",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 5,
+      "exact_dense_gold_rank30": 5,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        264
+      ]
+    },
+    {
+      "id": "repo-014-2",
+      "split": "dev",
+      "query": "FFN第二层按归约维度切到多卡，各卡只得到部分和，下一层要完整结果时需要什么通信？",
+      "group_id": "tensor-parallel",
+      "bm25_gold_rank30": 8,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 18,
+      "fused_candidate_gold_rank30": 18,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        264
+      ]
+    },
+    {
+      "id": "repo-016-1",
+      "split": "dev",
+      "query": "MoE专家并行中的dispatch和combine两次All-to-All各做什么？",
+      "group_id": "moe-routing",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        208
+      ]
+    },
+    {
+      "id": "repo-016-2",
+      "split": "dev",
+      "query": "token按路由跨卡送给专家计算后，还要怎样将结果归回原请求所在卡？",
+      "group_id": "moe-routing",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        208
+      ],
+      "reference_answer": "dispatch将token发往专家卡，combine将结果发回原卡。",
+      "gold_chunks": [
+        {
+          "id": "c7718882020f195683fe5355",
+          "heading": "3. All-to-All 通信（本章重点）",
+          "content": "### 3. All-to-All 通信（本章重点）\n\n- 两次 All-to-All：dispatch（token 发往对应 Expert 所在 GPU）+ combine（结果发回原 GPU）\n- 通信量分析：取决于 token 数、Top-K、Expert 分布\n- 为什么 All-to-All 是 MoE 训练的主要瓶颈\n- 通信优化：分组 All-to-All、计算通信重叠、DeepEP 等高性能通信库",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "2c73ae4060bc0598564f2b75",
+          "heading": "6.2.6 专家并行：切分专家集合",
+          "content": "*图 6-15：注意力和路由器在 token 所在的卡完成；输入按所选专家的所在卡发送，专家算完后结果送回原卡，按路由权重合并。两次交换都是 All-to-All（全交换），即每张卡向其他各卡分别发送不同的数据。*",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md"
+        },
+        {
+          "id": "9a947ff6e499c82e14b06693",
+          "heading": "2.4.3 共享专家与潜空间计算",
+          "content": "如果专家分布在不同的卡上，就要把输入 token 发送到专家所在的卡，专家算完后再把结果合并。通信量因此取决于专家放在哪里、输入保存在哪里。第 6 章讨论多卡划分，第 9 章介绍 CPU／GPU 放置，以及将注意力（Attention）与 FFN 交给不同资源的 AF 分离。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/02-模型架构.md"
+        },
+        {
+          "id": "229226ba3bb4ee00150df010",
+          "heading": "6.2.6 专家并行：切分专家集合",
+          "content": "先用四张卡、八个专家说明这种分工。卡 0 保存专家 0 和 1，卡 1 保存专家 2 和 3，依次类推。卡 0 当前持有 token A，路由器为 A 选中专家 1 和 6：专家 1 就在本卡，专家 6 在卡 3。卡 0 既要执行本卡的专家 1，也要把 A 的输入送到卡 3，最后收回两份输出，按路由权重合并。\n\n把专家输入送往专家所在卡的过程称为 **dispatch（派发）**，把输出送回原卡并合并的过程称为 **combine（合并）**。继续看 token A：若两个专家的输出分别为 $y_1,y_6$，路由权重为 $a_1,a_6$，完整的 MoE 输出为 $a_1y_1+a_6y_6$。发送方的卡保存 token 的编号和路由信息，接收方的卡执行专家，返回的结果再归到同一个 token 名下。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md"
+        },
+        {
+          "id": "475890b7dc60be6e11fb1f59",
+          "heading": "10.5.4 专家路由重放与训推一致性",
+          "content": "使用每个整数占 4 字节的 int32 格式则为 12 MiB。记录还要随 token 一起移动：序列打包改变 token 的位置，上下文切分改变 token 所在的卡，重计算再次读取同一层的记录。让 ID 与 token 的原始位置共同经过这些变换，训练端才能选中原先那组专家。[^replay]",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/10-训练系统.md"
+        },
+        {
+          "id": "fd17b5e63604d68d41558ea2",
+          "heading": "6.1.4 并行方式一览：切分哪个维度",
+          "content": "训练时再反向交接梯度 |\n| 专家并行（EP） | 专家 $E$ | 一部分专家 | 把 token 送到所选专家所在的卡，再把结果送回 |\n表中隐含着一项贯穿全章的区别。\n切样本、序列位置、层或专家时，每张卡得到的是不同数据或不同层的完整结果，需要时收集或交接即可；\n切特征时，各卡往往只得到同一个输出的一部分贡献，必须把这些部分和相加，结果才能使用。\n第 5.2.4 节在单卡内区分过输出维与归约维的切分，跨卡时区别相同，只是相加部分和要经过卡间互联。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-017-1",
+      "split": "dev",
+      "query": "Ulysses通过什么通信重排Head和序列的切分维度？",
+      "group_id": "context-parallel",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        130
+      ]
+    },
+    {
+      "id": "repo-017-2",
+      "split": "dev",
+      "query": "长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？",
+      "group_id": "context-parallel",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        130
+      ]
+    },
+    {
+      "id": "repo-018-1",
+      "split": "dev",
+      "query": "SmoothQuant针对激活离群值采用什么变换？",
+      "group_id": "quantization",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        96
+      ],
+      "reference_answer": "SmoothQuant用等价变换把激活离群值造成的量化难度转移到权重。",
+      "gold_chunks": [
+        {
+          "id": "df90f6c49278bebeac0b02b8",
+          "heading": "本章简介",
+          "content": "**W8A8 量化（SmoothQuant）**解决 Activation Outlier 导致直接量化效果差的问题，通过数学等价变换将量化难度从 Activation 转移到 Weight。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "8063b9eda80527e5f4479458",
+          "heading": "9.3 权重量化三剑客：GPTQ / AWQ / SmoothQuant",
+          "content": "**追问：为什么 SmoothQuant 能帮到 W8A8？**\n> LLM 激活里存在**离群值（outlier）**，少数通道幅值极大，per-tensor 量化会被这些离群值把 scale 撑大，导致其余通道分辨率极差。SmoothQuant 用数学等价变换把难度从激活转移到权重（权重分布更平滑，好量化），从而让激活也能安全地量化到 INT8。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "039f0fc4a49ca784c7b1f8be",
+          "heading": "9.3 权重量化三剑客：GPTQ / AWQ / SmoothQuant",
+          "content": "- **GPTQ（Generative Pre-trained Transformer Quantization）**：一种基于二阶误差补偿的 PTQ 权重量化算法，名字来源于其针对 GPT 类模型提出。\n- **AWQ（Activation-aware Weight Quantization，激活感知权重量化）**：认为「对激活影响大的通道才重要」，只保护极少数显著通道。\n- **SmoothQuant**：通过数学等价变换平滑激活分布，是「Smooth（平滑）+ Quant（量化）」的合成词。\n- **Activation Outlier（激活离群值）**：激活张量中少数幅值异常大的通道，会把 per-tensor 的 scale 撑大，导致其余通道量化分辨率极差。\n- **NF4（4-bit NormalFloat）**：一种针对正态分布设计的非线性 4-bit 量化格式。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "3d66f2f4435e1e1281de7a7f",
+          "heading": "9.3 权重量化三剑客：GPTQ / AWQ / SmoothQuant",
+          "content": "| 方法 | 一句话 | 核心机制 | 典型配置 |\n|---|---|---|---|\n| **GPTQ** | 根据量化误差逐层优化权重 | 逐层用 **Hessian（二阶偏导矩阵，此处用于估计量化误差的敏感度）** 做补偿，量化一列后更新剩余列 | INT4/INT3 weight-only |\n| **AWQ** | 找重要权重，少量重点保护，其余压成 INT4 | 按激活幅值识别 **salient channel（显著通道）**（~0.1–1%），per-channel 缩放后再量化 | INT4 weight-only，快、鲁棒 |\n| **SmoothQuant** | 解决 Activation Outlier，让 W8A8 更容易实现 | per-channel 缩放：`Y=(X/s)(sW)`，把激活的离群值转移到权重 | W8A8 |",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "59e8768c3457d1adda7cef8e",
+          "heading": "17.3 必背对比表",
+          "content": "| 方法 | 类型 | 粒度 | 特点 |\n|---|---|---|---|\n| GPTQ | PTQ weight-only | per-group | 二阶误差补偿，经典 |\n| AWQ | PTQ weight-only | per-channel | 激活感知，保护 salient 通道 |\n| SmoothQuant | W8A8 | per-channel | 迁移激活离群值到权重 |\n| FP8 | W8A8 | per-tensor/block | 动态范围大，新卡首选 |",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "4f687edb0bde53307657b879",
+          "heading": "9.3 权重量化三剑客：GPTQ / AWQ / SmoothQuant",
+          "content": "## 9.3 权重量化三剑客：GPTQ / AWQ / SmoothQuant\n**速查**：GPTQ 用二阶信息逐层最小化量化误差（经典 PTQ）；\nAWQ 保护对激活重要的少量权重通道（激活感知）；\nSmoothQuant 把激活的量化难度「迁移」到权重上，让 W8A8 可行。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-018-2",
+      "split": "dev",
+      "query": "直接W8A8量化被Activation Outlier破坏，哪个方案将量化难度从激活搬到权重？",
+      "group_id": "quantization",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        96
+      ]
+    },
+    {
+      "id": "repo-020-1",
+      "split": "dev",
+      "query": "投机采样如何在并行验证的同时保证目标采样分布？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 9,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 20,
+      "fused_candidate_gold_rank30": 20,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        131
+      ]
+    },
+    {
+      "id": "repo-020-2",
+      "split": "dev",
+      "query": "小模型先猜若干词再由大模型验证，哪个验收机制才能支持严格的分布正确性？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 5,
+      "exact_dense_gold_rank30": 5,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        131
+      ]
+    },
+    {
+      "id": "repo-022-1",
+      "split": "dev",
+      "query": "相同前缀的请求为什么可以共享历史KV？",
+      "group_id": "prefix-cache",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 27,
+      "exact_dense_gold_rank30": 27,
+      "fusion_gold_rank60": 42,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "fusion_truncation",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        133
+      ],
+      "reference_answer": "相同完整前缀的token KV相同，因为只依赖本token及此前token。",
+      "gold_chunks": [
+        {
+          "id": "95b2da4bb6ddc70e206cc2e8",
+          "heading": "1. 重复的前缀有多浪费",
+          "content": "📌 **关键点**：Attention 的因果性决定了——**一个 Token 的 Key/Value 只取决于它自己和它前面的 Token**。所以两个请求只要**前缀完全一致**，这段前缀每个 Token 算出来的 KV 就一模一样，完全可以只算一次、大家共用。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "14c8077603ba1a2692bfa4d1",
+          "heading": "6. 意外之喜：内存共享与 Copy-on-Write",
+          "content": "- **共享前缀**：一批请求用了相同的 System Prompt，或从同一个 Prompt 并行采样多个回答（`n > 1`）。它们的前缀 KV 完全相同，就没必要各存一份——让它们的块表都指向同一批物理块即可。这就是下一节（2.3 Prefix Cache）的物理基础。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.1-PagedAttention.md"
+        },
+        {
+          "id": "61b620c55f4690a385163677",
+          "heading": "2. 复用的物理基础：块级 KV 共享",
+          "content": "## 2.\n复用的物理基础：块级 KV 共享\n前缀能复用的前提，是显存管理支持\"多个请求指向同一份 KV\"。\n这正是上一节 PagedAttention 打下的地基：\n- KV Cache 以**固定大小的块**存储，请求通过块表间接引用物理块。\n- 只要两个请求的某些前缀块内容相同，就让它们的块表**指向同一个物理块**，配合**引用计数**记录有几个请求在用。\n- 一旦某请求在共享块之后要写入不同内容，Copy-on-Write 保证互不干扰。\n所以 Prefix Cache 本质上是**把\"共享前缀块\"这件事从'同时并存的请求之间'扩展到'先后到达的请求之间'**：前一个请求算完的前缀块，先不急着扔，留在缓存里；\n后来的请求如果前缀匹配，直接复用这些块，跳过对应的 Prefill 计算。\n🔑 **核心概念**：**Prefix Cache = 跨请求、跨时间地复用前缀 KV 块。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md"
+        },
+        {
+          "id": "13afb2d434ab1923ccd57dc0",
+          "heading": "4. **内存共享**：多个请求如果有相同的前缀（如 System Prompt），可以共享同一组物理 Block，大幅节省显存",
+          "content": "4. **内存共享**：多个请求如果有相同的前缀（如 System Prompt），可以共享同一组物理 Block，大幅节省显存\n\n⚠️ **注意**：PagedAttention 的分块存储意味着 KV Cache 在物理上是不连续的，vLLM 需要专门的 CUDA Kernel 来高效地从分散的 Block 中读取数据进行 Attention 计算。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第3章-深入vLLM/vllm快速入门.md"
+        },
+        {
+          "id": "1766660c0cf524aa73503f5f",
+          "heading": "8.3.3 对话与智能体的前缀复用",
+          "content": "### 8.3.3 对话与智能体的前缀复用\n\n第 8.3.2 节计算了同时运行的请求如何共用物理块。这种共享还可以跨越请求的结束时刻：旧请求留下的前缀 KV，能让后来的请求免去同一段输入的计算。如果后续请求的前缀完全相同，并使用相同的模型、位置编码规则、adapter 和状态格式，就能直接使用缓存中的 KV，从前缀末端继续 prefill。章首算例的公共前缀有 6144 个 token，命中缓存后，每条长请求只需处理剩余 2048 个输入 token，再开始生成。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        },
+        {
+          "id": "c293634060e16ea1b954781c",
+          "heading": "8.4.1 权重量化后的内存占用",
+          "content": "### 8.4.1 权重量化后的内存占用\n前缀共享通过去除重复的 KV 节省空间。\n即使请求之间没有相同前缀，也可以用量化减少权重和 KV 的存储量。\n量化通常将数值分组编码，每组保存较低位宽的编码值，以及 scale 等元数据；\n计算时再根据这些信息恢复近似数值。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-022-2",
+      "split": "dev",
+      "query": "大量请求使用同一系统提示词，因果注意力的哪项性质允许前缀KV只算一次？",
+      "group_id": "prefix-cache",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        133
+      ]
+    },
+    {
+      "id": "repo-025-1",
+      "split": "dev",
+      "query": "torchrun的local_rank和全局rank有何区别，绑GPU用哪个？",
+      "group_id": "distributed-launch",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        253
+      ]
+    },
+    {
+      "id": "repo-025-2",
+      "split": "dev",
+      "query": "第二台机器的进程全局rank为2、3，本机只有GPU0、1，设置CUDA设备应该使用什么编号？",
+      "group_id": "distributed-launch",
+      "bm25_gold_rank30": 5,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        253
+      ]
+    },
+    {
+      "id": "repo-032-1",
+      "split": "dev",
+      "query": "GQA与MQA如何共享K/V Head，主要减少什么资源？",
+      "group_id": "attention-kv-heads",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        169
+      ]
+    },
+    {
+      "id": "repo-032-2",
+      "split": "dev",
+      "query": "注意力KV缓存太大但不想减少查询头，分组共享KV头的结构能缓解什么开销？",
+      "group_id": "attention-kv-heads",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        169
+      ],
+      "reference_answer": "GQA分组共享KV头，MQA仅一组，减少缓存和KV读量。",
+      "gold_chunks": [
+        {
+          "id": "649d12858b98f6ac42032591",
+          "heading": "5.2 GQA / MQA",
+          "content": "## 5.2 GQA / MQA\n\n**速查**：GQA 让多个 Query Head 共享一组 K/V Head（`num_kv_heads < num_q_heads`），MQA 是极端情况（只有 1 组 K/V）。直接减少 KV Cache 大小和 Attention 的 K/V 访存量；质量影响取决于模型训练与 Head 配置。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "9e7cf375a4d92578622dffc9",
+          "heading": "2.3.1 多头注意力与 KV 共享",
+          "content": "### 2.3.1 多头注意力与 KV 共享\n\n逐 token 记录最直接的节省办法，是减少每个 token 保存的 $K$、$V$ 份数。多头注意力让不同的查询头分别学习上下文中的关系。在多头注意力（Multi-Head Attention，MHA）中，每个 $Q$ 头对应自己的 $K$、$V$ 头；多查询注意力（Multi-Query Attention，MQA）让所有 $Q$ 头共用一组 $K$、$V$；分组查询注意力（Grouped-Query Attention，GQA）则把 $Q$ 头分组，每组共享一组 $K$、$V$。共享后，每个上下文 token 需要保存的 $K$、$V$ 组数减少，上下文 token 的数量保持不变。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/02-模型架构.md"
+        },
+        {
+          "id": "7dad06843bf41909d7d3b3af",
+          "heading": "7.1 LLaMA-2 系列",
+          "content": "注意 70B 模型的一个关键区别：它使用 **GQA（Grouped-Query Attention）**，KV 头数只有 8（而非 64），这意味着每 8 个 Q 头共享一组 KV，大幅减少了推理时的 KV Cache 开销。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.2 Transformer全貌及代码实现.md"
+        },
+        {
+          "id": "722d692f38ece3527461742b",
+          "heading": "2.3.1 多头注意力与 KV 共享",
+          "content": "[^codesign] 减少 KV 头数既改变模型可表达的注意力关系，也减少服务端必须保存和读取的状态。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/02-模型架构.md"
+        },
+        {
+          "id": "f287c14f41e79fc8ea1cf0dd",
+          "heading": "6.3 显存估算与 gpu-memory-utilization",
+          "content": "KV Cache 可用空间 = 总配额 - 模型权重 - 固定开销。KV Cache 越大，能同时处理的请求越多，吞吐就越高。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第3章-深入vLLM/vllm快速入门.md"
+        },
+        {
+          "id": "d685f5ad4d846f84778e7ad5",
+          "heading": "谬误与陷阱",
+          "content": "**误区：KV 容量降至四分之一，注意力计算量也会同比下降。** GQA 共享上下文表示，查询头仍分别评分；MLA 改变上下文宽度，也改变上投影的执行位置。先找被改变的矩阵与状态，再计算其余工作。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/02-模型架构.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-035-1",
+      "split": "dev",
+      "query": "估算KV Cache显存需要哪些乘法因子，前面的2代表什么？",
+      "group_id": "kv-capacity",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        322
+      ],
+      "reference_answer": "KV字节数为2×层数×KV头数×头维度×长度×batch×dtype字节数。",
+      "gold_chunks": [
+        {
+          "id": "2436af369db8ec12bdb9cd3e",
+          "heading": "6.2 KV Cache：推理显存大户",
+          "content": "**KV Cache 大小公式**：\n```text\nKV_bytes = 2 × num_layers × num_kv_heads × head_dim × seq_len × batch × dtype_bytes\n           ↑\n       K 和 V 各一份\n```\n**举个具体例子**：Llama-2 7B（32 层、32 KV Head、head_dim 128）FP16，单序列 4096 Token：\n```text\n2 × 32 × 32 × 128 × 4096 × 2 bytes ≈ 2.1 GB\n```\n看起来不大，但如果并发 128 路，就是 **270 GB**——远超模型权重本身（13 GB）。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "02cdd85ba5b452f4c3672cfc",
+          "heading": "2.1 内存与存储",
+          "content": "其中 $L$ 为层数，$B$ 为 Batch Size，$T$ 为缓存的 Token 数，$H_{kv}$ 为 KV Head 数，$D$ 为每个 Head 的维度，$s$ 为每个元素的字节数。前面的 2 分别代表 Key 和 Value。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第12章-端侧推理/12.1-端侧推理基础.md"
+        },
+        {
+          "id": "d57a0f92d126c8f90d3dbfc6",
+          "heading": "6.4 KV Cache 显存计算",
+          "content": "### 6.4 KV Cache 显存计算\n\nKV Cache 的显存占用可以用一个通用公式计算：\n\n$$\n\\text{KV Cache 显存} = 2 \\times L \\times n_{kv} \\times d_h \\times N \\times B \\times b_e\n$$",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.8 从Transformer到LLM自回归生成深入理解.md"
+        },
+        {
+          "id": "8462f501af70e80c78055daa",
+          "heading": "2. KV Cache：用显存换计算",
+          "content": "## 2. KV Cache：用显存换计算",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md"
+        },
+        {
+          "id": "6007b8dab55b385fda609aee",
+          "heading": "2.3 显存账本：KV Cache 到底占多少",
+          "content": "📌 **关键点**：$H_{kv}$ 在公式里是线性因子，这正是 **GQA（分组查询注意力）/ MQA（多查询注意力）** 能大幅省显存的原因——让多个 Query 头共享一组 KV 头。比如 32 个 Query 头共享 8 个 KV 头（GQA），KV Cache 直接砍到原来的 $1/4$，而模型表达能力几乎不受影响。现代大模型几乎清一色采用 GQA，就是这笔账算出来的。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md"
+        },
+        {
+          "id": "2d843376f095e1c6c967a541",
+          "heading": "🎯 自我检验清单",
+          "content": "- 能解释 Prefill 和 Decode 两阶段的计算特性差异（Compute Bound vs Memory Bound），以及 KV Cache 的由来\n- 能估算给定配置下 KV Cache 的显存占用（如 7B 模型、4096 序列长度、batch_size=16 下约 32 GB）",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/Transformer架构快速入门.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-035-2",
+      "split": "dev",
+      "query": "同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？",
+      "group_id": "kv-capacity",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 13,
+      "exact_dense_gold_rank30": 13,
+      "fusion_gold_rank60": 22,
+      "fused_candidate_gold_rank30": 22,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        322
+      ],
+      "reference_answer": "KV字节数为2×层数×KV头数×头维度×长度×batch×dtype字节数。",
+      "gold_chunks": [
+        {
+          "id": "2436af369db8ec12bdb9cd3e",
+          "heading": "6.2 KV Cache：推理显存大户",
+          "content": "**KV Cache 大小公式**：\n```text\nKV_bytes = 2 × num_layers × num_kv_heads × head_dim × seq_len × batch × dtype_bytes\n           ↑\n       K 和 V 各一份\n```\n**举个具体例子**：Llama-2 7B（32 层、32 KV Head、head_dim 128）FP16，单序列 4096 Token：\n```text\n2 × 32 × 32 × 128 × 4096 × 2 bytes ≈ 2.1 GB\n```\n看起来不大，但如果并发 128 路，就是 **270 GB**——远超模型权重本身（13 GB）。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "aae3a2aea340579f39569158",
+          "heading": "8.4 完整规划案例",
+          "content": "但如果想把 batch_size 提高到 16 呢？\n- KV Cache 翻倍：$25.6 \\times 2 = 51.2$ GB\n- 总计：$26 + 51.2 + 2 = 79.2$ GB",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.7 Transformer Decoder Block完整解析.md"
+        },
+        {
+          "id": "d4584cc4ea22322db5abd772",
+          "heading": "1. 序列长度墙",
+          "content": "### 1. 序列长度墙\n\n- Attention 的 $O(s^2)$ 计算与显存：$s$ 翻倍，开销翻 4 倍\n- KV Cache 与激活显存随 $s$ 的增长\n- 为什么 TP/PP/DP 都解决不了\"单条序列太长\"",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第9章-长序列训练与上下文并行.md"
+        },
+        {
+          "id": "c28ecd0aa52e3b90877c38c7",
+          "heading": "7.5 Sliding Window Attention",
+          "content": "KV Cache 从 $O(N)$ 变为 $O(W)$，对超长序列的显存节省巨大。但代价是模型无法直接访问窗口之外的远距离信息（需要依靠多层堆叠间接传递）。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.8 从Transformer到LLM自回归生成深入理解.md"
+        },
+        {
+          "id": "88382d1bafb55011e897e97e",
+          "heading": "6.5 显存碎片化问题",
+          "content": "不同请求的序列长度不同，KV Cache 大小不一。随着请求不断到来和完成，显存中会出现大量\"空洞\"——总空闲显存足够，但没有一块连续区域能放下新请求的 KV Cache。这就像停车场里车位很多，但都是零散的单个车位，无法停进一辆需要两个连续车位的大车。\n\n传统做法是为每个请求预分配最大序列长度的 KV Cache 空间，但这会造成极大的浪费——大多数请求远远用不满最大长度。这正是 PagedAttention 要解决的核心问题。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.8 从Transformer到LLM自回归生成深入理解.md"
+        },
+        {
+          "id": "e11b85fed2874a6045120658",
+          "heading": "9.4 对比表格",
+          "content": "注：Cache size = 2 × B × L × num_heads × head_dim × d_type_bytes （其中 2 是 K 和 V，B 是 batch_size，L 是已生成序列长度）\n可以看到，从 MHA 到 GQA($g=8$)，KV Cache 缩小为 1/4，参数量减少，但模型质量几乎不受影响。这就是 GQA 成为主流选择的原因。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.3 Self-Attention机制深入理解.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-037-1",
+      "split": "dev",
+      "query": "复用前缀KV时除token内容还需校验哪些上下文？",
+      "group_id": "prefix-cache",
+      "bm25_gold_rank30": 12,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 24,
+      "fused_candidate_gold_rank30": 24,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        423
+      ]
+    },
+    {
+      "id": "repo-037-2",
+      "split": "dev",
+      "query": "同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？",
+      "group_id": "prefix-cache",
+      "bm25_gold_rank30": 5,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 13,
+      "fused_candidate_gold_rank30": 13,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        423
+      ]
+    },
+    {
+      "id": "repo-038-1",
+      "split": "dev",
+      "query": "请求取消导致KV泄漏应如何统一资源清理路径？",
+      "group_id": "kv-lifecycle",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        211
+      ]
+    },
+    {
+      "id": "repo-038-2",
+      "split": "dev",
+      "query": "服务跑久后free blocks只降不升，取消请求漏了release，怎样修复并验证共享与抢占交错？",
+      "group_id": "kv-lifecycle",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        211
+      ]
+    },
+    {
+      "id": "repo-042-1",
+      "split": "dev",
+      "query": "Column Parallel线性层之后是否一定要AllGather？",
+      "group_id": "tensor-parallel",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 8,
+      "fused_candidate_gold_rank30": 8,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        298
+      ]
+    },
+    {
+      "id": "repo-042-2",
+      "split": "dev",
+      "query": "列并行输出能够直接给下一分片层消费，还应无条件收集完整激活吗，通信依据是什么？",
+      "group_id": "tensor-parallel",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 7,
+      "fused_candidate_gold_rank30": 7,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        298
+      ]
+    },
+    {
+      "id": "repo-044-1",
+      "split": "dev",
+      "query": "投机解码减少了什么调用，为什么并行验证不等于全部接受？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 4,
+      "dense_gold_rank30": 10,
+      "exact_dense_gold_rank30": 10,
+      "fusion_gold_rank60": 6,
+      "fused_candidate_gold_rank30": 6,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        129
+      ]
+    },
+    {
+      "id": "repo-044-2",
+      "split": "dev",
+      "query": "Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 7,
+      "exact_dense_gold_rank30": 7,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        129
+      ]
+    },
+    {
+      "id": "repo-045-1",
+      "split": "dev",
+      "query": "精确投机采样的接受概率与拒绝后修正分布是什么？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 3,
+      "dense_gold_rank30": 6,
+      "exact_dense_gold_rank30": 6,
+      "fusion_gold_rank60": 3,
+      "fused_candidate_gold_rank30": 3,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        339
+      ]
+    },
+    {
+      "id": "repo-045-2",
+      "split": "dev",
+      "query": "草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 9,
+      "dense_gold_rank30": 8,
+      "exact_dense_gold_rank30": 8,
+      "fusion_gold_rank60": 5,
+      "fused_candidate_gold_rank30": 5,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        339
+      ],
+      "reference_answer": "以min(1,p/q)接受，拒绝从归一化[p-q]+采样，使用实际温度topk/topp后的分布。",
+      "gold_chunks": [
+        {
+          "id": "37b70b0361d8773d98c9c131",
+          "heading": "先弄清“无损”验证",
+          "content": "## 先弄清“无损”验证\n\n设目标模型在某位置的采样分布为 $p$，Draft 分布为 $q$，Draft 采到 $x$。精确采样以 $\\min(1,p(x)/q(x))$ 的概率接受它；若拒绝，就从归一化后的 $[p-q]_+$ 中采一个修正 Token。若 $\\gamma$ 个候选全部通过，还可从 Target 的下一位置再采一个 Token。这样每一步的结果服从 $p$，前提是使用**实际生效的采样分布**，包括温度、top-k/top-p 等处理。贪心解码则按 Target 的逐位置最优 Token 检查候选前缀。[经典投机解码论文](https://proceedings.mlr.press/v202/leviathan23a.html)给出了精确采样的证明。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "ef4ef7ac2a4b3bc399ca78ba",
+          "heading": "历史与延伸阅读",
+          "content": "推测采样的接受与修正规则为保持目标分布奠定了基础，后续从上下文查找草稿、依据中间特征预测草稿以及并行生成草稿的方法，主要改变每轮开销与接受的草稿长度。完整 Agent 任务还包含工具和外部阶段，公开速度与任务记录可结合第 8.6 节的阶段分解阅读。[^spec][^task]",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        },
+        {
+          "id": "9122ad5e0ee1edb8069514e4",
+          "heading": "9.7 核心思想",
+          "content": "**为什么正确？** 若验证与修正采用目标模型实际生效的采样分布，并执行 **modified rejection sampling**，输出分布与直接从目标模型采样一致；近似验收模式不在此保证之内。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "c556b3914d9b2e7bb582cea7",
+          "heading": "17.5 常见易错点 / 陷阱",
+          "content": "| ❌ 投机解码必然有损 | ✅ 精确验收可保持目标分布；\n近似验收另当别论 |\n| ❌ Prefix Cache 只需比较 token IDs | ✅ 还要包含模型/LoRA/位置/隔离上下文；\n完整命中时另行处理 logits |",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "c5bf931342e573fe90bc277c",
+          "heading": "5.4 温度参数",
+          "content": "温度改变的是采样分布，不等于修改模型权重。工程实现应先缩放 logits，再应用稳定 Softmax，并谨慎处理非常小的温度。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/第2章-数学基础.md"
+        },
+        {
+          "id": "e9b337fff5da78e2a6feca16",
+          "heading": "5.9 Top-k 与 Top-p 采样",
+          "content": "Top-p 集合大小会随分布尖锐程度动态变化。实现时通常先过滤 logits，把被排除项设为负无穷，再执行稳定 Softmax 和采样。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/第2章-数学基础.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-046-1",
+      "split": "dev",
+      "query": "MTP为什么不是任意LLM打开一个开关就能使用？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 4,
+      "fused_candidate_gold_rank30": 4,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        275
+      ]
+    },
+    {
+      "id": "repo-046-2",
+      "split": "dev",
+      "query": "部署模型没有训练MTP模块，能否仅靠推理引擎配置获得多token预测头？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        275
+      ]
+    },
+    {
+      "id": "repo-047-1",
+      "split": "dev",
+      "query": "EAGLE的Draft来自哪里，需要哪些额外实现？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 6,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        278
+      ]
+    },
+    {
+      "id": "repo-047-2",
+      "split": "dev",
+      "query": "不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 4,
+      "exact_dense_gold_rank30": 4,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        278
+      ]
+    },
+    {
+      "id": "repo-048-1",
+      "split": "dev",
+      "query": "Medusa如何构树验证，为什么需要Tree Attention掩码？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        330
+      ]
+    },
+    {
+      "id": "repo-048-2",
+      "split": "dev",
+      "query": "一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 4,
+      "fused_candidate_gold_rank30": 4,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        330
+      ]
+    },
+    {
+      "id": "repo-049-1",
+      "split": "dev",
+      "query": "Prompt Lookup草稿怎样生成，是否需要额外模型权重？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 4,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 8,
+      "fused_candidate_gold_rank30": 8,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        342
+      ]
+    },
+    {
+      "id": "repo-049-2",
+      "split": "dev",
+      "query": "代码编辑输出经常复制上下文且没有显存放草稿模型，应采用什么候选生成路线？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 8,
+      "fused_candidate_gold_rank30": 8,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        342
+      ]
+    },
+    {
+      "id": "repo-050-1",
+      "split": "dev",
+      "query": "投机解码期望输出token数与接受的Draft数为什么不同？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 6,
+      "exact_dense_gold_rank30": 6,
+      "fusion_gold_rank60": 18,
+      "fused_candidate_gold_rank30": 18,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        263
+      ]
+    },
+    {
+      "id": "repo-050-2",
+      "split": "dev",
+      "query": "接受率0.8且草稿长4时报告2.36个接受草稿，为何每轮实际期望输出约3.36个？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 5,
+      "dense_gold_rank30": 25,
+      "exact_dense_gold_rank30": 25,
+      "fusion_gold_rank60": 11,
+      "fused_candidate_gold_rank30": 11,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        263
+      ],
+      "reference_answer": "平均输出含修正或额外token，多于已接受draft；收益还取决于draft验证调度总耗时。",
+      "gold_chunks": [
+        {
+          "id": "46b60e4fb63fd093e7abca3a",
+          "heading": "怎么选，以及怎么算收益",
+          "content": "而**被接受的 Draft Token 数**是 $\\sum_{k=1}^{\\gamma}\\alpha^k$，两者不要混用。例如 $\\alpha=0.8,\\gamma=4$ 时，前者约为 3.36，后者约为 2.36。这只是恒定接受率的简化估计。实际加速还要比较 `Draft 耗时 + Target 验证耗时 + 调度/构树开销` 与逐 Token 的 Target 耗时；长候选、大批量和复杂树未必更快。部署时应同时记录**接受长度分布、每轮延迟、端到端吞吐、显存占用**，按具体模型与负载调节 $\\gamma$ 或树宽。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "40f62ffdd5d60aac0e8f11d1",
+          "heading": "9.7 核心思想",
+          "content": ">\n> **期望输出数**（含首个拒绝后的修正 Token，或全接受后的额外 Token）`E = (1 − α^(γ+1)) / (1 − α)`：α=0.8、γ=4 → **3.36**；\nα=0.6、γ=4 → 2.31；\nα=0.5、γ=8 → **2.00**。\n单算被接受的 Draft Token 数，应从这里减去 1。\n最后一组说明：接受率只有 0.5 时，把 Draft 长度从 4 加到 8 也几乎不涨收益，反而增加 Draft 成本。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "6f7cb7e9609fbecba4b802d1",
+          "heading": "8.5.3 草稿来源与串行、并行生成方式",
+          "content": "此时，加速来自草稿生成时间的缩短。\n再设并行生成的草稿接受率较低，平均输出数降为 2 个，平均每个输出 token 的耗时就升至 $(3.57+26.26)/2\\approx14.9$ ms，反而慢于串行方式。\n更快的草稿生成节省了 10.7 ms，但每轮输出减少，每个输出 token 分摊的时间随之增加，整个请求因而变慢。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        },
+        {
+          "id": "f0c777556099d6653b8c5b6a",
+          "heading": "8.5.4 草稿长度的动态选择与并发竞争",
+          "content": "也就是说，为新增输出付出的平均时间，必须低于原来的平均每 token 耗时。由于接受概率需要逐项相乘，越靠后的草稿 token 保留下来的概率越低，增加它们就越难获得足够的时间收益。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        },
+        {
+          "id": "789b6206882bf71f7b9f02f4",
+          "heading": "8.5.4 草稿长度的动态选择与并发竞争",
+          "content": "### 8.5.4 草稿长度的动态选择与并发竞争\n\n确定草稿来源之后，还需要决定每轮生成多长。草稿越长，一轮能够输出的 token 上限越高。但只有前面的 token 全部接受，后面的才有机会进入最终输出。设前面的草稿 token 都已接受时，第 $j$ 个 token 的条件接受概率为 $a_j$，则长度为 $m$ 的草稿对应的平均输出数为",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        },
+        {
+          "id": "ef4ef7ac2a4b3bc399ca78ba",
+          "heading": "历史与延伸阅读",
+          "content": "推测采样的接受与修正规则为保持目标分布奠定了基础，后续从上下文查找草稿、依据中间特征预测草稿以及并行生成草稿的方法，主要改变每轮开销与接受的草稿长度。完整 Agent 任务还包含工具和外部阶段，公开速度与任务记录可结合第 8.6 节的阶段分解阅读。[^spec][^task]",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-053-1",
+      "split": "dev",
+      "query": "MoE为什么能区分总参数量与每token激活参数量？",
+      "group_id": "moe-routing",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 9,
+      "fused_candidate_gold_rank30": 9,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        132
+      ]
+    },
+    {
+      "id": "repo-053-2",
+      "split": "dev",
+      "query": "模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？",
+      "group_id": "moe-routing",
+      "bm25_gold_rank30": 9,
+      "dense_gold_rank30": 7,
+      "exact_dense_gold_rank30": 7,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        132
+      ]
+    },
+    {
+      "id": "repo-066-1",
+      "split": "dev",
+      "query": "为什么生成草稿更快仍可能让投机解码更慢？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 4,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        163
+      ]
+    },
+    {
+      "id": "repo-066-2",
+      "split": "dev",
+      "query": "优化draft省了10.7ms却让每轮平均输出降到2个token，应该怎样比较每个输出token的成本？",
+      "group_id": "speculative-decoding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        163
+      ]
+    },
+    {
+      "id": "repo-068-1",
+      "split": "dev",
+      "query": "改变推理并行度时为什么传完权重不等于实例迁移完成？",
+      "group_id": "distributed-migration",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 8,
+      "exact_dense_gold_rank30": 8,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        169
+      ],
+      "reference_answer": "迁移需权重请求状态、通信组、图、布局和接流量准备，参数搬完不等于可服务。",
+      "gold_chunks": [
+        {
+          "id": "ece809fa2b5b0489bc973cb4",
+          "heading": "9.6.2 运行中重配置与状态交接",
+          "content": "### 9.6.2 运行中重配置与状态交接\n\n启动解决的是新实例何时可用；运行中的迁移还要让目标实例接着源端的进度执行。改变张量并行度、专家并行度或服务池的规模，需要重新安排权重与请求状态。目标卡获得参数只是第一步，还可能要建立通信组、准备新的执行图、转换布局并恢复接收请求。这些准备与数据搬移有先后依赖，共同决定何时能把新请求交给目标。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/09-分布式推理.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "f6f5fbe86060f4e5dc041331",
+          "heading": "7.6.4 固定 1024 卡，超节点变大后如何重新选择",
+          "content": "若改为推理，多个较小的实例还能各自处理请求、隔离故障，第 6.7.4 节用同样的方法算过超节点大小对 decode 吞吐的影响。\n真实训练中局部矩阵效率、内存或重叠能力不同时，张量、上下文、流水线并行的组合可能更好；\n应像第 6.7.3 节那样扩展方案重算，而不是把本例的 TP8 当作通用答案。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        },
+        {
+          "id": "5a0ccdf1ced5601613ff24f3",
+          "heading": "1.1.3 一次生成请求的处理过程",
+          "content": "先分清谁负责执行，才能知道一份权重应放在哪里、一份中间结果应传给谁。\n![一次请求先由路由器选择推理实例，再由实例内部的调度器安排执行。\n灰色外框圈出同一个实例，实线表示请求和工作提交的方向。\n](ch01/figure-1-2-request.svg)",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/01-初识 AI Infra.md"
+        },
+        {
+          "id": "3d41c5704fbad45bc066fd75",
+          "heading": "4.7.3 固定数据流与固定权重",
+          "content": "固定权重并不等于只能完成一种任务。改变输入，就能让同一个模型执行不同的上层任务。同一组模型权重既可以处理文档问答，也可以根据代码和测试结果提出修改；每次调用使用自己的上下文状态。因而，硬件可以针对共同的模型执行设计权重通路，同时用可写存储保存各条请求的上下文。下面把权重与上下文分别计量，计算这种分工能够释放多少容量和带宽。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        },
+        {
+          "id": "c5bf931342e573fe90bc277c",
+          "heading": "5.4 温度参数",
+          "content": "温度改变的是采样分布，不等于修改模型权重。工程实现应先缩放 logits，再应用稳定 Softmax，并谨慎处理非常小的温度。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/第2章-数学基础.md"
+        },
+        {
+          "id": "bae6de9dd6ae6423a5f47b00",
+          "heading": "16.38/(50/8)\\approx2.62\\ \\mathrm{s},",
+          "content": "而共享出口要发送约 98.3 GB，向六个实例全部传完权重至少需要",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/11-资源调度与运行环境.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-068-2",
+      "split": "dev",
+      "query": "服务从TP4扩到TP8，目标GPU已有参数仍不能接管请求，还需检查哪些运行时准备？",
+      "group_id": "distributed-migration",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 4,
+      "fused_candidate_gold_rank30": 4,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        169
+      ]
+    },
+    {
+      "id": "repo-070-1",
+      "split": "dev",
+      "query": "激活重计算如何用额外计算换取训练显存？",
+      "group_id": "activation-recomputation",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 14,
+      "exact_dense_gold_rank30": 14,
+      "fusion_gold_rank60": 6,
+      "fused_candidate_gold_rank30": 6,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        157
+      ]
+    },
+    {
+      "id": "repo-070-2",
+      "split": "dev",
+      "query": "参数已经分片但前向激活仍占太多显存，还可以在哪些中间结果上选择保存或重算？",
+      "group_id": "activation-recomputation",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        157
+      ]
+    },
+    {
+      "id": "repo-075-1",
+      "split": "dev",
+      "query": "端侧带宽受限Decode为何能从低比特权重量化获益？",
+      "group_id": "quantization",
+      "bm25_gold_rank30": 27,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 49,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "fusion_truncation",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        384
+      ],
+      "reference_answer": "低比特分组量化降低权重每步读取量，提高带宽受限decode上限。",
+      "gold_chunks": [
+        {
+          "id": "c18f8165367df9af744db84d",
+          "heading": "12.1.5 端侧执行资源与本地部署",
+          "content": "即 decode 上限约 5.6 token/s；计入 KV 后每步约 0.193 s，上限约 5.2 token/s。量化直接减少每步读取的字节数：按第 8.4 节的 q4_0 分组格式，每 32 个 BF16 值从 64 bytes 变为 18 bytes，权重每步读取降至约 $15.14\\times18/64\\approx4.26$ GB，每步合计约 5.47 GB、64.4 ms，上限约 15.5 token/s。MELTing Point 在 iPhone 14 Pro 上实测 Zephyr-3B q4_k 为 14.8 token/s、Llama-2 7B q3_k 为 6.0 token/s（q4_k、q3_k 是与第 8.4.1 节 Q2_K 同属 GGML 系列的 4-bit、3-bit 分组量化格式），与这里推导的量级一致。[^melt]",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "6635633eb9b3f764161d474e",
+          "heading": "12.1.5 端侧执行资源与本地部署",
+          "content": "Unsloth 节省的是这份状态，而非每步读取权重的带宽下界。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md"
+        },
+        {
+          "id": "cf572ebb7b4bfe9f1d8f91c8",
+          "heading": "3.1.1 Prefill 与 Decode",
+          "content": "以一组权重矩阵为例，prefill 的输入包含 $BP$ 行，单步 decode 只有 $B$ 行。\n输入 token 较多时，一次读入的权重可以参与更多乘加运算；\n低并发 decode 则可能只为少数几个 token 读取整组权重。\n这就是“prefill 通常受算力限制、decode 通常受内存带宽限制”这种说法的由来。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/03-推理与训练负载.md"
+        },
+        {
+          "id": "28f15253d76a2a997d856968",
+          "heading": "4.6.1 NVIDIA：矩阵、精度与数据路径分别带来多少收益",
+          "content": "*\n从 33.29 μs 到 4.97 μs，权重读取预算缩小到约 1/6.69。\n这笔收益由两部分相乘：带宽约提高到 1.78 倍，存储量缩小到约 1/3.76。\n原生低精度矩阵路径直接处理压缩表示，省去第 4.2.4 节先展开路径中的高精度权重副本。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        },
+        {
+          "id": "b8fdc68aa4b89c80c32ee0e5",
+          "heading": "9.2 量化总论",
+          "content": "- **量化（Quantization）**：把高精度浮点数映射到低精度表示的过程；\n**反量化（Dequantization）** 是其逆运算，把低精度值还原成浮点参与计算。\n- **PTQ（Post-Training Quantization，训练后量化）**：模型训练完成后直接做量化，无需重训，工业界推理的主流。\n- **QAT（Quantization-Aware Training，量化感知训练）**：在训练时模拟量化误差，精度更好但成本高。\n- **Weight-only（仅权重量化）**：只量化权重、激活仍为浮点，主要省显存，但用不上 INT8 Tensor Core。\n- **W8A8（Weight 8-bit / Activation 8-bit，权重与激活均为 8 位）**：权重和激活都量化到 8 位，才能用上整数 Tensor Core 获得算力收益。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "4d49fa74f39a20de072196c8",
+          "heading": "7.8 RMSNorm",
+          "content": "它减少了均值相关计算，但“公式更少”不必然按同比例提升端到端速度，实际收益取决于融合、访存和模型整体瓶颈。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/第2章-数学基础.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-075-2",
+      "split": "dev",
+      "query": "手机逐token生成受LPDDR读取权重限制，量化为什么能提高理论出词速度？",
+      "group_id": "quantization",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        384
+      ],
+      "reference_answer": "低比特分组量化降低权重每步读取量，提高带宽受限decode上限。",
+      "gold_chunks": [
+        {
+          "id": "c18f8165367df9af744db84d",
+          "heading": "12.1.5 端侧执行资源与本地部署",
+          "content": "即 decode 上限约 5.6 token/s；计入 KV 后每步约 0.193 s，上限约 5.2 token/s。量化直接减少每步读取的字节数：按第 8.4 节的 q4_0 分组格式，每 32 个 BF16 值从 64 bytes 变为 18 bytes，权重每步读取降至约 $15.14\\times18/64\\approx4.26$ GB，每步合计约 5.47 GB、64.4 ms，上限约 15.5 token/s。MELTing Point 在 iPhone 14 Pro 上实测 Zephyr-3B q4_k 为 14.8 token/s、Llama-2 7B q3_k 为 6.0 token/s（q4_k、q3_k 是与第 8.4.1 节 Q2_K 同属 GGML 系列的 4-bit、3-bit 分组量化格式），与这里推导的量级一致。[^melt]",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "0416343aae2deb76eb0c9e3d",
+          "heading": "4.3 把 Prefill 和 Decode 放上去",
+          "content": "🔑 **核心概念**：**Decode 慢，不是因为算不过来，而是因为\"搬不过来\"**。GPU 的计算单元大部分时间在空等权重从显存加载。这就解释了两个关键现象：\n\n1. **为什么 Batch 能大幅提升吞吐却几乎不增加延迟**：把多个请求的 Decode 拼成一个 Batch，权重只搬一次就能服务整个 Batch 的所有 Token，算术强度成倍提升，把闲置的算力利用起来——这正是 Continuous Batching 的理论依据。\n2. **为什么量化（尤其是 Weight-only）对 Decode 加速明显**：Decode 瓶颈在搬权重，把权重从 FP16 压到 INT4，要搬的字节数直接减少到 $1/4$，延迟随之大幅下降。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md"
+        },
+        {
+          "id": "f753a3f14389612cd81ce5d6",
+          "heading": "4.8.3 预测与实测为什么有差距",
+          "content": "在这套软硬件上，提高带宽利用率几乎不能加快单请求生成；\n要缩短每步时间，先要减少这部分固定工作，第 5 章讨论的 kernel 融合与减少启动次数，针对的正是这部分时间。\nbatch 增大后，固定工作由更多 token 分摊，读取才重新成为主要项。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        },
+        {
+          "id": "5ca6106f6568038673e462ac",
+          "heading": "9.2 量化总论",
+          "content": "## 9.2 量化总论\n\n**速查**：量化是用更低精度（FP8/INT8/INT4）表示权重/激活，换取更小显存和更高吞吐，代价是精度损失。分两大类：**权重量化（Weight-only）** 和 **权重+激活量化（W8A8）**。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "76c059728ce0c7d1de11e647",
+          "heading": "9.3.2 CPU／GPU 协作",
+          "content": "硬件变化可以用同一组公式估计。\n在 NUMA 结构下，线程读另一颗 CPU 上的内存要经过处理器间互联。\n论文测得这台机器的跨插槽带宽只有 125 GB/s。\nCPU 路径的时间取权重读取与矩阵计算中较长的一项，图 9-15 把每专家 128 个 token 时的这两项并排画出。\n用 AVX-512 kernel 时，计算远长于读取，内存放在哪个插槽几乎无关紧要；\n换成 AMX kernel，计算缩短到略长于同插槽读取，一旦跨插槽读取，读取反而成了较长的一项。\n就地计算是否划算，由当前的主要瓶颈决定：读取受限时提高主存带宽有用，计算受限时提高矩阵吞吐有用。\n量化格式同时改变这两项：权重字节数减少，矩阵 kernel 的有效吞吐也随之改变。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/09-分布式推理.md"
+        },
+        {
+          "id": "6d2da4d302e580c36c70893e",
+          "heading": "0.6 最重要的一个区分：Prefill 计算密集 vs Decode 访存密集",
+          "content": "> **追问：为什么 Decode 是访存密集？**\n> 生成一个 Token 需要把**全部模型权重**从 HBM 读一遍（MoE 只读激活专家），而计算量只有 2×参数量 FLOPs。以 70B 模型 FP16 为例：读 140 GB 权重，算 140 GFLOPs，算术强度 ≈ 1 FLOP/Byte，远低于 GPU 的机器平衡点（H100 约 300+）。所以**带宽是天花板，加算力没用**。\n>\n> **推论**：Decode 阶段增大 Batch 几乎不增加权重读取量（权重被复用），却能线性提升吞吐 → 这就是 Continuous Batching 的理论基础。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-001-1",
+      "split": "test",
+      "query": "CUDA 中 Warp 是什么单位，通常包含多少线程？",
+      "group_id": "cuda-warp",
+      "bm25_gold_rank30": 5,
+      "dense_gold_rank30": 11,
+      "exact_dense_gold_rank30": 11,
+      "fusion_gold_rank60": 4,
+      "fused_candidate_gold_rank30": 4,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        121
+      ],
+      "reference_answer": "Warp 是硬件调度执行的基本单位，包含32个连续线程。",
+      "gold_chunks": [
+        {
+          "id": "7e0231560f4a0c09a8d9958d",
+          "heading": "1. 从硬件视角认识 Warp",
+          "content": "## 1. 从硬件视角认识 Warp\n\n想象一个教室里有 32 个学生（线程），老师（调度器）每次发出一条指令，所有学生同时执行同一个动作。这就是 Warp 的核心概念——GPU 硬件调度和执行的最小单位，固定包含 **32 个连续线程**。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.1-Warp与执行模型.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "cb7e9f3ee6fb2198aa5dbbf7",
+          "heading": "4.1 Warp",
+          "content": "### 4.1 Warp\n\nWarp 是 GPU 执行的最小调度单位，由 **32 个连续线程** 组成。同一个 Warp 内的线程在同一时刻执行相同的指令（SIMT）。可以把 Warp 想象成一排 32 个士兵齐步走，步调必须一致——如果有人要向左转、有人要向右转，就只能先让一拨人转完，再让另一拨人转，效率减半。\n\n```\nBlock (256 threads)\n├── Warp 0: Thread 0-31\n├── Warp 1: Thread 32-63\n├── Warp 2: Thread 64-95\n├── ...\n└── Warp 7: Thread 224-255\n```",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md"
+        },
+        {
+          "id": "de864da5b2675feda11c9cd2",
+          "heading": "1.1 知识点",
+          "content": "- 编程模型：Grid / Block / Thread 层级，线程索引计算\n- 内存模型：全局内存、共享内存、寄存器、常量内存的特性与用法\n- 关键概念：Warp（32 个线程组成的最小调度单位，GPU 每次下达指令都是以 Warp 为单位，就像军队里以\"班\"为单位行动）、Bank Conflict、Coalesced Access、Occupancy\n- 核心直觉：\"内存访问模式决定运行速度\"",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/AI Infra学习路线.md"
+        },
+        {
+          "id": "f1ee83e489e58722b2b2d1e0",
+          "heading": "4.4 硬件单元速览：SM / CUDA Core / Tensor Core",
+          "content": "| Register File | SM 的高速寄存器池，所有线程的寄存器都从这里分配 | 是决定 Occupancy 的关键资源 |\n| L1 数据缓存 / 共享内存 | SM 私有的片上 SRAM，其中共享内存由程序员管理 | GEMM、FlashAttention 的数据中转站 |\n举例：H100 的 SM 通常有 128 个 FP32 CUDA Core、4 个 Tensor Core、4 个 Warp Scheduler，并且一个 SM 最多容纳 64 个 Warp（也就是 2048 个并发线程）。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md"
+        },
+        {
+          "id": "a2f1123bb3e45599e6e05364",
+          "heading": "2.3 Warp：GPU 执行的最小单位",
+          "content": "### 2.3 Warp：GPU 执行的最小单位\n\nGPU 不是一个线程一个线程执行的，而是以 **Warp**（线程束）为单位，32 个线程锁步执行同一条指令。这就像军队齐步走——32 个士兵听同一声号令，迈出同一只脚。\n\n```\nWarp（32 个线程）\n├── Thread 0:  执行 add r1, r2, r3\n├── Thread 1:  执行 add r1, r2, r3  (同一条指令，不同数据)\n├── Thread 2:  执行 add r1, r2, r3\n├── ...\n└── Thread 31: 执行 add r1, r2, r3\n```",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/gpu/gpu-basics.md"
+        },
+        {
+          "id": "29a7757337f962d31df7049a",
+          "heading": "6.1 动机",
+          "content": "如果 warp 内线程排列为 $1 \\times 32$（一行 32 个），那么读取 $A$ 时 32 个线程都需要同一个元素（可以 Broadcast），但读取 $B$ 时需要 32 个不同元素。反过来 $32 \\times 1$ 则对 $B$ 友好但 $A$ 不友好。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-001-2",
+      "split": "test",
+      "query": "一个 CUDA Block 有128个线程，按32线程的执行组组织时应划成多少个 Warp？",
+      "group_id": "cuda-warp",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        121
+      ],
+      "reference_answer": "Warp 是硬件调度执行的基本单位，包含32个连续线程。",
+      "gold_chunks": [
+        {
+          "id": "7e0231560f4a0c09a8d9958d",
+          "heading": "1. 从硬件视角认识 Warp",
+          "content": "## 1. 从硬件视角认识 Warp\n\n想象一个教室里有 32 个学生（线程），老师（调度器）每次发出一条指令，所有学生同时执行同一个动作。这就是 Warp 的核心概念——GPU 硬件调度和执行的最小单位，固定包含 **32 个连续线程**。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.1-Warp与执行模型.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "4bedbc0a52ef02b40090e434",
+          "heading": "9.1 向量化加载（float4）",
+          "content": "- 一个 Warp 32 线程 × 4 字节 = 128 字节，恰好一个事务\n- 但每条加载指令的调度开销是固定的",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/3.1-CUDA Reduce算子优化.md"
+        },
+        {
+          "id": "dbac4f7324becbdc43e33c05",
+          "heading": "6.3 Warp 内线程位置计算",
+          "content": "### 6.3 Warp 内线程位置计算\n$BM = 128, BN = 128$，一个 Block 有 256 / 32 = 8 个 warp。\n取 $4 \\times 8$ warp 布局、$TM = TN = 8$：每个 warp 计算 $32 \\times 64$ 的 C 子块。\n确定了 $4 \\times 8$ 的 warp 内布局后，需要精确计算每个线程在 Block Tile 中的起始坐标。\n设 `tid` 为线程在 Block 内的全局 ID：",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md"
+        },
+        {
+          "id": "5184ba6eb19efa33b56ffc69",
+          "heading": "5.2 为什么必须是 32 的倍数",
+          "content": "```\nBlock 大小 = 100 → 4 个 Warp，但第 4 个 Warp 中只有 4 个线程活跃\nBlock 大小 = 128 → 4 个 Warp，全部线程都活跃 ✅\n```",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/1.2-CUDA编程模型.md"
+        },
+        {
+          "id": "193eb0c3ddec8f66eb4b71c1",
+          "heading": "4.4 Kernel 实现",
+          "content": "💡 **提示**：以 blockDim=256、step=128 为例：tid < 128 的 4 个完整 Warp 工作，tid ≥ 128 的 4 个完整 Warp 空闲，同一 Warp 内**所有线程执行相同路径**，没有分化；同时每个 Warp 的 32 个线程访问 32 个不同 Bank，没有冲突。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/3.1-CUDA Reduce算子优化.md"
+        },
+        {
+          "id": "08c439412db2345828c2bc1b",
+          "heading": "5.1.5 一个 kernel 在 SM 上如何执行",
+          "content": "### 5.1.5 一个 kernel 在 SM 上如何执行\n图 5-3 把 kernel 画成一段 20 μs 的整体；\n它能否缩短到 5 μs，取决于这段时间里 SM 上发生了什么。\n本节固定一个 kernel，沿线程、驻留、访存、矩阵指令和同步五步，推导其在一个 SM 上如何执行。\nkernel 取第 4.3.2 节的乘加块：输出块 128×128，沿 K 每步 64；\nBF16 的 A 块与 W 块各 16 KiB，FP32 累加器 64 KiB，三者都放在共享内存中，构成工作集（计算期间必须同时留在局部存储中的数据），共 96 KiB。\n一个线程块负责一个输出块，含 256 个线程。\n硬件取 H100 的一个 SM：最多同时驻留 2048 个线程（即 64 个 warp，warp 在下文解释）和 32 个线程块，寄存器 64K 个（每个 32 位），共享内存 228 KB（CUDA 文档的写法，即 233,472 bytes）。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-003-1",
+      "split": "test",
+      "query": "Occupancy 如何定义，受到哪些资源限制？",
+      "group_id": "cuda-occupancy",
+      "bm25_gold_rank30": 5,
+      "dense_gold_rank30": 8,
+      "exact_dense_gold_rank30": 8,
+      "fusion_gold_rank60": 3,
+      "fused_candidate_gold_rank30": 3,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        160
+      ]
+    },
+    {
+      "id": "repo-003-2",
+      "split": "test",
+      "query": "调CUDA算子时只追求最高Occupancy是否合理，应该平衡什么？",
+      "group_id": "cuda-occupancy",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        160
+      ]
+    },
+    {
+      "id": "repo-004-1",
+      "split": "test",
+      "query": "__syncthreads 的等待范围和内存可见性是什么？",
+      "group_id": "cuda-synchronization",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        62
+      ],
+      "reference_answer": "Block内所有线程到达后继续，屏障前写入对同Block线程可见。",
+      "gold_chunks": [
+        {
+          "id": "0664de514a5b4970e88a286e",
+          "heading": "2.1 基本语义",
+          "content": "> Block 内的所有线程都到达此屏障点后，才能继续向下执行。同时保证屏障前的所有内存写入对 Block 内所有线程可见。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.4-同步与原子操作.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "6110760b38f482bcf5d16005",
+          "heading": "4.1 为什么需要 Memory Fence",
+          "content": "### 4.1 为什么需要 Memory Fence\n\n`__syncthreads()` 解决了 Block 内的同步问题，但跨 Block 通信怎么办？GPU 没有全局屏障（传统意义上），但提供了 Memory Fence 保证内存写入的可见性。\n\nMemory Fence 不会阻塞线程执行，它只保证：**Fence 之前的内存写入在 Fence 之后对目标范围内的其他线程可见**。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.4-同步与原子操作.md"
+        },
+        {
+          "id": "41072ae841b5909c4399fe1a",
+          "heading": "2. **内存可见性**：确保一个线程的写入对其他线程\"可见\"（不被缓存遮挡）",
+          "content": "2. **内存可见性**：确保一个线程的写入对其他线程\"可见\"（不被缓存遮挡）",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.4-同步与原子操作.md"
+        },
+        {
+          "id": "e664ef782d2506a40f9666f4",
+          "heading": "4. Memory Fence 与内存可见性",
+          "content": "## 4. Memory Fence 与内存可见性",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.4-同步与原子操作.md"
+        },
+        {
+          "id": "a2964d6ce047bb825f884f05",
+          "heading": "7.4.1 数据分片的生成、使用与缓冲区复用",
+          "content": "这一模型同时解释正确性与性能。缺少“数据可见→发出通知”的依赖会让消费者读到未发布的数据；多出“无关传输也必须等待”的边会增加等待。状态管理的任务，是记录哪些节点已经完成、哪些依赖已经满足，以及哪些资源可以归还。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        },
+        {
+          "id": "af353496c41ad9a656e8ec36",
+          "heading": "1.2 为什么 Occupancy 重要",
+          "content": "```\n时间线：\nWarp 0: [计算] [等待内存...400cycles...] [计算]\nWarp 1:        [计算] [等待内存...400cycles...] [计算]\nWarp 2:               [计算] [等待内存...400cycles...]\n...\n\n如果活跃 Warp 足够多，调度器总能找到就绪的 Warp 来填充等待期\n```",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.3-Occupancy与资源分配.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-004-2",
+      "split": "test",
+      "query": "同一线程块先协作写共享内存再读取，在哪个同步点才能保证所有写入完成并可见？",
+      "group_id": "cuda-synchronization",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 21,
+      "exact_dense_gold_rank30": 22,
+      "fusion_gold_rank60": 6,
+      "fused_candidate_gold_rank30": 6,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        62
+      ]
+    },
+    {
+      "id": "repo-005-1",
+      "split": "test",
+      "query": "GEMM优化为什么重视数据复用和算术强度？",
+      "group_id": "gemm-reuse",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        53
+      ]
+    },
+    {
+      "id": "repo-005-2",
+      "split": "test",
+      "query": "矩阵乘计算很快但显存搬运拖慢吞吐，增加tile内数据复用希望改变哪项计算与访存的比例？",
+      "group_id": "gemm-reuse",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        53
+      ],
+      "reference_answer": "通过数据复用提高每字节参与的计算量，即算术强度。",
+      "gold_chunks": [
+        {
+          "id": "1f945272f95e74fd25609c85",
+          "heading": "2.1 Roofline 模型与计算访存比",
+          "content": "💡 **提示**：GEMM 优化的核心目标就是提高算术强度——通过数据复用让每字节数据参与尽可能多的计算。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "72c17fc8d70af42898a2cd6d",
+          "heading": "4.1 算术强度：计算与访存的比值",
+          "content": "### 4.1 算术强度：计算与访存的比值\n\nGPU 干活要同时做两件事：从显存（HBM）**搬数据**，和用计算单元**算数据**。谁慢谁就是瓶颈。衡量一个任务\"偏计算还是偏访存\"，用**算术强度（Arithmetic Intensity）**：\n\n$$\n\\text{算术强度} = \\frac{\\text{浮点运算次数 (FLOPs)}}{\\text{访存字节数 (Bytes)}}\n$$\n\n直白理解：**每从显存搬 1 个字节的数据，能顺带做多少次计算**。这个比值高，说明数据搬来后被充分利用，算力吃得饱；比值低，说明算力在干等数据，大部分时间浪费在搬运上。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md"
+        },
+        {
+          "id": "0c3367dd44038fca780bc6da",
+          "heading": "常见误区",
+          "content": "**误区：增加缓冲就能提高吞吐率。** H100 一个 SM 上每块搬移 1.29 μs、计算 0.28 μs，两个槽已让搬移器连续工作，四块在 5.44 μs 完成。第三个槽不能让搬移更快，加快计算也不行；要缩短时间，就要减少每块搬移的字节，或者提高带宽。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        },
+        {
+          "id": "d2cbe4e6c3d56e9a1d8ab76b",
+          "heading": "2. **隐藏访存延迟**：通过双缓冲/流水线让计算与数据搬运重叠执行",
+          "content": "2. **隐藏访存延迟**：通过双缓冲/流水线让计算与数据搬运重叠执行",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md"
+        },
+        {
+          "id": "0416343aae2deb76eb0c9e3d",
+          "heading": "4.3 把 Prefill 和 Decode 放上去",
+          "content": "🔑 **核心概念**：**Decode 慢，不是因为算不过来，而是因为\"搬不过来\"**。GPU 的计算单元大部分时间在空等权重从显存加载。这就解释了两个关键现象：\n\n1. **为什么 Batch 能大幅提升吞吐却几乎不增加延迟**：把多个请求的 Decode 拼成一个 Batch，权重只搬一次就能服务整个 Batch 的所有 Token，算术强度成倍提升，把闲置的算力利用起来——这正是 Continuous Batching 的理论依据。\n2. **为什么量化（尤其是 Weight-only）对 Decode 加速明显**：Decode 瓶颈在搬权重，把权重从 FP16 压到 INT4，要搬的字节数直接减少到 $1/4$，延迟随之大幅下降。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md"
+        },
+        {
+          "id": "7296bf34cd4049b790493599",
+          "heading": "4.1.1 矩阵乘法的计算与数据需求",
+          "content": "行数增至原来的 256 倍，运算次数也增至 256 倍，访问量却只增加约八分之一。权重复用使计算量增长快于访问量，算术强度随之提高。[^projection]",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-006-1",
+      "split": "test",
+      "query": "Online Softmax如何在一遍扫描中维护最大值与归一化和？",
+      "group_id": "online-softmax",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 8,
+      "exact_dense_gold_rank30": 8,
+      "fusion_gold_rank60": 4,
+      "fused_candidate_gold_rank30": 4,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        90
+      ]
+    },
+    {
+      "id": "repo-006-2",
+      "split": "test",
+      "query": "分块处理Softmax时后一个块出现更大的最大值，先前累计的指数和需要怎样处理？",
+      "group_id": "online-softmax",
+      "bm25_gold_rank30": 24,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 38,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "fusion_truncation",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        90
+      ],
+      "reference_answer": "一次扫描同时维护max和sum，新最大值出现时修正累计sum。",
+      "gold_chunks": [
+        {
+          "id": "c499c65cac01cdd5578c1820",
+          "heading": "1.2 核心洞察",
+          "content": "### 1.2 核心洞察\n\nOnline Softmax 的关键洞察是：**max 和 sum 可以在一遍扫描中同时维护**，代价只是在发现新的最大值时\"修正\"之前累积的 sum。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/5.2-CUDA Online Softmax实现.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "a02526b9dd3c4efe29937710",
+          "heading": "5.3.3 FlashAttention：分块与在线 Softmax",
+          "content": "### 5.3.3 FlashAttention：分块与在线 Softmax\n\n第 5.3.1 节融合的逐元素运算，每个输出只依赖对应位置的输入；注意力中的 Softmax 却要用到整行分数。计算一行注意力输出时，可以先把各位置的分数变成尚未归一化的权重，用这些权重对值求加权和，最后除以权重总和。可以先处理一块，记下它对加权和与权重总和的贡献，再处理下一块；只要能正确合并贡献，就不必一直保留已处理过的全部分数。困难在于 Softmax 要根据分数求指数，后面出现更大的分数时，还要调整前面累计结果所用的数值基准。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        },
+        {
+          "id": "1c0cda96141d828bf22c5e4e",
+          "heading": "7.3 Online Softmax",
+          "content": "关键技巧在第二行：当最大值从 $m_{i-1}$ 更新到 $m_i$ 时，之前累积的指数和 $d_{i-1}$ 需要乘以一个修正因子 $\\exp(m_{i-1} - m_i)$ 来\"换基\"。这样只需一遍扫描就能同时得到最大值和指数和，然后再做一遍扫描完成归一化——总共两遍，比标准实现少一遍。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.3 Self-Attention机制深入理解.md"
+        },
+        {
+          "id": "89f7030b44a65f3dbf75c52b",
+          "heading": "4.2.2 向量与控制单元负责哪些工作",
+          "content": "以一行有 $n$ 个分数的 Softmax 为例，为保证数值稳定，先求最大值，再计算平移后的指数，最后求和并归一化：",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        },
+        {
+          "id": "6b1ae371734d8e6a142e6187",
+          "heading": "5.3.3 FlashAttention：分块与在线 Softmax",
+          "content": "要省去这 1 GiB 的中间读写，可以沿用第 5.3.1 节的思路；但直接套用逐元素融合会遇到一个障碍：Softmax 的分母是整行指数和。只读到前一块时，既不知道最终分母，也不知道后面是否会出现更大的分数。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        },
+        {
+          "id": "7a04bcc9164f195f806bf43e",
+          "heading": "5.4.3 依赖与舍入如何限制变换",
+          "content": "分块归约同样受这条依赖约束。第 5.3.3 节的 FlashAttention 能逐块完成计算，是因为它保留了 m、$\\ell$、u，并在最大值改变时，同时调整之前累加的指数和与加权值。若只保留每块已经归一化的输出，就丢失了各块分母的相对大小。例如两个块各自只有一个值，分别为 1 和 3，块内输出仍是 1 和 3；仅凭这两个输出，无法判断整行 Softmax 应给它们分配 1:2 还是 2:1 的权重。因此，分块归约必须保存足够的统计量，才能正确合并各块的结果。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-007-1",
+      "split": "test",
+      "query": "FlashAttention V1通过哪两项机制降低额外显存和HBM访问？",
+      "group_id": "flash-attention",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        133
+      ]
+    },
+    {
+      "id": "repo-007-2",
+      "split": "test",
+      "query": "长序列Attention中间矩阵显存过大，哪种精确注意力实现用分块和在线归一化缓解？",
+      "group_id": "flash-attention",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        133
+      ],
+      "reference_answer": "Tiling与Online Softmax降低额外显存和HBM访问，保持精确注意力。",
+      "gold_chunks": [
+        {
+          "id": "5df35f042bd0319b5a00581e",
+          "heading": "",
+          "content": "本文深入剖析 FlashAttention V1 的核心原理与实现细节，理解如何通过 Tiling + Online Softmax 将 Attention 的额外显存占用从 $O(N^2)$ 降至 $O(N)$，同时大幅减少 HBM 访问量，实现无精度损失的加速。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/6.1-FlashAttention V1详解.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "bcb839bc9ecd36a5d873afe6",
+          "heading": "5.3.3 FlashAttention：分块与在线 Softmax",
+          "content": "FlashAttention 围绕这一逐块计算过程安排存储，减少长序列注意力中间矩阵的显存读写。该方法由斯坦福大学的 Tri Dao 等研究者与纽约州立大学布法罗分校的合作者于 2022 年提出。[^fa]\n\n读到 FlashAttention 时，笔者想起了自己在 2019 年做 AKG 的一段经历。当时为了融合 Softmax 算子，笔者四处寻找合适的在线算法，后来找到 NVIDIA 在 2018 年发表的研究，才得以结合 AKG 的分块与融合能力，把前面的矩阵乘法和后面的 Softmax 接在一起计算。笔者那时甚至还不了解注意力机制，后来才意识到，自己偶然摸到了 FlashAttention 的一条核心思路。从这一步走到完整的 FlashAttention，还需要把后续与 V 的加权求和也纳入在线更新，并围绕完整注意力安排片内存储和数据搬移。下面的推导会说明，这一看似局部的算法变化如何消除大块中间矩阵。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        },
+        {
+          "id": "114dec469e3a55facab50881",
+          "heading": "5.3.3 FlashAttention：分块与在线 Softmax",
+          "content": "实验用 RTX PRO 6000 Blackwell，输入输出为 BF16，一次处理一个序列、一个注意力头，头维度为 128。序列长为 8192 个 token；采用因果注意力，即每个位置只使用自身及此前的位置。预热后，使用 CUDA Graph 将一组 GPU 操作预先记录并重复执行，以免每次由主机提交造成干扰。按每次注意力计算统计，保存完整中间矩阵的数学实现约需 2.6 ms，采用分块与在线归约的 FlashAttention 实现约需 80 μs，后者的加速比约为 33。[^exp3]",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        },
+        {
+          "id": "7a1dfece3701310383d11c50",
+          "heading": "3.3 为什么复杂度是 $O(N^2)$",
+          "content": "> AI Infra 关联：这个 $O(N^2)$ 的显存瓶颈直接催生了 **FlashAttention**。标准实现需要把完整的 $N \\times N$ 注意力矩阵写入 HBM（GPU 的高带宽显存），而 FlashAttention 通过 tiling（分块计算）+ online softmax，让注意力矩阵始终驻留在片上 SRAM 中，将 HBM 访问量从 $O(N^2)$ 降到 $O(N)$。计算量没变，但显存访问量大幅减少——这正是\"Memory-aware\"优化的核心思想。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/Transformer架构快速入门.md"
+        },
+        {
+          "id": "c21e55df84ee34fa507af77d",
+          "heading": "4.2.3 NVIDIA、昇腾和 Apple 如何执行注意力计算",
+          "content": "FlashAttention 系列通过分块减少注意力中间结果的显存访问；第四版进一步研究更强矩阵单元下的计算分工。下面用 FlashAttention-4 对 NVIDIA Blackwell 架构 B200 单个 SM 的分析，计算这种分工对吞吐率的影响。取 $128\\times128$、头维度为 128 的矩形注意力块，QK 与 PV 合计约 8.39 MFLOPs，指数结果有 16,384 个。按每个 SM 每周期 8,192 FLOPs 的矩阵速率和每周期 16 个结果的指数速率，两者各需 1,024 周期。矩阵操作数的共享内存读取为 96 KiB，按每周期 128 bytes，需要 768 周期。[^fa4]",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        },
+        {
+          "id": "4995b702b2554a7044ca7531",
+          "heading": "8.2 与 FlashAttention 的联系",
+          "content": "整个过程**不需要存储完整的 Attention 矩阵**。\n```mermaid\ngraph LR\n    A[\"Online Softmax<br>递推公式\"] --> B[\"分块计算 QK^T<br>增量更新 (m, d)\"]\n    B --> C[\"修正输出 O<br>O = O * correction + new_block\"]\n    C --> D[\"FlashAttention<br>IO-aware Attention\"]\n```\nOnline Softmax 中的修正因子 $e^{m_{\\text{old}} - m_{\\text{new}}}$ 在 FlashAttention 中用来**修正之前块的输出贡献**：",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/5.2-CUDA Online Softmax实现.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-008-1",
+      "split": "test",
+      "query": "FlashAttention V2为什么可以在Q块维度增加GPU并行度？",
+      "group_id": "flash-attention",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 11,
+      "exact_dense_gold_rank30": 11,
+      "fusion_gold_rank60": 21,
+      "fused_candidate_gold_rank30": 21,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        67
+      ]
+    },
+    {
+      "id": "repo-008-2",
+      "split": "test",
+      "query": "Attention的batch和head数量都较小时，利用不同查询块的独立性如何增加线程块并行？",
+      "group_id": "flash-attention",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 4,
+      "fusion_gold_rank60": 9,
+      "fused_candidate_gold_rank30": 9,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        67
+      ]
+    },
+    {
+      "id": "repo-009-1",
+      "split": "test",
+      "query": "纯数据并行为什么不能解决模型在单卡上装不下的问题？",
+      "group_id": "data-parallel",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        231
+      ]
+    },
+    {
+      "id": "repo-009-2",
+      "split": "test",
+      "query": "增加DDP的GPU数量后单卡仍因完整模型OOM，应该考虑什么类型的并行或分片？",
+      "group_id": "data-parallel",
+      "bm25_gold_rank30": 8,
+      "dense_gold_rank30": 19,
+      "exact_dense_gold_rank30": 19,
+      "fusion_gold_rank60": 6,
+      "fused_candidate_gold_rank30": 6,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        231
+      ]
+    },
+    {
+      "id": "repo-010-1",
+      "split": "test",
+      "query": "DDP的梯度Bucket机制如何实现计算通信重叠？",
+      "group_id": "ddp-overlap",
+      "bm25_gold_rank30": 3,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        193
+      ]
+    },
+    {
+      "id": "repo-010-2",
+      "split": "test",
+      "query": "训练trace显示等整个backward完成才开始同步梯度，DDP的哪项机制可以让同步更早启动？",
+      "group_id": "ddp-overlap",
+      "bm25_gold_rank30": 3,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        193
+      ]
+    },
+    {
+      "id": "repo-011-1",
+      "split": "test",
+      "query": "原始Adam将权重衰减放入梯度会带来什么耦合问题？",
+      "group_id": "optimizer-decay",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        293
+      ]
+    },
+    {
+      "id": "repo-011-2",
+      "split": "test",
+      "query": "自适应优化器中不同参数的正则化力度被二阶矩缩放扭曲，应如何解释Adam原始衰减方式的问题？",
+      "group_id": "optimizer-decay",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        293
+      ]
+    },
+    {
+      "id": "repo-012-1",
+      "split": "test",
+      "query": "ReduceScatter(sum)的归约和分片输出分别是什么？",
+      "group_id": "collective-semantics",
+      "bm25_gold_rank30": 12,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 24,
+      "fused_candidate_gold_rank30": 24,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        88
+      ]
+    },
+    {
+      "id": "repo-012-2",
+      "split": "test",
+      "query": "四卡各有一个四分片向量，想先求元素和再让各卡仅保留一片，应选哪个集合通信原语？",
+      "group_id": "collective-semantics",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        88
+      ]
+    },
+    {
+      "id": "repo-013-1",
+      "split": "test",
+      "query": "FSDP的FULL_SHARD和SHARD_GRAD_OP分别对应哪种ZeRO阶段？",
+      "group_id": "state-sharding",
+      "bm25_gold_rank30": 4,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        224
+      ]
+    },
+    {
+      "id": "repo-013-2",
+      "split": "test",
+      "query": "在PyTorch原生训练中想采用类似ZeRO-3的完整分片，应该选择哪项FSDP策略？",
+      "group_id": "state-sharding",
+      "bm25_gold_rank30": 7,
+      "dense_gold_rank30": 14,
+      "exact_dense_gold_rank30": 14,
+      "fusion_gold_rank60": 6,
+      "fused_candidate_gold_rank30": 6,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        224
+      ]
+    },
+    {
+      "id": "repo-015-1",
+      "split": "test",
+      "query": "1F1B相较GPipe的主要激活显存优势是什么？",
+      "group_id": "pipeline-parallel",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 7,
+      "fused_candidate_gold_rank30": 7,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        280
+      ]
+    },
+    {
+      "id": "repo-015-2",
+      "split": "test",
+      "query": "流水线训练积存了所有micro-batch的前向激活，采用交替前后向的调度能怎样降低峰值？",
+      "group_id": "pipeline-parallel",
+      "bm25_gold_rank30": 3,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 14,
+      "fused_candidate_gold_rank30": 14,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        280
+      ]
+    },
+    {
+      "id": "repo-019-1",
+      "split": "test",
+      "query": "Prefill与Decode分离后的核心KV传输挑战是什么？",
+      "group_id": "pd-disaggregation",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        139
+      ]
+    },
+    {
+      "id": "repo-019-2",
+      "split": "test",
+      "query": "P节点已经算完输入，但D节点迟迟不能生成首个token，应检查哪种状态交接和带宽瓶颈？",
+      "group_id": "pd-disaggregation",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        139
+      ],
+      "reference_answer": "Prefill计算的KV需要有效传到Decode，跨节点带宽影响整体延迟。",
+      "gold_chunks": [
+        {
+          "id": "e73034b63bf395850470d8f0",
+          "heading": "本章简介",
+          "content": "**KV Cache 传输与 Connector**深入解耦架构最核心的工程挑战：Prefill 节点算出的 KV Cache 如何高效搬到 Decode 节点。介绍 vLLM 的 KV Connector 抽象、NIXL/NCCL 等传输后端，以及跨节点带宽对整体延迟的影响。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第7章-PD解耦架构.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "85af2f72f2d2559a17e8c100",
+          "heading": "3.7 优化选型决策树",
+          "content": "| 子症状 | 诊断方法 | 推荐方案 |\n|--------|---------|---------|\n| KV Cache 搬运成为带宽瓶颈 | Nsight Compute 查看 Attention kernel 的 memory throughput 是否接近 HBM 带宽上限 | 使用 FlashAttention / FlashInfer 减少无效显存访问；优化 KV Cache 布局 |\n| 逐 token 串行生成的本质限制 | 单请求 TPOT 已逼近理论下限，但用户仍嫌慢 | Speculative Decoding（Medusa / EAGLE-2），用\"猜测+验证\"打破串行瓶颈 |\n| 并发不足，GPU 算力没喂饱 | GPU 利用率低于 60%，每个 batch 只有少量请求 | 开启 Continuous Batching + 提高并发请求数，把 batch 做大以提升计算密度 |",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/AI Infra学习路线.md"
+        },
+        {
+          "id": "c309a54d7dd6bc384afcab31",
+          "heading": "练习",
+          "content": "**9-1　三种推理部署的调用次数与状态交接。** 对输入 8192 个 token、输出 1025 个 token 的请求，画出完整副本、PD 和共享 KV 三种部署方式，分别列出每请求调用数、KV 产生位置和跨实例交接。再将输出长度改为 1 个 token，指出哪些工作不再需要执行。最后考虑调用一次工具后继续生成的情况，标出最后一个已返回、但尚未生成对应 KV 的 token 位置。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/09-分布式推理.md"
+        },
+        {
+          "id": "cc8b8a6f759b140e453c95c7",
+          "heading": "8.2 Prefill 和 Decode 两阶段",
+          "content": "Decode 阶段每步只有 1 个 token 的计算量，矩阵乘法退化为矩阵-向量乘，GPU 的算力远远用不满，大部分时间花在从 HBM 搬运 KV Cache 数据上。这是典型的 **Memory Bound**（带宽瓶颈）操作。它的耗时决定了 TPOT（Time Per Output Token，每 token 延迟）。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/Transformer架构快速入门.md"
+        },
+        {
+          "id": "f2212222bd0ea04c2d9c2a21",
+          "heading": "5.3 通信量公式",
+          "content": "⚠️ **注意**：Ring AllReduce 带宽最优，但不是延迟最优。$2(N-1)$ 轮传递意味着延迟随节点数线性增长，在节点数很多但数据量很小的场景中会成为瓶颈。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/communication/collective-communication-primer.md"
+        },
+        {
+          "id": "1db41f3cc0b455ba92b6250d",
+          "heading": "5.6.3 综合案例：一次 Qwen3 请求的优化选择",
+          "content": "decode 的改进发生在首输出之后，因此当前长输入请求的首 token 时间仍由 prefill 中的计算与等待决定。输出越长，一行输入的激活计算重复执行的次数越多，单步节省的时间也就累积得越多。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-021-1",
+      "split": "test",
+      "query": "vLLM生产监控应关注哪些延迟、队列和KV指标？",
+      "group_id": "observability",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 4,
+      "fused_candidate_gold_rank30": 4,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        123
+      ]
+    },
+    {
+      "id": "repo-021-2",
+      "split": "test",
+      "query": "线上首字变慢且怀疑KV不足导致抢占，监控面板应补哪些指标帮助定位？",
+      "group_id": "observability",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": 15,
+      "fusion_gold_rank60": 5,
+      "fused_candidate_gold_rank30": 5,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        123
+      ]
+    },
+    {
+      "id": "repo-023-1",
+      "split": "test",
+      "query": "Decode中的等数据与等指令瓶颈分别适合什么优化？",
+      "group_id": "cuda-graph",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 9,
+      "fused_candidate_gold_rank30": 9,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        318
+      ]
+    },
+    {
+      "id": "repo-023-2",
+      "split": "test",
+      "query": "小模型小batch每个Kernel很短，GPU反复等CPU发射，除了量化还应检索哪种图优化？",
+      "group_id": "cuda-graph",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 5,
+      "exact_dense_gold_rank30": 5,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        318
+      ]
+    },
+    {
+      "id": "repo-024-1",
+      "split": "test",
+      "query": "torch.profiler、Nsight Systems与Nsight Compute分别适合哪一级分析？",
+      "group_id": "profiling",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        90
+      ]
+    },
+    {
+      "id": "repo-024-2",
+      "split": "test",
+      "query": "已经看到某个CUDA Kernel变慢，想从全链路trace进一步看Kernel内部指标，应使用哪个工具？",
+      "group_id": "profiling",
+      "bm25_gold_rank30": 12,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 23,
+      "fused_candidate_gold_rank30": 23,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        90
+      ],
+      "reference_answer": "torch.profiler算子级，Nsight Systems全链路，Nsight Compute Kernel级。",
+      "gold_chunks": [
+        {
+          "id": "ee5fb7707ba4208a80f20882",
+          "heading": "本章简介",
+          "content": "**性能分析工具**在推理场景下的最佳实践：torch.profiler 算子级分析、Nsight Systems 全链路分析、Nsight Compute Kernel 级下钻。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第9章-性能分析与Benchmark.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "051edf92c406532d1e3ab3de",
+          "heading": "13.1 先分类慢，再看指标",
+          "content": "## 13.1 先分类慢，再看指标\n\n同一模型至少做三组实验：固定 Batch 改序列长度、固定长度改 Batch、固定总 token 改请求数。先把总时间拆成排队、CPU 准备、H2D、GPU Kernel、通信、采样、回传。Nsight Systems 看时间线和空隙；Nsight Compute 深挖一个确定的 Kernel；`torch.profiler` 看 PyTorch op 与 Kernel 对应关系。`nvprof` 属旧工具，现代 GPU 优先用 Nsight；CUPTI 适合构建自动采集器。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "96b00c64578a51e4f2720a76",
+          "heading": "1.3 AI Infra 工程师的日常工作",
+          "content": "使用 Nsight Systems、Nsight Compute、`torch.profiler` 等工具分析训练或推理的性能瓶颈，判断当前是计算受限还是带宽受限，找到最值得优化的热点算子。这同样要求你知道每个 kernel 对应 Transformer 的哪个模块，否则看到一个耗时很长的 kernel 名称，连它在做什么都搞不清楚。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.1 AI Infra工程师为什么必须懂Transformer.md"
+        },
+        {
+          "id": "76ad7b92df7b0682e6ff456b",
+          "heading": "3.7 优化选型决策树",
+          "content": "拿到推理性能问题后，先用压测工具（GenAI-Perf 或自定义脚本）跑出基线数据，看哪个指标最不达标，然后对号入座：",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/AI Infra学习路线.md"
+        },
+        {
+          "id": "ad9bd8d3d63afd12dff6ebb5",
+          "heading": "3.6 性能分析与 Benchmark",
+          "content": "- **指标全集**：每次性能评测输出的报告至少包含 6 个指标——QPS、TTFT（P50/P95）、TPOT（P50/P95）、端到端 throughput（token/s）、GPU 显存占用峰值、GPU 利用率，缺任何一个都可能遗漏瓶颈\n- **Benchmark 可复现**：你的 benchmark 配置（模型、batch size、输入输出长度、并发数、硬件型号、驱动版本）全部写在一个 config 文件里，任何人拿到这个文件都能复现你的结果，两次测试之间只改一个变量\n- **回归定位**：某次代码提交后 TPOT P95 退化了 15%，你能用 `git bisect` 缩小到具体 commit，再用 Nsight Systems 对比退化前后的 trace 差异——是某个 kernel 变慢了、新增了一次不必要的 sync、还是 batch 调度策略变了",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/AI Infra学习路线.md"
+        },
+        {
+          "id": "fc91b3e553e6b8e2eada08dc",
+          "heading": "10. 进阶专题：把这些概念串起来用",
+          "content": "- **看一个 Kernel 快不快，先看它是 memory-bound 还是 compute-bound**：用 Nsight Compute 的 SM Throughput 和 Memory Throughput 两张图确认，再决定该调内存访问模式（合并、Tiling、共享内存）还是调计算密度（Tensor Core、寄存器分块、循环展开）。\n- **性能优化不是单独调某个指标**：Block 大小会影响 Occupancy；\nOccupancy 影响延迟隐藏；",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-026-1",
+      "split": "test",
+      "query": "为什么减少寄存器提高Occupancy可能使Kernel更慢？",
+      "group_id": "cuda-occupancy",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 27,
+      "exact_dense_gold_rank30": 27,
+      "fusion_gold_rank60": 5,
+      "fused_candidate_gold_rank30": 5,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        185
+      ]
+    },
+    {
+      "id": "repo-026-2",
+      "split": "test",
+      "query": "限制每线程寄存器后活跃Warp增加却延迟上升，应检查哪种local memory溢出问题？",
+      "group_id": "cuda-occupancy",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        185
+      ]
+    },
+    {
+      "id": "repo-027-1",
+      "split": "test",
+      "query": "Shared Memory矩阵从32列填充到33列为何减少列访问Bank Conflict？",
+      "group_id": "bank-conflict",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 26,
+      "exact_dense_gold_rank30": 26,
+      "fusion_gold_rank60": 9,
+      "fused_candidate_gold_rank30": 9,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        267
+      ]
+    },
+    {
+      "id": "repo-027-2",
+      "split": "test",
+      "query": "一个warp按行号访问32×32矩阵同一列，为什么增加一列padding能消除32路bank冲突？",
+      "group_id": "bank-conflict",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        267
+      ]
+    },
+    {
+      "id": "repo-028-1",
+      "split": "test",
+      "query": "Shared Memory广播和Bank Conflict的地址条件有什么不同？",
+      "group_id": "bank-conflict",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        290
+      ]
+    },
+    {
+      "id": "repo-028-2",
+      "split": "test",
+      "query": "32个线程同时读取同一共享内存地址，会像同bank不同地址那样串行化32次吗？",
+      "group_id": "bank-conflict",
+      "bm25_gold_rank30": 9,
+      "dense_gold_rank30": 9,
+      "exact_dense_gold_rank30": 9,
+      "fusion_gold_rank60": 7,
+      "fused_candidate_gold_rank30": 7,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        290
+      ],
+      "reference_answer": "同一bank同一地址访问可广播，不构成不同地址的bank冲突。",
+      "gold_chunks": [
+        {
+          "id": "c66abb99fe6c0e6b89be3555",
+          "heading": "1.3 Shared Memory Bank Conflict",
+          "content": "- **Bank（存储体）**：Shared Memory 被划分为 32 个 Bank（通常每个 4 字节宽），可并行访问。\n- **Bank Conflict（存储体冲突）**：同一 Warp 内多个线程访问同一 Bank 的不同地址，硬件无法并行，只能串行化。\n- **Broadcast（广播）**：若多个线程访问同一 Bank 的**同一地址**，硬件可一次广播，不算冲突。\n- **Padding（填充）**：在数组每行末尾补几个元素，改变地址步长以避开冲突。\n- **Swizzle（混淆/重排）**：通过地址位重排打散访问模式，是比 Padding 更现代的解法。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "48817df40804b0bd3315ebe2",
+          "heading": "1.3 Shared Memory Bank Conflict",
+          "content": "## 1.3 Shared Memory Bank Conflict\n\n**速查**：一个 **Warp（线程束，GPU 调度的最小线程组，通常 32 个线程）** 内多个线程同时访问 Shared Memory，如果地址落在**同一个 Bank 的不同地址**，访问会被串行化，降低访存效率。\n\n![图 3-4 Shared Memory Bank Conflict](figures/fig_03_bank_conflict.png)\n*图 3-4 · 地址分散在不同 Bank 时无冲突；多个地址撞同一 Bank 则被串行化*",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "405b44cd0a59c73690e5b28d",
+          "heading": "4.2 Bank Conflict",
+          "content": "### 4.2 Bank Conflict\n\n共享内存被划分为 32 个 **Bank**（对应 32 个 Warp 线程），每个 Bank 宽度为 4 bytes。当一个 Warp 中多个线程同时访问同一个 Bank 的不同地址时，访问必须串行化——这就是 **Bank Conflict**。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/1.3-CUDA内存模型.md"
+        },
+        {
+          "id": "10275db8655d257d3b4b4a53",
+          "heading": "2.1 存储与访问：先画地址再写优化",
+          "content": "**Coalescing**：32 lane 读连续 `float` 通常比跨 stride 的 32 次散读更容易合并为少量内存事务。**Bank Conflict**：共享内存同一 Warp 不同地址落同一 bank 会冲突；广播同地址是例外。先根据架构的 bank 组织和元素字节数算映射，再用 Nsight Compute 看 shared load/store 指标。Padding `tile[32][33]` 是列访问的经典例子，不是所有矩阵都应盲目加一列。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "faa947a573b673a01d313b6e",
+          "heading": "4.2 Bank Conflict",
+          "content": "### 4.2 Bank Conflict\n共享内存被分为 **32 个 Bank**，每个 Bank 宽度为 4 字节。\n**同一 Warp 内的不同线程如果访问同一 Bank 的不同地址，就会产生 Bank Conflict，访问变为串行**。\n可以把 Shared Memory 的 32 个 Bank 想象成银行的 32 个柜台，如果多个线程同时排到同一个柜台，就得排队等候；\n理想情况是每个线程各去一个柜台，大家同时办完。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md"
+        },
+        {
+          "id": "11d024137504daa9ae11c5d3",
+          "heading": "1.3 Shared Memory Bank Conflict",
+          "content": "```python\n# 行主序 [row][col] 的地址 = row * width + col；Shared Memory 有 32 个 Bank\nfor width in (32, 33):\n    # 一个 warp 的 32 个线程同时访问第 3 列（row = 0..31）\n    banks = [(row * width + 3) % 32 for row in range(32)]\n    print(width, \"冲突路数 =\", max(banks.count(b) for b in banks))\n\n# 输出：\n# 32 冲突路数 = 32    ← 步长 32，32 个线程全撞同一个 Bank，硬件串行化 32 次\n# 33 冲突路数 = 1     ← padding 1 后步长 33，33 mod 32 = 1，依次错开，无冲突\n```",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-029-1",
+      "split": "test",
+      "query": "GEMM双缓冲如何用计算掩盖数据搬运延迟？",
+      "group_id": "gemm-reuse",
+      "bm25_gold_rank30": 3,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 12,
+      "fused_candidate_gold_rank30": 12,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        339
+      ]
+    },
+    {
+      "id": "repo-029-2",
+      "split": "test",
+      "query": "矩阵分块计算每轮都等下一块装载，如何安排两个缓冲区使预取与计算重叠？",
+      "group_id": "gemm-reuse",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        339
+      ],
+      "reference_answer": "双缓冲通过当前块计算时预取下一块来隐藏访存延迟。",
+      "gold_chunks": [
+        {
+          "id": "5157a699af880858ad145c1d",
+          "heading": "1.2 GPU 基础补课：Tensor Core / GEMM / 显存层次",
+          "content": "- **Register（寄存器）**：GPU 最快的存储，线程私有，容量极小（KB 级）。\n- **Shared Memory（共享内存）**：SM 内所有线程共享的片上存储，需手动管理，**Bank Conflict** 就发生在这里。\n- **L2 Cache（二级缓存）**：跨 SM 共享的片上缓存，容量 MB 级。\n- **HBM（High Bandwidth Memory，高带宽显存）**：GPU 主显存，GB 级，带宽是大多数推理负载的瓶颈。\n- **内存墙（Memory Wall）**：算力增速长期快于带宽增速，导致系统越来越受带宽限制的现象。\n- **双缓冲（Double Buffering）**：在处理当前数据块的同时预取下一块，用计算掩盖访存延迟。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "ef19b9d430117af3e4092b7d",
+          "heading": "4.4.2 异步搬移与双缓冲",
+          "content": "矩阵计算加快以后，原来的加载安排已经来不及准备下一块数据，输入缓冲也需要重新配置。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        },
+        {
+          "id": "50ff47c7dd4a39146b8c659c",
+          "heading": "8.4.3 权重卸载、预取与每步搬移",
+          "content": "预取必须遵守两个先后关系：权重复制完成后，计算才能读取；计算不再使用这组权重后，缓冲区才能写入下一组。使用一组缓冲时，同一缓冲区依次用于复制、计算和下一次复制；使用两组缓冲时，可以一边计算当前层，一边把后续层的权重复制到另一组缓冲区。这样能够重叠复制与计算，但缓冲区本身也会占用更多内存。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        },
+        {
+          "id": "ba62a4b905ede91d60775d36",
+          "heading": "9.1 隐藏 Global Memory 延迟",
+          "content": "双缓冲的思路类似**乒乓球**：准备两套 Shared Memory 缓冲区，一边用 Buffer 0 做计算，一边往 Buffer 1 加载下一轮数据。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md"
+        },
+        {
+          "id": "497107e441d97e348b9c4ace",
+          "heading": "4.4.2 异步搬移与双缓冲",
+          "content": "### 4.4.2 异步搬移与双缓冲\n\n找到并取出一块数据之后，还要让下一块及时到达：若总等当前块算完才开始读取，计算单元就会反复停顿。准备两个缓冲后，可以一边使用第一个缓冲中的数据，一边把下一块加载到第二个缓冲；当前块用完，两块缓冲交换角色。这就是双缓冲：以额外空间换取加载与计算在时间上的重叠。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        },
+        {
+          "id": "dca8a824fd6f0ee8224bd613",
+          "heading": "3.4.1 前向计算、反向传播与参数更新",
+          "content": "训练过程中还要不断准备下一批输入。CPU 读取、解码、分词并组成 batch，再把张量送到加速器。双缓冲可以在计算当前 batch 时准备下一个 batch：一个缓冲供计算读取，另一个接收新数据，交替使用。计算用完已准备的数据后，就必须等待新输入；取回加速器结果时又会等待相应计算完成。第 5 章将结合前向、反向和参数更新的执行顺序，分析数据准备与计算如何重叠。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/03-推理与训练负载.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-030-1",
+      "split": "test",
+      "query": "Residual与RMSNorm融合节省什么访存，累加采用什么精度？",
+      "group_id": "normalization-fusion",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 5,
+      "exact_dense_gold_rank30": 5,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        200
+      ]
+    },
+    {
+      "id": "repo-030-2",
+      "split": "test",
+      "query": "融合残差和RMSNorm后出现误差，应该检查哪个累加精度，并确认省去了哪次中间张量往返？",
+      "group_id": "normalization-fusion",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        200
+      ]
+    },
+    {
+      "id": "repo-031-1",
+      "split": "test",
+      "query": "Chunked Prefill和packed batch下RoPE应使用什么位置索引？",
+      "group_id": "rope-position",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        249
+      ]
+    },
+    {
+      "id": "repo-031-2",
+      "split": "test",
+      "query": "前缀缓存命中后把新token在批中的列号当RoPE位置导致输出错，应该传递什么位置元数据？",
+      "group_id": "rope-position",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        249
+      ]
+    },
+    {
+      "id": "repo-033-1",
+      "split": "test",
+      "query": "MLA缓存的latent与直接K/V有什么区别？",
+      "group_id": "attention-latent",
+      "bm25_gold_rank30": 10,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 17,
+      "fused_candidate_gold_rank30": 17,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        271
+      ]
+    },
+    {
+      "id": "repo-033-2",
+      "split": "test",
+      "query": "模型缓存的是低维c_KV而不是每个head完整键值，取出后为什么还需上投影？",
+      "group_id": "attention-latent",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 9,
+      "fused_candidate_gold_rank30": 9,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        271
+      ],
+      "reference_answer": "MLA是低秩压缩KV表示，latent需上投影还原，解耦RoPE将位置信息单独处理。",
+      "gold_chunks": [
+        {
+          "id": "6a96cca55503a678eb457ce8",
+          "heading": "5.3 MLA（Multi-head Latent Attention）",
+          "content": "- **MLA（Multi-head Latent Attention，多头潜在注意力）**：DeepSeek-V2 提出的注意力结构，通过低秩压缩 KV 表示。\n- **latent vector（潜在向量）**：压缩后的低维表示，不是直接可用的 K/V，需要经上投影矩阵还原。\n- **上投影 / 下投影（Up / Down Projection）**：下投影把高维压到低维，上投影把低维还原到高维。\n- **decoupled RoPE（解耦旋转位置编码）**：把位置信息单独放在一小段带 RoPE 的维度上，避免位置编码破坏压缩结构。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "e2ee1d3c19e338ff97e878a4",
+          "heading": "6.2 KV Cache：推理显存大户",
+          "content": "**这就是为什么 KV Cache 优化是推理系统的核心命题。\n**\n**追问：KV Cache 为什么不能省？\n**\n> 如果不缓存历史 K/V，每一步都要重复做历史 token 的 QKV 投影及前面各层计算；\n保留缓存后仍需对历史 K/V 做 Attention 读取，单步成本并非 O(1)。\n缓存可以压缩、换出或按模型结构调整，是否重算取决于显存和计算权衡。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "6aee652400677aef7db15f48",
+          "heading": "5.3 MLA（Multi-head Latent Attention）",
+          "content": "- 传统做法缓存 `K` 和 `V` 两个 `[head_dim × num_heads]` 张量；MLA 改为缓存一个低维 `c_KV`（latent），推理时通过上投影矩阵还原出 K/V。\n- 相比 MHA，KV Cache 可减少 **90%+**。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "553ae55cbfa1b47da8835ef4",
+          "heading": "6.7 减少 KV Cache 的六类手段（面试必背）",
+          "content": "|---|---|---|---|---|\n| **① 数值精度** | KV Cache 量化 | FP16/BF16 → FP8 / INT8 / INT4 | INT8 ≈ 1/2，INT4 ≈ 1/4 | 精度损失、需融合反量化 |\n| **② Head 数** | MQA / GQA | 减少 K/V Head 数 | 1/n ~ g/n | 轻微质量损失 |\n| **③ 表示压缩** | MLA | KV 压到低维 latent | ~1/10 | 需模型原生支持、多一次上投影 |",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "e37bff28c52ac8c5f96138ab",
+          "heading": "5.3 MLA（Multi-head Latent Attention）",
+          "content": "## 5.3 MLA（Multi-head Latent Attention）\n\n**速查**：MLA 把 K/V 联合压缩成一个低维 **latent（潜在向量，此处指压缩后的低维表示）** 向量（如 512 维）缓存，用时再上投影还原，把 KV Cache 压到 MHA 的 ~1/10 级别，同时质量不降反升。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "18c86beba3b245ce419726e1",
+          "heading": "6.1 为什么需要 KV Cache",
+          "content": "### 6.1 为什么需要 KV Cache\n\n回顾自回归生成的过程：每一步 Decode，新 token 的 Q 需要和所有历史 token 的 K 做内积来计算 Attention 权重。如果不做任何缓存，每一步都需要重新对所有历史 token 做 QKV 线性投影——但这些投影在之前的步骤中已经算过了。\n\n打个比方，你在银行办理业务，每换一个窗口都要重新排队、重新提交所有材料。KV Cache 的做法是：你第一次提交的材料都存了档，之后换窗口只需报个编号就能调档，不必重新准备。\n\n把已经计算好的 K 和 V 缓存在 GPU 显存中，每步 Decode 只需计算新 token 自己的 K、V 并追加到缓存，就把 QKV 投影的重复计算从 $O(N)$ 降到了 $O(1)$。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.8 从Transformer到LLM自回归生成深入理解.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-034-1",
+      "split": "test",
+      "query": "FlashAttention为什么不需要保存完整N×N注意力矩阵？",
+      "group_id": "flash-attention",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        311
+      ],
+      "reference_answer": "分块进SRAM并在线softmax，不物化完整N×N注意力矩阵。",
+      "gold_chunks": [
+        {
+          "id": "97c742e3b0920e7a0d745a85",
+          "heading": "5.4 FlashAttention（1/2/3 演进）",
+          "content": "## 5.4 FlashAttention（1/2/3 演进）\n\n**速查**：FlashAttention 是 **IO-aware（访存感知）** 的 Attention 实现，把 Q/K/V 分块搬进 SRAM，用 online softmax 增量计算，**不物化完整的 N×N Attention 矩阵**，把显存从 O(N²) 降到 O(N)，速度提升数倍。\n\n![图 3-1 FlashAttention 分块与 online softmax](figures/fig_03_flash_attention.png)\n*图 3-1 · 把 Q/K/V 分块搬进片上 SRAM 计算，只有最终输出写回 HBM*",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "d4733a1decb7ce8a67925f74",
+          "heading": "5.3.3 FlashAttention：分块与在线 Softmax",
+          "content": "FlashAttention 正是利用这一递推关系省去了完整 S 和 P 的存储。每处理完一块，就更新 m、$\\ell$ 和 u；该块的分数和概率用完即可丢弃，其缓冲可以留给下一块。在相同注意力范围内，查询与键的匹配、值的加权仍然都要算；改变的是计算顺序与中间结果的保存方式，浮点执行还会有舍入差异。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        },
+        {
+          "id": "7a1dfece3701310383d11c50",
+          "heading": "3.3 为什么复杂度是 $O(N^2)$",
+          "content": "> AI Infra 关联：这个 $O(N^2)$ 的显存瓶颈直接催生了 **FlashAttention**。标准实现需要把完整的 $N \\times N$ 注意力矩阵写入 HBM（GPU 的高带宽显存），而 FlashAttention 通过 tiling（分块计算）+ online softmax，让注意力矩阵始终驻留在片上 SRAM 中，将 HBM 访问量从 $O(N^2)$ 降到 $O(N)$。计算量没变，但显存访问量大幅减少——这正是\"Memory-aware\"优化的核心思想。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/Transformer架构快速入门.md"
+        },
+        {
+          "id": "21bf3b1a55b55741d3f1f16c",
+          "heading": "9.4 算例四：Online Softmax 的分块合并",
+          "content": "这使 Softmax 可以分块、流式且数值稳定地计算。若同时维护加权 Value 累加器，还能避免保存完整注意力矩阵，这是 FlashAttention 的数学核心之一。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/第2章-数学基础.md"
+        },
+        {
+          "id": "4995b702b2554a7044ca7531",
+          "heading": "8.2 与 FlashAttention 的联系",
+          "content": "整个过程**不需要存储完整的 Attention 矩阵**。\n```mermaid\ngraph LR\n    A[\"Online Softmax<br>递推公式\"] --> B[\"分块计算 QK^T<br>增量更新 (m, d)\"]\n    B --> C[\"修正输出 O<br>O = O * correction + new_block\"]\n    C --> D[\"FlashAttention<br>IO-aware Attention\"]\n```\nOnline Softmax 中的修正因子 $e^{m_{\\text{old}} - m_{\\text{new}}}$ 在 FlashAttention 中用来**修正之前块的输出贡献**：",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/5.2-CUDA Online Softmax实现.md"
+        },
+        {
+          "id": "bcb839bc9ecd36a5d873afe6",
+          "heading": "5.3.3 FlashAttention：分块与在线 Softmax",
+          "content": "FlashAttention 围绕这一逐块计算过程安排存储，减少长序列注意力中间矩阵的显存读写。该方法由斯坦福大学的 Tri Dao 等研究者与纽约州立大学布法罗分校的合作者于 2022 年提出。[^fa]\n\n读到 FlashAttention 时，笔者想起了自己在 2019 年做 AKG 的一段经历。当时为了融合 Softmax 算子，笔者四处寻找合适的在线算法，后来找到 NVIDIA 在 2018 年发表的研究，才得以结合 AKG 的分块与融合能力，把前面的矩阵乘法和后面的 Softmax 接在一起计算。笔者那时甚至还不了解注意力机制，后来才意识到，自己偶然摸到了 FlashAttention 的一条核心思路。从这一步走到完整的 FlashAttention，还需要把后续与 V 的加权求和也纳入在线更新，并围绕完整注意力安排片内存储和数据搬移。下面的推导会说明，这一看似局部的算法变化如何消除大块中间矩阵。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-034-2",
+      "split": "test",
+      "query": "希望降低精确Attention的HBM中间矩阵读写，如何把分块和在线Softmax组合起来？",
+      "group_id": "flash-attention",
+      "bm25_gold_rank30": 24,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 39,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "fusion_truncation",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        311
+      ],
+      "reference_answer": "分块进SRAM并在线softmax，不物化完整N×N注意力矩阵。",
+      "gold_chunks": [
+        {
+          "id": "97c742e3b0920e7a0d745a85",
+          "heading": "5.4 FlashAttention（1/2/3 演进）",
+          "content": "## 5.4 FlashAttention（1/2/3 演进）\n\n**速查**：FlashAttention 是 **IO-aware（访存感知）** 的 Attention 实现，把 Q/K/V 分块搬进 SRAM，用 online softmax 增量计算，**不物化完整的 N×N Attention 矩阵**，把显存从 O(N²) 降到 O(N)，速度提升数倍。\n\n![图 3-1 FlashAttention 分块与 online softmax](figures/fig_03_flash_attention.png)\n*图 3-1 · 把 Q/K/V 分块搬进片上 SRAM 计算，只有最终输出写回 HBM*",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "9521c60e5af275ab9a29f717",
+          "heading": "7.3 Online Softmax",
+          "content": "这个思想对 FlashAttention 至关重要：FlashAttention 将 Attention 矩阵分成小块（tile）逐块处理，每处理一块就需要更新 Softmax 的中间结果。如果不能在线更新 Softmax，就必须把整个 $N \\times N$ 矩阵写入 HBM 后再做全局 Softmax，那就失去了分块计算的意义。Online Softmax 让分块计算和精确 Softmax 得以兼容。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.3 Self-Attention机制深入理解.md"
+        },
+        {
+          "id": "55a45ee30fc82062bf3a2ba6",
+          "heading": "5.3.3 FlashAttention：分块与在线 Softmax",
+          "content": "这组完整实现的对照说明了分块、在线归约和融合如何配合：分块使当前数据能放入快速存储，在线归约使 Softmax 可以逐块计算，融合省去块内中间结果的写回。三者共同改变了执行时间与中间存储需求。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/05-算子与运行时.md"
+        },
+        {
+          "id": "038ecbfd4dbcd88cf291b9a9",
+          "heading": "7.2 FlashAttention",
+          "content": "### 7.2 FlashAttention\n\nFlashAttention 的核心思想：**通过 Tiling（分块）避免在 HBM 中存储完整的 QK^T 矩阵**，将所有中间计算保持在 Shared Memory 中。\n\n```\n标准 Attention：\n  Q, K → QK^T (写 HBM) → softmax (读/写 HBM) → × V → output\n  ↑ 中间矩阵 O(N^2) 存在 HBM，大量读写\n\nFlashAttention：\n  对 Q 分块 → 每块与 K, V 的所有块做 Attention → 用 Online Softmax 拼接结果\n  ↑ 中间矩阵只在 SRAM 中，不写回 HBM\n```",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md"
+        },
+        {
+          "id": "a41d54de8d9c1dfda6be3172",
+          "heading": "8.10 稳定算法通常也更适合融合",
+          "content": "- Stable Softmax 先做 max 归约，再做 exp/sum 归约；Online Softmax 可合并分块状态；\n- `log_softmax + NLL` 融合减少中间概率写回；\n- Welford 同时维护统计量，适合 LayerNorm 的块级归约；\n- GEMM 用低精度输入、高精度累加兼顾吞吐与误差。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/第2章-数学基础.md"
+        },
+        {
+          "id": "9c5c1ffbf22f983a1c7e99d5",
+          "heading": "5.4 FlashAttention（1/2/3 演进）",
+          "content": "```text\n标准 Attention:\n  S = QKᵀ        → 写入 HBM（N×N，巨大）\n  P = softmax(S) → 读 HBM 再写 HBM\n  O = PV         → 读 HBM\n  问题：N×N 矩阵反复读写 HBM，带宽爆炸\n\nFlashAttention:\n  把 Q/K/V 切成 tile，逐个搬进 SRAM\n  在 SRAM 内做 QKᵀ → online softmax → PV\n  只有最终 O 写回 HBM\n  代价：反向时需要重算（recompute）而不是存中间结果\n```",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-036-1",
+      "split": "test",
+      "query": "PagedAttention的块表、写时复制和引用计数各负责什么？",
+      "group_id": "kv-paging",
+      "bm25_gold_rank30": 5,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        260,
+        360
+      ]
+    },
+    {
+      "id": "repo-036-2",
+      "split": "test",
+      "query": "两个生成分支共用前缀KV，如何寻址非连续缓存并避免某个分支修改影响另一个？",
+      "group_id": "kv-paging",
+      "bm25_gold_rank30": 22,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 41,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "fusion_truncation",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        260,
+        360
+      ],
+      "reference_answer": "块表将逻辑块映射到可不连续物理块，CoW保护分支共享，引用归零回收。",
+      "gold_chunks": [
+        {
+          "id": "68f85b4223e0fa5674d55cf7",
+          "heading": "6.3 PagedAttention",
+          "content": "- **PagedAttention（分页注意力）**：vLLM 提出的 KV Cache 管理方案，用分页思想解决显存碎片。\n- **Block（块）/ Block Table（块表）**：Block 是固定 Token 数的 KV 存储单元（如 16 个 Token）；\nBlock Table 记录「逻辑块号 → 物理块号」的映射，物理块可以不连续。\n- **显存碎片（Memory Fragmentation）**：**内部碎片**指分配了但没用满的部分；\n**外部碎片**指空闲空间分散、无法满足大块连续分配。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "7b8ef8a85170f102dd42befc",
+          "heading": "6.3 PagedAttention",
+          "content": "- **Copy-on-Write（写时复制）**：多个请求共享同一物理块，只有当某一方要修改时才复制出私有副本，用于 Beam Search、并行采样等场景。\n- **引用计数（Reference Count）**：记录一个物理块被多少请求共享，归零才回收。\n```text\n传统 KV Cache：每个请求预留 max_seq_len 连续显存\n  → 内部碎片（实际长度 < 预留长度）\n  → 外部碎片（不同长度请求难拼合）\n\nPagedAttention：\n  Block = 固定 token 数（如 16）的 KV 存储单元\n  Block Table：逻辑块号 → 物理块号（可以不连续！）\n  → 按需分配，用多少占多少\n  → 相同前缀可共享物理块（引用计数 + Copy-on-Write）\n```",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "4eaa4bc9fc683a6173c3e9f3",
+          "heading": "3.2.4 分支、工具等待与状态驻留",
+          "content": "![两个生成分支指向同一份公共前缀，并各自保存新增尾部。箭头表示引用关系，共享前缀只计一份容量。](ch03/figure-3-branch-state.svg)\n\n*图 3-13　两个生成分支指向同一份公共前缀，并各自保存新增尾部。箭头表示引用关系，共享前缀只计一份容量。*\n\n并行与分支改变的不只是时间，还有状态占用。若分支还要分别生成文本，公共前缀可以共享，分支尾部独立增长。设共享前缀长 $H_0$，第 $i$ 个分支新增 $h_i$ 个 token，每 token 状态为 $c_{\\mathrm{KV}}$，则总状态为 $c_{\\mathrm{KV}}(H_0+\\sum_i h_i)$。并行缩短了关键路径，也让更多分支的状态同时占用内存。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/03-推理与训练负载.md"
+        },
+        {
+          "id": "b7a1abe98f3f361fe8070db8",
+          "heading": "6.1 分页 KV 的最小状态机",
+          "content": "它解决 KV 的非连续物理布局；\n与 FlashAttention 的 tiling 可以组合。\n常见 Bug：最后不满块的 mask 读入旧数据、Prefix 共享块被覆盖、抢占后表与长度不一致。\n调试时打印逻辑 token → `(block_id, slot)`、引用计数和前 3 个 K/V 值，与连续缓存 reference 逐 token 对齐。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "85ec17d262551f6f66dcac77",
+          "heading": "3. **不要求连续**：同一个请求的 KV Cache 可以分散在不连续的显存 Block 中，通过一个 Block Table（类似页表）记录映射关系",
+          "content": "3. **不要求连续**：同一个请求的 KV Cache 可以分散在不连续的显存 Block 中，通过一个 Block Table（类似页表）记录映射关系",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.8 从Transformer到LLM自回归生成深入理解.md"
+        },
+        {
+          "id": "76d6ae475defd1bde47ef78b",
+          "heading": "本章小结",
+          "content": "KV 的管理方式决定了实例能同时处理多少请求。分页按需分配空间，共享只保存一份公共前缀，前缀缓存还省去了重复计算。上下文的追加、改写和总结会改变缓存复用以及后续状态存储与读取的开销，比较这些上下文组织方式与其他服务优化方案时，应采用相同的任务质量要求。压缩进一步减少存储量，卸载将部分权重移出加速器，代价是反复搬移。推测解码增加了草稿生成和验证的开销，却能让一次目标模型计算确定多个输出。这些变化都可以通过内存占用、每轮耗时和每轮输出数来比较。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        },
+        {
+          "id": "7b2e267758411ef4b733649b",
+          "heading": "5. SGLang 的 RadixAttention",
+          "content": "SGLang 提出的 **RadixAttention** 用一棵 **Radix Tree（基数树/压缩前缀树）** 来管理 KV Cache 的复用：\n- 树的每条边代表一段 Token 序列，从根到某节点的路径就是一段前缀，对应缓存的 KV。\n- 新请求到来时，沿树做**最长前缀匹配**，匹配到的路径部分直接复用 KV，只对分叉之后的新内容做计算。\n- 分叉天然对应\"共同前缀 + 不同后续\"，非常契合多轮对话（同一段历史派生多轮）和并行采样（同一 Prompt 采样多个回答）。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-039-1",
+      "split": "test",
+      "query": "KV Offload把缓存移到哪里，以什么代价换显存容量？",
+      "group_id": "kv-offload",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        121
+      ]
+    },
+    {
+      "id": "repo-039-2",
+      "split": "test",
+      "query": "推理显存紧张但主机内存充足，将暂时不用KV迁出会引入哪类回传瓶颈？",
+      "group_id": "kv-offload",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 29,
+      "exact_dense_gold_rank30": 30,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        121
+      ]
+    },
+    {
+      "id": "repo-040-1",
+      "split": "test",
+      "query": "Prefill为何可以只对各序列最后位置执行LM Head？",
+      "group_id": "prefill-logits",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 14,
+      "exact_dense_gold_rank30": 14,
+      "fusion_gold_rank60": 3,
+      "fused_candidate_gold_rank30": 3,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        299
+      ]
+    },
+    {
+      "id": "repo-040-2",
+      "split": "test",
+      "query": "长prompt的词表投影处理所有输入token造成额外开销，只采样首个新token时应选择哪些hidden states？",
+      "group_id": "prefill-logits",
+      "bm25_gold_rank30": 3,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        299
+      ]
+    },
+    {
+      "id": "repo-041-1",
+      "split": "test",
+      "query": "Continuous Batching如何安排Decode与Prefill共享的Token Budget？",
+      "group_id": "inference-scheduler",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        250
+      ]
+    },
+    {
+      "id": "repo-041-2",
+      "split": "test",
+      "query": "长prompt进入后已有请求出词卡顿，调度怎样优先分配Decode并限制本轮Prefill？",
+      "group_id": "inference-scheduler",
+      "bm25_gold_rank30": 3,
+      "dense_gold_rank30": 7,
+      "exact_dense_gold_rank30": 7,
+      "fusion_gold_rank60": 3,
+      "fused_candidate_gold_rank30": 3,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        250
+      ]
+    },
+    {
+      "id": "repo-043-1",
+      "split": "test",
+      "query": "NCCL collective超时排障时应检查哪些跨rank一致性？",
+      "group_id": "nccl-debugging",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        386
+      ]
+    },
+    {
+      "id": "repo-043-2",
+      "split": "test",
+      "query": "日志显示最后一次AllReduce超时，为什么不能直接判定它是根因，怎样缩小复现范围？",
+      "group_id": "nccl-debugging",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 4,
+      "fused_candidate_gold_rank30": 4,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        386
+      ]
+    },
+    {
+      "id": "repo-051-1",
+      "split": "test",
+      "query": "AI Infra覆盖哪些资源和软件，分别支持什么训练与推理工作？",
+      "group_id": "infra-scope",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        159
+      ]
+    },
+    {
+      "id": "repo-051-2",
+      "split": "test",
+      "query": "一个只讨论GPU算力的基础设施方案还遗漏哪些AI Infra资源层？",
+      "group_id": "infra-scope",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 6,
+      "fused_candidate_gold_rank30": 6,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        159
+      ],
+      "reference_answer": "包含计算存储互联及组织这些资源的软件，服务训练参数更新和推理输出。",
+      "gold_chunks": [
+        {
+          "id": "b62420eeb9363eff38004f5d",
+          "heading": "第 1 章 初识 AI Infra",
+          "content": "# 第 1 章 初识 AI Infra\n\n前言介绍了本书的写作缘起、章节安排和阅读方法。本章起沿着模型的执行过程，认识支撑这一过程的系统。**AI Infra** 是支撑 AI 训练和推理的基础设施，包括计算设备、存储与互联，以及组织这些资源的软件。训练通过样本调整模型参数；推理使用训练得到的参数处理输入、产生输出。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/01-初识 AI Infra.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "77a7341c46549a46b6292341",
+          "heading": "🗺️ 全景概览：三层架构",
+          "content": "## 🗺️ 全景概览：三层架构\n\nAI Infra 的本质是 **\"用系统工程释放硬件算力\"** 。我们可以将其自底向上分为三个核心层级，加上一个前置知识层：",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/AI Infra学习路线.md"
+        },
+        {
+          "id": "0cb327c978bd6d449b3f3a09",
+          "heading": "",
+          "content": "AI Infra 处在算法、框架、编译器、操作系统和硬件的交界处。同一个问题往往要在多种语言和工具之间来回切换：用 Python 描述模型与实验，用 C++ 实现性能敏感路径，用 CUDA 驱动 GPU，再用 Linux 工具定位进程、内存、动态库和网络问题。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/第1章-编程语言基础.md"
+        },
+        {
+          "id": "80847bdd9f966a528356c3e3",
+          "heading": "1.2 AI Infra 在技术栈中的位置",
+          "content": "从图中可以看出，AI Infra 正好夹在\"算法与模型层\"和\"硬件层\"之间——它的使命是做好上下两层的**翻译官**：把上层模型的计算需求，翻译成下层硬件能够高效执行的指令。向上，它要理解模型长什么样、每个模块需要多少计算和显存；向下，它要理解 GPU 的存储层次、通信拓扑和并行能力。而这个\"上层模型\"，在当今几乎就等于 Transformer。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.1 AI Infra工程师为什么必须懂Transformer.md"
+        },
+        {
+          "id": "e5a87b2421fe92be0c220684",
+          "heading": "4.1 数据加载：Dataset 和 DataLoader",
+          "content": "> **AI Infra 视角**：`num_workers` 过小会导致 GPU 等数据（data loading bottleneck）；`pin_memory=True` 使传输走异步 DMA，避免 CPU 拷贝开销。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/pyroch/PyTorch框架入门.md"
+        },
+        {
+          "id": "3d60c18784cb37c9a650060f",
+          "heading": "1.3 设备管理：CPU 与 GPU 数据搬运",
+          "content": "> **AI Infra 视角**：CPU-GPU 数据搬运走 PCIe 总线，带宽远低于 GPU 显存带宽。频繁的 `.cpu()` 和 `.cuda()` 调用往往是隐蔽的性能瓶颈，第 6 节会讲如何用 profiler 发现这类问题。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/pyroch/PyTorch框架入门.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-052-1",
+      "split": "test",
+      "query": "QK Norm与RoPE在注意力点积之前各改变什么？",
+      "group_id": "rope-position",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        217
+      ]
+    },
+    {
+      "id": "repo-052-2",
+      "split": "test",
+      "query": "想让QK点积同时具有稳定数值尺度和相对位置信息，分别需要什么操作？",
+      "group_id": "rope-position",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        217
+      ]
+    },
+    {
+      "id": "repo-054-1",
+      "split": "test",
+      "query": "相同权重下Prefill与低并发Decode为何常有不同资源瓶颈？",
+      "group_id": "prefill-decode",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        163
+      ]
+    },
+    {
+      "id": "repo-054-2",
+      "split": "test",
+      "query": "模型批量处理prompt很快但逐字生成效率低，如何从权重复用程度解释？",
+      "group_id": "prefill-decode",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        163
+      ],
+      "reference_answer": "Prefill多行输入复用权重，低并发decode少数token读全组权重，更可能带宽受限。",
+      "gold_chunks": [
+        {
+          "id": "cf572ebb7b4bfe9f1d8f91c8",
+          "heading": "3.1.1 Prefill 与 Decode",
+          "content": "以一组权重矩阵为例，prefill 的输入包含 $BP$ 行，单步 decode 只有 $B$ 行。\n输入 token 较多时，一次读入的权重可以参与更多乘加运算；\n低并发 decode 则可能只为少数几个 token 读取整组权重。\n这就是“prefill 通常受算力限制、decode 通常受内存带宽限制”这种说法的由来。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/03-推理与训练负载.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "9d85023ff524f18d13de3c8c",
+          "heading": "8.2.1 权重复用如何提高批处理效率",
+          "content": "### 8.2.1 权重复用如何提高批处理效率\n\n考虑矩阵乘法 $Y=XW$，输入矩阵 $X$ 有 $b$ 行。同一个权重元素参与所有行的计算，因此将多行一起处理，可以在读取一次权重后完成更多乘加。假设每个权重元素在批内只读取一次，每次乘加计为两次运算，权重元素占 $s_w$ bytes。只计权重读取时，算术强度为",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        },
+        {
+          "id": "12cb8a8851d41e81bcba7592",
+          "heading": "1. 为什么要批处理",
+          "content": "## 1. 为什么要批处理\n\n先回到上一章的第一性原理：**Decode 阶段是 Memory Bound**，瓶颈在于把整个模型的权重从显存搬到计算单元。这里藏着一个巨大的机会——搬一次权重，本来只服务 1 个请求的 1 个 Token，太亏了；如果能让这一次搬运同时服务多个请求的 Token，算术强度就成倍上升，闲置的算力被利用起来。\n\n这就是**批处理（Batching）**的价值：把多个请求的计算合并成一次大的矩阵运算，摊薄权重搬运的成本。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.2-Continuous Batching.md"
+        },
+        {
+          "id": "29b7bae95afd4fd58e88e2ef",
+          "heading": "1.1.3 一次生成请求的处理过程",
+          "content": "上述每步计算反复使用的数据，首先是模型权重。模型权重是训练得到、用于把输入变换成输出的数值参数。权重在实例启动或模型切换时从存储加载，随后持续存放在显存中（称为驻留），供多次请求使用。生成时，GPU 计算单元从显存读取当前层的权重和上下文状态，完成运算，再将结果交给下一层。同一份数据由此经历两种频率不同的搬移：加载把模型送到加速器，执行则反复把所需数据送到计算单元。在多卡实例中，一张卡算出的中间结果还要传给其他卡，后续计算才能继续。中间张量是运算产生并交给后续运算的多维数值数组，矩阵就是二维张量。**外部请求可能只有一小段文字，内部搬移的数据却包括大得多的权重、状态和中间张量。**",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/01-初识 AI Infra.md"
+        },
+        {
+          "id": "115f5b71d771aadf211e81ee",
+          "heading": "📝 总结",
+          "content": "## 📝 总结\n- 批处理的本质是**摊薄权重搬运成本**，把 Memory Bound 的 Decode 的算力利用起来，提升吞吐而几乎不增加延迟。\n- **Static Batching** 的致命伤是\"批内互相拖累\"：短请求要陪最长的请求跑完，GPU 利用率常只有约 30%。\n- **Continuous Batching** 把调度粒度细化到**迭代步**（Iteration-level Scheduling）：完成即退、随到随补，利用率提到 80%+。\n- 它与 **PagedAttention** 深度协同：后者提供细粒度可回收的显存，前者才能实现动态批次构成。\n- 源码上，V1 的 `Scheduler` 用 `waiting`/`running` 两队列 + `token_budget` 预算驱动调度，**在途请求优先、显存耗尽时抢占**，且不再区分 Prefill/Decode 阶段。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.2-Continuous Batching.md"
+        },
+        {
+          "id": "8fcc69e2c25f16ab5ca7bb5c",
+          "heading": "1. 为什么要批处理",
+          "content": "📌 **关键点**：批处理提升的是**吞吐**，而且几乎不牺牲单请求延迟——因为瓶颈在搬权重，多算几个 Token 的计算量对 Memory Bound 的 Decode 来说近乎\"免费\"。问题只在于：**怎么组织这个 Batch？**",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.2-Continuous Batching.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-055-1",
+      "split": "test",
+      "query": "Agent等待工具结果时为什么仍有模型状态容量需求？",
+      "group_id": "agent-state-residency",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 5,
+      "exact_dense_gold_rank30": 5,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        232
+      ]
+    },
+    {
+      "id": "repo-055-2",
+      "split": "test",
+      "query": "工具调用期间GPU没生成token，是否可以认为该Agent请求完全不占状态内存？",
+      "group_id": "agent-state-residency",
+      "bm25_gold_rank30": 4,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 10,
+      "fused_candidate_gold_rank30": 10,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        232
+      ]
+    },
+    {
+      "id": "repo-056-1",
+      "split": "test",
+      "query": "减少请求开始前排队会改善TTFT还是自动改善逐token间隔？",
+      "group_id": "latency-metrics",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        176
+      ]
+    },
+    {
+      "id": "repo-056-2",
+      "split": "test",
+      "query": "队列优化让首字提前，但流式输出速度没变，为什么这两个指标并不矛盾？",
+      "group_id": "latency-metrics",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": null,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "candidate_absent",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        176
+      ],
+      "reference_answer": "TTFT包含开始执行前排队；减排队不自动减少输出后的token间隔。",
+      "gold_chunks": [
+        {
+          "id": "91a1e2827f748528646db742",
+          "heading": "3.1.2 任务目标与评价指标",
+          "content": "TTFT（time to first token）是从请求到达到首个 token 返回的时间，本书也称首响应。\n首响应衡量多久开始输出，完整请求延迟衡量多久生成完，平均 token 间隔衡量输出节奏。\n把某一段时间缩短，只会直接改变包含这段时间的指标。\n例如，减少请求开始执行前的排队会改善 TTFT，却不会自动缩短已经开始生成后的 token 间隔。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/03-推理与训练负载.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "8344a37d0058743977148445",
+          "heading": "代码示例：用 profiler 分析一个训练 step",
+          "content": "从输出中可以快速判断：backward 是否比 forward 慢（正常约 2 倍），数据搬运是否占过多时间，优化器步骤是否有异常耗时。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/pyroch/PyTorch框架入门.md"
+        },
+        {
+          "id": "a8f625a401339f8286f9d5ef",
+          "heading": "3.1 延迟类指标：用户等多久",
+          "content": "同一套系统，业务形态不同，优化重心天差地别。这也是为什么\"先测清楚自己的输入输出长度分布，再谈优化\"是铁律。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md"
+        },
+        {
+          "id": "07f791ae31d8a906762cda53",
+          "heading": "3.1 延迟类指标：用户等多久",
+          "content": "**代入两个场景对比**（设 TTFT $=500\\ \\text{ms}$、TPOT $=40\\ \\text{ms}$）：\n\n- 短输出（生成 20 Token）：$\\text{E2E} = 500 + 40 \\times 19 = 1260\\ \\text{ms}$，其中 TTFT 占约 $40\\%$——首字慢用户就先炸了。\n- 长输出（生成 800 Token）：$\\text{E2E} = 500 + 40 \\times 799 \\approx 32460\\ \\text{ms}$，TTFT 只占约 $1.5\\%$——这时候优化 TPOT 才是正事。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md"
+        },
+        {
+          "id": "43c11c19a3533796bdc60843",
+          "heading": "📝 总结",
+          "content": "- **性能指标**：TTFT / TPOT 分别刻画首字与出字速度，E2E $=$ TTFT $+$ TPOT $\\times$ (输出长度 $-1$)；\n生产环境看 P95/P99 尾延迟和满足 SLO 的 Goodput。\n- **瓶颈本质**：Decode 是 Memory Bound——GPU 在等权重搬运，而非算不过来。\n这解释了 Batching 提升吞吐、量化加速 Decode 的根本原因。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md"
+        },
+        {
+          "id": "2517dcc94c8df7e06dbdd494",
+          "heading": "7.5.2 反馈延迟与缓冲容量",
+          "content": "到达速率高于发送速率，队列增长；到达速率低于发送速率，积压减少。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-057-1",
+      "split": "test",
+      "query": "Roofline分析中的算术强度怎样由工作量和访问量计算？",
+      "group_id": "gemm-reuse",
+      "bm25_gold_rank30": 7,
+      "dense_gold_rank30": null,
+      "exact_dense_gold_rank30": null,
+      "fusion_gold_rank60": 22,
+      "fused_candidate_gold_rank30": 22,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        113
+      ]
+    },
+    {
+      "id": "repo-057-2",
+      "split": "test",
+      "query": "评估一个算子每次搬运32MiB数据做多少运算，应计算哪项比值来判断带宽瓶颈？",
+      "group_id": "gemm-reuse",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 20,
+      "exact_dense_gold_rank30": 20,
+      "fusion_gold_rank60": 35,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "fusion_truncation",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        113
+      ],
+      "reference_answer": "算术强度I=F/V，单位由计算量与数据访问字节量决定。",
+      "gold_chunks": [
+        {
+          "id": "0ea5b00807ba50d7ba954daa",
+          "heading": "4.1.1 矩阵乘法的计算与数据需求",
+          "content": "第一项是固定的 32 MiB 权重，第二项是随行数增长的输入与输出。这里 MiB 为 $2^{20}$ bytes，带宽规格中的 GB/s 使用 $10^9$ bytes/s。将计算量除以访问量，得到算术强度 $I=F/V$。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "72c17fc8d70af42898a2cd6d",
+          "heading": "4.1 算术强度：计算与访存的比值",
+          "content": "### 4.1 算术强度：计算与访存的比值\n\nGPU 干活要同时做两件事：从显存（HBM）**搬数据**，和用计算单元**算数据**。谁慢谁就是瓶颈。衡量一个任务\"偏计算还是偏访存\"，用**算术强度（Arithmetic Intensity）**：\n\n$$\n\\text{算术强度} = \\frac{\\text{浮点运算次数 (FLOPs)}}{\\text{访存字节数 (Bytes)}}\n$$\n\n直白理解：**每从显存搬 1 个字节的数据，能顺带做多少次计算**。这个比值高，说明数据搬来后被充分利用，算力吃得饱；比值低，说明算力在干等数据，大部分时间浪费在搬运上。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md"
+        },
+        {
+          "id": "dffa58979ef79d3f36199c27",
+          "heading": "4.5 性能天花板：算术强度与 Roofline",
+          "content": "为了判断是哪种，可以用 Roofline 模型的简化版本：估一下你的 Kernel“**每个字节的搬运对应多少次算术操作**”，这个比值叫**算术强度（arithmetic intensity）**。如果算术强度高，Kernel 更容易受计算限制；如果低，则更容易受内存限制。\n\n比如逐元素加/ReLU 这类算子，每读一个 float 只做一两次操作，算术强度很低，所以它们通常是 **memory-bound**——这也是为什么算子融合（fusing）能大幅提速：它把多个 memory-bound 步骤合并，避免中间的全局内存读写。反过来，矩阵乘法 O(N³) 计算 / O(N²) 内存，算术强度随 N 线性增长，天生适合 GPU；只要分块（Tiling）把全局内存访问次数降下来，就能逼近计算受限。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md"
+        },
+        {
+          "id": "98c0d8387c08ce4eb1da3262",
+          "heading": "11.2 Compute Bound vs Memory Bound",
+          "content": "- **算力**（Compute）：每秒能做多少次浮点运算（FLOPS）\n- **带宽**（Memory Bandwidth）：每秒能从 HBM 读写多少数据（GB/s）\n\n一个运算是 Compute Bound 还是 Memory Bound，取决于它的**算术强度**（Arithmetic Intensity）= FLOPs / Bytes。\n\n- 如果算术强度 > GPU 的算力/带宽比值，运算是 **Compute Bound**——GPU 算力满载，大部分时间在做计算\n- 如果算术强度 < GPU 的算力/带宽比值，运算是 **Memory Bound**——GPU 算力用不满，大部分时间在等数据搬运\n\n以 A100 为例：FP16 算力约 312 TFLOPS，HBM 带宽约 2 TB/s，算力/带宽比值约 156 FLOP/Byte。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.3 Self-Attention机制深入理解.md"
+        },
+        {
+          "id": "748e7003abe8e21f09e2261d",
+          "heading": "3.3 一个简化的算术强度估算",
+          "content": "实际还有 cache、对齐、读改写、临时结果和融合操作。这个估算不是精确性能模型，但能帮助判断算子更可能受算力还是带宽限制。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/第2章-数学基础.md"
+        },
+        {
+          "id": "63f8e13de4976d0a4c00acff",
+          "heading": "4.8.1 从资源预算建立执行时间模型",
+          "content": "这里的斜线 $RI$ 描述带宽能够支撑多少运算，水平线 $P$ 描述矩阵单元能够完成多少运算。两者在 $I^*=P/R$ 相交。低于交点时，数据供应较慢；高于交点时，每字节已对应足够多运算，计算速度成为新的瓶颈。这条折线就是硬件允许的上限，任何实测点都落在折线之下；实测吞吐与折线的距离，就是第 1.2.2 节定义的利用率。算术强度高于交点时用 MFU 衡量，低于交点时用 MBU 衡量。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/04-加速器架构.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-058-1",
+      "split": "test",
+      "query": "SiLU与乘法融合减少了哪些存储访问，是否省去数学运算？",
+      "group_id": "normalization-fusion",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        183
+      ]
+    },
+    {
+      "id": "repo-058-2",
+      "split": "test",
+      "query": "FFN逐元素算子融合后更快，是否意味着少算了SiLU和乘法，还是改变了中间结果去向？",
+      "group_id": "normalization-fusion",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 8,
+      "exact_dense_gold_rank30": 8,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        183
+      ]
+    },
+    {
+      "id": "repo-059-1",
+      "split": "test",
+      "query": "CUDA Graph减少的是主机提交工作还是图内Kernel计算？",
+      "group_id": "cuda-graph",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        218
+      ]
+    },
+    {
+      "id": "repo-059-2",
+      "split": "test",
+      "query": "GPU算子已优化却持续等待CPU提交相同任务序列，图重放如何减少这部分开销？",
+      "group_id": "cuda-graph",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        218
+      ]
+    },
+    {
+      "id": "repo-060-1",
+      "split": "test",
+      "query": "集合通信算法与物理拓扑分别决定什么？",
+      "group_id": "network-topology",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        155
+      ]
+    },
+    {
+      "id": "repo-060-2",
+      "split": "test",
+      "query": "两个方案每卡发送相同字节数但通信耗时不同，为什么还要分析实际路径和共享接口？",
+      "group_id": "network-topology",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 21,
+      "exact_dense_gold_rank30": 21,
+      "fusion_gold_rank60": 39,
+      "fused_candidate_gold_rank30": null,
+      "rerank_miss5": true,
+      "failure_stage": "fusion_truncation",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        155
+      ],
+      "reference_answer": "集合算法规定逻辑发送接收，拓扑决定物理路径，共享接口会竞争带宽。",
+      "gold_chunks": [
+        {
+          "id": "c88873419e47b97fbc91a418",
+          "heading": "6.5.1 直连、交换与分层拓扑",
+          "content": "### 6.5.1 直连、交换与分层拓扑\n\n第 6.4 节的算法和通信库决定了每一轮谁发给谁、发多少，但没有涉及数据经过哪些物理连接。集合算法规定逻辑上的发送方和接收方，物理拓扑决定数据实际经过哪些设备与链路。两张卡可以直连，也可以经交换机、其他卡或主机内存中转。多次传输共用一个接口时，要排队使用同一份带宽。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "0e969476e664cfec6b68d5ed",
+          "heading": "7.2.4 多网卡",
+          "content": "无论是分层归约、专家放置还是多网卡中继，分析步骤相同：画出路径，计算每条链路和接口传输的数据量，再找出耗时最长的一项。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        },
+        {
+          "id": "2fe76b4ecf2e02ba6c099913",
+          "heading": "7.6.5 部署与常见误区",
+          "content": "**误区：发送总量相同，通信耗时就相同。** 连续环、交错环、分层归约都发送 5760 MiB，跨服务器部分却分别为 720、5760、384 MiB，用到的网卡分别为一张、八张、八张。传输时间取决于数据经过哪些资源，参与者的排列改变了每张网卡分到的字节。\n\n**误区：链路平均利用率低，就足以应对通信高峰。** 两项周期作业平均只需 20 GB/s，通信高峰重叠时却达到 100 GB/s，在 50 GB/s 出口积压 1 GB。缓冲保存的是一段时间内的差额，相位和反馈决定这个差额积累多久。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        },
+        {
+          "id": "c6f68940c5921825f124cf07",
+          "heading": "练习",
+          "content": "(b) 分别计算立即确认与聚合 ACK 两种方案中，图片、包头和 ACK 合计传输的字节数，解释为什么实际传输的字节更少，请求完成时间反而可能更长。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md"
+        },
+        {
+          "id": "de3d25b8412f63bd02f4f0a4",
+          "heading": "7.2.3 专家并行的通信负载",
+          "content": "从该矩阵还能看出 dispatch 与 combine 的热点如何对应。若按 token 到专家逐份发送、返回同样大小的向量，且接收方不做合并，返回矩阵就是发送矩阵的转置：dispatch 的热点接收方，就是 combine 的热点发送方。两次通信的总字节数相同，不代表两段耗时相同：返回的数据要等专家算完才就绪，两个方向的可用带宽、数据格式和归约位置也可能不同。若 dispatch 用 FP8、combine 用 BF16，返回的载荷约为 dispatch 的两倍，量化 scale 等元数据另计。第 9.4 节会把这些流量与计算就绪时间放进同一个算例。\n\n专家放置因此有两项互相联系的目标：让更多 dispatch 留在本地，让远端 dispatch 分散到有余量的接收方。复制热门专家是用额外的容量换少走远端；发往同一张卡上多个专家的输入可以只传一次激活，到了那张卡再分给各个专家。两种办法都减少了相应路径上的传输量。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        },
+        {
+          "id": "32aeb801393d376a3cb1bd4f",
+          "heading": "10.3.3 反向依赖、梯度分桶与通信重叠",
+          "content": "现在用这条规律计算设计案例的通信等待。两套方案都采用全组 ZeRO-3，每个 micro-batch 要做三次集合通信：前向之前用 AllGather 收集一遍 BF16 权重，反向之前再收集一遍，反向之后对 BF16 梯度做一次 ReduceScatter。每次集合通信中，每张卡收发的字节为 $(d-1)/d\\times2N$，48 卡时约 16.0 GB。每卡累积 $m$ 个 micro-batch，一步的通信量为",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/10-训练系统.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-061-1",
+      "split": "test",
+      "query": "分层AllReduce的本机和跨机阶段按什么顺序执行？",
+      "group_id": "hierarchical-reduction",
+      "bm25_gold_rank30": null,
+      "dense_gold_rank30": 4,
+      "exact_dense_gold_rank30": 4,
+      "fusion_gold_rank60": 12,
+      "fused_candidate_gold_rank30": 12,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        237
+      ]
+    },
+    {
+      "id": "repo-061-2",
+      "split": "test",
+      "query": "两台八卡服务器的连续环只使用少数网卡，如何按分片组织跨机归约来利用多个rail？",
+      "group_id": "hierarchical-reduction",
+      "bm25_gold_rank30": 13,
+      "dense_gold_rank30": 6,
+      "exact_dense_gold_rank30": 6,
+      "fusion_gold_rank60": 8,
+      "fused_candidate_gold_rank30": 8,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        237
+      ],
+      "reference_answer": "先本机ReduceScatter，再对应分片跨机AllReduce，最后本机AllGather，并行使用多rail。",
+      "gold_chunks": [
+        {
+          "id": "2677ad79944f5fde21034dab",
+          "heading": "7.2.1 数据并行的跨服务器流量",
+          "content": "分层归约先在各服务器内由八个参与者执行 ReduceScatter。\n七轮之后，每个参与者保存本服务器归约结果的八分之一，即 24 MiB。\n两台服务器上负责同一分片的两个参与者，再执行一次 AllReduce：各自把 24 MiB 分成两份，用一轮交换并归约其中一份，再用一轮交换得到另一份。\n每一对在两个方向合计发送 48 MiB，八对共发送 384 MiB；\n每一对各走自己的一条 rail，八张网卡同时工作。\n最后各服务器内用七轮 AllGather 得到完整结果。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "1a21c63ca40dcbd12e206651",
+          "heading": "7.2.1 数据并行的跨服务器流量",
+          "content": "*图 7-6：每台服务器先把本机八份贡献归约成分片，再和另一台服务器交换对应的分片，最后在本机收集完整结果。每列从上向下执行，横向箭头表示跨服务器交换，每对参与者各用一条 rail。*",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        },
+        {
+          "id": "166642006152f9ced05bb130",
+          "heading": "7.2.1 数据并行的跨服务器流量",
+          "content": "若四卡环的每条边都有这样的带宽，分层归约降到约 7.3 ms，才快于连续环。\n差别的来源是共享接口：跨服务器阶段把八个参与者的分片集中到两轮里，这两轮的流量都要经过同一个 32 GB/s 的插槽，本地归约节省的远端字节被更长的远端轮次抵消了一部分；",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        },
+        {
+          "id": "7e5e4ac02e24843404ef52b4",
+          "heading": "7.2.4 多网卡",
+          "content": "### 7.2.4 多网卡\n专家 dispatch 说明了多入口并行的收益和共享入口的限制。\n同样的分析也适用于发送方：增加网卡，只有当它确实提供额外的可用带宽、并且有数据分配给它时，才会缩短传输时间。\n第 7.2.1 节的连续环就是一例：服务器上八张网卡各连一张卡，连续环却只让其中一张有数据可传，分层归约才把分片分给八对参与者，跨服务器阶段从 7.6 ms 降到约 0.5 ms。\n有网卡不等于用上了网卡，通信算法决定每张网卡分到多少字节。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        },
+        {
+          "id": "2bd5f9ed81e3a6ec3df5d09b",
+          "heading": "7.2.1 数据并行的跨服务器流量",
+          "content": "[^in-network]\n> **实验 7-4 · 延伸：在网归约何时值得**\n>\n> 把梯度改为 BF16（每参与者 96 MiB），重算两台与八台服务器的环形与在网归约跨服务器时间。\n设交换机归约引擎每方向的归约吞吐为 200 GB/s，求八条 rail 同时归约时它是否成为瓶颈，并求使在网归约仍快于环的最小引擎吞吐。\n最后按第 7.6.3 节的 8 KiB 输入，比较 36 层、每层两次归约的总启动时间在两种方案下相差多少。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        },
+        {
+          "id": "fb0140242fa2854c6fb17205",
+          "heading": "7.2.1 数据并行的跨服务器流量",
+          "content": "图 7-4 至图 7-6 分别画出三种方案的路径，图 7-7 比较三者跨服务器的字节数。\n![归约路径与跨服务器流量](ch07/figure-7-3-hierarchy.svg)\n*图 7-4：连续环将同一服务器内的参与者排在一起。\n十六条有向边中只有 7→8 与 15→0 跨服务器，跨服务器流量集中在两张网卡上。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/07-数据中心网络.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-062-1",
+      "split": "test",
+      "query": "ECN与DCQCN在RDMA拥塞控制中各负责什么？",
+      "group_id": "network-congestion",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        139
+      ]
+    },
+    {
+      "id": "repo-062-2",
+      "split": "test",
+      "query": "交换机出口排队增长时怎样把拥塞信息传回源端并让RDMA发送方降速？",
+      "group_id": "network-congestion",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        139
+      ]
+    },
+    {
+      "id": "repo-063-1",
+      "split": "test",
+      "query": "PFC与DCQCN如何分工，PFC逐跳暂停有什么风险？",
+      "group_id": "network-congestion",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        324
+      ]
+    },
+    {
+      "id": "repo-063-2",
+      "split": "test",
+      "query": "端到端降速反馈来不及防止交换机溢出，哪种逐跳机制可暂挡流量，它有什么传播风险？",
+      "group_id": "network-congestion",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 24,
+      "exact_dense_gold_rank30": 25,
+      "fusion_gold_rank60": 5,
+      "fused_candidate_gold_rank30": 5,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        324
+      ]
+    },
+    {
+      "id": "repo-064-1",
+      "split": "test",
+      "query": "共享KV前缀的两个分支修改尾块时为什么需要写时复制？",
+      "group_id": "kv-paging",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        317
+      ]
+    },
+    {
+      "id": "repo-064-2",
+      "split": "test",
+      "query": "两个采样分支共用已写3个token的四槽KV块，下一个token不同，怎样避免覆盖彼此的第四槽？",
+      "group_id": "kv-paging",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 14,
+      "exact_dense_gold_rank30": 14,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        317
+      ]
+    },
+    {
+      "id": "repo-065-1",
+      "split": "test",
+      "query": "KV分页的逻辑块与物理块怎样通过块表关联？",
+      "group_id": "kv-paging",
+      "bm25_gold_rank30": 16,
+      "dense_gold_rank30": 7,
+      "exact_dense_gold_rank30": 7,
+      "fusion_gold_rank60": 11,
+      "fused_candidate_gold_rank30": 11,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        436
+      ],
+      "reference_answer": "块表按逻辑token位置映射到物理块，物理可分散，新增块按需分配。",
+      "gold_chunks": [
+        {
+          "id": "5fbdb45faf78b9b6c432b373",
+          "heading": "8.3.1 预留、碎片与分页分配",
+          "content": "### 8.3.1 预留、碎片与分页分配\n\n第 8.1 节按最大输出长度为每条请求预留空间，保证它能持续生成。如果请求提前结束，预留空间的尾部就一直没有使用。另一种办法是随生成过程逐步扩展内存，但若必须保持空间连续，邻接区域被其他请求占用时，就需要搬移数据或等待。\n\n可以把这种分配比作活页册：阅读顺序由页码确定，各页不必放在相邻位置，只要记得每一页在哪里。序列增长时，在任意空位放入新页并记录其位置，就不必为了连续排列而搬动整册内容。\n\n**分页分配**将序列分成固定大小的块。**逻辑块**按序列中的 token 位置编号，相当于页码；**物理块**是实际保存 KV 的内存区域；每条请求维护的**块表**记录逻辑块对应哪个物理块。序列增长到需要新块时，引擎从空闲池分配一个物理块，并增加映射。注意力计算根据块表找到所需位置的 KV，因此物理块可以分散存放。这里讨论的是 KV 在内存中的分块寻址，多级存储之间的换入换出留到第 8.3.4 节和第 8.4.3 节讨论。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "bec4aea8447a05bc43cfd53d",
+          "heading": "3. Block Table：逻辑块到物理块的映射",
+          "content": "Attention 计算时，CUDA Kernel 通过 Block Table 拿到每个逻辑位置对应的 `physical_block_number`（物理块号）和 `physical_block_offset`（块内偏移），就能从分散的物理块里正确读到所有历史 KV。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.1-PagedAttention.md"
+        },
+        {
+          "id": "5d43fec26eb6068fad05a827",
+          "heading": "6. 意外之喜：内存共享与 Copy-on-Write",
+          "content": "因为 KV 现在是以块为单位、通过块表间接引用的，多个请求的块表完全可以指向**同一个物理块**。典型场景：",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.1-PagedAttention.md"
+        },
+        {
+          "id": "b2d0e1c10a57d5e622cd5869",
+          "heading": "📝 总结",
+          "content": "## 📝 总结\n- PagedAttention 把**操作系统虚拟内存分页**搬到了 KV Cache：切块、按需分配、块表映射。\n- **Block Table** 把请求看到的连续逻辑块，映射到物理上分散的物理块，从此显存无需连续、无需按最大长度预留。\n- **Kernel 侧**通过 `physical_block_number` + `physical_block_offset` 查表寻址，把分散的物理块当成逻辑连续的上下文来读——这是算子与内存布局的协同设计。\n- 它同时消灭了**内部碎片**（不再超额预留）和**外部碎片**（块大小统一），把显存利用率推到接近最优，进而转化为更高的并发与吞吐。\n- 分页天然支持**内存共享 + Copy-on-Write**，为前缀复用（Prefix Cache）打下基础。\n- 显存被抽干时，靠**抢占**（换出到 CPU 或重计算）兜底，保证请求不失败而非直接 OOM。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.1-PagedAttention.md"
+        },
+        {
+          "id": "68f85b4223e0fa5674d55cf7",
+          "heading": "6.3 PagedAttention",
+          "content": "- **PagedAttention（分页注意力）**：vLLM 提出的 KV Cache 管理方案，用分页思想解决显存碎片。\n- **Block（块）/ Block Table（块表）**：Block 是固定 Token 数的 KV 存储单元（如 16 个 Token）；\nBlock Table 记录「逻辑块号 → 物理块号」的映射，物理块可以不连续。\n- **显存碎片（Memory Fragmentation）**：**内部碎片**指分配了但没用满的部分；\n**外部碎片**指空闲空间分散、无法满足大块连续分配。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "8cc740f8fda472fea9371aba",
+          "heading": "6.1 分页 KV 的最小状态机",
+          "content": "## 6.1 分页 KV 的最小状态机\n\n每层 K/V 的逻辑 shape 可写成 `[request, token, kv_head, head_dim]`；分页后物理池按 Block 分配，`block_table[request][logical_block] = physical_block`。地址 `physical_block * block_size + token_pos % block_size`，实际内存布局还含 layer、K/V、head 和 dtype stride。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-065-2",
+      "split": "test",
+      "query": "缓存空闲空间分散而无法分配大连续区域，如何让一条序列跨不连续物理块存储？",
+      "group_id": "kv-paging",
+      "bm25_gold_rank30": 2,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": false,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        436
+      ],
+      "reference_answer": "块表按逻辑token位置映射到物理块，物理可分散，新增块按需分配。",
+      "gold_chunks": [
+        {
+          "id": "5fbdb45faf78b9b6c432b373",
+          "heading": "8.3.1 预留、碎片与分页分配",
+          "content": "### 8.3.1 预留、碎片与分页分配\n\n第 8.1 节按最大输出长度为每条请求预留空间，保证它能持续生成。如果请求提前结束，预留空间的尾部就一直没有使用。另一种办法是随生成过程逐步扩展内存，但若必须保持空间连续，邻接区域被其他请求占用时，就需要搬移数据或等待。\n\n可以把这种分配比作活页册：阅读顺序由页码确定，各页不必放在相邻位置，只要记得每一页在哪里。序列增长时，在任意空位放入新页并记录其位置，就不必为了连续排列而搬动整册内容。\n\n**分页分配**将序列分成固定大小的块。**逻辑块**按序列中的 token 位置编号，相当于页码；**物理块**是实际保存 KV 的内存区域；每条请求维护的**块表**记录逻辑块对应哪个物理块。序列增长到需要新块时，引擎从空闲池分配一个物理块，并增加映射。注意力计算根据块表找到所需位置的 KV，因此物理块可以分散存放。这里讨论的是 KV 在内存中的分块寻址，多级存储之间的换入换出留到第 8.3.4 节和第 8.4.3 节讨论。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "7a1313dc844396db1710ba1b",
+          "heading": "3. Block Table：逻辑块到物理块的映射",
+          "content": "vLLM 从空闲物理块池里分配 3 个物理块给它——注意物理块编号可以完全不连续，比如物理块 `#7`、`#2`、`#5`。Block Table 就长这样：",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.1-PagedAttention.md"
+        },
+        {
+          "id": "68f85b4223e0fa5674d55cf7",
+          "heading": "6.3 PagedAttention",
+          "content": "- **PagedAttention（分页注意力）**：vLLM 提出的 KV Cache 管理方案，用分页思想解决显存碎片。\n- **Block（块）/ Block Table（块表）**：Block 是固定 Token 数的 KV 存储单元（如 16 个 Token）；\nBlock Table 记录「逻辑块号 → 物理块号」的映射，物理块可以不连续。\n- **显存碎片（Memory Fragmentation）**：**内部碎片**指分配了但没用满的部分；\n**外部碎片**指空闲空间分散、无法满足大块连续分配。",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "9aced36a773f9cc703fdfd9d",
+          "heading": "5. 与 PagedAttention 的协同",
+          "content": "- Continuous Batching 要做到\"请求随退随补\"，前提是**能随时、以细粒度分配和回收显存**。\n如果还是传统的连续大块分配，一个请求退出后留下的空隙未必能恰好塞下新请求，动态补位就无从谈起。\n- PagedAttention 的**固定大小块 + 按需分配 + 即时回收**，恰好提供了这种细粒度的显存弹性：请求完成，它的块立刻回到空闲池；\n新请求进来，从空闲池按需取块。",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.2-Continuous Batching.md"
+        },
+        {
+          "id": "bc24f25bff81514ed8104e4c",
+          "heading": "6.3 PagedAttention",
+          "content": "## 6.3 PagedAttention\n\n**速查**：PagedAttention 借鉴操作系统虚拟内存分页，把 KV Cache 切成固定大小的 **Block（块）**，用 **Block Table（块表）** 做逻辑到物理的映射，消除显存碎片，支持前缀共享，显存浪费从 60–80% 降到 <4%。\n\n![图 3-2 PagedAttention 的 Block Table 机制](figures/fig_03_paged_attention.png)\n*图 3-2 · 逻辑块经 Block Table 映射到不连续的物理块，支持共享与按需分配*",
+          "source": "data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md"
+        },
+        {
+          "id": "85ec17d262551f6f66dcac77",
+          "heading": "3. **不要求连续**：同一个请求的 KV Cache 可以分散在不连续的显存 Block 中，通过一个 Block Table（类似页表）记录映射关系",
+          "content": "3. **不要求连续**：同一个请求的 KV Cache 可以分散在不连续的显存 Block 中，通过一个 Block Table（类似页表）记录映射关系",
+          "source": "data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.8 从Transformer到LLM自回归生成深入理解.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-067-1",
+      "split": "test",
+      "query": "TP或EP组中单卡故障的影响范围为什么不同于完整副本故障？",
+      "group_id": "distributed-recovery",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        157
+      ]
+    },
+    {
+      "id": "repo-067-2",
+      "split": "test",
+      "query": "推理集群一张专家卡挂了，为什么同组请求全停而其他完整副本仍能接流量？",
+      "group_id": "distributed-recovery",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        157
+      ]
+    },
+    {
+      "id": "repo-069-1",
+      "split": "test",
+      "query": "混合精度Adam训练除了BF16权重还需要保存哪些状态？",
+      "group_id": "training-memory",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        145
+      ]
+    },
+    {
+      "id": "repo-069-2",
+      "split": "test",
+      "query": "8B模型BF16权重约16GB，为何全参数训练不能按16GB估计显存需求？",
+      "group_id": "training-memory",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        145
+      ]
+    },
+    {
+      "id": "repo-071-1",
+      "split": "test",
+      "query": "可恢复训练checkpoint为何不能只保存模型权重？",
+      "group_id": "training-checkpoint",
+      "bm25_gold_rank30": 3,
+      "dense_gold_rank30": 3,
+      "exact_dense_gold_rank30": 3,
+      "fusion_gold_rank60": 3,
+      "fused_candidate_gold_rank30": 3,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        406
+      ]
+    },
+    {
+      "id": "repo-071-2",
+      "split": "test",
+      "query": "断点恢复权重相同但下一步更新不同，哪些优化器、随机或数据状态可能没恢复？",
+      "group_id": "training-checkpoint",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 6,
+      "exact_dense_gold_rank30": 6,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        406
+      ]
+    },
+    {
+      "id": "repo-072-1",
+      "split": "test",
+      "query": "ZeRO通过怎样的状态归属安排减少数据并行冗余？",
+      "group_id": "state-sharding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 10,
+      "exact_dense_gold_rank30": 10,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        384
+      ]
+    },
+    {
+      "id": "repo-072-2",
+      "split": "test",
+      "query": "多卡训练每卡都复制同一份优化器状态，哪种跨卡分片思想能降低重复保存成本？",
+      "group_id": "state-sharding",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        384
+      ]
+    },
+    {
+      "id": "repo-073-1",
+      "split": "test",
+      "query": "训练抢占后容器和microVM分别如何暂停并恢复工具沙箱？",
+      "group_id": "sandbox-lifecycle",
+      "bm25_gold_rank30": 4,
+      "dense_gold_rank30": 1,
+      "exact_dense_gold_rank30": 1,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        245
+      ]
+    },
+    {
+      "id": "repo-073-2",
+      "split": "test",
+      "query": "RL训练中断数小时但必须保留工具环境，怎样释放沙箱内存又能在请求到来时恢复？",
+      "group_id": "sandbox-lifecycle",
+      "bm25_gold_rank30": 13,
+      "dense_gold_rank30": 4,
+      "exact_dense_gold_rank30": 4,
+      "fusion_gold_rank60": 5,
+      "fused_candidate_gold_rank30": 5,
+      "rerank_miss5": true,
+      "failure_stage": "reranker_below_top5",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        245
+      ],
+      "reference_answer": "抢占后容器冻结进程并换出，microVM保存快照结束进程，用时恢复，以状态搬运换内存。",
+      "gold_chunks": [
+        {
+          "id": "368193dbfc5fb3ee7e37a514",
+          "heading": "11.2.3 暂停、恢复与环境重建",
+          "content": "保存和恢复各占一小段时间，其余时间内存空出；\n横轴未按比例，抢占通常以小时计，保存和恢复以秒计。\n*\n所以在 DSec 上，作业一被抢占，RL 框架就主动暂停该作业的全部沙箱（图 11-16）。\n容器的做法是先冻结整个进程树，再放开内存换出到磁盘，并主动触发回收；\n恢复时先对进程的内存映射发出预取提示，再解冻运行。\nmicroVM 则把内存和执行状态写成快照，然后结束虚拟机进程；\n恢复时另起新进程载入快照。\n两种做法都是把状态从内存挪到下一级存储，用时再搬回来，所以代价随状态大小增长。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/11-资源调度与运行环境.md"
+        }
+      ],
+      "rerank_top5": [
+        {
+          "id": "bb5fe9d504db4003e11f5433",
+          "heading": "11.2.3 暂停、恢复与环境重建",
+          "content": "章首任务的间隔只有 9 秒，上式左边几乎为零；\nRL 训练中还有长得多的间隔。\n第 10.4.4 节 MiMo 的 RL 运行，从中断到重启通常要一到三小时。\nGPU 训练作业被抢占或中断时，rollout 用的沙箱不能销毁，里面保存着未完成轨迹的文件和进程；\n但训练恢复之前，也不会有工具调用进来。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/11-资源调度与运行环境.md"
+        },
+        {
+          "id": "2318c6bdf87a7de8503fa2fd",
+          "heading": "11.2.3 暂停、恢复与环境重建",
+          "content": "DSec 上一个作业最多可以申请 32K 个沙箱，若每个按章首规格占 2 GiB，合计约 70 TB，超过 DSec 一个集群单元内存总量（约 250 TB）的四分之一。\n2 GiB 的沙箱保存加恢复仍只要 9 秒左右，释放出来的时间却以小时计：暂停两小时，内存空出来的时间约为保存和恢复期间照常占用时间的 800 倍。\n![GPU 作业被抢占期间暂停沙箱：保存状态后释放内存，训练恢复前再载回](ch11/figure-11-preempt-pause.svg)\n*图 11-16：GPU 作业被抢占后，RL 框架暂停相应的沙箱。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/11-资源调度与运行环境.md"
+        },
+        {
+          "id": "ff8617d92cf0495dbbe56ff9",
+          "heading": "16.38/(50/8)\\approx2.62\\ \\mathrm{s},",
+          "content": "恢复时，训练框架先还原自己记录的 rollout 进度，再照命令日志重放：执行过的工具调用直接返回记录下来的结果，不再真正执行，免得同一条命令做两遍，例如往文件里多追加一次内容，或者向外部系统重复提交请求。\n第 11.1.3 节状态表中“工具结果”一行说的就是这种恢复方式。\n![agent 循环位于可抢占的 GPU 容器内，抢占后需按命令日志重放](ch11/figure-11-rollout-owner-before.svg)\n*图 11-33：agent 循环与模型服务、RL 框架同在可抢占的 GPU 容器里。\n一旦抢占，agent 循环的状态随之丢失，沙箱里的文件和进程还在，恢复时靠命令日志把两边重新对上。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/11-资源调度与运行环境.md"
+        },
+        {
+          "id": "f10fea9df887b557c6490cc6",
+          "heading": "11.5.1 工具失败后的恢复与模型选择",
+          "content": "这里仍然需要回答全书反复讨论的两个问题：数据放在哪里，谁必须等它。第 11.2 节在模型调用期间释放工具环境，以节省内存。这样做的前提是下一轮所需的状态已经存到环境之外，或可以在丢失后重新计算。若唯一一份结果还在环境内存中，控制器就要等它保存完成再释放环境，否则只能在丢失后重做。因此，调度器安排资源时，也要计入保存状态的等待时间和故障后的重做成本。\n\n确认能从哪里继续后，控制器还可以选择换用更强的模型。若原模型已完成两轮，补丁和测试结果也已完整保存，新模型就能接着求解，无需重做前两轮。这样只需支付下一次模型调用的成本，并可能提高求解成功率。后续修复有多大把握，取决于此前为什么失败。因此，下文计算恢复树中各分支的概率时，都以任务已经到达该节点为条件。",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/11-资源调度与运行环境.md"
+        },
+        {
+          "id": "edb060cd89d8a9592f5c2ca1",
+          "heading": "11.2.3 暂停、恢复与环境重建",
+          "content": "### 11.2.3 暂停、恢复与环境重建\n\n第 11.2.2 节减少了每次创建时复制的数据；另一种节省内存的办法是在两次工具执行之间暂时释放整个环境。在章首的三轮任务中，第一轮工具在第 10 秒完成，第二轮工具要到第 19 秒才开始，中间有 9 秒模型调用。始终驻留要占用 $2\\times9=18$ GiB·秒。按 E2B 文档，暂停一个沙箱时每 GiB 内存约需 4 秒，恢复约需 1 秒，保存和恢复期间环境仍占 2 GiB。暂停 2 GiB 环境需要 8 秒：第 10–18 秒保存状态，第 18–19 秒恢复。下一次工具仍能在第 19 秒开始，但整个间隔都被保存和恢复占满，占用仍是 18 GiB·秒，没有任何节省。[^e2b]",
+          "source": "data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/11-资源调度与运行环境.md"
+        }
+      ]
+    },
+    {
+      "id": "repo-074-1",
+      "split": "test",
+      "query": "端、边、云在AI服务部署中分别承担什么角色？",
+      "group_id": "edge-placement",
+      "bm25_gold_rank30": 5,
+      "dense_gold_rank30": 4,
+      "exact_dense_gold_rank30": 4,
+      "fusion_gold_rank60": 2,
+      "fused_candidate_gold_rank30": 2,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        363
+      ]
+    },
+    {
+      "id": "repo-074-2",
+      "split": "test",
+      "query": "终端资源不足时，除了全本地执行，还可以把任务或模型阶段怎样放到附近节点和远程资源池？",
+      "group_id": "edge-placement",
+      "bm25_gold_rank30": 1,
+      "dense_gold_rank30": 2,
+      "exact_dense_gold_rank30": 2,
+      "fusion_gold_rank60": 1,
+      "fused_candidate_gold_rank30": 1,
+      "rerank_miss5": false,
+      "failure_stage": "hit",
+      "rerank_parent_hit5": true,
+      "baseline_hybrid_top10_reproduced": true,
+      "gold_lengths": [
+        363
+      ]
+    }
+  ],
+  "seconds": 21.09163462498691,
+  "additional_statistics": {
+    "dev": {
+      "gold_chunks": 25,
+      "gold_heading_not_in_body": 11,
+      "gold_under80": 0,
+      "dense_ann_hit5": 21,
+      "dense_exact_hit5": 21
+    },
+    "test": {
+      "gold_chunks": 51,
+      "gold_heading_not_in_body": 35,
+      "gold_under80": 3,
+      "dense_ann_hit5": 53,
+      "dense_exact_hit5": 53
+    },
+    "duplicate_content_extra_chunks": 562
+  }
+}

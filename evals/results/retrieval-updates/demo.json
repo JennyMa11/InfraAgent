@@ -1,0 +1,364 @@
+{
+  "code_hashes": {
+    "scripts/verify_retrieval_updates.py": "95da604f69677fcaa2bb58f18634b8a0873c0a49537844d3800ac0f0c655719a",
+    "src/infra_rag/__init__.py": "f332dc60bc2c27078387d611eac64dfbacdc51b6e0517e888564cbdd48643b66",
+    "src/infra_rag/api.py": "21179b46b18bc73dc8e93895644c1f00411003129c7d12184bfdfaee5d1879b1",
+    "src/infra_rag/chunking.py": "701f7c230582e88a5b6db67ce5c2ed920dcb67613d8798514bf9c40ae0643b5f",
+    "src/infra_rag/cli.py": "55fd24d2217803e002e61d2868ed831a24a06ad103eafd0ac92522ca5a1197cb",
+    "src/infra_rag/config.py": "cc884c60329d6795d3caddd4a86740165759598676d66e3103c3212bd166166d",
+    "src/infra_rag/context.py": "168862d3d80bf18eea1974fec6da0e41f13547fe954aff5fb223ce39383ca057",
+    "src/infra_rag/encoding.py": "4fa9678a94d8e947ae5ff8f2c00468acb61d86c91e60cb3f447958fc588a2036",
+    "src/infra_rag/evaluation.py": "5eabfa46d05ac6ddb8a2f92fdacdf814fd3fdf543d2ea60cb51a260cf7bb9ae1",
+    "src/infra_rag/image_chunking.py": "1b3d8f1827bb6d187dba84ef4404cbdccf893572b603d9375f0080eb8e5e548a",
+    "src/infra_rag/lexical.py": "1e05f9baa8d8204a50d4d1b2004862698723b02320771d874f359268af08898b",
+    "src/infra_rag/models.py": "a4b4cc98b7fbf94d8b9d204bebf01b45b87b60112f10a70fd8485ea0fdb5e173",
+    "src/infra_rag/service.py": "f0ff6a72a0a81b28f6276fb9ea443573dfd9b5dfb34c0195d825d3f95de91f41",
+    "src/infra_rag/text_chunking.py": "038031ccb91d7f62cd4dfc3c3dba0675a028ece59e8d55ee9bc58b653e849dc6",
+    "src/infra_rag/vector_cache.py": "cc099843e87cba4151fe09001d5c8d79782e07f0646edaa1656f394a09747c4b"
+  },
+  "backend": "demo",
+  "multimodal": false,
+  "python": "3.12.14",
+  "fixture": "8 synthetic bilingual Infra notes; one optional synthetic diagram",
+  "scope": "functional verification; sequential timings include parsing/cache/storage; model load excluded except first CLIP/reranker use; not retrieval quality evaluation",
+  "initial_chunks": 16,
+  "initial": {
+    "elapsed_ms": 9.932165965437889,
+    "files": 8,
+    "changed_files": 8,
+    "skipped_files": 0,
+    "chunks": 16,
+    "total_chunks": 16,
+    "vectors": {
+      "parsing_text_vectors": {
+        "encoded": 18,
+        "reused": 14
+      },
+      "text_vectors": {
+        "encoded": 16,
+        "reused": 0
+      }
+    }
+  },
+  "unchanged": {
+    "elapsed_ms": 0.8013329934328794,
+    "files": 8,
+    "changed_files": 0,
+    "skipped_files": 8,
+    "chunks": 0,
+    "total_chunks": 16,
+    "vectors": {
+      "parsing_text_vectors": {
+        "encoded": 0,
+        "reused": 0
+      }
+    }
+  },
+  "single_file_update": {
+    "elapsed_ms": 3.133833990432322,
+    "files": 8,
+    "changed_files": 1,
+    "skipped_files": 7,
+    "chunks": 3,
+    "total_chunks": 17,
+    "vectors": {
+      "parsing_text_vectors": {
+        "encoded": 2,
+        "reused": 4
+      },
+      "text_vectors": {
+        "encoded": 1,
+        "reused": 16
+      }
+    }
+  },
+  "fresh_rebuild_warm_model": {
+    "elapsed_ms": 8.963291998952627,
+    "files": 8,
+    "changed_files": 8,
+    "skipped_files": 0,
+    "chunks": 17,
+    "total_chunks": 17,
+    "vectors": {
+      "parsing_text_vectors": {
+        "encoded": 20,
+        "reused": 14
+      },
+      "text_vectors": {
+        "encoded": 17,
+        "reused": 0
+      }
+    }
+  },
+  "max_vector_difference_vs_rebuild": 0.0,
+  "same_top5_as_rebuild": true,
+  "restart_skip_verified": true,
+  "deletion_no_text_reencoding": true,
+  "context": {
+    "budget": {
+      "tokens": 1200,
+      "characters": 4000
+    },
+    "used_tokens": 438,
+    "used_characters": 438,
+    "token_count_method": "unicode_characters"
+  },
+  "diagnostics": {
+    "channels": {
+      "bm25": {
+        "score_kind": "bm25_score",
+        "ranking": [
+          {
+            "chunk_id": "04bc62f743073e3bc879d619",
+            "rank": 1,
+            "score": 12.635756371292487
+          },
+          {
+            "chunk_id": "0bf516abab04c5b02627c1db",
+            "rank": 2,
+            "score": 12.635756371292487
+          },
+          {
+            "chunk_id": "1171ff106a006cc9fabfc6cf",
+            "rank": 3,
+            "score": 12.635756371292487
+          },
+          {
+            "chunk_id": "3a589cdf213aa6e09d43cc92",
+            "rank": 4,
+            "score": 12.635756371292487
+          },
+          {
+            "chunk_id": "4ec31bdb9dd0d8ad16377979",
+            "rank": 5,
+            "score": 12.635756371292487
+          },
+          {
+            "chunk_id": "58d1a3bd1d118bb87ed32bd1",
+            "rank": 6,
+            "score": 12.635756371292487
+          },
+          {
+            "chunk_id": "6e3679bf51946d664b9fe027",
+            "rank": 7,
+            "score": 12.635756371292487
+          },
+          {
+            "chunk_id": "7e12bcffb85e0d79f4d2df7e",
+            "rank": 8,
+            "score": 12.635756371292487
+          }
+        ]
+      },
+      "dense": {
+        "score_kind": "cosine_similarity",
+        "ranking": [
+          {
+            "chunk_id": "04bc62f743073e3bc879d619",
+            "rank": 1,
+            "score": 0.6589465276604692
+          },
+          {
+            "chunk_id": "0bf516abab04c5b02627c1db",
+            "rank": 2,
+            "score": 0.6589465276604692
+          },
+          {
+            "chunk_id": "1171ff106a006cc9fabfc6cf",
+            "rank": 3,
+            "score": 0.6589465276604692
+          },
+          {
+            "chunk_id": "3a589cdf213aa6e09d43cc92",
+            "rank": 4,
+            "score": 0.6589465276604692
+          },
+          {
+            "chunk_id": "4ec31bdb9dd0d8ad16377979",
+            "rank": 5,
+            "score": 0.6589465276604692
+          },
+          {
+            "chunk_id": "6e3679bf51946d664b9fe027",
+            "rank": 6,
+            "score": 0.6589465276604692
+          },
+          {
+            "chunk_id": "7e12bcffb85e0d79f4d2df7e",
+            "rank": 7,
+            "score": 0.6589465276604692
+          },
+          {
+            "chunk_id": "58d1a3bd1d118bb87ed32bd1",
+            "rank": 8,
+            "score": 0.6491838171758229
+          },
+          {
+            "chunk_id": "b06d075f39bf97ddf7e40a28",
+            "rank": 9,
+            "score": 0.14048787173725413
+          }
+        ]
+      }
+    },
+    "timings_ms": {
+      "lock_wait": 0.0013330718502402306,
+      "filter": 0.0005830079317092896,
+      "bm25": 0.7797920843586326,
+      "dense": 0.25037501472979784,
+      "fusion": 0.016417005099356174,
+      "rerank": 0.00016705598682165146,
+      "context": 0.023209024220705032,
+      "total": 1.0761669836938381
+    },
+    "rerank": {
+      "enabled": false
+    },
+    "eligible_chunks": 17,
+    "candidate_k": 30,
+    "dense_query": {
+      "handling": "deterministic_hash"
+    },
+    "fusion": [
+      {
+        "chunk_id": "04bc62f743073e3bc879d619",
+        "rank": 1,
+        "rrf_score": 0.03278688524590164,
+        "retained": true
+      },
+      {
+        "chunk_id": "0bf516abab04c5b02627c1db",
+        "rank": 2,
+        "rrf_score": 0.03225806451612903,
+        "retained": true
+      },
+      {
+        "chunk_id": "1171ff106a006cc9fabfc6cf",
+        "rank": 3,
+        "rrf_score": 0.031746031746031744,
+        "retained": true
+      },
+      {
+        "chunk_id": "3a589cdf213aa6e09d43cc92",
+        "rank": 4,
+        "rrf_score": 0.03125,
+        "retained": true
+      },
+      {
+        "chunk_id": "4ec31bdb9dd0d8ad16377979",
+        "rank": 5,
+        "rrf_score": 0.03076923076923077,
+        "retained": true
+      },
+      {
+        "chunk_id": "6e3679bf51946d664b9fe027",
+        "rank": 6,
+        "rrf_score": 0.03007688828584351,
+        "retained": true
+      },
+      {
+        "chunk_id": "58d1a3bd1d118bb87ed32bd1",
+        "rank": 7,
+        "rrf_score": 0.029857397504456328,
+        "retained": true
+      },
+      {
+        "chunk_id": "7e12bcffb85e0d79f4d2df7e",
+        "rank": 8,
+        "rrf_score": 0.029631255487269532,
+        "retained": true
+      },
+      {
+        "chunk_id": "b06d075f39bf97ddf7e40a28",
+        "rank": 9,
+        "rrf_score": 0.014492753623188406,
+        "retained": true
+      }
+    ],
+    "candidates": [
+      "04bc62f743073e3bc879d619",
+      "0bf516abab04c5b02627c1db",
+      "1171ff106a006cc9fabfc6cf",
+      "3a589cdf213aa6e09d43cc92",
+      "4ec31bdb9dd0d8ad16377979",
+      "6e3679bf51946d664b9fe027",
+      "58d1a3bd1d118bb87ed32bd1",
+      "7e12bcffb85e0d79f4d2df7e",
+      "b06d075f39bf97ddf7e40a28"
+    ],
+    "final": [
+      {
+        "chunk_id": "04bc62f743073e3bc879d619",
+        "rank": 1,
+        "before_rerank_rank": 1,
+        "rerank_score": null
+      },
+      {
+        "chunk_id": "0bf516abab04c5b02627c1db",
+        "rank": 2,
+        "before_rerank_rank": 2,
+        "rerank_score": null
+      },
+      {
+        "chunk_id": "1171ff106a006cc9fabfc6cf",
+        "rank": 3,
+        "before_rerank_rank": 3,
+        "rerank_score": null
+      },
+      {
+        "chunk_id": "3a589cdf213aa6e09d43cc92",
+        "rank": 4,
+        "before_rerank_rank": 4,
+        "rerank_score": null
+      },
+      {
+        "chunk_id": "4ec31bdb9dd0d8ad16377979",
+        "rank": 5,
+        "before_rerank_rank": 5,
+        "rerank_score": null
+      },
+      {
+        "chunk_id": "6e3679bf51946d664b9fe027",
+        "rank": 6,
+        "before_rerank_rank": 6,
+        "rerank_score": null
+      },
+      {
+        "chunk_id": "58d1a3bd1d118bb87ed32bd1",
+        "rank": 7,
+        "before_rerank_rank": 7,
+        "rerank_score": null
+      },
+      {
+        "chunk_id": "7e12bcffb85e0d79f4d2df7e",
+        "rank": 8,
+        "before_rerank_rank": 8,
+        "rerank_score": null
+      },
+      {
+        "chunk_id": "b06d075f39bf97ddf7e40a28",
+        "rank": 9,
+        "before_rerank_rank": 9,
+        "rerank_score": null
+      }
+    ],
+    "returned_chunk_ids": [
+      "04bc62f743073e3bc879d619",
+      "0bf516abab04c5b02627c1db",
+      "1171ff106a006cc9fabfc6cf",
+      "3a589cdf213aa6e09d43cc92",
+      "4ec31bdb9dd0d8ad16377979"
+    ]
+  },
+  "multimodal_verification": null,
+  "rerank_verification": null,
+  "cleanup_preview": {
+    "applied": false,
+    "collections": [],
+    "assets": [],
+    "cache": {
+      "unused": 20,
+      "retained": 17
+    }
+  }
+}

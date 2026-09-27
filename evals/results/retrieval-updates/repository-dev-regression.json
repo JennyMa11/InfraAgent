@@ -1,0 +1,570 @@
+{
+  "queries": 50,
+  "chunks": 11168,
+  "protocol": "fixed dev50; legacy vs neighbors BM25 top5 IDs and RRF scores; no tuning; existing snapshot read only",
+  "rankings_and_scores_equal": true,
+  "hashes_unchanged": true,
+  "hashes": {
+    "evals/repository-benchmark/dev.json": "967cd07d2c346ec82ae879bfb5ff3cbdcb3f4b8f4ec34a0f8deaebd42b09600f",
+    "evals/repository-benchmark/test.json": "aefb1d6e2943a98c67df88f0a364b4c7dfc9f442c72081da284a7a6d9a6f14ef",
+    "evals/repository-benchmark/annotations-v2/dev.json": "bd36156404db998353b1b6b08901ec16c17032f338a7b91b85525d7e709ac3aa",
+    "evals/repository-benchmark/annotations-v2/test.json": "4a5fdd3f67fe70804b2246263d09c376bbbfa22c8acb04745ef3d133d8a5bc10",
+    "data/repository-index/bge-e4579f5f84b9/index.json": "b3e1fe2994d470d3d3d9a35f3dd4676e964aee50ef6ccc197bf9becaad549752"
+  },
+  "context_budget": {
+    "tokens": 1200,
+    "characters": 4000
+  },
+  "rows": [
+    {
+      "id": "repo-002-1",
+      "top5": [
+        "58033ae63d82da089adc4a98",
+        "f9b0222f5a36e04066145093",
+        "44d2421807665bf22d2693b7",
+        "de864da5b2675feda11c9cd2",
+        "701b1bfa3e8af22e83426564"
+      ],
+      "context_tokens": 895
+    },
+    {
+      "id": "repo-002-2",
+      "top5": [
+        "58033ae63d82da089adc4a98",
+        "38db0a5004abb49362db80b7",
+        "3c7786368b79a36cf0f365a6",
+        "35ee75f66ff27c3a2a0e4043",
+        "b12290783ba5000c3c3cfa23"
+      ],
+      "context_tokens": 721
+    },
+    {
+      "id": "repo-014-1",
+      "top5": [
+        "a814f14a71906dc69749b385",
+        "7d364426939c7e51b7832121",
+        "6e48a05c7116b1249dcd7f67",
+        "7401d7370c34d3334662d873",
+        "7155d912dc41721fca060997"
+      ],
+      "context_tokens": 1028
+    },
+    {
+      "id": "repo-014-2",
+      "top5": [
+        "fd17b5e63604d68d41558ea2",
+        "59e51753e918a7a3a0526258",
+        "ed56d4b7183b49647043d8f4",
+        "1c74fad45dc8094df092fb9c",
+        "4749296d4ebc2bd0d9147a91"
+      ],
+      "context_tokens": 1191
+    },
+    {
+      "id": "repo-016-1",
+      "top5": [
+        "c7718882020f195683fe5355",
+        "7916b10c2289c0aca288d135",
+        "68f8a0bd7f3484224e85d85f",
+        "d5fba526bc20e51ea99cc2bb",
+        "09d25d057169b63ce6b7bb73"
+      ],
+      "context_tokens": 661
+    },
+    {
+      "id": "repo-016-2",
+      "top5": [
+        "2c73ae4060bc0598564f2b75",
+        "229226ba3bb4ee00150df010",
+        "e36c2e21e387f106a4286e94",
+        "4472e14664110a4f66310f82",
+        "c4c2a270e96a50123ce69825"
+      ],
+      "context_tokens": 1171
+    },
+    {
+      "id": "repo-017-1",
+      "top5": [
+        "9a4c4c6449a788abe1fe5d20",
+        "21bdbfbae49274d01e5e1d97",
+        "75043ead88121524d03ba360",
+        "11c9123d6392c1915f013a7c",
+        "44c6f0552282f37b7f42e21c"
+      ],
+      "context_tokens": 751
+    },
+    {
+      "id": "repo-017-2",
+      "top5": [
+        "585fe00f332d960ab7dc0043",
+        "9a4c4c6449a788abe1fe5d20",
+        "68f8a0bd7f3484224e85d85f",
+        "75043ead88121524d03ba360",
+        "e5cc7cd1b33d2eaa1a4ac55a"
+      ],
+      "context_tokens": 1166
+    },
+    {
+      "id": "repo-018-1",
+      "top5": [
+        "8063b9eda80527e5f4479458",
+        "039f0fc4a49ca784c7b1f8be",
+        "59e8768c3457d1adda7cef8e",
+        "3d66f2f4435e1e1281de7a7f",
+        "4f687edb0bde53307657b879"
+      ],
+      "context_tokens": 1151
+    },
+    {
+      "id": "repo-018-2",
+      "top5": [
+        "df90f6c49278bebeac0b02b8",
+        "8063b9eda80527e5f4479458",
+        "4f687edb0bde53307657b879",
+        "3d66f2f4435e1e1281de7a7f",
+        "a28defd2bd04c3fec780bd07"
+      ],
+      "context_tokens": 1192
+    },
+    {
+      "id": "repo-020-1",
+      "top5": [
+        "9122ad5e0ee1edb8069514e4",
+        "c16371148c776209e2386a2e",
+        "37b70b0361d8773d98c9c131",
+        "e77ae998de3187e77a0044ad",
+        "fad8c7a88b18dab52e0555c5"
+      ],
+      "context_tokens": 1177
+    },
+    {
+      "id": "repo-020-2",
+      "top5": [
+        "8fe95008c814d84216a26905",
+        "7ac6ef9c4561724dbb0e1127",
+        "9122ad5e0ee1edb8069514e4",
+        "c16371148c776209e2386a2e",
+        "28e8a1d4e5d99e4d8afe85c9"
+      ],
+      "context_tokens": 960
+    },
+    {
+      "id": "repo-022-1",
+      "top5": [
+        "9235d0a598bf7d1863bc5974",
+        "13afb2d434ab1923ccd57dc0",
+        "474a87971bef9d5540971ae6",
+        "cfd5cf016d76e5df055bceda",
+        "c90d9627e99803e05b4da9ec"
+      ],
+      "context_tokens": 1167
+    },
+    {
+      "id": "repo-022-2",
+      "top5": [
+        "7f2d7d3c34545c0fa191ca1a",
+        "95b2da4bb6ddc70e206cc2e8",
+        "390449b3430ad9cdae66e8be",
+        "a5eda5dde2a241bdb658abec",
+        "960e4e45377ea77f91f66339"
+      ],
+      "context_tokens": 1173
+    },
+    {
+      "id": "repo-025-1",
+      "top5": [
+        "224ee825b482ff00186b74d7",
+        "eff695167ba829d43657b7e9",
+        "8968997350aace705e7b2c13",
+        "e498971b8579c421b5b2029e",
+        "9f33f2d3a4b4642496712a0d"
+      ],
+      "context_tokens": 1157
+    },
+    {
+      "id": "repo-025-2",
+      "top5": [
+        "5adcba69c415b83f3998e57b",
+        "3c57b2b5b76d68c32c613416",
+        "9f33f2d3a4b4642496712a0d",
+        "d94fb2b5762c326959a4c148",
+        "224ee825b482ff00186b74d7"
+      ],
+      "context_tokens": 1187
+    },
+    {
+      "id": "repo-032-1",
+      "top5": [
+        "649d12858b98f6ac42032591",
+        "b55ac2ef1e7981d807e8135c",
+        "fa9467fae91de03b888eeab8",
+        "465a6b6baefdfaca0ab4c9eb",
+        "b01c9c07410a1dff2a53c997"
+      ],
+      "context_tokens": 1165
+    },
+    {
+      "id": "repo-032-2",
+      "top5": [
+        "9e7cf375a4d92578622dffc9",
+        "b55ac2ef1e7981d807e8135c",
+        "b91c6bd32b6993ca1987abaf",
+        "ab9b59518ee41c1351024b15",
+        "6007b8dab55b385fda609aee"
+      ],
+      "context_tokens": 1190
+    },
+    {
+      "id": "repo-035-1",
+      "top5": [
+        "c857fbbf2ef7c5eba3f3d1d3",
+        "5947baaf578ccdc06f943db8",
+        "267c83e4dc63e3ce8127f2d8",
+        "e2ee1d3c19e338ff97e878a4",
+        "02cdd85ba5b452f4c3672cfc"
+      ],
+      "context_tokens": 1025
+    },
+    {
+      "id": "repo-035-2",
+      "top5": [
+        "1a037246aa4ab0a2ca0c5a33",
+        "d4584cc4ea22322db5abd772",
+        "06bc7acb022d37e5e4441bc8",
+        "7d61767ca645c9ef608a445e",
+        "48edd4331f35bef7797306f5"
+      ],
+      "context_tokens": 837
+    },
+    {
+      "id": "repo-037-1",
+      "top5": [
+        "1375e504c6e0f6c0dab2125b",
+        "2a8ef7219ffd6d2833e85f18",
+        "04f96552cf424335dd378fa1",
+        "591fbad18d05715b1928fb9d",
+        "0b6051907a561bcda72a4a8e"
+      ],
+      "context_tokens": 1168
+    },
+    {
+      "id": "repo-037-2",
+      "top5": [
+        "e8ad4062aac417aec88a1204",
+        "56a35daa2c4186521f0f43bb",
+        "2e78e17377ca4dd47e77cef5",
+        "1d573124f1057df84dd63ec3",
+        "0879ae440a74276685f94bab"
+      ],
+      "context_tokens": 1168
+    },
+    {
+      "id": "repo-038-1",
+      "top5": [
+        "409de2a46b4b9bc544cffa62",
+        "50ad54710682e0b0860a14df",
+        "5771730dfe9c16283b40740d",
+        "3bc468986dfb143af6b320fb",
+        "47b3757ba127f451084978b5"
+      ],
+      "context_tokens": 1195
+    },
+    {
+      "id": "repo-038-2",
+      "top5": [
+        "409de2a46b4b9bc544cffa62",
+        "50ad54710682e0b0860a14df",
+        "26a10662f0e3a531ccfe92cd",
+        "c9978ab188bd45bef7f460d1",
+        "83f37b7cfddaee807dd8892d"
+      ],
+      "context_tokens": 1183
+    },
+    {
+      "id": "repo-042-1",
+      "top5": [
+        "7d364426939c7e51b7832121",
+        "7401d7370c34d3334662d873",
+        "e5cc7cd1b33d2eaa1a4ac55a",
+        "6e48a05c7116b1249dcd7f67",
+        "5110326cfad07b7afe193331"
+      ],
+      "context_tokens": 1182
+    },
+    {
+      "id": "repo-042-2",
+      "top5": [
+        "e5cc7cd1b33d2eaa1a4ac55a",
+        "7401d7370c34d3334662d873",
+        "3a5ac8ce58ac45b88e683a65",
+        "f4a8ff5b9f45e36b557b1c79",
+        "b592a215251ea496dccb771c"
+      ],
+      "context_tokens": 1150
+    },
+    {
+      "id": "repo-044-1",
+      "top5": [
+        "a5c1712386e34bb720469643",
+        "724b91a602a18b4dd806d0d4",
+        "deeb48552541bd5ddf83c88b",
+        "bcfaa2a15402a60edd0a4930",
+        "1173fd5bce1a1d8e7bef7133"
+      ],
+      "context_tokens": 854
+    },
+    {
+      "id": "repo-044-2",
+      "top5": [
+        "bcfaa2a15402a60edd0a4930",
+        "e011f73c7b407ba7aa475142",
+        "e77ae998de3187e77a0044ad",
+        "724b91a602a18b4dd806d0d4",
+        "879506d3c7efe9ff971c75e2"
+      ],
+      "context_tokens": 932
+    },
+    {
+      "id": "repo-045-1",
+      "top5": [
+        "70b4406f09dcf65b84a25449",
+        "18d8abfa2d0953811a04c40d",
+        "37b70b0361d8773d98c9c131",
+        "e77ae998de3187e77a0044ad",
+        "f4bc0bd98391095c21afca59"
+      ],
+      "context_tokens": 1200
+    },
+    {
+      "id": "repo-045-2",
+      "top5": [
+        "fad8c7a88b18dab52e0555c5",
+        "9122ad5e0ee1edb8069514e4",
+        "c16371148c776209e2386a2e",
+        "ef4ef7ac2a4b3bc399ca78ba",
+        "c556b3914d9b2e7bb582cea7"
+      ],
+      "context_tokens": 1194
+    },
+    {
+      "id": "repo-046-1",
+      "top5": [
+        "543675b71e284c859fc0f873",
+        "25d7e52180b18cf88c4c19dd",
+        "e4ba245b3ebacbe0a790ee7c",
+        "e45b28862269acb2376c1447",
+        "9711f3581377303a49929750"
+      ],
+      "context_tokens": 710
+    },
+    {
+      "id": "repo-046-2",
+      "top5": [
+        "25d7e52180b18cf88c4c19dd",
+        "425b358f98de63af23fa0b97",
+        "931a1a0ba8f23c6df1b8cf5b",
+        "0567cf2eda425a6cc399d710",
+        "68cb668684c3f04f14cf2535"
+      ],
+      "context_tokens": 1195
+    },
+    {
+      "id": "repo-047-1",
+      "top5": [
+        "6d5d8fc7ab75b5f45245f6eb",
+        "68cb668684c3f04f14cf2535",
+        "ced572e04e061ad1a7d2b61f",
+        "2ce5af3776c7f1137a45876c",
+        "db5234b85b18d8557e41a8ed"
+      ],
+      "context_tokens": 1196
+    },
+    {
+      "id": "repo-047-2",
+      "top5": [
+        "bdc331ce60e8731ea12c3fe1",
+        "dee99c54b63f7feb6118d3a8",
+        "8079d071192131c12a534352",
+        "931a1a0ba8f23c6df1b8cf5b",
+        "7dfb44ad1cb97a0e840105b9"
+      ],
+      "context_tokens": 1200
+    },
+    {
+      "id": "repo-048-1",
+      "top5": [
+        "a9cf3e58e01859940b7b27fb",
+        "ce2fa7639e931bcd19a234dd",
+        "6a811967006b5ab431858dc1",
+        "92a6a487dd6a00fb2dd4fc0b",
+        "2d44df37d0da026118f1874c"
+      ],
+      "context_tokens": 696
+    },
+    {
+      "id": "repo-048-2",
+      "top5": [
+        "a9cf3e58e01859940b7b27fb",
+        "dd9fe9fd65465341b0027671",
+        "e011f73c7b407ba7aa475142",
+        "931a1a0ba8f23c6df1b8cf5b",
+        "dee99c54b63f7feb6118d3a8"
+      ],
+      "context_tokens": 1154
+    },
+    {
+      "id": "repo-049-1",
+      "top5": [
+        "8079d071192131c12a534352",
+        "afeb9651f665bc3a05b2f455",
+        "45e137392a7446104a0e3b1f",
+        "55484f0c064043f79dee7032",
+        "8a36759c968333256ad93cfa"
+      ],
+      "context_tokens": 968
+    },
+    {
+      "id": "repo-049-2",
+      "top5": [
+        "55484f0c064043f79dee7032",
+        "dee99c54b63f7feb6118d3a8",
+        "e010a846d423d98c81b4d998",
+        "8a36759c968333256ad93cfa",
+        "b061dba61420998f96837c86"
+      ],
+      "context_tokens": 1168
+    },
+    {
+      "id": "repo-050-1",
+      "top5": [
+        "7c9c6bbcaf948e6640f575ae",
+        "b15cf5b5cb5def3934bdaae2",
+        "deeb48552541bd5ddf83c88b",
+        "40f62ffdd5d60aac0e8f11d1",
+        "6e598431e6ffc9a5831d1ff7"
+      ],
+      "context_tokens": 1020
+    },
+    {
+      "id": "repo-050-2",
+      "top5": [
+        "40f62ffdd5d60aac0e8f11d1",
+        "789b6206882bf71f7b9f02f4",
+        "1672e183ec6a332ee05bfa9a",
+        "0bdc26592779115db75b8e08",
+        "46b60e4fb63fd093e7abca3a"
+      ],
+      "context_tokens": 1192
+    },
+    {
+      "id": "repo-053-1",
+      "top5": [
+        "884b7434bfe01ec5793c7104",
+        "d41675c17be9581dd1ea1683",
+        "3e4ef44df9ea77573f3b33f0",
+        "8bb3883e990bbe074d570a6f",
+        "a4aabd7124c22a8e67034308"
+      ],
+      "context_tokens": 1187
+    },
+    {
+      "id": "repo-053-2",
+      "top5": [
+        "34b1d6fdd073b6a8edd7f480",
+        "56319b7a05d7762027f64270",
+        "e4429df001114138bec4bb85",
+        "3c9b6ff95453a901bdf5a081",
+        "877c91b47440204c9111cdd3"
+      ],
+      "context_tokens": 1200
+    },
+    {
+      "id": "repo-066-1",
+      "top5": [
+        "581530dd1a024808b639e04e",
+        "9491bc8e90bdc3f2b5daa8ba",
+        "dee99c54b63f7feb6118d3a8",
+        "6f7cb7e9609fbecba4b802d1",
+        "ee61673ab5adb14c1e3f0a44"
+      ],
+      "context_tokens": 1196
+    },
+    {
+      "id": "repo-066-2",
+      "top5": [
+        "6f7cb7e9609fbecba4b802d1",
+        "0bdc26592779115db75b8e08",
+        "6bb162596af946120835fb8a",
+        "1672e183ec6a332ee05bfa9a",
+        "5ce2c8b500bc9e11dec8054e"
+      ],
+      "context_tokens": 1199
+    },
+    {
+      "id": "repo-068-1",
+      "top5": [
+        "ece809fa2b5b0489bc973cb4",
+        "b7861f62a5555eca247f42e5",
+        "bae6de9dd6ae6423a5f47b00",
+        "c5bf931342e573fe90bc277c",
+        "778c4abb15c52296f086e547"
+      ],
+      "context_tokens": 1197
+    },
+    {
+      "id": "repo-068-2",
+      "top5": [
+        "ece809fa2b5b0489bc973cb4",
+        "9701e8a8fe76018764b60eac",
+        "8c06d99ca3e92ef261c26d35",
+        "d05f8c703c676eb388a7f1c0",
+        "0920a26a4c87985b6182adc7"
+      ],
+      "context_tokens": 1139
+    },
+    {
+      "id": "repo-070-1",
+      "top5": [
+        "8e7da5d09675ac08cbd89e71",
+        "62bad66ac9edd4599835665d",
+        "0418c030936935b53ea28964",
+        "9afaf2751cb5767a2995ba7d",
+        "7fa3a02ea093124156083ba7"
+      ],
+      "context_tokens": 913
+    },
+    {
+      "id": "repo-070-2",
+      "top5": [
+        "1ed6877dcf5c37254dc325fd",
+        "62bad66ac9edd4599835665d",
+        "0418c030936935b53ea28964",
+        "0518ef43bb2ccb567bcd4469",
+        "5d52a6ede494020006496a32"
+      ],
+      "context_tokens": 1194
+    },
+    {
+      "id": "repo-075-1",
+      "top5": [
+        "db2bb4ab8872bea7d3438778",
+        "367dbe079667d3ce01a163d9",
+        "aabb2524e58760f2a332c5bd",
+        "6b9886e23580fbfc10467029",
+        "882bae349b218ed912f05a71"
+      ],
+      "context_tokens": 1189
+    },
+    {
+      "id": "repo-075-2",
+      "top5": [
+        "6d2da4d302e580c36c70893e",
+        "76c059728ce0c7d1de11e647",
+        "26b5dc81ad7c444f3780173e",
+        "82cdf0a60d8c3a5a7652dd85",
+        "a247c90e868932e7f073335e"
+      ],
+      "context_tokens": 1196
+    }
+  ]
+}

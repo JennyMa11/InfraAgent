@@ -1,0 +1,501 @@
+[
+  {
+    "questions": [
+      "repo-002-1",
+      "repo-002-2"
+    ],
+    "chunk_id": "44d2421807665bf22d2693b7",
+    "quotes": [
+      "**合并访问（Coalesced Access）** 是全局内存优化的黄金法则：同一个 Warp 内的 32 个线程应该访问连续的内存地址，这样硬件可以将多次访问合并为少量内存事务。"
+    ],
+    "reason": "明确以Warp内32线程访问模式解释合并事务，支持两种问法。",
+    "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md",
+    "quote_line_ranges": [
+      [
+        338,
+        338
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-014-1",
+      "repo-014-2"
+    ],
+    "chunk_id": "7401d7370c34d3334662d873",
+    "quotes": [
+      "Row Parallel 把输入/权重按归约维切分，局部部分和通常通过 AllReduce 或 ReduceScatter 合并。"
+    ],
+    "reason": "明确局部部分和用AllReduce或ReduceScatter合并；完整输出场景对应归约。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        2454,
+        2454
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-016-1",
+      "repo-016-2"
+    ],
+    "chunk_id": "d5fba526bc20e51ea99cc2bb",
+    "quotes": [
+      "小方块表示一张 A 卡发往一张 B 卡的一组输入，颜色标出它去往哪张 B 卡；dispatch 把各色方块送到同色的 B 卡，combine 再把结果送回原来的 A 卡。"
+    ],
+    "reason": "图注明确dispatch到专家卡、combine返回原卡，并指出两次All-to-All。",
+    "document_id": "ai-infra-book/manuscripts/09-分布式推理.md",
+    "quote_line_ranges": [
+      [
+        308,
+        308
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-018-1",
+      "repo-018-2"
+    ],
+    "chunk_id": "8063b9eda80527e5f4479458",
+    "quotes": [
+      "SmoothQuant 用数学等价变换把难度从激活转移到权重（权重分布更平滑，好量化），从而让激活也能安全地量化到 INT8。"
+    ],
+    "reason": "明确将激活离群值的量化难度转移到权重。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        1482,
+        1482
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-020-1",
+      "repo-020-2"
+    ],
+    "chunk_id": "37b70b0361d8773d98c9c131",
+    "quotes": [
+      "精确采样以 $\\min(1,p(x)/q(x))$ 的概率接受它；若拒绝，就从归一化后的 $[p-q]_+$ 中采一个修正 Token。",
+      "这样每一步的结果服从 $p$，前提是使用**实际生效的采样分布**，包括温度、top-k/top-p 等处理。"
+    ],
+    "reason": "给出接受和拒绝修正机制，并指出输出服从目标分布的条件。",
+    "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+    "quote_line_ranges": [
+      [
+        18,
+        18
+      ],
+      [
+        18,
+        18
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-025-1",
+      "repo-025-2"
+    ],
+    "chunk_id": "dc7cf881a2353c85b1b03a5a",
+    "quotes": [
+      "- `rank` 是全局编号，`local_rank` 决定绑定哪块 GPU（多机时千万别用 rank 去 set_device），`world_size` 是总进程数。"
+    ],
+    "reason": "直接区分全局rank与绑GPU的local_rank，包含多机注意事项。",
+    "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/1.2 环境搭建与分布式启动.md",
+    "quote_line_ranges": [
+      [
+        668,
+        668
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-032-2"
+    ],
+    "chunk_id": "b01c9c07410a1dff2a53c997",
+    "quotes": [
+      "> `expand` 不占显存、`reshape` 才物化——所以 GQA 省下的是 **KV Cache 容量**和 **K/V 的访存带宽**，省不掉 Q 侧那一份注意力计算量。"
+    ],
+    "reason": "明确节省KV容量和访存，足以支持场景题的资源收益问法。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        605,
+        605
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-035-2"
+    ],
+    "chunk_id": "d57a0f92d126c8f90d3dbfc6",
+    "quotes": [
+      "\\text{KV Cache 显存} = 2 \\times L \\times n_{kv} \\times d_h \\times N \\times B \\times b_e"
+    ],
+    "reason": "公式包含长度与batch相乘，支持二者翻倍时容量四倍的推导。",
+    "document_id": "AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.8 从Transformer到LLM自回归生成深入理解.md",
+    "quote_line_ranges": [
+      [
+        349,
+        349
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-044-2"
+    ],
+    "chunk_id": "e77ae998de3187e77a0044ad",
+    "quotes": [
+      "投机解码把 Draft 的多个候选交给 Target **一次验证前向**，随后按顺序接受或拒绝。"
+    ],
+    "reason": "明确一次Target验证后仍须顺序接受或拒绝。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        1396,
+        1396
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-045-1"
+    ],
+    "chunk_id": "18d8abfa2d0953811a04c40d",
+    "quotes": [
+      "采样到 $x$ 并直接接受它的概率为 $q(x)\\alpha(x)=\\min(p(x),q(x))$。",
+      "要达到目标概率 $p(x)$，还差 $[p(x)-q(x)]_+$。",
+      "因此，拒绝草稿 token 后，将这一正差额归一化，再从得到的分布中重新采样。"
+    ],
+    "reason": "给出直接接受概率及正差额归一化修正的等价推导。",
+    "document_id": "ai-infra-book/manuscripts/08-推理优化.md",
+    "quote_line_ranges": [
+      [
+        520,
+        520
+      ],
+      [
+        520,
+        520
+      ],
+      [
+        520,
+        520
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-047-2"
+    ],
+    "chunk_id": "8079d071192131c12a534352",
+    "quotes": [
+      "EAGLE 类方法将目标模型的中间表示送入较小的预测网络；DFlash 类方法则并行生成多个草稿 token。"
+    ],
+    "reason": "指出EAGLE从目标中间表示送入较小预测网络，满足场景题的路线选择。",
+    "document_id": "ai-infra-book/manuscripts/08-推理优化.md",
+    "quote_line_ranges": [
+      [
+        564,
+        564
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-049-1",
+      "repo-049-2"
+    ],
+    "chunk_id": "afeb9651f665bc3a05b2f455",
+    "quotes": [
+      "直接从 Prompt 或历史生成内容中匹配重复片段作为候选，几乎没有额外模型开销。"
+    ],
+    "reason": "上下文直接匹配重复片段作为草稿，无独立草稿模型生成路径。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        1644,
+        1644
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-050-1",
+      "repo-050-2"
+    ],
+    "chunk_id": "40f62ffdd5d60aac0e8f11d1",
+    "quotes": [
+      "> **期望输出数**（含首个拒绝后的修正 Token，或全接受后的额外 Token）`E = (1 − α^(γ+1)) / (1 − α)`：α=0.8、γ=4 → **3.36**；",
+      "单算被接受的 Draft Token 数，应从这里减去 1。"
+    ],
+    "reason": "明确输出包括修正/额外token且比接受Draft数多1，并给出0.8/4的3.36例子。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        1594,
+        1594
+      ],
+      [
+        1594,
+        1594
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-053-1",
+      "repo-053-2"
+    ],
+    "chunk_id": "d41675c17be9581dd1ea1683",
+    "quotes": [
+      "DeepSeek-V3 和 Mixtral 采用混合专家模型，用更大的总参数量但更少的激活参数量（每个 token 只激活少数专家）来提升效果。"
+    ],
+    "reason": "明确更大总参数与每token少数专家激活的区分。",
+    "document_id": "AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.7 Transformer Decoder Block完整解析.md",
+    "quote_line_ranges": [
+      [
+        716,
+        716
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-070-1",
+      "repo-070-2"
+    ],
+    "chunk_id": "72bed0bfc771797187c467ba",
+    "quotes": [
+      "使用 Activation Checkpointing（只保存每层输入，反向时重新计算中间值）可以将激活值显存减少到约 1/3 到 1/5，代价是增加约 33% 的计算量。"
+    ],
+    "reason": "说明保留输入、反向重算中间值，实现计算换激活显存。",
+    "document_id": "AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.7 Transformer Decoder Block完整解析.md",
+    "quote_line_ranges": [
+      [
+        613,
+        613
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-001-1"
+    ],
+    "chunk_id": "cb7e9f3ee6fb2198aa5dbbf7",
+    "quotes": [
+      "Warp 是 GPU 执行的最小调度单位，由 **32 个连续线程** 组成。"
+    ],
+    "reason": "候选明确给出Warp最小调度单位及32个连续线程。",
+    "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md",
+    "quote_line_ranges": [
+      [
+        399,
+        399
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-005-2"
+    ],
+    "chunk_id": "72c17fc8d70af42898a2cd6d",
+    "quotes": [
+      "\\text{算术强度} = \\frac{\\text{浮点运算次数 (FLOPs)}}{\\text{访存字节数 (Bytes)}}"
+    ],
+    "reason": "候选直接给出算术强度FLOPs/Bytes及每字节参与计算的解释。",
+    "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md",
+    "quote_line_ranges": [
+      [
+        202,
+        202
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-006-2"
+    ],
+    "chunk_id": "1c0cda96141d828bf22c5e4e",
+    "quotes": [
+      "关键技巧在第二行：当最大值从 $m_{i-1}$ 更新到 $m_i$ 时，之前累积的指数和 $d_{i-1}$ 需要乘以一个修正因子 $\\exp(m_{i-1} - m_i)$ 来\"换基\"。"
+    ],
+    "reason": "候选给出新最大值下旧指数和乘exp(m_old-m_new)的修正。",
+    "document_id": "AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.3 Self-Attention机制深入理解.md",
+    "quote_line_ranges": [
+      [
+        494,
+        494
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-024-2"
+    ],
+    "chunk_id": "051edf92c406532d1e3ab3de",
+    "quotes": [
+      "Nsight Systems 看时间线和空隙；Nsight Compute 深挖一个确定的 Kernel；`torch.profiler` 看 PyTorch op 与 Kernel 对应关系。"
+    ],
+    "reason": "候选明确说明Nsight Compute深挖确定的Kernel。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        2111,
+        2111
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-028-2"
+    ],
+    "chunk_id": "10275db8655d257d3b4b4a53",
+    "quotes": [
+      "**Bank Conflict**：共享内存同一 Warp 不同地址落同一 bank 会冲突；广播同地址是例外。"
+    ],
+    "reason": "候选明确说明同一地址广播是bank冲突的例外。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        307,
+        307
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-033-2"
+    ],
+    "chunk_id": "6aee652400677aef7db15f48",
+    "quotes": [
+      "- 传统做法缓存 `K` 和 `V` 两个 `[head_dim × num_heads]` 张量；MLA 改为缓存一个低维 `c_KV`（latent），推理时通过上投影矩阵还原出 K/V。"
+    ],
+    "reason": "候选明确说明缓存c_KV需要上投影还原K/V。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        628,
+        628
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-034-1"
+    ],
+    "chunk_id": "d4733a1decb7ce8a67925f74",
+    "quotes": [
+      "FlashAttention 正是利用这一递推关系省去了完整 S 和 P 的存储。",
+      "每处理完一块，就更新 m、$\\ell$ 和 u；该块的分数和概率用完即可丢弃，其缓冲可以留给下一块。"
+    ],
+    "reason": "候选说明分块更新m、ell和u后丢弃分数概率，省去完整S和P。",
+    "document_id": "ai-infra-book/manuscripts/05-算子与运行时.md",
+    "quote_line_ranges": [
+      [
+        441,
+        441
+      ],
+      [
+        441,
+        441
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-034-2"
+    ],
+    "chunk_id": "55a45ee30fc82062bf3a2ba6",
+    "quotes": [
+      "这组完整实现的对照说明了分块、在线归约和融合如何配合：分块使当前数据能放入快速存储，在线归约使 Softmax 可以逐块计算，融合省去块内中间结果的写回。"
+    ],
+    "reason": "候选解释分块、在线归约与融合共同减少中间写回。",
+    "document_id": "ai-infra-book/manuscripts/05-算子与运行时.md",
+    "quote_line_ranges": [
+      [
+        475,
+        475
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-057-2"
+    ],
+    "chunk_id": "72c17fc8d70af42898a2cd6d",
+    "quotes": [
+      "\\text{算术强度} = \\frac{\\text{浮点运算次数 (FLOPs)}}{\\text{访存字节数 (Bytes)}}"
+    ],
+    "reason": "候选直接给出算术强度等于运算次数除以访存字节数。",
+    "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第1章-LLM推理基础/1.1-LLM推理基础.md",
+    "quote_line_ranges": [
+      [
+        202,
+        202
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-060-2"
+    ],
+    "chunk_id": "2fe76b4ecf2e02ba6c099913",
+    "quotes": [
+      "**误区：发送总量相同，通信耗时就相同。",
+      "传输时间取决于数据经过哪些资源，参与者的排列改变了每张网卡分到的字节。"
+    ],
+    "reason": "候选指出相同总量因物理路径及网卡字节分布不同而耗时不同。",
+    "document_id": "ai-infra-book/manuscripts/07-数据中心网络.md",
+    "quote_line_ranges": [
+      [
+        1017,
+        1017
+      ],
+      [
+        1017,
+        1017
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-065-1"
+    ],
+    "chunk_id": "bec4aea8447a05bc43cfd53d",
+    "quotes": [
+      "Attention 计算时，CUDA Kernel 通过 Block Table 拿到每个逻辑位置对应的 `physical_block_number`（物理块号）和 `physical_block_offset`（块内偏移），就能从分散的物理块里正确读到所有历史 KV。"
+    ],
+    "reason": "候选说明通过块表的物理块号与块内偏移读取分散KV。",
+    "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.1-PagedAttention.md",
+    "quote_line_ranges": [
+      [
+        92,
+        92
+      ]
+    ]
+  },
+  {
+    "questions": [
+      "repo-065-2"
+    ],
+    "chunk_id": "68f85b4223e0fa5674d55cf7",
+    "quotes": [
+      "Block Table 记录「逻辑块号 → 物理块号」的映射，物理块可以不连续。"
+    ],
+    "reason": "候选明确给出逻辑块到不连续物理块的映射与碎片定义。",
+    "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+    "quote_line_ranges": [
+      [
+        801,
+        801
+      ]
+    ]
+  }
+]

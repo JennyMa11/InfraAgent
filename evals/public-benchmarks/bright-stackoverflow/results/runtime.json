@@ -1,0 +1,13 @@
+{
+  "python": "3.12.14",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "torch": "2.14.0",
+    "sentence-transformers": "5.7.0",
+    "jieba": "0.42.1"
+  },
+  "current_implementation_sha256": "a13445c3f61b3efcaad5f138ac3168d4472a99a7fb6e473231690b40bae43f39",
+  "reranker": "BAAI/bge-reranker-base",
+  "embedding_experiment": "none on external BRIGHT; native lexical corpus preserved",
+  "latency_caveat": "dev and holdout run timings had parallel jobs; controlled warm BM25 scorer timing reported separately"
+}

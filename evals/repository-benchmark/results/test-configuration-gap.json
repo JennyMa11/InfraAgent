@@ -1,0 +1,24 @@
+{
+  "bm25_only_successes": [],
+  "hybrid_only_successes": [
+    "repo-001-1",
+    "repo-008-1",
+    "repo-008-2",
+    "repo-021-1",
+    "repo-029-1",
+    "repo-034-1",
+    "repo-061-1"
+  ],
+  "by_question_type": {
+    "knowledge": {
+      "bm25_rerank": 0.84,
+      "historical_hybrid_rerank": 0.96
+    },
+    "scenario": {
+      "bm25_rerank": 0.78,
+      "historical_hybrid_rerank": 0.8
+    }
+  },
+  "decision": "retain dev-based selection; do not retune on test; revisit on independent broader dev",
+  "label_caveat": "v2 equivalent labels derived partly from historical retrieval pools; not independent human gold"
+}

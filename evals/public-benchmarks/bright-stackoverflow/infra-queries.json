@@ -1,0 +1,378 @@
+[
+  {
+    "id": "bright-stackoverflow-4",
+    "original_id": "4",
+    "query": "I have a custom PyTorch model that bottlenecks my application due to how it is currently used.\n\nThe application is a web server built in Flask that receives job submissions for the PyTorch model to process. Due to the processing time of each job, I use Celery to handle the computation, where Flask queues the tasks for Celery to execute.\n\nEach job consists of loading the PyTorch model from the disk, moving the model and data to a GPU, and making a prediction on the data submitted. However, loading the model takes around 6 seconds. In many instances, that is a magnitude or two larger than prediction time.\n\nThus, is it possible to load the model and move it to a GPU on server startup (specifically when the Celery worker starts), avoiding the time needed to load the model and copy it to the GPU every job? Ideally, I'd want to load the model and copy it to every available GPU on server startup, leaving each Celery job to choose an available GPU and copy the data over. Currently, I only have one GPU, so a multi-GPU solution is not a requirement at the moment, but I'm planning ahead.\n\nFurther, the memory constraints of the model and data allow for only one job per GPU at a time, so I have a single Celery worker that processes jobs sequentially. This could reduce the complexity of the solution due to avoiding multiple jobs attempting to use the model in shared memory at the same time, so I figured I'd mention it.\n\nHow can I deal with it?",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "pytorch_torch_tensor_functions/pytorch_torch_tensor_functions_294_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "Yes, there are ways to share a PyTorch model across multiple processes without\ncreating copies.\n\n**torch.multiprocessing** and **model.share_memory_()** :\n\nThis method utilizes the **torch.multiprocessing** module from PyTorch. You\ncan call **model.share_memory_()** on your model to allocate shared memory for\nits parameters. This allows all processes to access the same model parameters\nin shared memory, avoiding redundant copies. This approach is efficient for\ntraining a model in parallel across multiple CPU cores.\n\nSome resources for further exploration: [\nhttps://www.geeksforgeeks.org/getting-started-with-pytorch/\n](https://www.geeksforgeeks.org/getting-started-with-pytorch/)",
+    "reference_reasoning": "The application is a Flask-based web server that receives job submissions for the PyTorch model to process. Each job involves loading the model, moving it to a GPU, and making predictions on the submitted data. However, the model loading process takes around 6 seconds, which is significantly longer than the prediction time. Therefore, a method is needed that can load the model and move it to a GPU during server startup is needed.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "PyTorch inference execution"
+  },
+  {
+    "id": "bright-stackoverflow-6",
+    "original_id": "6",
+    "query": "I'm trying to write an LLM class as below:\n\n```\nfrom langchain_openai import ChatOpenAI\n\nclass LLM:\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name  \n\nclass OpenAILLM(LLM,ChatOpenAI):\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name\n```\nwhich works fine but when I try to add another variable in __init__ of OpenAILLM class as below\n\n```\nfrom langchain_openai import ChatOpenAI\n\nclass LLM:\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name  \n\nclass OpenAILLM(LLM,ChatOpenAI):\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name\n        self.var = 'var'\n```\n\nThe object creation for OpenAILLM fails and gives ValueError: \"OpenAILLM\" object has no field \"var\"\n\nCan anyone help me how I can add more variables?\n\nAnother thing I tried is the get_var function define below works but the set_var function defined below gives same error as above\n\n```\nfrom langchain_openai import ChatOpenAI\n\nclass LLM():\n    var = 1\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name  \n\nclass OpenAILLM(LLM,ChatOpenAI):\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name\n    def get_var(self):\n        return self.var\n    def set_var(self, var):\n        print('self var',self.var)\n        self.var = var\n        return True\n```\n\nThe mro of OpenAILLM is as below\n\n```\n(__main__.OpenAILLM,\n __main__.LLM,\n langchain_openai.chat_models.base.ChatOpenAI,\n langchain_core.language_models.chat_models.BaseChatModel,\n langchain_core.language_models.base.BaseLanguageModel,\n langchain_core.runnables.base.RunnableSerializable,\n langchain_core.load.serializable.Serializable,\n pydantic.v1.main.BaseModel,\n pydantic.v1.utils.Representation,\n langchain_core.runnables.base.Runnable,\n typing.Generic,\n abc.ABC,\n object)\n```\n\nI think this has to do something with pydantic, but I'm not sure. And I don't know how to resolve it. Please help.",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "python_data_model/python_data_model_49_1.txt",
+      "python_data_model/python_data_model_49_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "There is a ` __slots__ ` attribute defined on the class ` OpenAILLM ` (by\nPydantic, which I'm not familiar with).\n\nRefer to [ https://docs.python.org/3/reference/datamodel.html#slots\n](https://docs.python.org/3/reference/datamodel.html#slots) to see how `\n__slots__ ` works.\n\nSimply said, if a ` __slots__ ` is defined on a class, its members are set in\nstone and you may not add additional members to its **direct** instances. And\nI believe that ` ChatOpenAI ` is not meant to be subclassed, so just avoid\nthat usage.",
+    "reference_reasoning": "When trying to add another variable in the __init__ method of the OpenAILLM class, a ValueError is raised and states that the \"OpenAILLM\" object has no field \"var\". When defining `get_var` and `set_var` functions in the OpenAILLM class, the same error is encountered. OpenAILLM might not allow programmers to add new members in its syntax criteria. ",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "LLM application integration"
+  },
+  {
+    "id": "bright-stackoverflow-8",
+    "original_id": "8",
+    "query": "I set up a local simple http server in python on windows.\n\nI set up an HTML file with javascript that uses setInterval() to request a JSON in the local directory every second. (Then updates the webpage with json content.)\n\nGreat, this works. Until after 15-60 seconds, the browser stops making requests, based on the server log in the terminal. The response 304 always precedes the break.\n\nHow can I avoid this and force the server always serve the json file every second?\n\nVery new to this attempt and had to do tricks to make the browser even make the requests for local jsons or so due to security protocols. In part why the server is necessary, as via file:/// it can't be done.\n\nMy thought is change something in the server so if it wants to respond with 304, it will give a 200. I hope if it's always 200, the browser won't pause requests.\n\nMy other thought is ensure the json is always changing, hopefully avoiding the idea of it cached.",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "Mmdn_HTTP/HTTP_headers_38_12.txt",
+      "Mmdn_HTTP/HTTP_headers_38_13.txt",
+      "Mmdn_HTTP/HTTP_headers_38_10.txt",
+      "Mmdn_HTTP/HTTP_headers_38_11.txt",
+      "Mmdn_HTTP/HTTP_headers_38_9.txt",
+      "Mmdn_HTTP/HTTP_headers_38_8.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "It seems like your issue is related to caching. The browser is receiving a 304\nresponse from the server, indicating that the content has not been modified\nsince the last request, so it's using the cached version instead of making a\nnew request.\n\nTo force the browser to always fetch the JSON file from the server instead of\nusing the cache, you can try to disable caching on the server side. You can\nmodify your Python HTTP server to include headers that prevent caching. You\ncan do this by setting the [ Cache-Control ](https://developer.mozilla.org/en-\nUS/docs/Web/HTTP/Headers/Cache-Control) headers to no-cache.\n\n    \n    \n    import sys\n    from http.server import HTTPServer, SimpleHTTPRequestHandler, test\n    \n    \n    class CORSRequestHandler(SimpleHTTPRequestHandler):\n        def end_headers(self):\n            self.send_header('Access-Control-Allow-Origin', '*')\n            self.send_header('Cache-Control', 'no-cache')\n            SimpleHTTPRequestHandler.end_headers(self)\n    \n    \n    if __name__ == '__main__':\n        test(CORSRequestHandler, HTTPServer, port=int(sys.argv[1]) if len(sys.argv) > 1 else 8000)\n    \n\nIn my understanding it looks something like this: **main.py**\n\n    \n    \n    import os\n    import sys\n    from http.server import HTTPServer, SimpleHTTPRequestHandler\n    \n    \n    class CORSRequestHandler(SimpleHTTPRequestHandler):\n        def end_headers(self):\n            self.send_header('Access-Control-Allow-Origin', '*')\n            self.send_header('Cache-Control', 'no-cache')\n            super().end_headers()\n    \n        def do_GET(self):\n            if self.path == '/data.json':\n                self.send_response(200)\n                self.send_header('Content-type', 'application/json')\n                self.end_headers()\n                with open(os.path.join(os.getcwd(), 'data.json'), 'rb') as file:\n                    self.wfile.write(file.read())\n            else:\n                super().do_GET()\n    \n    \n    def run_server(port):\n        server_address = ('', port)\n        httpd = HTTPServer(server_address, CORSRequestHandler)\n        print(f\"Server running on port {port}\")\n        httpd.serve_forever()\n    \n    \n    if __name__ == '__main__':\n        port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000\n        run_server(port)\n    \n    \n\n**index.html**\n\n    \n    \n    <!DOCTYPE html>\n    <html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>JSON</title>\n    </head>\n    <body>\n        <h1>JSON</h1>\n        <div id=\"my-content\"></div>\n        <script>\n            function fetchData() {\n                fetch('http://localhost:8000/data.json')\n                    .then(response => response.json())\n                    .then(data => {\n                        document.getElementById('my-content').innerText = JSON.stringify(data, null, 2);\n                    })\n                    .catch(error => console.error('Error fetching data:', error));\n            }\n    \n            setInterval(fetchData, 1000);\n        </script>\n    </body>\n    </html>",
+    "reference_reasoning": "The issue is about caching. The browser always fetch the JSON file from the cache. The browser is receiving a 304 response from the server, indicating that the content has not been modified since the last request, since it uses the cached version. Therefore, it should avoid using cache.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "HTTP server configuration"
+  },
+  {
+    "id": "bright-stackoverflow-23",
+    "original_id": "23",
+    "query": "How to control Argo(helm) flow with Script output\n\nI have a script defined in Argo WorkflowTemplate as follows. This may either print status:true or status:false (I have simplified this)\n\n```\n- name:util-script\n    script:\n      image: python3\n      command: [\"python3\"]\n      script |\n         print(status:true)\n```\n\nIs there a way to control dag flow based on the above script output? I know helm provides flow control like Helm Doc - Flow control\n\nFollowing is what I tried so far, but this always jumps to else condition. anything Im doing wrong? Appreciate any input on this\n\n```\n{{- if contains \"status:true\" `tasks.util-script.outputs.result` }}\n  # even result is `status:true`, does not reach here\n{{ else }}\n  # always reach here\n{{ end }}\n```\n\nI have verified tasks.util-script.outputs.result indeed returns the expected result.",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "Argo_Workflows_Walk_through/Argo_Workflows_Walk_through_4_3.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "Helm executes before the workflow runs. That's why you'd end up in the else\nblock.\n\n  1. Your task is not evaluated \n  2. When template is rendered, \n    \n        `tasks.util-script.outputs.result`\n\ncreates a literal string, which doesn't contain status text\n\nYou need to use a ` when ` conditional, as shown in the documentation - [\nhttps://argo-workflows.readthedocs.io/en/stable/walk-through/conditionals/\n](https://argo-workflows.readthedocs.io/en/stable/walk-through/conditionals/)\n\n    \n    \n    - name: next\n      template: next\n      when: {{`{{tasks.util-script.outputs.result}}`}} == \"status:true\"",
+    "reference_reasoning": "The programmer has defined a script in the Argo WorkflowTemplate that prints either `status:true` or `status:false`. The programmer wants to control the workflow based on the script's output but is unable to correctly evaluate the output. They have used the `contains` function to check if the output contains `status:true`, but it always goes to the else condition. The programmer has verified that `tasks.util-script.outputs.result` indeed returns the expected result. Another conditional script should be used.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Argo and Helm orchestration"
+  },
+  {
+    "id": "bright-stackoverflow-31",
+    "original_id": "31",
+    "query": "How to disable Swagger ui documentation in Fastapi for production server?\n\nHow to disable Swagger ui documentation in Fastapi for production server? i need disable fastapi documentation",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "fastapi_security_advanced_user_guide/fastapi_security_5_3.txt",
+      "fastapi_security_advanced_user_guide/fastapi_security_5_5.txt",
+      "fastapi_security_advanced_user_guide/fastapi_security_5_4.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "[ Construct your app with ` docs_url=None ` and ` redoc_url=None `\n](https://fastapi.tiangolo.com/tutorial/metadata/#docs-urls) and FastAPI won't\nmount those endpoints.\n\n    \n    \n    app = FastAPI(docs_url=None, redoc_url=None)",
+    "reference_reasoning": "The programmer wants to disable fastapi documentation.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "FastAPI production configuration"
+  },
+  {
+    "id": "bright-stackoverflow-36",
+    "original_id": "36",
+    "query": "How to show python/openCV outcome images on ssh-client, not in ssh server?\n\nI am connected to a ssh server using ssh -Y username@adress. On the server I run python2.7 using IDLE. If I use matplotlib I can see the outcome graphs on client. This suggests the graphical forwarding has no problem. However, when I am using OpenCV:\n\n```\ncv2.imshow('img_final', img_final)\ncv2.waitKey(0)\ncv2.destroyAllWindows()\n```\n\nIt opens and show the image in the ssh server screen, not in the client ssh computer.\n\nI did search and research, and in response of typical trobleshooting: - On my computer running client-ssh, echo $DISPLAY responds :0. It runs xterm. -On my server ssh computer, My sshd_config file seems to be ok (X11Forwarding yes). echo $DISPLAY shows localhost:10.0.\n\nMoreover, I can use imageviewer such as 'feh' and shows images on client without any problem.\n\nI do not think I have a configuration problem, because server is able to display graphics on client.\n\nIs there a way to execute python scripts on server, and show outcome images from OpenCV directly on client (as MAtplotlib does) ?\n\nThanks",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "picamera_basic_advanced_recipes/picamera_advanced_recipes_7_2.txt",
+      "picamera_basic_advanced_recipes/picamera_advanced_recipes_7_1.txt",
+      "picamera_basic_advanced_recipes/picamera_advanced_recipes_7_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "If it is of use to you, you could do something like a continuous capture but\nstoring each frame as an image:\n\n    \n    \n        def deferred_init(self):\n            self.total_frames = 200\n            for i in range(self.total_frames):\n                self.stream = self.camera.capture_sequence(\n                    ['image%02d.jpg' % i]\n                    )\n            return self.stream\n    \n\n(This snippet was in an object, hence the self.x) This is assuming you have\ncamera = PiCamera and the usual initialization as well. Anyway, once called a)\nyour working dir will be cluttered (recommend making writing to a different\nfolder) and b) you can view your images from ssh with whatever you prefer.\nThis way tests that a capture is working but also allows you to view from ssh.",
+    "reference_reasoning": "When connecting to a ssh server and using matplotlib library, it is able to show the outcome graphs on client, which means the graphical forwarding works well. However, when trying to OpenCV library, the outcomes graphs are shown on server instead. Another method related to OpenCV is needed.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "SSH remote execution"
+  },
+  {
+    "id": "bright-stackoverflow-39",
+    "original_id": "39",
+    "query": "Issue with Passing Retrieved Documents to Large Language Model in RetrievalQA Chain\n\nI'm currently enrolled in a course on Coursera where I'm learning to implement a retrieval-based question-answering (RetrievalQA) system in Python. The course provides code that utilizes the RetrievalQA.from_chain_type() method to create a RetrievalQA chain with both a large language model (LLM) and a vector retriever.\n\nUpon reviewing the provided code, it's evident that relevant documents are retrieved from the vector store using vectordb.similarity_search(). However, there doesn't appear to be a clear step for explicitly passing these retrieved documents to the LLM for question-answering within the RetrievalQA chain.\n\nMy understanding is that in a typical RetrievalQA process, relevant documents retrieved from the vector store are subsequently passed to the LLM. This ensures that the LLM can utilize the retrieved information to generate accurate responses to user queries.\n\nI'm seeking clarification on the proper methodology for integrating the retrieved documents into the RetrievalQA chain to ensure effective utilization by the LLM. Any insights, suggestions, or code examples on how to achieve this integration would be greatly appreciated. Thank you for your assistance!\n\n```\nfrom langchain.vectorstores import Chroma\nfrom langchain.embeddings.openai import OpenAIEmbeddings\npersist_directory = 'docs/chroma/'\nembedding = OpenAIEmbeddings()\nvectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)\nquestion = \"What are major topics for this class?\"\ndocs = vectordb.similarity_search(question,k=3)\nlen(docs)\nfrom langchain.chat_models import ChatOpenAI\nllm = ChatOpenAI(model_name=llm_name, temperature=0)\nfrom langchain.chains import RetrievalQA\n\nqa_chain = RetrievalQA.from_chain_type(\n    llm,\n    retriever=vectordb.as_retriever()\n)result = qa_chain({\"query\": question})\nresult[\"result\"]\n```",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "langchain/LangChain_34_2.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "You are passing the documents using the retriever. You need to build the\nprompt using the prompt template. Following is a sample of how you can use the\ndata yourself\n\n    \n    \n    query = \"\"\"Use the given below context to answer the user query. \n            {context}\n            Question: What are major topics for this class?\"\"\"\n    \n    QA_CHAIN_PROMPT = PromptTemplate.from_template(query)\n    qa_chain = RetrievalQA.from_chain_type(\n    llm,\n    retriever=vectordb.as_retriever(),\n    return_source_documents=True,\n    chain_type_kwargs={\"prompt\": QA_CHAIN_PROMPT}\n    \n\n)\n\nYou can read more about [ langchain retreivers\n](https://python.langchain.com/docs/modules/data_connection/retrievers/) here.\n\nYou should also read the [ Langchain QA private data\n](https://medium.com/@onkarmishra/using-langchain-for-question-answering-on-\nown-data-3af0a82789ed) article as it uses retrieval prompt with prompt.",
+    "reference_reasoning": "Any insights, suggestions, or code examples on how to integrate the retrieved documents into the RetrievaQA chain is accepted.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "RAG context integration"
+  },
+  {
+    "id": "bright-stackoverflow-40",
+    "original_id": "40",
+    "query": "How i can send TOO MANY requests to DEFFERENT sites and get responses?\n\nHow can I send a lot of requests to DIFFERENT sites, I have a database of sites (1kk) and need to check whether they are alive or not, conditionally if you just do it through grequests(python) chunks of software (100 requests in 10 threads ~128second) it will take 12.5 days, but for me it's too long and I I am sure that this can be done much faster. Can you tell me what I can use in this case? I'm just collecting information about the main page of the sites.\r\n\r\nHere is my code, I want to improve it somehow, what can you recommend? I tried to throw every request into the stream, but it feels like something is blocking it, I will use a proxy so that my IP is not blocked due to more requests Help who can!\n\n```\ndef start_parting(urls:list,chunk_num,chunks):\r\n    if len(urls)>0:\r\n        chunk_num+=1\r\n        print(f'Chunck [{Fore.CYAN}{chunk_num}/{chunks}{Style.RESET_ALL}] started! Length: {len(urls)}')\r\n        headers = {\r\n            \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36\"}\r\n        rs = [grequests.get(url.split(' ')[0].strip(), headers=headers,timeout=10) for url in urls]\r\n        responses = grequests.map(rs)\r\n        for response in responses:\r\n            if response is None:\r\n                continue\r\n            if response.status_code == 200:\r\n                check_pattern = r'(pat1|pat2)'\r\n                match = re.search(check_pattern, response.text, re.IGNORECASE)\r\n                if match:\r\n                    site = match.group(1)\r\n                    print(f'Site {site}')\r\n        print(f'Chunck [{Fore.LIGHTCYAN_EX}{chunk_num}/{chunks}{Style.RESET_ALL}] ended!')\r\n\r\ndef test_sites_for_file(file,num_threads = 10,chunk_size=100):\r\n    print('Start check!')\r\n    urls = file.readlines()\r\n    with ThreadPoolExecutor(max_workers=num_threads) as executor:\r\n        parts = [urls[i:i + chunk_size] for i in range(0, len(urls), chunk_size)]\r\n        finals = [executor.submit(start_parting, part , part_num,len(parts)) for part_num,part in enumerate(parts)]\r\n        t = time.time()\r\n        for final in as_completed(finals):\r\n            pass\r\n        print(f'Resultate: {time.time()-t}')\n```",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "gorequest/gorequest_readme_27_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "You can try switching to HTTP HEAD (via grequests.head) instead of GET. That, in principle, should be faster, because the bodies of these pages, which you're going to ignore anyway, won't have to be transmitted. Other than that, I don't think there's much you can do to speed this up purely in software, if you've already parallelized it. Making a huge amount of HTTP requests takes time.",
+    "reference_reasoning": "The existing code about grequest takes at least 10 days to collect the information about the main pages of the sites. The speed is that 100 requests in 10 threas requires about 128 seconds. A much faster grequest method is required.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Concurrent HTTP requests"
+  },
+  {
+    "id": "bright-stackoverflow-49",
+    "original_id": "49",
+    "query": "Accessing user provided env variables in cloudfoundry in Spring Boot application\n\nI have the following user provided env variable defined for my app hosted in cloudfoundry/pivotal webservices:\n\n```\nMY_VAR=test\n```\nI am trying to access like so:\n```\nSystem.getProperty(\"MY_VAR\")\n```\nbut I am getting null in return. Any ideas as to what I am doing wrong would be appreciated.",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "spring_io/spring_io_3_18.txt",
+      "spring_io/spring_io_3_3.txt",
+      "spring_io/spring_io_3_10.txt",
+      "spring_io/spring_io_3_11.txt",
+      "spring_io/spring_io_3_1.txt",
+      "spring_io/spring_io_3_0.txt",
+      "spring_io/spring_io_3_12.txt",
+      "spring_io/spring_io_3_8.txt",
+      "spring_io/spring_io_3_19.txt",
+      "spring_io/spring_io_3_15.txt",
+      "spring_io/spring_io_3_6.txt",
+      "spring_io/spring_io_3_17.txt",
+      "spring_io/spring_io_3_9.txt",
+      "spring_io/spring_io_3_5.txt",
+      "spring_io/spring_io_3_13.txt",
+      "spring_io/spring_io_3_7.txt",
+      "spring_io/spring_io_3_4.txt",
+      "spring_io/spring_io_3_14.txt",
+      "spring_io/spring_io_3_16.txt",
+      "spring_io/spring_io_3_2.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "Environment variables and system properties are two different things. If you\nset an environment variable with ` cf set-env my-app MY_VAR test ` then you\nwould retrieve it in Java with ` System.getenv(\"MY_VAR\") ` , not with `\nSystem.getProperty ` .\n\nA better option is to take advantage of the Spring environment abstraction\nwith features like the ` @Value ` annotation. As shown in the [ Spring Boot\ndocumentation ](http://docs.spring.io/spring-\nboot/docs/current/reference/html/boot-features-external-config.html) , this\nallows you to specify values that get injected into your application as\nenvironment variables, system properties, static configuration, or external\nconfiguration without the application code explicitly retrieving the value.\n\n**Note** : You'll have to restage your application for your app instances to\npick up the new env var.",
+    "reference_reasoning": "When accessing the user-provided env variable for his/her app, it always returns null. Some functions are required to specify values the get injected into his/her application without the application code explicitly retrieving the value.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Cloud Foundry environment configuration"
+  },
+  {
+    "id": "bright-stackoverflow-50",
+    "original_id": "50",
+    "query": "Container on custom network - can't reach from host machine\n\nI created two Docker images and ran them. One is a simple Flask application (for testing purposes only) and the other is a PostgreSQL.\nI attached the code, Dockerfiles, and commands I use to run them below.\nI have tested simple commands like curl from the Flask container interactive mode, it communicates with the DB container successfully and does what it needs to do.\nBut here's the problem - whenever I try to reach it using the host machine (and I tried this on both MacOS and Ubuntu machines), by using localhost:8080 or 127.0.0.1:8080 or even the network's IP (the network I created, command is below), it simply won't reach the Flask container. Meaning I can't even check the container's logs to see what is happening because it doesn't get there.\nI checked the firewall to make sure nothing is blocked and I have tried mapping the container to a different port on my machines... didn't work.\nWould love some help trying to understand why is that happening.\n\napp.py:\n\n```\nfrom flask import Flask, request, jsonify\nfrom flask_sqlalchemy import SQLAlchemy\nfrom flask_migrate import Migrate\n\napp = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@my-postgres-container:5432/db'\n\ndb = SQLAlchemy(app)\n\nmigrate = Migrate(app, db)\n\nclass MyUser(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(50), unique=True, nullable=False)\n\n@app.route('/users', methods=['POST'])\ndef create_user():\n    data = request.get_json()\n    new_user = MyUser(name=data['name'])\n    db.session.add(new_user)\n    db.session.commit()\n    return jsonify({'message': 'New user created!'})\n\n@app.route('/users', methods=['GET'])\ndef get_all_users():\n    users = MyUser.query.all()\n    output = []\n    for user in users:\n        user_data = {'id': user.id, 'name': user.name}\n        output.append(user_data)\n    return jsonify({'users': output})\n\nif __name__ == '__main__':\n    app.run(debug=True, host='0.0.0.0')\n```\n\nDockerfile-app:\n\n```\nFROM python:3.8-slim\n\nWORKDIR /app\n\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\n\nCOPY . .\n\nEXPOSE 5000\n\nENTRYPOINT [\"bash\", \"-c\"]\nCMD [\"flask db init && flask db migrate && flask db upgrade && flask run\"]\n```\n\nDockerfile-db:\n```\nFROM postgres:latest\n\nENV POSTGRES_USER postgres\nENV POSTGRES_PASSWORD postgres\nENV POSTGRES_DB db\n\nEXPOSE 5432\n\nCMD [\"postgres\"]\n```\nrequirements.txt:\n```\nalembic==1.13.1\nblinker==1.7.0\nclick==8.1.7\nFlask==3.0.2\nFlask-Migrate==4.0.7\nFlask-SQLAlchemy==3.1.1\nitsdangerous==2.1.2\nJinja2==3.1.3\nMako==1.3.2\nMarkupSafe==2.1.5\npsycopg2-binary==2.9.9\nSQLAlchemy==2.0.29\ntyping_extensions==4.10.0\nWerkzeug==3.0.1\n```\n\nCommands I use to run them:\n```\ndocker network create my-network\ndocker volume create my-volume\ndocker build -t my-postgres -f Dockerfile-db .\ndocker run -d -p 5432:5432 --name my-postgres-container --network my-network -v my-volume:/var/lib/postgresql/data my-postgres\ndocker build -t my-app -f Dockerfile-app .\ndocker run -d -p 8080:5000 --name my-app-container --network my-network my-app\n```",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "flask_documentation/flask_documentation_1_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "Your app binds to 127.0.0.1, so it'll only accept connections from inside the\ncontainer. To get it to bind to 0.0.0.0 so it'll accept connections from\noutside, you need to have the ` --host=0.0.0.0 ` option on your ` flask run `\ncommand.\n\nChange the last line in your Dockerfile-app from\n\n    \n    \n    CMD [\"flask db init && flask db migrate && flask db upgrade && flask run\"]\n    \n\nto\n\n    \n    \n    CMD [\"flask db init && flask db migrate && flask db upgrade && flask run --host=0.0.0.0\"]\n    \n\nand it'll work.\n\nI can see in your app.py file that you try to bind to 0.0.0.0. For some reason\nthat doesn't work. I'm not a Python expert, so I don't know why.",
+    "reference_reasoning": "After using `localhost:8080` or `127.0.0.1:8080` or even the network's IP, the Flask container is not reached. The firewall is checked and the programmer has tried to map the container to a different port. The instruction related to connection is needed to be updated.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Container networking"
+  },
+  {
+    "id": "bright-stackoverflow-52",
+    "original_id": "52",
+    "query": "Getting error \"Get-LMFunctionList : The security token included in the request is invalid\" when using PowerShell function Get-LMFunctionList\n\nI am trying to run the PowerShell command Get-LMFunctionList -Region \"eu-west-1\" after importing the module AWS.Tools.Lambda. I am using PowerShell version 5.1 and AWS.Tools.Lambda version 4.1.530.\n\nWhen I run the command I get the error message\n```\nGet-LMFunctionList : The security token included in the request is invalid\n```\n\nIf I try to run the equivalent command via the AWS CLI (i.e. aws lambda list-functions --region eu-west-1) everything runs fine and I get a list of functions with their details. So it looks like this is specific to the PowerShell command.\n\nI have tried all the suggestions listed in the Stack Overflow article How can I resolve the error \"The security token included in the request is invalid\" when running aws iam upload-server-certificate? but none of these answers have solved my issue.\n\n1. I created a new access key and secret key and added them to the credentials file\n2. I regenerated the .aws\\credentials file using the command aws configure\n3. I have restarted the session multiple times\n4. I am not using a session key to connect\n5. It is not a profile problem because it works when I use the AWS CLI\n6. There were no cache files at ~\\.aws\\cli\\cache\\",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "aws_legacy_credentials_and_S3/aws_legacy_credentials_0_0.txt",
+      "aws_legacy_credentials_and_S3/aws_legacy_credentials_0_4.txt",
+      "aws_legacy_credentials_and_S3/aws_legacy_credentials_0_1.txt",
+      "aws_legacy_credentials_and_S3/aws_legacy_credentials_0_2.txt",
+      "aws_legacy_credentials_and_S3/aws_legacy_credentials_0_3.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "The problem was that the default profile included in the ` .aws\\credentials `\nfile contained the correct credentials but the default profile that has been\ncreated in the ` AWS SDK ` (i.e. stored in the ` NetSDKCredentialsFile `\nstore) had not been updated.\n\nAs described in the article [ Using AWS Credentials\n](https://docs.aws.amazon.com/powershell/latest/userguide/specifying-your-aws-\ncredentials.html) shared by @jdweng the AWS SDK takes priority over the shared\ncredentials in the ` .aws\\credentials ` file.\n\nIn my particular case, I had a default profile created in the `\n.aws\\credentials ` file and a default profile created in the AWS SDK store,\nwhich was outdated. However because the AWS SDK credentials were taking\npriority, only the out-of-date credentials were being used.\n\nI could see the default profiles created in both stores when I ran the command\n` Get-AWSCredential -ListProfileDetail ` .\n\nThe solution was removing the default profile from the AWS SDK using the `\nRemove-AWSCredentialProfile -ProfileName default ` command. After that, the\ncorrect credentials in the shared credentials file were used.\n\nNote that I tried to update the credentials in the AWS SDK and that worked but\nI found that the region-specific configuration stored in the ` .aws\\config `\nwas then ignored. So I reverted to using the shared credentials (i.e. all the\nfiles in the ` .aws\\ ` folder).",
+    "reference_reasoning": "When using the PowerShell function Get-LMFunctionList, the error \"The security token included in the request is invalid\" appears. Various workarounds have been tried, but none of them work. It is worth noting that using the AWS CLI commands works fine, which suggests that the problem is specific to PowerShell commands.The description for \"AWS Credentials\" needs to be re-checked.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Cloud authentication"
+  },
+  {
+    "id": "bright-stackoverflow-53",
+    "original_id": "53",
+    "query": "Quantization and torch_dtype in huggingface transformer\n\nNot sure if its the right forum to ask but.\r\n\r\nAssuming i have a gptq model that is 4bit. how does using from_pretrained(torch_dtype=torch.float16) work? In my understanding 4 bit meaning changing the weights from either 32-bit precision to 4bit precision using quantization methods.\r\n\r\nHowever, calling it the torch_dtype=torch.float16 would mean the weights are in 16 bits? Am i missing something here.",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "hugging_face/hugging_face_0_3.txt",
+      "hugging_face/hugging_face_0_2.txt",
+      "hugging_face/hugging_face_0_1.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "GPTQ is a Post-Training Quantization method. This means a GPTQ model was\ncreated in full precision and then compressed. Not all values will be in 4\nbits unless every weight and activation layer has been quantized.\n\nThe [ GPTQ method ](https://huggingface.co/blog/gptq-integration) does not do\nthis:\n\n> Specifically, GPTQ adopts a mixed int4/fp16 quantization scheme where\n> weights are quantized as int4 while activations remain in float16.\n\nAs these values need to be multiplied together, this means that,\n\n> during inference, weights are dequantized on the fly and the actual compute\n> is performed in float16.\n\nIn a Hugging Face quantization blog post from Aug 2023, they talk about the\npossibility of quantizing activations as well in the [ Room for Improvement\n](https://huggingface.co/blog/gptq-integration#room-for-improvement) section.\nHowever, at that time there were no open source implementations.\n\nSince then, they have released [ Quanto\n](https://github.com/huggingface/quanto) . This does support quantizing\nactivations. It looks promising but it is not yet quicker than other\nquantization methods. It is in beta and the docs say to expect breaking\nchanges in the API and serialization. There are some accuracy and perplexity [\nbenchmarks ](https://github.com/huggingface/quanto/tree/main/bench/generation)\nwhich look pretty good with most models. Surprisingly, at the moment it is [\nslower\n](https://github.com/huggingface/quanto/blob/b9ee78335a6f0f90363da5909b5b749a1beaa4ce/README.md?plain=1#L87)\nthan 16-bit models due to lack of optimized kernels, but that seems to be\nsomething they're working on.\n\nSo this does not just apply to GPTQ. You will find yourself using float16 with\nany of the popular quantization methods at the moment. For example, [\nActivation-aware Weight Quantization (AWQ)\n](https://huggingface.co/docs/transformers/main/en/quantization?bnb=4-bit#awq)\nalso preserves in full precision a small percentage of the weights that are\nimportant for performance. [ This ](https://huggingface.co/blog/overview-\nquantization-transformers) is a useful blog post comparing GPTQ with other\nquantization methods.",
+    "reference_reasoning": "The description and basic logic of `from_pretrained(torch_dtype=torch.float16)` are needed.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Transformer quantization and dtype"
+  },
+  {
+    "id": "bright-stackoverflow-63",
+    "original_id": "63",
+    "query": "Why Send requires Sync in this case?\n\nOn this very simple example, I require `OnConsume` to be a `Send` function so I can send it to threads.\n\n```\nuse std::sync::Arc;\n\ntrait EncodedPacket {}\n\npub type OnConsume = Arc<dyn Fn() -> Option<Box<dyn EncodedPacket>> + Send>;\n\npub trait Decoder: Send{}\n\npub struct DummyDecoder {\n    pub on_consume: Option<OnConsume>,\n}\n\nimpl Decoder for DummyDecoder {}\n```\n\nI'm getting this error about `Sync` though.\n\nError:\n```\nerror[E0277]: `(dyn Fn() -> Option<Box<(dyn EncodedPacket + 'static)>> + Send + 'static)` cannot be shared between threads safely\n  --> src/lib.rs:14:6\n   |\n7  | pub trait Decoder: Send\n   |                    ---- required by this bound in `Decoder`\n...\n14 | impl Decoder for DummyDecoder {\n   |      ^^^^^^^ `(dyn Fn() -> Option<Box<(dyn EncodedPacket + 'static)>> + Send + 'static)` cannot be shared between threads safely\n   |\n   = help: the trait `Sync` is not implemented for `(dyn Fn() -> Option<Box<(dyn EncodedPacket + 'static)>> + Send + 'static)`\n   = note: required because of the requirements on the impl of `Send` for `Arc<(dyn Fn() -> Option<Box<(dyn EncodedPacket + 'static)>> + Send + 'static)>`\n   = note: required because it appears within the type `Option<Arc<(dyn Fn() -> Option<Box<(dyn EncodedPacket + 'static)>> + Send + 'static)>>`\nnote: required because it appears within the type `DummyDecoder`\n  --> src/lib.rs:10:12\n   |\n10 | pub struct DummyDecoder {\n```\n\nWhy is it that it requires `Sync` for `(dyn Fn() -> Option<Box<(dyn EncodedPacket + 'static)>> + Send + 'static)`?",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "rust_std_library_types_Traits/rust_std_library_types_1_3.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "If you look at the docs for ` Arc ` you will see:\n\n    \n    \n    impl<T> Send for Arc<T>\n    where\n        T: Sync + Send + ?Sized, \n    \n\nThat is, ` Arc<T> ` implements ` Send ` only when ` T ` implements ` Sync ` as\nwell. Here's why: if you put something in an ` Arc ` , clone the ` Arc ` , and\n_send_ the clone to another thread, then the thing is now _shared_ between\nthose two threads — and therefore must be required to be ` Sync ` .\n\nYou _can_ put a non- ` Sync ` type in an ` Arc ` — there's no trait bound that\nprevents this — but you can't ever send such an ` Arc ` . That's why the\ncompiler attributes this to the ` impl Decoder for DummyDecoder ` rather than\nsomething else:\n\n  1. You write ` impl Decoder for DummyDecoder {} ` , \n  2. which requires ` DummyDecoder: Send ` because of the supertrait, \n  3. which requires ` Option<OnConsume>: Send ` because of the struct field, \n  4. which requires ` Arc<dyn Fn() -> Option<Box<dyn EncodedPacket>> + Send>: Send ` , \n  5. which requires ` (dyn Fn() -> Option<Box<dyn EncodedPacket>> + Send): Sync ` because of the bounds on ` impl Send for Arc ` , \n  6. which is false, because ` Sync ` isn't in the list of traits of the ` dyn ` trait object. \n\nSo, you need to add ` + Sync ` to your ` dyn Fn ` (or wrap it in a ` Mutex `\nif you don't want to require the function to do its own thread-safety).\n\nIn general, when you want thread-safety, these sets of trait bounds for\nfunctions make sense:\n\n  * ` Fn() + Send + Sync `\n  * ` FnMut() + Send `\n  * ` FnOnce() + Send `\n\nIt's still _possible_ to send ` Fn + Send ` across threads and call it, but\nsince the point of ` Fn ` is to be shareable, you might as well include the `\nSync ` bound and make it shareable across threads, unless there's some\nparticular reason the actual functions are likely to be obligated to be `\n!Sync ` — in which case you should consider making them also ` FnMut ` , to\ngive the functions opportunity to take advantage of their non-sharedness.",
+    "reference_reasoning": "When writing `send` function inside `Arc`, an error is raised, that is about that the code line with `send` funtcion \"cannot be shared between threads safely\", and `Sync` should be added in this line as well. The definition of `Arc` should be rechecked to find the answer.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Rust concurrency safety"
+  },
+  {
+    "id": "bright-stackoverflow-66",
+    "original_id": "66",
+    "query": "Docker Swarm with image versions externalized to .env file\n\nI used to externalized my image versions to my .env file. This make it easy to maintain and I don't modify my docker-compose.yml file just to upgrade a version, so I'm sure I won't delete a line by mistake or whatever.\n\nBut when I try to deploy my services with stack to the swarm, docker engine complains that my image is not a correct reposity/tag, with the exact following message :\n\n```\nError response from daemon: rpc error: code = 3 desc = ContainerSpec: \"GROUP/IMAGE:\" is not a valid repository/tag\n```\n\nTo fix this, I can fix the image version directly in the docker-compose.yml file. Is there any logic here or it that a bug? But this mixes fix part of the docker-compose and variable ones.\n\nCheers, Olivier\n\n",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "docker_compose_buildx/docker_compose_16_7.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "The yaml parser in ` docker stack deploy ` doesn't have all the same features\nof that in ` docker-compose ` . However, you can use ` docker-compose config `\nto output a yaml file after it's done all the variable substitutions,\nextending other files, and merging multiple files together. This effectively\nturns ` docker-compose ` into a preprocessor.",
+    "reference_reasoning": "The problem of not being able to read the image version information from the .env file when deploying in Docker Swarm is actually due to the difference in parsing capabilities between Swarm's yaml parser and docker-compose.\nWe need a way to solve this compatibility problem. It would be better to allow the continued use of .env files to store variable information such as image versions, while also meeting the requirements of Swarm deployments, thus achieving versioning flexibility and maintainability.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Docker Swarm deployment"
+  },
+  {
+    "id": "bright-stackoverflow-70",
+    "original_id": "70",
+    "query": "GitHub Actions: how can I run a workflow created on a non-'master' branch from the 'workflow_dispatch' event?\n\nFor actions working on a third party repository, I would like to be able to create an action on a branch and execute it on the workflow_dispatch event. I have not succeeded in doing this, but I have discovered the following:\n\nThe Action tab will change the branch where it finds workflows and action code based on the branch relating to the last executed workflow. e.g. if some workflow is executed from the Action tab using the Run Workflow button and the Use Workflow From dropdown is set to some branch, Branch-A, then the contents of the Workflows panel on the left hand side of the Actions tab will be taken from Branch-A's version of .github/.\nThe This workflow has a workflow_dispatch event trigger. text does not change with the branch. It seems to be taken from master. Alternatively, it may be being taken from the last set of results. I have not tested for that because either way it is not helpful behaviour.\nThe workaround is the execute on a push event which is OK, but that seems out of kilter with GitHub's high standards of design.\n\nDoes the above sound a) about right and b) whichever way you look at it, not optimal behaviour? Or, is there a better approach to building and testing actions?",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "github_using_workflows_jobs/github_using_workflows_9_6.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "You can run a workflow that is still in development in a branch ` branch-name\n` from the command line, with the GitHub CLI. The [ documentation\n](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-\na-workflow#running-a-workflow-using-github-cli) says:\n\n> To run a workflow on a branch other than the repository's default branch,\n> use the --ref flag.\n>\n> ` gh workflow run workflow-name --ref branch-name `\n\nTo list valid workflow names, use ` gh workflow list ` .\n\nTo add input parameters, run it like this:\n\n` gh workflow run workflow-name --ref branch-name -f myparameter=myvalue `",
+    "reference_reasoning": "The programmar wants to run a workflow created on a non-master branch from the `workflow_dispatch` event. He has tried several methods, but he is not sure whether they are correct. A better approach is required.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "GitHub Actions workflows"
+  },
+  {
+    "id": "bright-stackoverflow-79",
+    "original_id": "79",
+    "query": "How can I get LLM to only respond in JSON strings?\n\nThis is how I am defining the executor\n```\nconst executor = await initializeAgentExecutorWithOptions(tools, model, {\n  agentType: 'chat-conversational-react-description',\n  verbose: false,\n});\n```\n\nWhenever I prompt the AI I have this statement at the end.\n```\ntype SomeObject = {\n  field1: number,\n  field2: number,\n}\n\n- It is very critical that you answer only as the above object and JSON stringify it as a single string.\n  Don't include any other verbose explanatiouns and don't include the markdown syntax anywhere.\n```\n\nThe `SomeObject` is just an example. Usually it will have a proper object type. When I use the `executor` to get a response from the AI, half the time I get the proper JSON string, but the other half the times are the AI completely ignoring my instructions and gives me a long verbose answer in just plain English...\n\nHow can I make sure I always get the structured data answer I want? Maybe using the `agentType: 'chat-conversational-react-description'` isn't the right approach here?",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "Openai_Text_Generation/Openai_Text_Generation_0_4.txt",
+      "Openai_Text_Generation/Openai_Text_Generation_0_0.txt",
+      "Openai_Text_Generation/Openai_Text_Generation_0_3.txt",
+      "Openai_Text_Generation/Openai_Text_Generation_0_1.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "##  Update Nov. 6, 2023\n\nOpenAI announced today a new “JSON Mode” at the DevDay Keynote. When activated\nthe model will only generate responses using the ` JSON ` format.\n\nYou can refer to the official docs [ here\n](https://platform.openai.com/docs/guides/text-generation/json-mode) .\n\n##  Original Answer\n\nThat's a great question and ` LangChain ` provides an easy solution. Look at\nLangChain's ` Output Parsers ` if you want a quick answer. It is the\nrecommended way to process LLM output into a specified format.\n\nHere's the official link from the docs:\n\n  * **JavaScript** : [ https://js.langchain.com/docs/modules/model_io/output_parsers/ ](https://js.langchain.com/docs/modules/model_io/output_parsers/)\n  * Python: [ https://python.langchain.com/docs/modules/model_io/output_parsers/ ](https://python.langchain.com/docs/modules/model_io/output_parsers/)\n\n* * *\n\nSide note: I wrote an introductory tutorial about this particular issue but\nfor Python, so if anyone else is interested in more details you can [ check it\nout here ](https://www.gettingstarted.ai/how-to-langchain-output-parsers-\nconvert-text-to-objects/) .\n\nThe example below does not use ` initializeAgentExecutorWithOptions ` , but\nwill ensure that the output is processed as ` JSON ` without specifying this\nexplicitly in your system prompt.\n\n##  How it works\n\nIn order to tell LangChain that we'll need to convert the LLM response to a `\nJSON ` output, we'll need to define a ` StructuredOutputParser ` and pass it\nto our ` chain ` .\n\n###  Defining our ` parser ` :\n\nHere's an example:\n\n    \n    \n    // Let's define our parser\n    const parser = StructuredOutputParser.fromZodSchema(\n      z.object({\n        field1: z.string().describe(\"first field\"),\n        field2: z.string().describe(\"second field\")\n      })\n    );\n    \n\n###  Adding it to our ` Chain ` :\n\n    \n    \n    // We can then add it to our chain\n    const chain = RunnableSequence.from([\n      PromptTemplate.fromTemplate(...),\n      new OpenAI({ temperature: 0 }),\n      parser, // <-- this line\n    ]);\n    \n\n###  Invoking our chain with ` format_instructions ` :\n\n    \n    \n    // Finally, we'll pass the format instructions to the invoke method\n    const response = await chain.invoke({\n      question: \"What is the capital of France?\",\n      format_instructions: parser.getFormatInstructions(), // <-- this line\n    });\n    \n\nGo ahead and log the ` parser.getFormatInstructions() ` method before you call\n` invoke ` if you'd like to see the output.\n\nWhen we pass ` parser.getFormatInstructions() ` to the ` format_instructions `\nproperty, this lets LangChain append the desired ` JSON ` schema that we\ndefined in step 1 to our prompt before sending it to the large language model.\n\nAs a final point, it is absolutely **critical** to make sure your query/prompt\nis relevant and produces values that could be interpreted as the properties in\nyour object ` SomeObject ` that are defined in the ` parser ` .\n\nPlease give this a try, and let me know if you're able to consistently output\n` JSON ` .",
+    "reference_reasoning": "The programmar wanted to a guaranteed way to ensure the output is JSON. However his problem was solved in a feature update from Openai, and the article in question needs to be found.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "LLM structured output"
+  },
+  {
+    "id": "bright-stackoverflow-81",
+    "original_id": "81",
+    "query": "python packages installing order\n\nwhen we install python packages using pip, sometimes it installs some other packages. for example installing torch requires installing numpy. imagine in a requirements.txt file there are packages with their versions, but not in a right order. how can we realize the right order? (for example if numpy version is specified as 1.1 but previous package in the list automatically installs numpy of last version!)\n\nI installed librosa==0.9.2 which installed scipy 1.10 during its installation. but after that there is scipy=1.8 in the list. doesn't it make a conflict?",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "pyproject_toml_Project_Summaries/pyproject_toml_1_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "Installation order should not matter at all if you use modern tools (Python,\npip, etc.) and libraries that are packaged with modern techniques ( [ `\n[build-system] ` section in ` pyproject.toml `\n](https://packaging.python.org/en/latest/specifications/declaring-build-\ndependencies/) ).\n\nIn the case that you are presenting, it could be that _pip_ had to build\n_librosa_ (because no compatible _wheel_ could be found). _pip_ does builds in\nephemeral one-time-use isolated virtual environments, so maybe _pip_ used\n_scipy 1.10_ to build _librosa_ . But what was installed in your actual\nvirtual environment was a different version of _scipy_ ( _1.8_ ), it is not an\nissue in itself. There are some cases, where a library is only compatible at\nrun-time with the library it was built with.",
+    "reference_reasoning": "When managing Python package dependencies and installation order within a project, relying solely on a requirements.txt file may lead to version conflicts and other issues. The need to explore a more standardized way of organizing project metadata is becoming increasingly apparent. An emerging standard worth considering could potentially provide a more controlled and deterministic solution, allowing developers to more precisely constrain dependency package versions during environment setup, thereby effectively avoiding potential package version conflicts. This standard is required.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Python dependency installation"
+  },
+  {
+    "id": "bright-stackoverflow-87",
+    "original_id": "87",
+    "query": "java.lang.OutOfMemoryError: Java heap space\n\nI am getting the following error on execution of a multi-threading program\n```\njava.lang.OutOfMemoryError: Java heap space\n```\n\nThe above error occured in one of the threads.\n\n1. Upto my knowledge, Heap space is occupied by instance variables only. If this is correct, then why this error occurred after running fine for sometime as space for instance variables are alloted at the time of object creation.\n\n2. Is there any way to increase the heap space?\n\n3. What changes should I made to my program so that It will grab less heap space?",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "oracle/oracle_2_0.txt",
+      "oracle/oracle_2_1.txt",
+      "oracle/oracle_2_4.txt",
+      "oracle/oracle_2_3.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "If you want to increase your heap space, you can use ` java -Xms<initial heap\nsize> -Xmx<maximum heap size> ` on the command line. By default, the values\nare based on the JRE version and system configuration. You can find out [ more\nabout the VM options on the Java website\n](http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp) .\n\nHowever, I would recommend profiling your application to find out why your\nheap size is being eaten. NetBeans has a [ very good profiler\n](http://profiler.netbeans.org/) included with it. I believe it uses the [ `\njvisualvm `\n](http://java.sun.com/javase/6/docs/technotes/guides/visualvm/index.html)\nunder the hood. With a profiler, you can try to find where many objects are\nbeing created, when objects get garbage collected, and more.",
+    "reference_reasoning": "During the execution of a multi-threaded Java programme, the error \"java.lang.OutOfMemoryError: Java heap space\" is encountered. A way to increase the heap space size of the Java Virtual Machine needs to be found.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "JVM memory exhaustion"
+  },
+  {
+    "id": "bright-stackoverflow-95",
+    "original_id": "95",
+    "query": "undefined kafka components for Go kafka\n\nI was trying to install one of my go files. But I bumped into this error\n```\nC:\\mygoproject>go install kafkapublisher.go\n\n\\#command-line-arguments\n.\\kafkapublisher.go:8:65: undefined: kafka.Message\n\n.\\kafkapublisher.go:10:19: undefined: kafka.NewProducer\n\n.\\kafkapublisher.go:10:38: undefined: kafka.ConfigMap\n\n.\\kafkapublisher.go:17:31: undefined: kafka.Event\n\n.\\kafkapublisher.go:19:26: undefined: kafka.Message\n```\n\nOn my kafkapublisher.go file, I already imported the kafka dependency:\n```\n    import (\n        \"github.com/confluentinc/confluent-kafka-go/kafka\"\n        \"log\"\n    )\n```\n\neven on my `go.mod` file\n```\n    module mymodule\n    \n    go 1.12\n    \n    require (\n        github.com/aws/aws-lambda-go v1.15.0\n        github.com/confluentinc/confluent-kafka-go v1.3.0\n    )\n```",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "medium/medium_0_1.txt",
+      "medium/medium_0_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "I was facing the same issues.\n\nKafka Go client is based on the C library. So setting flag ` CGO_ENABLED=1 `\nwill enable go to use C libraries for kafka client.\n\nHope it saves someone's time.",
+    "reference_reasoning": "Kafka Go client is based on the C library. Therefore, the relative flag needs to be changed to go to use C libraries for kafka client.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Kafka client integration"
+  },
+  {
+    "id": "bright-stackoverflow-96",
+    "original_id": "96",
+    "query": "Python requests module with multithread\n\nCurrently, I am developing the astrophotometric software for multiple telescopes. For this, I constructed a mother computer connected with multiple telescopes and these telescopes can be controlled by HTTP protocol. For synchronized operation, I am trying to control these multiple telescopes simultaneously with multithreading.\nHowever, when I retrieve image data (110MB for each, ~1.2GB for total) from multiple telescopes (10 telescopes), the data transfer speed is much slower than I expected. For seamless operation, we have 10G connection with the mother computer, and 1G connection with 10 telescopes. I expected ~9Gbps data transfer speed when 10 telescopes transfer the data simultaneously, but only 1.5Gbps achieved.\n\nFor simple test, I extracted the part of the code and check the time consumption.\n```\nimport requests\nimport time\nfrom astropy.time import Time\ndef request_imagearray(cam):\n    client_trans_id = 1\n    client_id = 1\n    attribute = 'imagearray'\n\n    url = f\"{cam.device.base_url}/{attribute}\"\n    hdrs = {'accept' : 'application/imagebytes'}\n    # Make Host: header safe for IPv6\n    if(cam.device.address.startswith('[') and cam.device.address.startswith('[::1]')):\n        hdrs['Host'] = f'{cam.device.address.split(\"%\")[0]}]'\n    pdata = {\n            \"ClientTransactionID\": f\"{client_trans_id}\",\n            \"ClientID\": f\"{client_id}\" \n            }         \n\n    print('START:',Time.now(), cam.device.address)\n    start = time.time()\n    response = requests.request(\"GET\",\"%s/%s\" % (cam.device.base_url, attribute), params=pdata, headers=hdrs, verify = False)\n\n    print('consumed time:', time.time() - start, cam.device.address)\n# %%\n\nunitnumlist = [1,2,3,5,6,7,8,9,10,11]\ncamlist = []\nfor unitnum in unitnumlist:\n    #camlist.append(mainCamera(unitnum))\n    Thread(target = request_imagearray, kwargs = dict(cam = mainCamera(unitnum))).start()\n#%% \n```\n\nand the output is\n```\nSTART: 2024-04-15 07:49:59.067946 10.0.106.6:11111\nSTART: 2024-04-15 07:49:59.382973 10.0.106.7:11112\nSTART: 2024-04-15 07:49:59.541495 10.0.106.8:11113\nSTART: 2024-04-15 07:49:59.647055 10.0.106.10:11111\nSTART: 2024-04-15 07:49:59.788433 10.0.106.11:11111\nSTART: 2024-04-15 07:49:59.897876 10.0.106.12:11111\nSTART: 2024-04-15 07:50:00.009254 10.0.106.13:11111\nSTART: 2024-04-15 07:50:00.157893 10.0.106.14:11111\nSTART: 2024-04-15 07:50:00.347704 10.0.106.16:11111\nSTART: 2024-04-15 07:50:00.544626 10.0.106.9:11111\nconsumed time: 5.96204686164856 10.0.106.6:11111\nconsumed time: 7.304373502731323 10.0.106.7:11112\nconsumed time: 7.58618688583374 10.0.106.8:11113\nconsumed time: 7.617574453353882 10.0.106.10:11111\nconsumed time: 7.678117990493774 10.0.106.11:11111\nconsumed time: 7.76300311088562 10.0.106.12:11111\nconsumed time: 7.636215925216675 10.0.106.14:11111\nconsumed time: 7.785021066665649 10.0.106.13:11111\nconsumed time: 7.338518857955933 10.0.106.9:11111\nconsumed time: 11.309057235717773 10.0.106.16:11111\n```\n\nThe comsumed time is much longer than I expected. I expected ~3sec for all data transferred. It seems that multithreads starts to request \"request.get\" at the same time, but all the data is not transferred at the same time.",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "Request_Advanced/concurrent_futures_2_1.txt",
+      "Request_Advanced/concurrent_futures_2_0.txt",
+      "Request_Advanced/Request_Advanced_1_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "Use ` requests.Session ` to open one connection instead of reopen it every `\nrequest.request ` .\n\nI would also suggest using [ ThreadPoolExecutor\n](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor)\nfor a more convenient threading interface\n\n    \n    \n    import time\n    from concurrent.futures.thread import ThreadPoolExecutor\n    from itertools import repeat\n    \n    import requests\n    from astropy.time import Time\n    \n    \n    def request_imagearray(cam, _session):\n        client_trans_id = 1\n        client_id = 1\n        attribute = 'imagearray'\n    \n        url = f\"{cam.device.base_url}/{attribute}\"\n        hdrs = {'accept': 'application/imagebytes'}\n        # Make Host: header safe for IPv6\n        if cam.device.address.startswith('[') and cam.device.address.startswith('[::1]'):\n            hdrs['Host'] = f'{cam.device.address.split(\"%\")[0]}]'\n        pdata = {\n            \"ClientTransactionID\": f\"{client_trans_id}\",\n            \"ClientID\": f\"{client_id}\"\n        }\n    \n        print('START:', Time.now(), cam.device.address)\n        start = time.time()\n        response = _session.get(url, params=pdata, headers=hdrs, verify=False)\n        print('consumed time:', time.time() - start, cam.device.address)\n    \n    \n    unitnumlist = [1, 2, 3, 5, 6, 7, 8, 9, 10, 11]\n    camlist = [mainCamera(unitnum) for unitnum in unitnumlist]\n    with requests.Session() as session:\n        with ThreadPoolExecutor(max_workers=max(len(unitnumlist), 1)) as executor:\n            results = executor.map(request_imagearray, camlist, repeat(session))\n    \n\nThe assignment to ` results ` is in case ` request_imagearray ` returns\nsomething.",
+    "reference_reasoning": "While the use of multiple threads is intended to achieve parallelism, the frequent creation and destruction of request session objects can introduce additional overheads and reduce overall performance. In contrast, maintaining a pool of request sessions and reusing session objects across multiple threads reduces the overhead of connection establishment and resource allocation.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "Multithreaded HTTP requests"
+  },
+  {
+    "id": "bright-stackoverflow-110",
+    "original_id": "110",
+    "query": "Copy and delete files from SFTP folder\n\nI have to pick (remove) the files with file mask `FileName_A_*` and `FileName_B_*` from SFTP location and place them in an sharedrive.\n\nI tried using WinSCP. I have created an `HourlyFile.txt` file with below code and placed it under `C:\\Program Files (x86)\\WinSCP`. Another batch file `HourlyFile.bat` to execute the script from HourlyFile.txt\n\nHourlyFile.txt:\n```\noption batch abort\noption confirm off\nopen sftp..........\nget -filemask=\"FileName_A_*\" /outbound/test/* \\\\sharedrive\nget -filemask=\"FileName_B_*\" /outbound/test/* \\\\sharedrive\ndel /outbound/test/FileName_A_*\ndel /outbound/test/FileName_B_* \nexit\n```\n\nHourlyFile.bat:\n```\nwinscp.com /script=HourlyFile.txt\npause\n```\n\nI tried with below options to delete the file but got the error message \"Unknown command\". Also the above code is copying subfolder from `/outbound/test/` , which it should not.\nCommands tried:\n```\ndel /outbound/test/FileName_A_*\n-del /outbound/test/FileName_A_*\ndelete /outbound/test/FileName_A_*\ndelete /outbound/test/FileName_A_20190604_090002\ndelete /outbound/test/FileName_A_20190604_090002.csv\n```",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "WinSCP/WinSCP_10_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "If you want to download and delete the files, you better use [ ` -delete `\nswitch of the ` get ` command\n](https://winscp.net/eng/docs/scriptcommand_get#delete) . This way, you can be\nsure that WinSCP deletes only those files that were really successfully\ndownloaded.\n\n    \n    \n    get -delete /outbound/test/FileName_A_* \\\\sharedrive\\\n    get -delete /outbound/test/FileName_B_* \\\\sharedrive\\\n    \n\n_See WinSCP article[ How do I create script that synchronizes files and\ndeletes synchronized files from source afterward?\n](https://winscp.net/eng/docs/faq_delete_synchronized_files) _\n\n* * *\n\nTo answer your literal question: WinSCP has no ` del ` command. WinSCP has [ `\nrm ` command ](https://winscp.net/eng/docs/scriptcommand_rm) :\n\n    \n    \n    rm /outbound/test/FileName_A_*\n    rm /outbound/test/FileName_B_*",
+    "reference_reasoning": "The programmer wants to delete files with the file masks FileName_A_* and FileName_B_* from the SFTP location. The corresponding commands need to be found.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "SFTP file operations"
+  },
+  {
+    "id": "bright-stackoverflow-114",
+    "original_id": "114",
+    "query": "How can I list exported values from all of my CloudFormation templates?\n\nI'm exporting the name of the stack and the URL of my Lambda function in my CloudFormation template.\n```\nOutputs:\n  LambdaInvokeURL:\n    Value: !GetAtt Myurl.FunctionUrl \n    Export:\n      Name: !Sub \"${AWS::StackName}\"\n```\n\nI have 8 to 10 stacks exporting similar outputs.\n\nHow can I list all exported names & values across all stacks in my AWS account?\n\nShould I write a new CloudFormation template or a Lambda function to list them?",
+    "language": "en",
+    "split": "upstream_examples_stackoverflow",
+    "relevant_doc_ids": [
+      "cloudformation_commands/cloudformation_commands_58_1.txt",
+      "cloudformation_commands/cloudformation_commands_58_2.txt",
+      "cloudformation_commands/cloudformation_commands_58_0.txt"
+    ],
+    "excluded_ids": [],
+    "gold_answer": "Use the ` aws cloudformation list-exports ` [ CLI command\n](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudformation/list-\nexports.html) , the ` ListExports ` [ API\n](https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ListExports.html)\nor any of the [ equivalent SDK methods\n](https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ListExports.html#API_ListExports_SeeAlso)\n.\n\nYou don’t need to write a new CloudFormation template or a Lambda function for\nthis.\n\nSample output as per docs:\n\n    \n    \n    {\n        \"Exports\": [\n            {\n                \"ExportingStackId\": \"arn:aws:cloudformation:us-west-2:123456789012:stack/private-vpc/99764070-b56c-xmpl-bee8-062a88d1d800\",\n                \"Name\": \"private-vpc-subnet-a\",\n                \"Value\": \"subnet-07b410xmplddcfa03\"\n            },\n            {\n                \"ExportingStackId\": \"arn:aws:cloudformation:us-west-2:123456789012:stack/private-vpc/99764070-b56c-xmpl-bee8-062a88d1d800\",\n                \"Name\": \"private-vpc-subnet-b\",\n                \"Value\": \"subnet-075ed3xmplebd2fb1\"\n            },\n            {\n                \"ExportingStackId\": \"arn:aws:cloudformation:us-west-2:123456789012:stack/private-vpc/99764070-b56c-xmpl-bee8-062a88d1d800\",\n                \"Name\": \"private-vpc-vpcid\",\n                \"Value\": \"vpc-011d7xmpl100e9841\"\n            }\n        ]\n    }",
+    "reference_reasoning": "To view the names and values of all CloudFormation stack exports in your AWS account, you can use the commands provided by the AWS CLI.",
+    "annotation_method": "upstream published labels; not locally re-adjudicated",
+    "infra_selection_reason": "CloudFormation exports"
+  }
+]

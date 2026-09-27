@@ -1,0 +1,1583 @@
+{
+  "latency_p50_ms": 2.8262080159038305,
+  "latency_p95_ms": 3.198083024471998,
+  "configuration": {
+    "backend": "bge",
+    "semantic_model": true,
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "reranker_model": null,
+    "reranker_scope": "text_and_image_captions",
+    "candidate_k": 30,
+    "context_chars": 4000,
+    "rerank": false,
+    "multimodal": false,
+    "chunks": 33,
+    "sources": 6,
+    "fingerprint": {
+      "backend": "bge",
+      "embedding_model": "BAAI/bge-small-zh-v1.5",
+      "multimodal": false,
+      "chunk_size": 450,
+      "chunk_strategy": "semantic",
+      "refinement_threshold": 0.55,
+      "image_merge_threshold": 0.88,
+      "image_max_side": 768,
+      "image_min_area": 0.005,
+      "image_max_regions": 24,
+      "clip_text_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+      "clip_image_model": "sentence-transformers/clip-ViT-B-32",
+      "semantic_threshold": 0.72,
+      "schema_version": 2,
+      "embedding_pooling": "token-window-mean-v1"
+    }
+  },
+  "k": 10,
+  "strategy": "bm25",
+  "label": "chunk",
+  "macro": {
+    "recall": 1.0,
+    "precision": 0.11,
+    "f1": 0.196969696969697,
+    "mrr": 0.895436507936508,
+    "ndcg": 0.9190500424927002,
+    "latency_ms": 2.86129232069167
+  },
+  "rows": [
+    {
+      "id": "q01",
+      "query": "KV Cache 缓存了什么？",
+      "retrieved": [
+        "1f777a5c09d3f9c26915b589",
+        "9bae61e85427d85fb5a3adec",
+        "e0e168945db1afe99b9adaa7",
+        "70a9ff07c544c821bb22de70",
+        "1f313d34221e12ca20219ec7",
+        "a0113a5a86014b18e4bc865f",
+        "89060e72eb0a81554d8f7303",
+        "cd5df02a1a20ad97e915231e",
+        "bc3db019e1c8e0863f324e58",
+        "556442a7482396bcfc8ba98e"
+      ],
+      "latency_ms": 2.5104579981416464,
+      "relevant": [
+        "1f777a5c09d3f9c26915b589"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q02",
+      "query": "生成下一字时怎样避免重新算历史键和值？",
+      "retrieved": [
+        "1f777a5c09d3f9c26915b589",
+        "70a9ff07c544c821bb22de70",
+        "c4d17b80dde4728a0caf89a2",
+        "556442a7482396bcfc8ba98e",
+        "e0e168945db1afe99b9adaa7",
+        "b91b25f72ee493fd32f28289",
+        "7f54f96672afa457f9fd85a5",
+        "3055429b6d3ddd49ffe28353",
+        "0ef629ebeb83d2fc26223da7",
+        "cdd41ff426659f4a0ac0c745"
+      ],
+      "latency_ms": 2.9094580095261335,
+      "relevant": [
+        "1f777a5c09d3f9c26915b589"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q03",
+      "query": "PagedAttention 如何缓解显存碎片？",
+      "retrieved": [
+        "9bae61e85427d85fb5a3adec",
+        "1f777a5c09d3f9c26915b589",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "6bb4946af75186de9dd72700",
+        "57cb7b39f271f15be65133cd",
+        "a0113a5a86014b18e4bc865f",
+        "1f313d34221e12ca20219ec7",
+        "70a9ff07c544c821bb22de70",
+        "5510281dbc579bd41df1bcc2",
+        "679f9a7bfac1f98a13f3b2b4"
+      ],
+      "latency_ms": 2.6019170181825757,
+      "relevant": [
+        "9bae61e85427d85fb5a3adec"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q04",
+      "query": "推理时逻辑连续的缓存必须物理连续吗？",
+      "retrieved": [
+        "9bae61e85427d85fb5a3adec",
+        "1f777a5c09d3f9c26915b589",
+        "e7f13f48eaeb700f8ee0bb81",
+        "70a9ff07c544c821bb22de70",
+        "679f9a7bfac1f98a13f3b2b4",
+        "1f313d34221e12ca20219ec7",
+        "b91b25f72ee493fd32f28289",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "a0113a5a86014b18e4bc865f",
+        "cdd41ff426659f4a0ac0c745"
+      ],
+      "latency_ms": 2.603541943244636,
+      "relevant": [
+        "9bae61e85427d85fb5a3adec"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q05",
+      "query": "Prefix Cache 加速哪个阶段？",
+      "retrieved": [
+        "e0e168945db1afe99b9adaa7",
+        "556442a7482396bcfc8ba98e",
+        "70a9ff07c544c821bb22de70",
+        "1f777a5c09d3f9c26915b589",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "9bae61e85427d85fb5a3adec",
+        "7f54f96672afa457f9fd85a5",
+        "83bdc00e9eeab49d13fb7d0e",
+        "5510281dbc579bd41df1bcc2",
+        "c147bc7b888fa1cc3375e2ef"
+      ],
+      "latency_ms": 2.563833026215434,
+      "relevant": [
+        "e0e168945db1afe99b9adaa7"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q06",
+      "query": "多个请求共享系统提示时，怎样省去共同输入的重复计算？",
+      "retrieved": [
+        "e0e168945db1afe99b9adaa7",
+        "1f777a5c09d3f9c26915b589",
+        "70a9ff07c544c821bb22de70",
+        "3055429b6d3ddd49ffe28353",
+        "cdd41ff426659f4a0ac0c745",
+        "0ef629ebeb83d2fc26223da7",
+        "7f54f96672afa457f9fd85a5",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "c147bc7b888fa1cc3375e2ef",
+        "679f9a7bfac1f98a13f3b2b4"
+      ],
+      "latency_ms": 2.824457944370806,
+      "relevant": [
+        "e0e168945db1afe99b9adaa7"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q07",
+      "query": "Continuous Batching 何时加入请求？",
+      "retrieved": [
+        "a1fdadf0e19d4332aeb5ca5e",
+        "cdd41ff426659f4a0ac0c745",
+        "679f9a7bfac1f98a13f3b2b4",
+        "9bae61e85427d85fb5a3adec",
+        "1f777a5c09d3f9c26915b589",
+        "5510281dbc579bd41df1bcc2",
+        "e0e168945db1afe99b9adaa7",
+        "bc3db019e1c8e0863f324e58",
+        "83bdc00e9eeab49d13fb7d0e",
+        "ca123f18786a73821869539b"
+      ],
+      "latency_ms": 2.6220829458907247,
+      "relevant": [
+        "a1fdadf0e19d4332aeb5ca5e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q08",
+      "query": "一批里有请求提前生成完，怎样马上用空出来的算力接新任务？",
+      "retrieved": [
+        "a1fdadf0e19d4332aeb5ca5e",
+        "7f54f96672afa457f9fd85a5",
+        "e0e168945db1afe99b9adaa7",
+        "cdd41ff426659f4a0ac0c745",
+        "9bae61e85427d85fb5a3adec",
+        "70a9ff07c544c821bb22de70",
+        "679f9a7bfac1f98a13f3b2b4",
+        "1f777a5c09d3f9c26915b589",
+        "ca123f18786a73821869539b",
+        "3055429b6d3ddd49ffe28353"
+      ],
+      "latency_ms": 3.198083024471998,
+      "relevant": [
+        "a1fdadf0e19d4332aeb5ca5e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q09",
+      "query": "Prefill 和 Decode 的处理方式有什么不同？",
+      "retrieved": [
+        "70a9ff07c544c821bb22de70",
+        "9bae61e85427d85fb5a3adec",
+        "b91b25f72ee493fd32f28289",
+        "7f54f96672afa457f9fd85a5",
+        "1f777a5c09d3f9c26915b589",
+        "6bb4946af75186de9dd72700",
+        "a0113a5a86014b18e4bc865f",
+        "c147bc7b888fa1cc3375e2ef",
+        "83bdc00e9eeab49d13fb7d0e",
+        "e0e168945db1afe99b9adaa7"
+      ],
+      "latency_ms": 2.7470410568639636,
+      "relevant": [
+        "70a9ff07c544c821bb22de70"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q10",
+      "query": "输入提示处理完以后，输出文字为什么还是一步一步生成？",
+      "retrieved": [
+        "70a9ff07c544c821bb22de70",
+        "7f54f96672afa457f9fd85a5",
+        "cdd41ff426659f4a0ac0c745",
+        "e0e168945db1afe99b9adaa7",
+        "0ef629ebeb83d2fc26223da7",
+        "b91b25f72ee493fd32f28289",
+        "6bb4946af75186de9dd72700",
+        "5510281dbc579bd41df1bcc2",
+        "1f777a5c09d3f9c26915b589",
+        "83bdc00e9eeab49d13fb7d0e"
+      ],
+      "latency_ms": 2.8001669561490417,
+      "relevant": [
+        "70a9ff07c544c821bb22de70"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q11",
+      "query": "TTFT 和 TPOT 分别衡量什么？",
+      "retrieved": [
+        "cdd41ff426659f4a0ac0c745",
+        "70a9ff07c544c821bb22de70",
+        "3055429b6d3ddd49ffe28353",
+        "cd5df02a1a20ad97e915231e",
+        "7f54f96672afa457f9fd85a5",
+        "5510281dbc579bd41df1bcc2",
+        "1f777a5c09d3f9c26915b589",
+        "8ad92e991cc18753f543519e",
+        "556442a7482396bcfc8ba98e",
+        "e7f13f48eaeb700f8ee0bb81"
+      ],
+      "latency_ms": 2.590834046714008,
+      "relevant": [
+        "cdd41ff426659f4a0ac0c745"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q12",
+      "query": "聊天用户等待第一个字的时间应该用哪个指标？",
+      "retrieved": [
+        "cdd41ff426659f4a0ac0c745",
+        "c147bc7b888fa1cc3375e2ef",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "ca123f18786a73821869539b",
+        "679f9a7bfac1f98a13f3b2b4",
+        "3055429b6d3ddd49ffe28353",
+        "83bdc00e9eeab49d13fb7d0e",
+        "556442a7482396bcfc8ba98e",
+        "bc3db019e1c8e0863f324e58",
+        "b91b25f72ee493fd32f28289"
+      ],
+      "latency_ms": 2.905334113165736,
+      "relevant": [
+        "cdd41ff426659f4a0ac0c745"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q13",
+      "query": "Chunked Prefill 为什么把长提示拆开？",
+      "retrieved": [
+        "7f54f96672afa457f9fd85a5",
+        "70a9ff07c544c821bb22de70",
+        "9bae61e85427d85fb5a3adec",
+        "e0e168945db1afe99b9adaa7",
+        "0ef629ebeb83d2fc26223da7",
+        "3055429b6d3ddd49ffe28353",
+        "1f777a5c09d3f9c26915b589",
+        "e7f13f48eaeb700f8ee0bb81",
+        "cdd41ff426659f4a0ac0c745",
+        "ca123f18786a73821869539b"
+      ],
+      "latency_ms": 2.7509580831974745,
+      "relevant": [
+        "7f54f96672afa457f9fd85a5"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q14",
+      "query": "一个超长输入阻塞其他用户继续出字，调度上能怎样缓解？",
+      "retrieved": [
+        "7f54f96672afa457f9fd85a5",
+        "b91b25f72ee493fd32f28289",
+        "679f9a7bfac1f98a13f3b2b4",
+        "cdd41ff426659f4a0ac0c745",
+        "70a9ff07c544c821bb22de70",
+        "e0e168945db1afe99b9adaa7",
+        "1f777a5c09d3f9c26915b589",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "9bae61e85427d85fb5a3adec",
+        "83bdc00e9eeab49d13fb7d0e"
+      ],
+      "latency_ms": 2.9815840534865856,
+      "relevant": [
+        "7f54f96672afa457f9fd85a5"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q15",
+      "query": "Data Parallel 如何分配训练样本？",
+      "retrieved": [
+        "6bb4946af75186de9dd72700",
+        "cd5df02a1a20ad97e915231e",
+        "c147bc7b888fa1cc3375e2ef",
+        "3055429b6d3ddd49ffe28353",
+        "57cb7b39f271f15be65133cd",
+        "9bae61e85427d85fb5a3adec",
+        "e7f13f48eaeb700f8ee0bb81",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "83bdc00e9eeab49d13fb7d0e",
+        "5510281dbc579bd41df1bcc2"
+      ],
+      "latency_ms": 2.6534999487921596,
+      "relevant": [
+        "6bb4946af75186de9dd72700"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q16",
+      "query": "每张卡都放一份完整模型，各自处理数据后要同步什么？",
+      "retrieved": [
+        "6bb4946af75186de9dd72700",
+        "b91b25f72ee493fd32f28289",
+        "8ad92e991cc18753f543519e",
+        "5510281dbc579bd41df1bcc2",
+        "57cb7b39f271f15be65133cd",
+        "e0e168945db1afe99b9adaa7",
+        "c147bc7b888fa1cc3375e2ef",
+        "3055429b6d3ddd49ffe28353",
+        "556442a7482396bcfc8ba98e",
+        "1f777a5c09d3f9c26915b589"
+      ],
+      "latency_ms": 3.066082950681448,
+      "relevant": [
+        "6bb4946af75186de9dd72700"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q17",
+      "query": "Tensor Parallel 切分的是层内计算还是整层？",
+      "retrieved": [
+        "3055429b6d3ddd49ffe28353",
+        "c147bc7b888fa1cc3375e2ef",
+        "6bb4946af75186de9dd72700",
+        "57cb7b39f271f15be65133cd",
+        "1f777a5c09d3f9c26915b589",
+        "e0e168945db1afe99b9adaa7",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "5510281dbc579bd41df1bcc2",
+        "cd5df02a1a20ad97e915231e",
+        "0ef629ebeb83d2fc26223da7"
+      ],
+      "latency_ms": 2.9253329848870635,
+      "relevant": [
+        "3055429b6d3ddd49ffe28353"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q18",
+      "query": "一个矩阵太大要让多张卡一起算同一层，属于哪种并行？",
+      "retrieved": [
+        "c147bc7b888fa1cc3375e2ef",
+        "3055429b6d3ddd49ffe28353",
+        "0ef629ebeb83d2fc26223da7",
+        "556442a7482396bcfc8ba98e",
+        "8ad92e991cc18753f543519e",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "70a9ff07c544c821bb22de70",
+        "6bb4946af75186de9dd72700",
+        "89060e72eb0a81554d8f7303",
+        "83bdc00e9eeab49d13fb7d0e"
+      ],
+      "latency_ms": 3.141416935250163,
+      "relevant": [
+        "3055429b6d3ddd49ffe28353"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "q19",
+      "query": "Pipeline Parallel 怎样分配模型层？",
+      "retrieved": [
+        "c147bc7b888fa1cc3375e2ef",
+        "6bb4946af75186de9dd72700",
+        "3055429b6d3ddd49ffe28353",
+        "57cb7b39f271f15be65133cd",
+        "cd5df02a1a20ad97e915231e",
+        "9bae61e85427d85fb5a3adec",
+        "b91b25f72ee493fd32f28289",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "83bdc00e9eeab49d13fb7d0e",
+        "5510281dbc579bd41df1bcc2"
+      ],
+      "latency_ms": 2.7249580016359687,
+      "relevant": [
+        "c147bc7b888fa1cc3375e2ef"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q20",
+      "query": "模型前几层在卡一，后几层在卡二，是哪种并行？",
+      "retrieved": [
+        "6bb4946af75186de9dd72700",
+        "c147bc7b888fa1cc3375e2ef",
+        "57cb7b39f271f15be65133cd",
+        "556442a7482396bcfc8ba98e",
+        "3055429b6d3ddd49ffe28353",
+        "8ad92e991cc18753f543519e",
+        "ca123f18786a73821869539b",
+        "e0e168945db1afe99b9adaa7",
+        "0ef629ebeb83d2fc26223da7",
+        "b91b25f72ee493fd32f28289"
+      ],
+      "latency_ms": 3.0871250201016665,
+      "relevant": [
+        "c147bc7b888fa1cc3375e2ef"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "q21",
+      "query": "ZeRO Stage 1 划分什么状态？",
+      "retrieved": [
+        "556442a7482396bcfc8ba98e",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "57cb7b39f271f15be65133cd",
+        "c147bc7b888fa1cc3375e2ef",
+        "e0e168945db1afe99b9adaa7",
+        "3055429b6d3ddd49ffe28353",
+        "9bae61e85427d85fb5a3adec",
+        "0ef629ebeb83d2fc26223da7",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "83bdc00e9eeab49d13fb7d0e"
+      ],
+      "latency_ms": 2.601749962195754,
+      "relevant": [
+        "556442a7482396bcfc8ba98e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q22",
+      "query": "只把 Adam 的状态分摊到多张卡，还没切梯度参数，是哪个阶段？",
+      "retrieved": [
+        "556442a7482396bcfc8ba98e",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "57cb7b39f271f15be65133cd",
+        "6bb4946af75186de9dd72700",
+        "3055429b6d3ddd49ffe28353",
+        "70a9ff07c544c821bb22de70",
+        "8ad92e991cc18753f543519e",
+        "5510281dbc579bd41df1bcc2",
+        "83bdc00e9eeab49d13fb7d0e",
+        "e0e168945db1afe99b9adaa7"
+      ],
+      "latency_ms": 3.339832997880876,
+      "relevant": [
+        "556442a7482396bcfc8ba98e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q23",
+      "query": "ZeRO Stage 2 相比 Stage 1 多划分什么？",
+      "retrieved": [
+        "d64a3fb00d06b73cb1b0e2b3",
+        "556442a7482396bcfc8ba98e",
+        "57cb7b39f271f15be65133cd",
+        "c147bc7b888fa1cc3375e2ef",
+        "3055429b6d3ddd49ffe28353",
+        "0ef629ebeb83d2fc26223da7",
+        "9bae61e85427d85fb5a3adec",
+        "a0113a5a86014b18e4bc865f",
+        "70a9ff07c544c821bb22de70",
+        "89060e72eb0a81554d8f7303"
+      ],
+      "latency_ms": 2.8180419467389584,
+      "relevant": [
+        "d64a3fb00d06b73cb1b0e2b3"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q24",
+      "query": "优化器已经分片，再把梯度也分片，要用 ZeRO 哪一阶段？",
+      "retrieved": [
+        "d64a3fb00d06b73cb1b0e2b3",
+        "556442a7482396bcfc8ba98e",
+        "57cb7b39f271f15be65133cd",
+        "83bdc00e9eeab49d13fb7d0e",
+        "70a9ff07c544c821bb22de70",
+        "6bb4946af75186de9dd72700",
+        "7f54f96672afa457f9fd85a5",
+        "5510281dbc579bd41df1bcc2",
+        "c147bc7b888fa1cc3375e2ef",
+        "8ad92e991cc18753f543519e"
+      ],
+      "latency_ms": 3.042207914404571,
+      "relevant": [
+        "d64a3fb00d06b73cb1b0e2b3"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q25",
+      "query": "ZeRO Stage 3 相比 Stage 2 多划分什么？",
+      "retrieved": [
+        "d64a3fb00d06b73cb1b0e2b3",
+        "57cb7b39f271f15be65133cd",
+        "556442a7482396bcfc8ba98e",
+        "c147bc7b888fa1cc3375e2ef",
+        "3055429b6d3ddd49ffe28353",
+        "0ef629ebeb83d2fc26223da7",
+        "9bae61e85427d85fb5a3adec",
+        "a0113a5a86014b18e4bc865f",
+        "70a9ff07c544c821bb22de70",
+        "89060e72eb0a81554d8f7303"
+      ],
+      "latency_ms": 2.7616670122370124,
+      "relevant": [
+        "57cb7b39f271f15be65133cd"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "q26",
+      "query": "模型权重也想分摊存放而不是每卡一整份，应选哪一阶段？",
+      "retrieved": [
+        "c147bc7b888fa1cc3375e2ef",
+        "6bb4946af75186de9dd72700",
+        "556442a7482396bcfc8ba98e",
+        "5510281dbc579bd41df1bcc2",
+        "cd5df02a1a20ad97e915231e",
+        "1f777a5c09d3f9c26915b589",
+        "57cb7b39f271f15be65133cd",
+        "70a9ff07c544c821bb22de70",
+        "83bdc00e9eeab49d13fb7d0e",
+        "7f54f96672afa457f9fd85a5"
+      ],
+      "latency_ms": 3.1417920254170895,
+      "relevant": [
+        "57cb7b39f271f15be65133cd"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.14285714285714285,
+      "ndcg": 0.3333333333333333
+    },
+    {
+      "id": "q27",
+      "query": "AllReduce 的结果保存在哪些 rank？",
+      "retrieved": [
+        "83bdc00e9eeab49d13fb7d0e",
+        "8ad92e991cc18753f543519e",
+        "556442a7482396bcfc8ba98e",
+        "1f777a5c09d3f9c26915b589",
+        "cd5df02a1a20ad97e915231e",
+        "5510281dbc579bd41df1bcc2",
+        "6bb4946af75186de9dd72700",
+        "ca123f18786a73821869539b",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "d64a3fb00d06b73cb1b0e2b3"
+      ],
+      "latency_ms": 2.6421670336276293,
+      "relevant": [
+        "8ad92e991cc18753f543519e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "q28",
+      "query": "所有卡都要拿到梯度求和结果，而不是原始梯度拼接，应该选什么集合通信？",
+      "retrieved": [
+        "8ad92e991cc18753f543519e",
+        "5510281dbc579bd41df1bcc2",
+        "cd5df02a1a20ad97e915231e",
+        "83bdc00e9eeab49d13fb7d0e",
+        "57cb7b39f271f15be65133cd",
+        "9bae61e85427d85fb5a3adec",
+        "c147bc7b888fa1cc3375e2ef",
+        "3055429b6d3ddd49ffe28353",
+        "ca123f18786a73821869539b",
+        "a1fdadf0e19d4332aeb5ca5e"
+      ],
+      "latency_ms": 3.1645840499550104,
+      "relevant": [
+        "8ad92e991cc18753f543519e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q29",
+      "query": "AllGather 与 AllReduce 的结果有什么区别？",
+      "retrieved": [
+        "8ad92e991cc18753f543519e",
+        "83bdc00e9eeab49d13fb7d0e",
+        "5510281dbc579bd41df1bcc2",
+        "70a9ff07c544c821bb22de70",
+        "1f313d34221e12ca20219ec7",
+        "cd5df02a1a20ad97e915231e",
+        "9bae61e85427d85fb5a3adec",
+        "a0113a5a86014b18e4bc865f",
+        "c147bc7b888fa1cc3375e2ef",
+        "cdd41ff426659f4a0ac0c745"
+      ],
+      "latency_ms": 2.7468750486150384,
+      "relevant": [
+        "5510281dbc579bd41df1bcc2"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5
+    },
+    {
+      "id": "q30",
+      "query": "每个设备手里只有一段参数，要让每张卡拿到所有原始片段，用什么操作？",
+      "retrieved": [
+        "8ad92e991cc18753f543519e",
+        "3055429b6d3ddd49ffe28353",
+        "c147bc7b888fa1cc3375e2ef",
+        "5510281dbc579bd41df1bcc2",
+        "556442a7482396bcfc8ba98e",
+        "6bb4946af75186de9dd72700",
+        "83bdc00e9eeab49d13fb7d0e",
+        "57cb7b39f271f15be65133cd",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "1f313d34221e12ca20219ec7"
+      ],
+      "latency_ms": 3.078665933571756,
+      "relevant": [
+        "5510281dbc579bd41df1bcc2"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.25,
+      "ndcg": 0.43067655807339306
+    },
+    {
+      "id": "q31",
+      "query": "ReduceScatter 会让每个 rank 保存完整结果吗？",
+      "retrieved": [
+        "83bdc00e9eeab49d13fb7d0e",
+        "5510281dbc579bd41df1bcc2",
+        "8ad92e991cc18753f543519e",
+        "556442a7482396bcfc8ba98e",
+        "6bb4946af75186de9dd72700",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "e0e168945db1afe99b9adaa7",
+        "1f777a5c09d3f9c26915b589",
+        "ca123f18786a73821869539b",
+        "cd5df02a1a20ad97e915231e"
+      ],
+      "latency_ms": 2.8216249775141478,
+      "relevant": [
+        "83bdc00e9eeab49d13fb7d0e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q32",
+      "query": "先求和但每张卡只留结果的一段，属于哪种通信？",
+      "retrieved": [
+        "83bdc00e9eeab49d13fb7d0e",
+        "8ad92e991cc18753f543519e",
+        "556442a7482396bcfc8ba98e",
+        "3055429b6d3ddd49ffe28353",
+        "5510281dbc579bd41df1bcc2",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "57cb7b39f271f15be65133cd",
+        "b91b25f72ee493fd32f28289",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "cd5df02a1a20ad97e915231e"
+      ],
+      "latency_ms": 2.8399169677868485,
+      "relevant": [
+        "83bdc00e9eeab49d13fb7d0e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q33",
+      "query": "CUDA coalescing 优化哪类访问？",
+      "retrieved": [
+        "cd5df02a1a20ad97e915231e",
+        "a0113a5a86014b18e4bc865f",
+        "556442a7482396bcfc8ba98e",
+        "0ef629ebeb83d2fc26223da7",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "57cb7b39f271f15be65133cd",
+        "1f313d34221e12ca20219ec7",
+        "cdd41ff426659f4a0ac0c745",
+        "ca123f18786a73821869539b",
+        "89060e72eb0a81554d8f7303"
+      ],
+      "latency_ms": 2.674416988156736,
+      "relevant": [
+        "a0113a5a86014b18e4bc865f"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "q34",
+      "query": "同一个 warp 读全局内存时，怎样减少硬件需要发出的访问事务？",
+      "retrieved": [
+        "a0113a5a86014b18e4bc865f",
+        "0ef629ebeb83d2fc26223da7",
+        "89060e72eb0a81554d8f7303",
+        "cd5df02a1a20ad97e915231e",
+        "c147bc7b888fa1cc3375e2ef",
+        "3055429b6d3ddd49ffe28353",
+        "1f313d34221e12ca20219ec7",
+        "679f9a7bfac1f98a13f3b2b4",
+        "9bae61e85427d85fb5a3adec",
+        "e0e168945db1afe99b9adaa7"
+      ],
+      "latency_ms": 2.9267079662531614,
+      "relevant": [
+        "a0113a5a86014b18e4bc865f"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q35",
+      "query": "同一共享内存 bank 的访问什么时候会冲突？",
+      "retrieved": [
+        "0ef629ebeb83d2fc26223da7",
+        "a0113a5a86014b18e4bc865f",
+        "1f313d34221e12ca20219ec7",
+        "cd5df02a1a20ad97e915231e",
+        "89060e72eb0a81554d8f7303",
+        "3055429b6d3ddd49ffe28353",
+        "bc3db019e1c8e0863f324e58",
+        "c147bc7b888fa1cc3375e2ef",
+        "ca123f18786a73821869539b",
+        "679f9a7bfac1f98a13f3b2b4"
+      ],
+      "latency_ms": 2.7425839798524976,
+      "relevant": [
+        "0ef629ebeb83d2fc26223da7"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q36",
+      "query": "为什么同组线程在共享内存里读不同位置会发生串行？",
+      "retrieved": [
+        "0ef629ebeb83d2fc26223da7",
+        "a0113a5a86014b18e4bc865f",
+        "1f313d34221e12ca20219ec7",
+        "cd5df02a1a20ad97e915231e",
+        "89060e72eb0a81554d8f7303",
+        "bc3db019e1c8e0863f324e58",
+        "c147bc7b888fa1cc3375e2ef",
+        "b91b25f72ee493fd32f28289",
+        "6bb4946af75186de9dd72700",
+        "3055429b6d3ddd49ffe28353"
+      ],
+      "latency_ms": 2.8477089945226908,
+      "relevant": [
+        "0ef629ebeb83d2fc26223da7"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q37",
+      "query": "GPU occupancy 越高一定越快吗？",
+      "retrieved": [
+        "89060e72eb0a81554d8f7303",
+        "1f313d34221e12ca20219ec7",
+        "a6937f1de5327f99f96af88c",
+        "556442a7482396bcfc8ba98e",
+        "cd5df02a1a20ad97e915231e",
+        "e0e168945db1afe99b9adaa7",
+        "0ef629ebeb83d2fc26223da7",
+        "3055429b6d3ddd49ffe28353",
+        "83bdc00e9eeab49d13fb7d0e",
+        "d64a3fb00d06b73cb1b0e2b3"
+      ],
+      "latency_ms": 2.7376660145819187,
+      "relevant": [
+        "89060e72eb0a81554d8f7303"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q38",
+      "query": "为了多驻留 warp 降低每线程资源占用，为什么不一定提升性能？",
+      "retrieved": [
+        "89060e72eb0a81554d8f7303",
+        "6bb4946af75186de9dd72700",
+        "cd5df02a1a20ad97e915231e",
+        "a0113a5a86014b18e4bc865f",
+        "679f9a7bfac1f98a13f3b2b4",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "bc3db019e1c8e0863f324e58",
+        "0ef629ebeb83d2fc26223da7",
+        "3055429b6d3ddd49ffe28353",
+        "b91b25f72ee493fd32f28289"
+      ],
+      "latency_ms": 2.8993330197408795,
+      "relevant": [
+        "89060e72eb0a81554d8f7303"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q39",
+      "query": "Pinned Memory 位于主机还是 GPU 共享内存？",
+      "retrieved": [
+        "1f313d34221e12ca20219ec7",
+        "a0113a5a86014b18e4bc865f",
+        "0ef629ebeb83d2fc26223da7",
+        "89060e72eb0a81554d8f7303",
+        "cd5df02a1a20ad97e915231e",
+        "a6937f1de5327f99f96af88c",
+        "bc3db019e1c8e0863f324e58",
+        "3055429b6d3ddd49ffe28353",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "ca123f18786a73821869539b"
+      ],
+      "latency_ms": 2.736791968345642,
+      "relevant": [
+        "1f313d34221e12ca20219ec7"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q40",
+      "query": "想让 CPU 到 GPU 的异步拷贝更有效，主机缓冲区应该有什么性质？",
+      "retrieved": [
+        "1f313d34221e12ca20219ec7",
+        "cd5df02a1a20ad97e915231e",
+        "bc3db019e1c8e0863f324e58",
+        "c147bc7b888fa1cc3375e2ef",
+        "a6937f1de5327f99f96af88c",
+        "8ad92e991cc18753f543519e",
+        "83bdc00e9eeab49d13fb7d0e",
+        "70a9ff07c544c821bb22de70",
+        "a0113a5a86014b18e4bc865f",
+        "556442a7482396bcfc8ba98e"
+      ],
+      "latency_ms": 3.080916008912027,
+      "relevant": [
+        "1f313d34221e12ca20219ec7"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q41",
+      "query": "NUMA 为什么要关注线程和内存的局部性？",
+      "retrieved": [
+        "cd5df02a1a20ad97e915231e",
+        "a0113a5a86014b18e4bc865f",
+        "1f313d34221e12ca20219ec7",
+        "3055429b6d3ddd49ffe28353",
+        "bc3db019e1c8e0863f324e58",
+        "89060e72eb0a81554d8f7303",
+        "9bae61e85427d85fb5a3adec",
+        "0ef629ebeb83d2fc26223da7",
+        "556442a7482396bcfc8ba98e",
+        "679f9a7bfac1f98a13f3b2b4"
+      ],
+      "latency_ms": 2.6520410319790244,
+      "relevant": [
+        "cd5df02a1a20ad97e915231e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q42",
+      "query": "进程跑在一个 CPU 节点却总读另一个节点的内存，怎样排查访问代价？",
+      "retrieved": [
+        "cd5df02a1a20ad97e915231e",
+        "a0113a5a86014b18e4bc865f",
+        "0ef629ebeb83d2fc26223da7",
+        "bc3db019e1c8e0863f324e58",
+        "57cb7b39f271f15be65133cd",
+        "556442a7482396bcfc8ba98e",
+        "89060e72eb0a81554d8f7303",
+        "1f313d34221e12ca20219ec7",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "c147bc7b888fa1cc3375e2ef"
+      ],
+      "latency_ms": 3.23066592682153,
+      "relevant": [
+        "cd5df02a1a20ad97e915231e"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q43",
+      "query": "epoll ET 为什么要读到 EAGAIN？",
+      "retrieved": [
+        "b91b25f72ee493fd32f28289",
+        "3055429b6d3ddd49ffe28353",
+        "0ef629ebeb83d2fc26223da7",
+        "c4d17b80dde4728a0caf89a2",
+        "9bae61e85427d85fb5a3adec",
+        "83bdc00e9eeab49d13fb7d0e",
+        "6bb4946af75186de9dd72700",
+        "bc3db019e1c8e0863f324e58",
+        "a0113a5a86014b18e4bc865f",
+        "5510281dbc579bd41df1bcc2"
+      ],
+      "latency_ms": 2.835833001881838,
+      "relevant": [
+        "b91b25f72ee493fd32f28289"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q44",
+      "query": "收到可读通知后只读一点就停，为什么边沿触发可能再也不通知？",
+      "retrieved": [
+        "b91b25f72ee493fd32f28289",
+        "bc3db019e1c8e0863f324e58",
+        "cd5df02a1a20ad97e915231e",
+        "0ef629ebeb83d2fc26223da7",
+        "83bdc00e9eeab49d13fb7d0e",
+        "c4d17b80dde4728a0caf89a2",
+        "3055429b6d3ddd49ffe28353",
+        "57cb7b39f271f15be65133cd",
+        "5510281dbc579bd41df1bcc2",
+        "e7f13f48eaeb700f8ee0bb81"
+      ],
+      "latency_ms": 2.976583084091544,
+      "relevant": [
+        "b91b25f72ee493fd32f28289"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q45",
+      "query": "Kubernetes 调度主要依据 requests 还是 limits？",
+      "retrieved": [
+        "679f9a7bfac1f98a13f3b2b4",
+        "bc3db019e1c8e0863f324e58",
+        "1f313d34221e12ca20219ec7",
+        "7f54f96672afa457f9fd85a5",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "8ad92e991cc18753f543519e",
+        "6bb4946af75186de9dd72700",
+        "e0e168945db1afe99b9adaa7",
+        "556442a7482396bcfc8ba98e",
+        "c4d17b80dde4728a0caf89a2"
+      ],
+      "latency_ms": 2.826291020028293,
+      "relevant": [
+        "679f9a7bfac1f98a13f3b2b4"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q46",
+      "query": "想让调度器预留足够 CPU 而不是只限制最大使用量，应设置什么？",
+      "retrieved": [
+        "679f9a7bfac1f98a13f3b2b4",
+        "bc3db019e1c8e0863f324e58",
+        "7f54f96672afa457f9fd85a5",
+        "cd5df02a1a20ad97e915231e",
+        "89060e72eb0a81554d8f7303",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "c147bc7b888fa1cc3375e2ef",
+        "83bdc00e9eeab49d13fb7d0e",
+        "8ad92e991cc18753f543519e",
+        "5510281dbc579bd41df1bcc2"
+      ],
+      "latency_ms": 3.074625041335821,
+      "relevant": [
+        "679f9a7bfac1f98a13f3b2b4"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q47",
+      "query": "CPU 和内存超过 Kubernetes limits 的后果有什么不同？",
+      "retrieved": [
+        "bc3db019e1c8e0863f324e58",
+        "cd5df02a1a20ad97e915231e",
+        "679f9a7bfac1f98a13f3b2b4",
+        "a0113a5a86014b18e4bc865f",
+        "1f313d34221e12ca20219ec7",
+        "83bdc00e9eeab49d13fb7d0e",
+        "0ef629ebeb83d2fc26223da7",
+        "8ad92e991cc18753f543519e",
+        "c147bc7b888fa1cc3375e2ef",
+        "1f777a5c09d3f9c26915b589"
+      ],
+      "latency_ms": 2.950625028461218,
+      "relevant": [
+        "bc3db019e1c8e0863f324e58"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q48",
+      "query": "容器 CPU 被限流但内存超限可能被杀，应该检查哪类配置？",
+      "retrieved": [
+        "bc3db019e1c8e0863f324e58",
+        "cd5df02a1a20ad97e915231e",
+        "ca123f18786a73821869539b",
+        "e7f13f48eaeb700f8ee0bb81",
+        "c4d17b80dde4728a0caf89a2",
+        "0ef629ebeb83d2fc26223da7",
+        "679f9a7bfac1f98a13f3b2b4",
+        "1f313d34221e12ca20219ec7",
+        "a0113a5a86014b18e4bc865f",
+        "57cb7b39f271f15be65133cd"
+      ],
+      "latency_ms": 3.0187499942258,
+      "relevant": [
+        "bc3db019e1c8e0863f324e58"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q49",
+      "query": "Readiness 探针失败一定重启容器吗？",
+      "retrieved": [
+        "e7f13f48eaeb700f8ee0bb81",
+        "c4d17b80dde4728a0caf89a2",
+        "ca123f18786a73821869539b",
+        "679f9a7bfac1f98a13f3b2b4",
+        "bc3db019e1c8e0863f324e58",
+        "1f777a5c09d3f9c26915b589",
+        "e0e168945db1afe99b9adaa7",
+        "1f313d34221e12ca20219ec7",
+        "cd5df02a1a20ad97e915231e",
+        "556442a7482396bcfc8ba98e"
+      ],
+      "latency_ms": 2.608707989566028,
+      "relevant": [
+        "e7f13f48eaeb700f8ee0bb81"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q50",
+      "query": "应用暂时不能服务，想先停止给它转发流量，用哪种健康检查？",
+      "retrieved": [
+        "ca123f18786a73821869539b",
+        "e7f13f48eaeb700f8ee0bb81",
+        "8ad92e991cc18753f543519e",
+        "bc3db019e1c8e0863f324e58",
+        "3055429b6d3ddd49ffe28353",
+        "1f777a5c09d3f9c26915b589",
+        "cdd41ff426659f4a0ac0c745",
+        "c147bc7b888fa1cc3375e2ef",
+        "7f54f96672afa457f9fd85a5",
+        "e0e168945db1afe99b9adaa7"
+      ],
+      "latency_ms": 3.1312910141423345,
+      "relevant": [
+        "e7f13f48eaeb700f8ee0bb81"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "q51",
+      "query": "Liveness 与 Readiness 的处理动作有什么区别？",
+      "retrieved": [
+        "70a9ff07c544c821bb22de70",
+        "c4d17b80dde4728a0caf89a2",
+        "ca123f18786a73821869539b",
+        "a0113a5a86014b18e4bc865f",
+        "b91b25f72ee493fd32f28289",
+        "6bb4946af75186de9dd72700",
+        "1f777a5c09d3f9c26915b589",
+        "89060e72eb0a81554d8f7303",
+        "e7f13f48eaeb700f8ee0bb81",
+        "cd5df02a1a20ad97e915231e"
+      ],
+      "latency_ms": 2.8073750436306,
+      "relevant": [
+        "c4d17b80dde4728a0caf89a2"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "q52",
+      "query": "服务进程卡死需要自动重启，哪种探针负责判断？",
+      "retrieved": [
+        "c4d17b80dde4728a0caf89a2",
+        "e7f13f48eaeb700f8ee0bb81",
+        "ca123f18786a73821869539b",
+        "89060e72eb0a81554d8f7303",
+        "57cb7b39f271f15be65133cd",
+        "70a9ff07c544c821bb22de70",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "679f9a7bfac1f98a13f3b2b4",
+        "1f313d34221e12ca20219ec7",
+        "3055429b6d3ddd49ffe28353"
+      ],
+      "latency_ms": 2.6928751030936837,
+      "relevant": [
+        "c4d17b80dde4728a0caf89a2"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q53",
+      "query": "Startup Probe 如何保护慢启动服务？",
+      "retrieved": [
+        "c4d17b80dde4728a0caf89a2",
+        "ca123f18786a73821869539b",
+        "e7f13f48eaeb700f8ee0bb81",
+        "89060e72eb0a81554d8f7303",
+        "7f54f96672afa457f9fd85a5",
+        "a0113a5a86014b18e4bc865f",
+        "a1fdadf0e19d4332aeb5ca5e",
+        "83bdc00e9eeab49d13fb7d0e",
+        "e0e168945db1afe99b9adaa7",
+        "556442a7482396bcfc8ba98e"
+      ],
+      "latency_ms": 2.626667032018304,
+      "relevant": [
+        "ca123f18786a73821869539b"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "q54",
+      "query": "模型加载很慢，怎样避免应用初始化期间就被存活探针反复重启？",
+      "retrieved": [
+        "ca123f18786a73821869539b",
+        "c4d17b80dde4728a0caf89a2",
+        "e7f13f48eaeb700f8ee0bb81",
+        "6bb4946af75186de9dd72700",
+        "556442a7482396bcfc8ba98e",
+        "57cb7b39f271f15be65133cd",
+        "cd5df02a1a20ad97e915231e",
+        "1f777a5c09d3f9c26915b589",
+        "c147bc7b888fa1cc3375e2ef",
+        "bc3db019e1c8e0863f324e58"
+      ],
+      "latency_ms": 2.988707972690463,
+      "relevant": [
+        "ca123f18786a73821869539b"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q55",
+      "query": "Tensor Parallel 与 Pipeline Parallel 分别在层内还是层间切分？",
+      "retrieved": [
+        "3055429b6d3ddd49ffe28353",
+        "c147bc7b888fa1cc3375e2ef",
+        "6bb4946af75186de9dd72700",
+        "70a9ff07c544c821bb22de70",
+        "cd5df02a1a20ad97e915231e",
+        "556442a7482396bcfc8ba98e",
+        "ca123f18786a73821869539b",
+        "cdd41ff426659f4a0ac0c745",
+        "1f313d34221e12ca20219ec7",
+        "89060e72eb0a81554d8f7303"
+      ],
+      "latency_ms": 3.221207996830344,
+      "relevant": [
+        "3055429b6d3ddd49ffe28353",
+        "c147bc7b888fa1cc3375e2ef"
+      ],
+      "recall": 1.0,
+      "precision": 0.2,
+      "f1": 0.33333333333333337,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q56",
+      "query": "ZeRO Stage 2 和 Stage 3 的关键区别是什么？",
+      "retrieved": [
+        "d64a3fb00d06b73cb1b0e2b3",
+        "57cb7b39f271f15be65133cd",
+        "556442a7482396bcfc8ba98e",
+        "cd5df02a1a20ad97e915231e",
+        "c147bc7b888fa1cc3375e2ef",
+        "1f777a5c09d3f9c26915b589",
+        "1f313d34221e12ca20219ec7",
+        "70a9ff07c544c821bb22de70",
+        "9bae61e85427d85fb5a3adec",
+        "ca123f18786a73821869539b"
+      ],
+      "latency_ms": 2.805042080581188,
+      "relevant": [
+        "57cb7b39f271f15be65133cd",
+        "d64a3fb00d06b73cb1b0e2b3"
+      ],
+      "recall": 1.0,
+      "precision": 0.2,
+      "f1": 0.33333333333333337,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q57",
+      "query": "Kubernetes 预留资源与运行时限流分别由什么配置决定？",
+      "retrieved": [
+        "bc3db019e1c8e0863f324e58",
+        "679f9a7bfac1f98a13f3b2b4",
+        "70a9ff07c544c821bb22de70",
+        "89060e72eb0a81554d8f7303",
+        "cd5df02a1a20ad97e915231e",
+        "83bdc00e9eeab49d13fb7d0e",
+        "cdd41ff426659f4a0ac0c745",
+        "c147bc7b888fa1cc3375e2ef",
+        "e7f13f48eaeb700f8ee0bb81",
+        "1f313d34221e12ca20219ec7"
+      ],
+      "latency_ms": 2.826125011779368,
+      "relevant": [
+        "679f9a7bfac1f98a13f3b2b4",
+        "bc3db019e1c8e0863f324e58"
+      ],
+      "recall": 1.0,
+      "precision": 0.2,
+      "f1": 0.33333333333333337,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q58",
+      "query": "AllGather 收集原始分片，AllReduce 返回什么？",
+      "retrieved": [
+        "5510281dbc579bd41df1bcc2",
+        "8ad92e991cc18753f543519e",
+        "83bdc00e9eeab49d13fb7d0e",
+        "d64a3fb00d06b73cb1b0e2b3",
+        "c147bc7b888fa1cc3375e2ef",
+        "6bb4946af75186de9dd72700",
+        "ca123f18786a73821869539b",
+        "e7f13f48eaeb700f8ee0bb81",
+        "9bae61e85427d85fb5a3adec",
+        "7f54f96672afa457f9fd85a5"
+      ],
+      "latency_ms": 2.841042005456984,
+      "relevant": [
+        "5510281dbc579bd41df1bcc2",
+        "8ad92e991cc18753f543519e"
+      ],
+      "recall": 1.0,
+      "precision": 0.2,
+      "f1": 0.33333333333333337,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "q59",
+      "query": "Prefix Cache 与 PagedAttention 分别优化重复计算还是内存布局？",
+      "retrieved": [
+        "e0e168945db1afe99b9adaa7",
+        "1f777a5c09d3f9c26915b589",
+        "a0113a5a86014b18e4bc865f",
+        "cd5df02a1a20ad97e915231e",
+        "57cb7b39f271f15be65133cd",
+        "9bae61e85427d85fb5a3adec",
+        "556442a7482396bcfc8ba98e",
+        "70a9ff07c544c821bb22de70",
+        "3055429b6d3ddd49ffe28353",
+        "1f313d34221e12ca20219ec7"
+      ],
+      "latency_ms": 2.987041953019798,
+      "relevant": [
+        "9bae61e85427d85fb5a3adec",
+        "e0e168945db1afe99b9adaa7"
+      ],
+      "recall": 1.0,
+      "precision": 0.2,
+      "f1": 0.33333333333333337,
+      "mrr": 1.0,
+      "ndcg": 0.8315546295836225
+    },
+    {
+      "id": "q60",
+      "query": "Readiness 与 Liveness 的失败动作有哪些差别？",
+      "retrieved": [
+        "c4d17b80dde4728a0caf89a2",
+        "e7f13f48eaeb700f8ee0bb81",
+        "ca123f18786a73821869539b",
+        "70a9ff07c544c821bb22de70",
+        "89060e72eb0a81554d8f7303",
+        "cd5df02a1a20ad97e915231e",
+        "8ad92e991cc18753f543519e",
+        "9bae61e85427d85fb5a3adec",
+        "a0113a5a86014b18e4bc865f",
+        "c147bc7b888fa1cc3375e2ef"
+      ],
+      "latency_ms": 2.722625038586557,
+      "relevant": [
+        "c4d17b80dde4728a0caf89a2",
+        "e7f13f48eaeb700f8ee0bb81"
+      ],
+      "recall": 1.0,
+      "precision": 0.2,
+      "f1": 0.33333333333333337,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    }
+  ],
+  "at_k": {
+    "1": {
+      "recall": 0.7666666666666667,
+      "precision": 0.8166666666666667,
+      "f1": 0.7833333333333333,
+      "mrr": 0.8166666666666667,
+      "ndcg": 0.8166666666666667
+    },
+    "3": {
+      "recall": 0.9583333333333334,
+      "precision": 0.35,
+      "f1": 0.5066666666666667,
+      "mrr": 0.8888888888888888,
+      "ndcg": 0.9026764203556187
+    },
+    "5": {
+      "recall": 0.975,
+      "precision": 0.21333333333333335,
+      "f1": 0.34682539682539687,
+      "mrr": 0.8930555555555556,
+      "ndcg": 0.9098543629901752
+    },
+    "10": {
+      "recall": 1.0,
+      "precision": 0.11,
+      "f1": 0.196969696969697,
+      "mrr": 0.895436507936508,
+      "ndcg": 0.9190500424927002
+    }
+  }
+}

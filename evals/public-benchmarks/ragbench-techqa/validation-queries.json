@@ -1,0 +1,1674 @@
+[
+  {
+    "id": "techqa_DEV_Q109",
+    "query": "Help with Security Bulletin: Authentication vulnerability affects IIB V10.0.0.4 onwards (CVE-2016-8918 ) I need to understand details regarding Security Bulletin: Authentication vulnerability affects IBM Integration Bus V10.0.0.4 onwards (CVE-2016-8918 ). Where can I find this information? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0000",
+      "techqa-validation-0152"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q089",
+    "query": "Security Bulletin: Vulnerability identified in OpenSSL shipped with IBM API Connect (CVE-2016-8610) I need to understand details regarding Security Bulletin: Vulnerability identified in OpenSSL shipped with IBM API Connect (CVE-2016-8610). Where can I find this information? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0001",
+      "techqa-validation-0153"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q010",
+    "query": "We transferred the database to an external database on our Portal 8.5 environment and now seeing errors, EJPDB0085W and EJPFD0016E in the logs \n\nAfter transferring the Portal database we seeing the following....\n\n     [3/1/16 6:22:19:481 CST] 00000071 DataStoreServ W com.ibm.wps.services.\n     datastore.DataStoreServiceImpl checkCorrectSetup EJPDB0085W: The\n     character encoding of the database is not UTF-8.\n     [3/1/16 6:22:19:528 CST] 00000071 Servlet       E com.ibm.wps.engine.\n     Servlet init EJPFD0016E: Initialization of service failed.\n                                      com.ibm.wps.util.DataBackendException:\n     EJPDB0160E: The sanity checks of the database layer failed.\n                     at com.ibm.wps.services.datastore.DataStoreServiceImpl.\n     checkCorrectSetup(DataStoreServiceImpl.java:712)\n                     at com.ibm.wps.services.datastore.DataStoreServiceImpl.\n     init(DataStoreServiceImpl.java:288)\n\n...\n\n     [3/1/16 6:22:19:824 CST] 00000071 DatabaseInsig W com.ibm.wps.datastore.\n     dbinsight.DatabaseInsight checkCharacterEncodingForOracle EJPDB0166W:\n     The character encoding of database domain [[Domain: jcr]] is not\n     correct. The value [WE8MSWIN1252] is set for key [NLS_CHARACTERSET] in\n     parameter section [NLS_DATABASE_PARAMETERS] where expected values only\n     can contain one of [[UTF8, AL16UTF16, AL32UTF8, UTFE]].\n\\",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0002",
+      "techqa-validation-0154"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q144",
+    "query": "CICS CM CCVI abends AEXZ on startup in CCVIINIT Why am I receiving an message DFHAC2236 with an abend AEXZ each time that I attempt to startup a newly installed CICS Configuration Manager (CICS CM) server using the CCVI transaction? It looks like it is starting up, but after about 10 seconds it fails with the AEXZ. The last messages I see in the CICS MSGUSR indicate it successfully opened the TCPIPSERVICE:\nDFHSO0107 mm/dd/yyyy hh:mm:ss applid TCPIPSERVICE CCVBASIC has been opened on port nnnnn at IP address nnn.nn.nn.nnn.\nDFHDU0203I mm/dd/yyyy hh:mm:ss applid A transaction dump was taken for dumpcode: AEXZ, Dumpid: 1/0001.\nDFHAC2236 mm/dd/yyyy hh:mm:ss applid Transaction CCVI abend AEXZ in program CCVIINIT term ????. Updates to local recoverable resources will be backed out.\nCEEMSG shows:\nCEE3250C The system or user abend AEXZ was issued. From compile unit CCVIINIT at entry point CCVIINIT at compile unit offset +0000832E at entry offset 18E8854E.\nIf CCVI is run a few more times, it eventually seems to initialize the server successfully. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0003",
+      "techqa-validation-0155"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q229",
+    "query": "Can I hide left menu pane for specific application? Is it possible to disable the left navigation pane menu for certain application? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0004",
+      "techqa-validation-0156"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q023",
+    "query": "No trace is logged in Decision Warehouse, and no records in EXECUTION_TRACES table for a certain ruleset \n\nFor a certain ruleset, no trace is logged in DW, and no records can be found in EXEUTION_TRACES table of DW database.\n\nServer logs do not contain any messages about the execution traces for this ruleset.\n\nThe issue reproduces only for this project. For other projects deployed in RES, traces are being logged in DW. Also, the same project generates execution traces in other environments.\n\nThe following properties have been set:\n\n     monitoring.enabled = true\n     monitoring.filters = INFO_EXECUTION_DATE=true,INFO_EXECUTION_DURATION=true,INFO_TOTAL_TASKS_EXECUTED=true,INFO_TOTAL_RULES_NOT_FIRED=true,INFO_EXECUTION_EVENTS=true,INFO_TOTAL_TASKS_NOT_EXECUTED=true,INFO_TOTAL_RULES_FIRED=true,INFO_RULESET_PROPERTIES=true\n     ruleset.bom.enabled = false (for true value, the problem still occurs)\n     ruleset.sequential.trace.enabled = true\n     ruleset.trace.enabled = true\n\nHow can I diagnose this issue?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0005",
+      "techqa-validation-0157"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q070",
+    "query": "Help with Security Bulletin: Apache Commons FileUpload Vulnerabilities in IBM WebSphere MQ File Transfer Edition(CVE-2016-3092) I need to understand details regarding Security Bulletin: Apache Commons FileUpload Vulnerabilities in IBM WebSphere MQ File Transfer Edition(CVE-2016-3092). Where can I find this information?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0006",
+      "techqa-validation-0158"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q110",
+    "query": "Why does our Websphere application server hang when we apply Microsoft patch on our database server? Why does our Websphere application server hang when we apply Microsoft patch on our database server?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0007",
+      "techqa-validation-0159"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q068",
+    "query": "Getting java.lang.StackOverflowError,  how to resolve it? \n\nGetting the following StackOverflowError when executing a dump namespace:\n\nTRACE START:\n\n        java.lang.StackOverflowError at java.util.regex.Pattern$Branch.match(Pattern.java:4513) at java.util.regex.Pattern$GroupTail.match(Pattern.java:4626) at java.util.regex.Pattern$Curly.match1(Pattern.java:4196) at java.util.regex.Pattern$Curly.match(Pattern.java:4145) at java.util.regex.Pattern$GroupHead.match(Pattern.java:4567) at java.util.regex.Pattern$Branch.match(Pattern.java:4511) at java.util.regex.Matcher.match(Matcher.java:1232) at java.util.regex.Matcher.matches(Matcher.java:570) at com.ibm.rmi.corba.IIOPAddrImpl.(IIOPAddrImpl.java:107) at com.ibm.rmi.corba.Corbaloc.parseObjAddr(Corbaloc.java:231) at com.ibm.rmi.corba.Corbaloc.parseObjAddrList(Corbaloc.java:181) at com.ibm.rmi.corba.Corbaloc.parseCorbaloc(Corbaloc.java:145) at com.ibm.rmi.corba.Corbaloc.(Corbaloc.java:120) at com.ibm.rmi.corba.ORB.createObjectURL(ORB.java:3731) at com.ibm.rmi.corba.ORB.createObjectURL(ORB.java:3698) at com.ibm.rmi.corba.ORB.string_to_object(ORB.java:3694)\n\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0008",
+      "techqa-validation-0160"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q260",
+    "query": "Crash happened due to \"PI50993:Apache HTTPComponents vulnerabilities in WebSphere Application Server (CVE-2012-6153, CVE-2014-3577)\" Crash happened due to \"PI50993:Apache HTTPComponents vulnerabilities in WebSphere Application Server (CVE-2012-6153, CVE-2014-3577)\"\n\nDetails of gpf crash events: A VerifyError was thrown due to \"Inaccessible class\" at offset 39(0x27) of the method executeInternal(Lorg/springframework/http/HttpHeaders;[B)Lorg/springfram ework/http/client/ClientHttpResponse of the above class org/springframework/http/client/HttpComponentsClientHttpRequest.\n\nLooking at method the bytecodes :\n\n31 invokespecial 15 org/apache/http/entity/ByteArrayEntity.([B)V 34 astore 4 36 aload3 37 aload 4 39 invokeinterface2 41 invokeinterface 16 org/apache/http/HttpEntityEnclosingRequest.setEntity(Lorg/apache/http/Ht tpEntity;)V\n\nThe above sequence of bytecodes indicates it created an instance of org/apache/http/entity/ByteArrayEntity, trying to cast it to type Lorg/apache/http/HttpEntity; which in turns led to the \"Inaccessible class\" VerifyError message.\n\nIt is clear that class org/apache/http/HttpEntity was not loaded at all:\n\n    allclasses | grep org/apache/http/HttpEntity\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0009",
+      "techqa-validation-0161"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q125",
+    "query": "Error when using profilePath parameter with BPMConfig to create a profile When creating a profile using the BPMConfig command and the -profilePath parameter to define a custom directory to store the profile data, the creation fails with the following error message if the directory already exists (even if it is empty):\ncom.ibm.bpm.config.BPMConfig.main(): The profile path <profile_path> must not exist. com.ibm.bpm.config.util.ConfigException: The profile path <profile_path> must not exist. at com.ibm.bpm.config.BPMConfig.createDmgrProfile(BPMConfig.java:1833) at com.ibm.bpm.config.BPMConfig.configureDeploymentEnvironment(BPMConfig.java:6\n...",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0010",
+      "techqa-validation-0162"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q107",
+    "query": "Why the exception \"BO Service is not supported or disabled in this profile\" when trying to publish from IID to a local Process Server? When trying to publish a project from IBM Integration Designer (IID) to the local Process Server, it fails with error ADMA5014E in SystemOut.log. The FFDC log is showing exception of BO Service is not supported or disabled in this profile; Trace:\n\nFFDC Exception:java.lang.ExceptionInInitializerError SourceId:com.ibm.ws.bpm.cmdfrmwrk.task.WBICleanupTask ProbeId:200 java.lang.ExceptionInInitializerError at java.lang.J9VMInternals.initialize(J9VMInternals.java:259) \n....\nCaused by: java.lang.IllegalStateException: BO Service is not supported or disabled in this profile. at com.ibm.ws.bo.BOCore.init(BOCore.java:107) ....",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0011",
+      "techqa-validation-0163"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q009",
+    "query": "\"The transaction log for database BPMDB is full\" error message is seen when running BPMInstallOfflinePackage During our latest deployment of a larger process application we received the following error\n\nThe transaction log for database 'BPMDB' is full. To find out why space in the log cannot be reused, see the log_reuse_wait_desc column in sys.databases\nWhy does this happen. The transaction log for the database is 80GB which should be sufficient.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0012",
+      "techqa-validation-0164"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q050",
+    "query": "Why AUTOMATIC value for NUM_IOSERVERS is changed after applying 10.5FP7? Why AUTOMATIC value for NUM_IOSERVERS is changed after applying 10.5FP7?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0013",
+      "techqa-validation-0165"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q289",
+    "query": "A NullPointerException appears in BPC Explorer in BPM after upgrading, how do I resolve this?  null pointer exception happens when using the business process choreographer explorer. This occurs in BPM 8.5.5.0 after upgrading from WPS 7. The exception stack in SystemOut.log is the following.\nwebapp E com.ibm.ws.webcontainer.webapp.WebApp logServletError SRVE0293E: [Servlet Error]-[Faces Servlet]: java.lang.NullPointerException at com.ibm.bpc.explorer.ConnectionFactoryImpl.<init>(ConnectionFactoryImpl.java:69) at com.ibm.bpc.explorer.util.BFMUtils.getBFMConnection(BFMUtils.java:301) at com.ibm.bpc.explorer.util.BFMUtils.getBusinessFlowManagerService(BFMUtils.java:310)  \n.....",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0014",
+      "techqa-validation-0166"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q299",
+    "query": "Netcool/Impact 6.1.1: Policy Custom Function not getting variable value \nNetcool/Impact 6.1.1: Policy Custom Function not getting variable value\n\nCustom Function call:\n\n     ProcessFunction(GotNodes[0].AlertKey); \n\nof a result set acquired by GetByFilter:\n\n     GotNodes=GetByFilter(ObjServ_Alerts_DT, Node=\"'\"+@Node+\"'\", False); \n\nstill fails to use the acquired variable even when there is a value for both GotNodes and GotNodes[0].AlertKey",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0015",
+      "techqa-validation-0167"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q167",
+    "query": "How do I recreate all the Oracle Text indexes for the Atlas database How do I recreate all the Oracle Text indexes for the Atlas database ? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0016",
+      "techqa-validation-0168"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q265",
+    "query": "Will the Leap Second 2015 update have any impact with FileNet Content Manager? Will the Leap Second 2015 update have any impact with FileNet Content Manager?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0017",
+      "techqa-validation-0169"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q298",
+    "query": "can Datacap support to Arabic language? can Datacap support to Arabic language?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0018",
+      "techqa-validation-0170"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q079",
+    "query": "Why am I getting error SqlIntegrityConstraintViolationException when deploying a process application? After reinstalling Process Center (or using separate Process Centers to deploy to one Process Server) you get a deployment failure error on the Process Server:\njava.lang.Exception: java.lang.Exception:com.lombardisoftware.client.delegate.BusinessDelegateException:PreparedStatementCallback; \n....\ncom.ibm.db2.jcc.am.SqlIntegrityConstraintViolationException: Error forbatch element # 1: DB2 SQL Error: SQLCODE=-803, SQLSTATE=23505,SQLERRMC=2;BPMBDBA.LSW_SNAPSHOT, DRIVER=4.11.69",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0019",
+      "techqa-validation-0171"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q245",
+    "query": "Problem with XMLLIB->VALIDATEEX during XML Validation I am using XMLLIB VALIDATEXX in WTX 8.3.0.5 for XML Validations and it is running fine on Windows.\nWhen deployed same code on zos map is executing in loop(output card having rule with xmllib method call is not completing) \nPlease suggest.Thanks",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0020",
+      "techqa-validation-0172"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q003",
+    "query": "Is there a way set a timeout for shell task? I have run into couple of shell task in Urbancode, for example start websphere server, or run a test.bat file using the shell task, The problem I have, though the task is successful executed, it keeps ruining this shell task and does not moving to the next task. Can I set a time out for the shell task",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0021",
+      "techqa-validation-0173"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q102",
+    "query": "Event Log Hashing - Performance? I'm curious how much performance is affected by hashing events and flows. I don't see that information in the admin guide for 7.3.1. Can someone list that out by algorithm?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0022",
+      "techqa-validation-0174"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q227",
+    "query": "Is Java 7 supported for BPM? What versions of BPM support Java 7?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0023",
+      "techqa-validation-0175"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q244",
+    "query": "How to clear Errors Found in crm_mon How to clear Errors Found in crm_mon ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0024",
+      "techqa-validation-0176"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q232",
+    "query": "CICS TS support for IBM SDK Java Version 8 Do any of the current releases of CICS Transaction Server for z/OS (CICS TS) support the new IBM SDK, Java™ Technology Edition V8? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0025",
+      "techqa-validation-0177"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q208",
+    "query": "Error TASK001X while upgrading Portal 8.0.0.1 to 8.0.0.1 CF14 during import-nodes sub-task While attempting to upgrade Portal to CF14 the upgrade fails during the import-nodes sub-task.\n\nThe ConfigTrace.log shows the following...\n\nimport-nodes:\n\n--- Exception Thrown --- C:\\Portal8\\PortalServer\\jcr\\wp.content.repository.install\\config\\include s\\jcr.install_cfg.xml:826: com.ibm.icm.jcr.task.TaskException: TASK001X: Remote task execution failed with response code 404 due to exception : Not Found . Please check the server log for more information.\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0026",
+      "techqa-validation-0178"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q287",
+    "query": "Why I am not able to login to StoredIQ Dataserver and Getway using ssh? Why I am not able to login to StoredIQ Dataserver and Getway using ssh? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0027",
+      "techqa-validation-0179"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q222",
+    "query": "Help with Action required for IIB H.E. V9 & WMB H.E. V8 for security vulnerabilities in Red Hat Linux \n\nI need to understand details regarding Action required for IBM Integration Bus Hypervisor Edition V9.0 and WebSphere Message Broker Hypervisor Edition V8.0 for security vulnerabilities in Red Hat Linux.\n\nThis is related to CVEID: CVE-2017-16546\n\nWhere can I find this information?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0028",
+      "techqa-validation-0180"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q258",
+    "query": "What is the meaning of value \"unknown\" for ITCAM WAS Application Status attribute? I am getting alerts from a situation containing the following statement in its formula\n\n*IF *VALUE Application_Health_Status.Application_Status *NE Running\n\nI've found out this happens because the application status for one application is \"Unknown\" in the Application Health workspace.\n\nWhy was the application status\"Unknown\", what does it mean? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0029",
+      "techqa-validation-0181"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q254",
+    "query": "Why do I receive the message, \"IKJ79154I INSTALLATION EXIT IKJEESX0 REQUESTED TERMINATION. \" for a TSO SEND command? If you issue the TSO SEND command in a batch job and receive this message:\n\nIKJ79154I INSTALLATION EXIT IKJEESX0 REQUESTED TERMINATION.\nIKJ79154I REASON CODE X'00000004'.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0030",
+      "techqa-validation-0182"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q193",
+    "query": "Are there any probes that can connecto the Nokia NSP EPC v17.9 and Nokia NSP RAN v17.3 using JMS/HTTP? The customer has asked if there are any probes that can connect to their Nokia servers, both of which use a HTTP/JMS interface:\n\n Nokia NSP EPC v17.9 \n Nokia NSP RAN v17.3 ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0031",
+      "techqa-validation-0183"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q133",
+    "query": "Do I need to backup /opt/ibm-ucd/server/var/sa/dialogue ? My UCD server has so many files in /opt/ibm-ucd/server/var/sa/dialogue that ls goes out of memory trying to list them all. Looking at another (small) server I can see that the files within are roughly 2k on average, and judging by the apparent size of the directory (100Mb) I've probably got 50000+ files in there.\n\nDo I need to backup this directory? From what I've read, I believe this directory contains records of in-flight communication between UCD and the agents - but assuming the server is down, is it safe to assume that no such activity is occurring? Can I periodically clean this directory?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0032",
+      "techqa-validation-0184"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q223",
+    "query": "Can I use Chrome browser for viewing Monitor 801 Cognos report viewer widget ? Some users use Chrome browser with Business Monitor and have reported issues when trying to view Cognos reports from Report Viewer widget within Business Space.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0033",
+      "techqa-validation-0185"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q113",
+    "query": "How to access Rule Team Server or Rule Execution Server on WAS 7 over HTTPS? When trying to connect to Rule Team Server or Rule Execution Server on WebSphere Applicaiton Server (WAS) 7.0 over HTTPS, why do I still get an SSLHandshakeException after setting the property \"ilog.rules.res.allowSelfSignedCertificate\"to \"true\" ?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0034",
+      "techqa-validation-0186"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q255",
+    "query": "The BPM Messaging engine is not active after DB2 Fix Pack upgrade. How to resolve this problem? The database used by BPM was recently upgraded to 10.1 Fix Pack 4.After the upgrade, the messaging engine cluster is not started up\n\nHow can I resolve this issue?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0035",
+      "techqa-validation-0187"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q011",
+    "query": "How to proceed when jextract utility is throwing an OutOfMemory error ? \n\nI was getting a crash and was told to provide a \"jextracted core dump\". I ran the jextract command as instructed:\n\n/java/jre/bin/jextract [CORE_PATH]\n\nbut I am getting now an OutOfMemory error when jextract itself is running so I cannot proceed with the original crash investigation.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0036",
+      "techqa-validation-0188"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q116",
+    "query": "Upgrading from ibm bpm 8.5 to ibm bpm 8.5.5 \n\nHi there,\n\nI was wondering if it is possible to upgrade from ibm bpm 8.5 to 8.5.5 ? is this possible? please suggest. thanks \n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0037",
+      "techqa-validation-0189"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q118",
+    "query": "db2top abnormally ended with core dump during monitoring SQL statements I'm using DB2 9.7 FP6. The db2top utility abnormally ended with a core dump during monitorning SQL statements with following stack trace in the trap file. What is the cause of the problem?\n\n <StackTrace>\n -------Frame------ ------Function + Offset------\n 0x0900000010127AEC waddnstr + 0x6C\n 0x0900000010134E90 waddstr + 0x10\n 0x0900000010135440 vw_printw + 0x40\n </StackTrace>",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0038",
+      "techqa-validation-0190"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q026",
+    "query": "DNS cache is not updating even when DNS server is updated \n\nDatapower DNS is still showing old IP address even after the DNS server was changed few days ago.\n\nHow can i change DNS cache so it shows the new IP Address?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0039",
+      "techqa-validation-0191"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q038",
+    "query": "ODM 8.7 TeamServer users active authoring rules and they get kicked out - transaction timeout or session timeout? Some of my users are being kicked out of TeamServer while actively authoring rules. What value would be controlling this behavior? Session timeout is at it's default 30 minutes. Does transaction timeout come in to play here or is there a different setting that might be causing this. Thanks. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0040",
+      "techqa-validation-0192"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q155",
+    "query": "What exactly is \"wpcollector\" in WebSphere Portal Server? I've been told to get wpcollector output? What exactly is this?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0041",
+      "techqa-validation-0193"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q148",
+    "query": "How do I have to prepare WAS and BPM servers, if DST or time zones will change? Daylight Saving Time (DST) or time zones will change in our country (e.g. 26.10.2014 in Russia).How do I have to prepare the WAS and BPM servers in our environment?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0042",
+      "techqa-validation-0194"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q087",
+    "query": "Is WMB v7 compatible with MQ v8? This Q&A is abstracted from a PMR\nPlanning a tiered upgrade, MQ then broker.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0043",
+      "techqa-validation-0195"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q175",
+    "query": "Would like to know if WebSphere Extreme Scale  is leap year and leap second compliant. Is there any documentation that talks about this? Would like to know if WebSphere Extreme Scale is leap year  compliant. Is there any documentation that talks about this? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0044",
+      "techqa-validation-0196"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q046",
+    "query": "Cannot delete folder in Box collab folder \n\nIn an ICM 5.3.0 environment integrated with Box, after setting up Box Collaboration, case worker can create Box collaboration folder, and can create folders and files under Box collaboration folder, however, they cannot delete the their folders and files.\n\nCase worker's default permission is 'Viewer Uploader' and case worker cannot add permission more than editor (Editor/Co-owner/Owner). So case worker can add new folder/file and edit file, but cannot delete folder/file.\n\nThe question is, why cannot case worker have permission more than editor?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0045",
+      "techqa-validation-0197"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q123",
+    "query": "Resource registry with IIB \n\nHi Team, \n\nI do had a scenario to be accomplished in IIB, in which one input should be passed from MQ and the other should be passed from FILE(for this i have been using Resource Registry Concept) and in order to specify mrc file i have modified dtx.ini file which is located in Integration server Insatllation directory but when the flow has been deployed an exception is being raised with the error message stating \"Source not found\" .\n\nFYI - When i tried the RR from Design Studio it is working absolutely fine.\n\nIs there something i need to configure/modify so that the mrc file will be accessible to the map in IIB flow as well.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0046",
+      "techqa-validation-0198"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q024",
+    "query": "Why is my .NET client not connecting and the QMgr records a DBCS error (AMQ6048)? I upgraded to WMQ 7.5.0.x client and now my .NET application fails to connect to the QMgr. The error received on the QMgr side was AMQ6048. What's going on?\n AMQ6048: DBCS error\n\n EXPLANATION:\n WebSphere MQ is unable to convert string data due to a DBCS error.\n Conversion is from CCSID 1208 to CCSID 1252.\n ACTION:\n Check the WebSphere MQ Application Programming Reference Appendix and\n the appropriate National Language Support publications to see if the\n CCSIDs  are supported by your system.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0047",
+      "techqa-validation-0199"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q004",
+    "query": "Error #2070 I purchased the SPSS grad pack and put one of the licenses on one computer and another on this one. This computer crashed and I was forced to reformat the hard drive. Subsequently, I lost SPSS in the process. After reinstalling the program, when I attempted to open a data set I received this error:\n\nError # 2070 The application is unable to communicate properly with the license server. The license server may be down, or there may be other network-related communication or DNS issues interfering. This command is not executed. Specific symptom number: 3",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0048",
+      "techqa-validation-0200"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q028",
+    "query": "Help with Security Bulletin: Multiple vulnerabilities have been identified in WebSphere Application Server shipped with WSRR (CVE-2015-4911) I need to understand details regarding Security Bulletin: Multiple vulnerabilities have been identified in WebSphere Application Server shipped with WebSphere Service Registry and Repository (CVE-2015-4911). Where can I find this information? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0049",
+      "techqa-validation-0201"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q233",
+    "query": "How does configuring \"hung threads detection\" impact performance of a production WAS server? I took a pmr about hung issue on Solaris. Customer said he couldn't collect MG data because the issue always happened at night. So I let him to configure hung detection policy by adding JVM arguments (alarm threads hung). He said it was production server and worried about any impact performance.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0050",
+      "techqa-validation-0202"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q160",
+    "query": "How to increase the HTTP Session time-out value for Workplace application on WebSphere Application Server? We would like to increase the HTTP Session time-out value for our Workplace application. Where are all the locations that this value is set and what are their precedence? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0051",
+      "techqa-validation-0203"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q130",
+    "query": "Improve Performance of Decision Center and Rule Team Server (RTS) How can I improve the performance of ODM Decision Center and WebSphere ILOG Rule Team Server (RTS)? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0052",
+      "techqa-validation-0204"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q235",
+    "query": "Security Bulletin: A vulnerability in IBM Java Runtime affects IBM WebSphere MQ (CVE-2016-3485) I need to understand details regarding Security Bulletin: A vulnerability in IBM Java Runtime affects IBM WebSphere MQ (CVE-2016-3485). Where can I find this information?\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0053",
+      "techqa-validation-0205"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q191",
+    "query": "Why does my install of the latest Installation Manager on a Linux Ingram Server not function? Why does my install of the latest Installation Manager on a Linux Ingram Server not function?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0054",
+      "techqa-validation-0206"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q031",
+    "query": "Unable to run Test Suites against clustered SSP from Decison Center console I have a clustered Decision Server where XU and SSP are deployed on cluster members and Rule Execution Server (RES) console is deployed on a standalone server outside of the cluster. IHS and a load balancer is configured on top of the cluster. In Decision Center, the RES server URL is configured with the load balanced IP. Test Suite fails to run from Decision Center console in this configuration.\n\nAfter clicking on Run from Decision Center console, the process starts, but after a few seconds, execution stops with a message: Cannot execute the scenario suite xxx. The operation was aborted by user.\n\nNo errors shown in Decision Center and Decision Server server logs. The only error seen is from the browser and no stack trace is displayed.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0055",
+      "techqa-validation-0207"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q276",
+    "query": "MessageSet Project cannot be referenced in multiple Applications \n\nThe same MessageSet Project cannot be referenced in multiple Applications or Libraries in WMB V8.\n\nIs there any specific reason for having this restriction ?\n\nThanks.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0056",
+      "techqa-validation-0208"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q228",
+    "query": "javax.xml.bind.UnmarshalException org.xml.sax.SAXParseException: The reference to entity must end with the ; delimiter. \n\nAfter an upgrade from JRules to ODM we are receiving errors because of an ampersand in our data. This used to work before.\n\nCaused by: javax.xml.bind.UnmarshalException\n- with linked exception: [org.xml.sax.SAXParseException: The reference to entity \"NIGHT\" must end with the ; delimiter.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0057",
+      "techqa-validation-0209"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q302",
+    "query": "How can I export a private key from DataPower Gateway Appliance? \n\nIs it possible to export a private key from DataPower Gateway Appliance?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0058",
+      "techqa-validation-0210"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q128",
+    "query": "IIS/SSL related error after appliying FP41 on WAS7.0 \n\nhi\n\nGetting below error while hitting the application URL, after upgrading fix pack from 7.0.0.29 to 7.0.0.41\n\nSSLHandshakeE E SSLC0008E: Unable to initialize SSL connection. Unauthorized access was denied or security settings have expired. Exception is javax.net.ssl.SSLHandshakeException: Client requested protocol SSLv3 not enabled or not supported",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0059",
+      "techqa-validation-0211"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q075",
+    "query": "My BPM 8.5.5 system has internet access. But I cannot upgrade to 8.5.6 from IM directly I have a BPM 8.5.5 system with internet access. But when I tried to upgrade BPM to 8.5.6 from Installation Manager with \"Update\", it failed with java.lang.NullPointerException",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0060",
+      "techqa-validation-0212"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q132",
+    "query": "What is the meaning of value \"unknown\" for ITCAM WAS Application Status attribute? What is the meaning of value \"unknown\" for ITCAM WAS Application Status attribute?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0061",
+      "techqa-validation-0213"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q159",
+    "query": "Help with Security Bulletin: IIB is affected by WebAdmin Session Timeout vulnerability (CVE-2017-1693) I need to understand details regarding Security Bulletin: IBM Integration Bus is affected by WebAdmin Session Timeout vulnerability (CVE-2017-1693). Where can I find this information? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0062",
+      "techqa-validation-0214"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q268",
+    "query": "ODR OOM issue I got ODR OOM after upgrading the WAS to v8553. No configuration or traffic load changing. Do I need a fix pack?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0063",
+      "techqa-validation-0215"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q076",
+    "query": "Why is Oracle agent (rz) reporting listeners and services as 'Inactive' even when those are active? On Unix/Linux, the Extended Oracle agent sends false alert for listener status. All listeners and services in Net Service Connection workspace show as inactive.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0064",
+      "techqa-validation-0216"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q156",
+    "query": "Help with Security Bulletin: Malicious File Download vulnerability in IBM Business Process Manager (BPM) and WebSphere Lombardi Edition (WLE) - CVE-2016-9693 Where can I find information for Security bulletin: Malicious File Download vulnerability in IBM Business Process Manager (BPM) and WebSphere Lombardi Edition (WLE) - CVE-2016-9693? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0065",
+      "techqa-validation-0217"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q002",
+    "query": "Unable to open profile from P8 Content Engine Configuration manager (CMUI) on Redhat Linux 7.2, getting GPF and javacore dump. \n\nLaunch configmgr then try to open an existing profile. Once I click ok on the dialog box to\n\"Verify your application server setting before proceeding...\" Configuration manager would crash and GPF. I can see the javacore.txt and dmp file created.\nThe javacore.txt contains the following:\n\n0SECTION TITLE subcomponent dump routine NULL =============================== 1TICHARSET UTF-8 1TISIGINFO Dump Event \"gpf\" (00002000) received 1TIDATETIME Date: 2016/05/05 at 04:53:30 1TIFILENAME Javacore filename: /opt/IBM/FileNet/ContentEngine/tools/configure/javacore.20160505.045330.25035.0002.txt 1TIREQFLAGS Request Flags: 0x81 (exclusive+preempt) 1TIPREPSTATE Prep State: 0x100 (trace_disabled) 1TIPREPINFO Exclusive VM access not taken: data may not be consistent across javacore sections NULL ------------------------------------------------------------------------ 0SECTION GPINFO subcomponent dump routine NULL ================================ 2XHOSLEVEL OS Level : Linux 3.10.0-327.13.1.el7.x86_64 2XHCPUS Processors - 3XHCPUARCH Architecture : x86 3XHNUMCPUS How Many : 1 3XHNUMASUP NUMA is either not supported or has been disabled by user NULL\n1XHEXCPCODE J9Generic_Signal_Number: 00000004 1XHEXCPCODE Signal_Number: 0000000B 1XHEXCPCODE Error_Value: 00000000 1XHEXCPCODE Signal_Code: 00000080 1XHEXCPCODE Handler1: F72A2E6A 1XHEXCPCODE Handler2: F724D00A 1XHEXCPCODE InaccessibleAddress: 00000000 NULL\n1XHEXCPMODULE Module: /lib/libcairo.so.2 1XHEXCPMODULE Module_base_address: D55FC000\n\nThis is a Redhat Linux 7.2 environment with Content Platform Engine CPE 5.2.1.4.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0066",
+      "techqa-validation-0218"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q200",
+    "query": "Improve Performance of Rule Designer (ODM) and Rule Studio (JRules) How can I improve the performance when working with ODM Rule Designer or WebSphere ILOG JRules Rule Studio? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0067",
+      "techqa-validation-0219"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q090",
+    "query": "RTW eclipse license error  I get a RTW eclipse license error on IM stating server is available, but license is not available. License is imported fine on license key admin and RPT floating license and RIT floating license shows on the  pc end on license key admin 8.1.3, but not showing on IM. \n\nRTW 8.5\n\nWhat to do? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0068",
+      "techqa-validation-0220"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q207",
+    "query": "Improve Performance of Decision Validation Services (DVS) and Decision Warehouse How can I improve the performance of Decision Validation Services (DVS) and Decision Warehouse? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0069",
+      "techqa-validation-0221"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q279",
+    "query": "Are there any known issue or limitation to LOAD data using ADMIN_CMD stored procedure? Hello,\n\nWe have JDBC applications on WebShpere, LOAD data using ADMIN_CMD. Now, we are planning to use them under XA environment. Are there any known issue or limitation to LOAD data using ADMIN_CMD under XA environment?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0070",
+      "techqa-validation-0222"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q165",
+    "query": "DSNT408I SQLCODE -401 creating stored procedure CIUSNTSR after upgrading to DB2 11 Why would CIUSNTSR stored procedure creation fail with message DSNT408I and SQLCODE=-401? I am running CICS Interdependency Analyzer for z/OS (CICS IA) CIUDBCQ JCL when the failure occurs. This happened after I upgraded z/OS DB2 to V11. \nHere are the messages I receive:\n DSNT408I SQLCODE = -401, ERROR:  THE OPERANDS OF AN ARITHMETIC OR COMPARISON OPERATION ARE\n NOT COMPARABLE\n DSNT418I SQLSTATE  = 42818 SQLSTATE RETURN CODE\n DSNT415I SQLERRP   = DSNXOBFC SQL PROCEDURE DETECTING ERROR\n DSNT416I SQLERRD   = 930 0  1  -1  0  0 SQL DIAGNOSTIC INFORMATION\n DSNT416I SQLERRD   = X'000003A2' X'00000000' X'00000001' X'FFFFFFFF' X'00000000' X'00000000'\n SQL DIAGNOSTIC INFORMATION",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0071",
+      "techqa-validation-0223"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q071",
+    "query": "Why is Connection Refused on the ITCAM Managing Server? ITCAM Data Collector connection to the Managing Server fails with Connection Refused. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0072",
+      "techqa-validation-0224"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q177",
+    "query": "After AIX TL/SP/FP update my TSAMP cluster no longer functions. After applying update to AIX to bring it up to 7100-05-01-1731 which includes RSCT 3.2.3.0 I noticed that neither IBM.GblResRM nor IBM.RecoveryRM would stay operative in \"lssrc -g rsct_rm\" output. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0073",
+      "techqa-validation-0225"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q142",
+    "query": "Invalid operation: result set is closed. ERRORCODE=-4470, SQLSTATE=null When using BPM, I see runtime exceptions saying that this SQL error occurs: Invalid operation: result set is closed. ERRORCODE=-4470, SQLSTATE=null\n\nFor example:\n\nCWLLG2015E: An unexpected runtime exception occurred. See exception for more details. Error: Wrapped com.lombardisoftware.core.TeamWorksRuntimeException:",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0074",
+      "techqa-validation-0226"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q203",
+    "query": "Why WebSphere Application Server transactions are rolled back with these StaleConnectionExceptions? Why WebSphere Application Server transactions are rolled back with these StaleConnectionExceptions?\nMy transactions are rolled back and the following errors are seen in the WebSphere Application Server logs:\n\nConnectionEve A J2CA0056I: ........ ........ Connection reset:java.net.SocketException: Connection reset [15/03/04 1:04:33:046 JST] 00000024 SystemOut O INFO Error executing internal sql (executing callable statement) com.ibm.websphere.ce.cm.StaleConnectionException: IO?G??ñ[: Connection reset at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) at \n...\nSee original exception message: ...... with SQL State : 08003 SQL Code : 17008 ..... .....\nCaused by: java.sql.SQLRecoverableException: .......DSRA0010E: SQL State : 08003 SQL Code : 17008",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0075",
+      "techqa-validation-0227"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q025",
+    "query": "How to import a certificate in ITCAM for Data Power ? How can I import a certificate in ITCAM for Data Power?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0076",
+      "techqa-validation-0228"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q034",
+    "query": "Profiler for WebSphere 8 \n\nHi,\n\nWe noticed that a was application server uses 1,4 Go of memory at startup, we would like to understand what java classes are using most part of it.\n\nIs a Java profiler provided by default with WAS 8.0 ? Is there something to activate via the WAS admin console ?\n\n \n\nThanks a lot",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0077",
+      "techqa-validation-0229"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q293",
+    "query": "BPM installation packages and deployment options What is the difference between \"Advanced\" and \"AdvancedOnly\" options for BPM deployment environment? What is the difference between \"BPM Advanced\" and \"BPM Advanced - Process Server\" installation images?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0078",
+      "techqa-validation-0230"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q192",
+    "query": "Cannot open module in exclusive edit - (no such file or directory)  Hello.\n\nI have a module, that I can open normally, but when I try to open it in Exclusive Edit it tells me that \"no such file or directory\"\n\nIs this a known problem?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0079",
+      "techqa-validation-0231"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q185",
+    "query": "What can I do when I receive CWZIP9602E, CWZIP9604W and CWZIP4514E with Call Home? I received the following critical events after enabling CallHome on my PureApplication System v.2.0.0.1:\nCWZIP4514E: Configuration Settings for Call Home are not configured properly.\nCWZIP9602E: Service53 is failed offline at node and cannot be restarted.\nCWZIP9604W: Service53 failed. The high availability component will attempt to recover the service.\nWhat can I do?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0080",
+      "techqa-validation-0232"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q057",
+    "query": "Help with Action required for IIB H.E.V9 & WMB H.E. V8 for security vulnerabilities in Red Hat Linux (CVE-2017-12150, CVE-2017-12151, CVE-2017-12163) \n\nI need to understand details regarding Action required for IBM Integration Bus Hypervisor Edition V9.0 and WebSphere Message Broker Hypervisor Edition V8.0 for security vulnerabilities in Red Hat Linux. This is related to CVE-ID:\nCVE-2017-12150\nCVE-2017-12151\nCVE-2017-12163\n\nWhere can I find this information?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0081",
+      "techqa-validation-0233"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q082",
+    "query": "Help with Security Bulletin: IIB is affected by Web UI security vulnerability (CVE-2017-1694) I need to understand details regarding Security Bulletin: IBM Integration Bus is affected by Web UI security vulnerability (CVE-2017-1694). Where can I find this information? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0082",
+      "techqa-validation-0234"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q140",
+    "query": "Why get SQL1227N when replay db2look output on DB2 V9.7 FP11? Why get below SQL1227N when replay db2look output on DB2 V9.7 FP11?\n\n     -----\n     UPDATE SYSSTAT.COLUMNS SET COLCARD=4, NUMNULLS=1, SUB_COUNT=-1, SUB_DELIM_LENGTH=-1, \n     AVGCOLLENCHAR=7, HIGH2KEY='', LOW2KEY='        ', AVGCOLLEN=12 WHERE COLNAME = 'COL1' \n     AND TABNAME = 'TAB1' AND TABSCHEMA = 'DB2INST1'\n     DB21034E  The command was processed as an SQL statement because it was not a\n     valid Command Line Processor command.  During SQL processing it returned:\n     SQL1227N  The catalog statistic \"\" for column \"HIGH2KEY\" is out of range for\n     its target column, has an invalid format, or is inconsistent in relation to\n     some other statistic. Reason Code = \"3\".  SQLSTATE=23521\n     -----",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0083",
+      "techqa-validation-0235"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q055",
+    "query": "Table \"\".\"\" could not be found \n\nWhen doing a table mapping with DB2 as source, selecting a table which contains special characters on column comments like:\n\nCOMMENT ON COLUMN .. IS 'Test comment ‘1’ complete';\n\nMapping fails with following error message: Table . could not be found in the database. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0084",
+      "techqa-validation-0236"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q169",
+    "query": "Migrating to JRules v7.1 How do I migrate to WebSphere ILOG JRules v7.1? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0085",
+      "techqa-validation-0237"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q306",
+    "query": "Unable to view batches in DotEdit \n\nHi all,\n\nIs there any limitation to view batches in Dot Edit client application, because I am unable to see batches with QID more than 1119.\n\nAlso unable to see batches with status as \"Pending\". \n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0086",
+      "techqa-validation-0238"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q301",
+    "query": "SPSS 24 License \n\nHi, Just restored my Mac from a back up. My license code stoped working. I get this message \"Authorization in progress ... (-------------------------------------) Authorization failed.: You are not allowed to generate any more new licenses. End Of Transaction.\nNo additional authorizations are permitted on this code. For assistance go to www.ibm.com/planetwide and select your country in order to place a support case online or by phone. Please have your IBM Customer Number or purchase details available. \"\n\nCan you please help ?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0087",
+      "techqa-validation-0239"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q211",
+    "query": "You want to know how to make persistent the events that indicate when a queue manager has started and stopped. You want to know how to make persistent the events that indicate when a queue manager has started and stopped.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0088",
+      "techqa-validation-0240"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q219",
+    "query": "Big increase in the amount of trace spool data from TSAMP Recently it was noticed that our trace spool directories were filling up much quicker. There are thousands of refreshOpState messages in the trace files. What is causing all these messages all of a sudden ? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0089",
+      "techqa-validation-0241"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q198",
+    "query": "Why is CSV002I occurring for CSQADITB? An application is getting repeated errors: \nCSV002I REQUESTS FOR MODULE CSQADITB EXCEED MAXIMUM USE COUNT\n\nRestarting the application clears the error messages for a while. Why is this occurring?\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0090",
+      "techqa-validation-0242"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q202",
+    "query": "Why is installation manager cores when try to install netcool using GUI mode in AIX 7.1? IBM Installation Manager Cores when running in GUI mode on AIX 7.1 ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0091",
+      "techqa-validation-0243"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q027",
+    "query": "How to create batches for bulk upload \n\nI am new in datacap 9.0 .I just started developing with datacap studio and currently I have learned  to recognize, capture and export the data into filenet.\n\nNow I want to Create batches of image or pdf files so that I can process images and pdf .\n\n \n\nAs per requirement client is sharing document at one shared location.I need to pickup all the documnets from shared location. For creating batches which tool I should use? how it works?\n\n \n\nCan anyone help how I proceed with this.\n\n \n\nRegards,\n\nChhaya Sahu\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0092",
+      "techqa-validation-0244"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q226",
+    "query": "How to check IBM Java ORB build version in WebSphere Application Server? Just a simple question:How to check IBM Java ORB build version in WebSphere Application Server?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0093",
+      "techqa-validation-0245"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q262",
+    "query": "Table \"\".\"\" could not be found \n\nWhen doing a table mapping with DB2 as source, selecting a table which contains special characters on column comments like:\n\nCOMMENT ON COLUMN .. IS 'Test comment ‘1’ complete';\n\nMapping fails with following error message: Table . could not be found in the database.  What's the reason for the error?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0094",
+      "techqa-validation-0246"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q281",
+    "query": "'Save and Close' and 'Save' buttons grayed out in desktop configuration In IBM Content Navigator, when configuring a desktop, the 'Save and Close' and 'Save' buttons may be disabled. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0095",
+      "techqa-validation-0247"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q083",
+    "query": "How do you configure the IBM HTTP Server 7 to 8.5 on z/OS for Host On-Demand V11? The IBM HTTP Server powered by Domino will no longer be shipped with z/OS 2.2, so how can system administrators of Host On-Demand convert to the IBM HTTP Server V7 to V8.5?\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0096",
+      "techqa-validation-0248"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q187",
+    "query": "Help with Security Bulletin: Multiple Vulnerabilities identified in IBM Java SDK affect WSRR I need to understand details regarding Security Bulletin: Multiple Vulnerabilities identified in IBM® Java SDK affect WebSphere Service Registry and Repository, in particular CVE-2017-10115. Where can I find this information? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0097",
+      "techqa-validation-0249"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q127",
+    "query": "Help with Security Bulletin: Vulnerability in IBM Java Runtimes affect Websphere Business Modeler Advanced and Websphere Business Modeler Basic (CVE-2015-0138) I need to understand details regarding Security Bulletin: Vulnerability in IBM Java Runtimes affect Websphere Business Modeler Advanced and Websphere Business Modeler Basic (CVE-2015-0138). Where can I find this information?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0098",
+      "techqa-validation-0250"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q131",
+    "query": "Refining search results by content type in Quickr doesn't work as expected Question: Refining of search results returned in the Search Center by clicking on content types eg: blogs and wikis does not return any reduced result set. The only refining content type which works is 'files' ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0099",
+      "techqa-validation-0251"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q080",
+    "query": "Why is the OUTPUT_TYPE specified in the properties file for the custom scripting feature ignored? \n\nWhy is the OUTPUT_TYPE specified in the properties file for the custom scripting feature ignored in ITM V6?\n\nSpecifying \"I\" for INTEGER, or \"F\" for FLOAT for the OUTPUT_TYPE doesn't work, but specifying OUTPUT_TYPE=S results in STRING type for the first token.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0100",
+      "techqa-validation-0252"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q273",
+    "query": "Why am I now seeing an SqlDataException for Unsupported ccsid, encoding, or locale after moving to Java 8.0  with WebSphere Application Server 8.5? \n\nThe requests using the DB2 JDBC driver are failing with:\n\ncom.ibm.db2.jcc.am.SqlDataException: [jcc][t4][10275][10041][4.19.56] Unsupported ccsid, encoding, or locale: \"Cp037\". ERRORCODE=-4220, SQLSTATE=22021\n\nCaused by: java.io.UnsupportedEncodingException: Cp037 at sun.io.Converters.getConverterClass(Converters.java:319) at sun.io.Converters.newConverter(Converters.java:373) at sun.io.ByteToCharConverter.getConverter(ByteToCharConverter.java:98) at com.ibm.db2.jcc.am.s.(Unknown Source) at com.ibm.db2.jcc.am.q.a(Unknown Source) ... 42 more",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0101",
+      "techqa-validation-0253"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q214",
+    "query": "Why is my PDWDB flooded with irrelevant tracking data which is not related to process instances ? My PDWDB does show a huge amount of data residing on the PDWDB table/view for TASKS. Most of the data does only have an ID and is not related to process instances ? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0102",
+      "techqa-validation-0254"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q005",
+    "query": "I am getting a random invalid handle exception for my MQ .NET client applicatoin. While running a MQ .NET application, I get the following exception at random times:\n\n   Event Type:                 Error\n   Event Source:             ClientApplicationName\n   Event Category:        None\n   Event ID:  0\n   Date:                             8/12/2015\n   Time:                             7:19:51 AM\n   User:                             N/A\n   Computer:                  TXPILAP01\n   Description:\n    System.ComponentModel.Win32Exception (0x80004005): The handle is invalid\n    at System.Diagnostics.NtProcessManager.GetModuleInfos(Int32\n    processId, Boolean firstModuleOnly)\n    at System.Diagnostics.ProcessManager.GetModuleInfos(Int32 processId)\n    at System.Diagnostics.Process.get_Modules()\n    at IBM.WMQ.Nmqi.UnmanagedNmqiMQ.MQCONNX(String pQMgrName, MQCNO&\n    pConnectOpts, Hconn parentHconn, Phconn phconn, Int32& pCompCode,\n    Int32& pReason)\n    at IBM.WMQ.Nmqi.UnmanagedNmqiMQ.MQCONNX(String pQMgrName,\n    MQConnectOptions pConnectOpts, Phconn phconn, Int32& pCompCode, Int32&\n    pReason)\n    at IBM.WMQ.MQQueueManager.Connect(String queueManagerName)\n    at IBM.WMQ.MQQueueManager..ctor(String queueManagerName, String\n    Channel, String ConnName)\n    at ClientApplicationName.ServiceAgents.Integration.MQISA.\n    InitializeQueueManager(String queueManagerName)\n    at ClientApplicationName.ServiceAgents.Integration.MQISA.SendRequest\n    (String request)",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0103",
+      "techqa-validation-0255"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q216",
+    "query": "Error message 1311 when attempting to install SPSS 23 on Windows 10. \n\nI have downloaded SPSS 23 onto a Windows 10 operating system. The computer previously had SPSS, however the computer crashed and SPSS needs be installed on the new operating system. When trying to install the program the following error message appears Error 1311. Source file not found.\n\nScreenshot attached.\nerror-messg.png (50.7 kB)",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0104",
+      "techqa-validation-0256"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q088",
+    "query": "CQWEB  can\\'t retrieve repository dropdown list options in RedHat Linux, how to deal with it ? I setup a cq demo env in redhat linux with oracle database, CQ 7.1.2, LRKS 8.1.3,  Linux CQ client can login CQ as the following picture 1, but CQWEB login page can't retrieve the repository dropdown list options as the following picture 2.  I used cqreg to register CQ database:\n\ncqreg add_dbset -v ORACLE -s 192.168.0.84 -d ESBDB -u cqadmin -p cqadmin -dbset CQ_DEMO_ORACLE -co LOB_TYPE=CLOB -force\n\nWhat's matter for this happen? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0105",
+      "techqa-validation-0257"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q041",
+    "query": "Has ITCAM for J2EE 7.1.1 IF4 been released? Has ITCAM for J2EE 7.1.1 IF4 been released? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0106",
+      "techqa-validation-0258"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q178",
+    "query": "Need support info for ITCAM and WAS 8.5.5.x monitoring What ITCAM for AD/WAS versions and maintenance levels support monitoring of WAS 8.5.5.x?\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0107",
+      "techqa-validation-0259"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q240",
+    "query": "Port number error starting 9.0 Launcher \n\nI'm attempting to start up v9.0 for the first time with one .msl file on a Windows server and get the following error.  I also have v8.4 on this server and it starts fine.  I do not have v8.4 running when I attempt to start v9.0.\n\nCannot recognize if the system RecordChangeSystem.msl; has started. Reason: Server is unable to get the status of the system on port number 6,002.\n\nI have the port range set to 7000/8000.  I've never seen this error before.\n\nAny help?  Thanks.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0108",
+      "techqa-validation-0260"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q006",
+    "query": "After applying cumulative fix, why does xmlaccess use the base portal instead of the virtual portal when attempting an export or import? After applying a cumulative fix (CF) to WebSphere Portal 8.5 (with no other CF currently applied), attempts to export from or import to a virtual portal result in the action occurring against the base portal. This can be confirmed when looking at the exported xml and seeing the following in the initial comment of the export: \nvirtual portal: none (default virtual portal) ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0109",
+      "techqa-validation-0261"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q053",
+    "query": "After uninstalling Portal 8.0 only from my WAS environment my subsequent attempts to install Portal 8.0 into that same existing WAS fails. \n\nI installed Portal 8.0.0.1 CF12 with an existing WAS 8.0.0.8 application server and everything was successful. I want to script my install so I uninstalled Portal 8.0.0.1 only and was left with an existing WAS 8.0.0.8...as before. However, when I attempt to reinstall Portal 8.0.0.1 into that same existing WAS 8.0.0.8 to test my scripting I get the following error immediately:\n\nERROR: The required version 8.0.0.5 or later of WebSphere Application Server has not been detected on this system. Select the WebSphere Application Server Package to install WebSphere Application Server and WebSphere Portal.\n\nIIM shows WAS as installed, so I am not sure what is causing this behavior when it installed fine just a few hours ago.\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0110",
+      "techqa-validation-0262"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q247",
+    "query": "IID 8.5.7 failed to start due to \"Java was started but returned exit code=-805306369\" We have installed new IID 8.5.7 on Windows 7 on VMware. The installation was successed. However, IID failed to launch always. The dialog shows \"Java was started but returned exit code=-805306369\". The IID log shows BundleStatusException. How do we resolve this?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0111",
+      "techqa-validation-0263"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q257",
+    "query": "How to control SDMS database size? \n\nHi,\n\nITCAM for SOA 7.1.1 was installed about 3 years ago. I already know that SDMS database size may increase with no limit. Has anyone found a way to keep under control this behavior?\n\nThanks",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0112",
+      "techqa-validation-0264"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q152",
+    "query": "Why are we no longer able to login to the WAS Administrative Console after adding an Active Directory Server as registry? \n\nWe have WAS ND 8.5.5.10 in use and have added our Active Directory Server to the Federated Repositories. Via the Administrative Console we used 'root' as base entry for this registry. After restarting the dmgr, we see NameNotFoundExceptions like the following in SystemOut.log:\n\n     [12/22/16 17:00:24:214 CET] 00000001 exception     E com.ibm.ws.wim.adapter.ldap.LdapConnection search(String, String, Object[], SearchControls) CWWIM4520E  The 'javax.naming.NameNotFoundException: [LDAP: error code 32 - 0000208D: NameErr: DSID-031001E5, problem 2001 (NO_OBJECT), data 0, best match of:\n         ''\n     \\u0000]; Remaining name: '/'; Resolved object: 'com.sun.jndi.ldap.LdapCtx@4ca226a8'' naming exception occurred during processing.\n         at com.ibm.ws.wim.adapter.ldap.LdapConnection.search(LdapConnection.java:3279)\n         at com.ibm.ws.wim.adapter.ldap.LdapConnection.checkSearchCache(LdapConnection.java:3122)\n         at com.ibm.ws.wim.adapter.ldap.LdapConnection.search(LdapConnection.java:3299)\n         at com.ibm.ws.wim.adapter.ldap.LdapConnection.searchEntities(LdapConnection.java:3520)\n         at com.ibm.ws.wim.adapter.ldap.LdapAdapter.search(LdapAdapter.java:3524)\n         at com.ibm.ws.wim.ProfileManager.searchRepository(ProfileManager.java:5331)\n\nFurthermore, we are no longer able to login to Administrative Console and get displayed the error message Invalid User ID or password.\n\nWhy does this happen and how can we fix this?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0113",
+      "techqa-validation-0265"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q295",
+    "query": "Why are we seeing high CPU and hung threads in WebSphere Application Server? During the job execution in WebSphere Compute Grid we are seeing high CPU along with many hung threads reporting\nWSVR0605W from BatchFileLoggerInfo.getDirectoryList method.\nIn Sysprint many threads are hung with this stack:\nBossLog: { 0426} <time stamp> SYSTEM=CPU4 CELL=FGDCELL NODE=FGDNODE4 CLUSTER=WFGDS1 SERVER=WFGDS14 PID=0X060835 TID=0 X2ED98E0000000162 t=8897F0 c=UNK ./bbgrjtr.cpp+733 tag= ... BBOO0221W: WSVR0605W: Thread \"WebSphere WLM Dispatch Thread t=008a6b70\" (0000006a) has been active for 683953 milliseconds and may be hung.\n....",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0114",
+      "techqa-validation-0266"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q121",
+    "query": "Job Execution Node for IIB V10 I'm looking for a way in IIB V10 to execute/invoke scripts or jobs on different operating systems like windows or System i (AS400). After a little research i found out that there is a Job Execution Node for the IIB V9, which seems to cover the requirements. Is there a Job Execution Node for the IIB V10, or an other appropriate node for the requirements?\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0115",
+      "techqa-validation-0267"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q309",
+    "query": "Help with Security Bulletin: Vulnerability in Diffie-Hellman ciphers known as Logjam affects WMB & IIB (CVE-2015-4000) I need to understand details regarding Security Bulletin: Vulnerability in Diffie-Hellman ciphers known as Logjam affects IBM WebSphere Message Broker and IBM Integration Bus (CVE-2015-4000). This vulnerability is commonly referred to as \"Logjam\". Where can I find this information?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0116",
+      "techqa-validation-0268"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q117",
+    "query": "Migrating ITCAM for AD 7.1 agent to ITCAM for WebSphere Applications v7.2 agent Is there a suggested migration path from ITCAM for AD v7.1 agent to ITCAM for WebSphere Applications v7.2 agent and Data Collector?\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0117",
+      "techqa-validation-0269"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q122",
+    "query": "Importing Asset GL Errors  When importing or syncing with assets, I receive the following error for the glaccount.\n\nInternal Server Error\nError 500: nested exception is: psdi.util.MXAccessException: BMXAA4198E - The GL attribute TLOAMNEWGLACCOUNT on object {1} requires an organization. Specify a value in the Organization field.\n  ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0118",
+      "techqa-validation-0270"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q120",
+    "query": "Why do we get server error message when running BIRT reports after upgrading to Atlas 6.0.3.3? Why do we get server error message when running BIRT reports after upgrading to Atlas 6.0.3.3? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0119",
+      "techqa-validation-0271"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q078",
+    "query": "WebSphere MQ Hypervisor Edition requires customer action for the GNU C library (glibc) vulnerabilities (CVE-2015-1472) Where can I find additional information on what action is required?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0120",
+      "techqa-validation-0272"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q114",
+    "query": "Any difference between DB2 z/OS V9.1 + IBM Cobol and DB2 LUW V10.5 FP7 + MF Cobol? We are planning below migration.\n\n[Current]\nDB2 z/OS V9.1 + IBM Cobol\n[New]\nDB2 AESE V10.5 FP7 / AIX V7.1 + Micro Focus Cobol (MF Cobol)\n\nAny known limitation or things what we need to concern?\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0121",
+      "techqa-validation-0273"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q064",
+    "query": "Is MQ or MQ Appliance impacted by Sweet32 Birthday Attack if we are running triple-DES cipher.? Is MQ or MQ Appliance impacted by Sweet32 Birthday Attack if we are running triple-DES cipher.?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0122",
+      "techqa-validation-0274"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q201",
+    "query": "Why are HTML documents not rendering  and just shown as plain text after upgrading and installing ifixes to BPM? After upgrading BPM, my HTML documents that were once rendering are no longer being displayed correctly and are being shown as plain text. This is happening in multiple web browses. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0123",
+      "techqa-validation-0275"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q274",
+    "query": "VMware agent SSL hand shake failure after ESX upgrade \n\nWe did an update to our VCentre server, bringing it to 5.5 update 3e, i.e. 5.5.0,4180647 As a result the VMware agent does not connect now and logs this error:\n\nSEVERE: Connection.open: SSL handshake failed to: 192.168.1.2\n\nWe switched off SSL certification validation but it did not solve.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0124",
+      "techqa-validation-0276"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q286",
+    "query": "Executing an in-flight task for a deactivated snapshot for WebSphere Lombardi Edition and IBM Business Process Manager (BPM) Why do in-flight tasks stop after the snapshot has been deactivated? This question pertains to WebSphere Lombardi Edition V7.2 and IBM Business Process Manager V7.5.1.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0125",
+      "techqa-validation-0277"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q040",
+    "query": "Why Plug-in log file reports an error message after install & configure the WebSphere Plugin 8.5 version on a Apache 2.4 webserver. \n\nDuring web server start-up, errors like the following will be logged into the Plug-in log file (http_plugin.log):\n\nERROR: lib_security: loadSecurityLibrary: Failed to load gsk library from /opt/IBM/WebSphere/Plugins/gsk8/gsk8_64 ERROR: ws_transport: transportInitializeSecurity: Unable to load security library ERROR: ws_server: serverAddTransport: Failed to initialize security ERROR: ws_server: serverAddTransport: HTTPS Transport is skipped\n\nNote: This is after install & configure the WebSphere Plugin 8.5 version on a Apache 2.4 webserver  on a Linux platform",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0126",
+      "techqa-validation-0278"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q190",
+    "query": "Is it possible to use  Java large pages (-Xlp) parm with ITCAM?  Is this supported? Is it possible to use Java large pages (-Xlp) parm with ITCAM? Is this a supported feature?\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0127",
+      "techqa-validation-0279"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q164",
+    "query": "When should I use conversation sharing in DataPower MQ queue managers? MQ version 7.0 introduced a new feature, conversation sharing.  Are there any special values on DataPower when configuring conversation sharing?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0128",
+      "techqa-validation-0280"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q224",
+    "query": "How do we set HttpOnly and secure flag in Oracle Weblogic 12c to secure IBM Atlas? How do we set HttpOnly and secure flag in Oracle Weblogic 12c to secure IBM Atlas? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0129",
+      "techqa-validation-0281"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q094",
+    "query": "How do I upgrade my virtual DataPower Appliance from 5.0 firmware to 6.0+ firmware? When attempting to upgrade my Virtual DataPower Appliance from 5.0.0.0 firmware version to 6.0+ firmware versions, I receive a failure message. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0130",
+      "techqa-validation-0282"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q263",
+    "query": "How can I check the health of my IBM PureApplication System? How can I check the health of my IBM PureApplication System?\nAre there steps to verify that my system is healthy? Is this something I can do, or does IBM have to verify the health of my system? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0131",
+      "techqa-validation-0283"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q048",
+    "query": "Need to understand what exact counters are needed for the ITM IIS agent? Need to understand what exact counters are needed for the ITM IIS agent to collect website details and web site status. unable to find what \ncounters are required in the IIS doc. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0132",
+      "techqa-validation-0284"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q176",
+    "query": "Would like to know if WebSphere Extreme Scale  is leap year and leap second compliant. Is there any documentation that talks about this? Would like to know if WebSphere Extreme Scale is leap second compliant. Is there any documentation that talks about this? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0133",
+      "techqa-validation-0285"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q212",
+    "query": "Datacap 9.0.1 Application Manager not saving database configs \n\nHi All,\n\n \nI have installed Datacap 9.0.1 and there is a issue of not connecting to Admin and engine DB with Datacap 9.0.1.\n \nThe problem is there for saving admin and engine db configurations.\n \nWhen selected the path it saves but after tab out and tab in it clears admin and engine DB configurations.\n \nEven I tried with exporting and importing keys but no luck.\nRepair and re-install of Datacap is also done but no luck.\n \nPlease let me know if any of had faced similar kind of issue and any solution for it.\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0134",
+      "techqa-validation-0286"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q151",
+    "query": "QUESTION_TITLE QUESTION",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0135",
+      "techqa-validation-0287"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q204",
+    "query": "Best WTX Version to Upgrade to We're a longtime TSI / Mercator / Ascential / WTX user (1996) in the govt. sector and need to upgrade from v8.3.0.3 to remain under support.  The project is very stable, limited to translating 270/271 and similar proprietary formats with only about a dozen maps.  Our upgrade will be in April, 2016.  What stable WTX version would you folks recommend? ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0136",
+      "techqa-validation-0288"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q213",
+    "query": "Can I migrate or convert Workplace XT created Search Templates to Content Navigator? When migrating from Workplace XT to Content Navigator, can I covert or migrate XT created search templates to the ICN version of managed search templates?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0137",
+      "techqa-validation-0289"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q189",
+    "query": "How to wrap table column text in list tab for a specific table? I would like to wrap the text of table column into new a line. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0138",
+      "techqa-validation-0290"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q264",
+    "query": "Gettting error CRIMC1020E: zip im.properties not found during BPM Fix Pack install During the BPM 7.5.1.2 Fix Pack install from the IBM Installation Manager, error window pop up with:\nCRIMC1020E: zip im.properties 1.0.0.200911091101 not found ERROR: `zip im.properties 1.0.0.200911091101` not found in [path to sca.1.0.1.17.fp]. CRIMC1020E: zip config.registry 1.0.0.200911092301 not found\n……\nHow can I resolve this error to complete the Fix Pack installation",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0139",
+      "techqa-validation-0291"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q054",
+    "query": "What are the mustgather for RDz integrated debugger issues or z/OS Debugger? What logs could be collected when experiencing a problem with the integrated debugger in Rational Developer for System Z ?\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0140",
+      "techqa-validation-0292"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q234",
+    "query": "TCR 2.1.1 Fixpack 2 installation failed \n\nI need to install Fixpack 2 on my TCR 2.1.1 environment, but the installation keeps failing with error:\n\n     ACUOSI0050E External command action failed with return code 1.\n\nI was not able to understand why it is failing. Can you please help providing suggestion to perform a correct troubleshooting ?\n\nThanks",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0141",
+      "techqa-validation-0293"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q145",
+    "query": "Why is the reload() not clearing the attribute cache so I can see my newly updated LDAP data in real time? Why is the reload() not clearing the attribute cache so I can see my newly updated LDAP data in real time?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0142",
+      "techqa-validation-0294"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q000",
+    "query": "Web GUI 8.1 FP7 requires DASH 3.1.2.1 or later \n\nYou wanted to install Web GUI 8.1 FP7, but your DASH version does not meet the required version.\n\nIM 1.8 displayed the following:\n\n     ERROR: The installed IBM Dashboard Application Services Hub version is 3.1.0.3, but requires version 3.1.2.1 or later.\n\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0143",
+      "techqa-validation-0295"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q183",
+    "query": "Is there a support's guide to the MTTrapd probe ? Where do you download the Support's guide to the MTTrapd [SNMP] probe ?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0144",
+      "techqa-validation-0296"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q091",
+    "query": "Deploying RuleRunner on a separate server \n\nHello everyone,\n\nI am trying to have a setup as follows:\n\nServer 1: Running Full Datacap Features\nServer 2: Running only the RuleRunner service\n\nI managed to deploy Server 1 successfully and all modules are working.\n\nOn Server 2, I installed the following:\nDatacap Client, Rulerunner, and connectors\n\nI updated the Application Manager on server 2 to point to \\\\server1\\Datacap\\datacap.xml\n\nI can successfully open that path from Server 2 using internet explorer.\n\nWhen I try to open any application such as TravelDocs using Datacap Deskstop from server 2, I receive the following error:\n\nUnable to connect to Datacap application TravelDocs.\n\nAny hints as to what the issue might be ?\n\nRegards\n",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0145",
+      "techqa-validation-0297"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q272",
+    "query": "z/OS Connect Enterprise Edition 3.0 and 2.0 compatibility with CICS TS 5.4 Can z/OS Connect Enterprise Edition V3.0 and V2.0 be used with CICS Transaction Server for z/OS (CICS TS) V5.4? I want to make sure there are no compatibility problems. I would also like to know if there are any specific tasks that I need to perform for the z/OS Connect Enterprise Edition V3.0 and V2.0 when upgrading to CICS TS V5.4. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0146",
+      "techqa-validation-0298"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q138",
+    "query": "How to fix the DB2 errors in Portal ? How could we fix the below DB2 errors in WebSphere Portal:\n\nDB2 SQL Error: SQLCODE=-551, SQLSTATE=42501, SQLERRMC=WPUSER;SELECT;JCR.SHORTCUT_SEQ, DRIVER=4.15.113\n\nDB2 SQL Error: SQLCODE=-727, SQLSTATE=56098, SQLERRMC=2;-551;42501;WPUSER|SELECT|JCR.SHORTCUT_SEQ, DRIVER=4.15.113",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0147",
+      "techqa-validation-0299"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q045",
+    "query": "How can I get a new authorization code for my new computer? I purchased a new computer and would like to install spss 18 on it. I have the gradpack. However, the authorization code failed when I attempted to install the software on my new machine. ",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0148",
+      "techqa-validation-0300"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q086",
+    "query": "Upgraded to  IBM HTTP Server 7.0.0.41, is TLS 1.2 supported? \n\nWe are recently upgraded to IBM HTTP Server 7.0.0.41 and believe it supports TLS 1.0.\n\nPlease let us know what configuration changes or fix pack we need to apply to support TLS 1.2.",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0149",
+      "techqa-validation-0301"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q291",
+    "query": "Is Java 8 supported for BPM? \n\nI understand that support for Java 6 on WebSphere Application Server is ending April 2018, see: http://www-01.ibm.com/support/docview.wss?uid=swg21999583\n\nNow I can switch to Java 7. But what about Java 8? Does BPM support Java 8?",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0150",
+      "techqa-validation-0302"
+    ],
+    "retrieval_gold_status": "not_imported"
+  },
+  {
+    "id": "techqa_DEV_Q225",
+    "query": "Non-admin users cannot access webDAV filestore. What is the likely reason? \n\nA non-admin user trying to access the webDAV filestore is unable to do so and they see the below exception in the portal logs:\n\nCaused by: com.ibm.icm.da.DBAccessException: User id can not be null at com.ibm.icm.da.portable.connection.Logon.logon(Logon.java:159) at com.ibm.icm.da.portable.connection.ConnectionManager.logon(ConnectionManager.java:45)",
+    "language": "en",
+    "split": "validation",
+    "record_ids": [
+      "techqa-validation-0151",
+      "techqa-validation-0303"
+    ],
+    "retrieval_gold_status": "not_imported"
+  }
+]

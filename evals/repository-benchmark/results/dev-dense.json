@@ -1,0 +1,1348 @@
+{
+  "latency_p50_ms": 26.38527099043131,
+  "latency_p95_ms": 28.499666950665414,
+  "configuration": {
+    "backend": "bge",
+    "semantic_model": true,
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "reranker_model": null,
+    "reranker_scope": "text_and_image_captions",
+    "candidate_k": 30,
+    "context_chars": 4000,
+    "rerank": false,
+    "multimodal": false,
+    "chunks": 11168,
+    "sources": 87,
+    "fingerprint": {
+      "backend": "bge",
+      "embedding_model": "BAAI/bge-small-zh-v1.5",
+      "multimodal": false,
+      "chunk_size": 450,
+      "chunk_strategy": "semantic",
+      "refinement_threshold": 0.55,
+      "image_merge_threshold": 0.88,
+      "image_max_side": 768,
+      "image_min_area": 0.005,
+      "image_max_regions": 24,
+      "clip_text_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+      "clip_image_model": "sentence-transformers/clip-ViT-B-32",
+      "semantic_threshold": 0.72,
+      "schema_version": 2,
+      "embedding_pooling": "token-window-mean-v1"
+    }
+  },
+  "k": 10,
+  "strategy": "dense",
+  "label": "chunk",
+  "macro": {
+    "recall": 0.56,
+    "precision": 0.056,
+    "f1": 0.10181818181818182,
+    "mrr": 0.32904761904761903,
+    "ndcg": 0.3831621312234364,
+    "latency_ms": 26.362852493766695
+  },
+  "rows": [
+    {
+      "id": "repo-002-1",
+      "query": "CUDA 全局内存访问合并是以什么线程单位进行的？",
+      "retrieved": [
+        "8afd0ace9d31c04f4f6d0f97",
+        "58033ae63d82da089adc4a98",
+        "f9b0222f5a36e04066145093",
+        "448eb3583d93d2d5894cb0cf",
+        "f328ceea2a5abf2c85868404",
+        "5ffe6a958f67c8cd2b683ff6",
+        "daedaa61095e52308e4dc19f",
+        "701b1bfa3e8af22e83426564",
+        "a91bf3487e246cc670c13878",
+        "75f4945745eed37999bd2940"
+      ],
+      "latency_ms": 32.402958953753114,
+      "relevant": [
+        "58033ae63d82da089adc4a98"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "repo-002-2",
+      "query": "32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？",
+      "retrieved": [
+        "e48e527e9c389c0a5a12e02e",
+        "daedaa61095e52308e4dc19f",
+        "2b033581eb0ae86f78bec141",
+        "0300f640c284622b52a35905",
+        "42a9ef74bf0370ffdfa0a535",
+        "f6851875d25960da9845efac",
+        "6161eb142022ddb5bb037aa4",
+        "8afd0ace9d31c04f4f6d0f97",
+        "10275db8655d257d3b4b4a53",
+        "3fd805d3f0080aaf4f88fbcf"
+      ],
+      "latency_ms": 28.499666950665414,
+      "relevant": [
+        "58033ae63d82da089adc4a98"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-014-1",
+      "query": "Row Parallel线性层如何合并各卡的局部输出？",
+      "retrieved": [
+        "5110326cfad07b7afe193331",
+        "e5cc7cd1b33d2eaa1a4ac55a",
+        "a4bce7c7684329f3fb4e6226",
+        "7401d7370c34d3334662d873",
+        "a814f14a71906dc69749b385",
+        "065d311667efb81b1d96988c",
+        "d03fc68afc8be5e7735687de",
+        "05e9fb7ac980739c342b7802",
+        "91c2bd2dba469ec093bef789",
+        "812a83b29b7d7c9644386bcd"
+      ],
+      "latency_ms": 28.113374952226877,
+      "relevant": [
+        "a814f14a71906dc69749b385"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.2,
+      "ndcg": 0.38685280723454163
+    },
+    {
+      "id": "repo-014-2",
+      "query": "FFN第二层按归约维度切到多卡，各卡只得到部分和，下一层要完整结果时需要什么通信？",
+      "retrieved": [
+        "7401d7370c34d3334662d873",
+        "fd17b5e63604d68d41558ea2",
+        "a627020c43c02f4a831f8dbb",
+        "7a8c29e742ff484b9941be5e",
+        "9cf1a9bb0640a3984dcb8202",
+        "9de351c4874ebdb458db372b",
+        "9a947ff6e499c82e14b06693",
+        "445d9cbe02d008dcaae487a6",
+        "5110326cfad07b7afe193331",
+        "3570c73bf47e875831fd3b55"
+      ],
+      "latency_ms": 27.59270800743252,
+      "relevant": [
+        "a814f14a71906dc69749b385"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-016-1",
+      "query": "MoE专家并行中的dispatch和combine两次All-to-All各做什么？",
+      "retrieved": [
+        "1a373d29a62586c3a085e0f4",
+        "c7718882020f195683fe5355",
+        "68f8a0bd7f3484224e85d85f",
+        "7916b10c2289c0aca288d135",
+        "de3d25b8412f63bd02f4f0a4",
+        "d5fba526bc20e51ea99cc2bb",
+        "dbfb184375cbdcb5d869dd67",
+        "f206f4ae846e9f8c75ed50c6",
+        "2c4c517433e36c6e82393169",
+        "de7d405cba2032c748e908d7"
+      ],
+      "latency_ms": 23.93245801795274,
+      "relevant": [
+        "c7718882020f195683fe5355"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "repo-016-2",
+      "query": "token按路由跨卡送给专家计算后，还要怎样将结果归回原请求所在卡？",
+      "retrieved": [
+        "2c73ae4060bc0598564f2b75",
+        "8af6e9af6fc8945effbaada9",
+        "229226ba3bb4ee00150df010",
+        "9a947ff6e499c82e14b06693",
+        "b74bb0f337e49147df1992dd",
+        "020267e5faba9601cbc1f401",
+        "24f3ced43aaf9b3a9788a321",
+        "0f9bf4ea47a7919298c32234",
+        "b4a204ccdd5c7095b58926c8",
+        "dbfb184375cbdcb5d869dd67"
+      ],
+      "latency_ms": 26.49850002489984,
+      "relevant": [
+        "c7718882020f195683fe5355"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-017-1",
+      "query": "Ulysses通过什么通信重排Head和序列的切分维度？",
+      "retrieved": [
+        "9a4c4c6449a788abe1fe5d20",
+        "445d9cbe02d008dcaae487a6",
+        "68f8a0bd7f3484224e85d85f",
+        "7a8c29e742ff484b9941be5e",
+        "b40a6d2daa7cf0d5a1bbdb19",
+        "83ef049da09918529418c1b8",
+        "8c54329a0de07ebb4f309b75",
+        "21bdbfbae49274d01e5e1d97",
+        "6647df9f9e4802d26330b55c",
+        "8fab2b7b4e1f0b99bc98d58e"
+      ],
+      "latency_ms": 22.935000015422702,
+      "relevant": [
+        "9a4c4c6449a788abe1fe5d20"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-017-2",
+      "query": "长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？",
+      "retrieved": [
+        "e5cc7cd1b33d2eaa1a4ac55a",
+        "b592a215251ea496dccb771c",
+        "9a4c4c6449a788abe1fe5d20",
+        "e0c90cb9995f53d0dedab47c",
+        "91c2bd2dba469ec093bef789",
+        "c0b4790ca3a7488ea7d938f1",
+        "576eef2d5bc295bc65a64499",
+        "28723ebb3352b3609e074cbc",
+        "27e05585ff49576c735d839c",
+        "1f5b3c5b944a677dc5e60255"
+      ],
+      "latency_ms": 26.93266700953245,
+      "relevant": [
+        "9a4c4c6449a788abe1fe5d20"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5
+    },
+    {
+      "id": "repo-018-1",
+      "query": "SmoothQuant针对激活离群值采用什么变换？",
+      "retrieved": [
+        "8063b9eda80527e5f4479458",
+        "4f687edb0bde53307657b879",
+        "039f0fc4a49ca784c7b1f8be",
+        "b56b2224c2e43b8ef5fcd8bb",
+        "59e8768c3457d1adda7cef8e",
+        "d6aac2509190822007049a2c",
+        "b480cad855b1beb38a46bd0d",
+        "67fd80eefb83dda6bb70f8e1",
+        "c89e43f4711df5b1e2d5aaa6",
+        "f7068b118cd0a2887e5ffc70"
+      ],
+      "latency_ms": 26.352500077337027,
+      "relevant": [
+        "df90f6c49278bebeac0b02b8"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-018-2",
+      "query": "直接W8A8量化被Activation Outlier破坏，哪个方案将量化难度从激活搬到权重？",
+      "retrieved": [
+        "df90f6c49278bebeac0b02b8",
+        "8063b9eda80527e5f4479458",
+        "4f687edb0bde53307657b879",
+        "0bd32a59894b8a077a917e1b",
+        "882bae349b218ed912f05a71",
+        "5ca6106f6568038673e462ac",
+        "a7e81a231c0a8fdb809315ef",
+        "3d66f2f4435e1e1281de7a7f",
+        "34f94c0124aa91b1033e1a6a",
+        "a28defd2bd04c3fec780bd07"
+      ],
+      "latency_ms": 26.489750016480684,
+      "relevant": [
+        "df90f6c49278bebeac0b02b8"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-020-1",
+      "query": "投机采样如何在并行验证的同时保证目标采样分布？",
+      "retrieved": [
+        "c16371148c776209e2386a2e",
+        "9122ad5e0ee1edb8069514e4",
+        "37b70b0361d8773d98c9c131",
+        "ef4ef7ac2a4b3bc399ca78ba",
+        "1bb57b059161876ad113f77a",
+        "dee99c54b63f7feb6118d3a8",
+        "d67da8178b7b3ee64ec7c0fe",
+        "5a535e36b37664c178c82fa8",
+        "9ddcbfe4f8608f7e7395b9dd",
+        "48a3b039d771628bad6f9f11"
+      ],
+      "latency_ms": 26.679832953959703,
+      "relevant": [
+        "8fe95008c814d84216a26905"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-020-2",
+      "query": "小模型先猜若干词再由大模型验证，哪个验收机制才能支持严格的分布正确性？",
+      "retrieved": [
+        "9122ad5e0ee1edb8069514e4",
+        "0d6c29cc6cc95cbdfae2392e",
+        "3fccfae47eb7a56da9a74207",
+        "9e5a71eb17ea3cd8939cda59",
+        "8fe95008c814d84216a26905",
+        "b03c2f98b6783f19418c7ed0",
+        "425b358f98de63af23fa0b97",
+        "66f1c9a4b6da9da30a163586",
+        "7ac6ef9c4561724dbb0e1127",
+        "75772ead30c40e21ecbad3a3"
+      ],
+      "latency_ms": 26.142291957512498,
+      "relevant": [
+        "8fe95008c814d84216a26905"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.2,
+      "ndcg": 0.38685280723454163
+    },
+    {
+      "id": "repo-022-1",
+      "query": "相同前缀的请求为什么可以共享历史KV？",
+      "retrieved": [
+        "14c8077603ba1a2692bfa4d1",
+        "1766660c0cf524aa73503f5f",
+        "76d6ae475defd1bde47ef78b",
+        "892fb11c410fe94f1529b90b",
+        "9235d0a598bf7d1863bc5974",
+        "c876d67fd9ec5c82d5d73771",
+        "6f17a5d24efa98537eccd1c8",
+        "cfd5cf016d76e5df055bceda",
+        "c293634060e16ea1b954781c",
+        "5d43fec26eb6068fad05a827"
+      ],
+      "latency_ms": 27.473833062686026,
+      "relevant": [
+        "95b2da4bb6ddc70e206cc2e8"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-022-2",
+      "query": "大量请求使用同一系统提示词，因果注意力的哪项性质允许前缀KV只算一次？",
+      "retrieved": [
+        "95b2da4bb6ddc70e206cc2e8",
+        "a5eda5dde2a241bdb658abec",
+        "5b49f7e9b6c45e2a924792af",
+        "14c8077603ba1a2692bfa4d1",
+        "c876d67fd9ec5c82d5d73771",
+        "f14400fb6d1564734aea6248",
+        "76d6ae475defd1bde47ef78b",
+        "f6195146b13c5578a8095e29",
+        "5d43fec26eb6068fad05a827",
+        "d685f5ad4d846f84778e7ad5"
+      ],
+      "latency_ms": 26.267832960002124,
+      "relevant": [
+        "95b2da4bb6ddc70e206cc2e8"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-025-1",
+      "query": "torchrun的local_rank和全局rank有何区别，绑GPU用哪个？",
+      "retrieved": [
+        "eff695167ba829d43657b7e9",
+        "224ee825b482ff00186b74d7",
+        "d94fb2b5762c326959a4c148",
+        "dc7cf881a2353c85b1b03a5a",
+        "85afb534827e3e6fb36cc06f",
+        "65558c7c8dc3a96dc0912837",
+        "495e7709f780bb2bf4aa027a",
+        "a7399b696ff9ae7c42bf39c4",
+        "a1d37008ef71317054a7ae1c",
+        "913a05b48df1f398e9b5ea20"
+      ],
+      "latency_ms": 26.610583066940308,
+      "relevant": [
+        "224ee825b482ff00186b74d7"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "repo-025-2",
+      "query": "第二台机器的进程全局rank为2、3，本机只有GPU0、1，设置CUDA设备应该使用什么编号？",
+      "retrieved": [
+        "224ee825b482ff00186b74d7",
+        "d94fb2b5762c326959a4c148",
+        "9938ec96043ff395f031295d",
+        "66292fd937caabe3c0892be0",
+        "dc7cf881a2353c85b1b03a5a",
+        "eff695167ba829d43657b7e9",
+        "36970451de63b53d7fa7fb5f",
+        "9ea8f8f96761a2d2a98c3f9f",
+        "9f33f2d3a4b4642496712a0d",
+        "387141ffce3f63b93bed9147"
+      ],
+      "latency_ms": 26.71408304013312,
+      "relevant": [
+        "224ee825b482ff00186b74d7"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-032-1",
+      "query": "GQA与MQA如何共享K/V Head，主要减少什么资源？",
+      "retrieved": [
+        "649d12858b98f6ac42032591",
+        "fa9467fae91de03b888eeab8",
+        "d84f00d850453859b182826c",
+        "9676a4e7569ea72110160f3a",
+        "349495b80f66a759504ca727",
+        "5bd62b180feae75c78a89a4f",
+        "b01c9c07410a1dff2a53c997",
+        "b55ac2ef1e7981d807e8135c",
+        "ab9b59518ee41c1351024b15",
+        "88c557dc6ffc24bea0180522"
+      ],
+      "latency_ms": 23.446292034350336,
+      "relevant": [
+        "649d12858b98f6ac42032591"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-032-2",
+      "query": "注意力KV缓存太大但不想减少查询头，分组共享KV头的结构能缓解什么开销？",
+      "retrieved": [
+        "76d6ae475defd1bde47ef78b",
+        "d685f5ad4d846f84778e7ad5",
+        "f287c14f41e79fc8ea1cf0dd",
+        "6007b8dab55b385fda609aee",
+        "7dad06843bf41909d7d3b3af",
+        "722d692f38ece3527461742b",
+        "df81eb08f01ed654ab8b418b",
+        "d84f00d850453859b182826c",
+        "891d6d081c9c3e8bd54a22b5",
+        "f356af81e1185d025605e198"
+      ],
+      "latency_ms": 26.051832945086062,
+      "relevant": [
+        "649d12858b98f6ac42032591"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-035-1",
+      "query": "估算KV Cache显存需要哪些乘法因子，前面的2代表什么？",
+      "retrieved": [
+        "8462f501af70e80c78055daa",
+        "d7866198cb46983484ae41a0",
+        "c81f84e500483e207ff269a2",
+        "53fd2a6877ce8bac5b41c0ae",
+        "326f5d6982237ce8e04c0731",
+        "06bc7acb022d37e5e4441bc8",
+        "549ee7e6401f4178b718aa68",
+        "d20b339bab1b6a8b23f35911",
+        "5adf1f7611185f52c8593ddc",
+        "5b1910e60bfe226f9cdb0ed2"
+      ],
+      "latency_ms": 25.72712500113994,
+      "relevant": [
+        "2436af369db8ec12bdb9cd3e"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-035-2",
+      "query": "同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？",
+      "retrieved": [
+        "53fd2a6877ce8bac5b41c0ae",
+        "dbd36a8f5cf121b45c7e8bd2",
+        "06bc7acb022d37e5e4441bc8",
+        "7f32521467ea7f44e7eee8e4",
+        "c28ecd0aa52e3b90877c38c7",
+        "e11b85fed2874a6045120658",
+        "d4584cc4ea22322db5abd772",
+        "aae3a2aea340579f39569158",
+        "5b1910e60bfe226f9cdb0ed2",
+        "d84f00d850453859b182826c"
+      ],
+      "latency_ms": 26.28799993544817,
+      "relevant": [
+        "2436af369db8ec12bdb9cd3e"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-037-1",
+      "query": "复用前缀KV时除token内容还需校验哪些上下文？",
+      "retrieved": [
+        "591fbad18d05715b1928fb9d",
+        "95b2da4bb6ddc70e206cc2e8",
+        "3f605bc47db9ac9120118456",
+        "18c86beba3b245ce419726e1",
+        "72eabaddd7030bed33cc2ae2",
+        "97b0ed56ddbbcf65eca59f17",
+        "46714bca460afbf65fbfa61f",
+        "dce94d93c5948c9d66b7e44b",
+        "7b2e267758411ef4b733649b",
+        "a1b57082373867debff87702"
+      ],
+      "latency_ms": 22.81424996908754,
+      "relevant": [
+        "0879ae440a74276685f94bab"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-037-2",
+      "query": "同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？",
+      "retrieved": [
+        "549ee7e6401f4178b718aa68",
+        "9235d0a598bf7d1863bc5974",
+        "4afd1c8128196ad75a908cc6",
+        "9dc22cf6fc6d5517bc85a10a",
+        "c90d9627e99803e05b4da9ec",
+        "7b2e267758411ef4b733649b",
+        "37553a1425aba9e1d318ff1f",
+        "2fd5ae7aaa56fa5696ad8ae5",
+        "53fd2a6877ce8bac5b41c0ae",
+        "e2ee1d3c19e338ff97e878a4"
+      ],
+      "latency_ms": 26.8093750346452,
+      "relevant": [
+        "0879ae440a74276685f94bab"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-038-1",
+      "query": "请求取消导致KV泄漏应如何统一资源清理路径？",
+      "retrieved": [
+        "409de2a46b4b9bc544cffa62",
+        "e2ee1d3c19e338ff97e878a4",
+        "891d6d081c9c3e8bd54a22b5",
+        "24706b7b298c5bb264c83d8d",
+        "6411407f2608024351c5b350",
+        "26a10662f0e3a531ccfe92cd",
+        "3283e9cb1befca4bdab6cef1",
+        "490a7b957976c85afeffbb11",
+        "9676a4e7569ea72110160f3a",
+        "0a4fc8114ba2f1f71ad92f57"
+      ],
+      "latency_ms": 25.854832958430052,
+      "relevant": [
+        "409de2a46b4b9bc544cffa62"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-038-2",
+      "query": "服务跑久后free blocks只降不升，取消请求漏了release，怎样修复并验证共享与抢占交错？",
+      "retrieved": [
+        "409de2a46b4b9bc544cffa62",
+        "3554db8922ed39d2313d8fed",
+        "5c2e762ff55e0e56bea11e47",
+        "295cd61bea64f01014d2a83f",
+        "f49024ff58e2327b741b0fca",
+        "e128fb6d61bd2839035f88bf",
+        "e229830071132ac04448f881",
+        "b07256edebd50d248792181d",
+        "6eeb280b57285d4f05b75bbc",
+        "8fcc69e2c25f16ab5ca7bb5c"
+      ],
+      "latency_ms": 26.533707976341248,
+      "relevant": [
+        "409de2a46b4b9bc544cffa62"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-042-1",
+      "query": "Column Parallel线性层之后是否一定要AllGather？",
+      "retrieved": [
+        "e5cc7cd1b33d2eaa1a4ac55a",
+        "3c806ece13d2639ef9052ad9",
+        "5110326cfad07b7afe193331",
+        "8afd0ace9d31c04f4f6d0f97",
+        "6a34d583534245a4b454788b",
+        "c9537670dbde8bd21feb8eae",
+        "2b8cf2d3c0f6e1bf65f8ed8f",
+        "7ea1d74be353758bb9a0330a",
+        "216b72c81aced968fc1a0478",
+        "36947ffc7558dfeac2da8ffa"
+      ],
+      "latency_ms": 26.67891699820757,
+      "relevant": [
+        "7401d7370c34d3334662d873"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-042-2",
+      "query": "列并行输出能够直接给下一分片层消费，还应无条件收集完整激活吗，通信依据是什么？",
+      "retrieved": [
+        "e5cc7cd1b33d2eaa1a4ac55a",
+        "c5cb4af41e9e080c47d60427",
+        "b713b3d8b4188ea10fab5679",
+        "83487d3638252ef74d616f8e",
+        "83ef049da09918529418c1b8",
+        "f4a8ff5b9f45e36b557b1c79",
+        "5acd44e3646b36d8ace97a3a",
+        "14e34a14c35d3e333a47b99d",
+        "5110326cfad07b7afe193331",
+        "20b9a0541e86e4f6c72ee8eb"
+      ],
+      "latency_ms": 26.292958995327353,
+      "relevant": [
+        "7401d7370c34d3334662d873"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-044-1",
+      "query": "投机解码减少了什么调用，为什么并行验证不等于全部接受？",
+      "retrieved": [
+        "48a3b039d771628bad6f9f11",
+        "deeb48552541bd5ddf83c88b",
+        "ee61673ab5adb14c1e3f0a44",
+        "5ae0bddd37f37a5cd6368e2b",
+        "1173fd5bce1a1d8e7bef7133",
+        "75772ead30c40e21ecbad3a3",
+        "9491bc8e90bdc3f2b5daa8ba",
+        "dee99c54b63f7feb6118d3a8",
+        "c556b3914d9b2e7bb582cea7",
+        "bcfaa2a15402a60edd0a4930"
+      ],
+      "latency_ms": 27.72941696457565,
+      "relevant": [
+        "bcfaa2a15402a60edd0a4930"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.1,
+      "ndcg": 0.2890648263178879
+    },
+    {
+      "id": "repo-044-2",
+      "query": "Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？",
+      "retrieved": [
+        "808447d2dd2c53435e1bb9bc",
+        "724b91a602a18b4dd806d0d4",
+        "ee76aa408390ab4bcb1a6fcb",
+        "8a36759c968333256ad93cfa",
+        "c309a54d7dd6bc384afcab31",
+        "c7c8eabe4795c3a2d85b1e75",
+        "bcfaa2a15402a60edd0a4930",
+        "252d7c4dc05565de6e6460b3",
+        "e011f73c7b407ba7aa475142",
+        "0b391e25abac9a619cdfd195"
+      ],
+      "latency_ms": 26.383374934084713,
+      "relevant": [
+        "bcfaa2a15402a60edd0a4930"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.14285714285714285,
+      "ndcg": 0.3333333333333333
+    },
+    {
+      "id": "repo-045-1",
+      "query": "精确投机采样的接受概率与拒绝后修正分布是什么？",
+      "retrieved": [
+        "c16371148c776209e2386a2e",
+        "18d8abfa2d0953811a04c40d",
+        "d67da8178b7b3ee64ec7c0fe",
+        "9122ad5e0ee1edb8069514e4",
+        "70b4406f09dcf65b84a25449",
+        "37b70b0361d8773d98c9c131",
+        "f4bc0bd98391095c21afca59",
+        "de09701763bc642fbd73c51e",
+        "1bb57b059161876ad113f77a",
+        "ef4ef7ac2a4b3bc399ca78ba"
+      ],
+      "latency_ms": 28.20995799265802,
+      "relevant": [
+        "37b70b0361d8773d98c9c131"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.16666666666666666,
+      "ndcg": 0.3562071871080222
+    },
+    {
+      "id": "repo-045-2",
+      "query": "草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？",
+      "retrieved": [
+        "1bb57b059161876ad113f77a",
+        "c16371148c776209e2386a2e",
+        "ef4ef7ac2a4b3bc399ca78ba",
+        "9122ad5e0ee1edb8069514e4",
+        "e9b337fff5da78e2a6feca16",
+        "365019ba4fbce46c4e77a347",
+        "3e5bf42abc87ba1546266fa0",
+        "37b70b0361d8773d98c9c131",
+        "85d9afb5fbc047681b64e3f1",
+        "d67da8178b7b3ee64ec7c0fe"
+      ],
+      "latency_ms": 26.74837491940707,
+      "relevant": [
+        "37b70b0361d8773d98c9c131"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.125,
+      "ndcg": 0.31546487678572877
+    },
+    {
+      "id": "repo-046-1",
+      "query": "MTP为什么不是任意LLM打开一个开关就能使用？",
+      "retrieved": [
+        "84a1a348196b71a56f0cf476",
+        "07d8c8be938bfaa327e31e18",
+        "6d10ac568d6cf835e394fe6f",
+        "99fab4cc49bf31cbcbb1330e",
+        "76a98beaab1d42ee5c4ce170",
+        "a32a842384f6d37939d49c76",
+        "bb4b4e0427bf85fab4eecf82",
+        "c0856c782653dc754b21f01c",
+        "357584a7fd476842a11d882c",
+        "f3fbbc14f26f2988c94efbba"
+      ],
+      "latency_ms": 28.31504202913493,
+      "relevant": [
+        "25d7e52180b18cf88c4c19dd"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-046-2",
+      "query": "部署模型没有训练MTP模块，能否仅靠推理引擎配置获得多token预测头？",
+      "retrieved": [
+        "25d7e52180b18cf88c4c19dd",
+        "425b358f98de63af23fa0b97",
+        "1269545a44fa346e3e050d65",
+        "931a1a0ba8f23c6df1b8cf5b",
+        "ce2fa7639e931bcd19a234dd",
+        "2b5a5011916ce55bbac206d3",
+        "f2f902dc162b8ba2e9043b16",
+        "8d7a35cb84422853cd559681",
+        "f1d169ba294d66a892b30cae",
+        "e6c886f8631f593d48332bce"
+      ],
+      "latency_ms": 26.311541092582047,
+      "relevant": [
+        "25d7e52180b18cf88c4c19dd"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-047-1",
+      "query": "EAGLE的Draft来自哪里，需要哪些额外实现？",
+      "retrieved": [
+        "249b4925fa8b15145e0a0a4c",
+        "bdc331ce60e8731ea12c3fe1",
+        "e77ae998de3187e77a0044ad",
+        "68cb668684c3f04f14cf2535",
+        "86c8380e507173827dc6fd89",
+        "0eb83396284cedd3a7f550a8",
+        "8079d071192131c12a534352",
+        "ca7375b2c010d23a543a402c",
+        "c7c8eabe4795c3a2d85b1e75",
+        "6e598431e6ffc9a5831d1ff7"
+      ],
+      "latency_ms": 26.12816693726927,
+      "relevant": [
+        "bdc331ce60e8731ea12c3fe1"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "repo-047-2",
+      "query": "不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？",
+      "retrieved": [
+        "f1d169ba294d66a892b30cae",
+        "dee99c54b63f7feb6118d3a8",
+        "8079d071192131c12a534352",
+        "bdc331ce60e8731ea12c3fe1",
+        "fefa452a6508fbc1a21fd07c",
+        "7c12a07b0fabb48d387a5588",
+        "c16371148c776209e2386a2e",
+        "724ce7f3afb35a6401e55d36",
+        "bcfaa2a15402a60edd0a4930",
+        "b84db3f333670b78256f0c50"
+      ],
+      "latency_ms": 26.72558301128447,
+      "relevant": [
+        "bdc331ce60e8731ea12c3fe1"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.25,
+      "ndcg": 0.43067655807339306
+    },
+    {
+      "id": "repo-048-1",
+      "query": "Medusa如何构树验证，为什么需要Tree Attention掩码？",
+      "retrieved": [
+        "a9cf3e58e01859940b7b27fb",
+        "ce2fa7639e931bcd19a234dd",
+        "f60465ba3eb641da2745c3dc",
+        "6a811967006b5ab431858dc1",
+        "debaee65d52b7f779fcf8934",
+        "86c8380e507173827dc6fd89",
+        "832a23c35fbac5d28603990c",
+        "0c2f8248b86fce5ee528f016",
+        "e65733c1e7088d4b4614e6bc",
+        "355da0c6551d98f7bef3fb23"
+      ],
+      "latency_ms": 26.1212500045076,
+      "relevant": [
+        "a9cf3e58e01859940b7b27fb"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-048-2",
+      "query": "一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？",
+      "retrieved": [
+        "dd9fe9fd65465341b0027671",
+        "2402ffc207f88e75615f93ba",
+        "0ca2f7d4dc769f88e889abdc",
+        "808447d2dd2c53435e1bb9bc",
+        "202c377412bb8b878938467e",
+        "40f49b741822b024adbc7bc0",
+        "d85bec66713c322f410ed28a",
+        "6591cbc94b8c8830d580f92a",
+        "7fdff3b924ab79e357cef83a",
+        "df81eb08f01ed654ab8b418b"
+      ],
+      "latency_ms": 23.042374989017844,
+      "relevant": [
+        "a9cf3e58e01859940b7b27fb"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-049-1",
+      "query": "Prompt Lookup草稿怎样生成，是否需要额外模型权重？",
+      "retrieved": [
+        "8a42133ea7b23dadc06fd2f4",
+        "afeb9651f665bc3a05b2f455",
+        "3bf5b49e4d1f01f5c9152ab5",
+        "9b5254028aafc1c6ace3443d",
+        "a7e81a231c0a8fdb809315ef",
+        "8079d071192131c12a534352",
+        "239c9a6e8fdd2cfb6f46e282",
+        "601ff420a049e18e398e53e6",
+        "d7b4b133b8bab81f90a5878b",
+        "b010d6c1486986ade9ef1a49"
+      ],
+      "latency_ms": 26.024874998256564,
+      "relevant": [
+        "55484f0c064043f79dee7032"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-049-2",
+      "query": "代码编辑输出经常复制上下文且没有显存放草稿模型，应采用什么候选生成路线？",
+      "retrieved": [
+        "c16371148c776209e2386a2e",
+        "18c5ba8e72cc63273cd2f47f",
+        "635ff1a5b1a3010b13a6a205",
+        "afeb9651f665bc3a05b2f455",
+        "ed98c5ccb81a361b79b21041",
+        "8079d071192131c12a534352",
+        "75b15bb6652a9ee72664448b",
+        "1e4bad6e8ff8c15ba5343fda",
+        "cbd090b476b45644a9682d15",
+        "8a36759c968333256ad93cfa"
+      ],
+      "latency_ms": 26.693458086811006,
+      "relevant": [
+        "55484f0c064043f79dee7032"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-050-1",
+      "query": "投机解码期望输出token数与接受的Draft数为什么不同？",
+      "retrieved": [
+        "b15cf5b5cb5def3934bdaae2",
+        "40f62ffdd5d60aac0e8f11d1",
+        "6e598431e6ffc9a5831d1ff7",
+        "e77ae998de3187e77a0044ad",
+        "724b91a602a18b4dd806d0d4",
+        "46b60e4fb63fd093e7abca3a",
+        "1173fd5bce1a1d8e7bef7133",
+        "a5c1712386e34bb720469643",
+        "34058a02dab555d171d7efc8",
+        "dee99c54b63f7feb6118d3a8"
+      ],
+      "latency_ms": 26.166124967858195,
+      "relevant": [
+        "46b60e4fb63fd093e7abca3a"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.16666666666666666,
+      "ndcg": 0.3562071871080222
+    },
+    {
+      "id": "repo-050-2",
+      "query": "接受率0.8且草稿长4时报告2.36个接受草稿，为何每轮实际期望输出约3.36个？",
+      "retrieved": [
+        "70b4406f09dcf65b84a25449",
+        "789b6206882bf71f7b9f02f4",
+        "e010a846d423d98c81b4d998",
+        "6f7cb7e9609fbecba4b802d1",
+        "b15cf5b5cb5def3934bdaae2",
+        "f0c777556099d6653b8c5b6a",
+        "0bdc26592779115db75b8e08",
+        "de09701763bc642fbd73c51e",
+        "3d386b7b94c64dcc8ebca3e2",
+        "b061dba61420998f96837c86"
+      ],
+      "latency_ms": 25.972750037908554,
+      "relevant": [
+        "46b60e4fb63fd093e7abca3a"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-053-1",
+      "query": "MoE为什么能区分总参数量与每token激活参数量？",
+      "retrieved": [
+        "d85bec66713c322f410ed28a",
+        "78227cb87df3ee0676c9598f",
+        "8bb3883e990bbe074d570a6f",
+        "15ea39673f7f647573f903d9",
+        "66ff986243d3d8c815bc6330",
+        "34b1d6fdd073b6a8edd7f480",
+        "884b7434bfe01ec5793c7104",
+        "cc6efd2d3a30a2cd504adb00",
+        "a83aefe23d4cbffe9657c6df",
+        "40f49b741822b024adbc7bc0"
+      ],
+      "latency_ms": 25.16658289823681,
+      "relevant": [
+        "d85bec66713c322f410ed28a"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-053-2",
+      "query": "模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？",
+      "retrieved": [
+        "8f690c0f1a11069767eba3d4",
+        "084172380f0693dd0ec7e10b",
+        "9d283b000d8f2dd1a691a0dc",
+        "546ebd4d268a2d687fb66f32",
+        "34b1d6fdd073b6a8edd7f480",
+        "635995ef34f5823ee299c13d",
+        "d85bec66713c322f410ed28a",
+        "83302a1b8c6c83f2f6739e8f",
+        "cc8b8a6f759b140e453c95c7",
+        "9704227841c1e9b96e0d90ec"
+      ],
+      "latency_ms": 26.345917023718357,
+      "relevant": [
+        "d85bec66713c322f410ed28a"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.14285714285714285,
+      "ndcg": 0.3333333333333333
+    },
+    {
+      "id": "repo-066-1",
+      "query": "为什么生成草稿更快仍可能让投机解码更慢？",
+      "retrieved": [
+        "6f7cb7e9609fbecba4b802d1",
+        "dee99c54b63f7feb6118d3a8",
+        "9491bc8e90bdc3f2b5daa8ba",
+        "e362e46d4fd86abb817a1270",
+        "34058a02dab555d171d7efc8",
+        "0b03b2feddb6cc80c6783391",
+        "48a3b039d771628bad6f9f11",
+        "cdd7045bf7abeae39bfbeed6",
+        "45e137392a7446104a0e3b1f",
+        "e010a846d423d98c81b4d998"
+      ],
+      "latency_ms": 26.409124955534935,
+      "relevant": [
+        "6f7cb7e9609fbecba4b802d1"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-066-2",
+      "query": "优化draft省了10.7ms却让每轮平均输出降到2个token，应该怎样比较每个输出token的成本？",
+      "retrieved": [
+        "5f24b8574057afa616805fe2",
+        "6f7cb7e9609fbecba4b802d1",
+        "6e598431e6ffc9a5831d1ff7",
+        "f0c777556099d6653b8c5b6a",
+        "40f62ffdd5d60aac0e8f11d1",
+        "70494e8d1ddaf166389450de",
+        "fbd814f630af16f22b487cf8",
+        "6bb162596af946120835fb8a",
+        "5d6af6df9ebe50d62d1d2612",
+        "28c84b6358f0fc5dffa4f32a"
+      ],
+      "latency_ms": 26.036082999780774,
+      "relevant": [
+        "6f7cb7e9609fbecba4b802d1"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575
+    },
+    {
+      "id": "repo-068-1",
+      "query": "改变推理并行度时为什么传完权重不等于实例迁移完成？",
+      "retrieved": [
+        "555583133a77b9f4959b100f",
+        "5a0ccdf1ced5601613ff24f3",
+        "8a56dbd6b493847429e010ad",
+        "9979fc1348d89ced1f398bbf",
+        "b81ac96f82590c4b0c5c9079",
+        "ace21bfca205769b8250d52d",
+        "896523c308e61c9ee2f50d92",
+        "ece809fa2b5b0489bc973cb4",
+        "6600728d7c33d658c684c570",
+        "b05e498dc39b7327d1b6b948"
+      ],
+      "latency_ms": 28.65370805375278,
+      "relevant": [
+        "ece809fa2b5b0489bc973cb4"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 0.125,
+      "ndcg": 0.31546487678572877
+    },
+    {
+      "id": "repo-068-2",
+      "query": "服务从TP4扩到TP8，目标GPU已有参数仍不能接管请求，还需检查哪些运行时准备？",
+      "retrieved": [
+        "6f92d3a8f6af049630a3ef3f",
+        "1c890ce2956a213233db4b7a",
+        "db0ca12fe66b956d2fc7b600",
+        "4ecb300b737b04673fb4cfb8",
+        "1d416c4f883d8192b9c8d7f9",
+        "d360398e1a762ed7ef2466a1",
+        "11621480f78ec31d306220cf",
+        "41533f778accf4939b30d27e",
+        "bba7efeb8b5252a35c6a8356",
+        "3f030324e5c7e2d878cbc231"
+      ],
+      "latency_ms": 26.370708947069943,
+      "relevant": [
+        "ece809fa2b5b0489bc973cb4"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-070-1",
+      "query": "激活重计算如何用额外计算换取训练显存？",
+      "retrieved": [
+        "9afaf2751cb5767a2995ba7d",
+        "72bed0bfc771797187c467ba",
+        "eadf2dd09f85887755584521",
+        "c0f1683d04b0fe42e56576dc",
+        "0418c030936935b53ea28964",
+        "8e7da5d09675ac08cbd89e71",
+        "0b878bf47aae0603ec8c64d4",
+        "84da5bcb6ad69298d42ed8a5",
+        "97b499f3d2604b4515f8220f",
+        "0734e64519be55d11e38cf53"
+      ],
+      "latency_ms": 22.696833941154182,
+      "relevant": [
+        "62bad66ac9edd4599835665d"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-070-2",
+      "query": "参数已经分片但前向激活仍占太多显存，还可以在哪些中间结果上选择保存或重算？",
+      "retrieved": [
+        "62bad66ac9edd4599835665d",
+        "72bed0bfc771797187c467ba",
+        "927297b2dadbc18c386df033",
+        "a52f2409c89159f4797d8764",
+        "0518ef43bb2ccb567bcd4469",
+        "1acea282895fcb519d0fad42",
+        "93949688eb7023db4e807855",
+        "5d52a6ede494020006496a32",
+        "a5a2e84f1bba78d9ae636e6d",
+        "75954f4292746363ae1465d5"
+      ],
+      "latency_ms": 26.622582925483584,
+      "relevant": [
+        "62bad66ac9edd4599835665d"
+      ],
+      "recall": 1.0,
+      "precision": 0.1,
+      "f1": 0.18181818181818182,
+      "mrr": 1.0,
+      "ndcg": 1.0
+    },
+    {
+      "id": "repo-075-1",
+      "query": "端侧带宽受限Decode为何能从低比特权重量化获益？",
+      "retrieved": [
+        "6635633eb9b3f764161d474e",
+        "28f15253d76a2a997d856968",
+        "0ea5b00807ba50d7ba954daa",
+        "49a5f603f10398f64b1110ec",
+        "49ec0a4336cb72c006842a64",
+        "cf572ebb7b4bfe9f1d8f91c8",
+        "aabb2524e58760f2a332c5bd",
+        "6d2da4d302e580c36c70893e",
+        "8a58b897f6b6df05ab5eaa76",
+        "8480ecc78db615d8d25df756"
+      ],
+      "latency_ms": 26.387167046777904,
+      "relevant": [
+        "c18f8165367df9af744db84d"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    },
+    {
+      "id": "repo-075-2",
+      "query": "手机逐token生成受LPDDR读取权重限制，量化为什么能提高理论出词速度？",
+      "retrieved": [
+        "5ca6106f6568038673e462ac",
+        "a05141570e20a042bb627978",
+        "c967a2ba1a8660e2c397a40c",
+        "c1a1d376f814433a4a73fe0f",
+        "3e9111b014930ed7d027c550",
+        "c89e43f4711df5b1e2d5aaa6",
+        "87e7c822eb5fe7e8abe8cd5f",
+        "d90b864e6027faac51453c78",
+        "0bd32a59894b8a077a917e1b",
+        "cb8b244d659821814359f9e8"
+      ],
+      "latency_ms": 26.746292016468942,
+      "relevant": [
+        "c18f8165367df9af744db84d"
+      ],
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0,
+      "mrr": 0,
+      "ndcg": 0.0
+    }
+  ],
+  "at_k": {
+    "1": {
+      "recall": 0.24,
+      "precision": 0.24,
+      "f1": 0.24,
+      "mrr": 0.24,
+      "ndcg": 0.24
+    },
+    "3": {
+      "recall": 0.36,
+      "precision": 0.12,
+      "f1": 0.18,
+      "mrr": 0.2966666666666667,
+      "ndcg": 0.31309297535714575
+    },
+    "5": {
+      "recall": 0.42,
+      "precision": 0.084,
+      "f1": 0.14,
+      "mrr": 0.30966666666666665,
+      "ndcg": 0.33718061880799527
+    },
+    "10": {
+      "recall": 0.56,
+      "precision": 0.056,
+      "f1": 0.10181818181818182,
+      "mrr": 0.32904761904761903,
+      "ndcg": 0.3831621312234364
+    }
+  },
+  "evidence_hit_at_5": 0.42,
+  "by_question_type_at_5": {
+    "knowledge": {
+      "recall": 0.44,
+      "precision": 0.08800000000000001,
+      "f1": 0.1466666666666667,
+      "mrr": 0.328,
+      "ndcg": 0.35642287286081487
+    },
+    "scenario": {
+      "recall": 0.4,
+      "precision": 0.08,
+      "f1": 0.13333333333333336,
+      "mrr": 0.29133333333333333,
+      "ndcg": 0.3179383647551757
+    }
+  },
+  "corpus_sha256": "e4579f5f84b9d4351a60f23719084649d372085fe9cc2efa3ca63d1c35ca3b7b",
+  "dataset_sha256": "967cd07d2c346ec82ae879bfb5ff3cbdcb3f4b8f4ec34a0f8deaebd42b09600f",
+  "latency_scope": "warm process, top-10 query, including optional reranker",
+  "qrels_scope": "sparse authored source evidence; other relevant chunks may be unlabeled"
+}

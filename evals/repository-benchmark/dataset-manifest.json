@@ -1,0 +1,33 @@
+{
+  "version": "infra-repos-v1",
+  "corpus_sha256": "e4579f5f84b9d4351a60f23719084649d372085fe9cc2efa3ca63d1c35ca3b7b",
+  "questions": 150,
+  "evidence_units": 75,
+  "concept_groups": 50,
+  "split_policy": "sha256-ordered subset sum; concept groups remain in one split",
+  "annotation": "AI source-grounded, not independently human verified",
+  "qrels_scope": "authored evidence paragraphs; not exhaustive relevance judgments",
+  "coverage": "text retrieval only; excludes visual understanding and generated answers",
+  "splits": {
+    "dev": {
+      "questions": 50,
+      "groups": 13,
+      "repositories": {
+        "AIInfraGuide": 16,
+        "JennyMa11.github.io": 24,
+        "ai-infra-book": 10
+      },
+      "sha256": "967cd07d2c346ec82ae879bfb5ff3cbdcb3f4b8f4ec34a0f8deaebd42b09600f"
+    },
+    "test": {
+      "questions": 100,
+      "groups": 37,
+      "repositories": {
+        "AIInfraGuide": 34,
+        "JennyMa11.github.io": 26,
+        "ai-infra-book": 40
+      },
+      "sha256": "aefb1d6e2943a98c67df88f0a364b4c7dfc9f442c72081da284a7a6d9a6f14ef"
+    }
+  }
+}

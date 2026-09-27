@@ -1,0 +1,1254 @@
+{
+  "name": "bm25",
+  "ranker": "technical",
+  "split": "holdout",
+  "questions": 30,
+  "at_k": {
+    "5": {
+      "recall": 0.11445386064030132,
+      "hit": 0.26666666666666666,
+      "mrr": 0.1288888888888889,
+      "ndcg": 0.10109669325827926
+    },
+    "10": {
+      "recall": 0.1276208411801632,
+      "hit": 0.3,
+      "mrr": 0.13444444444444445,
+      "ndcg": 0.10396043774021857
+    }
+  },
+  "latency_p50_ms": 77.80172902857885,
+  "infra": {
+    "questions": 5,
+    "at_k": {
+      "5": {
+        "recall": 0.11666666666666667,
+        "hit": 0.4,
+        "mrr": 0.16666666666666666,
+        "ndcg": 0.09825438719238322
+      },
+      "10": {
+        "recall": 0.16666666666666666,
+        "hit": 0.6,
+        "mrr": 0.19999999999999998,
+        "ndcg": 0.12606562309453834
+      }
+    },
+    "latency_p50_ms": 101.8717500846833
+  },
+  "rows": [
+    {
+      "id": "bright-stackoverflow-6",
+      "infra": true,
+      "query": "I'm trying to write an LLM class as below:\n\n```\nfrom langchain_openai import ChatOpenAI\n\nclass LLM:\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name  \n\nclass OpenAILLM(LLM,ChatOpenAI):\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name\n```\nwhich works fine but when I try to add another variable in __init__ of OpenAILLM class as below\n\n```\nfrom langchain_openai import ChatOpenAI\n\nclass LLM:\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name  \n\nclass OpenAILLM(LLM,ChatOpenAI):\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name\n        self.var = 'var'\n```\n\nThe object creation for OpenAILLM fails and gives ValueError: \"OpenAILLM\" object has no field \"var\"\n\nCan anyone help me how I can add more variables?\n\nAnother thing I tried is the get_var function define below works but the set_var function defined below gives same error as above\n\n```\nfrom langchain_openai import ChatOpenAI\n\nclass LLM():\n    var = 1\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name  \n\nclass OpenAILLM(LLM,ChatOpenAI):\n    def __init__(self,model_name):\n        super().__init__(model_name=model_name)\n        self.model_name = model_name\n    def get_var(self):\n        return self.var\n    def set_var(self, var):\n        print('self var',self.var)\n        self.var = var\n        return True\n```\n\nThe mro of OpenAILLM is as below\n\n```\n(__main__.OpenAILLM,\n __main__.LLM,\n langchain_openai.chat_models.base.ChatOpenAI,\n langchain_core.language_models.chat_models.BaseChatModel,\n langchain_core.language_models.base.BaseLanguageModel,\n langchain_core.runnables.base.RunnableSerializable,\n langchain_core.load.serializable.Serializable,\n pydantic.v1.main.BaseModel,\n pydantic.v1.utils.Representation,\n langchain_core.runnables.base.Runnable,\n typing.Generic,\n abc.ABC,\n object)\n```\n\nI think this has to do something with pydantic, but I'm not sure. And I don't know how to resolve it. Please help.",
+      "retrieved": [
+        "langchain/LangChain_37_1.txt",
+        "pydantic/pydantic_4_9.txt",
+        "pydantic/pydantic_1_5.txt",
+        "langchain/LangChain_6_1.txt",
+        "pydantic/pydantic_0_9.txt",
+        "pydantic/pydantic_0_8.txt",
+        "pydantic/pydantic_4_10.txt",
+        "pydantic/pydantic_1_14.txt",
+        "langchain/LangChain_6_12.txt",
+        "langchain/LangChain_15_5.txt"
+      ],
+      "gold": [
+        "python_data_model/python_data_model_49_1.txt",
+        "python_data_model/python_data_model_49_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 106.33591597434133,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-12",
+      "infra": false,
+      "query": "I wrote a bot that change name of the telegram channel every N minutes But, when name of the channel is changed telegram automaticly send message, that channel name has been changed\n\ni tried bot.delete_message command, but could't figure out how to delete that exact message",
+      "retrieved": [
+        "TeleBot/Types_of_API_166_0.txt",
+        "TeleBot/Types_of_API_37_0.txt",
+        "TeleBot/Types_of_API_127_1.txt",
+        "TeleBot/TeleBot_2_51.txt",
+        "TeleBot/TeleBot_methods_2_51.txt",
+        "TeleBot/TeleBot_2_10.txt",
+        "TeleBot/TeleBot_methods_2_10.txt",
+        "TeleBot/TeleBot_2_22.txt",
+        "TeleBot/TeleBot_methods_2_22.txt",
+        "TeleBot/TeleBot_2_50.txt"
+      ],
+      "gold": [
+        "TeleBot/TeleBot_methods_2_44.txt",
+        "TeleBot/TeleBot_methods_2_31.txt",
+        "TeleBot/TeleBot_methods_2_47.txt",
+        "TeleBot/TeleBot_methods_2_29.txt",
+        "TeleBot/TeleBot_methods_2_17.txt",
+        "TeleBot/TeleBot_methods_2_7.txt",
+        "TeleBot/TeleBot_methods_2_53.txt",
+        "TeleBot/TeleBot_methods_2_18.txt",
+        "TeleBot/TeleBot_methods_2_22.txt",
+        "TeleBot/TeleBot_methods_2_8.txt",
+        "TeleBot/TeleBot_methods_2_3.txt",
+        "TeleBot/TeleBot_methods_2_56.txt",
+        "TeleBot/TeleBot_methods_2_24.txt",
+        "TeleBot/TeleBot_methods_2_25.txt",
+        "TeleBot/TeleBot_methods_2_27.txt",
+        "TeleBot/TeleBot_methods_2_55.txt",
+        "TeleBot/TeleBot_methods_2_33.txt",
+        "TeleBot/TeleBot_methods_2_54.txt",
+        "TeleBot/TeleBot_methods_2_49.txt",
+        "TeleBot/TeleBot_methods_2_21.txt",
+        "TeleBot/TeleBot_methods_2_46.txt",
+        "TeleBot/TeleBot_methods_2_4.txt",
+        "TeleBot/TeleBot_methods_2_58.txt",
+        "TeleBot/TeleBot_methods_2_43.txt",
+        "TeleBot/TeleBot_methods_2_30.txt",
+        "TeleBot/TeleBot_methods_2_1.txt",
+        "TeleBot/TeleBot_methods_2_52.txt",
+        "TeleBot/TeleBot_methods_2_32.txt",
+        "TeleBot/TeleBot_methods_2_50.txt",
+        "TeleBot/TeleBot_methods_2_41.txt",
+        "TeleBot/TeleBot_methods_2_0.txt",
+        "TeleBot/TeleBot_methods_2_26.txt",
+        "TeleBot/TeleBot_methods_2_9.txt",
+        "TeleBot/TeleBot_methods_2_34.txt",
+        "TeleBot/TeleBot_methods_2_37.txt",
+        "TeleBot/TeleBot_methods_2_39.txt",
+        "TeleBot/TeleBot_methods_2_35.txt",
+        "TeleBot/TeleBot_methods_2_36.txt",
+        "TeleBot/TeleBot_methods_2_10.txt",
+        "TeleBot/TeleBot_methods_2_57.txt",
+        "TeleBot/TeleBot_methods_2_16.txt",
+        "TeleBot/TeleBot_methods_2_5.txt",
+        "TeleBot/TeleBot_methods_2_14.txt",
+        "TeleBot/TeleBot_methods_2_45.txt",
+        "TeleBot/TeleBot_methods_2_19.txt",
+        "TeleBot/TeleBot_methods_2_12.txt",
+        "TeleBot/TeleBot_methods_2_2.txt",
+        "TeleBot/TeleBot_methods_2_6.txt",
+        "TeleBot/TeleBot_methods_2_13.txt",
+        "TeleBot/TeleBot_methods_2_42.txt",
+        "TeleBot/TeleBot_methods_2_28.txt",
+        "TeleBot/TeleBot_methods_2_51.txt",
+        "TeleBot/TeleBot_methods_2_23.txt",
+        "TeleBot/TeleBot_methods_2_48.txt",
+        "TeleBot/TeleBot_methods_2_38.txt",
+        "TeleBot/TeleBot_methods_2_20.txt",
+        "TeleBot/TeleBot_methods_2_11.txt",
+        "TeleBot/TeleBot_methods_2_15.txt",
+        "TeleBot/TeleBot_methods_2_40.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 28.936374932527542,
+      "at_k": {
+        "5": {
+          "recall": 0.01694915254237288,
+          "hit": 1.0,
+          "mrr": 0.2,
+          "ndcg": 0.13120507751234178
+        },
+        "10": {
+          "recall": 0.05084745762711865,
+          "hit": 1.0,
+          "mrr": 0.2,
+          "ndcg": 0.22476126319537007
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-16",
+      "infra": false,
+      "query": "Trying to interact with a contract using is function selector, how do i get the block hash?\n\nI have the below code in a index.js file, but when i run it i get an error message: The method eth_sendTransaction does not exist/is not available. Please can anyone help?\n\n```\nrequire('dotenv').config();\nrequire('events').EventEmitter.defaultMaxListeners = 0\n\nconst { ethers } = require('ethers');\n\n// Provider and contract address\nconst provider = new ethers.providers.JsonRpcProvider('https://polygon-mumbai.infura.io/v3/7d803b173d114ba8a1bffafff7ff541a');\nconst wallet = new ethers.Wallet(process.env.KEY, provider)\n//const signer = wallet.provider.getSigner(wallet.address);\nconst contractAddress = '0x57C98f1f2BC34A0054CBc1257fcc9333c1b6730c';\n\n// Function selector\nconst functionSelector = '0x838ad0ee';\n\n\n// Call the contract\nconst send = async () => {\n  try {\n    const result = await wallet.call({\n        to: contractAddress,\n        data: functionSelector\n    });\n    console.log(\"Result:\", result);\n} catch (error) {\n    console.error(\"Error:\", error);\n}\n}\n\nsend()\n```",
+      "retrieved": [
+        "Mmdn_fetch_File/Mmdn_fetch_7_2.txt",
+        "Mmdn_fetch_File/Mmdn_fetch_7_3.txt",
+        "Providers/Providers_51_0.txt",
+        "Providers/Providers_35_0.txt",
+        "Expressions_operators/Expressions_operators_5_10.txt",
+        "Providers/Providers_1_0.txt",
+        "Providers/Providers_49_1.txt",
+        "Providers/Providers_47_0.txt",
+        "Openai_Text_Generation/Openai_Text_Generation_4_1.txt",
+        "Mmdn_built_in_objects/Mmdn_built_in_objects_15_4.txt"
+      ],
+      "gold": [
+        "Providers/Providers_9_0.txt",
+        "Providers/Providers_51_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 89.01275007519871,
+      "at_k": {
+        "5": {
+          "recall": 0.5,
+          "hit": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.3065735963827292
+        },
+        "10": {
+          "recall": 0.5,
+          "hit": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.3065735963827292
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-22",
+      "infra": false,
+      "query": "CannotDeliverBroadcastException On Samsung devices running Android 13 (API 33)\n\nWe got lot of crash reports from Firebase regarding this crash.\n\n```\nFatal Exception: android.app.RemoteServiceException$CannotDeliverBroadcastException: can't deliver broadcast\n       at android.app.ActivityThread.throwRemoteServiceException(ActivityThread.java:2219)\n       at android.app.ActivityThread.-$$Nest$mthrowRemoteServiceException()\n       at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2508)\n       at android.os.Handler.dispatchMessage(Handler.java:106)\n       at android.os.Looper.loopOnce(Looper.java:226)\n       at android.os.Looper.loop(Looper.java:313)\n       at android.app.ActivityThread.main(ActivityThread.java:8762)\n       at java.lang.reflect.Method.invoke(Method.java)\n       at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:604)\n       at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n```\n\nCrash happens only on Samsung devices running android 13 (API 33)\n\nWe followed this post CannotDeliverBroadcastException only on Pixel devices running Android 12\n\nThe thing is - we can't just silence/absorb this crash, as some of our app functionality is build on the broadcast (BroadcastReceiver, registered in Manifest).\n\nWe need to actually prevent this crash (somehow :))\n\nWe checked also this one on google issue tracker but it seems there is no solution https://issuetracker.google.com/issues/245258072\n\nAny of you found a solution for this? Thanks",
+      "retrieved": [
+        "android_memory_battery/245258072pli1_129_0.txt",
+        "android_memory_battery/245258072pli1_98_0.txt",
+        "android_memory_battery/245258072pli1_108_0.txt",
+        "android_memory_battery/245258072pli1_107_0.txt",
+        "android_memory_battery/245258072pli1_34_0.txt",
+        "android_memory_battery/245258072pli1_4_0.txt",
+        "android_memory_battery/245258072pli1_48_0.txt",
+        "android_memory_battery/245258072pli1_65_0.txt",
+        "android_memory_battery/245258072pli1_136_0.txt",
+        "android_memory_battery/245258072pli1_137_0.txt"
+      ],
+      "gold": [
+        "android_memory_battery/android_memory_2_9.txt",
+        "android_memory_battery/android_memory_2_5.txt",
+        "android_memory_battery/android_memory_2_8.txt",
+        "android_memory_battery/android_memory_2_7.txt",
+        "android_memory_battery/android_memory_2_6.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 76.43404207192361,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-25",
+      "infra": false,
+      "query": "How can I initialise a constexpr array with values using std::generate\n\nFor example, if I wanted a constexpr std::array<int,100> initialised with all the multiples of 3 from 1-300 at compile time how can I do this?\n\nMy first thought was to use std::generate, something like:\n\n```\nconstexpr std::array<int,100> a { std::generate(a.begin(), a.end(), [n=0]()mutable{ return n+=3; });\n```\n\nI get an error such as `<source>:9:52: error: void value not ignored as it ought to be`.\n\nand I can't use std::generate after this because of course, it's read only at that point.",
+      "retrieved": [
+        "cpp_utility/0eQsx6ip1DwJpli1_288_0.txt",
+        "C++_Ranges_library/param-pack.html4_83_0.txt",
+        "C++_Ranges_library/param-pack.html4_87_0.txt",
+        "cpp_utility/0eQsx6ip1DwJpli1_40_0.txt",
+        "kotlin_ObservableProperty_delegates/showthread.php3_32_0.txt",
+        "Mmdn_Methods_Properties/64fae68256940c3104cf83292d56a6958_13_9.txt",
+        "C++_Ranges_library/C++_Ranges_library_59_53.txt",
+        "C++_Ranges_library/param-pack.html4_84_0.txt",
+        "kotlin_ObservableProperty_delegates/showthread.php3_46_0.txt",
+        "C++_Ranges_library/C++_Ranges_library_59_45.txt"
+      ],
+      "gold": [
+        "cpp_utility/cpp_classes_5_0.txt",
+        "cpp_utility/cpp_classes_5_4.txt",
+        "cpp_utility/cpp_classes_5_3.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 105.34779203590006,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-28",
+      "infra": false,
+      "query": "dbms_random.value() in Snowflake - Oracle to snowflake conversion\n\nBelow is the oracle sql query that I got to convert to snowflake. In here, i am blocked in creating dbms_random.value() in snowflake\n\n```\nselect emp_id, emp_name, emp_mob,\n(case when dbms_random.value() >= 0.85 then 'Y' else 'N' end) as tag\nfrom eds_dwg.employee_data\n```\n\nCan someone help me on this?\n\nThanks",
+      "retrieved": [
+        "snowflake_docs/desc-materialized-view_5_0.txt",
+        "snowflake_docs/desc-view_5_0.txt",
+        "snowflake_docs/join-lateral_6_0.txt",
+        "snowflake_random_controlled_distribution/sqlserver_97_0.txt",
+        "snowflake_docs/pivot_3_0.txt",
+        "snowflake_docs/create-view_13_0.txt",
+        "snowflake_docs/lag_5_0.txt",
+        "Bind_variables_Managing_Transactions/Bind_variables_14_0.txt",
+        "snowflake_docs/create-view_13_1.txt",
+        "snowflake_docs/create-row-access-policy_10_0.txt"
+      ],
+      "gold": [
+        "snowflake_random_controlled_distribution/snowflake_controlled_distribution_0_1.txt",
+        "snowflake_random_controlled_distribution/snowflake_random_2_1.txt",
+        "snowflake_random_controlled_distribution/snowflake_controlled_distribution_4_1.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 54.918708046898246,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-31",
+      "infra": true,
+      "query": "How to disable Swagger ui documentation in Fastapi for production server?\n\nHow to disable Swagger ui documentation in Fastapi for production server? i need disable fastapi documentation",
+      "retrieved": [
+        "fastapi_security_advanced_user_guide/thebenefits_11_0.txt",
+        "fastapi_security_advanced_user_guide/fastapi_security_5_5.txt",
+        "fastapi_security_advanced_user_guide/fastapipythonwebapis_196_0.txt",
+        "fastapi_security_advanced_user_guide/thebenefits_10_0.txt",
+        "fastapi_security_advanced_user_guide/thebenefits_16_0.txt",
+        "fastapi_security_advanced_user_guide/fastapipythonwebapis_218_0.txt",
+        "fastapi_security_advanced_user_guide/fastapipythonwebapis_79_0.txt",
+        "fastapi_security_advanced_user_guide/fastapi_security_0_2.txt",
+        "fastapi_security_advanced_user_guide/fastapi_security_2_2.txt",
+        "fastapi_security_advanced_user_guide/fastapi_security_9_2.txt"
+      ],
+      "gold": [
+        "fastapi_security_advanced_user_guide/fastapi_security_5_3.txt",
+        "fastapi_security_advanced_user_guide/fastapi_security_5_5.txt",
+        "fastapi_security_advanced_user_guide/fastapi_security_5_4.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 8.071499993093312,
+      "at_k": {
+        "5": {
+          "recall": 0.3333333333333333,
+          "hit": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.2960819109658652
+        },
+        "10": {
+          "recall": 0.3333333333333333,
+          "hit": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.2960819109658652
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-32",
+      "infra": false,
+      "query": "Django-Forms with json fields\n\nI am looking to accept json data in a form field and than validate it using some database operations. The data will mostly consist of an array of integers. So can you please help me as to how can i do so.\n\nI have tried to google this but didn't get any decent answer. Please help.",
+      "retrieved": [
+        "django_CharField/django_CharField_57_2.txt",
+        "django_CharField/django_CharField_39_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/buttons-are-missing-in-the-file-chooser-dialog-what-should-i-do1_48_0.txt",
+        "django_CharField/django_CharField_16_0.txt",
+        "Django_meta/django_models_4_0.txt",
+        "Django_meta/django_models_4_1.txt",
+        "django_CharField/django_CharField_57_1.txt",
+        "rust_std_library_types_Traits/prefill-links-with-url-encoding1_17_0.txt",
+        "django_CharField/django_CharField_57_4.txt",
+        "django_CharField/django_CharField_47_0.txt"
+      ],
+      "gold": [
+        "django_CharField/django_CharField_26_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 46.573457890190184,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-47",
+      "infra": false,
+      "query": "Why does ExecuteNonQuery() always return -1?\n\nIve used this method before to return the amount of rows changed. I am it to run an insert method, the insert runs fine in the stored procedure, but the return value from `ExecuteNonQuery()` always returns `-1`.\n\nHere is my C# code:\n\n```\nint ret = 0;\r\n\r\nusing (SqlConnection conn = new SqlConnection(this.ConnectionString))\r\n{\r\n    using (SqlCommand cmd = new SqlCommand(QueryName, conn))\r\n    {\r\n        conn.Open();\r\n\r\n        if (Params != null)\r\n            cmd.Parameters.AddRange(Params);\r\n\r\n        cmd.CommandType = CommandType.StoredProcedure;\r\n        \r\n        ret = cmd.ExecuteNonQuery();\r\n\r\n        conn.Close();\r\n    }\r\n}\r\n\r\nreturn ret;\n```\nWhy do I get -1 instead of the actual number of rows changed?",
+      "retrieved": [
+        "NET_Methods_Properties/SolutionExecuteNonQu_39_0.txt",
+        "NET_Methods_Properties/NET_Methods_4_1.txt",
+        "NET_Methods_Properties/87488_14_0.txt",
+        "NET_Methods_Properties/NET_Methods_0_2.txt",
+        "NET_Methods_Properties/SolutionExecuteNonQu_36_0.txt",
+        "NET_Methods_Properties/NET_Methods_2_2.txt",
+        "NET_Methods_Properties/NET_Methods_3_2.txt",
+        "NET_Methods_Properties/NET_Methods_1_19.txt",
+        "NET_Methods_Properties/NET_Methods_1_12.txt",
+        "NET_Methods_Properties/NET_Methods_2_7.txt"
+      ],
+      "gold": [
+        "NET_Methods_Properties/NET_Methods_4_1.txt",
+        "NET_Methods_Properties/NET_Methods_4_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 82.23687508143485,
+      "at_k": {
+        "5": {
+          "recall": 0.5,
+          "hit": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.38685280723454163
+        },
+        "10": {
+          "recall": 0.5,
+          "hit": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.38685280723454163
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-58",
+      "infra": false,
+      "query": "Is there a reason why I am getting a null-related error in this code\n\n```\ndata class Person(val name: String, val age: Int)\n\nfun checkNameOccurrence(people: List<Person>): Map<String, Int>{\n    // The map has a key that represents a name and a value of how many times that name is repeated\n    val namesMap: MutableMap<String, Int> = mutableMapOf()\n    for(person in people){\n        if(person.name in namesMap.keys){\n            namesMap[person.name] += 1\n        }\n        namesMap[person.name] = 1\n    }\n    return namesMap\n}\n```\n\nI don't understand the reason for the null-related error in the code. Isn't that code block only meant to run if the key is found in the map, how is there still be a null error. I'm partly new to Kotlin and I've only worked on python before (there weren't any issues with null values in python)",
+      "retrieved": [
+        "kotlin_ObservableProperty_delegates/showthread.php3_9_0.txt",
+        "Python_development_tools/typing_2_3.txt",
+        "pydantic/pydantic_1_5.txt",
+        "react_dev/react_dev_0_3.txt",
+        "Client_Side/Client_Side_4_1.txt",
+        "django_CharField/django_CharField_56_0.txt",
+        "pydantic/pydantic_4_10.txt",
+        "Client_Side/Client_Side_16_1.txt",
+        "spring_io/spring_io_8_1.txt",
+        "spring_io/spring_io_3_13.txt"
+      ],
+      "gold": [
+        "kotlin_ObservableProperty_delegates/ObservableProperty_0_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 98.71933294925839,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-59",
+      "infra": false,
+      "query": "How can we check the format of the date coming in Payload using Dataweave\n\nWe have a requirement where the source is a file and it has a date field that can contain different date format. For example MM/dd/yyyy or MM/dd/yy or MM-dd-yyyy or MM-dd-yy. This date field we want to finally convert into MM-dd-yyyy\n\nHow can we check the date format from source and accordingly transform it into required format? or is there a way where we can transform any date format into desired format?\n\nInput:\n```\n[\n    {\n        \"date\": \"01-03-2023\"\n    },\n    {\n        \"date\": \"01-03-23\"\n    },\n    {\n        \"date\": \"01/03/2023\"\n    },\n    {\n        \"date\": \"01/03/23\"\n    }\n]\n```\n\nExpected Output: format \"MM-dd-yyyy\"\n```\n[\n    {\n        \"date\": \"01-03-2023\"\n    },\n    {\n        \"date\": \"01-03-2023\"\n    },\n    {\n        \"date\": \"01-03-2023\"\n    },\n    {\n        \"date\": \"01-03-2023\"\n    }\n]\n```",
+      "retrieved": [
+        "snowflake_docs/date-time-input-output_12_0.txt",
+        "Moment_js_Documentation/simpledateformathtml_50_0.txt",
+        "snowflake_docs/data-types-datetime_13_0.txt",
+        "snowflake_docs/to_timestamp_6_0.txt",
+        "Moment_js_Documentation/Moment_js_Documentation_24_0.txt",
+        "snowflake_docs/to_date_7_0.txt",
+        "lubridate/5.3.13_1_1.txt",
+        "lubridate/5.3.13_1_0.txt",
+        "Moment_js_Documentation/Moment_js_Documentation_25_0.txt",
+        "File_and_Directory_Entries_built_in_objects/built_in_objects_30_5.txt"
+      ],
+      "gold": [
+        "mulesoft_runtime_Objects/mulesoft_runtime_6_4.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 56.56329193152487,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-60",
+      "infra": false,
+      "query": "How to print the result from a loop in one line on the console in Javascript\n\nI'm trying to print out the result from a loop onto the console but it keeps printing on a new line instead of printing everything on the same line.\n\nThis is the output I'm expecting:\n```\n...17°C in 1 days ... 21°C in 2 days ... 21°C in 3 days\n```\n\nBut this is the output I keep getting:\n```\n... 17°C in 1 days\n\n... 21°C in 2 days\n\n... 23°C in 3 days\n```\n\nI've tried most of the answers I found but they are not working.\n```\nconst arr =[17, 21, 23];\n\nfunction printForcast(arr) {  \n  for (let i = 0; i < arr.length; i++) {\n    let days = i;\n\n    if(i <= days){\n      days +=1;\n    }\n\n    console.log(`... ${arr[i]}°C in ${days} days`); \n  }\n  return arr;\n}\n\nprintForcast(arr);\n<!DOCTYPE html>\n```",
+      "retrieved": [
+        "Mmdn_built_in_objects/Mmdn_built_in_objects_45_4.txt",
+        "Mmdn_Methods_Properties/Mmdn_methods_30_4.txt",
+        "Miigon_blog/choosing-javascript-sorting-algorithm8_21_0.txt",
+        "Expressions_operators/Expressions_operators_3_11.txt",
+        "Mmdn_built_in_objects/Mmdn_built_in_objects_25_4.txt",
+        "Mmdn_Methods_Properties/Mmdn_methods_19_4.txt",
+        "Expressions_operators/Expressions_operators_12_10.txt",
+        "Mmdn_Methods_Properties/Mmdn_methods_27_4.txt",
+        "Mmdn_built_in_objects/Mmdn_built_in_objects_19_4.txt",
+        "Miigon_blog/choosing-javascript-sorting-algorithm8_17_0.txt"
+      ],
+      "gold": [
+        "Mmdn_Instance_console/Mmdn_Instance_console_3_1.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 91.25491697341204,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-61",
+      "infra": false,
+      "query": "Do GTK file chooser dialogs come with localized strings for buttons and titles?\n\nOn Windows and macOS, file chooser dialogs are built into the operating system, and there is a way for an application to tell the dialog to localize the text on buttons and titles to the system language (usually by not explicitly setting the button and title text).\n\nOn Linux, while there is no system file chooser dialog, the vast majority of applications use GTK. However, GTK's file chooser dialogs require users to provide strings for the button and title text:\n\n```\ndialog = gtk_file_chooser_dialog_new (\"Open File\",\n                                      parent_window,\n                                      action,\n                                      \"_Cancel\",\n                                      GTK_RESPONSE_CANCEL,\n                                      \"_Open\",\n                                      GTK_RESPONSE_ACCEPT,\n                                      NULL);\n```\n\nLeaving those strings empty or null leads to the buttons and title having no text at all, instead of having some default text.\n\nDoes GTK have its own set of localized default button and title text that application developers can tap into?\n\nNote that many Linux applications use the gettext internationalization library, but that depends on the application to provide a translation database for every language they wish to support, which is not what I'm looking for. I'm looking for a way for my application to show proper dialog text in every language that GTK knows about, even if my application doesn't have translated strings for them.\n\nNote also that that GTK message dialogs created with `gtk_message_dialog_new` can have correctly translated button text, assuming that the user has installed the correct language packs, as no text is explicitly specified (you just pass `GTK_BUTTONS_OK_CANCEL` to it to get correctly translated \"OK\" and \"Cancel\" buttons), but there seems to be no equivalent for file chooser dialogs.",
+      "retrieved": [
+        "Gtk_FileChooserDialog_MessageDialog/class.FileChooserDialog.html7_15_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/gtk.FileChooserDialog.FileChooserDialog.html6_11_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/Gtk_FileChooserDialog_62_1.txt",
+        "Gtk_FileChooserDialog_MessageDialog/gtk.FileChooserDialog.FileChooserDialog.html6_4_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/class.FileChooserDialog.html7_9_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/Gtk_FileChooserDialog_62_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/gtk.FileChooserDialog.FileChooserDialog.html6_6_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/class.FileChooserDialog.html7_10_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/120141_4_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/Gtk_FileChooserDialog_151_0.txt"
+      ],
+      "gold": [
+        "Gtk_FileChooserDialog_MessageDialog/Gtk_FileChooserDialog_189_0.txt",
+        "Gtk_FileChooserDialog_MessageDialog/MessageDialog_127_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 108.81987505126745,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-64",
+      "infra": false,
+      "query": "Vector in a HashMap [duplicate]\n\nI know how to use, String I know how to use, Vector But I am facing issue to use HashMap\n\n```\n#[derive(Serialize)]\npub struct TestStructs {\n    pub ttStrngg: String,\n    pub ttVctorr: Vec<String>,\n    pub ttHshMpp: HashMap<String, Vec<String>>,\n}\n```\n\nHere is what I am trying\n\nDon't have any issues with String\n```\nttStrngg: \"Stringgg\".to_string()\n```\n\nDon't have any issues with Vector\n```\nttVctorr: vec![\"VecStr1\".to_string(), \"VecStr2\".to_string()]\n```\n\nBut do have an issue with HashMap\n```\nttHshMpp: \"HMK1\".to_string(), vec![\"K1V1\".to_string(), \"K1V2\".to_string()]\n```\n\nI've shared what I tried and now looking for that missing thing in HashMap\n\nHere is the Rust Playground link to try your own\n\nAnd here is the error\n\n```\n    Compiling playground v0.0.1 (/playground)\nerror: expected one of `,`, `:`, or `}`, found `!`\n --> src/main.rs:9:46\n  |\n6 |     let ttStrctts = TestStructs {\n  |                     ----------- while parsing this struct\n...\n9 |             ttHshMpp: \"HMK1\".to_string(), vec![\"K1V1\".to_string(), \"K1V2\".to_string()]\n  |                                           ---^ expected one of `,`, `:`, or `}`\n  |                                           |\n  |                                           while parsing this struct field\n\nerror[E0308]: mismatched types\n --> src/main.rs:9:23\n  |\n9 |             ttHshMpp: \"HMK1\".to_string(), vec![\"K1V1\".to_string(), \"K1V2\".to_string()]\n  |                       ^^^^^^^^^^^^^^^^^^ expected `HashMap<String, Vec<String>>`, found `String`\n  |\n  = note: expected struct `HashMap<std::string::String, Vec<std::string::String>>`\n             found struct `std::string::String`\n```",
+      "retrieved": [
+        "rust_std_library_types_Traits/rust_std_library_types_0_3.txt",
+        "r_std_hashmap/36349_42_0.txt",
+        "rust_std_library_types_Traits/rust_std_library_types_8_3.txt",
+        "rust_std_library_types_Traits/rust_Traits_3_3.txt",
+        "r_std_hashmap/writing-a-hashmap-to-struct-procedural-macro-in-rust8_15_0.txt",
+        "r_std_hashmap/r_std_hashmap_13_0.txt",
+        "r_std_hashmap/r_std_hashmap_3_0.txt",
+        "r_std_hashmap/r_std_hashmap_8_0.txt",
+        "r_std_hashmap/r_std_hashmap_7_0.txt",
+        "r_std_hashmap/r_std_hashmap_11_0.txt"
+      ],
+      "gold": [
+        "r_std_hashmap/r_std_hashmap_16_0.txt",
+        "r_std_hashmap/r_std_hashmap_16_2.txt",
+        "r_std_hashmap/r_std_hashmap_16_1.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 62.467292067594826,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-67",
+      "infra": false,
+      "query": "Sort tbody list which is populated with Javascript getList?\n\nI have a router with a DHCP page which is not sorted by the internal IP number, instead it is fully random. I have full access to the html and javascript, and I can modify this without any issues. However I cannot figure out how to make the list sorted by IP-address by default. I have no need to be able to manually click and sort, I just want the list to always be sorted by IP-address.\n\nI cannot figure out if it is possible to sort a getList, or if it has to be done in the randerBandlist function.\n\nThe list html:\n```\n                <table class=\"table\">\n                <thead>\n                    <tr>\n                        <th width=\"30\"></th>\n                        <th><%:设备名称%></th>\n                        <th><%:IP地址%></th>\n                        <th><%:MAC地址%></th>\n                        <th width=\"150\" class=\"center\"><%:操作%></th>\n                    </tr>\n                </thead>\n                <tbody id=\"bandlist\">\n                    <tr>\n                        <td class=\"center\" colspan=\"5\"><%:查询中...%></td>\n                    </tr>\n                </tbody>\n            </table>\n```\n\nThis is the part that handles the list in question:\n```\ngetList = function( callback ){\n        $.getJSON('<%=luci.dispatcher.build_url(\"api\", \"xqnetwork\",\"macbind_info\")%>',{},function(rsp){\n            if ( rsp.code != 0 ) {\n                return;\n            }\n            callback( rsp );\n        });\n    },\n    randerBandlist = function( rsp ){\n        var tpl = $( '#tplbandlist' ).html(),\n            container = $( '#bandlist' ),\n            bandlistdata = rsp.list,\n            tpldata = [],\n            mac, ip, dname;\n        currentList = {};\n        if ( bandlistdata.length > 0 ) {\n            for (var i = 0; i < bandlistdata.length; i++) {\n                mac = bandlistdata[i].mac.toUpperCase();\n                ip = bandlistdata[i].ip;\n                dname = StringH.encode4Html( bandlistdata[i].name );\n                tpldata.push({\n                    dname: dname,\n                    ip: ip,\n                    mac: mac\n                });\n                currentList[ip] = 1;\n            }\n        }\n        container.html( tpl.tmpl( {bandlist: tpldata} ) );\n    },\nreturn {\n    init: function(){\n        getList( randerBandlist );\n        addEvent();\n    }\n}\n```\n\nAlso included the full function, however I think the function above is the one that needs modifying:\n```\nvar ModelDhcpband = (function(){\nvar lanIP = '<%=lanip%>',\n    ipprefix = (function(ip){\n        var arr = ip.split('.');\n        arr.pop();\n        return arr.join('.') + '.';\n    })(lanIP),\n    currentList = {},\n    // get repeat set\n    getRepeat = function( data ){\n        data = data || [];\n        var repeat = [];\n        var _currentList = $.extend( {}, currentList);\n        for (var i = 0; i < data.length; i++) {\n            var v = data[i];\n            if ( typeof( _currentList[v] ) == 'undefined' ) {\n                _currentList[v] = 1;\n            } else {\n                repeat.push(v);\n            }\n        }\n        return repeat;\n    },\n    getList = function( callback ){\n        $.getJSON('<%=luci.dispatcher.build_url(\"api\", \"xqnetwork\",\"macbind_info\")%>',{},function(rsp){\n            if ( rsp.code != 0 ) {\n                return;\n            }\n            callback( rsp );\n        });\n    },\n    randerBandlist = function( rsp ){\n        var tpl = $( '#tplbandlist' ).html(),\n            container = $( '#bandlist' ),\n            bandlistdata = rsp.list,\n            tpldata = [],\n            mac, ip, dname;\n        currentList = {};\n        if ( bandlistdata.length > 0 ) {\n            for (var i = 0; i < bandlistdata.length; i++) {\n                mac = bandlistdata[i].mac.toUpperCase();\n                ip = bandlistdata[i].ip;\n                dname = StringH.encode4Html( bandlistdata[i].name );\n                tpldata.push({\n                    dname: dname,\n                    ip: ip,\n                    mac: mac\n                });\n                currentList[ip] = 1;\n            }\n        }\n        container.html( tpl.tmpl( {bandlist: tpldata} ) );\n    },\n    randerDevlist = function( rsp ){\n        var tpl = $( '#tpldevlist' ).html(),\n            devlistdata = rsp.devicelist,\n            tpldata = [],\n            randerDom,\n            mac, ip, dname, tag;\n        if ( devlistdata.length > 0 ) {\n            for (var i = 0; i < devlistdata.length; i++) {\n                mac = devlistdata[i].mac.toUpperCase();\n                ip = devlistdata[i].ip;\n                iplast = (function( ip ){\n                    var arr = ip.split('.');\n                    return arr[arr.length - 1];\n                })( ip );\n                dname = StringH.encode4HtmlValue( devlistdata[i].name );\n                tag = devlistdata[i].tag;\n                if ( tag != 2 ) {\n                    tpldata.push({\n                        dname: dname,\n                        ip: iplast,\n                        mac: mac\n                    });\n                }\n            }\n        }\n        randerDom = tpl.tmpl( {\n            devlist: tpldata,\n            ipprefix: ipprefix\n        } );\n        $.dialog({\n            title: '<%:绑定设备%>',\n            content: randerDom,\n            lock: true,\n            width: 828,\n            padding: '30px'\n        });\n        $.pub( 'done', {id: '#addlist'} );\n    },\n    serializeForm = function( form ){\n        var ips = $( '.ip', form ),\n            dnames = $( '.dname', form ),\n            macs = $( '.mac', form ),\n            data = [],\n            item;\n        ips.each(function( idx, el ){\n            item = {\n                ip: ipprefix + $.trim( el.value ),\n                mac: $.trim( macs.eq( idx ).val() ),\n                name: $.trim( dnames.eq( idx ).val() )\n            };\n            data.push( item );\n        });\n\n        return ObjectH.stringify( data );\n    }\n    unbind = function( e, mac ){\n        e.preventDefault();\n        var that = this,\n            $this = $(that),\n            requestURL = '<%=luci.dispatcher.build_url(\"api\", \"xqnetwork\", \"mac_unbind\")%>',\n            requestData = {\n                mac: mac\n            };\n        $.pub( 'loading:start' );\n        $.ajax({\n            url: requestURL,\n            type: 'POST',\n            data: requestData,\n            dataType: 'json',\n            success: function( rsp ){\n                if ( rsp.code !== 0 ) {\n                    $.alert( rsp.msg );\n                } else {\n                    getList( randerBandlist );\n                    $( '#dellist' ).hide();\n                }\n                $.pub( 'loading:stop' );\n            }\n        });\n    },\n    addEvent = function(){\n        // unband\n        $('body').delegate( '.btn-unband' ,'click', function( e ){\n            var that = this,\n                $this = $( that ),\n                mac = $this.attr('data-mac'),\n                ok = function(){\n                    unbind.call( that, e, mac );\n                };\n            $.confirm( '<%:你确定要解除此项绑定？%>', ok );\n        });\n        // band\n        $( 'body' ).delegate( '#addbandlist', 'submit', function( e ){\n            e.preventDefault();\n            var form = e.target,\n                formName = form.name,\n                formels = $( 'input', form ),\n                requestURL = '<%=luci.dispatcher.build_url(\"api\", \"xqnetwork\", \"mac_bind\")%>',\n                requestData,\n                rules,\n                name,\n                display,\n                validator,\n                formdata,\n                iplist = [],\n                formdata,\n                formdataojb,\n                repeatIP,\n                validerules = [];\n\n            validator = Valid.checkAll( $('#addbandlist')[0] );\n\n            if ( validator) {\n                formdata = serializeForm( form );\n                formdataojb = StringH.evalExp( formdata );\n                for (var i = 0; i < formdataojb.length; i++) {\n                    iplist.push(formdataojb[i]['ip']);\n                }\n                repeatIP = getRepeat( iplist );\n                if ( repeatIP.length !== 0 ) {\n                    $.alert( '<%:存在IP冲突，请检查输入项%>' + repeatIP.join(' , ') );\n                    return;\n                }\n\n                requestData = {\n                    data: formdata\n                };\n                $.pub( 'wait', {id: '#submitbandlist'} );\n                $.ajax({\n                    url: requestURL,\n                    data: requestData,\n                    type: 'POST',\n                    dataType: 'json',\n                    success: function( rsp ){\n                        if ( rsp.code == 0 ) {\n                            location.reload( 1 );\n                        } else {\n                            $.alert( rsp.msg );\n                        }\n                        $.pub( 'done', {id: '#submitbandlist'} );\n                    }\n                });\n            }\n\n        });\n\n        // add a item\n        $( 'body' ).delegate( '#addoneitem', 'click', function( e ){\n            e.preventDefault();\n            var tpl = $( '#tpldevitem' ).html(),\n                form = $( '#banditems' ),\n                btnSubmit = $( '#submitbandlist' ),\n                lastidx = (function(){\n                    if ( form.find('tr').length > 0 ) {\n                        return form.find('tr:last').attr( 'data-idx' );\n                    }\n                    return 0;\n                }()),\n                lastidx = parseInt( lastidx, 10 ),\n                item = tpl.tmpl({\n                    idx: lastidx + 1,\n                    ipprefix: ipprefix\n                });\n            if ( !isNaN( lastidx ) ) {\n                form.append( item );\n                if ( form.find( 'tr' ).length > 0 ) {\n                    btnSubmit.show();\n                } else {\n                    btnSubmit.hide();\n                }\n            } else {\n                $.alert('<%:出现异常，请刷新页面%>');\n            }\n        } );\n\n        // del a item\n        $( 'body' ).delegate( '.btn-del-item', 'click', function( e ){\n            e.preventDefault();\n            var tar = e.target,\n                tr = $( tar ).parents( 'tr' ),\n                form = $( '#banditems' ),\n                btnSubmit = $( '#submitbandlist' ),\n                isEmpty = (function(){\n                    var empty = true;\n                    tr.find('input').each(function(){\n                        if ( this.value !== '') {\n                            empty = false;\n                            return false;\n                        }\n                    });\n                    return empty;\n                }()),\n                ok = function(){\n                    tr.remove();\n                    if ( form.find( 'tr' ).length > 0 ) {\n                        btnSubmit.show();\n                    } else {\n                        btnSubmit.hide();\n                    }\n                };\n            if ( isEmpty ) {\n                ok();\n            } else {\n                $.confirm( '<%:确定要删除这项数据吗%>', ok );\n            }\n        } );\n\n        // open add dlg\n        $( '#addlist' ).click(function( e ){\n            e.preventDefault();\n            $.pub( 'wait', {id: '#addlist'} );\n            getList( randerDevlist );\n        });\n\n        // check for del\n        $( 'body' ).delegate( '.bandmac', 'click', function( e ){\n            if ( $('.bandmac:checked').length > 0 ) {\n                $( '#dellist' ).show();\n            } else {\n                $( '#dellist' ).hide();\n            }\n        } );\n\n        // del all\n        $( '#dellist' ).on( 'click', function( e ){\n            e.preventDefault();\n            if ( $('.bandmac:checked').length == 0 ) {\n                $.alert( '<%:你还未选择任何设备%>' );\n                return;\n            }\n            var that = this,\n                $this = $(that),\n                mac = (function(){\n                    var tmp = [];\n                    $('.bandmac:checked').each(function(){\n                        tmp.push( this.value );\n                    });\n                    return tmp.join( ';' );\n                }()),\n                ok = function(){\n                    unbind.call( that, e, mac );\n                };\n\n            $.confirm( '<%:确认要解除选中项目的绑定关系？%>', ok );\n        } );\n    };\n\ncurrentList[lanIP] = 1;\n\nreturn {\n    init: function(){\n        getList( randerBandlist );\n     \n```",
+      "retrieved": [
+        "Miigon_blog/Miigon_blog_0_2.txt",
+        "Miigon_blog/Miigon_blog_3_1.txt",
+        "Mmdn_Methods_Properties/host_details.lua1_2_11.txt",
+        "Miigon_blog/Miigon_blog_1_5.txt",
+        "Mmdn_Methods_Properties/host_details.lua1_2_17.txt",
+        "Mmdn_Methods_Properties/64fae68256940c3104cf83292d56a6958_13_160.txt",
+        "Mmdn_Methods_Properties/host_details.lua1_2_7.txt",
+        "Miigon_blog/Miigon_blog_2_3.txt",
+        "pandas_user_guide/pandas_user_guide_27_34.txt",
+        "Mmdn_Methods_Properties/host_details.lua1_2_34.txt"
+      ],
+      "gold": [
+        "Mmdn_Methods_Properties/Mmdn_methods_15_4.txt",
+        "Mmdn_Methods_Properties/Mmdn_methods_15_6.txt",
+        "Mmdn_Methods_Properties/Mmdn_methods_15_5.txt",
+        "Mmdn_Methods_Properties/Mmdn_methods_15_3.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 222.6865419652313,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-68",
+      "infra": false,
+      "query": "setattr for `__call__` method of an object doesn't work in Python\n\nI though that for python object `obj()` is equivalent to `obj.__call__()`. But it looks like it doesn't hold when `setattr` was used.\n\n```\nIn [46]: class A:\n    ...:     def __call__(self):\n    ...:         return 1\n    ...:\n\nIn [47]: a = A()\n\nIn [48]: a()\nOut[48]: 1\n\nIn [49]: a.__call__()\nOut[49]: 1\n\nIn [50]: getattr(a, '__call__')\nOut[50]: <bound method A.__call__ of <__main__.A object at 0x10a3d2a00>>\n\nIn [51]: setattr(a, '__call__', lambda: 100)\n\nIn [52]: a()\nOut[52]: 1\n\nIn [53]: a.__call__()\nOut[53]: 100\n```\n\nWhy is it so? And how I can set the `call` method in runtime?\n\nNotice in Python version is 3.9.18 and 3.11.4\n\nThe snippet of code above, I'd expected a() returns 100",
+      "retrieved": [
+        "python_typing_tokenize/python_typing_11_18.txt",
+        "Python_development_tools/typing_6_7.txt",
+        "python_typing_tokenize/python_typing_11_17.txt",
+        "Python_development_tools/unittest_6_0.txt",
+        "python_descriptors_attribute/real_python_0_3.txt",
+        "pandas_user_guide/pandas_user_guide_22_3.txt",
+        "python_typing_tokenize/python_typing_11_11.txt",
+        "python_typing_tokenize/how-to-convert-to-a-python-datetime-object-with-json-loads1_139_0.txt",
+        "Script_Commands/Script_Commands_2_8.txt",
+        "Python_development_tools/typing_3_1.txt"
+      ],
+      "gold": [
+        "python_data_model/python_data_model_13_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 70.80166693776846,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-71",
+      "infra": false,
+      "query": "Trying to delete entries gives: Inconsistent datatypes: expected %s got %s\" in Oracle\n\nI am trying to delete some entries based on 'name'. I have a table t1 with different columns, one of them being name and of type NCLOB. I have a method to delete these entries in Java, and I am using a named query. My question is, how can I solve the NCLOB issue so I'll be able to remove the data. I don't want to change the column type. The name query looks like this: `DELETE FROM table1 t1 WHERE t1.name = :name` How can I solve this?",
+      "retrieved": [
+        "React_hook_adding_interactivity/adding_interactivity_2_1.txt",
+        "snowflake_docs/join_4_1.txt",
+        "DBMS_LOB_LIBCACHE/f3_6_0.txt",
+        "snowflake_docs/select_30_0.txt",
+        "snowflake_docs/alter-table-event-table_6_0.txt",
+        "R_base_all/getting-started-simulating-data8_19_0.txt",
+        "R_base_all/split-data-frame-string-column-into-multiple-columns0_116_0.txt",
+        "Script_Commands/Script_Commands_41_1.txt",
+        "Mmdn_built_in_objects/Mmdn_built_in_objects_37_8.txt",
+        "snowflake_docs/alter-table_5_0.txt"
+      ],
+      "gold": [
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_2.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_12.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_4.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_33.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_15.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_9.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_29.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_0.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_10.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_28.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_23.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_31.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_11.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_3.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_14.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_32.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_21.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_18.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_19.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_25.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_20.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_16.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_17.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_6.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_22.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_26.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_5.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_24.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_27.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_7.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_30.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_8.txt",
+        "DBMS_LOB_LIBCACHE/oracle_DBMS_LOB_9_13.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 68.83066694717854,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-74",
+      "infra": false,
+      "query": "Hamcrest matcher for checking return value of method in collection\n\n`hasProperty` can be used with `hasItem` to check for the value of a given property, eg:\n```\nMatcher hasName = Matchers.<Person>hasProperty(\"name\", is(\"Winkleburger\"));\nassertThat(names, hasItem(hasName));\n```\n\nThis is fine when name is a property, ie: there is a method called `getName()`.\n\nIs there a matcher that will check a method that isn't a property? ie: in this case, it will check the return value of the method `name()` rather than `getName()`, for items in the collection.",
+      "retrieved": [
+        "hamcrest_classes/hamcrest_classes_1_7.txt",
+        "hamcrest_classes/hamcrest_classes_47_9.txt",
+        "hamcrest_classes/hamcrest_classes_4_0.txt",
+        "hamcrest_classes/hamcrest_classes_1_21.txt",
+        "hamcrest_classes/hamcrest_classes_1_15.txt",
+        "hamcrest_classes/hamcrest_classes_1_8.txt",
+        "hamcrest_classes/hamcrest_classes_6_2.txt",
+        "hamcrest_classes/hamcrest_classes_2_2.txt",
+        "hamcrest_classes/hamcrest_classes_4_2.txt",
+        "hamcrest_classes/hamcrest_classes_1_19.txt"
+      ],
+      "gold": [
+        "hamcrest_classes/hamcrest_classes_36_1.txt",
+        "hamcrest_classes/hamcrest_classes_36_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 42.07387496717274,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-76",
+      "infra": false,
+      "query": "How can I subtract a number from string elements in R?\n\nI have a long string. The part is\n```\nx <- \"Text1 q10_1 text2 q17 text3 q22_5 ...\"\n```\n\nHow can I subtract 1 from each number after \"q\" letter to obtain the following?\n```\ny <- \"Text1 q9_1 text2 q16 text3 q21_5 ...\"\n```\n\nI can extract all my numbers from x:\n```\nnumbers <- stringr::str_extract_all(x, \"(?<=q)\\\\d+\")\nnumbers <- as.integer(numbers[[1]]) - 1\n```\n\nBut how can I update x with these new numbers?\n\nThe following is not working\n```\nstringr::str_replace_all(x, \"(?<=q)\\\\d+\", as.character(numbers))\n```",
+      "retrieved": [
+        "C++_Ranges_library/what-will-be-the-output-of-the-following-c-code--5ab8a41bc56b6664bc9bacdd8_38_0.txt",
+        "R_base_tools/strings.html7_117_0.txt",
+        "R_base_tools/strings.html7_90_0.txt",
+        "snowflake_random_controlled_distribution/oracle_48_0.txt",
+        "snowflake_docs/sql-format-models_9_0.txt",
+        "pytorch_torch_tensor_functions/Pytorch_Documentations_12_3.txt",
+        "R_base_tools/strings.html7_101_0.txt",
+        "R_base_all/R_base_all_47_0.txt",
+        "R_base_tools/R_base_all_47_0.txt",
+        "R_base_tools/stringr.html4_18_0.txt"
+      ],
+      "gold": [
+        "R_base_tools/R_base_all_416_0.txt",
+        "R_base_tools/R_base_all_416_1.txt",
+        "R_base_tools/R_micropan_26_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 52.04045900609344,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-78",
+      "infra": false,
+      "query": "Lossy compression method: uint16 to a uint8?\n\nI'm looking for suggestions on lossy data compression methods. I need to compress a uint16 to a uint8 such that the resolution loss increases with increasing uint16 values. I am currently using the following:\n\n```\ndef log2_compress(x: np.uint16) -> np.uint8:\n    # Add l to avoid log2(0)\n    y = math.log2(x + 1)\n    # log2(1) = 0.\n    # log2(65536) = 16.\n    # Scale from [0,16] to [0,255].\n    return np.uint8((y / 16) * 255)\n```\n\nThis is simple but has the downside that it is wasteful on the `uint8` side, namely\n\n```\nlog2_compress(0) = 0\nlog2_compress(1) = 15\nlog2_compress(2) = 25\n```\nso `[1,14]`, `[16,24]`, etc. aren't used. Can someone suggest a method similar to `log2_compress` but uses more (all?) of the `uint8` bits? I am not really concerned about performance either.",
+      "retrieved": [
+        "picamera_basic_advanced_recipes/picamera_advanced_recipes_5_0.txt",
+        "picamera_basic_advanced_recipes/picamera_advanced_recipes_3_0.txt",
+        "picamera_basic_advanced_recipes/picamera_advanced_recipes_13_1.txt",
+        "picamera_basic_advanced_recipes/picamera_advanced_recipes_3_1.txt",
+        "python_data_model/Chapter1_The_Python_Data_Model_1_0.txt",
+        "picamera_basic_advanced_recipes/picamera_advanced_recipes_13_0.txt",
+        "picamera_basic_advanced_recipes/picamera_advanced_recipes_5_1.txt",
+        "DBMS_LOB_LIBCACHE/f7_9_0.txt",
+        "picamera_basic_advanced_recipes/picamera_basic_recipes_14_0.txt",
+        "pytorch_torch_tensor_functions/Pytorch_Documentations_48_8.txt"
+      ],
+      "gold": [
+        "wiki_function/wiki_function_1_5.txt",
+        "wiki_function/wiki_function_1_4.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 79.47608304675668,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-79",
+      "infra": true,
+      "query": "How can I get LLM to only respond in JSON strings?\n\nThis is how I am defining the executor\n```\nconst executor = await initializeAgentExecutorWithOptions(tools, model, {\n  agentType: 'chat-conversational-react-description',\n  verbose: false,\n});\n```\n\nWhenever I prompt the AI I have this statement at the end.\n```\ntype SomeObject = {\n  field1: number,\n  field2: number,\n}\n\n- It is very critical that you answer only as the above object and JSON stringify it as a single string.\n  Don't include any other verbose explanatiouns and don't include the markdown syntax anywhere.\n```\n\nThe `SomeObject` is just an example. Usually it will have a proper object type. When I use the `executor` to get a response from the AI, half the time I get the proper JSON string, but the other half the times are the AI completely ignoring my instructions and gives me a long verbose answer in just plain English...\n\nHow can I make sure I always get the structured data answer I want? Maybe using the `agentType: 'chat-conversational-react-description'` isn't the right approach here?",
+      "retrieved": [
+        "langchain/LangChain_10_4.txt",
+        "langchain/LangChain_8_2.txt",
+        "langchain/LangChain_12_2.txt",
+        "snowflake_docs/complete-snowflake-cortex_7_0.txt",
+        "langchain/LangChain_19_1.txt",
+        "Openai_Text_Generation/Openai_Text_Generation_0_1.txt",
+        "django_CharField/django_CharField_56_1.txt",
+        "langchain/LangChain_8_1.txt",
+        "Openai_Text_Generation/Openai_Text_Generation_1_0.txt",
+        "langchain/LangChain_23_0.txt"
+      ],
+      "gold": [
+        "Openai_Text_Generation/Openai_Text_Generation_0_4.txt",
+        "Openai_Text_Generation/Openai_Text_Generation_0_0.txt",
+        "Openai_Text_Generation/Openai_Text_Generation_0_3.txt",
+        "Openai_Text_Generation/Openai_Text_Generation_0_1.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 101.8717500846833,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.25,
+          "hit": 1.0,
+          "mrr": 0.16666666666666666,
+          "ndcg": 0.13905617951077562
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-80",
+      "infra": false,
+      "query": "Enqueue javascript with type=\"module\"\n\nI want to use `countUp.js` on my custom theme in Wordpress.\n\nWhen I add the file with `wp_enqueue_script()`, I get an error:\n\n```\nUncaught SyntaxError: Unexpected token 'export'\n```\n\nI've read that it can be fixed by setting `type=\"module\"` on the `<script>` tag, but I don't know how to do that as that option doesn't exist in `wp_enqueue_script()`...\n\nCan anyone help me?",
+      "retrieved": [
+        "WP_Scripts/2_19_0.txt",
+        "WP_Scripts/how-can-i-load-a-javascript-file-that-is-type-module-the-wordpress-way6_40_0.txt",
+        "WP_Scripts/2_20_0.txt",
+        "WP_Scripts/2_21_0.txt",
+        "WP_Scripts/2_11_0.txt",
+        "WP_Scripts/wp-enqueue-scripts9_28_0.txt",
+        "WP_Scripts/3e4d5c789f1a13ff8ab86e83738a46c49_13_0.txt",
+        "WP_Scripts/wp-enqueue-scripts9_30_0.txt",
+        "WP_Scripts/wp-enqueue-scripts9_26_0.txt",
+        "WP_Scripts/2_41_0.txt"
+      ],
+      "gold": [
+        "WP_Scripts/WP_Scripts_14_1.txt",
+        "WP_Scripts/WP_Scripts_14_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 57.500583003275096,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-87",
+      "infra": true,
+      "query": "java.lang.OutOfMemoryError: Java heap space\n\nI am getting the following error on execution of a multi-threading program\n```\njava.lang.OutOfMemoryError: Java heap space\n```\n\nThe above error occured in one of the threads.\n\n1. Upto my knowledge, Heap space is occupied by instance variables only. If this is correct, then why this error occurred after running fine for sometime as space for instance variables are alloted at the time of object creation.\n\n2. Is there any way to increase the heap space?\n\n3. What changes should I made to my program so that It will grab less heap space?",
+      "retrieved": [
+        "oracle/java-heap-space-vs-stack-memory3_50_0.txt",
+        "pytorch_torch_tensor_functions/Pytorch_Documentations_66_2.txt",
+        "oracle/oracle_2_3.txt",
+        "spring_io/spring_io_9_0.txt",
+        "oracle/java-heap-space-vs-stack-memory3_44_0.txt",
+        "Script_Commands/Script_Commands_5_15.txt",
+        "oracle/java-heap-space-vs-stack-memory3_49_0.txt",
+        "oracle/java-heap-space-vs-stack-memory3_48_0.txt",
+        "vue_school/983148_3_0.txt",
+        "oracle/how-to-increase-heap-size-in-java-virtual-machine1_9_0.txt"
+      ],
+      "gold": [
+        "oracle/oracle_2_0.txt",
+        "oracle/oracle_2_1.txt",
+        "oracle/oracle_2_4.txt",
+        "oracle/oracle_2_3.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 60.366875026375055,
+      "at_k": {
+        "5": {
+          "recall": 0.25,
+          "hit": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.19519002499605084
+        },
+        "10": {
+          "recall": 0.25,
+          "hit": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.19519002499605084
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-96",
+      "infra": true,
+      "query": "Python requests module with multithread\n\nCurrently, I am developing the astrophotometric software for multiple telescopes. For this, I constructed a mother computer connected with multiple telescopes and these telescopes can be controlled by HTTP protocol. For synchronized operation, I am trying to control these multiple telescopes simultaneously with multithreading.\nHowever, when I retrieve image data (110MB for each, ~1.2GB for total) from multiple telescopes (10 telescopes), the data transfer speed is much slower than I expected. For seamless operation, we have 10G connection with the mother computer, and 1G connection with 10 telescopes. I expected ~9Gbps data transfer speed when 10 telescopes transfer the data simultaneously, but only 1.5Gbps achieved.\n\nFor simple test, I extracted the part of the code and check the time consumption.\n```\nimport requests\nimport time\nfrom astropy.time import Time\ndef request_imagearray(cam):\n    client_trans_id = 1\n    client_id = 1\n    attribute = 'imagearray'\n\n    url = f\"{cam.device.base_url}/{attribute}\"\n    hdrs = {'accept' : 'application/imagebytes'}\n    # Make Host: header safe for IPv6\n    if(cam.device.address.startswith('[') and cam.device.address.startswith('[::1]')):\n        hdrs['Host'] = f'{cam.device.address.split(\"%\")[0]}]'\n    pdata = {\n            \"ClientTransactionID\": f\"{client_trans_id}\",\n            \"ClientID\": f\"{client_id}\" \n            }         \n\n    print('START:',Time.now(), cam.device.address)\n    start = time.time()\n    response = requests.request(\"GET\",\"%s/%s\" % (cam.device.base_url, attribute), params=pdata, headers=hdrs, verify = False)\n\n    print('consumed time:', time.time() - start, cam.device.address)\n# %%\n\nunitnumlist = [1,2,3,5,6,7,8,9,10,11]\ncamlist = []\nfor unitnum in unitnumlist:\n    #camlist.append(mainCamera(unitnum))\n    Thread(target = request_imagearray, kwargs = dict(cam = mainCamera(unitnum))).start()\n#%% \n```\n\nand the output is\n```\nSTART: 2024-04-15 07:49:59.067946 10.0.106.6:11111\nSTART: 2024-04-15 07:49:59.382973 10.0.106.7:11112\nSTART: 2024-04-15 07:49:59.541495 10.0.106.8:11113\nSTART: 2024-04-15 07:49:59.647055 10.0.106.10:11111\nSTART: 2024-04-15 07:49:59.788433 10.0.106.11:11111\nSTART: 2024-04-15 07:49:59.897876 10.0.106.12:11111\nSTART: 2024-04-15 07:50:00.009254 10.0.106.13:11111\nSTART: 2024-04-15 07:50:00.157893 10.0.106.14:11111\nSTART: 2024-04-15 07:50:00.347704 10.0.106.16:11111\nSTART: 2024-04-15 07:50:00.544626 10.0.106.9:11111\nconsumed time: 5.96204686164856 10.0.106.6:11111\nconsumed time: 7.304373502731323 10.0.106.7:11112\nconsumed time: 7.58618688583374 10.0.106.8:11113\nconsumed time: 7.617574453353882 10.0.106.10:11111\nconsumed time: 7.678117990493774 10.0.106.11:11111\nconsumed time: 7.76300311088562 10.0.106.12:11111\nconsumed time: 7.636215925216675 10.0.106.14:11111\nconsumed time: 7.785021066665649 10.0.106.13:11111\nconsumed time: 7.338518857955933 10.0.106.9:11111\nconsumed time: 11.309057235717773 10.0.106.16:11111\n```\n\nThe comsumed time is much longer than I expected. I expected ~3sec for all data transferred. It seems that multithreads starts to request \"request.get\" at the same time, but all the data is not transferred at the same time.",
+      "retrieved": [
+        "pandas_user_guide/pandas_user_guide_18_6.txt",
+        "picamera_basic_advanced_recipes/picamera_advanced_recipes_10_0.txt",
+        "Request_Advanced/Request_Advanced_23_0.txt",
+        "Request_Advanced/Request_Advanced_17_0.txt",
+        "Mmdn_HTTP/HTTP_headers_34_1.txt",
+        "Mmdn_HTTP/HTTP_headers_38_1.txt",
+        "Mmdn_HTTP/HTTP_headers_1_1.txt",
+        "Mmdn_HTTP/HTTP_headers_25_1.txt",
+        "Mmdn_HTTP/HTTP_headers_11_1.txt",
+        "Mmdn_HTTP/CSP_directives_10_1.txt"
+      ],
+      "gold": [
+        "Request_Advanced/concurrent_futures_2_1.txt",
+        "Request_Advanced/concurrent_futures_2_0.txt",
+        "Request_Advanced/Request_Advanced_1_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 141.3052079733461,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-101",
+      "infra": false,
+      "query": "Consume InputIterator with C++ ranges\n\nWith an input iterator, I can consume different sub-ranges out of it, e.g.\n```\nvoid test(std::input_iterator auto it) {\n  while (*it < 1) ++it; // drop_while\n  int n = *it++; // take(1)\n  int sum = 0; while (n-- > 0) sum += (1 + *it++); // fold_left(take(n) | transform)\n  int prd = 1; while (int x = *it++ / 2) prd *= x; // fold_left(transform | take_while)\n  std::cout << sum << ' ' << prd << '\\n';\n}\n\nint main() {\n    test(std::begin({0, 0, 0, 3, 400, 30, 2, 4, 6, 0}));\n}\n```\n\nIs there a way to do the same with `std::ranges`/`std::views`?",
+      "retrieved": [
+        "C++_Ranges_library/C++_Ranges_library_93_6.txt",
+        "C++_Ranges_library/C++_Ranges_library_40_7.txt",
+        "C++_Ranges_library/C++_Ranges_library_37_6.txt",
+        "C++_Ranges_library/C++_Ranges_library_8_6.txt",
+        "C++_Ranges_library/C++_Ranges_library_80_7.txt",
+        "C++_Ranges_library/C++_Ranges_library_27_6.txt",
+        "C++_Ranges_library/C++_Ranges_library_101_6.txt",
+        "C++_Ranges_library/C++_Ranges_library_117_6.txt",
+        "C++_Ranges_library/C++_Ranges_library_102_6.txt",
+        "C++_Ranges_library/C++_Ranges_library_97_7.txt"
+      ],
+      "gold": [
+        "C++_Ranges_library/C++_Ranges_library_123_3.txt",
+        "C++_Ranges_library/C++_Ranges_library_123_2.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 79.16941598523408,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-102",
+      "infra": false,
+      "query": "Storing Binary String in DynamoDb\n\nI am trying to store a binary string in DynamoDB using Java. However, the builder is converting the bytes somehow. My original string is a zipped string. If I pass:\n\nH4sIAAAAAAAAA7LJKMnNsePlsslITUyxsynJLMlJtTMxMFXwyy9RcMzJyS9PTbHRhwjb6IMVARUn5adUKiSlJ+fn5BfZKpVnZJakKoHEk1PzSlKL7GwyDDHNAIrZ6EMVgOwDKoPy8tIz8yr0DfUMDfVMkZXog6wBM6COBAAAAP//AwBuTqCXrQAAAA==\n\nThe value in the database is converted to: SDRzSUFBQUFBQUFBQTdMSktNbk5zZVBsc3NsSVRVeXhzeW5KTE1sSnRUTXhNRlh3eXk5UmNNekp5UzlQVGJIUmh3amI2SU1WQVJVbjVhZFVLaVNsSitmbjVCZlpLcFZuWkpha0tvSEVrMVB6U2xLTDdHd3lEREhOQUlyWjZFTVZnT3dES29QeTh0SXo4eXIwRGZVTURmVk1rWlhvZzZ3Qk02Q09CQUFBQVAvL0F3QnVUcUNYclFBQUFBPT0=\n```\nObject responseMap = mMap.get(\"Response\");\nLinkedHashMap<String, String> responseMapped = (LinkedHashMap<String, String>)responseMap;\n\nString status = statusMapped.get(\"N\");\nString response = responseMapped.get(\"B\");\n\nSdkBytes bytes = SdkBytes.fromUtf8String(response);\n\nhistoryValueMap.put(\"Status\", AttributeValue.builder().n(status).build());\nhistoryValueMap.put(\"Response\", AttributeValue.builder().b(bytes).build());\n\nhistoryMap.put(historyKey, AttributeValue.builder().m(historyValueMap).build());\n```\n\nI also tried to convert the byte array to a base64 but that didn't work either.\n```\nString status = statusMapped.get(\"N\");\nbyte[] response = responseMapped.get(\"B\").getBytes();\n\nbyte[] base64Response = Base64.getEncoder().encode(response);\nSdkBytes responseAsSdk = SdkBytes.fromByteArray(base64Response);\n\nhistoryValueMap.put(\"Status\", AttributeValue.builder().n(status).build());\nhistoryValueMap.put(\"Response\", AttributeValue.builder().b(responseAsSdk).build());\n```",
+      "retrieved": [
+        "snowflake_docs/binary-input-output_11_0.txt",
+        "DynamoDB_Security/DynamoDB_0_1.txt",
+        "snowflake_docs/binary-examples_6_0.txt",
+        "DynamoDB_Security/JavaDocumentAPIBinaryTypeExample.html0_4_1.txt",
+        "DynamoDB_Security/HowItWorks.NamingRulesDataTypes.html8_31_0.txt",
+        "DynamoDB_Security/DynamoDB_4_0.txt",
+        "DynamoDB_Security/DynamoDB_4_1.txt",
+        "snowflake_docs/binary-examples_3_0.txt",
+        "fastapi_security_advanced_user_guide/fastapi_advanced_user_guide_9_3.txt",
+        "fastapi_security_advanced_user_guide/fastapi_advanced_user_guide_0_3.txt"
+      ],
+      "gold": [
+        "DynamoDB_Security/DynamoDB_0_1.txt",
+        "DynamoDB_Security/DynamoDB_0_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 70.64708299003541,
+      "at_k": {
+        "5": {
+          "recall": 0.5,
+          "hit": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.38685280723454163
+        },
+        "10": {
+          "recall": 0.5,
+          "hit": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.38685280723454163
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-103",
+      "infra": false,
+      "query": "How can I pass a variable from CSV file to Oracle SQL query fetch in Python?\n\nI have the following piece of code where I read a csv file and connect to the database. then I want to pass two columns from CSV file as variable to my query and eventually convert the result to a pd database.\n\nI have tried different ways of binding and converted columns to list but I was unsuccessful. with this piece of code I get the following Error:\n```\nDatabaseError: DPY-4010: a bind variable replacement value  \nfor placeholder \":HOUR\" was not provided\n```\n\nor I get below error when I add this part to execute():\n```\nres = connection.cursor().execute(\"SELECT HOUR,UNITSCHEDULEID,VERSIONID,MINRUNTIME FROM \n int_Stg.UnitScheduleOfferHourly WHERE  Hour in :1 AND UnitScheduleId in :2\", hour, unitid)\n```\n```\nTypeError: Cursor.execute() takes from 2 to 3 positional arguments but 4 were given\n```\n\nthe following is the code I execute:\n```\nimport pandas as pd\nimport numpy as np\n\ndf = pd.read_csv(r\"csv.csv\") \n\ndf=df.dropna()\n\nunitid=df['UNITSCHEDULEID'].unique()\nhour=df['GMT_DATETIME'].unique()\n\nimport os, oracledb, csv, pyodbc\nTNS_Admin = os.environ.get('TNS_Admin', r'\\\\corp.xxx\\oracle')\noracledb.defaults.config_dir = TNS_Admin\npw = input(f'Enter password: ')\nconnection = oracledb.connect(user='xxxxx', password= pw, dsn=\"World\")\n\nres = connection.cursor().execute(\"SELECT HOUR,UNITSCHEDULEID,VERSIONID,MINRUNTIME FROM \n int_Stg.UnitScheduleOfferHourly WHERE  Hour in :Hour AND UnitScheduleId in :unitid\").fetchall()\nprint(res)\n\nconnection.close()\n```",
+      "retrieved": [
+        "Bind_variables_Managing_Transactions/dpy-3002-python-value-of-type-int64-is-not-supported-i-need-to-combine-my-co9_23_0.txt",
+        "Bind_variables_Managing_Transactions/Bind_variables_13_0.txt",
+        "Bind_variables_Managing_Transactions/Managing_Transactions_0_0.txt",
+        "Bind_variables_Managing_Transactions/Bind_variables_0_0.txt",
+        "Python_pandas_functions/DataFrame_36_2.txt",
+        "Python_pandas_functions_with_style/DataFrame_36_2.txt",
+        "Bind_variables_Managing_Transactions/Bind_variables_1_0.txt",
+        "Bind_variables_Managing_Transactions/Bind_variables_0_1.txt",
+        "pandas_user_guide/pandas_user_guide_27_75.txt",
+        "DBMS_LOB_LIBCACHE/sql_execution.html3_80_0.txt"
+      ],
+      "gold": [
+        "Bind_variables_Managing_Transactions/Bind_variables_13_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 130.44712494593114,
+      "at_k": {
+        "5": {
+          "recall": 1.0,
+          "hit": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575
+        },
+        "10": {
+          "recall": 1.0,
+          "hit": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-104",
+      "infra": false,
+      "query": "How to save a xml structure using python tree.write(file_name)?\n\nI wanted to add Element with Subelements to my xml file using Python. But after changing file the Element and Subelement looks like a line, not like a xml-tree.\n\nI do this:\n```\ntree = ET.parse('existing_file.xml')\nroot = tree.getroot()\nnew_object = ET.SubElement(root, 'object')\nname = ET.SubElement(new_object, 'name')\nname.text = 'car'\ncolor = ET.SubElement(new_object, 'color')\ncolor.text = 'Red'\nnew_tree = ET.ElementTree(root)\nnew_tree.write('new_file.xml')\n```\n\nBut after this I've got file without structure like this:\n```\n<object><name>car</name><color>red</color></object>\n```\n\nBut i need this:\n```\n<object>\n     <name>car</name>\n     <color>red</color>\n</object>\n```\n\nwhat do I do wrong?",
+      "retrieved": [
+        "xml_dom/parse-xml-python0_22_0.txt",
+        "xml_dom/parse-xml-python0_34_0.txt",
+        "xml_dom/parse-xml-python0_40_0.txt",
+        "xml_dom/how-to-read-xml-file-in-python6_146_0.txt",
+        "xml_dom/python-xml-parser1_117_0.txt",
+        "xml_dom/python-xml-parser1_107_0.txt",
+        "xml_dom/python-xml-parser1_108_0.txt",
+        "Mmdn_Instance_console/Mmdn_Instance_console_16_3.txt",
+        "xml_dom/xml_dom_0_0.txt",
+        "xml_dom/parse-xml-python0_21_0.txt"
+      ],
+      "gold": [
+        "xml_dom/xml_dom_minidom_0_0.txt",
+        "xml_dom/xml_dom_minidom_0_1.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 58.9216249063611,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-108",
+      "infra": false,
+      "query": "My api request in my asyncThunk function in slice file doesn't work when I put a dispatch method before that\n\nI have this asyncThunk action and everything was fine until I put a `dispatch` call before sending request. As a result every code after this `dispatch` call doesn't work anymore. 'first' goes in log but 'second' no. I don't know why this dispatch blocks next codes in my asyncThunk function.\n\nMy slice file:\n```\nexport const postLoginData = createAsyncThunk(\n  'login/postLoginData',\n  async (allData) => {\n    const { dispatch, params } = allData;\n\n    let loginResponse = '';\n\n    console.log('first')\n    dispatch(setStatus({type: 'loading', payload: 'wait'}))\n    console.log('second')\n\n    await postRequest('/o/token/coach', params)\n      .then(response => {\n        loginResponse = response.data\n        const data = response.data;\n        if (data.access_token) {\n          dispatch(loginSuccess(data))\n          localStorage.setItem('Authentication', JSON.stringify(data));\n        }\n      })\n      .catch(err => {\n        if (err.response.status === 400) {\n          loginResponse = { error: '400 Error' }\n        }\n      })\n    dispatch(setStatus({ type: 'loading', payload: false }))\n    console.log(loginResponse)\n    return loginResponse\n  }\n)\n```",
+      "retrieved": [
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_5.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_7.txt",
+        "Mmdn_fetch_File/Mmdn_fetch_7_2.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_4.txt",
+        "reducers_and_actions_urls_rtk_query/using-redux-toolkit-to-handle-asynchronous-data-requests-54om0_13_0.txt",
+        "Expressions_operators/Expressions_operators_5_10.txt",
+        "reducers_and_actions_urls_rtk_query/createAsyncThunk3_54_0.txt",
+        "reducers_and_actions_urls_rtk_query/rtk_query_2_8.txt",
+        "reducers_and_actions_urls_rtk_query/createAsyncThunk3_52_0.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_6.txt"
+      ],
+      "gold": [
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_6.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_7.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_4.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_2.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_8.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_5.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_0.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_3.txt",
+        "reducers_and_actions_urls_rtk_query/reducers_and_actions_0_1.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 98.91625004820526,
+      "at_k": {
+        "5": {
+          "recall": 0.3333333333333333,
+          "hit": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6992148198508501
+        },
+        "10": {
+          "recall": 0.4444444444444444,
+          "hit": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.5525147891152254
+        }
+      }
+    },
+    {
+      "id": "bright-stackoverflow-109",
+      "infra": false,
+      "query": "Gorm preload doesn't follow the Join conditions\n\nSo I'm trying to make a complex queries with a lot of joins and nested structs. I need to load the structs but Preload is not following related Joins with their conditions and its keep doing its own queries.\n\nHow can I make this work?\n\nMy joins are pretty complicated and I don't want to do the same join twice.\n```\ntype Assetinfo struct {\n    Uid           string\n    MapPolicyApps []MapPolicyApps `gorm:\"foreignKey:app_id;references:uid;AssociationForeignKey:pol_id\"`\n}\ntype MapPolicyApps struct {\n    Id           int\n    PolID        string       `gorm:\"column_name:pol_id;foreignKey:Uid\"`\n    PolicyPolicy PolicyPolicy `gorm:\"foreignKey:Uid;references:PolID;AssociationForeignKey:uid\"`\n    AppType      string    // This can be application or category\n    AppId        string    `gorm:\"column_name:app_id;foreignKey:Uid\"`  // this can be app id or application id (bad naming i know)\n    Asset        Assetinfo `gorm:\"foreignKey:AppId;references:Uid\"`\n    CreatedAt    string\n}\n\ntype PolicyPolicy struct {\n    Uid               string `gorm:\"primaryKey\"`\n    IsEnabled         bool\n    MapPolicyProfiles []MapPolicyProfiles `gorm:\"foreignKey:PolID;references:Uid\"`\n}\n\nvar assets []*Assetinfo \n\nerr := Db.Table(\"application_application apps\").\n    Select(\"Distinct apps.*, apps.avatar as icon, profile_asset.address as ip, apps.is_health_check as is_need_request\").\n    Joins(\"LEFT JOIN map_policy_identities ON map_policy_identities.assign_type = 'user' AND map_policy_identities.assign_id = ?\", userid).\n    Joins(\"LEFT JOIN policy_policy ON map_policy_identities.pol_id = policy_policy.uid AND policy_policy.is_enabled = true\").\n    Joins(\"LEFT JOIN map_policy_apps ON map_policy_identities.pol_id = map_policy_apps.pol_id\").\n    Joins(\"LEFT JOIN map_category_apps ON map_category_apps.category_id = map_policy_apps.app_id\").\n    Joins(\"LEFT JOIN map_app_assets ON apps.uid = map_app_assets.app_id\").\n    Joins(\"LEFT JOIN profile_asset ON profile_asset.uid = map_app_assets.asset_id\").\n    Where(\"map_policy_apps.app_id = apps.uid OR apps.uid = map_category_apps.app_id\").\n    Where(\"apps.is_enabled = true AND apps.is_visibled = true\").\n    Preload(\"MapPolicyApps.PolicyPolicy.MapPolicyProfiles.ProfileAddr\").\n    Preload(\"MapPolicyApps.PolicyPolicy.MapPolicyProfiles.ProfileTimerange\").\n    Preload(\"MapPolicyApps.PolicyPolicy.MapPolicyProfiles.ProfilePosturecheck\").\n    Find(&assets).Error\n```\n\nAnd Gorm can't load the structs without Preload, So if it's possible to load all nested structs with joins and without Preload, I would appreciate to know how.",
+      "retrieved": [
+        "gorm_associations_advanced/gorm_associations_0_1.txt",
+        "gorm_associations_advanced/gorm_associations_4_0.txt",
+        "gorm_associations_advanced/many_to_many.html3_11_0.txt",
+        "gorm_associations_advanced/gorm_associations_0_0.txt",
+        "gorm_associations_advanced/gorm_associations_1_0.txt",
+        "gorm_associations_advanced/gorm_associations_2_0.txt",
+        "gorm_associations_advanced/gorm_associations_4_1.txt",
+        "gorm_associations_advanced/preload.html6_3_0.txt",
+        "gorm_associations_advanced/query.html3_21_0.txt",
+        "gorm_associations_advanced/many_to_many.html3_5_0.txt"
+      ],
+      "gold": [
+        "gorm_associations_advanced/gorm_Advanced_4_0.txt"
+      ],
+      "candidate_gold_count": null,
+      "latency_ms": 107.00341605115682,
+      "at_k": {
+        "5": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "hit": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      }
+    }
+  ]
+}

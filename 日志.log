@@ -1,0 +1,625 @@
+[2026-09-26T14:32:01+08:00] Infra RAG 三仓库数据集构建与实验记录
+
+完成内容：
+- 固定三个仓库版本，筛选正文，保留来源路径、commit、SHA256和证据行号。
+- AIInfraGuide：70篇正文、50道题；JennyMa11.github.io：5篇正文、50道题；ai-infra-book：12篇正文、50道题。
+- 共87篇正文，1,673,577字符，11,168个检索分块。
+- AI根据原文构建150道题：75个证据单元，各含知识题和场景题；dev50题、test100题。
+- 同一概念分组整体进入同一个划分，两个划分的概念组不重叠；语料文件共享，并非文档隔离实验。
+- 检索库只导入正文，不导入测试问题或参考答案。
+- 增加BM25分词统计缓存，并在入库、删除时失效，避免每次查询重新处理完整语料。
+
+测试集结果（Top10检索结果计算@5；延迟为预热后Top10请求，包含可选重排）：
+方法                Recall@5  Precision@5  F1@5   MRR@5  证据命中率@5  P50(ms)
+BM25                0.715     0.144        0.240  0.544  0.720         34.2
+BGE向量检索         0.525     0.106        0.176  0.382  0.530         26.0
+混合检索            0.645     0.130        0.216  0.491  0.650         60.8
+混合检索+重排序     0.765     0.154        0.256  0.665  0.770         600.4
+
+结果判断：
+- 第一版真实语料基线具有开发价值，尚有明显提升空间。
+- BM25是强基线，专业术语匹配有效。
+- 当前BGE与融合配置效果偏弱，混合检索低于BM25；不能据此推断向量检索普遍无效。
+- 重排后Recall@5比BM25提升5个百分点，但P50延迟从混合检索的60.8ms增加到600.4ms。
+- 重排后的测试集证据命中率为77%，23道题的Top5未命中已标注证据。
+
+评估边界：
+- 问题、答案与证据由AI编写，尚未经独立人工审核。
+- 仅评文本检索，不包含图片像素理解、生成答案正确性或生产流量评测。
+- 标签为稀疏原文证据标注，没有穷尽其他仓库中的等价正确内容。
+- 未命中标签不一定代表检索内容错误；Recall@5不是问答准确率。
+- 保持默认检索配置，未根据test调参。
+
+后续建议（尚未执行）：
+1. 人工检查23道未命中题，区分检索失败、分块问题和等价内容漏标。
+2. 只用dev调整分块、候选数和融合参数。
+3. 增加BM25+重排对照，分析重排收益来源。
+4. 评估重排候选缩减和延迟优化。
+
+验证：150道题的原文证据全部可映射至实际索引分块；8份评估报告的数据集哈希与行数一致；25项测试通过，ruff检查通过。
+文件：
+- evals/repository-benchmark/README.md
+- evals/repository-benchmark/dev.json
+- evals/repository-benchmark/test.json
+- evals/repository-benchmark/corpus-manifest.json
+- evals/repository-benchmark/dataset-manifest.json
+- evals/repository-benchmark/results/comparison.md
+- evals/repository-benchmark/results/run-manifest.json
+- 原始运行日志：evals/repository-benchmark/benchmark.log
+
+[2026-09-26T14:34:41+08:00]
+操作：检查项目根目录的 Agent.md 与 日志.log。
+原因：确认规则文件是否存在，并复用现有日志文件，避免覆盖历史。
+结果：Agent.md 不存在；日志.log 已存在，包含先前的数据集与实验记录。
+问题：上一轮被用户中断，仅完成文件检查，未创建或修改 Agent.md；用户已澄清规则与日志应分别存放。
+
+[2026-09-26T14:34:41+08:00]
+操作：创建 Agent.md，并将本次操作记录追加到 日志.log。
+原因：落实用户要求：在 Agent.md 中维护规则，在独立日志文件中记录每次操作的原因、结果和问题。
+结果：已创建规则文件，指定日志.log 为操作日志；保留已有日志与 AGENTS.md。
+问题：无。
+
+[2026-09-26T14:34:41+08:00]
+操作：读回校验 Agent.md 与 日志.log 的新增内容。
+原因：验证规则写入完整、日志采用追加方式且本次记录已保存。
+结果：两项内容校验通过。
+问题：无。
+
+[2026-09-26T14:37:55+08:00]
+操作：读取 Agent.md、编码与检索实现、实验运行清单。
+原因：定位向量输入、融合候选截断与重排序行为，分析现有结果下降原因。
+结果：BM25使用正文加标题；BGE与reranker仅使用正文；融合将两路各30候选合并后截到30，再重排。
+问题：现有报告只保存Top10，不能直接判断正确证据是否在候选阶段被丢弃，需要补做候选诊断。
+
+[2026-09-26T14:39:13+08:00]
+操作：读取Chroma配置、分块实现与基线评估脚本
+原因：确认距离度量、分块边界和指标口径
+结果：向量库使用cosine；评估只看子块ID；父块扩展的上下文未计入证据命中。
+问题：无
+
+[2026-09-26T14:39:34+08:00]
+操作：复算两路Top30、RRF候选并对比精确向量Top30，写入failure-diagnostics.json
+原因：定位候选缺失、融合截断、重排序失败，检查近似向量检索影响
+结果：{"dev": {"bm25_hit30": 41, "dense_ann_hit30": 32, "dense_exact_hit30": 32, "union_hit60": 45, "fused_hit30": 43, "rerank_failure_stages": {"candidate_absent": 5, "fusion_truncation": 2, "reranker_below_top5": 4}, "parent_hit_on_rerank_misses": 0, "hybrid_top10_reproduced": 50}, "test": {"bm25_hit30": 85, "dense_ann_hit30": 75, "dense_exact_hit30": 76, "union_hit60": 91, "fused_hit30": 86, "rerank_failure_stages": {"reranker_below_top5": 9, "candidate_absent": 9, "fusion_truncation": 5}, "parent_hit_on_rerank_misses": 2, "hybrid_top10_reproduced": 100}}
+问题：无
+
+[2026-09-26T14:39:40+08:00]
+操作：读取分问法指标、Top10召回及BM25到混合检索的退化案例。
+原因：检查场景题难度和融合导致的证据降序。
+结果：已提取各方法知识题/场景题Recall@5，并打印融合退化题的原文证据与前排结果。
+问题：自动排名与稀疏标签不能直接证明答案错误，仍需人工逐条判断等价证据。
+
+[2026-09-26T14:39:59+08:00]
+操作：逐条读取23道测试集未命中题的候选阶段、标注原文及重排Top2内容。
+原因：对自动失败分类做语义核查，识别真实失败与可能漏标。
+结果：测试集候选并集命中91题，截断到30后命中86题；23道未命中分为9道候选缺失、5道融合截断、9道后排问题。100道题的混合Top10均复现原报告。
+问题：等价证据需内容审核，不能仅用chunk ID认定23道均为知识检索失败。
+
+[2026-09-26T14:41:30+08:00]
+操作：核查三道题的完整Top5并统计标题覆盖
+原因：定位机制混淆与语义上下文损失
+结果：三道题的完整内容已读出；标题覆盖统计中断
+问题：sum中空标题返回空字符串，导致TypeError；诊断代码问题，未修改生产代码或索引。
+
+[2026-09-26T14:41:30+08:00]
+操作：修复诊断统计布尔转换并重新执行
+原因：完整统计标题缺失及近似检索影响
+结果：{"dev": {"gold_chunks": 25, "gold_heading_not_in_body": 11, "gold_under80": 0, "dense_ann_hit5": 21, "dense_exact_hit5": 21}, "test": {"gold_chunks": 51, "gold_heading_not_in_body": 35, "gold_under80": 3, "dense_ann_hit5": 53, "dense_exact_hit5": 53}, "duplicate_content_extra_chunks": 562}
+问题：统计修复后完成；无生产代码变更。
+
+[2026-09-26T14:41:30+08:00]
+操作：保存12个可能等价但未标注的证据案例
+原因：区分固定证据定位失败和实际知识检索失败
+结果：已写入equivalent-evidence-review.json，逐条包含内容、理由和候选排名；基线标签与指标保持原样。
+问题：这是AI内容核查，尚需独立人工复核，不据此公布校正后的准确率。
+
+[2026-09-26T14:43:12+08:00]
+操作：生成并读回校验 failure-analysis.md。
+原因：将实证诊断、推断边界与改进优先级形成可审阅分析报告。
+结果：记录稀疏标签、等权RRF与候选截断、短块与标题损失、场景题差距和指标口径问题；精确向量对照表明近似搜索影响很小。原始题集和基线未修改。
+问题：12个等价证据案例仍待独立人工审核；尚未进行标题、分块或候选策略消融，相关优化收益不能预先保证。
+
+[2026-09-26T14:46:35+08:00]
+操作：读取Agent.md、AGENTS.md、Settings与文本分块实现。
+原因：落实等价标注与验证集对照，确认索引指纹和现有解析行为。
+结果：确认原始配置无标题层级开关、融合默认截断30；将采用独立标注版本与独立标题索引，保留原始基线。
+问题：补充替代证据会改变Recall分母，需同时记录可替代证据的命中率，避免误读前后分数。
+
+[2026-09-26T14:48:10+08:00]
+操作：新增标题层级上下文、完整融合候选并集开关及CLI参数，扩展索引脚本接受独立配置。
+原因：实现验证集所需对照，同时保留旧默认行为和索引指纹。
+结果：heading_context开启时使用Markdown标题栈、过滤纯结构块，并向编码/重排提供文件主题与标题；fusion_candidates=union保留全部融合候选供重排。
+问题：修改尚需测试；新标题配置必须使用独立索引，不覆盖原始索引。
+
+[2026-09-26T14:49:28+08:00]
+操作：新增三项回归测试并执行Ruff格式化、检查和pytest。
+原因：验证旧索引兼容、Markdown标题栈与融合并集保留单路证据。
+结果：格式化完成；Ruff报告测试字符串超过100字符，pytest运行中。
+问题：需换行修复测试字符串，随后重新检查。
+
+[2026-09-26T14:49:50+08:00]
+操作：修复测试字符串换行、重查Ruff，并确认28项pytest通过。
+原因：完成新检索配置的回归验证。
+结果：已修复超长字符串；28项测试通过；本次Ruff检查通过。
+问题：仅有既存依赖弃用警告，不影响本次验证。
+
+[2026-09-26T14:51:02+08:00]
+操作：构建保留标题层级的独立BGE索引。
+原因：在固定语料与模型下比较标题上下文的影响。
+结果：标题索引完成：10278个分块，目录data/repository-index/bge-e4579f5f84b9-headings-v1，耗时72.7秒。
+问题：无
+
+[2026-09-26T14:53:08+08:00]
+操作：新增操作日志辅助模块与等价标注生成脚本
+原因：以明确的内容判断生成v2，不覆盖原始题集
+结果：脚本保存原文引用、行号、hash、接纳理由与替代证据组，尚待填充判断文件和执行验证。
+问题：无
+
+[2026-09-26T14:53:08+08:00]
+操作：读取dev场景题与额外候选
+原因：检查同一知识点的两种问法是否均被替代证据支持
+结果：25条dev场景题与SmoothQuant候选已读取，其余选择中断。
+问题：错误使用不在dev中的seed030导致StopIteration；已确认按实际dev题ID筛选，不影响索引或原始数据。
+
+[2026-09-26T14:54:25+08:00]
+操作：保存等价证据内容判断文件
+原因：补正已观察到的漏标，按具体问法限定事实支持范围
+结果：保存27条接纳判断及原文引用；未将仅同主题的LoRA、取消清理、MTP开关等候选标成正例。
+问题：全部为AI内容判断，仍待独立人工复核；非全库穷尽标注。
+
+[2026-09-26T14:54:27+08:00]
+操作：生成等价证据标注v2
+原因：补正已核查的等价原文，保留原始版本与分组
+结果：{"version": "infra-repos-v1-equivalent-v2", "corpus_sha256": "e4579f5f84b9d4351a60f23719084649d372085fe9cc2efa3ca63d1c35ca3b7b", "original_dataset_sha256": {"dev": "967cd07d2c346ec82ae879bfb5ff3cbdcb3f4b8f4ec34a0f8deaebd42b09600f", "test": "aefb1d6e2943a98c67df88f0a364b4c7dfc9f442c72081da284a7a6d9a6f14ef"}, "annotation_method": "explicit AI source-content judgments; pending human verification", "scope": "known equivalent evidence corrections; not exhaustive corpus relevance", "protocol": "fixed query IDs, queries and concept splits; original evidence retained", "decisions": 27, "splits": {"dev": {"questions": 50, "augmented_questions": 25, "sha256": "bd36156404db998353b1b6b08901ec16c17032f338a7b91b85525d7e709ac3aa"}, "test": {"questions": 100, "augmented_questions": 12, "sha256": "4a5fdd3f67fe70804b2246263d09c376bbbfa22c8acb04745ef3d133d8a5bc10"}}}
+问题：无
+
+[2026-09-26T14:54:40+08:00]
+操作：查看标题索引构建进度
+原因：确认独立索引可用于后续dev对照
+结果：已读取heading-index.log末尾，构建进程的完成记录另由索引脚本追加。
+问题：无
+
+[2026-09-26T14:55:09+08:00]
+操作：解析dev v2证据到索引分块
+原因：确认同一原文标注可在两种分块配置中公平比较
+结果：heading_context=False，证据组解析失败0项。
+问题：无
+
+[2026-09-26T14:55:10+08:00]
+操作：解析dev v2证据到索引分块
+原因：确认同一原文标注可在两种分块配置中公平比较
+结果：heading_context=True，证据组解析失败0项。
+问题：无
+
+[2026-09-26T14:57:27+08:00]
+操作：新增替代证据组解析、完整覆盖指标及dev专用对照脚本
+原因：避免追加等价块扩大Recall分母后误读效果，区分任意替代方案与组内必需片段
+结果：脚本定义六组受控对照，统一v2证据，按完整证据命中率、MRR和延迟选择；不运行test查询。
+问题：尚需指标测试及实际模型运行。
+
+[2026-09-26T14:58:03+08:00]
+操作：格式化新评估脚本并检查Ruff，修复说明字符串
+原因：完成可复现对照脚本的静态验证
+结果：四个文件已格式化；E501说明字符串已拆分，读取现有证据评估测试准备补充回归用例。
+问题：首次Ruff有1处E501；首次补丁包含空hunk被拒绝且未写入，已用有效补丁修复。
+
+[2026-09-26T14:58:37+08:00]
+操作：新增替代证据完整覆盖测试并运行Ruff/pytest
+原因：验证AND/OR证据判定及无搜索的标签解析
+结果：Ruff检查通过；30项pytest通过。
+问题：仅既存依赖弃用警告。
+
+[2026-09-26T14:58:37+08:00]
+操作：启动六组dev v2真实模型对照
+原因：比较BM25重排、截断混合重排、完整并集重排以及标题索引版本
+结果：开始运行compare_dev_retrieval.py，结果写入results/dev-v2，详细输出写入dev-v2-comparison.log。
+问题：无
+
+[2026-09-26T14:59:20+08:00]
+操作：dev对照：original-bm25-rerank-truncate
+原因：比较检索、候选并集及标题层级上下文
+结果：{"name": "original-bm25-rerank-truncate", "recall": 0.78, "precision": 0.228, "f1": 0.34571428571428575, "mrr": 0.6913333333333334, "ndcg": 0.6804887041345704, "complete_evidence_hit": 0.86, "evidence_mrr": 0.6913333333333334, "evidence_coverage": 0.86, "latency_p50_ms": 565.3523540240712, "latency_p95_ms": 685.780374915339}
+问题：无
+
+[2026-09-26T14:59:57+08:00]
+操作：在判断文件补充源文档ID与引用行号
+原因：避免复现时依赖包含机器绝对路径的历史分块ID
+结果：判断记录增加document_id与quote_line_ranges；现有v2题集和正在运行的dev输入保持不变。
+问题：无
+
+[2026-09-26T14:59:57+08:00]
+操作：查看dev v2运行进度
+原因：跟踪真实模型对照的完成情况
+结果：读取dev-v2-comparison.log末尾，逐组结果由对照脚本写入日志。
+问题：无
+
+[2026-09-26T14:59:57+08:00]
+操作：使等价标注生成脱离旧索引快照
+原因：保证在不同工作目录复现时可通过固定源文件和行号生成相同原文标签
+结果：生成脚本改为按document_id、源文件hash及引用行范围定位，历史chunk_id仅作审核溯源。
+问题：尚需验证输出与当前v2文件一致。
+
+[2026-09-26T14:59:59+08:00]
+操作：dev对照：original-hybrid-rerank-truncate
+原因：比较检索、候选并集及标题层级上下文
+结果：{"name": "original-hybrid-rerank-truncate", "recall": 0.75, "precision": 0.224, "f1": 0.3380952380952381, "mrr": 0.695, "ndcg": 0.6764492625639416, "complete_evidence_hit": 0.82, "evidence_mrr": 0.695, "evidence_coverage": 0.82, "latency_p50_ms": 581.769312499091, "latency_p95_ms": 735.3974169818684}
+问题：无
+
+[2026-09-26T15:00:42+08:00]
+操作：dev对照：original-hybrid-rerank-union
+原因：比较检索、候选并集及标题层级上下文
+结果：{"name": "original-hybrid-rerank-union", "recall": 0.75, "precision": 0.224, "f1": 0.3380952380952381, "mrr": 0.7, "ndcg": 0.6780548467809778, "complete_evidence_hit": 0.82, "evidence_mrr": 0.7, "evidence_coverage": 0.82, "latency_p50_ms": 840.3619999880902, "latency_p95_ms": 1030.439457972534}
+问题：无
+
+[2026-09-26T15:00:44+08:00]
+操作：生成等价证据标注v2
+原因：补正已核查的等价原文，保留原始版本与分组
+结果：{"version": "infra-repos-v1-equivalent-v2", "corpus_sha256": "e4579f5f84b9d4351a60f23719084649d372085fe9cc2efa3ca63d1c35ca3b7b", "original_dataset_sha256": {"dev": "967cd07d2c346ec82ae879bfb5ff3cbdcb3f4b8f4ec34a0f8deaebd42b09600f", "test": "aefb1d6e2943a98c67df88f0a364b4c7dfc9f442c72081da284a7a6d9a6f14ef"}, "annotation_method": "explicit AI source-content judgments; pending human verification", "scope": "known equivalent evidence corrections; not exhaustive corpus relevance", "protocol": "fixed query IDs, queries and concept splits; original evidence retained", "decisions": 27, "splits": {"dev": {"questions": 50, "augmented_questions": 25, "sha256": "bd36156404db998353b1b6b08901ec16c17032f338a7b91b85525d7e709ac3aa"}, "test": {"questions": 100, "augmented_questions": 12, "sha256": "4a5fdd3f67fe70804b2246263d09c376bbbfa22c8acb04745ef3d133d8a5bc10"}}}
+问题：无
+
+[2026-09-26T15:00:44+08:00]
+操作：校验可移植标注生成与150题原文来源
+原因：保证生成不依赖旧索引且不改变正在比较的标注输入
+结果：重生成dev/test哈希完全一致；150题ID、问法、分组与原证据保留；全部引用的文件hash和行号校验通过。
+问题：无
+
+[2026-09-26T15:01:10+08:00]
+操作：查看dev六组对照进度并确认静态检查
+原因：及时核对结果与运行状态
+结果：已读运行日志末尾；标注生成脚本格式化后Ruff全部通过。
+问题：无
+
+[2026-09-26T15:01:23+08:00]
+操作：dev对照：headings-bm25-rerank-truncate
+原因：比较检索、候选并集及标题层级上下文
+结果：{"name": "headings-bm25-rerank-truncate", "recall": 0.74, "precision": 0.21600000000000003, "f1": 0.32761904761904764, "mrr": 0.684, "ndcg": 0.6551345432873957, "complete_evidence_hit": 0.84, "evidence_mrr": 0.684, "evidence_coverage": 0.84, "latency_p50_ms": 736.4035205100663, "latency_p95_ms": 939.4573749741539}
+问题：无
+
+[2026-09-26T15:02:04+08:00]
+操作：dev对照：headings-hybrid-rerank-truncate
+原因：比较检索、候选并集及标题层级上下文
+结果：{"name": "headings-hybrid-rerank-truncate", "recall": 0.77, "precision": 0.228, "f1": 0.3447619047619048, "mrr": 0.705, "ndcg": 0.6812195823599018, "complete_evidence_hit": 0.84, "evidence_mrr": 0.705, "evidence_coverage": 0.84, "latency_p50_ms": 808.9011664851569, "latency_p95_ms": 929.2883750749752}
+问题：无
+
+[2026-09-26T15:02:25+08:00]
+操作：添加v2标注说明与项目文档入口
+原因：解释版本、来源审核、AND/OR证据指标和dev对照复现方式
+结果：文档明确27条判断的范围、候选池偏差、AI审核状态与标题方案组合改动；原始说明和基线保留。
+问题：无
+
+[2026-09-26T15:02:25+08:00]
+操作：查看标题分块dev对照进度
+原因：确认六组配置按同一协议继续执行
+结果：已读取运行日志末尾，各组结束后脚本自动追加具体指标。
+问题：无
+
+[2026-09-26T15:03:08+08:00]
+操作：dev对照：headings-hybrid-rerank-union
+原因：比较检索、候选并集及标题层级上下文
+结果：{"name": "headings-hybrid-rerank-union", "recall": 0.76, "precision": 0.224, "f1": 0.3390476190476191, "mrr": 0.684, "ndcg": 0.6656972681902994, "complete_evidence_hit": 0.84, "evidence_mrr": 0.684, "evidence_coverage": 0.84, "latency_p50_ms": 1240.6571460305713, "latency_p95_ms": 1642.8564169909805}
+问题：无
+
+[2026-09-26T15:03:08+08:00]
+操作：完成六组dev对照并按预定规则选择配置
+原因：先验证非模型改动，再决定模型替换
+结果：选择original-bm25-rerank-truncate；test未执行；原始结果保留。
+问题：无
+
+[2026-09-26T15:03:08+08:00]
+操作：检查新对照的旧配置是否复现历史排名
+原因：把补标影响与检索实现变化区分开
+结果：原始混合截断重排Top10有50/50题与历史报告一致；v1证据命中0.78，v2完整证据命中0.82。
+问题：无
+
+[2026-09-26T15:03:15+08:00]
+操作：读取六组dev比较结果与自动配置选择
+原因：确认模型决策依据与候选策略实际收益
+结果：已读comparison.md和selection.json，全部真实模型对照完成。
+问题：无
+
+[2026-09-26T15:04:26+08:00]
+操作：核验六组报告并保存推荐配置与7道未覆盖题
+原因：确认公平对照输入一致并形成可直接运行的结果
+结果：六组均为同一dev v2的50题与哈希，保存recommended-config.json和selected-failures.json；模型保持不变。
+问题：验证集仅50题、13个概念组，标注尚需独立人工审核，不能据此声称test或生产准确率。
+
+[2026-09-26T15:04:28+08:00]
+操作：通过CLI检查推荐配置与旧索引兼容
+原因：验证全局候选参数可被CLI解析且旧索引正常加载
+结果：status命令执行成功，原始BGE索引11168块、87来源，heading_context=False、fusion_candidates=truncate。
+问题：无
+
+[2026-09-26T15:05:55+08:00]
+操作：写入模型保留决策与推荐启动命令
+原因：将标注、dev结果和模型选择形成可审阅结论
+结果：decision.md说明本轮选择原始分块BM25＋现有重排；命中86%、P50约565ms，完整并集及标题方案未显示综合收益。
+问题：AI补标仍非穷尽；50题13组且86/84只差一题，尚不能作test泛化结论；7道dev题待后续定向核查。
+
+[2026-09-26T15:08:04+08:00]
+操作：读取新增等价标注与150题，生成human-review.md
+原因：为人工逐条核对原文和问题提供可填写清单
+结果：生成27条复核条目，包含37道题的逐题判定、原文链接、引用及理由栏；条目数量校验通过。
+问题：尚未执行人工审核；不改动现有标签、审核状态或指标。
+
+
+[2026-09-26T15:17:46+08:00]
+操作：按用户要求完成 human-review.md 的 AI 代审填写
+原因：逐题核验27组新增引用，明确证据完整性与参考答案适用条件
+结果：37题中通过31、拒绝0、待补6；记录必要事实、推导、限制和固定版本补证；13个原引用文件及补证文件与固定 commit 字节一致。未修改题集、标签、manifest、ledger或实验结果。
+问题：本次为AI代审，非独立人工审核；6题需补足引用或限定题意，MLA需区分显式重建与矩阵吸收实现。
+[2026-09-26T15:20:29+08:00]
+操作：定位并读取 AGENTS.md、Agent.md、operation_log.py 及修改后的 human-review.md，检查标注文件结构
+原因：检查用户补充的复核内容并确定核验标准
+结果：清单包含27组37题；标记为AI代审，31通过、6待补；尚未更新v2标签
+问题：无
+
+[2026-09-26T15:21:02+08:00]
+操作：统计复核结论并逐条核对新增证据固定commit、原文行号、语料hash和v2文件hash
+原因：验证用户补充内容与冻结来源及现有标签的一致性
+结果：核对13文件、33条引用；源文件/引用/hash错误=0；v2 dev/test hash保持原值
+问题：无
+
+[2026-09-26T15:22:17+08:00]
+操作：校验清单题目集合、逐题唯一结论、全部GitHub引用及补证，并生成review-check.md/json；核对DeepSeek-V2 v5原论文
+原因：给用户提供可复查的检测结果，识别引用完整性和判定标准差异
+结果：结构错误0；逐条核对清单GitHub引用13条，错误0；发现repo-035-2需变量释义、repo-045-1需统一范围标准、repo-033-2需修正前提；未修改human-review.md和v2标签
+问题：仍需独立人工复核；清单补证尚未写入JSON
+
+[2026-09-26T15:22:40+08:00]
+操作：修正清单引用检查器对链接与引用间空行的处理，并更新review-check.md/json
+原因：前次正则只覆盖13条紧邻链接引用，遗漏33条带空行的原始引用，需完整复查
+结果：完整核验46行引用、14文件，引用不匹配0；报告已更新
+问题：前次检查覆盖不足，已修正；无来源或标签修改
+
+[2026-09-26T15:24:04+08:00]
+操作：检索公开Infra/技术RAG数据集，读取仓库规则和依赖并查询BRIGHT、RAGBench、CMMLU、C-Eval官方元数据
+原因：寻找外部测试题与原生相关性标注，避免继续仅使用自编题
+结果：已定位BRIGHT StackOverflow检索集、RAGBench技术支持候选和中文计算机选择题集；进一步检查下载格式和许可证
+问题：C-Eval GitHub网页首次访问内部错误，使用官方HF元数据继续核查
+
+[2026-09-26T15:24:54+08:00]
+操作：查询数据文件大小并下载BRIGHT StackOverflow完整queries/documents、RAGBench TechQA test/validation和C-Eval三个科目val及固定版本README
+原因：取得可复现外部评测数据，保留官方题目、标注和来源，避免混入现有金标
+结果：下载完成11个文件；数据版本和每文件SHA256保存在data/public-evals/downloads.json
+问题：项目未安装pyarrow，将以uv run --with临时依赖读取Parquet，不改项目依赖
+
+[2026-09-26T15:26:59+08:00]
+操作：临时安装pyarrow25读取下载的Parquet并检查查询、文档、原生标注及重复记录
+原因：确定数据量、检索金标语义与真实唯一问题数量
+结果：BRIGHT117题/107081文档；TechQA validation304记录152题、test314记录157题；C-Eval val59题；所有数据保留官方拆分
+问题：上条下载日志文件数写为11，实际为10，现更正；TechQA每题有2条模型输出，不能当618道独立题；英文检索需单独看待当前中文BGE模型
+
+[2026-09-26T15:27:05+08:00]
+操作：导出公开评测数据
+原因：构建外部数据集
+结果：失败
+问题：AssertionError()
+
+[2026-09-26T15:27:30+08:00]
+操作：新增prepare_public_evals.py，首次导出和Ruff检查失败后定位并修正
+原因：提供保留官方版本、原始split和相关性标注的可复现导出入口
+结果：修复未使用导入/导入顺序；定位TechQA验证集11记录、测试集6记录含不存在的句子ID，改为保留原标注并显式标记异常
+问题：首次导出AssertionError源于上游标注ID不匹配；未擅自猜测修复，异常记录不应直接参与句子级评测
+
+[2026-09-26T15:27:31+08:00]
+操作：导出公开评测数据到evals/public-benchmarks和data/public-evals/prepared
+原因：为Infra项目补充外部题目，保留原生标注并隔离不同评测任务
+结果：{"bright_stackoverflow": {"queries": 117, "documents": 107081, "infra_queries": 22}, "ragbench_techqa": {"validation": {"unique_questions": 152, "records": 304, "unique_context_documents": 746, "records_with_invalid_sentence_keys": 11}, "test": {"unique_questions": 157, "records": 314, "unique_context_documents": 769, "records_with_invalid_sentence_keys": 6}, "validation_test_question_id_overlap": []}, "ceval_computing": {"queries": 59, "subject_counts": {"computer_architecture": 21, "computer_network": 19, "operating_system": 19}}}
+问题：TechQA模型回复不是参考答案；C-Eval尚无检索证据映射；未运行检索评测
+
+[2026-09-26T15:28:52+08:00]
+操作：导出公开评测数据到evals/public-benchmarks和data/public-evals/prepared
+原因：为Infra项目补充外部题目，保留原生标注并隔离不同评测任务
+结果：{"bright_stackoverflow": {"queries": 117, "documents": 107081, "infra_queries": 22}, "ragbench_techqa": {"validation": {"unique_questions": 152, "records": 304, "unique_context_documents": 746, "records_with_invalid_sentence_keys": 11}, "test": {"unique_questions": 157, "records": 314, "unique_context_documents": 769, "records_with_invalid_sentence_keys": 6}, "validation_test_question_id_overlap": []}, "ceval_computing": {"queries": 59, "subject_counts": {"computer_architecture": 21, "computer_network": 19, "operating_system": 19}}}
+问题：TechQA模型回复不是参考答案；C-Eval尚无检索证据映射；未运行检索评测
+
+[2026-09-26T15:29:12+08:00]
+操作：补充公开数据集使用说明、固定版本恢复下载、导出文件hash并复跑导出和Ruff检查；检索Φ-Bench适用性
+原因：确保用户可以复现来源并正确区分原生检索金标、模型输出注释和待映射选择题
+结果：6个导出JSON校验通过，Ruff通过；原v2 dev/test hash未变；485个外部唯一问题，22题为BRIGHT117题内子集；未生成检索成绩
+问题：TechQA17条记录句子ID异常已标记；Φ-Bench是工程任务评测，本轮未导入；导出文件尚需不同原生评测协议接入
+
+[2026-09-26T15:29:25+08:00]
+操作：导出公开评测数据到evals/public-benchmarks和data/public-evals/prepared
+原因：为Infra项目补充外部题目，保留原生标注并隔离不同评测任务
+结果：{"bright_stackoverflow": {"queries": 117, "documents": 107081, "infra_queries": 22}, "ragbench_techqa": {"validation": {"unique_questions": 152, "records": 304, "unique_context_documents": 746, "records_with_invalid_sentence_keys": 11}, "test": {"unique_questions": 157, "records": 314, "unique_context_documents": 769, "records_with_invalid_sentence_keys": 6}, "validation_test_question_id_overlap": []}, "ceval_computing": {"queries": 59, "subject_counts": {"computer_architecture": 21, "computer_network": 19, "operating_system": 19}}}
+问题：TechQA模型回复不是参考答案；C-Eval尚无检索证据映射；未运行检索评测
+
+[2026-09-26T15:32:35+08:00]
+操作：读取仓库规则、检索实现、配置、现有验证脚本与外部数据说明
+原因：设计遵守原生文档ID及金标语义的外部实验，查明可测性能瓶颈
+结果：当前BM25逐文档扫描；BRIGHT有原生金标可实验，TechQA为模型注释上下文集，C-Eval仍缺语料证据；准备先运行完整BRIGHT语料上的词法与重排对照
+问题：不能直接用已有span评估器替代BRIGHT原生文档评估；需新适配器，不修改原数据
+
+[2026-09-26T15:35:56+08:00]
+操作：新增BRIGHT原生文档评测器及固定分组协议；启动扫描BM25＋现有重排模型验证集实验；新增倒排BM25实现和一致性测试
+原因：取得外部基线并解决全库逐文档扫描的效率瓶颈，保持原始打分和排序语义
+结果：87dev/30holdout预先固定；完整文档库统计耗时69.8秒；倒排实现接入按domain/modality缓存，支持Top-k堆选择；等待基线与测试完成
+问题：Ruff首次E731命名lambda已改def；基线已启动后才编辑模块，运行进程已加载原扫描实现，不影响基线；尚未使用holdout选择参数
+
+[2026-09-26T15:37:04+08:00]
+操作：在原中文Infra50题验证集上对比扫描与倒排BM25的Top100和分数
+原因：确认性能优化不改变现有推荐配置的候选与金标命中
+结果：全部50题Top100与分数完全相同；扫描P50=54.2ms、倒排=10.3ms
+问题：此为评分模块计时，外部实验并行运行，不是端到端受控延迟
+
+[2026-09-26T15:37:35+08:00]
+操作：运行完整pytest和Ruff；倒排BM25采用Top-k堆排序并开始候选100重排验证集对照
+原因：验证生产接入正确性，比较召回候选扩大是否改善检索精度
+结果：32项测试通过，Ruff通过；原有按domain/modality缓存和增删失效测试通过；只在dev运行候选30/100对照
+问题：现有FastAPI TestClient依赖有弃用警告，与本次改动无关；同时运行模型实验导致当前计时需明确并发背景
+
+[2026-09-26T15:38:37+08:00]
+操作：TechQA所给上下文池BM25试验
+原因：测量外部技术支持场景并过滤异常/冲突标签
+结果：{"validation": {"protocol": "pooled provided contexts; positive document if any labeled sentence; both model records must agree; not official TechQA retrieval", "label_source": "upstream model annotations, not independently human validated", "split": "validation", "input_questions": 152, "evaluated_questions": 80, "excluded_questions": 72, "context_pool_documents": 1488, "at_k": {"5": {"recall": 0.8104166666666667, "hit": 0.825, "mrr": 0.648125, "ndcg": 0.6848518866209886}, "10": {"recall": 0.89625, "hit": 0.9125, "mrr": 0.6597172619047619, "ndcg": 0.7142675714875316}}, "latency_p50_ms": 1.788208493962884}, "test": {"protocol": "pooled provided contexts; positive document if any labeled sentence; both model records must agree; not official TechQA retrieval", "label_source": "upstream model annotations, not independently human validated", "split": "test", "input_questions": 157, "evaluated_questions": 78, "excluded_questions": 79, "context_pool_documents": 1488, "at_k": {"5": {"recall": 0.8205128205128205, "hit": 0.8333333333333334, "mrr": 0.7247863247863248, "ndcg": 0.7456988068832026}, "10": {"recall": 0.9, "hit": 0.9102564102564102, "mrr": 0.735927960927961, "ndcg": 0.7730170388979931}}, "latency_p50_ms": 1.840728975366801}}
+问题：这是模型注释的上下文池试验，不是完整语料或官方TechQA成绩
+
+[2026-09-26T15:38:41+08:00]
+操作：为C-Eval59题生成中文Infra语料Top5证据复核候选
+原因：推进公开中文选择题与冻结知识库的证据映射
+结果：59题检索完成；未向查询加入答案标签；全部仍待证据/覆盖性复核
+问题：无检索金标，不能把候选数、相似度或答题正确率当作检索召回
+
+[2026-09-26T15:40:17+08:00]
+操作：BRIGHT dev全语料评测：scan，重排候选[30]
+原因：按原生文档级金标验证外部检索与候选上限
+结果：[{"name": "bm25", "ranker": "scan", "split": "dev", "questions": 87, "at_k": {"5": {"recall": 0.17304070870314064, "hit": 0.3448275862068966, "mrr": 0.22758620689655173, "ndcg": 0.17372515151650006}, "10": {"recall": 0.2190073319837385, "hit": 0.39080459770114945, "mrr": 0.2340175150519978, "ndcg": 0.1852888937345022}}, "latency_p50_ms": 626.6126669943333, "infra": {"questions": 17, "at_k": {"5": {"recall": 0.20098039215686275, "hit": 0.35294117647058826, "mrr": 0.27941176470588236, "ndcg": 0.23102228328969965}, "10": {"recall": 0.21666666666666667, "hit": 0.35294117647058826, "mrr": 0.27941176470588236, "ndcg": 0.22973301677331198}}, "latency_p50_ms": 611.2749580061063}}, {"name": "bm25-rerank-30", "ranker": "scan", "split": "dev", "questions": 87, "at_k": {"5": {"recall": 0.14478415313261048, "hit": 0.28735632183908044, "mrr": 0.16053639846743295, "ndcg": 0.1287188634967726}, "10": {"recall": 0.20329908378910194, "hit": 0.40229885057471265, "mrr": 0.17655537310709724, "ndcg": 0.14899852291326376}}, "latency_p50_ms": 3261.1050829291344, "infra": {"questions": 17, "at_k": {"5": {"recall": 0.06470588235294117, "hit": 0.17647058823529413, "mrr": 0.1, "ndcg": 0.0664429869897958}, "10": {"recall": 0.20098039215686275, "hit": 0.35294117647058826, "mrr": 0.12334267040149394, "ndcg": 0.11241655642695657}}, "latency_p50_ms": 3261.1050829291344}}]
+问题：英文技术域，不能与中文Infra分数直接比较；AI筛选22题并非新独立数据集
+
+[2026-09-26T15:41:29+08:00]
+操作：BRIGHT dev全语料评测：technical，重排候选[]
+原因：按原生文档级金标验证外部检索与候选上限
+结果：[{"name": "bm25", "ranker": "technical", "split": "dev", "questions": 87, "at_k": {"5": {"recall": 0.17197338522202407, "hit": 0.3333333333333333, "mrr": 0.2450191570881226, "ndcg": 0.180100850081794}, "10": {"recall": 0.24783060590683095, "hit": 0.42528735632183906, "mrr": 0.2558246670315636, "ndcg": 0.20356447449834647}}, "latency_p50_ms": 58.055125060491264, "infra": {"questions": 17, "at_k": {"5": {"recall": 0.25980392156862747, "hit": 0.4117647058823529, "mrr": 0.3088235294117647, "ndcg": 0.25881862584215365}, "10": {"recall": 0.35980392156862745, "hit": 0.47058823529411764, "mrr": 0.3161764705882353, "ndcg": 0.2817824343604204}}, "latency_p50_ms": 53.21362498216331}}]
+问题：英文技术域，不能与中文Infra分数直接比较；AI筛选22题并非新独立数据集
+
+[2026-09-26T15:42:04+08:00]
+操作：分析外部验证集候选覆盖与初始重排效果；新增可选technical英文查询词过滤，保持默认raw
+原因：验证英文长问题的功能词/符号噪声，并避免盲目增加重排或更换模型
+结果：dev BM25 nDCG@10=.1853、现有30候选重排=.1490；候选100仍有47.1%问题无金标，重排无法补回；C-Eval59题候选已保存；TechQA仅158题满足注释一致性过滤
+问题：轮询已结束辅助进程时出现Unknown process id，确认结果文件完整，非实验失败；TechQA高比例模型注释冲突不能当人工金标
+
+[2026-09-26T15:44:28+08:00]
+操作：中文Infra dev50的technical查询模式＋现有重排回归
+原因：防止英文优化损害主要中文场景
+结果：{"split": "dev", "query_mode": "technical", "questions": 50, "complete_evidence_hit_5": 0.86, "evidence_mrr_5": 0.6913333333333334, "same_top10_as_previous": 49}
+问题：未修改模型、标签或默认查询模式；当前并发实验不报告端到端延迟
+
+[2026-09-26T15:44:31+08:00]
+操作：复查跨进程BM25结果并生成dev87逐题查询模式和重排诊断
+原因：确认大语料排名等价，分析technique改动收益并纠正不合理浮点断言
+结果：87题Top100 ID完全相同，最大分数差1.71e-13，1e-12容差校验通过；technical Top10命中新增4题、丢失1题；已保存逐题报告
+问题：前次分数逐位相等断言失败；原因是不同Python进程set哈希顺序导致浮点求和末位不同，非检索排序变化；未查看holdout结果
+
+[2026-09-26T15:45:38+08:00]
+操作：抽查C-Eval证据候选并核对原始题目选项、重复题及TCP确认号语义
+原因：防止公开题集自身错误影响实验结论
+结果：发现network12重复选项且错误题选择不唯一；network17正确推导8600不在选项内，需隔离审核；network8与11题干完全重复
+问题：公开标签不保证正确；仅保存质量审计，保留上游题目和答案，不虚构检索金标
+
+[2026-09-26T15:46:15+08:00]
+操作：BRIGHT dev全语料评测：inverted，重排候选[100]
+原因：按原生文档级金标验证外部检索与候选上限
+结果：[{"name": "bm25", "ranker": "inverted", "split": "dev", "questions": 87, "at_k": {"5": {"recall": 0.17304070870314064, "hit": 0.3448275862068966, "mrr": 0.22758620689655173, "ndcg": 0.17372515151650006}, "10": {"recall": 0.2190073319837385, "hit": 0.39080459770114945, "mrr": 0.2340175150519978, "ndcg": 0.1852888937345022}}, "latency_p50_ms": 115.42874993756413, "infra": {"questions": 17, "at_k": {"5": {"recall": 0.20098039215686275, "hit": 0.35294117647058826, "mrr": 0.27941176470588236, "ndcg": 0.23102228328969965}, "10": {"recall": 0.21666666666666667, "hit": 0.35294117647058826, "mrr": 0.27941176470588236, "ndcg": 0.22973301677331198}}, "latency_p50_ms": 113.99341700598598}}, {"name": "bm25-rerank-100", "ranker": "inverted", "split": "dev", "questions": 87, "at_k": {"5": {"recall": 0.12364047191633398, "hit": 0.21839080459770116, "mrr": 0.10938697318007663, "ndcg": 0.09315420124807838}, "10": {"recall": 0.15594724560241802, "hit": 0.28735632183908044, "mrr": 0.11843641671227878, "ndcg": 0.10592780517103481}}, "latency_p50_ms": 5625.465999939479, "infra": {"questions": 17, "at_k": {"5": {"recall": 0.08431372549019608, "hit": 0.17647058823529413, "mrr": 0.058823529411764705, "ndcg": 0.060907326068266356}, "10": {"recall": 0.10392156862745097, "hit": 0.17647058823529413, "mrr": 0.058823529411764705, "ndcg": 0.06389732975350734}}, "latency_p50_ms": 5198.492958093993}}]
+问题：英文技术域，不能与中文Infra分数直接比较；AI筛选22题并非新独立数据集
+
+[2026-09-26T15:47:01+08:00]
+操作：冻结BRIGHT验证集选择，启动保留集前保存selection.json
+原因：避免使用保留集选择算法或重排候选数量
+结果：technical倒排BM25无重排在四个dev方案中nDCG@10最高.2036；30/100重排分别.1490/.1059；英文推荐模式已冻结
+问题：扩大候选导致精度进一步下降；当前重排模型不适合此基准的证据排序，尚不依据此结果替换中文模型
+
+[2026-09-26T15:47:10+08:00]
+操作：BRIGHT holdout全语料评测：technical，重排候选[]
+原因：按原生文档级金标验证外部检索与候选上限
+结果：[{"name": "bm25", "ranker": "technical", "split": "holdout", "questions": 30, "at_k": {"5": {"recall": 0.11445386064030132, "hit": 0.26666666666666666, "mrr": 0.1288888888888889, "ndcg": 0.10109669325827926}, "10": {"recall": 0.1276208411801632, "hit": 0.3, "mrr": 0.13444444444444445, "ndcg": 0.10396043774021857}}, "latency_p50_ms": 77.80172902857885, "infra": {"questions": 5, "at_k": {"5": {"recall": 0.11666666666666667, "hit": 0.4, "mrr": 0.16666666666666666, "ndcg": 0.09825438719238322}, "10": {"recall": 0.16666666666666666, "hit": 0.6, "mrr": 0.19999999999999998, "ndcg": 0.12606562309453834}}, "latency_p50_ms": 101.8717500846833}}]
+问题：英文技术域，不能与中文Infra分数直接比较；AI筛选22题并非新独立数据集
+
+[2026-09-26T15:47:13+08:00]
+操作：BRIGHT holdout全语料评测：inverted，重排候选[]
+原因：按原生文档级金标验证外部检索与候选上限
+结果：[{"name": "bm25", "ranker": "inverted", "split": "holdout", "questions": 30, "at_k": {"5": {"recall": 0.08888888888888889, "hit": 0.16666666666666666, "mrr": 0.09166666666666666, "ndcg": 0.07590491380651018}, "10": {"recall": 0.11296296296296296, "hit": 0.2, "mrr": 0.09537037037037037, "ndcg": 0.07998589370258426}}, "latency_p50_ms": 191.16477051284164, "infra": {"questions": 5, "at_k": {"5": {"recall": 0.06666666666666667, "hit": 0.2, "mrr": 0.1, "ndcg": 0.059216382193173045}, "10": {"recall": 0.06666666666666667, "hit": 0.2, "mrr": 0.1, "ndcg": 0.059216382193173045}}, "latency_p50_ms": 206.09550003428012}}]
+问题：英文技术域，不能与中文Infra分数直接比较；AI筛选22题并非新独立数据集
+
+[2026-09-26T15:47:41+08:00]
+操作：用现有reranker tokenizer检查dev问题长度分布
+原因：诊断英文长查询和代码占用重排输入窗口的潜在影响
+结果：{"queries": 87, "query_tokens_p50": 304, "query_tokens_max": 1325, "over_256": 53, "over_512": 22, "tokenizer_limit": 512, "interpretation": "长问题与文档在有限pair窗口中竞争空间，是潜在影响；未做截断策略消融，不能单独断言因果"}
+问题：这只是候选解释，未验证替代截断或模型；不能将性能下降全部归因于语言或长度
+
+[2026-09-26T15:47:57+08:00]
+操作：运行之前dev选择的原始分块BM25＋现有重排模型的中文冻结test100
+原因：验证已选中文配置的泛化，不根据test调参
+结果：{"5": {"complete_evidence_hit": 0.81, "evidence_mrr": 0.677, "evidence_coverage": 0.8166666666666667, "recall": 0.77, "precision": 0.166, "f1": 0.270952380952381, "mrr": 0.687, "ndcg": 0.6902093443876559}, "10": {"complete_evidence_hit": 0.86, "evidence_mrr": 0.683952380952381, "evidence_coverage": 0.8733333333333333, "recall": 0.845, "precision": 0.094, "f1": 0.16803030303030303, "mrr": 0.695202380952381, "ndcg": 0.7171087521925501}}
+问题：标注v2仍为AI审查、非独立人工金标；未将test结果用于更换参数或模型
+
+[2026-09-26T15:49:15+08:00]
+操作：用固定v2金标离线重算原历史hybrid重排test逐题结果
+原因：以相同标注对比之前的混合方案与已选BM25重排，避免混用v1/v2分数
+结果：{"protocol": "re-score previous stored hybrid-rerank test predictions on frozen v2 labels; no new retrieval or parameter selection", "questions": 100, "complete_evidence_hit_5": 0.88, "evidence_mrr_5": 0.7431666666666666}
+问题：使用原存储预测，不做新检索；不能把标注修正的提升归因于本次算法
+
+[2026-09-26T15:49:20+08:00]
+操作：独立顺序复测中文与BRIGHT倒排BM25性能，每库20题2轮交替执行
+原因：消除早期并行实验对延迟的干扰，量化已接入的性能改进
+结果：{"chinese": {"scope": "warm BM25 scoring only; same process, sequential; includes Top100 ranking, excludes index build/service/context/reranking", "questions": 20, "repeats": 2, "chunks": 11168, "index_build_ms": 185.77037507202476, "scan_p50_ms": 31.399708008393645, "inverted_p50_ms": 7.305520528461784, "speedup": 4.298079498382441, "same_rankings_and_scores": true}, "bright": {"scope": "warm BM25 scoring only; same process, sequential; includes Top100 ranking, excludes index build/service/context/reranking", "questions": 20, "repeats": 2, "chunks": 107081, "index_build_ms": 1121.4767079800367, "scan_p50_ms": 623.6022289376706, "inverted_p50_ms": 125.76762499520555, "speedup": 4.958368490789607, "same_rankings_and_scores": true}}
+问题：评分模块延迟不等于端到端延迟；冷启动和倒排构建另行列出
+
+[2026-09-26T15:49:46+08:00]
+操作：对查询模式差异进行按来源族聚类bootstrap并保存运行环境
+原因：报告外部小样本提升的统计不确定性并补齐可复现信息
+结果：{"dev": {"questions": 87, "groups": 84, "ndcg_10_delta": 0.01827558076384428, "cluster_bootstrap_95ci": [-0.009711347586645581, 0.04840155134860812], "bootstrap_replicates": 2000}, "holdout": {"questions": 30, "groups": 29, "ndcg_10_delta": 0.023974544037634313, "cluster_bootstrap_95ci": [-0.00725470074680016, 0.06371642920346739], "bootstrap_replicates": 2000}}
+问题：置信区间可能包含0，不能宣称显著；不依据保留集继续调整参数
+
+[2026-09-26T15:50:58+08:00]
+操作：比较中文已选配置和历史混合重排在同一v2 test上的逐题命中差异
+原因：揭示小验证集选择的泛化局限并保持test仅用于最终检验
+结果：{"bm25_only_successes": [], "hybrid_only_successes": ["repo-001-1", "repo-008-1", "repo-008-2", "repo-021-1", "repo-029-1", "repo-034-1", "repo-061-1"], "by_question_type": {"knowledge": {"bm25_rerank": 0.84, "historical_hybrid_rerank": 0.96}, "scenario": {"bm25_rerank": 0.78, "historical_hybrid_rerank": 0.8}}, "decision": "retain dev-based selection; do not retune on test; revisit on independent broader dev", "label_caveat": "v2 equivalent labels derived partly from historical retrieval pools; not independent human gold"}
+问题：历史混合重排完整命中88%高于已选BM25重排81%；不据此倒用test切换参数；v2补标来源池可能有偏差
+
+[2026-09-26T15:52:41+08:00]
+操作：汇总公开实验、中文回归、数据质量、受控性能与统计不确定性，更新README入口
+原因：提供可复查的最终分析并明确实际落地与限制
+结果：experiment-analysis.md已生成；倒排默认接入约4.30/4.96倍模块提速；technical保留可选；不根据test更换模型或检索参数
+问题：中文BM25选项test低于历史混合方案、英文绝对成绩低、置信区间包含0，均已如实披露
+
+[2026-09-26T15:53:58+08:00]
+操作：更新公开数据说明并完成最终Ruff、pytest、CLI帮助及结果JSON/原v2 hash校验
+原因：确认改进可用、说明与实验一致、未污染固定标注
+结果：Ruff通过、33项pytest通过；CLI已暴露lexical-query-mode和candidate-k；所有公开JSON可解析，原v2 dev/test hash不变；完整分析已保存
+问题：已有FastAPI依赖弃用警告保留；英文提升置信区间含0、中文dev选择泛化反例均已在报告披露；C-Eval仍需证据审核
+
+[2026-09-26T15:55:14+08:00]
+操作：复查实验报告、API、检索和编码实现，并查阅Sentence Transformers检索重排及Chroma增量更新官方文档
+原因：回答项目剩余优化空间，按已有证据而非预设模型升级排序
+结果：主要空间：独立标注及验证集代表性、候选召回和长查询、条件重排、分块/父上下文消融；工程上全量重编码与单锁串行检索仍可优化；本轮未修改代码
+问题：当前公开英文改进置信区间含0，模型和分块优化均需新验证，不能承诺准确率增益
+
+[2026-09-26T16:16:18+08:00]
+操作：验证增量处理、持久向量缓存、阶段诊断、共享上下文预算与清理
+原因：减少全库重复编码，确保新路径与完整重建一致且可追溯
+结果：backend=demo, multimodal=False; 报告=evals/results/retrieval-updates/demo.json; vector difference=0.0; restart/delete passed
+问题：合成小语料功能验收，计时包含SQLite和版本集合写入；不代表准确率提升或大库性能
+
+[2026-09-26T16:16:35+08:00]
+操作：验证增量处理、持久向量缓存、阶段诊断、共享上下文预算与清理
+原因：减少全库重复编码，确保新路径与完整重建一致且可追溯
+结果：backend=bge, multimodal=True; 报告=evals/results/retrieval-updates/bge-multimodal.json; vector difference=0.0; restart/delete passed
+问题：合成小语料功能验收，计时包含SQLite和版本集合写入；不代表准确率提升或大库性能
+
+[2026-09-26T16:18:47+08:00]
+操作：验证增量处理、持久向量缓存、阶段诊断、共享上下文预算与清理
+原因：减少全库重复编码，确保新路径与完整重建一致且可追溯
+结果：backend=bge, multimodal=True; 报告=evals/results/retrieval-updates/bge-multimodal.json; vector difference=0.0; restart/delete passed
+问题：合成小语料功能验收，计时包含SQLite和版本集合写入；不代表准确率提升或大库性能
+
+[2026-09-26T16:22:14+08:00]
+操作：验证增量处理、持久向量缓存、阶段诊断、共享上下文预算与清理
+原因：减少全库重复编码，确保新路径与完整重建一致且可追溯
+结果：backend=demo, multimodal=False; 报告=evals/results/retrieval-updates/demo.json; vector difference=0.0; restart/delete passed
+问题：合成小语料功能验收，计时包含SQLite和版本集合写入；不代表准确率提升或大库性能
+
+[2026-09-26T16:22:46+08:00]
+操作：验证增量处理、持久向量缓存、阶段诊断、共享上下文预算与清理
+原因：减少全库重复编码，确保新路径与完整重建一致且可追溯
+结果：backend=bge, multimodal=True; 报告=evals/results/retrieval-updates/bge-multimodal.json; vector difference=0.0; restart/delete passed
+问题：合成小语料功能验收，计时包含SQLite和版本集合写入；不代表准确率提升或大库性能
+
+[2026-09-26T16:23:23+08:00]
+操作：验证增量处理、持久向量缓存、阶段诊断、共享上下文预算与清理
+原因：减少全库重复编码，确保新路径与完整重建一致且可追溯
+结果：backend=demo, multimodal=False; 报告=evals/results/retrieval-updates/demo.json; vector difference=0.0; restart/delete passed
+问题：合成小语料功能验收，计时包含SQLite和版本集合写入；不代表准确率提升或大库性能
+
+[2026-09-26T16:23:28+08:00]
+操作：验证增量处理、持久向量缓存、阶段诊断、共享上下文预算与清理
+原因：减少全库重复编码，确保新路径与完整重建一致且可追溯
+结果：backend=bge, multimodal=True; 报告=evals/results/retrieval-updates/bge-multimodal.json; vector difference=0.0; restart/delete passed
+问题：合成小语料功能验收，计时包含SQLite和版本集合写入；不代表准确率提升或大库性能
+
+[2026-09-26T16:24:25+08:00]
+操作：完成增量处理/持久向量缓存、检索诊断、父块去重与共享预算；更新文档和验收脚本
+原因：落实已推荐的三项工程改进，保留固定模型、分块参数和dev/test，提供可复查的证据交付
+结果：53项pytest通过；全仓Ruff lint/format通过；uv build及CLI生命周期通过；真实BGE/CLIP/reranker/Chroma验收通过，单篇更新最终索引新编码1/复用16；增量与重建向量差0/Top5一致；图注更新CLIP新编码0；真实仓库11168块dev50新旧上下文BM25排名/分数一致，v1/v2题集与快照hash不变；最终报告源码hash与当前代码、wheel与当前包源码一致；三份旧评估脚本仅规范格式
+问题：新版本Chroma/JSON仍完整写入，增量收益主要在解析编码；服务仍同步单进程；小合成语料计时不代表大库性能或准确率；长token输入诊断触发tokenizer长度提示，实际BGE/CLIP窗口编码与reranker截断完成；FastAPI测试既有弃用警告保留
+

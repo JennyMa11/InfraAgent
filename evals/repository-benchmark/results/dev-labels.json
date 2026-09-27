@@ -1,0 +1,2352 @@
+[
+  {
+    "id": "repo-002-1",
+    "query": "CUDA 全局内存访问合并是以什么线程单位进行的？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "cuda-coalescing",
+    "seed_id": "seed-002",
+    "expected_answer": "硬件以Warp为单位将线程的全局内存访问合并为较少事务。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.2-内存访问优化.md",
+        "text": "全局内存的访问以 **Warp** 为单位进行事务（transaction）合并。当一个 Warp 的 32 个线程同时发起内存读写时，硬件会尝试将这些请求合并为最少的内存事务。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.2-内存访问优化.md",
+        "sha256": "0faacec955468d6e4185d675eb6564f6e280402703a554773d4c1ab5dc56142b",
+        "line_start": 60,
+        "line_end": 60,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/2.2-%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96.md#L60-L60"
+      }
+    ],
+    "reference_paragraph": "全局内存的访问以 **Warp** 为单位进行事务（transaction）合并。当一个 Warp 的 32 个线程同时发起内存读写时，硬件会尝试将这些请求合并为最少的内存事务。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "58033ae63d82da089adc4a98"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.2-内存访问优化.md",
+          "text": "全局内存的访问以 **Warp** 为单位进行事务（transaction）合并。当一个 Warp 的 32 个线程同时发起内存读写时，硬件会尝试将这些请求合并为最少的内存事务。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.2-内存访问优化.md",
+          "sha256": "0faacec955468d6e4185d675eb6564f6e280402703a554773d4c1ab5dc56142b",
+          "line_start": 60,
+          "line_end": 60,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/2.2-%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96.md#L60-L60"
+        },
+        "chunk_ids": [
+          "58033ae63d82da089adc4a98"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-002-2",
+    "query": "32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "cuda-coalescing",
+    "seed_id": "seed-002",
+    "expected_answer": "硬件以Warp为单位将线程的全局内存访问合并为较少事务。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.2-内存访问优化.md",
+        "text": "全局内存的访问以 **Warp** 为单位进行事务（transaction）合并。当一个 Warp 的 32 个线程同时发起内存读写时，硬件会尝试将这些请求合并为最少的内存事务。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.2-内存访问优化.md",
+        "sha256": "0faacec955468d6e4185d675eb6564f6e280402703a554773d4c1ab5dc56142b",
+        "line_start": 60,
+        "line_end": 60,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/2.2-%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96.md#L60-L60"
+      }
+    ],
+    "reference_paragraph": "全局内存的访问以 **Warp** 为单位进行事务（transaction）合并。当一个 Warp 的 32 个线程同时发起内存读写时，硬件会尝试将这些请求合并为最少的内存事务。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "58033ae63d82da089adc4a98"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.2-内存访问优化.md",
+          "text": "全局内存的访问以 **Warp** 为单位进行事务（transaction）合并。当一个 Warp 的 32 个线程同时发起内存读写时，硬件会尝试将这些请求合并为最少的内存事务。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/2.2-内存访问优化.md",
+          "sha256": "0faacec955468d6e4185d675eb6564f6e280402703a554773d4c1ab5dc56142b",
+          "line_start": 60,
+          "line_end": 60,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/2.2-%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96.md#L60-L60"
+        },
+        "chunk_ids": [
+          "58033ae63d82da089adc4a98"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-014-1",
+    "query": "Row Parallel线性层如何合并各卡的局部输出？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "tensor-parallel",
+    "seed_id": "seed-014",
+    "expected_answer": "Row Parallel输出是局部部分和，使用求和AllReduce得到完整输出。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+        "text": "- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+        "sha256": "04ba43577a366eb9612475ad7ab7f438e9a3251f826361b48f430c46122df657",
+        "line_start": 34,
+        "line_end": 38,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC6%E7%AB%A0-%E5%BC%A0%E9%87%8F%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%BA%8F%E5%88%97%E5%B9%B6%E8%A1%8C.md#L34-L38"
+      }
+    ],
+    "reference_paragraph": "- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "a814f14a71906dc69749b385"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+          "text": "- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+          "sha256": "04ba43577a366eb9612475ad7ab7f438e9a3251f826361b48f430c46122df657",
+          "line_start": 34,
+          "line_end": 38,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC6%E7%AB%A0-%E5%BC%A0%E9%87%8F%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%BA%8F%E5%88%97%E5%B9%B6%E8%A1%8C.md#L34-L38"
+        },
+        "chunk_ids": [
+          "a814f14a71906dc69749b385"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-014-2",
+    "query": "FFN第二层按归约维度切到多卡，各卡只得到部分和，下一层要完整结果时需要什么通信？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "tensor-parallel",
+    "seed_id": "seed-014",
+    "expected_answer": "Row Parallel输出是局部部分和，使用求和AllReduce得到完整输出。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+        "text": "- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+        "sha256": "04ba43577a366eb9612475ad7ab7f438e9a3251f826361b48f430c46122df657",
+        "line_start": 34,
+        "line_end": 38,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC6%E7%AB%A0-%E5%BC%A0%E9%87%8F%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%BA%8F%E5%88%97%E5%B9%B6%E8%A1%8C.md#L34-L38"
+      }
+    ],
+    "reference_paragraph": "- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "a814f14a71906dc69749b385"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+          "text": "- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+          "sha256": "04ba43577a366eb9612475ad7ab7f438e9a3251f826361b48f430c46122df657",
+          "line_start": 34,
+          "line_end": 38,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC6%E7%AB%A0-%E5%BC%A0%E9%87%8F%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%BA%8F%E5%88%97%E5%B9%B6%E8%A1%8C.md#L34-L38"
+        },
+        "chunk_ids": [
+          "a814f14a71906dc69749b385"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-016-1",
+    "query": "MoE专家并行中的dispatch和combine两次All-to-All各做什么？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "moe-routing",
+    "seed_id": "seed-016",
+    "expected_answer": "dispatch将token发往专家卡，combine将结果发回原卡。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md",
+        "text": "- 两次 All-to-All：dispatch（token 发往对应 Expert 所在 GPU）+ combine（结果发回原 GPU）\n- 通信量分析：取决于 token 数、Top-K、Expert 分布\n- 为什么 All-to-All 是 MoE 训练的主要瓶颈\n- 通信优化：分组 All-to-All、计算通信重叠、DeepEP 等高性能通信库",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md",
+        "sha256": "cbb097e209710f63762dff67768815768c2610822162d02c5fdd1b503f98e417",
+        "line_start": 32,
+        "line_end": 35,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC10%E7%AB%A0-MoE%E5%B9%B6%E8%A1%8C.md#L32-L35"
+      }
+    ],
+    "reference_paragraph": "- 两次 All-to-All：dispatch（token 发往对应 Expert 所在 GPU）+ combine（结果发回原 GPU）\n- 通信量分析：取决于 token 数、Top-K、Expert 分布\n- 为什么 All-to-All 是 MoE 训练的主要瓶颈\n- 通信优化：分组 All-to-All、计算通信重叠、DeepEP 等高性能通信库",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "c7718882020f195683fe5355"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md",
+          "text": "- 两次 All-to-All：dispatch（token 发往对应 Expert 所在 GPU）+ combine（结果发回原 GPU）\n- 通信量分析：取决于 token 数、Top-K、Expert 分布\n- 为什么 All-to-All 是 MoE 训练的主要瓶颈\n- 通信优化：分组 All-to-All、计算通信重叠、DeepEP 等高性能通信库",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md",
+          "sha256": "cbb097e209710f63762dff67768815768c2610822162d02c5fdd1b503f98e417",
+          "line_start": 32,
+          "line_end": 35,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC10%E7%AB%A0-MoE%E5%B9%B6%E8%A1%8C.md#L32-L35"
+        },
+        "chunk_ids": [
+          "c7718882020f195683fe5355"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-016-2",
+    "query": "token按路由跨卡送给专家计算后，还要怎样将结果归回原请求所在卡？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "moe-routing",
+    "seed_id": "seed-016",
+    "expected_answer": "dispatch将token发往专家卡，combine将结果发回原卡。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md",
+        "text": "- 两次 All-to-All：dispatch（token 发往对应 Expert 所在 GPU）+ combine（结果发回原 GPU）\n- 通信量分析：取决于 token 数、Top-K、Expert 分布\n- 为什么 All-to-All 是 MoE 训练的主要瓶颈\n- 通信优化：分组 All-to-All、计算通信重叠、DeepEP 等高性能通信库",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md",
+        "sha256": "cbb097e209710f63762dff67768815768c2610822162d02c5fdd1b503f98e417",
+        "line_start": 32,
+        "line_end": 35,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC10%E7%AB%A0-MoE%E5%B9%B6%E8%A1%8C.md#L32-L35"
+      }
+    ],
+    "reference_paragraph": "- 两次 All-to-All：dispatch（token 发往对应 Expert 所在 GPU）+ combine（结果发回原 GPU）\n- 通信量分析：取决于 token 数、Top-K、Expert 分布\n- 为什么 All-to-All 是 MoE 训练的主要瓶颈\n- 通信优化：分组 All-to-All、计算通信重叠、DeepEP 等高性能通信库",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "c7718882020f195683fe5355"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md",
+          "text": "- 两次 All-to-All：dispatch（token 发往对应 Expert 所在 GPU）+ combine（结果发回原 GPU）\n- 通信量分析：取决于 token 数、Top-K、Expert 分布\n- 为什么 All-to-All 是 MoE 训练的主要瓶颈\n- 通信优化：分组 All-to-All、计算通信重叠、DeepEP 等高性能通信库",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md",
+          "sha256": "cbb097e209710f63762dff67768815768c2610822162d02c5fdd1b503f98e417",
+          "line_start": 32,
+          "line_end": 35,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC10%E7%AB%A0-MoE%E5%B9%B6%E8%A1%8C.md#L32-L35"
+        },
+        "chunk_ids": [
+          "c7718882020f195683fe5355"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-017-1",
+    "query": "Ulysses通过什么通信重排Head和序列的切分维度？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "context-parallel",
+    "seed_id": "seed-017",
+    "expected_answer": "Ulysses使用All-to-All重排head和序列维度，取舍涉及head数限制。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第9章-长序列训练与上下文并行.md",
+        "text": "- 沿 Head 维度切分 → All-to-All 重排为序列维度切分\n- 通信量分析：与序列长度无关、与 Head 维度相关\n- 与 Ring Attention 的取舍：通信模式 vs Head 数限制",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第9章-长序列训练与上下文并行.md",
+        "sha256": "25c6f17718bef30eb98536653bf92713c9e6c4875fae2972cb3153456f2f5f17",
+        "line_start": 38,
+        "line_end": 40,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC9%E7%AB%A0-%E9%95%BF%E5%BA%8F%E5%88%97%E8%AE%AD%E7%BB%83%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B9%B6%E8%A1%8C.md#L38-L40"
+      }
+    ],
+    "reference_paragraph": "- 沿 Head 维度切分 → All-to-All 重排为序列维度切分\n- 通信量分析：与序列长度无关、与 Head 维度相关\n- 与 Ring Attention 的取舍：通信模式 vs Head 数限制",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "9a4c4c6449a788abe1fe5d20"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第9章-长序列训练与上下文并行.md",
+          "text": "- 沿 Head 维度切分 → All-to-All 重排为序列维度切分\n- 通信量分析：与序列长度无关、与 Head 维度相关\n- 与 Ring Attention 的取舍：通信模式 vs Head 数限制",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第9章-长序列训练与上下文并行.md",
+          "sha256": "25c6f17718bef30eb98536653bf92713c9e6c4875fae2972cb3153456f2f5f17",
+          "line_start": 38,
+          "line_end": 40,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC9%E7%AB%A0-%E9%95%BF%E5%BA%8F%E5%88%97%E8%AE%AD%E7%BB%83%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B9%B6%E8%A1%8C.md#L38-L40"
+        },
+        "chunk_ids": [
+          "9a4c4c6449a788abe1fe5d20"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-017-2",
+    "query": "长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "context-parallel",
+    "seed_id": "seed-017",
+    "expected_answer": "Ulysses使用All-to-All重排head和序列维度，取舍涉及head数限制。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第9章-长序列训练与上下文并行.md",
+        "text": "- 沿 Head 维度切分 → All-to-All 重排为序列维度切分\n- 通信量分析：与序列长度无关、与 Head 维度相关\n- 与 Ring Attention 的取舍：通信模式 vs Head 数限制",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第9章-长序列训练与上下文并行.md",
+        "sha256": "25c6f17718bef30eb98536653bf92713c9e6c4875fae2972cb3153456f2f5f17",
+        "line_start": 38,
+        "line_end": 40,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC9%E7%AB%A0-%E9%95%BF%E5%BA%8F%E5%88%97%E8%AE%AD%E7%BB%83%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B9%B6%E8%A1%8C.md#L38-L40"
+      }
+    ],
+    "reference_paragraph": "- 沿 Head 维度切分 → All-to-All 重排为序列维度切分\n- 通信量分析：与序列长度无关、与 Head 维度相关\n- 与 Ring Attention 的取舍：通信模式 vs Head 数限制",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "9a4c4c6449a788abe1fe5d20"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第9章-长序列训练与上下文并行.md",
+          "text": "- 沿 Head 维度切分 → All-to-All 重排为序列维度切分\n- 通信量分析：与序列长度无关、与 Head 维度相关\n- 与 Ring Attention 的取舍：通信模式 vs Head 数限制",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第9章-长序列训练与上下文并行.md",
+          "sha256": "25c6f17718bef30eb98536653bf92713c9e6c4875fae2972cb3153456f2f5f17",
+          "line_start": 38,
+          "line_end": 40,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC9%E7%AB%A0-%E9%95%BF%E5%BA%8F%E5%88%97%E8%AE%AD%E7%BB%83%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B9%B6%E8%A1%8C.md#L38-L40"
+        },
+        "chunk_ids": [
+          "9a4c4c6449a788abe1fe5d20"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-018-1",
+    "query": "SmoothQuant针对激活离群值采用什么变换？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "quantization",
+    "seed_id": "seed-018",
+    "expected_answer": "SmoothQuant用等价变换把激活离群值造成的量化难度转移到权重。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md",
+        "text": "**W8A8 量化（SmoothQuant）**解决 Activation Outlier 导致直接量化效果差的问题，通过数学等价变换将量化难度从 Activation 转移到 Weight。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md",
+        "sha256": "0277727a4b412d5f12d9e7d04267a193eaf8eedf5976be661f426868de2ead29",
+        "line_start": 16,
+        "line_end": 16,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC4%E7%AB%A0-%E9%87%8F%E5%8C%96.md#L16-L16"
+      }
+    ],
+    "reference_paragraph": "**W8A8 量化（SmoothQuant）**解决 Activation Outlier 导致直接量化效果差的问题，通过数学等价变换将量化难度从 Activation 转移到 Weight。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "df90f6c49278bebeac0b02b8"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md",
+          "text": "**W8A8 量化（SmoothQuant）**解决 Activation Outlier 导致直接量化效果差的问题，通过数学等价变换将量化难度从 Activation 转移到 Weight。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md",
+          "sha256": "0277727a4b412d5f12d9e7d04267a193eaf8eedf5976be661f426868de2ead29",
+          "line_start": 16,
+          "line_end": 16,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC4%E7%AB%A0-%E9%87%8F%E5%8C%96.md#L16-L16"
+        },
+        "chunk_ids": [
+          "df90f6c49278bebeac0b02b8"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-018-2",
+    "query": "直接W8A8量化被Activation Outlier破坏，哪个方案将量化难度从激活搬到权重？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "quantization",
+    "seed_id": "seed-018",
+    "expected_answer": "SmoothQuant用等价变换把激活离群值造成的量化难度转移到权重。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md",
+        "text": "**W8A8 量化（SmoothQuant）**解决 Activation Outlier 导致直接量化效果差的问题，通过数学等价变换将量化难度从 Activation 转移到 Weight。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md",
+        "sha256": "0277727a4b412d5f12d9e7d04267a193eaf8eedf5976be661f426868de2ead29",
+        "line_start": 16,
+        "line_end": 16,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC4%E7%AB%A0-%E9%87%8F%E5%8C%96.md#L16-L16"
+      }
+    ],
+    "reference_paragraph": "**W8A8 量化（SmoothQuant）**解决 Activation Outlier 导致直接量化效果差的问题，通过数学等价变换将量化难度从 Activation 转移到 Weight。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "df90f6c49278bebeac0b02b8"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md",
+          "text": "**W8A8 量化（SmoothQuant）**解决 Activation Outlier 导致直接量化效果差的问题，通过数学等价变换将量化难度从 Activation 转移到 Weight。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md",
+          "sha256": "0277727a4b412d5f12d9e7d04267a193eaf8eedf5976be661f426868de2ead29",
+          "line_start": 16,
+          "line_end": 16,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC4%E7%AB%A0-%E9%87%8F%E5%8C%96.md#L16-L16"
+        },
+        "chunk_ids": [
+          "df90f6c49278bebeac0b02b8"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-020-1",
+    "query": "投机采样如何在并行验证的同时保证目标采样分布？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-020",
+    "expected_answer": "Draft猜多个token，Target并行验证，通过拒绝采样保持Target分布。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第5章-Speculative-Decoding.md",
+        "text": "**核心原理**详解 Speculative Sampling 框架：Draft 模型快速猜测多个 Token，Target 模型并行验证。通过 Rejection Sampling 机制保证正确性——数学上证明接受的 Token 严格服从 Target 分布。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第5章-Speculative-Decoding.md",
+        "sha256": "918d7e47cfc9f854fe6afec089b58bd29da706a2ddea07cb0fec7bff762a3d44",
+        "line_start": 14,
+        "line_end": 14,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC5%E7%AB%A0-Speculative-Decoding.md#L14-L14"
+      }
+    ],
+    "reference_paragraph": "**核心原理**详解 Speculative Sampling 框架：Draft 模型快速猜测多个 Token，Target 模型并行验证。通过 Rejection Sampling 机制保证正确性——数学上证明接受的 Token 严格服从 Target 分布。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "8fe95008c814d84216a26905"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第5章-Speculative-Decoding.md",
+          "text": "**核心原理**详解 Speculative Sampling 框架：Draft 模型快速猜测多个 Token，Target 模型并行验证。通过 Rejection Sampling 机制保证正确性——数学上证明接受的 Token 严格服从 Target 分布。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第5章-Speculative-Decoding.md",
+          "sha256": "918d7e47cfc9f854fe6afec089b58bd29da706a2ddea07cb0fec7bff762a3d44",
+          "line_start": 14,
+          "line_end": 14,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC5%E7%AB%A0-Speculative-Decoding.md#L14-L14"
+        },
+        "chunk_ids": [
+          "8fe95008c814d84216a26905"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-020-2",
+    "query": "小模型先猜若干词再由大模型验证，哪个验收机制才能支持严格的分布正确性？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-020",
+    "expected_answer": "Draft猜多个token，Target并行验证，通过拒绝采样保持Target分布。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第5章-Speculative-Decoding.md",
+        "text": "**核心原理**详解 Speculative Sampling 框架：Draft 模型快速猜测多个 Token，Target 模型并行验证。通过 Rejection Sampling 机制保证正确性——数学上证明接受的 Token 严格服从 Target 分布。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第5章-Speculative-Decoding.md",
+        "sha256": "918d7e47cfc9f854fe6afec089b58bd29da706a2ddea07cb0fec7bff762a3d44",
+        "line_start": 14,
+        "line_end": 14,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC5%E7%AB%A0-Speculative-Decoding.md#L14-L14"
+      }
+    ],
+    "reference_paragraph": "**核心原理**详解 Speculative Sampling 框架：Draft 模型快速猜测多个 Token，Target 模型并行验证。通过 Rejection Sampling 机制保证正确性——数学上证明接受的 Token 严格服从 Target 分布。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "8fe95008c814d84216a26905"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第5章-Speculative-Decoding.md",
+          "text": "**核心原理**详解 Speculative Sampling 框架：Draft 模型快速猜测多个 Token，Target 模型并行验证。通过 Rejection Sampling 机制保证正确性——数学上证明接受的 Token 严格服从 Target 分布。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第5章-Speculative-Decoding.md",
+          "sha256": "918d7e47cfc9f854fe6afec089b58bd29da706a2ddea07cb0fec7bff762a3d44",
+          "line_start": 14,
+          "line_end": 14,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC5%E7%AB%A0-Speculative-Decoding.md#L14-L14"
+        },
+        "chunk_ids": [
+          "8fe95008c814d84216a26905"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-022-1",
+    "query": "相同前缀的请求为什么可以共享历史KV？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "prefix-cache",
+    "seed_id": "seed-022",
+    "expected_answer": "相同完整前缀的token KV相同，因为只依赖本token及此前token。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+        "text": "📌 **关键点**：Attention 的因果性决定了——**一个 Token 的 Key/Value 只取决于它自己和它前面的 Token**。所以两个请求只要**前缀完全一致**，这段前缀每个 Token 算出来的 KV 就一模一样，完全可以只算一次、大家共用。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+        "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+        "line_start": 40,
+        "line_end": 40,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md#L40-L40"
+      }
+    ],
+    "reference_paragraph": "📌 **关键点**：Attention 的因果性决定了——**一个 Token 的 Key/Value 只取决于它自己和它前面的 Token**。所以两个请求只要**前缀完全一致**，这段前缀每个 Token 算出来的 KV 就一模一样，完全可以只算一次、大家共用。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "95b2da4bb6ddc70e206cc2e8"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "text": "📌 **关键点**：Attention 的因果性决定了——**一个 Token 的 Key/Value 只取决于它自己和它前面的 Token**。所以两个请求只要**前缀完全一致**，这段前缀每个 Token 算出来的 KV 就一模一样，完全可以只算一次、大家共用。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+          "line_start": 40,
+          "line_end": 40,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md#L40-L40"
+        },
+        "chunk_ids": [
+          "95b2da4bb6ddc70e206cc2e8"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-022-2",
+    "query": "大量请求使用同一系统提示词，因果注意力的哪项性质允许前缀KV只算一次？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "prefix-cache",
+    "seed_id": "seed-022",
+    "expected_answer": "相同完整前缀的token KV相同，因为只依赖本token及此前token。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+        "text": "📌 **关键点**：Attention 的因果性决定了——**一个 Token 的 Key/Value 只取决于它自己和它前面的 Token**。所以两个请求只要**前缀完全一致**，这段前缀每个 Token 算出来的 KV 就一模一样，完全可以只算一次、大家共用。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+        "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+        "line_start": 40,
+        "line_end": 40,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md#L40-L40"
+      }
+    ],
+    "reference_paragraph": "📌 **关键点**：Attention 的因果性决定了——**一个 Token 的 Key/Value 只取决于它自己和它前面的 Token**。所以两个请求只要**前缀完全一致**，这段前缀每个 Token 算出来的 KV 就一模一样，完全可以只算一次、大家共用。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "95b2da4bb6ddc70e206cc2e8"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "text": "📌 **关键点**：Attention 的因果性决定了——**一个 Token 的 Key/Value 只取决于它自己和它前面的 Token**。所以两个请求只要**前缀完全一致**，这段前缀每个 Token 算出来的 KV 就一模一样，完全可以只算一次、大家共用。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+          "line_start": 40,
+          "line_end": 40,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md#L40-L40"
+        },
+        "chunk_ids": [
+          "95b2da4bb6ddc70e206cc2e8"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-025-1",
+    "query": "torchrun的local_rank和全局rank有何区别，绑GPU用哪个？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "distributed-launch",
+    "seed_id": "seed-025",
+    "expected_answer": "local_rank是节点内进程编号，用来绑定本机GPU，不等于全局rank。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/1.2 环境搭建与分布式启动.md",
+        "text": "它的核心作用是**决定绑定哪块 GPU**——通常直接 `torch.cuda.set_device(local_rank)`。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/1.2 环境搭建与分布式启动.md",
+        "sha256": "4ff27d2e74de2d7de1ce7c9cc3f0e12047b1f066d0211720ffd0eb02f9bab6e7",
+        "line_start": 97,
+        "line_end": 97,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/1.2%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E5%90%AF%E5%8A%A8.md#L97-L97"
+      }
+    ],
+    "reference_paragraph": "- **`rank`（全局 rank）**：进程在整个训练任务中的全局唯一编号，取值范围 $0 \\sim \\text{world\\_size}-1$。上图中 4 个进程的 rank 依次是 0、1、2、3。常用 `rank == 0` 来指定\"主进程\"，负责打印日志、保存模型等。\n- **`local_rank`（本地 rank）**：进程在**所在节点内部**的编号。它的核心作用是**决定绑定哪块 GPU**——通常直接 `torch.cuda.set_device(local_rank)`。注意上图 Node 1 上的两个进程，全局 rank 是 2、3，但 local_rank 重新从 0 开始数。\n- **`world_size`（世界大小）**：参与训练的总进程数，上例为 4。它等于 `节点数 × 每节点进程数`。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "224ee825b482ff00186b74d7"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/1.2 环境搭建与分布式启动.md",
+          "text": "它的核心作用是**决定绑定哪块 GPU**——通常直接 `torch.cuda.set_device(local_rank)`。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/1.2 环境搭建与分布式启动.md",
+          "sha256": "4ff27d2e74de2d7de1ce7c9cc3f0e12047b1f066d0211720ffd0eb02f9bab6e7",
+          "line_start": 97,
+          "line_end": 97,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/1.2%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E5%90%AF%E5%8A%A8.md#L97-L97"
+        },
+        "chunk_ids": [
+          "224ee825b482ff00186b74d7"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-025-2",
+    "query": "第二台机器的进程全局rank为2、3，本机只有GPU0、1，设置CUDA设备应该使用什么编号？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "distributed-launch",
+    "seed_id": "seed-025",
+    "expected_answer": "local_rank是节点内进程编号，用来绑定本机GPU，不等于全局rank。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/1.2 环境搭建与分布式启动.md",
+        "text": "它的核心作用是**决定绑定哪块 GPU**——通常直接 `torch.cuda.set_device(local_rank)`。",
+        "repository": "AIInfraGuide",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/1.2 环境搭建与分布式启动.md",
+        "sha256": "4ff27d2e74de2d7de1ce7c9cc3f0e12047b1f066d0211720ffd0eb02f9bab6e7",
+        "line_start": 97,
+        "line_end": 97,
+        "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/1.2%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E5%90%AF%E5%8A%A8.md#L97-L97"
+      }
+    ],
+    "reference_paragraph": "- **`rank`（全局 rank）**：进程在整个训练任务中的全局唯一编号，取值范围 $0 \\sim \\text{world\\_size}-1$。上图中 4 个进程的 rank 依次是 0、1、2、3。常用 `rank == 0` 来指定\"主进程\"，负责打印日志、保存模型等。\n- **`local_rank`（本地 rank）**：进程在**所在节点内部**的编号。它的核心作用是**决定绑定哪块 GPU**——通常直接 `torch.cuda.set_device(local_rank)`。注意上图 Node 1 上的两个进程，全局 rank 是 2、3，但 local_rank 重新从 0 开始数。\n- **`world_size`（世界大小）**：参与训练的总进程数，上例为 4。它等于 `节点数 × 每节点进程数`。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "224ee825b482ff00186b74d7"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/1.2 环境搭建与分布式启动.md",
+          "text": "它的核心作用是**决定绑定哪块 GPU**——通常直接 `torch.cuda.set_device(local_rank)`。",
+          "repository": "AIInfraGuide",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/1.2 环境搭建与分布式启动.md",
+          "sha256": "4ff27d2e74de2d7de1ce7c9cc3f0e12047b1f066d0211720ffd0eb02f9bab6e7",
+          "line_start": 97,
+          "line_end": 97,
+          "source_url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/1.2%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E5%90%AF%E5%8A%A8.md#L97-L97"
+        },
+        "chunk_ids": [
+          "224ee825b482ff00186b74d7"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-032-1",
+    "query": "GQA与MQA如何共享K/V Head，主要减少什么资源？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "attention-kv-heads",
+    "seed_id": "seed-032",
+    "expected_answer": "GQA分组共享KV头，MQA仅一组，减少缓存和KV读量。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "**速查**：GQA 让多个 Query Head 共享一组 K/V Head（`num_kv_heads < num_q_heads`），MQA 是极端情况（只有 1 组 K/V）。直接减少 KV Cache 大小和 Attention 的 K/V 访存量；质量影响取决于模型训练与 Head 配置。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 575,
+        "line_end": 575,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L575-L575"
+      }
+    ],
+    "reference_paragraph": "**速查**：GQA 让多个 Query Head 共享一组 K/V Head（`num_kv_heads < num_q_heads`），MQA 是极端情况（只有 1 组 K/V）。直接减少 KV Cache 大小和 Attention 的 K/V 访存量；质量影响取决于模型训练与 Head 配置。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "649d12858b98f6ac42032591"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "**速查**：GQA 让多个 Query Head 共享一组 K/V Head（`num_kv_heads < num_q_heads`），MQA 是极端情况（只有 1 组 K/V）。直接减少 KV Cache 大小和 Attention 的 K/V 访存量；质量影响取决于模型训练与 Head 配置。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 575,
+          "line_end": 575,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L575-L575"
+        },
+        "chunk_ids": [
+          "649d12858b98f6ac42032591"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-032-2",
+    "query": "注意力KV缓存太大但不想减少查询头，分组共享KV头的结构能缓解什么开销？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "attention-kv-heads",
+    "seed_id": "seed-032",
+    "expected_answer": "GQA分组共享KV头，MQA仅一组，减少缓存和KV读量。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "**速查**：GQA 让多个 Query Head 共享一组 K/V Head（`num_kv_heads < num_q_heads`），MQA 是极端情况（只有 1 组 K/V）。直接减少 KV Cache 大小和 Attention 的 K/V 访存量；质量影响取决于模型训练与 Head 配置。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 575,
+        "line_end": 575,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L575-L575"
+      }
+    ],
+    "reference_paragraph": "**速查**：GQA 让多个 Query Head 共享一组 K/V Head（`num_kv_heads < num_q_heads`），MQA 是极端情况（只有 1 组 K/V）。直接减少 KV Cache 大小和 Attention 的 K/V 访存量；质量影响取决于模型训练与 Head 配置。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "649d12858b98f6ac42032591"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "**速查**：GQA 让多个 Query Head 共享一组 K/V Head（`num_kv_heads < num_q_heads`），MQA 是极端情况（只有 1 组 K/V）。直接减少 KV Cache 大小和 Attention 的 K/V 访存量；质量影响取决于模型训练与 Head 配置。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 575,
+          "line_end": 575,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L575-L575"
+        },
+        "chunk_ids": [
+          "649d12858b98f6ac42032591"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-035-1",
+    "query": "估算KV Cache显存需要哪些乘法因子，前面的2代表什么？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "kv-capacity",
+    "seed_id": "seed-035",
+    "expected_answer": "KV字节数为2×层数×KV头数×头维度×长度×batch×dtype字节数。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "```text\nKV_bytes = 2 × num_layers × num_kv_heads × head_dim × seq_len × batch × dtype_bytes\n           ↑\n       K 和 V 各一份\n```",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 773,
+        "line_end": 777,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L773-L777"
+      }
+    ],
+    "reference_paragraph": "```text\nKV_bytes = 2 × num_layers × num_kv_heads × head_dim × seq_len × batch × dtype_bytes\n           ↑\n       K 和 V 各一份\n```",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "2436af369db8ec12bdb9cd3e"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "```text\nKV_bytes = 2 × num_layers × num_kv_heads × head_dim × seq_len × batch × dtype_bytes\n           ↑\n       K 和 V 各一份\n```",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 773,
+          "line_end": 777,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L773-L777"
+        },
+        "chunk_ids": [
+          "2436af369db8ec12bdb9cd3e"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-035-2",
+    "query": "同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "kv-capacity",
+    "seed_id": "seed-035",
+    "expected_answer": "KV字节数为2×层数×KV头数×头维度×长度×batch×dtype字节数。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "```text\nKV_bytes = 2 × num_layers × num_kv_heads × head_dim × seq_len × batch × dtype_bytes\n           ↑\n       K 和 V 各一份\n```",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 773,
+        "line_end": 777,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L773-L777"
+      }
+    ],
+    "reference_paragraph": "```text\nKV_bytes = 2 × num_layers × num_kv_heads × head_dim × seq_len × batch × dtype_bytes\n           ↑\n       K 和 V 各一份\n```",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "2436af369db8ec12bdb9cd3e"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "```text\nKV_bytes = 2 × num_layers × num_kv_heads × head_dim × seq_len × batch × dtype_bytes\n           ↑\n       K 和 V 各一份\n```",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 773,
+          "line_end": 777,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L773-L777"
+        },
+        "chunk_ids": [
+          "2436af369db8ec12bdb9cd3e"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-037-1",
+    "query": "复用前缀KV时除token内容还需校验哪些上下文？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "prefix-cache",
+    "seed_id": "seed-037",
+    "expected_answer": "复用校验模型、LoRA、tokens、位置、dtype布局等，且维护free+used+cached守恒。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "这段只展示块分配，不含 Prefix Cache、共享块写时复制、跨层混合缓存或异步释放。真正管理器必须维护 `free + used + cached = total` 的守恒关系，释放不能重复入 free list，复用时要校验**模型、LoRA、token 序列、位置、KV dtype/布局等影响结果的上下文**。Prefix Cache 命中后要区分完整前缀和待计算尾部；是否需要重新计算一个 token 取决于引擎如何获得采样 logits，不能一概规定“必须留一个块重算”。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 751,
+        "line_end": 751,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L751-L751"
+      }
+    ],
+    "reference_paragraph": "这段只展示块分配，不含 Prefix Cache、共享块写时复制、跨层混合缓存或异步释放。真正管理器必须维护 `free + used + cached = total` 的守恒关系，释放不能重复入 free list，复用时要校验**模型、LoRA、token 序列、位置、KV dtype/布局等影响结果的上下文**。Prefix Cache 命中后要区分完整前缀和待计算尾部；是否需要重新计算一个 token 取决于引擎如何获得采样 logits，不能一概规定“必须留一个块重算”。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "0879ae440a74276685f94bab"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "这段只展示块分配，不含 Prefix Cache、共享块写时复制、跨层混合缓存或异步释放。真正管理器必须维护 `free + used + cached = total` 的守恒关系，释放不能重复入 free list，复用时要校验**模型、LoRA、token 序列、位置、KV dtype/布局等影响结果的上下文**。Prefix Cache 命中后要区分完整前缀和待计算尾部；是否需要重新计算一个 token 取决于引擎如何获得采样 logits，不能一概规定“必须留一个块重算”。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 751,
+          "line_end": 751,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L751-L751"
+        },
+        "chunk_ids": [
+          "0879ae440a74276685f94bab"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-037-2",
+    "query": "同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "prefix-cache",
+    "seed_id": "seed-037",
+    "expected_answer": "复用校验模型、LoRA、tokens、位置、dtype布局等，且维护free+used+cached守恒。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "这段只展示块分配，不含 Prefix Cache、共享块写时复制、跨层混合缓存或异步释放。真正管理器必须维护 `free + used + cached = total` 的守恒关系，释放不能重复入 free list，复用时要校验**模型、LoRA、token 序列、位置、KV dtype/布局等影响结果的上下文**。Prefix Cache 命中后要区分完整前缀和待计算尾部；是否需要重新计算一个 token 取决于引擎如何获得采样 logits，不能一概规定“必须留一个块重算”。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 751,
+        "line_end": 751,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L751-L751"
+      }
+    ],
+    "reference_paragraph": "这段只展示块分配，不含 Prefix Cache、共享块写时复制、跨层混合缓存或异步释放。真正管理器必须维护 `free + used + cached = total` 的守恒关系，释放不能重复入 free list，复用时要校验**模型、LoRA、token 序列、位置、KV dtype/布局等影响结果的上下文**。Prefix Cache 命中后要区分完整前缀和待计算尾部；是否需要重新计算一个 token 取决于引擎如何获得采样 logits，不能一概规定“必须留一个块重算”。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "0879ae440a74276685f94bab"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "这段只展示块分配，不含 Prefix Cache、共享块写时复制、跨层混合缓存或异步释放。真正管理器必须维护 `free + used + cached = total` 的守恒关系，释放不能重复入 free list，复用时要校验**模型、LoRA、token 序列、位置、KV dtype/布局等影响结果的上下文**。Prefix Cache 命中后要区分完整前缀和待计算尾部；是否需要重新计算一个 token 取决于引擎如何获得采样 logits，不能一概规定“必须留一个块重算”。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 751,
+          "line_end": 751,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L751-L751"
+        },
+        "chunk_ids": [
+          "0879ae440a74276685f94bab"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-038-1",
+    "query": "请求取消导致KV泄漏应如何统一资源清理路径？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "kv-lifecycle",
+    "seed_id": "seed-038",
+    "expected_answer": "完成取消超时统一幂等release，跟踪引用和块守恒。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "**完整案例：KV 泄漏**。现象是每轮完成请求后 free blocks 只降不升；先按 request_id 记录 `allocate/share/release`，发现异常取消路径没有 `release`；修复为请求完成/取消/超时均进入同一幂等清理函数；回归用“Prefix 共享 + 中途取消 + 抢占”三种交错，并断言最后 `free + cached = total` 且没有正 refcount 的孤儿块。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 2230,
+        "line_end": 2230,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L2230-L2230"
+      }
+    ],
+    "reference_paragraph": "**完整案例：KV 泄漏**。现象是每轮完成请求后 free blocks 只降不升；先按 request_id 记录 `allocate/share/release`，发现异常取消路径没有 `release`；修复为请求完成/取消/超时均进入同一幂等清理函数；回归用“Prefix 共享 + 中途取消 + 抢占”三种交错，并断言最后 `free + cached = total` 且没有正 refcount 的孤儿块。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "409de2a46b4b9bc544cffa62"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "**完整案例：KV 泄漏**。现象是每轮完成请求后 free blocks 只降不升；先按 request_id 记录 `allocate/share/release`，发现异常取消路径没有 `release`；修复为请求完成/取消/超时均进入同一幂等清理函数；回归用“Prefix 共享 + 中途取消 + 抢占”三种交错，并断言最后 `free + cached = total` 且没有正 refcount 的孤儿块。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 2230,
+          "line_end": 2230,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L2230-L2230"
+        },
+        "chunk_ids": [
+          "409de2a46b4b9bc544cffa62"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-038-2",
+    "query": "服务跑久后free blocks只降不升，取消请求漏了release，怎样修复并验证共享与抢占交错？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "kv-lifecycle",
+    "seed_id": "seed-038",
+    "expected_answer": "完成取消超时统一幂等release，跟踪引用和块守恒。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "**完整案例：KV 泄漏**。现象是每轮完成请求后 free blocks 只降不升；先按 request_id 记录 `allocate/share/release`，发现异常取消路径没有 `release`；修复为请求完成/取消/超时均进入同一幂等清理函数；回归用“Prefix 共享 + 中途取消 + 抢占”三种交错，并断言最后 `free + cached = total` 且没有正 refcount 的孤儿块。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 2230,
+        "line_end": 2230,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L2230-L2230"
+      }
+    ],
+    "reference_paragraph": "**完整案例：KV 泄漏**。现象是每轮完成请求后 free blocks 只降不升；先按 request_id 记录 `allocate/share/release`，发现异常取消路径没有 `release`；修复为请求完成/取消/超时均进入同一幂等清理函数；回归用“Prefix 共享 + 中途取消 + 抢占”三种交错，并断言最后 `free + cached = total` 且没有正 refcount 的孤儿块。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "409de2a46b4b9bc544cffa62"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "**完整案例：KV 泄漏**。现象是每轮完成请求后 free blocks 只降不升；先按 request_id 记录 `allocate/share/release`，发现异常取消路径没有 `release`；修复为请求完成/取消/超时均进入同一幂等清理函数；回归用“Prefix 共享 + 中途取消 + 抢占”三种交错，并断言最后 `free + cached = total` 且没有正 refcount 的孤儿块。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 2230,
+          "line_end": 2230,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L2230-L2230"
+        },
+        "chunk_ids": [
+          "409de2a46b4b9bc544cffa62"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-042-1",
+    "query": "Column Parallel线性层之后是否一定要AllGather？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "tensor-parallel",
+    "seed_id": "seed-042",
+    "expected_answer": "Column Parallel后是否AllGather由后续是否需要完整输出决定，Row Parallel合并局部和。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "TP 中，Column Parallel 把 `W=[W₁,W₂]` 按输出维切分，各设备先算本地输出；后续需要完整输出时才做 AllGather，也可能由下一层直接消费分片。Row Parallel 把输入/权重按归约维切分，局部部分和通常通过 AllReduce 或 ReduceScatter 合并。通信要按实际计算图决定，不能说“Column Parallel 一定 AllGather”。PP 还要测流水线空泡，DP 要看实例/批次分配，MoE 的 EP 重点关注 Token 路由、AllToAll、Expert 负载偏斜与还原顺序。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 2454,
+        "line_end": 2454,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L2454-L2454"
+      }
+    ],
+    "reference_paragraph": "TP 中，Column Parallel 把 `W=[W₁,W₂]` 按输出维切分，各设备先算本地输出；后续需要完整输出时才做 AllGather，也可能由下一层直接消费分片。Row Parallel 把输入/权重按归约维切分，局部部分和通常通过 AllReduce 或 ReduceScatter 合并。通信要按实际计算图决定，不能说“Column Parallel 一定 AllGather”。PP 还要测流水线空泡，DP 要看实例/批次分配，MoE 的 EP 重点关注 Token 路由、AllToAll、Expert 负载偏斜与还原顺序。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "7401d7370c34d3334662d873"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "TP 中，Column Parallel 把 `W=[W₁,W₂]` 按输出维切分，各设备先算本地输出；后续需要完整输出时才做 AllGather，也可能由下一层直接消费分片。Row Parallel 把输入/权重按归约维切分，局部部分和通常通过 AllReduce 或 ReduceScatter 合并。通信要按实际计算图决定，不能说“Column Parallel 一定 AllGather”。PP 还要测流水线空泡，DP 要看实例/批次分配，MoE 的 EP 重点关注 Token 路由、AllToAll、Expert 负载偏斜与还原顺序。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 2454,
+          "line_end": 2454,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L2454-L2454"
+        },
+        "chunk_ids": [
+          "7401d7370c34d3334662d873"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-042-2",
+    "query": "列并行输出能够直接给下一分片层消费，还应无条件收集完整激活吗，通信依据是什么？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "tensor-parallel",
+    "seed_id": "seed-042",
+    "expected_answer": "Column Parallel后是否AllGather由后续是否需要完整输出决定，Row Parallel合并局部和。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "text": "TP 中，Column Parallel 把 `W=[W₁,W₂]` 按输出维切分，各设备先算本地输出；后续需要完整输出时才做 AllGather，也可能由下一层直接消费分片。Row Parallel 把输入/权重按归约维切分，局部部分和通常通过 AllReduce 或 ReduceScatter 合并。通信要按实际计算图决定，不能说“Column Parallel 一定 AllGather”。PP 还要测流水线空泡，DP 要看实例/批次分配，MoE 的 EP 重点关注 Token 路由、AllToAll、Expert 负载偏斜与还原顺序。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "line_start": 2454,
+        "line_end": 2454,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L2454-L2454"
+      }
+    ],
+    "reference_paragraph": "TP 中，Column Parallel 把 `W=[W₁,W₂]` 按输出维切分，各设备先算本地输出；后续需要完整输出时才做 AllGather，也可能由下一层直接消费分片。Row Parallel 把输入/权重按归约维切分，局部部分和通常通过 AllReduce 或 ReduceScatter 合并。通信要按实际计算图决定，不能说“Column Parallel 一定 AllGather”。PP 还要测流水线空泡，DP 要看实例/批次分配，MoE 的 EP 重点关注 Token 路由、AllToAll、Expert 负载偏斜与还原顺序。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "7401d7370c34d3334662d873"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "text": "TP 中，Column Parallel 把 `W=[W₁,W₂]` 按输出维切分，各设备先算本地输出；后续需要完整输出时才做 AllGather，也可能由下一层直接消费分片。Row Parallel 把输入/权重按归约维切分，局部部分和通常通过 AllReduce 或 ReduceScatter 合并。通信要按实际计算图决定，不能说“Column Parallel 一定 AllGather”。PP 还要测流水线空泡，DP 要看实例/批次分配，MoE 的 EP 重点关注 Token 路由、AllToAll、Expert 负载偏斜与还原顺序。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "line_start": 2454,
+          "line_end": 2454,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md#L2454-L2454"
+        },
+        "chunk_ids": [
+          "7401d7370c34d3334662d873"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-044-1",
+    "query": "投机解码减少了什么调用，为什么并行验证不等于全部接受？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-044",
+    "expected_answer": "减少昂贵Target串行调用，但候选须顺序验证而非一次全部接受。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 10,
+        "line_end": 10,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L10-L10"
+      }
+    ],
+    "reference_paragraph": "大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "bcfaa2a15402a60edd0a4930"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 10,
+          "line_end": 10,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L10-L10"
+        },
+        "chunk_ids": [
+          "bcfaa2a15402a60edd0a4930"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-044-2",
+    "query": "Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-044",
+    "expected_answer": "减少昂贵Target串行调用，但候选须顺序验证而非一次全部接受。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 10,
+        "line_end": 10,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L10-L10"
+      }
+    ],
+    "reference_paragraph": "大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "bcfaa2a15402a60edd0a4930"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 10,
+          "line_end": 10,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L10-L10"
+        },
+        "chunk_ids": [
+          "bcfaa2a15402a60edd0a4930"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-045-1",
+    "query": "精确投机采样的接受概率与拒绝后修正分布是什么？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-045",
+    "expected_answer": "以min(1,p/q)接受，拒绝从归一化[p-q]+采样，使用实际温度topk/topp后的分布。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "设目标模型在某位置的采样分布为 $p$，Draft 分布为 $q$，Draft 采到 $x$。精确采样以 $\\min(1,p(x)/q(x))$ 的概率接受它；若拒绝，就从归一化后的 $[p-q]_+$ 中采一个修正 Token。若 $\\gamma$ 个候选全部通过，还可从 Target 的下一位置再采一个 Token。这样每一步的结果服从 $p$，前提是使用**实际生效的采样分布**，包括温度、top-k/top-p 等处理。贪心解码则按 Target 的逐位置最优 Token 检查候选前缀。[经典投机解码论文](https://proceedings.mlr.press/v202/leviathan23a.html)给出了精确采样的证明。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 18,
+        "line_end": 18,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L18-L18"
+      }
+    ],
+    "reference_paragraph": "设目标模型在某位置的采样分布为 $p$，Draft 分布为 $q$，Draft 采到 $x$。精确采样以 $\\min(1,p(x)/q(x))$ 的概率接受它；若拒绝，就从归一化后的 $[p-q]_+$ 中采一个修正 Token。若 $\\gamma$ 个候选全部通过，还可从 Target 的下一位置再采一个 Token。这样每一步的结果服从 $p$，前提是使用**实际生效的采样分布**，包括温度、top-k/top-p 等处理。贪心解码则按 Target 的逐位置最优 Token 检查候选前缀。[经典投机解码论文](https://proceedings.mlr.press/v202/leviathan23a.html)给出了精确采样的证明。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "37b70b0361d8773d98c9c131"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "设目标模型在某位置的采样分布为 $p$，Draft 分布为 $q$，Draft 采到 $x$。精确采样以 $\\min(1,p(x)/q(x))$ 的概率接受它；若拒绝，就从归一化后的 $[p-q]_+$ 中采一个修正 Token。若 $\\gamma$ 个候选全部通过，还可从 Target 的下一位置再采一个 Token。这样每一步的结果服从 $p$，前提是使用**实际生效的采样分布**，包括温度、top-k/top-p 等处理。贪心解码则按 Target 的逐位置最优 Token 检查候选前缀。[经典投机解码论文](https://proceedings.mlr.press/v202/leviathan23a.html)给出了精确采样的证明。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 18,
+          "line_end": 18,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L18-L18"
+        },
+        "chunk_ids": [
+          "37b70b0361d8773d98c9c131"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-045-2",
+    "query": "草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-045",
+    "expected_answer": "以min(1,p/q)接受，拒绝从归一化[p-q]+采样，使用实际温度topk/topp后的分布。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "设目标模型在某位置的采样分布为 $p$，Draft 分布为 $q$，Draft 采到 $x$。精确采样以 $\\min(1,p(x)/q(x))$ 的概率接受它；若拒绝，就从归一化后的 $[p-q]_+$ 中采一个修正 Token。若 $\\gamma$ 个候选全部通过，还可从 Target 的下一位置再采一个 Token。这样每一步的结果服从 $p$，前提是使用**实际生效的采样分布**，包括温度、top-k/top-p 等处理。贪心解码则按 Target 的逐位置最优 Token 检查候选前缀。[经典投机解码论文](https://proceedings.mlr.press/v202/leviathan23a.html)给出了精确采样的证明。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 18,
+        "line_end": 18,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L18-L18"
+      }
+    ],
+    "reference_paragraph": "设目标模型在某位置的采样分布为 $p$，Draft 分布为 $q$，Draft 采到 $x$。精确采样以 $\\min(1,p(x)/q(x))$ 的概率接受它；若拒绝，就从归一化后的 $[p-q]_+$ 中采一个修正 Token。若 $\\gamma$ 个候选全部通过，还可从 Target 的下一位置再采一个 Token。这样每一步的结果服从 $p$，前提是使用**实际生效的采样分布**，包括温度、top-k/top-p 等处理。贪心解码则按 Target 的逐位置最优 Token 检查候选前缀。[经典投机解码论文](https://proceedings.mlr.press/v202/leviathan23a.html)给出了精确采样的证明。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "37b70b0361d8773d98c9c131"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "设目标模型在某位置的采样分布为 $p$，Draft 分布为 $q$，Draft 采到 $x$。精确采样以 $\\min(1,p(x)/q(x))$ 的概率接受它；若拒绝，就从归一化后的 $[p-q]_+$ 中采一个修正 Token。若 $\\gamma$ 个候选全部通过，还可从 Target 的下一位置再采一个 Token。这样每一步的结果服从 $p$，前提是使用**实际生效的采样分布**，包括温度、top-k/top-p 等处理。贪心解码则按 Target 的逐位置最优 Token 检查候选前缀。[经典投机解码论文](https://proceedings.mlr.press/v202/leviathan23a.html)给出了精确采样的证明。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 18,
+          "line_end": 18,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L18-L18"
+        },
+        "chunk_ids": [
+          "37b70b0361d8773d98c9c131"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-046-1",
+    "query": "MTP为什么不是任意LLM打开一个开关就能使用？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-046",
+    "expected_answer": "MTP增加并训练预测模块，复用主干表示，Target负责验收。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "Multi-Token Prediction（MTP）在训练时为未来位置增加预测目标。以 DeepSeek-V3 为例，主干表示送入连续的 MTP 模块，每个模块结合上一位置的预测 Token 和特征，继续给出更远位置的候选；推理时这些模块可用来投机，Target 主干仍负责验收。它复用主模型表示，但**需要模型本身提供并训练 MTP 模块**，并非任意模型开启一个开关就有此能力。[DeepSeek-V3 技术报告](https://arxiv.org/abs/2412.19437)给出了模块设计。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 32,
+        "line_end": 32,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L32-L32"
+      }
+    ],
+    "reference_paragraph": "Multi-Token Prediction（MTP）在训练时为未来位置增加预测目标。以 DeepSeek-V3 为例，主干表示送入连续的 MTP 模块，每个模块结合上一位置的预测 Token 和特征，继续给出更远位置的候选；推理时这些模块可用来投机，Target 主干仍负责验收。它复用主模型表示，但**需要模型本身提供并训练 MTP 模块**，并非任意模型开启一个开关就有此能力。[DeepSeek-V3 技术报告](https://arxiv.org/abs/2412.19437)给出了模块设计。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "25d7e52180b18cf88c4c19dd"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "Multi-Token Prediction（MTP）在训练时为未来位置增加预测目标。以 DeepSeek-V3 为例，主干表示送入连续的 MTP 模块，每个模块结合上一位置的预测 Token 和特征，继续给出更远位置的候选；推理时这些模块可用来投机，Target 主干仍负责验收。它复用主模型表示，但**需要模型本身提供并训练 MTP 模块**，并非任意模型开启一个开关就有此能力。[DeepSeek-V3 技术报告](https://arxiv.org/abs/2412.19437)给出了模块设计。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 32,
+          "line_end": 32,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L32-L32"
+        },
+        "chunk_ids": [
+          "25d7e52180b18cf88c4c19dd"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-046-2",
+    "query": "部署模型没有训练MTP模块，能否仅靠推理引擎配置获得多token预测头？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-046",
+    "expected_answer": "MTP增加并训练预测模块，复用主干表示，Target负责验收。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "Multi-Token Prediction（MTP）在训练时为未来位置增加预测目标。以 DeepSeek-V3 为例，主干表示送入连续的 MTP 模块，每个模块结合上一位置的预测 Token 和特征，继续给出更远位置的候选；推理时这些模块可用来投机，Target 主干仍负责验收。它复用主模型表示，但**需要模型本身提供并训练 MTP 模块**，并非任意模型开启一个开关就有此能力。[DeepSeek-V3 技术报告](https://arxiv.org/abs/2412.19437)给出了模块设计。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 32,
+        "line_end": 32,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L32-L32"
+      }
+    ],
+    "reference_paragraph": "Multi-Token Prediction（MTP）在训练时为未来位置增加预测目标。以 DeepSeek-V3 为例，主干表示送入连续的 MTP 模块，每个模块结合上一位置的预测 Token 和特征，继续给出更远位置的候选；推理时这些模块可用来投机，Target 主干仍负责验收。它复用主模型表示，但**需要模型本身提供并训练 MTP 模块**，并非任意模型开启一个开关就有此能力。[DeepSeek-V3 技术报告](https://arxiv.org/abs/2412.19437)给出了模块设计。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "25d7e52180b18cf88c4c19dd"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "Multi-Token Prediction（MTP）在训练时为未来位置增加预测目标。以 DeepSeek-V3 为例，主干表示送入连续的 MTP 模块，每个模块结合上一位置的预测 Token 和特征，继续给出更远位置的候选；推理时这些模块可用来投机，Target 主干仍负责验收。它复用主模型表示，但**需要模型本身提供并训练 MTP 模块**，并非任意模型开启一个开关就有此能力。[DeepSeek-V3 技术报告](https://arxiv.org/abs/2412.19437)给出了模块设计。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 32,
+          "line_end": 32,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L32-L32"
+        },
+        "chunk_ids": [
+          "25d7e52180b18cf88c4c19dd"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-047-1",
+    "query": "EAGLE的Draft来自哪里，需要哪些额外实现？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-047",
+    "expected_answer": "从Target中间特征预测下一特征并投影候选，需要训练额外网络和对齐特征KV。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "EAGLE 不直接训练一个完整的小语言模型；轻量 Draft 网络从 Target 的中间层特征出发，结合已知 Token 信息预测下一步特征，再经词表投影得到候选 Token。它把新特征和新 Token 继续喂回 Draft 网络，形成递归链，最后由 Target 验证。相比多个互不相依的未来位置预测，这条链能显式利用刚生成的候选；代价是要训练和部署额外的特征预测网络，并处理特征/KV 的对齐。[EAGLE 论文](https://arxiv.org/abs/2401.15077)详细说明了这一设计。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 36,
+        "line_end": 36,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L36-L36"
+      }
+    ],
+    "reference_paragraph": "EAGLE 不直接训练一个完整的小语言模型；轻量 Draft 网络从 Target 的中间层特征出发，结合已知 Token 信息预测下一步特征，再经词表投影得到候选 Token。它把新特征和新 Token 继续喂回 Draft 网络，形成递归链，最后由 Target 验证。相比多个互不相依的未来位置预测，这条链能显式利用刚生成的候选；代价是要训练和部署额外的特征预测网络，并处理特征/KV 的对齐。[EAGLE 论文](https://arxiv.org/abs/2401.15077)详细说明了这一设计。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "bdc331ce60e8731ea12c3fe1"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "EAGLE 不直接训练一个完整的小语言模型；轻量 Draft 网络从 Target 的中间层特征出发，结合已知 Token 信息预测下一步特征，再经词表投影得到候选 Token。它把新特征和新 Token 继续喂回 Draft 网络，形成递归链，最后由 Target 验证。相比多个互不相依的未来位置预测，这条链能显式利用刚生成的候选；代价是要训练和部署额外的特征预测网络，并处理特征/KV 的对齐。[EAGLE 论文](https://arxiv.org/abs/2401.15077)详细说明了这一设计。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 36,
+          "line_end": 36,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L36-L36"
+        },
+        "chunk_ids": [
+          "bdc331ce60e8731ea12c3fe1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-047-2",
+    "query": "不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-047",
+    "expected_answer": "从Target中间特征预测下一特征并投影候选，需要训练额外网络和对齐特征KV。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "EAGLE 不直接训练一个完整的小语言模型；轻量 Draft 网络从 Target 的中间层特征出发，结合已知 Token 信息预测下一步特征，再经词表投影得到候选 Token。它把新特征和新 Token 继续喂回 Draft 网络，形成递归链，最后由 Target 验证。相比多个互不相依的未来位置预测，这条链能显式利用刚生成的候选；代价是要训练和部署额外的特征预测网络，并处理特征/KV 的对齐。[EAGLE 论文](https://arxiv.org/abs/2401.15077)详细说明了这一设计。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 36,
+        "line_end": 36,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L36-L36"
+      }
+    ],
+    "reference_paragraph": "EAGLE 不直接训练一个完整的小语言模型；轻量 Draft 网络从 Target 的中间层特征出发，结合已知 Token 信息预测下一步特征，再经词表投影得到候选 Token。它把新特征和新 Token 继续喂回 Draft 网络，形成递归链，最后由 Target 验证。相比多个互不相依的未来位置预测，这条链能显式利用刚生成的候选；代价是要训练和部署额外的特征预测网络，并处理特征/KV 的对齐。[EAGLE 论文](https://arxiv.org/abs/2401.15077)详细说明了这一设计。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "bdc331ce60e8731ea12c3fe1"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "EAGLE 不直接训练一个完整的小语言模型；轻量 Draft 网络从 Target 的中间层特征出发，结合已知 Token 信息预测下一步特征，再经词表投影得到候选 Token。它把新特征和新 Token 继续喂回 Draft 网络，形成递归链，最后由 Target 验证。相比多个互不相依的未来位置预测，这条链能显式利用刚生成的候选；代价是要训练和部署额外的特征预测网络，并处理特征/KV 的对齐。[EAGLE 论文](https://arxiv.org/abs/2401.15077)详细说明了这一设计。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 36,
+          "line_end": 36,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L36-L36"
+        },
+        "chunk_ids": [
+          "bdc331ce60e8731ea12c3fe1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-048-1",
+    "query": "Medusa如何构树验证，为什么需要Tree Attention掩码？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-048",
+    "expected_answer": "多预测头构建候选树，Tree Attention用mask隔离兄弟分支，需训练头和树支持。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "Medusa 在主模型表示上增加多个预测 Head，分别给出后续不同位置的候选。每个位置可取多个高概率 Token，组合成共享前缀的候选树。Tree Attention 让一次 Target 前向检查多条路径，同时用掩码防止兄弟分支互相“偷看”。它避免独立 Draft 模型，却需要训练 Head、构树和树形注意力支持；树越宽，验证开销也越高。[Medusa 论文](https://arxiv.org/abs/2401.10774)区分了可保持目标分布的验收与以质量换接受率的 typical acceptance，不能把两者都称作严格无损。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 40,
+        "line_end": 40,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L40-L40"
+      }
+    ],
+    "reference_paragraph": "Medusa 在主模型表示上增加多个预测 Head，分别给出后续不同位置的候选。每个位置可取多个高概率 Token，组合成共享前缀的候选树。Tree Attention 让一次 Target 前向检查多条路径，同时用掩码防止兄弟分支互相“偷看”。它避免独立 Draft 模型，却需要训练 Head、构树和树形注意力支持；树越宽，验证开销也越高。[Medusa 论文](https://arxiv.org/abs/2401.10774)区分了可保持目标分布的验收与以质量换接受率的 typical acceptance，不能把两者都称作严格无损。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "a9cf3e58e01859940b7b27fb"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "Medusa 在主模型表示上增加多个预测 Head，分别给出后续不同位置的候选。每个位置可取多个高概率 Token，组合成共享前缀的候选树。Tree Attention 让一次 Target 前向检查多条路径，同时用掩码防止兄弟分支互相“偷看”。它避免独立 Draft 模型，却需要训练 Head、构树和树形注意力支持；树越宽，验证开销也越高。[Medusa 论文](https://arxiv.org/abs/2401.10774)区分了可保持目标分布的验收与以质量换接受率的 typical acceptance，不能把两者都称作严格无损。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 40,
+          "line_end": 40,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L40-L40"
+        },
+        "chunk_ids": [
+          "a9cf3e58e01859940b7b27fb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-048-2",
+    "query": "一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-048",
+    "expected_answer": "多预测头构建候选树，Tree Attention用mask隔离兄弟分支，需训练头和树支持。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "Medusa 在主模型表示上增加多个预测 Head，分别给出后续不同位置的候选。每个位置可取多个高概率 Token，组合成共享前缀的候选树。Tree Attention 让一次 Target 前向检查多条路径，同时用掩码防止兄弟分支互相“偷看”。它避免独立 Draft 模型，却需要训练 Head、构树和树形注意力支持；树越宽，验证开销也越高。[Medusa 论文](https://arxiv.org/abs/2401.10774)区分了可保持目标分布的验收与以质量换接受率的 typical acceptance，不能把两者都称作严格无损。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 40,
+        "line_end": 40,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L40-L40"
+      }
+    ],
+    "reference_paragraph": "Medusa 在主模型表示上增加多个预测 Head，分别给出后续不同位置的候选。每个位置可取多个高概率 Token，组合成共享前缀的候选树。Tree Attention 让一次 Target 前向检查多条路径，同时用掩码防止兄弟分支互相“偷看”。它避免独立 Draft 模型，却需要训练 Head、构树和树形注意力支持；树越宽，验证开销也越高。[Medusa 论文](https://arxiv.org/abs/2401.10774)区分了可保持目标分布的验收与以质量换接受率的 typical acceptance，不能把两者都称作严格无损。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "a9cf3e58e01859940b7b27fb"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "Medusa 在主模型表示上增加多个预测 Head，分别给出后续不同位置的候选。每个位置可取多个高概率 Token，组合成共享前缀的候选树。Tree Attention 让一次 Target 前向检查多条路径，同时用掩码防止兄弟分支互相“偷看”。它避免独立 Draft 模型，却需要训练 Head、构树和树形注意力支持；树越宽，验证开销也越高。[Medusa 论文](https://arxiv.org/abs/2401.10774)区分了可保持目标分布的验收与以质量换接受率的 typical acceptance，不能把两者都称作严格无损。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 40,
+          "line_end": 40,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L40-L40"
+        },
+        "chunk_ids": [
+          "a9cf3e58e01859940b7b27fb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-049-1",
+    "query": "Prompt Lookup草稿怎样生成，是否需要额外模型权重？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-049",
+    "expected_answer": "Prompt Lookup匹配prompt或历史N-gram取后续token，无额外模型权重，仍需Target验证。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "从当前输出末尾取一段 N-gram，在 Prompt 或已生成历史中找相同片段，把它后面的 Token 当作候选。例如上下文已有“PagedAttention 管理 KV Cache”，生成到“PagedAttention”时，可以先猜后续词。它没有额外模型权重，特别适合代码编辑、引用和基于材料的回答；上下文少、措辞新颖时则可能找不到可用片段。候选仍交给 Target 验证，匹配成功本身不代表被接受。[Prompt Lookup Decoding 原始实现](https://github.com/apoorvumang/prompt-lookup-decoding)展示了 N-gram 匹配流程。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 48,
+        "line_end": 48,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L48-L48"
+      }
+    ],
+    "reference_paragraph": "从当前输出末尾取一段 N-gram，在 Prompt 或已生成历史中找相同片段，把它后面的 Token 当作候选。例如上下文已有“PagedAttention 管理 KV Cache”，生成到“PagedAttention”时，可以先猜后续词。它没有额外模型权重，特别适合代码编辑、引用和基于材料的回答；上下文少、措辞新颖时则可能找不到可用片段。候选仍交给 Target 验证，匹配成功本身不代表被接受。[Prompt Lookup Decoding 原始实现](https://github.com/apoorvumang/prompt-lookup-decoding)展示了 N-gram 匹配流程。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "55484f0c064043f79dee7032"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "从当前输出末尾取一段 N-gram，在 Prompt 或已生成历史中找相同片段，把它后面的 Token 当作候选。例如上下文已有“PagedAttention 管理 KV Cache”，生成到“PagedAttention”时，可以先猜后续词。它没有额外模型权重，特别适合代码编辑、引用和基于材料的回答；上下文少、措辞新颖时则可能找不到可用片段。候选仍交给 Target 验证，匹配成功本身不代表被接受。[Prompt Lookup Decoding 原始实现](https://github.com/apoorvumang/prompt-lookup-decoding)展示了 N-gram 匹配流程。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 48,
+          "line_end": 48,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L48-L48"
+        },
+        "chunk_ids": [
+          "55484f0c064043f79dee7032"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-049-2",
+    "query": "代码编辑输出经常复制上下文且没有显存放草稿模型，应采用什么候选生成路线？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-049",
+    "expected_answer": "Prompt Lookup匹配prompt或历史N-gram取后续token，无额外模型权重，仍需Target验证。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "从当前输出末尾取一段 N-gram，在 Prompt 或已生成历史中找相同片段，把它后面的 Token 当作候选。例如上下文已有“PagedAttention 管理 KV Cache”，生成到“PagedAttention”时，可以先猜后续词。它没有额外模型权重，特别适合代码编辑、引用和基于材料的回答；上下文少、措辞新颖时则可能找不到可用片段。候选仍交给 Target 验证，匹配成功本身不代表被接受。[Prompt Lookup Decoding 原始实现](https://github.com/apoorvumang/prompt-lookup-decoding)展示了 N-gram 匹配流程。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 48,
+        "line_end": 48,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L48-L48"
+      }
+    ],
+    "reference_paragraph": "从当前输出末尾取一段 N-gram，在 Prompt 或已生成历史中找相同片段，把它后面的 Token 当作候选。例如上下文已有“PagedAttention 管理 KV Cache”，生成到“PagedAttention”时，可以先猜后续词。它没有额外模型权重，特别适合代码编辑、引用和基于材料的回答；上下文少、措辞新颖时则可能找不到可用片段。候选仍交给 Target 验证，匹配成功本身不代表被接受。[Prompt Lookup Decoding 原始实现](https://github.com/apoorvumang/prompt-lookup-decoding)展示了 N-gram 匹配流程。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "55484f0c064043f79dee7032"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "从当前输出末尾取一段 N-gram，在 Prompt 或已生成历史中找相同片段，把它后面的 Token 当作候选。例如上下文已有“PagedAttention 管理 KV Cache”，生成到“PagedAttention”时，可以先猜后续词。它没有额外模型权重，特别适合代码编辑、引用和基于材料的回答；上下文少、措辞新颖时则可能找不到可用片段。候选仍交给 Target 验证，匹配成功本身不代表被接受。[Prompt Lookup Decoding 原始实现](https://github.com/apoorvumang/prompt-lookup-decoding)展示了 N-gram 匹配流程。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 48,
+          "line_end": 48,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L48-L48"
+        },
+        "chunk_ids": [
+          "55484f0c064043f79dee7032"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-050-1",
+    "query": "投机解码期望输出token数与接受的Draft数为什么不同？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-050",
+    "expected_answer": "平均输出含修正或额外token，多于已接受draft；收益还取决于draft验证调度总耗时。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "而**被接受的 Draft Token 数**是 $\\sum_{k=1}^{\\gamma}\\alpha^k$，两者不要混用。例如 $\\alpha=0.8,\\gamma=4$ 时，前者约为 3.36，后者约为 2.36。这只是恒定接受率的简化估计。实际加速还要比较 `Draft 耗时 + Target 验证耗时 + 调度/构树开销` 与逐 Token 的 Target 耗时；长候选、大批量和复杂树未必更快。部署时应同时记录**接受长度分布、每轮延迟、端到端吞吐、显存占用**，按具体模型与负载调节 $\\gamma$ 或树宽。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 64,
+        "line_end": 64,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L64-L64"
+      }
+    ],
+    "reference_paragraph": "而**被接受的 Draft Token 数**是 $\\sum_{k=1}^{\\gamma}\\alpha^k$，两者不要混用。例如 $\\alpha=0.8,\\gamma=4$ 时，前者约为 3.36，后者约为 2.36。这只是恒定接受率的简化估计。实际加速还要比较 `Draft 耗时 + Target 验证耗时 + 调度/构树开销` 与逐 Token 的 Target 耗时；长候选、大批量和复杂树未必更快。部署时应同时记录**接受长度分布、每轮延迟、端到端吞吐、显存占用**，按具体模型与负载调节 $\\gamma$ 或树宽。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "46b60e4fb63fd093e7abca3a"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "而**被接受的 Draft Token 数**是 $\\sum_{k=1}^{\\gamma}\\alpha^k$，两者不要混用。例如 $\\alpha=0.8,\\gamma=4$ 时，前者约为 3.36，后者约为 2.36。这只是恒定接受率的简化估计。实际加速还要比较 `Draft 耗时 + Target 验证耗时 + 调度/构树开销` 与逐 Token 的 Target 耗时；长候选、大批量和复杂树未必更快。部署时应同时记录**接受长度分布、每轮延迟、端到端吞吐、显存占用**，按具体模型与负载调节 $\\gamma$ 或树宽。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 64,
+          "line_end": 64,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L64-L64"
+        },
+        "chunk_ids": [
+          "46b60e4fb63fd093e7abca3a"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-050-2",
+    "query": "接受率0.8且草稿长4时报告2.36个接受草稿，为何每轮实际期望输出约3.36个？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-050",
+    "expected_answer": "平均输出含修正或额外token，多于已接受draft；收益还取决于draft验证调度总耗时。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "text": "而**被接受的 Draft Token 数**是 $\\sum_{k=1}^{\\gamma}\\alpha^k$，两者不要混用。例如 $\\alpha=0.8,\\gamma=4$ 时，前者约为 3.36，后者约为 2.36。这只是恒定接受率的简化估计。实际加速还要比较 `Draft 耗时 + Target 验证耗时 + 调度/构树开销` 与逐 Token 的 Target 耗时；长候选、大批量和复杂树未必更快。部署时应同时记录**接受长度分布、每轮延迟、端到端吞吐、显存占用**，按具体模型与负载调节 $\\gamma$ 或树宽。",
+        "repository": "JennyMa11.github.io",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "line_start": 64,
+        "line_end": 64,
+        "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L64-L64"
+      }
+    ],
+    "reference_paragraph": "而**被接受的 Draft Token 数**是 $\\sum_{k=1}^{\\gamma}\\alpha^k$，两者不要混用。例如 $\\alpha=0.8,\\gamma=4$ 时，前者约为 3.36，后者约为 2.36。这只是恒定接受率的简化估计。实际加速还要比较 `Draft 耗时 + Target 验证耗时 + 调度/构树开销` 与逐 Token 的 Target 耗时；长候选、大批量和复杂树未必更快。部署时应同时记录**接受长度分布、每轮延迟、端到端吞吐、显存占用**，按具体模型与负载调节 $\\gamma$ 或树宽。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "46b60e4fb63fd093e7abca3a"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+          "text": "而**被接受的 Draft Token 数**是 $\\sum_{k=1}^{\\gamma}\\alpha^k$，两者不要混用。例如 $\\alpha=0.8,\\gamma=4$ 时，前者约为 3.36，后者约为 2.36。这只是恒定接受率的简化估计。实际加速还要比较 `Draft 耗时 + Target 验证耗时 + 调度/构树开销` 与逐 Token 的 Target 耗时；长候选、大批量和复杂树未必更快。部署时应同时记录**接受长度分布、每轮延迟、端到端吞吐、显存占用**，按具体模型与负载调节 $\\gamma$ 或树宽。",
+          "repository": "JennyMa11.github.io",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "line_start": 64,
+          "line_end": 64,
+          "source_url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx#L64-L64"
+        },
+        "chunk_ids": [
+          "46b60e4fb63fd093e7abca3a"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-053-1",
+    "query": "MoE为什么能区分总参数量与每token激活参数量？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "moe-routing",
+    "seed_id": "seed-053",
+    "expected_answer": "MoE路由少数专家，使总保存参数和每token激活参数可分别调整。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/02-模型架构.md",
+        "text": "稠密 FFN 对每个 token 使用同一组矩阵；MoE 把参数分配给多个专家，由路由器为每个 token 选择少数专家。这样，“模型保存多少参数”与“一个 token 激活多少参数”就可以分别调整，batch 内各 token 的选择也会影响实际访问的权重集合。",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/02-模型架构.md",
+        "sha256": "bfa7bfe847edf8188b1db40b8e4e385462f38aa441355d27aa0ce29721f31a36",
+        "line_start": 528,
+        "line_end": 528,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/02-%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84.md#L528-L528"
+      }
+    ],
+    "reference_paragraph": "稠密 FFN 对每个 token 使用同一组矩阵；MoE 把参数分配给多个专家，由路由器为每个 token 选择少数专家。这样，“模型保存多少参数”与“一个 token 激活多少参数”就可以分别调整，batch 内各 token 的选择也会影响实际访问的权重集合。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "d85bec66713c322f410ed28a"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/02-模型架构.md",
+          "text": "稠密 FFN 对每个 token 使用同一组矩阵；MoE 把参数分配给多个专家，由路由器为每个 token 选择少数专家。这样，“模型保存多少参数”与“一个 token 激活多少参数”就可以分别调整，batch 内各 token 的选择也会影响实际访问的权重集合。",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/02-模型架构.md",
+          "sha256": "bfa7bfe847edf8188b1db40b8e4e385462f38aa441355d27aa0ce29721f31a36",
+          "line_start": 528,
+          "line_end": 528,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/02-%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84.md#L528-L528"
+        },
+        "chunk_ids": [
+          "d85bec66713c322f410ed28a"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-053-2",
+    "query": "模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "moe-routing",
+    "seed_id": "seed-053",
+    "expected_answer": "MoE路由少数专家，使总保存参数和每token激活参数可分别调整。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/02-模型架构.md",
+        "text": "稠密 FFN 对每个 token 使用同一组矩阵；MoE 把参数分配给多个专家，由路由器为每个 token 选择少数专家。这样，“模型保存多少参数”与“一个 token 激活多少参数”就可以分别调整，batch 内各 token 的选择也会影响实际访问的权重集合。",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/02-模型架构.md",
+        "sha256": "bfa7bfe847edf8188b1db40b8e4e385462f38aa441355d27aa0ce29721f31a36",
+        "line_start": 528,
+        "line_end": 528,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/02-%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84.md#L528-L528"
+      }
+    ],
+    "reference_paragraph": "稠密 FFN 对每个 token 使用同一组矩阵；MoE 把参数分配给多个专家，由路由器为每个 token 选择少数专家。这样，“模型保存多少参数”与“一个 token 激活多少参数”就可以分别调整，batch 内各 token 的选择也会影响实际访问的权重集合。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "d85bec66713c322f410ed28a"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/02-模型架构.md",
+          "text": "稠密 FFN 对每个 token 使用同一组矩阵；MoE 把参数分配给多个专家，由路由器为每个 token 选择少数专家。这样，“模型保存多少参数”与“一个 token 激活多少参数”就可以分别调整，batch 内各 token 的选择也会影响实际访问的权重集合。",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/02-模型架构.md",
+          "sha256": "bfa7bfe847edf8188b1db40b8e4e385462f38aa441355d27aa0ce29721f31a36",
+          "line_start": 528,
+          "line_end": 528,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/02-%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84.md#L528-L528"
+        },
+        "chunk_ids": [
+          "d85bec66713c322f410ed28a"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-066-1",
+    "query": "为什么生成草稿更快仍可能让投机解码更慢？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-066",
+    "expected_answer": "草稿虽更快但接受数减少，轮次成本分摊到更少输出，平均token延迟可变差。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md",
+        "text": "再设并行生成的草稿接受率较低，平均输出数降为 2 个，平均每个输出 token 的耗时就升至 $(3.57+26.26)/2\\approx14.9$ ms，反而慢于串行方式。更快的草稿生成节省了 10.7 ms，但每轮输出减少，每个输出 token 分摊的时间随之增加，整个请求因而变慢。",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/08-推理优化.md",
+        "sha256": "d7d17973529ffacc7eedfa543af6ffa559ec48a6bbc2883b412a37e75bc6f5db",
+        "line_start": 568,
+        "line_end": 568,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/08-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md#L568-L568"
+      }
+    ],
+    "reference_paragraph": "再设并行生成的草稿接受率较低，平均输出数降为 2 个，平均每个输出 token 的耗时就升至 $(3.57+26.26)/2\\approx14.9$ ms，反而慢于串行方式。更快的草稿生成节省了 10.7 ms，但每轮输出减少，每个输出 token 分摊的时间随之增加，整个请求因而变慢。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "6f7cb7e9609fbecba4b802d1"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md",
+          "text": "再设并行生成的草稿接受率较低，平均输出数降为 2 个，平均每个输出 token 的耗时就升至 $(3.57+26.26)/2\\approx14.9$ ms，反而慢于串行方式。更快的草稿生成节省了 10.7 ms，但每轮输出减少，每个输出 token 分摊的时间随之增加，整个请求因而变慢。",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/08-推理优化.md",
+          "sha256": "d7d17973529ffacc7eedfa543af6ffa559ec48a6bbc2883b412a37e75bc6f5db",
+          "line_start": 568,
+          "line_end": 568,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/08-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md#L568-L568"
+        },
+        "chunk_ids": [
+          "6f7cb7e9609fbecba4b802d1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-066-2",
+    "query": "优化draft省了10.7ms却让每轮平均输出降到2个token，应该怎样比较每个输出token的成本？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "speculative-decoding",
+    "seed_id": "seed-066",
+    "expected_answer": "草稿虽更快但接受数减少，轮次成本分摊到更少输出，平均token延迟可变差。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md",
+        "text": "再设并行生成的草稿接受率较低，平均输出数降为 2 个，平均每个输出 token 的耗时就升至 $(3.57+26.26)/2\\approx14.9$ ms，反而慢于串行方式。更快的草稿生成节省了 10.7 ms，但每轮输出减少，每个输出 token 分摊的时间随之增加，整个请求因而变慢。",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/08-推理优化.md",
+        "sha256": "d7d17973529ffacc7eedfa543af6ffa559ec48a6bbc2883b412a37e75bc6f5db",
+        "line_start": 568,
+        "line_end": 568,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/08-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md#L568-L568"
+      }
+    ],
+    "reference_paragraph": "再设并行生成的草稿接受率较低，平均输出数降为 2 个，平均每个输出 token 的耗时就升至 $(3.57+26.26)/2\\approx14.9$ ms，反而慢于串行方式。更快的草稿生成节省了 10.7 ms，但每轮输出减少，每个输出 token 分摊的时间随之增加，整个请求因而变慢。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "6f7cb7e9609fbecba4b802d1"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md",
+          "text": "再设并行生成的草稿接受率较低，平均输出数降为 2 个，平均每个输出 token 的耗时就升至 $(3.57+26.26)/2\\approx14.9$ ms，反而慢于串行方式。更快的草稿生成节省了 10.7 ms，但每轮输出减少，每个输出 token 分摊的时间随之增加，整个请求因而变慢。",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/08-推理优化.md",
+          "sha256": "d7d17973529ffacc7eedfa543af6ffa559ec48a6bbc2883b412a37e75bc6f5db",
+          "line_start": 568,
+          "line_end": 568,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/08-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md#L568-L568"
+        },
+        "chunk_ids": [
+          "6f7cb7e9609fbecba4b802d1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-068-1",
+    "query": "改变推理并行度时为什么传完权重不等于实例迁移完成？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "distributed-migration",
+    "seed_id": "seed-068",
+    "expected_answer": "迁移需权重请求状态、通信组、图、布局和接流量准备，参数搬完不等于可服务。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/09-分布式推理.md",
+        "text": "启动解决的是新实例何时可用；运行中的迁移还要让目标实例接着源端的进度执行。改变张量并行度、专家并行度或服务池的规模，需要重新安排权重与请求状态。目标卡获得参数只是第一步，还可能要建立通信组、准备新的执行图、转换布局并恢复接收请求。这些准备与数据搬移有先后依赖，共同决定何时能把新请求交给目标。",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/09-分布式推理.md",
+        "sha256": "f3e0c6b81674a1769e54932230d194be69d369d0e4d4c195d2742549aa82c40e",
+        "line_start": 696,
+        "line_end": 696,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/09-%E5%88%86%E5%B8%83%E5%BC%8F%E6%8E%A8%E7%90%86.md#L696-L696"
+      }
+    ],
+    "reference_paragraph": "启动解决的是新实例何时可用；运行中的迁移还要让目标实例接着源端的进度执行。改变张量并行度、专家并行度或服务池的规模，需要重新安排权重与请求状态。目标卡获得参数只是第一步，还可能要建立通信组、准备新的执行图、转换布局并恢复接收请求。这些准备与数据搬移有先后依赖，共同决定何时能把新请求交给目标。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "ece809fa2b5b0489bc973cb4"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/09-分布式推理.md",
+          "text": "启动解决的是新实例何时可用；运行中的迁移还要让目标实例接着源端的进度执行。改变张量并行度、专家并行度或服务池的规模，需要重新安排权重与请求状态。目标卡获得参数只是第一步，还可能要建立通信组、准备新的执行图、转换布局并恢复接收请求。这些准备与数据搬移有先后依赖，共同决定何时能把新请求交给目标。",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/09-分布式推理.md",
+          "sha256": "f3e0c6b81674a1769e54932230d194be69d369d0e4d4c195d2742549aa82c40e",
+          "line_start": 696,
+          "line_end": 696,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/09-%E5%88%86%E5%B8%83%E5%BC%8F%E6%8E%A8%E7%90%86.md#L696-L696"
+        },
+        "chunk_ids": [
+          "ece809fa2b5b0489bc973cb4"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-068-2",
+    "query": "服务从TP4扩到TP8，目标GPU已有参数仍不能接管请求，还需检查哪些运行时准备？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "distributed-migration",
+    "seed_id": "seed-068",
+    "expected_answer": "迁移需权重请求状态、通信组、图、布局和接流量准备，参数搬完不等于可服务。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/09-分布式推理.md",
+        "text": "启动解决的是新实例何时可用；运行中的迁移还要让目标实例接着源端的进度执行。改变张量并行度、专家并行度或服务池的规模，需要重新安排权重与请求状态。目标卡获得参数只是第一步，还可能要建立通信组、准备新的执行图、转换布局并恢复接收请求。这些准备与数据搬移有先后依赖，共同决定何时能把新请求交给目标。",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/09-分布式推理.md",
+        "sha256": "f3e0c6b81674a1769e54932230d194be69d369d0e4d4c195d2742549aa82c40e",
+        "line_start": 696,
+        "line_end": 696,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/09-%E5%88%86%E5%B8%83%E5%BC%8F%E6%8E%A8%E7%90%86.md#L696-L696"
+      }
+    ],
+    "reference_paragraph": "启动解决的是新实例何时可用；运行中的迁移还要让目标实例接着源端的进度执行。改变张量并行度、专家并行度或服务池的规模，需要重新安排权重与请求状态。目标卡获得参数只是第一步，还可能要建立通信组、准备新的执行图、转换布局并恢复接收请求。这些准备与数据搬移有先后依赖，共同决定何时能把新请求交给目标。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "ece809fa2b5b0489bc973cb4"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/09-分布式推理.md",
+          "text": "启动解决的是新实例何时可用；运行中的迁移还要让目标实例接着源端的进度执行。改变张量并行度、专家并行度或服务池的规模，需要重新安排权重与请求状态。目标卡获得参数只是第一步，还可能要建立通信组、准备新的执行图、转换布局并恢复接收请求。这些准备与数据搬移有先后依赖，共同决定何时能把新请求交给目标。",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/09-分布式推理.md",
+          "sha256": "f3e0c6b81674a1769e54932230d194be69d369d0e4d4c195d2742549aa82c40e",
+          "line_start": 696,
+          "line_end": 696,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/09-%E5%88%86%E5%B8%83%E5%BC%8F%E6%8E%A8%E7%90%86.md#L696-L696"
+        },
+        "chunk_ids": [
+          "ece809fa2b5b0489bc973cb4"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-070-1",
+    "query": "激活重计算如何用额外计算换取训练显存？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "activation-recomputation",
+    "seed_id": "seed-070",
+    "expected_answer": "仅存部分前向激活，反向使用前重算，以额外计算换保存空间。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/10-训练系统.md",
+        "text": "前向计算留下的激活，像草稿纸上记录的中间步骤：反向计算回到这一层时，还要用到其中一些值。草稿全部保留，取用方便，却占空间；只保留部分步骤，缺失的值就要在使用前重新算出。参数分片已经减少了权重和优化器状态的复制，激活重计算则用额外的计算换取保存这些中间值所需的空间。",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/10-训练系统.md",
+        "sha256": "b047eaf63bc4d558c06484a5afbb7fb994fe4df2187aaca0a2b102cc9c1fe6da",
+        "line_start": 205,
+        "line_end": 205,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/10-%E8%AE%AD%E7%BB%83%E7%B3%BB%E7%BB%9F.md#L205-L205"
+      }
+    ],
+    "reference_paragraph": "前向计算留下的激活，像草稿纸上记录的中间步骤：反向计算回到这一层时，还要用到其中一些值。草稿全部保留，取用方便，却占空间；只保留部分步骤，缺失的值就要在使用前重新算出。参数分片已经减少了权重和优化器状态的复制，激活重计算则用额外的计算换取保存这些中间值所需的空间。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "62bad66ac9edd4599835665d"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/10-训练系统.md",
+          "text": "前向计算留下的激活，像草稿纸上记录的中间步骤：反向计算回到这一层时，还要用到其中一些值。草稿全部保留，取用方便，却占空间；只保留部分步骤，缺失的值就要在使用前重新算出。参数分片已经减少了权重和优化器状态的复制，激活重计算则用额外的计算换取保存这些中间值所需的空间。",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/10-训练系统.md",
+          "sha256": "b047eaf63bc4d558c06484a5afbb7fb994fe4df2187aaca0a2b102cc9c1fe6da",
+          "line_start": 205,
+          "line_end": 205,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/10-%E8%AE%AD%E7%BB%83%E7%B3%BB%E7%BB%9F.md#L205-L205"
+        },
+        "chunk_ids": [
+          "62bad66ac9edd4599835665d"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-070-2",
+    "query": "参数已经分片但前向激活仍占太多显存，还可以在哪些中间结果上选择保存或重算？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "activation-recomputation",
+    "seed_id": "seed-070",
+    "expected_answer": "仅存部分前向激活，反向使用前重算，以额外计算换保存空间。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/10-训练系统.md",
+        "text": "前向计算留下的激活，像草稿纸上记录的中间步骤：反向计算回到这一层时，还要用到其中一些值。草稿全部保留，取用方便，却占空间；只保留部分步骤，缺失的值就要在使用前重新算出。参数分片已经减少了权重和优化器状态的复制，激活重计算则用额外的计算换取保存这些中间值所需的空间。",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/10-训练系统.md",
+        "sha256": "b047eaf63bc4d558c06484a5afbb7fb994fe4df2187aaca0a2b102cc9c1fe6da",
+        "line_start": 205,
+        "line_end": 205,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/10-%E8%AE%AD%E7%BB%83%E7%B3%BB%E7%BB%9F.md#L205-L205"
+      }
+    ],
+    "reference_paragraph": "前向计算留下的激活，像草稿纸上记录的中间步骤：反向计算回到这一层时，还要用到其中一些值。草稿全部保留，取用方便，却占空间；只保留部分步骤，缺失的值就要在使用前重新算出。参数分片已经减少了权重和优化器状态的复制，激活重计算则用额外的计算换取保存这些中间值所需的空间。",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "62bad66ac9edd4599835665d"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/10-训练系统.md",
+          "text": "前向计算留下的激活，像草稿纸上记录的中间步骤：反向计算回到这一层时，还要用到其中一些值。草稿全部保留，取用方便，却占空间；只保留部分步骤，缺失的值就要在使用前重新算出。参数分片已经减少了权重和优化器状态的复制，激活重计算则用额外的计算换取保存这些中间值所需的空间。",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/10-训练系统.md",
+          "sha256": "b047eaf63bc4d558c06484a5afbb7fb994fe4df2187aaca0a2b102cc9c1fe6da",
+          "line_start": 205,
+          "line_end": 205,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/10-%E8%AE%AD%E7%BB%83%E7%B3%BB%E7%BB%9F.md#L205-L205"
+        },
+        "chunk_ids": [
+          "62bad66ac9edd4599835665d"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-075-1",
+    "query": "端侧带宽受限Decode为何能从低比特权重量化获益？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "knowledge",
+    "group_id": "quantization",
+    "seed_id": "seed-075",
+    "expected_answer": "低比特分组量化降低权重每步读取量，提高带宽受限decode上限。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md",
+        "text": "即 decode 上限约 5.6 token/s；计入 KV 后每步约 0.193 s，上限约 5.2 token/s。量化直接减少每步读取的字节数：按第 8.4 节的 q4_0 分组格式，每 32 个 BF16 值从 64 bytes 变为 18 bytes，权重每步读取降至约 $15.14\\times18/64\\approx4.26$ GB，每步合计约 5.47 GB、64.4 ms，上限约 15.5 token/s。MELTing Point 在 iPhone 14 Pro 上实测 Zephyr-3B q4_k 为 14.8 token/s、Llama-2 7B q3_k 为 6.0 token/s（q4_k、q3_k 是与第 8.4.1 节 Q2_K 同属 GGML 系列的 4-bit、3-bit 分组量化格式），与这里推导的量级一致。[^melt]",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/12-端边云协同.md",
+        "sha256": "ef9b3f3370851e59271e6f089723f84e44a758bf5eba1765c999fa4c221d0928",
+        "line_start": 166,
+        "line_end": 166,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/12-%E7%AB%AF%E8%BE%B9%E4%BA%91%E5%8D%8F%E5%90%8C.md#L166-L166"
+      }
+    ],
+    "reference_paragraph": "即 decode 上限约 5.6 token/s；计入 KV 后每步约 0.193 s，上限约 5.2 token/s。量化直接减少每步读取的字节数：按第 8.4 节的 q4_0 分组格式，每 32 个 BF16 值从 64 bytes 变为 18 bytes，权重每步读取降至约 $15.14\\times18/64\\approx4.26$ GB，每步合计约 5.47 GB、64.4 ms，上限约 15.5 token/s。MELTing Point 在 iPhone 14 Pro 上实测 Zephyr-3B q4_k 为 14.8 token/s、Llama-2 7B q3_k 为 6.0 token/s（q4_k、q3_k 是与第 8.4.1 节 Q2_K 同属 GGML 系列的 4-bit、3-bit 分组量化格式），与这里推导的量级一致。[^melt]",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "c18f8165367df9af744db84d"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md",
+          "text": "即 decode 上限约 5.6 token/s；计入 KV 后每步约 0.193 s，上限约 5.2 token/s。量化直接减少每步读取的字节数：按第 8.4 节的 q4_0 分组格式，每 32 个 BF16 值从 64 bytes 变为 18 bytes，权重每步读取降至约 $15.14\\times18/64\\approx4.26$ GB，每步合计约 5.47 GB、64.4 ms，上限约 15.5 token/s。MELTing Point 在 iPhone 14 Pro 上实测 Zephyr-3B q4_k 为 14.8 token/s、Llama-2 7B q3_k 为 6.0 token/s（q4_k、q3_k 是与第 8.4.1 节 Q2_K 同属 GGML 系列的 4-bit、3-bit 分组量化格式），与这里推导的量级一致。[^melt]",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/12-端边云协同.md",
+          "sha256": "ef9b3f3370851e59271e6f089723f84e44a758bf5eba1765c999fa4c221d0928",
+          "line_start": 166,
+          "line_end": 166,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/12-%E7%AB%AF%E8%BE%B9%E4%BA%91%E5%8D%8F%E5%90%8C.md#L166-L166"
+        },
+        "chunk_ids": [
+          "c18f8165367df9af744db84d"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "repo-075-2",
+    "query": "手机逐token生成受LPDDR读取权重限制，量化为什么能提高理论出词速度？",
+    "domain": "infra",
+    "modality": "text",
+    "question_type": "scenario",
+    "group_id": "quantization",
+    "seed_id": "seed-075",
+    "expected_answer": "低比特分组量化降低权重每步读取量，提高带宽受限decode上限。",
+    "relevant_spans": [
+      {
+        "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md",
+        "text": "即 decode 上限约 5.6 token/s；计入 KV 后每步约 0.193 s，上限约 5.2 token/s。量化直接减少每步读取的字节数：按第 8.4 节的 q4_0 分组格式，每 32 个 BF16 值从 64 bytes 变为 18 bytes，权重每步读取降至约 $15.14\\times18/64\\approx4.26$ GB，每步合计约 5.47 GB、64.4 ms，上限约 15.5 token/s。MELTing Point 在 iPhone 14 Pro 上实测 Zephyr-3B q4_k 为 14.8 token/s、Llama-2 7B q3_k 为 6.0 token/s（q4_k、q3_k 是与第 8.4.1 节 Q2_K 同属 GGML 系列的 4-bit、3-bit 分组量化格式），与这里推导的量级一致。[^melt]",
+        "repository": "ai-infra-book",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "document_id": "ai-infra-book/manuscripts/12-端边云协同.md",
+        "sha256": "ef9b3f3370851e59271e6f089723f84e44a758bf5eba1765c999fa4c221d0928",
+        "line_start": 166,
+        "line_end": 166,
+        "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/12-%E7%AB%AF%E8%BE%B9%E4%BA%91%E5%8D%8F%E5%90%8C.md#L166-L166"
+      }
+    ],
+    "reference_paragraph": "即 decode 上限约 5.6 token/s；计入 KV 后每步约 0.193 s，上限约 5.2 token/s。量化直接减少每步读取的字节数：按第 8.4 节的 q4_0 分组格式，每 32 个 BF16 值从 64 bytes 变为 18 bytes，权重每步读取降至约 $15.14\\times18/64\\approx4.26$ GB，每步合计约 5.47 GB、64.4 ms，上限约 15.5 token/s。MELTing Point 在 iPhone 14 Pro 上实测 Zephyr-3B q4_k 为 14.8 token/s、Llama-2 7B q3_k 为 6.0 token/s（q4_k、q3_k 是与第 8.4.1 节 Q2_K 同属 GGML 系列的 4-bit、3-bit 分组量化格式），与这里推导的量级一致。[^melt]",
+    "review_status": "pending_human_review",
+    "annotation_method": "AI-authored against frozen source paragraphs",
+    "relevant": [
+      "c18f8165367df9af744db84d"
+    ],
+    "gold_matches": [
+      {
+        "span": {
+          "source": "../../data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md",
+          "text": "即 decode 上限约 5.6 token/s；计入 KV 后每步约 0.193 s，上限约 5.2 token/s。量化直接减少每步读取的字节数：按第 8.4 节的 q4_0 分组格式，每 32 个 BF16 值从 64 bytes 变为 18 bytes，权重每步读取降至约 $15.14\\times18/64\\approx4.26$ GB，每步合计约 5.47 GB、64.4 ms，上限约 15.5 token/s。MELTing Point 在 iPhone 14 Pro 上实测 Zephyr-3B q4_k 为 14.8 token/s、Llama-2 7B q3_k 为 6.0 token/s（q4_k、q3_k 是与第 8.4.1 节 Q2_K 同属 GGML 系列的 4-bit、3-bit 分组量化格式），与这里推导的量级一致。[^melt]",
+          "repository": "ai-infra-book",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "document_id": "ai-infra-book/manuscripts/12-端边云协同.md",
+          "sha256": "ef9b3f3370851e59271e6f089723f84e44a758bf5eba1765c999fa4c221d0928",
+          "line_start": 166,
+          "line_end": 166,
+          "source_url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/12-%E7%AB%AF%E8%BE%B9%E4%BA%91%E5%8D%8F%E5%90%8C.md#L166-L166"
+        },
+        "chunk_ids": [
+          "c18f8165367df9af744db84d"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,96 @@
+Building prefix dict from the default dictionary ...
+Loading model from cache /var/folders/bb/2w2254vn1qd13jb1gtq3l7m80000gn/T/jieba.cache
+Loading model cost 0.185 seconds.
+Prefix dict has been built successfully.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/71 [00:00<?, ?it/s]Loading weights: 100%|██████████| 71/71 [00:00<00:00, 9097.72it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (611 > 512). Running this sequence through the model will result in indexing errors
+Parsed 1/87: AIInfraGuide AI Infra学习路线.md -> 161 chunks
+Parsed 2/87: AIInfraGuide collective-communication-primer.md -> 120 chunks
+Parsed 3/87: AIInfraGuide gpu-basics.md -> 91 chunks
+Parsed 4/87: AIInfraGuide nvidia-gpu-evolution.md -> 71 chunks
+Parsed 5/87: AIInfraGuide PyTorch框架入门.md -> 78 chunks
+Parsed 6/87: AIInfraGuide 3.1 AI Infra工程师为什么必须懂Transformer.md -> 97 chunks
+Parsed 7/87: AIInfraGuide 3.2 Transformer全貌及代码实现.md -> 183 chunks
+Parsed 8/87: AIInfraGuide 3.3 Self-Attention机制深入理解.md -> 181 chunks
+Parsed 9/87: AIInfraGuide 3.4 Transformer前馈网络FFN深入理解.md -> 172 chunks
+Parsed 10/87: AIInfraGuide 3.5 Transformer位置编码深入理解.md -> 164 chunks
+Parsed 11/87: AIInfraGuide 3.6 LayerNorm与残差连接深入理解.md -> 147 chunks
+Parsed 12/87: AIInfraGuide 3.7 Transformer Decoder Block完整解析.md -> 177 chunks
+Parsed 13/87: AIInfraGuide 3.8 从Transformer到LLM自回归生成深入理解.md -> 110 chunks
+Parsed 14/87: AIInfraGuide 3.9 Tokenization与词嵌入.md -> 55 chunks
+Parsed 15/87: AIInfraGuide Transformer架构快速入门.md -> 217 chunks
+Parsed 16/87: AIInfraGuide 第1章-编程语言基础.md -> 270 chunks
+Parsed 17/87: AIInfraGuide 第2章-数学基础.md -> 471 chunks
+Parsed 18/87: AIInfraGuide 1.1 分布式训练总论.md -> 46 chunks
+Parsed 19/87: AIInfraGuide 1.2 环境搭建与分布式启动.md -> 155 chunks
+Parsed 20/87: AIInfraGuide 2.1 集合通信原语详解.md -> 85 chunks
+Parsed 21/87: AIInfraGuide 3.1 优化器原理与显存开销分析.md -> 58 chunks
+Parsed 22/87: AIInfraGuide 4.1 数据并行详解.md -> 104 chunks
+Parsed 23/87: AIInfraGuide 4.2 PyTorch 数据并行从原理到实战.md -> 87 chunks
+Parsed 24/87: AIInfraGuide 第10章-MoE并行.md -> 8 chunks
+Parsed 25/87: AIInfraGuide 第11章-3D并行与混合并行策略.md -> 8 chunks
+Parsed 26/87: AIInfraGuide 第1章-分布式训练总论.md -> 11 chunks
+Parsed 27/87: AIInfraGuide 第2章-集合通信原语.md -> 11 chunks
+Parsed 28/87: AIInfraGuide 第3章-优化器.md -> 4 chunks
+Parsed 29/87: AIInfraGuide 第4章-数据并行.md -> 11 chunks
+Parsed 30/87: AIInfraGuide 第5章-ZeRO系列.md -> 9 chunks
+Parsed 31/87: AIInfraGuide 第6章-张量并行与序列并行.md -> 9 chunks
+Parsed 32/87: AIInfraGuide 第7章-流水线并行.md -> 9 chunks
+Parsed 33/87: AIInfraGuide 第8章-混合精度与显存优化.md -> 9 chunks
+Parsed 34/87: AIInfraGuide 第9章-长序列训练与上下文并行.md -> 9 chunks
+Parsed 35/87: AIInfraGuide 1.1-CUDA开发环境搭建.md -> 57 chunks
+Parsed 36/87: AIInfraGuide 1.2-CUDA编程模型.md -> 57 chunks
+Parsed 37/87: AIInfraGuide 1.3-CUDA内存模型.md -> 57 chunks
+Parsed 38/87: AIInfraGuide 1.4-第一个实用Kernel.md -> 63 chunks
+Parsed 39/87: AIInfraGuide 2.1-Warp与执行模型.md -> 64 chunks
+Parsed 40/87: AIInfraGuide 2.2-内存访问优化.md -> 69 chunks
+Parsed 41/87: AIInfraGuide 2.3-Occupancy与资源分配.md -> 75 chunks
+Parsed 42/87: AIInfraGuide 2.4-同步与原子操作.md -> 63 chunks
+Parsed 43/87: AIInfraGuide 3.1-CUDA Reduce算子优化.md -> 109 chunks
+Parsed 44/87: AIInfraGuide 4.1-CUDA GEMM算子性能优化.md -> 243 chunks
+Parsed 45/87: AIInfraGuide 5.1-CUDA Softmax朴素实现优化.md -> 71 chunks
+Parsed 46/87: AIInfraGuide 5.2-CUDA Online Softmax实现.md -> 91 chunks
+Parsed 47/87: AIInfraGuide 6.1-FlashAttention V1详解.md -> 111 chunks
+Parsed 48/87: AIInfraGuide 6.2-FlashAttention V2详解.md -> 68 chunks
+Parsed 49/87: AIInfraGuide CUDA编程入门指南.md -> 201 chunks
+Parsed 50/87: AIInfraGuide 第4章-经典算子实现-GEMM.md -> 8 chunks
+Parsed 51/87: AIInfraGuide 第6章-Attention算子.md -> 8 chunks
+Parsed 52/87: AIInfraGuide 第10章-生产部署与运维.md -> 7 chunks
+Parsed 53/87: AIInfraGuide 第11章-推理优化选型与端到端实战.md -> 5 chunks
+Parsed 54/87: AIInfraGuide 12.1-端侧推理基础.md -> 93 chunks
+Parsed 55/87: AIInfraGuide 1.1-LLM推理基础.md -> 67 chunks
+Parsed 56/87: AIInfraGuide 第1章-LLM推理基础.md -> 7 chunks
+Parsed 57/87: AIInfraGuide 2.1-PagedAttention.md -> 65 chunks
+Parsed 58/87: AIInfraGuide 2.2-Continuous Batching.md -> 50 chunks
+Parsed 59/87: AIInfraGuide 2.3-Prefix Cache 与 RadixAttention.md -> 40 chunks
+Parsed 60/87: AIInfraGuide 2.4-Chunked Prefill 与统一调度.md -> 43 chunks
+Parsed 61/87: AIInfraGuide 2.5-Attention 后端与图优化.md -> 37 chunks
+Parsed 62/87: AIInfraGuide 第2章-推理引擎核心技术.md -> 7 chunks
+Parsed 63/87: AIInfraGuide vllm快速入门.md -> 85 chunks
+Parsed 64/87: AIInfraGuide 第3章-深入vLLM.md -> 6 chunks
+Parsed 65/87: AIInfraGuide 第4章-量化.md -> 7 chunks
+Parsed 66/87: AIInfraGuide 第5章-Speculative-Decoding.md -> 7 chunks
+Parsed 67/87: AIInfraGuide 第6章-分布式推理.md -> 6 chunks
+Parsed 68/87: AIInfraGuide 第7章-PD解耦架构.md -> 7 chunks
+Parsed 69/87: AIInfraGuide 第8章-生产级服务特性.md -> 7 chunks
+Parsed 70/87: AIInfraGuide 第9章-性能分析与Benchmark.md -> 8 chunks
+Parsed 71/87: JennyMa11.github.io inference_accel_handbook_zh.md -> 577 chunks
+Parsed 72/87: JennyMa11.github.io attention-is-all-you-need-explained.mdx -> 30 chunks
+Parsed 73/87: JennyMa11.github.io multi-head-attention-intuition.mdx -> 30 chunks
+Parsed 74/87: JennyMa11.github.io speculative-decoding-methods.mdx -> 19 chunks
+Parsed 75/87: JennyMa11.github.io transformer-positional-encoding.mdx -> 25 chunks
+Parsed 76/87: ai-infra-book 01-初识 AI Infra.md -> 180 chunks
+Parsed 77/87: ai-infra-book 02-模型架构.md -> 434 chunks
+Parsed 78/87: ai-infra-book 03-推理与训练负载.md -> 292 chunks
+Parsed 79/87: ai-infra-book 04-加速器架构.md -> 456 chunks
+Parsed 80/87: ai-infra-book 05-算子与运行时.md -> 353 chunks
+Parsed 81/87: ai-infra-book 06-超节点.md -> 429 chunks
+Parsed 82/87: ai-infra-book 07-数据中心网络.md -> 452 chunks
+Parsed 83/87: ai-infra-book 08-推理优化.md -> 303 chunks
+Parsed 84/87: ai-infra-book 09-分布式推理.md -> 365 chunks
+Parsed 85/87: ai-infra-book 10-训练系统.md -> 352 chunks
+Parsed 86/87: ai-infra-book 11-资源调度与运行环境.md -> 297 chunks
+Parsed 87/87: ai-infra-book 12-端边云协同.md -> 317 chunks
+Encoding and persisting 10278 chunks
+Completed {'corpus_sha256': 'e4579f5f84b9d4351a60f23719084649d372085fe9cc2efa3ca63d1c35ca3b7b', 'configuration': {'backend': 'bge', 'semantic_model': True, 'embedding_model': 'BAAI/bge-small-zh-v1.5', 'reranker_model': None, 'reranker_scope': 'text_and_image_captions', 'candidate_k': 30, 'fusion_candidates': 'truncate', 'heading_context': True, 'context_chars': 4000, 'rerank': False, 'multimodal': False, 'chunks': 10278, 'sources': 87, 'fingerprint': {'backend': 'bge', 'embedding_model': 'BAAI/bge-small-zh-v1.5', 'multimodal': False, 'chunk_size': 450, 'chunk_strategy': 'semantic', 'refinement_threshold': 0.55, 'image_merge_threshold': 0.88, 'image_max_side': 768, 'image_min_area': 0.005, 'image_max_regions': 24, 'clip_text_model': 'sentence-transformers/clip-ViT-B-32-multilingual-v1', 'clip_image_model': 'sentence-transformers/clip-ViT-B-32', 'semantic_threshold': 0.72, 'heading_context': True, 'schema_version': 2, 'embedding_pooling': 'token-window-mean-v1'}}, 'index_seconds': 72.70417304208968, 'index_dir': 'data/repository-index/bge-e4579f5f84b9-headings-v1'}
