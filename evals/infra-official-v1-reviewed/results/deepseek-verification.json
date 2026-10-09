@@ -1,0 +1,23 @@
+{
+  "rows": 300,
+  "fixed_input_mismatches": 0,
+  "generation_errors": 0,
+  "implementation_sha256": "29250b7ad02145ba1aed1d50f1e1a4dfab1b7253550c473cd683e87b447fd648",
+  "frozen_settings_corpus_models_equal_to_local": true,
+  "historical_files_unchanged": 89,
+  "intentional_historical_change": [
+    "src/infra_rag/assistant.py"
+  ],
+  "credentials_only_in_ignored_env_files": true,
+  "env_permissions": {
+    ".env.deepseek": "0o600",
+    ".env.agentrouter": "0o600"
+  },
+  "validation": {
+    "pytest_passed": 89,
+    "ruff": "passed",
+    "build": "passed"
+  },
+  "holdout_executed": false,
+  "human_semantic_metrics": null
+}

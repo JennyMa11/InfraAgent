@@ -1,0 +1,511 @@
+{
+  "strategy": "B-k8-l0-p1-n0",
+  "tokenizer_options": {
+    "do_lower_case": true
+  },
+  "postprocessor_sha256": "8eba3ed01608aea3227068108c5a3ab6176d3ed3f299ece956f080ae661265af",
+  "failures": [
+    {
+      "dataset": "official",
+      "id": "official-002-2",
+      "query": "vLLM v0.10.2：两个适配器使用相同文本，是否可以只按文本共享缓存？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 1038,
+      "gold_details": [
+        {
+          "chunk_id": "d2ff94675785a324f32b455e",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 394,
+          "fits_if_appended": true,
+          "appended_tokens": 1198,
+          "appended_characters": 3437,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L17-L19"
+        }
+      ]
+    },
+    {
+      "dataset": "official",
+      "id": "official-002-4",
+      "query": "vLLM v0.10.2：先确认服务模型支持LoRA，再考虑两个LoRA请求文本相同，为什么缓存键仍需额外区分身份？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 1009,
+      "gold_details": [
+        {
+          "chunk_id": "d2ff94675785a324f32b455e",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 394,
+          "fits_if_appended": true,
+          "appended_tokens": 1169,
+          "appended_characters": 3146,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L17-L19"
+        },
+        {
+          "chunk_id": "f4e4646b10829ca6495f8f92",
+          "rank": 19,
+          "rerank_score": 0.007657996378839016,
+          "candidate": true,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 129,
+          "fits_if_appended": true,
+          "appended_tokens": 1081,
+          "appended_characters": 2870,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-lora.md#L5-L5"
+        }
+      ]
+    },
+    {
+      "dataset": "official",
+      "id": "official-005-2",
+      "query": "vLLM v0.10.2：抢占是否意味着后续恢复完全不需要重算？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 870,
+      "gold_details": [
+        {
+          "chunk_id": "da2c3c654077be77b6c8ac53",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 376,
+          "fits_if_appended": true,
+          "appended_tokens": 1021,
+          "appended_characters": 2697,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-optimization.md#L10-L12"
+        }
+      ]
+    },
+    {
+      "dataset": "official",
+      "id": "official-005-4",
+      "query": "vLLM v0.10.2：先解释KV空间不足时抢占请求的恢复成本，再从内存优化指南找出将模型跨GPU拆分的参数。",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 1087,
+      "gold_details": [
+        {
+          "chunk_id": "da2c3c654077be77b6c8ac53",
+          "rank": 1,
+          "rerank_score": 0.9604293704032898,
+          "candidate": true,
+          "eligible": true,
+          "selected": true,
+          "body_characters": 376,
+          "fits_if_appended": false,
+          "appended_tokens": 1238,
+          "appended_characters": 3113,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-optimization.md#L10-L12"
+        },
+        {
+          "chunk_id": "e4cbcce69ae43e917d286494",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 103,
+          "fits_if_appended": true,
+          "appended_tokens": 1164,
+          "appended_characters": 2847,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-conserving_memory.md#L7-L7"
+        }
+      ]
+    },
+    {
+      "dataset": "official",
+      "id": "official-008-4",
+      "query": "vLLM v0.10.2：根据SGLang说明先识别分离阶段的作用，再依据vLLM限制判断能否把解耦直接当作吞吐提升保证。",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 776,
+      "gold_details": [
+        {
+          "chunk_id": "2300f2a41fbdde2cb93fab46",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 63,
+          "fits_if_appended": true,
+          "appended_tokens": 844,
+          "appended_characters": 2104,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md#L15-L16"
+        },
+        {
+          "chunk_id": "45924e109e44c1091fecfbd1",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 104,
+          "fits_if_appended": true,
+          "appended_tokens": 863,
+          "appended_characters": 2161,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-pd_disaggregation.md#L14-L14"
+        }
+      ]
+    },
+    {
+      "dataset": "official",
+      "id": "official-012-4",
+      "query": "SGLang v0.5.2：先根据queue-req诊断客户端供给，再查服务器内存参数默认值，为什么不能把默认0.9当作队列为空的直接根因？",
+      "candidate_complete": 1.0,
+      "packing_pool_complete": 1.0,
+      "selected_complete": 0.0,
+      "selected_count": 7,
+      "used_tokens": 1193,
+      "gold_details": [
+        {
+          "chunk_id": "55060b42e9fd302b89329b4b",
+          "rank": 2,
+          "rerank_score": 0.23154263198375702,
+          "candidate": true,
+          "eligible": true,
+          "selected": true,
+          "body_characters": 184,
+          "fits_if_appended": false,
+          "appended_tokens": 1288,
+          "appended_characters": 3221,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-server_arguments.md#L23-L23"
+        },
+        {
+          "chunk_id": "b3002cb9f2fb1d6f7771637a",
+          "rank": 14,
+          "rerank_score": 0.00132232706528157,
+          "candidate": true,
+          "eligible": true,
+          "selected": false,
+          "body_characters": 430,
+          "fits_if_appended": false,
+          "appended_tokens": 1423,
+          "appended_characters": 3503,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md#L8-L43"
+        }
+      ]
+    },
+    {
+      "dataset": "official",
+      "id": "official-026-2",
+      "query": "CUDA 13.0.1：调用Async传输却未得到预期重叠，应先检查主机缓冲区的什么属性？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 1010,
+      "gold_details": [
+        {
+          "chunk_id": "6088afff22b882ca2e8c0aa7",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 244,
+          "fits_if_appended": true,
+          "appended_tokens": 1110,
+          "appended_characters": 3218,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md#L35-L35"
+        }
+      ]
+    },
+    {
+      "dataset": "official",
+      "id": "official-026-3",
+      "query": "CUDA 13.0.1：排查该主题时，有人声称“所有带Async后缀的调用都无条件异步。”，根据文档这个说法哪里需要纠正？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 1080,
+      "gold_details": [
+        {
+          "chunk_id": "6088afff22b882ca2e8c0aa7",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 244,
+          "fits_if_appended": true,
+          "appended_tokens": 1180,
+          "appended_characters": 3382,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md#L35-L35"
+        }
+      ]
+    },
+    {
+      "dataset": "official",
+      "id": "official-026-4",
+      "query": "CUDA 13.0.1：对asynchronous-concurrent-execution相关代码进行review时，为何不能接受“所有带Async后缀的调用都无条件异步。”作为正确性依据？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 969,
+      "gold_details": [
+        {
+          "chunk_id": "6088afff22b882ca2e8c0aa7",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 244,
+          "fits_if_appended": true,
+          "appended_tokens": 1069,
+          "appended_characters": 2965,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md#L35-L35"
+        }
+      ]
+    },
+    {
+      "dataset": "repository",
+      "id": "repo-016-2",
+      "query": "token按路由跨卡送给专家计算后，还要怎样将结果归回原请求所在卡？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 5,
+      "used_tokens": 1133,
+      "gold_details": [
+        {
+          "chunk_id": "2a059907df3fc39b6b248f11",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 180,
+          "fits_if_appended": false,
+          "appended_tokens": 1285,
+          "appended_characters": 1734,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第10章-MoE并行.md#L32-L35"
+        }
+      ]
+    },
+    {
+      "dataset": "repository",
+      "id": "repo-018-1",
+      "query": "SmoothQuant针对激活离群值采用什么变换？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 5,
+      "used_tokens": 1185,
+      "gold_details": [
+        {
+          "chunk_id": "df90f6c49278bebeac0b02b8",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 96,
+          "fits_if_appended": false,
+          "appended_tokens": 1272,
+          "appended_characters": 1824,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第4章-量化.md#L16-L16"
+        }
+      ]
+    },
+    {
+      "dataset": "repository",
+      "id": "repo-022-1",
+      "query": "相同前缀的请求为什么可以共享历史KV？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 7,
+      "used_tokens": 1184,
+      "gold_details": [
+        {
+          "chunk_id": "95b2da4bb6ddc70e206cc2e8",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 133,
+          "fits_if_appended": false,
+          "appended_tokens": 1313,
+          "appended_characters": 1721,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L40-L40"
+        }
+      ]
+    },
+    {
+      "dataset": "repository",
+      "id": "repo-032-2",
+      "query": "注意力KV缓存太大但不想减少查询头，分组共享KV头的结构能缓解什么开销？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 1186,
+      "gold_details": [
+        {
+          "chunk_id": "cb9a35314f749a7a5ab4e439",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 151,
+          "fits_if_appended": false,
+          "appended_tokens": 1328,
+          "appended_characters": 1814,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L575-L575"
+        }
+      ]
+    },
+    {
+      "dataset": "repository",
+      "id": "repo-035-1",
+      "query": "估算KV Cache显存需要哪些乘法因子，前面的2代表什么？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 993,
+      "gold_details": [
+        {
+          "chunk_id": "279cfd983bf3bb6a8a27109c",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 125,
+          "fits_if_appended": true,
+          "appended_tokens": 1096,
+          "appended_characters": 1662,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L773-L777"
+        }
+      ]
+    },
+    {
+      "dataset": "repository",
+      "id": "repo-035-2",
+      "query": "同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 8,
+      "used_tokens": 932,
+      "gold_details": [
+        {
+          "chunk_id": "279cfd983bf3bb6a8a27109c",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 125,
+          "fits_if_appended": true,
+          "appended_tokens": 1035,
+          "appended_characters": 1577,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L773-L777"
+        }
+      ]
+    },
+    {
+      "dataset": "repository",
+      "id": "repo-045-2",
+      "query": "草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？",
+      "candidate_complete": 1.0,
+      "packing_pool_complete": 1.0,
+      "selected_complete": 0.0,
+      "selected_count": 7,
+      "used_tokens": 1082,
+      "gold_details": [
+        {
+          "chunk_id": "33a976757d112fd402763807",
+          "rank": 10,
+          "rerank_score": 0.9603530764579773,
+          "candidate": true,
+          "eligible": true,
+          "selected": false,
+          "body_characters": 325,
+          "fits_if_appended": false,
+          "appended_tokens": 1353,
+          "appended_characters": 1867,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md#L18-L18"
+        }
+      ]
+    },
+    {
+      "dataset": "repository",
+      "id": "repo-075-1",
+      "query": "端侧带宽受限Decode为何能从低比特权重量化获益？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 7,
+      "used_tokens": 1191,
+      "gold_details": [
+        {
+          "chunk_id": "b62cca8a383295179b1b7648",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 384,
+          "fits_if_appended": false,
+          "appended_tokens": 1494,
+          "appended_characters": 2079,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md#L166-L166"
+        }
+      ]
+    },
+    {
+      "dataset": "repository",
+      "id": "repo-075-2",
+      "query": "手机逐token生成受LPDDR读取权重限制，量化为什么能提高理论出词速度？",
+      "candidate_complete": 0.0,
+      "packing_pool_complete": 0.0,
+      "selected_complete": 0.0,
+      "selected_count": 5,
+      "used_tokens": 1158,
+      "gold_details": [
+        {
+          "chunk_id": "b62cca8a383295179b1b7648",
+          "rank": null,
+          "rerank_score": null,
+          "candidate": false,
+          "eligible": false,
+          "selected": false,
+          "body_characters": 384,
+          "fits_if_appended": false,
+          "appended_tokens": 1461,
+          "appended_characters": 1958,
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/12-端边云协同.md#L166-L166"
+        }
+      ]
+    }
+  ]
+}

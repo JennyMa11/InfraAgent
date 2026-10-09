@@ -1,0 +1,37 @@
+{
+  "original_query": "同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？",
+  "scoring_query": "同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？",
+      "anchor_quote": "同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？\", \"scoring_query\": \"同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？\",\"anchor_quote\":\"同样prompt换了LoRA后仍命中旧前缀KV，缓存key应该纳入哪些会影响结果的配置？\"}]}",
+  "provider_response": {
+    "id": "4e109e18-c8c2-4526-89b7-da68f14ddd77",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 177,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 59,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 866.1686660489067,
+  "sha256": "d4753e768902a331a76feecd1ebe2902726a44829ff1b54441d891e9f938c969"
+}

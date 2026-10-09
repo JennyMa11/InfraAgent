@@ -1,0 +1,37 @@
+{
+  "original_query": "模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？",
+  "scoring_query": "模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？",
+      "anchor_quote": "模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？\", \"scoring_query\": \"模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？\",\"anchor_quote\":\"模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？\"}]}",
+  "provider_response": {
+    "id": "f3524629-6a33-4db3-b4ed-368bdbd1a4cc",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 181,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 63,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 1005.7813749881461,
+  "sha256": "251947ab2d9aee7990cc912a71c3d937bcd9053599b2e4dc8dd55929d0720b7b"
+}

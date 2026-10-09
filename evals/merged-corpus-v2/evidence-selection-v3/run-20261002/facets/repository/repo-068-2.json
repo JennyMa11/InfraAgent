@@ -1,0 +1,37 @@
+{
+  "original_query": "服务从TP4扩到TP8，目标GPU已有参数仍不能接管请求，还需检查哪些运行时准备？",
+  "scoring_query": "服务从TP4扩到TP8，目标GPU已有参数仍不能接管请求，还需检查哪些运行时准备？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "服务从TP4扩到TP8时，目标GPU已有参数仍不能接管请求，需要检查哪些运行时准备？",
+      "anchor_quote": "服务从TP4扩到TP8，目标GPU已有参数仍不能接管请求，还需检查哪些运行时准备？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"服务从TP4扩到TP8，目标GPU已有参数仍不能接管请求，还需检查哪些运行时准备？\", \"scoring_query\": \"服务从TP4扩到TP8，目标GPU已有参数仍不能接管请求，还需检查哪些运行时准备？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"服务从TP4扩到TP8时，目标GPU已有参数仍不能接管请求，需要检查哪些运行时准备？\",\"anchor_quote\":\"服务从TP4扩到TP8，目标GPU已有参数仍不能接管请求，还需检查哪些运行时准备？\"}]}",
+  "provider_response": {
+    "id": "5b414096-def5-434d-b9c6-353a1164fe53",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 181,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 64,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 912.6132080564275,
+  "sha256": "f44fafdce6456c2284465bec57ca8bb6766751a72ec73339df3490990ac94b6a"
+}

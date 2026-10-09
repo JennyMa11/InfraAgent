@@ -1,0 +1,37 @@
+{
+  "original_query": "SGLang v0.5.2：频繁出现queue-req为零提示什么供给问题？",
+  "scoring_query": "SGLang v0.5.2: What supply issue does the frequent occurrence of queue-req being zero indicate?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In SGLang v0.5.2, what supply issue does the frequent occurrence of queue-req being zero indicate?",
+      "anchor_quote": "频繁出现queue-req为零提示什么供给问题？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"SGLang v0.5.2：频繁出现queue-req为零提示什么供给问题？\", \"scoring_query\": \"SGLang v0.5.2: What supply issue does the frequent occurrence of queue-req being zero indicate?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In SGLang v0.5.2, what supply issue does the frequent occurrence of queue-req being zero indicate?\",\"anchor_quote\":\"频繁出现queue-req为零提示什么供给问题？\"}]}",
+  "provider_response": {
+    "id": "9007689a-eef9-42e4-b055-26f45bcbcb92",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 178,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 52,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 735.0024170009419,
+  "sha256": "0a62fdeb4b800068c824b7ad984e98dfeb1845097049003fbd14498bbfff9bae"
+}

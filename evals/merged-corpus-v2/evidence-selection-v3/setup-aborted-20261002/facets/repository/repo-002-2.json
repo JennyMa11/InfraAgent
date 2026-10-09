@@ -1,0 +1,37 @@
+{
+  "original_query": "32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？",
+  "scoring_query": "32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？",
+      "anchor_quote": "32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？\", \"scoring_query\": \"32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？\",\"anchor_quote\":\"32个CUDA线程同时读显存时，为什么不能简单把它当作32次独立内存事务？\"}]}",
+  "provider_response": {
+    "id": "f4b73594-367c-45d3-bb64-54f45ff25e09",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 177,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 59,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 532.5458750594407,
+  "sha256": "d096e51a875495f502d1d99d40d1df1050924b5d6790661366e3b96c06c5db59"
+}

@@ -1,0 +1,36 @@
+{
+  "version": "infra-official-v1-reviewed",
+  "questions": 120,
+  "seed": 42,
+  "split_unit": "whole scenario groups, shared evidence and paraphrases",
+  "corpus_manifest_sha256": "d3c706fae8b2d8ac32082eae238f140ddc60eb9c5d11e61649530301948e86ca",
+  "annotation_method": "AI authored; approval requires independent human review",
+  "splits": {
+    "dev": {
+      "questions": 60,
+      "sha256": "aba452d403daab56b9bed20f44dca484b00dd32cefe2b490483c39808b58e86d",
+      "types": {
+        "single_hop": 15,
+        "conditional": 12,
+        "debugging": 12,
+        "multi_hop": 6,
+        "code_api": 9,
+        "unanswerable": 6
+      }
+    },
+    "holdout": {
+      "questions": 60,
+      "sha256": "6d7b91e980c4ffb1a88277a4b11dc9d19a11698aede8aec8e0b8471f53776505",
+      "types": {
+        "single_hop": 15,
+        "conditional": 12,
+        "debugging": 12,
+        "multi_hop": 6,
+        "code_api": 9,
+        "unanswerable": 6
+      }
+    }
+  },
+  "imported_reviews_sha256": "cdc35ff36decfb0a1ba2ae0ae0ab93128be20f6da0c4ccd8fbbde14799ce506a",
+  "imported_reviews_file": "imported-question-review.json"
+}

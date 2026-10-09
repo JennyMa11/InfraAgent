@@ -1,0 +1,41 @@
+{
+  "original_query": "Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？",
+  "scoring_query": "Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "Target一次前向算出了五个候选位置，能否直接提交五个token？",
+      "anchor_quote": "Target一次前向算出了五个候选位置，能否直接提交五个token"
+    },
+    {
+      "question": "验收顺序是什么？",
+      "anchor_quote": "验收顺序是什么？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？\", \"scoring_query\": \"Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Target一次前向算出了五个候选位置，能否直接提交五个token？\",\"anchor_quote\":\"Target一次前向算出了五个候选位置，能否直接提交五个token\"},{\"question\":\"验收顺序是什么？\",\"anchor_quote\":\"验收顺序是什么？\"}]}",
+  "provider_response": {
+    "id": "240625a3-8f36-4d28-902f-25f8c7ad6aca",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 173,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 63,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 959.3025409849361,
+  "sha256": "31511e1abae357b07b8d76bdbbe5220a3b631e3bd97c0ba0693b3fb4335d88d1"
+}

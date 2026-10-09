@@ -11,3 +11,34 @@ build/
 .env.*
 *.pem
 *.key
+
+# Internal assistant notes stay local.
+.workbuddy-ai/
+
+# Frozen large evaluation files are published as lossless gzip copies.
+# See docs/github-artifacts.md and artifacts/github-large-evals/manifest.json.
+/evals/infra-official-v1-reviewed/results/dev-20261001/rows.jsonl
+/evals/infra-official-v1-reviewed/results/dev-20261001-transport-recovery/rows.jsonl
+/evals/infra-official-v1-reviewed/results/dev-aihubmix-glm-20261001/rows.jsonl
+/evals/infra-official-v1-reviewed/results/dev-deepseek-flash-20261001/rows.jsonl
+/evals/infra-official-v1-reviewed/results/dev-deepseek-optimized-20261001/rows.jsonl
+/evals/infra-official-v1-reviewed/results/dev-opt-union60-20261001/rows.jsonl
+/evals/infra-official-v1-reviewed/results/dev-opt-union60-context2400-20261001/rows.jsonl
+/evals/merged-corpus-v1/dev-20261002/retrieval.jsonl
+/evals/merged-corpus-v2/budget-ablation-v6/run-20261003/quarantine.jsonl
+/evals/merged-corpus-v2/budget-ablation-v6/run-20261003/rows.jsonl
+/evals/merged-corpus-v2/budget-search-v8/run-20261003/adjacency-views.json
+/evals/merged-corpus-v2/budget-search-v8/run-20261003/rows.jsonl
+/evals/merged-corpus-v2/budget-support-v5/generation-aborted-20261003/rows.jsonl
+/evals/merged-corpus-v2/budget-support-v5/run-20261003/rows.jsonl
+/evals/merged-corpus-v2/dev-v2/rows.jsonl
+/evals/merged-corpus-v2/document-local-v9/run-20261003/rows.jsonl
+/evals/merged-corpus-v2/evidence-selection-v3/run-20261002/rows.jsonl
+/evals/merged-corpus-v2/original-rag-v7/run-20261003/adjacency-views.json
+/evals/merged-corpus-v2/original-rag-v7/run-20261003/rows.jsonl
+/evals/merged-corpus-v2/original-rag-v7/run-20261003-v2/adjacency-views.json
+/evals/merged-corpus-v2/original-rag-v7/run-20261003-v2/rows.jsonl
+/evals/merged-corpus-v2/original-rag-v7/run-20261003-v3/rows.jsonl
+/evals/merged-corpus-v2/recall-delivery-v4/run-20261002/rows.jsonl
+/evals/merged-corpus-v2/reranker-v10/run-20261003-v3/rows.jsonl
+/evals/merged-corpus-v2/routing-v2-20261002/rows.jsonl

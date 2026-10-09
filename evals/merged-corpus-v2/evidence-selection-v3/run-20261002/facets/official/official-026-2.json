@@ -1,0 +1,37 @@
+{
+  "original_query": "CUDA 13.0.1：调用Async传输却未得到预期重叠，应先检查主机缓冲区的什么属性？",
+  "scoring_query": "CUDA 13.0.1: When an Async transfer is called but the expected overlap is not achieved, what property of the host buffer should be checked first?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In CUDA 13.0.1, when an Async transfer is called but the expected overlap is not achieved, what property of the host buffer should be checked first?",
+      "anchor_quote": "调用Async传输却未得到预期重叠，应先检查主机缓冲区的什么属性？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：调用Async传输却未得到预期重叠，应先检查主机缓冲区的什么属性？\", \"scoring_query\": \"CUDA 13.0.1: When an Async transfer is called but the expected overlap is not achieved, what property of the host buffer should be checked first?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In CUDA 13.0.1, when an Async transfer is called but the expected overlap is not achieved, what property of the host buffer should be checked first?\",\"anchor_quote\":\"调用Async传输却未得到预期重叠，应先检查主机缓冲区的什么属性？\"}]}",
+  "provider_response": {
+    "id": "36dcd246-fdca-456c-b4e2-91bae9235b0b",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 192,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 67,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 1320.7975829718634,
+  "sha256": "ec34d707f32bd1fd0003ed814fa3c630b200594f27011bf23887647bd719b2b1"
+}

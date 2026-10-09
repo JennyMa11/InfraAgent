@@ -1,0 +1,37 @@
+{
+  "original_query": "草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？",
+  "scoring_query": "草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "草稿和目标都应用 top-p 后，要保持目标采样分布，验收该用原始 logits 分布还是实际采样分布？",
+      "anchor_quote": "草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？\", \"scoring_query\": \"草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"草稿和目标都应用 top-p 后，要保持目标采样分布，验收该用原始 logits 分布还是实际采样分布？\",\"anchor_quote\":\"草稿和目标都应用top-p后，要保持目标采样分布，验收该用原始logits分布还是实际采样分布？\"}]}",
+  "provider_response": {
+    "id": "0edd0ffb-a37c-4746-9b06-8e0ce0ffa829",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 185,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 69,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 939.3545420607552,
+  "sha256": "51973e720c1bb231087022d9f31cc647f1f99b4351d28be858fe6217469fa282"
+}

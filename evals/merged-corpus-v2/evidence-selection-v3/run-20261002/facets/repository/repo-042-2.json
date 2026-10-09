@@ -1,0 +1,45 @@
+{
+  "original_query": "列并行输出能够直接给下一分片层消费，还应无条件收集完整激活吗，通信依据是什么？",
+  "scoring_query": "列并行输出能够直接给下一分片层消费，还应无条件收集完整激活吗，通信依据是什么？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "列并行输出能够直接给下一分片层消费吗？",
+      "anchor_quote": "列并行输出能够直接给下一分片层消费"
+    },
+    {
+      "question": "列并行输出还应无条件收集完整激活吗？",
+      "anchor_quote": "还应无条件收集完整激活吗"
+    },
+    {
+      "question": "列并行输出的通信依据是什么？",
+      "anchor_quote": "通信依据是什么？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"列并行输出能够直接给下一分片层消费，还应无条件收集完整激活吗，通信依据是什么？\", \"scoring_query\": \"列并行输出能够直接给下一分片层消费，还应无条件收集完整激活吗，通信依据是什么？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"列并行输出能够直接给下一分片层消费吗？\",\"anchor_quote\":\"列并行输出能够直接给下一分片层消费\"},{\"question\":\"列并行输出还应无条件收集完整激活吗？\",\"anchor_quote\":\"还应无条件收集完整激活吗\"},{\"question\":\"列并行输出的通信依据是什么？\",\"anchor_quote\":\"通信依据是什么？\"}]}",
+  "provider_response": {
+    "id": "f6753c6b-db59-4331-8317-7bd69ed08dfe",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 179,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 84,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 961.201083031483,
+  "sha256": "0b166c3830233ca037d427ed198894a2797fdb6793a7cc0853768d1936d6e1c5"
+}

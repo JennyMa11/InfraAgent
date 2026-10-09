@@ -1,0 +1,41 @@
+{
+  "original_query": "CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？",
+  "scoring_query": "CUDA 13.0.1: In heterogeneous code, should serial control loops and data-parallel operations be placed on the host or the device according to the guidelines?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "According to the guidelines for CUDA 13.0.1, should serial control loops in heterogeneous code be placed on the host or the device?",
+      "anchor_quote": "CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？"
+    },
+    {
+      "question": "According to the guidelines for CUDA 13.0.1, should data-parallel operations in heterogeneous code be placed on the host or the device?",
+      "anchor_quote": "CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？\", \"scoring_query\": \"CUDA 13.0.1: In heterogeneous code, should serial control loops and data-parallel operations be placed on the host or the device according to the guidelines?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"According to the guidelines for CUDA 13.0.1, should serial control loops in heterogeneous code be placed on the host or the device?\",\"anchor_quote\":\"CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？\"},{\"question\":\"According to the guidelines for CUDA 13.0.1, should data-parallel operations in heterogeneous code be placed on the host or the device?\",\"anchor_quote\":\"CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？\"}]}",
+  "provider_response": {
+    "id": "b1790b0e-2fa4-4803-a0a3-f6c7f8091355",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 197,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 145,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 983.1510829972103,
+  "sha256": "7839b7b8a47abdbf59f29f44edd047b24fc40945d319e67e0167a391cf38e894"
+}

@@ -1,0 +1,37 @@
+{
+  "original_query": "CUDA 13.0.1：Async内存拷贝何时仍可能同步？",
+  "scoring_query": "CUDA 13.0.1: When can Async memory copies still be synchronous?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In CUDA 13.0.1, when can asynchronous memory copies still be synchronous?",
+      "anchor_quote": "CUDA 13.0.1：Async内存拷贝何时仍可能同步？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：Async内存拷贝何时仍可能同步？\", \"scoring_query\": \"CUDA 13.0.1: When can Async memory copies still be synchronous?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In CUDA 13.0.1, when can asynchronous memory copies still be synchronous?\",\"anchor_quote\":\"CUDA 13.0.1：Async内存拷贝何时仍可能同步？\"}]}",
+  "provider_response": {
+    "id": "9d26d4fe-b7c3-40a7-8062-32a5e1053bcf",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 167,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 51,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 702.9902499634773,
+  "sha256": "f2c4720ef76924c90edd32c658efaa1d32756c3dac3c983cc2791dd139501403"
+}

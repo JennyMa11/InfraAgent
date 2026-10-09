@@ -1,0 +1,775 @@
+{
+  "id": "repo-014-2",
+  "group_id": "tensor-parallel",
+  "dataset": "repository",
+  "arm": "legacy-v6",
+  "query": "FFN第二层按归约维度切到多卡，各卡只得到部分和，下一层要完整结果时需要什么通信？",
+  "answerable": true,
+  "delivered": {
+    "coverage": 1.0,
+    "complete": 1.0
+  },
+  "evidence": [
+    {
+      "citation_id": "Eb463fe0657a141534e75cbb2",
+      "chunk_id": "7d9f012af6b60ed67f0d3d2a",
+      "parent_id": "a20c30e254aeb0ab9655aadd",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md#L34-L38",
+      "page": null,
+      "start_line": 34,
+      "end_line": 38,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+        "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC6%E7%AB%A0-%E5%BC%A0%E9%87%8F%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%BA%8F%E5%88%97%E5%B9%B6%E8%A1%8C.md",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "release": null,
+        "sha256": "04ba43577a366eb9612475ad7ab7f438e9a3251f826361b48f430c46122df657",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          34,
+          38
+        ],
+        "topic": "📑 章节结构 > 3. Row Parallel Linear（按行切分）",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "a814f14a71906dc69749b385"
+        ]
+      }
+    },
+    {
+      "citation_id": "Ed46488720761409a4083faf2",
+      "chunk_id": "ad672c751b36db4033ac553c",
+      "parent_id": "d98cb81c27ad782fa90a5680",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L1897-L1909",
+      "page": null,
+      "start_line": 1897,
+      "end_line": 1909,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "- **DP（Data Parallel，数据并行）**：每张卡放一份完整模型，把数据切分到各卡。\n- **TP（Tensor Parallel，张量并行）**：把同一层的权重矩阵按维度切到多卡，层内需要频繁通信。\n- **PP（Pipeline Parallel，流水线并行）**：按层切分到不同卡，形成流水线。\n- **EP（Expert Parallel，专家并行）**：MoE 场景下把不同 Expert 放到不同卡。\n- **SP（Sequence Parallel，序列并行）**：沿序列维度切分，常用于降低激活显存。\n- **Micro-batch（微批次）**：PP 中把一个大 Batch 拆成多个小批，填充流水线以减少气泡。\n- **Pipeline Bubble（流水线气泡）**：流水线启动/排空阶段部分阶段空闲造成的浪费。\n- **All-Reduce（全归约）**：所有卡的数据求和后广播回每张卡。",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "release": null,
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          1897,
+          1909
+        ],
+        "topic": "第 11 章 分布式推理、MoE 与 PD 分离 > 11.2 并行策略：DP / TP / PP / EP / SP",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "4d9ce7440d978292bb8f0421",
+          "46a3e58133a0054298742fdb",
+          "8c7f7c9c755391403930e3fd",
+          "bc1d6b41ee401d8bc6534587",
+          "585fe00f332d960ab7dc0043"
+        ]
+      }
+    },
+    {
+      "citation_id": "E6cbad38f754b62f29f19aec5",
+      "chunk_id": "48e9b16c04fa3c6e9c0960f5",
+      "parent_id": "8fb65550b8a82fe8892b2a4e",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md#L97-L97",
+      "page": null,
+      "start_line": 97,
+      "end_line": 97,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "表中隐含着一项贯穿全章的区别。切样本、序列位置、层或专家时，每张卡得到的是不同数据或不同层的完整结果，需要时收集或交接即可；切特征时，各卡往往只得到同一个输出的一部分贡献，必须把这些部分和相加，结果才能使用。第 5.2.4 节在单卡内区分过输出维与归约维的切分，跨卡时区别相同，只是相加部分和要经过卡间互联。",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "ai-infra-book/manuscripts/06-超节点.md",
+        "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/06-%E8%B6%85%E8%8A%82%E7%82%B9.md",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "release": null,
+        "sha256": "f1e5eb3df45f78ad74f2e244d77ad906c5aa89a834baa132eda71007d8b5827c",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          97,
+          97
+        ],
+        "topic": "第 6 章 超节点 > 6.1 从单卡到多卡 > 6.1.4 并行方式一览：切分哪个维度",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "341ab903728484db66f3e79c",
+          "4ff5605f07e8c1ce8de6568b",
+          "791358708220a02dbb2722fd",
+          "c026012cb669b650bc143e13",
+          "1f5b3c5b944a677dc5e60255",
+          "fd17b5e63604d68d41558ea2",
+          "c0b4790ca3a7488ea7d938f1"
+        ]
+      }
+    },
+    {
+      "citation_id": "E2b95e9ae8ce317c0e53f5981",
+      "chunk_id": "426bec3d056640ae88a3160e",
+      "parent_id": "dfb317bb274a34c883369de5",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md#L197-L197",
+      "page": null,
+      "start_line": 197,
+      "end_line": 197,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "若两张卡都需要完整结果，就执行 AllReduce。若下一个算子可以继续使用分片，则执行 **ReduceScatter（归约后分散）**：先求和，再把求和结果的不同片段留在不同的卡上。要从分片恢复完整数据，则执行 **AllGather（全收集）**，把各卡持有的片段拼起来。",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "ai-infra-book/manuscripts/06-超节点.md",
+        "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/06-%E8%B6%85%E8%8A%82%E7%82%B9.md",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "release": null,
+        "sha256": "f1e5eb3df45f78ad74f2e244d77ad906c5aa89a834baa132eda71007d8b5827c",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          197,
+          197
+        ],
+        "topic": "第 6 章 超节点 > 6.2 六种并行方式 > 6.2.2 张量并行：切分一层内的矩阵",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "91c2bd2dba469ec093bef789"
+        ]
+      }
+    },
+    {
+      "citation_id": "E73d3770b22de33f251da0fc7",
+      "chunk_id": "47b27c107d824b392be148f9",
+      "parent_id": "dfb317bb274a34c883369de5",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md#L135-L135",
+      "page": null,
+      "start_line": 135,
+      "end_line": 135,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "*图 6-5：注意力按头分给两张卡，前馈网络按中间维分给两张卡；两处的最后一个投影都只得到部分和，各需要一次 AllReduce 把两卡的部分和相加。m 为一次处理的 token 数，h 为隐藏维。*",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "ai-infra-book/manuscripts/06-超节点.md",
+        "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/06-%E8%B6%85%E8%8A%82%E7%82%B9.md",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "release": null,
+        "sha256": "f1e5eb3df45f78ad74f2e244d77ad906c5aa89a834baa132eda71007d8b5827c",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          135,
+          135
+        ],
+        "topic": "第 6 章 超节点 > 6.2 六种并行方式 > 6.2.2 张量并行：切分一层内的矩阵",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "896ce61818c9587fa14c5854"
+        ]
+      }
+    }
+  ],
+  "cumulative_candidate_complete": 1.0,
+  "searches": [
+    {
+      "query": "FFN第二层按归约维度切到多卡，各卡只得到部分和，下一层要完整结果时需要什么通信？",
+      "diagnostics": {
+        "candidates": [
+          "7d9f012af6b60ed67f0d3d2a",
+          "48e9b16c04fa3c6e9c0960f5",
+          "79065311bf0581660825c101",
+          "426bec3d056640ae88a3160e",
+          "887e742c8ac2ffd8e21616f2",
+          "7c80cab85cd6cb47e2d8318c",
+          "47b27c107d824b392be148f9",
+          "abf49398c2a8c2cccacc438f",
+          "6534e85e13ee49933603efde",
+          "8e62e8d79603dd10290ccb4c",
+          "ad672c751b36db4033ac553c",
+          "6a3bbf63337239f7c72446b5",
+          "5c97d32ee67f6e5a5fde7fe7",
+          "8afe76f65925b0a78f15a400",
+          "afdca3778e7c9741ddb3f19a",
+          "a24b81c1785e6d82b04912ef",
+          "e319a82589dee0d59f6a6d2b",
+          "b8120c69e2fbe1b39fcf07e4",
+          "569428a2854c2f61a2faf3fb",
+          "7f706b81226be13379789ff0",
+          "45e2de4f48e563960123b6e1",
+          "dad00f9659ab96bddf09fad8",
+          "da6aff4ed9d20d9edabe896f",
+          "31671cf9d627e52aa64d3a0e",
+          "4ec0862cc1aa90c7ed26450a",
+          "7b3c325dfbbd8631488a5a14",
+          "ab43087d47964067678749e2",
+          "b9610f2c9fd47beb82f30b4b",
+          "a58ac00fadfa3eb093a49d83",
+          "a4ea8b544b4b224f9b14e15f",
+          "85444c979aec999eb232bc00",
+          "614bec1fdf6be945d25703d3",
+          "794285361ba7308ef76b7a7e",
+          "e1d0ae6f7d3c8f7216188f56",
+          "16f13ef42982b6ac29c94261",
+          "d0e578ad63ac1912a7c61cce",
+          "86917a4a2c56a6ecc23d279c",
+          "e6e4121851c95c3fec12d8af",
+          "1b018d0ffdd01ed0c1fbbca5",
+          "e8377ac6d2bf668cf75f8651",
+          "829a0e6fe4f8b41f3935cfea",
+          "e39c53203d2493aa107b65d6",
+          "96ca78230b73155724b659f0",
+          "bec36f9a919ce53698f4f65a",
+          "a91eb71a7d4a6454c48d717d",
+          "0c7dc1a0647df1a7756ff3d2",
+          "0a060ad0fe02ac37e916ad2b",
+          "32096989956de74019d571fc",
+          "d93a8e7abf7250a77c0dc547",
+          "c32f3a2c4bd19f4a2e049158"
+        ],
+        "final": [
+          {
+            "chunk_id": "7d9f012af6b60ed67f0d3d2a",
+            "rerank_score": 0.9845501184463501
+          },
+          {
+            "chunk_id": "ad672c751b36db4033ac553c",
+            "rerank_score": 0.9535257816314697
+          },
+          {
+            "chunk_id": "48e9b16c04fa3c6e9c0960f5",
+            "rerank_score": 0.9802142381668091
+          },
+          {
+            "chunk_id": "426bec3d056640ae88a3160e",
+            "rerank_score": 0.9740056395530701
+          },
+          {
+            "chunk_id": "47b27c107d824b392be148f9",
+            "rerank_score": 0.9640195369720459
+          }
+        ],
+        "comparison_provenance": "frozen_original_candidates",
+        "scoring_query": "FFN第二层按归约维度切到多卡，各卡只得到部分和，下一层要完整结果时需要什么通信？",
+        "selection": {
+          "eligible_ids": [
+            "7d9f012af6b60ed67f0d3d2a",
+            "48e9b16c04fa3c6e9c0960f5",
+            "79065311bf0581660825c101",
+            "426bec3d056640ae88a3160e",
+            "887e742c8ac2ffd8e21616f2",
+            "7c80cab85cd6cb47e2d8318c",
+            "47b27c107d824b392be148f9",
+            "abf49398c2a8c2cccacc438f",
+            "6534e85e13ee49933603efde",
+            "8e62e8d79603dd10290ccb4c",
+            "ad672c751b36db4033ac553c",
+            "6a3bbf63337239f7c72446b5",
+            "5c97d32ee67f6e5a5fde7fe7",
+            "8afe76f65925b0a78f15a400",
+            "afdca3778e7c9741ddb3f19a"
+          ],
+          "selection_trace": [
+            {
+              "chunk_id": "7d9f012af6b60ed67f0d3d2a",
+              "protected": true,
+              "preview_truncated": false
+            },
+            {
+              "chunk_id": "ad672c751b36db4033ac553c",
+              "utility": 1.02521675147706,
+              "novelty": 0.2011664293341295,
+              "redundancy": 0.046153846153846156,
+              "cost_tokens": 366,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "48e9b16c04fa3c6e9c0960f5",
+              "utility": 0.9978918428415792,
+              "novelty": 0.10146721656953557,
+              "redundancy": 0.06224066390041494,
+              "cost_tokens": 206,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "426bec3d056640ae88a3160e",
+              "utility": 0.9696501615971259,
+              "novelty": 0.06345862213794931,
+              "redundancy": 0.07017543859649122,
+              "cost_tokens": 170,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "47b27c107d824b392be148f9",
+              "utility": 0.9504534630562472,
+              "novelty": 0.02891852226952707,
+              "redundancy": 0.05625,
+              "cost_tokens": 136,
+              "score_origin": "reranker"
+            }
+          ],
+          "neighbor_priors": {},
+          "query_words": [
+            "ffn",
+            "一层",
+            "下一",
+            "么通",
+            "二层",
+            "什么",
+            "分和",
+            "切到",
+            "到多",
+            "到部",
+            "卡只",
+            "只得",
+            "各卡",
+            "多卡",
+            "完整",
+            "层按",
+            "层要",
+            "度切",
+            "归约",
+            "得到",
+            "按归",
+            "整结",
+            "时需",
+            "果时",
+            "第二",
+            "第二层",
+            "约维",
+            "结果",
+            "维度",
+            "要什",
+            "要完",
+            "通信",
+            "部分",
+            "需要"
+          ],
+          "parameters": {
+            "limit": 8,
+            "length_power": 0.0,
+            "protect": 1,
+            "neighbors": false
+          }
+        }
+      },
+      "context": {
+        "evidence": [
+          {
+            "citation_id": "Eb463fe0657a141534e75cbb2",
+            "chunk_id": "7d9f012af6b60ed67f0d3d2a",
+            "parent_id": "a20c30e254aeb0ab9655aadd",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md#L34-L38",
+            "page": null,
+            "start_line": 34,
+            "end_line": 38,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC6%E7%AB%A0-%E5%BC%A0%E9%87%8F%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%BA%8F%E5%88%97%E5%B9%B6%E8%A1%8C.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "04ba43577a366eb9612475ad7ab7f438e9a3251f826361b48f430c46122df657",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                34,
+                38
+              ],
+              "topic": "📑 章节结构 > 3. Row Parallel Linear（按行切分）",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "a814f14a71906dc69749b385"
+              ]
+            }
+          },
+          {
+            "citation_id": "Ed46488720761409a4083faf2",
+            "chunk_id": "ad672c751b36db4033ac553c",
+            "parent_id": "d98cb81c27ad782fa90a5680",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L1897-L1909",
+            "page": null,
+            "start_line": 1897,
+            "end_line": 1909,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "- **DP（Data Parallel，数据并行）**：每张卡放一份完整模型，把数据切分到各卡。\n- **TP（Tensor Parallel，张量并行）**：把同一层的权重矩阵按维度切到多卡，层内需要频繁通信。\n- **PP（Pipeline Parallel，流水线并行）**：按层切分到不同卡，形成流水线。\n- **EP（Expert Parallel，专家并行）**：MoE 场景下把不同 Expert 放到不同卡。\n- **SP（Sequence Parallel，序列并行）**：沿序列维度切分，常用于降低激活显存。\n- **Micro-batch（微批次）**：PP 中把一个大 Batch 拆成多个小批，填充流水线以减少气泡。\n- **Pipeline Bubble（流水线气泡）**：流水线启动/排空阶段部分阶段空闲造成的浪费。\n- **All-Reduce（全归约）**：所有卡的数据求和后广播回每张卡。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+              "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md",
+              "commit": "188467456afaff48887869462951a1b5457c0387",
+              "release": null,
+              "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                1897,
+                1909
+              ],
+              "topic": "第 11 章 分布式推理、MoE 与 PD 分离 > 11.2 并行策略：DP / TP / PP / EP / SP",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "4d9ce7440d978292bb8f0421",
+                "46a3e58133a0054298742fdb",
+                "8c7f7c9c755391403930e3fd",
+                "bc1d6b41ee401d8bc6534587",
+                "585fe00f332d960ab7dc0043"
+              ]
+            }
+          },
+          {
+            "citation_id": "E6cbad38f754b62f29f19aec5",
+            "chunk_id": "48e9b16c04fa3c6e9c0960f5",
+            "parent_id": "8fb65550b8a82fe8892b2a4e",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md#L97-L97",
+            "page": null,
+            "start_line": 97,
+            "end_line": 97,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "表中隐含着一项贯穿全章的区别。切样本、序列位置、层或专家时，每张卡得到的是不同数据或不同层的完整结果，需要时收集或交接即可；切特征时，各卡往往只得到同一个输出的一部分贡献，必须把这些部分和相加，结果才能使用。第 5.2.4 节在单卡内区分过输出维与归约维的切分，跨卡时区别相同，只是相加部分和要经过卡间互联。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "ai-infra-book/manuscripts/06-超节点.md",
+              "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/06-%E8%B6%85%E8%8A%82%E7%82%B9.md",
+              "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+              "release": null,
+              "sha256": "f1e5eb3df45f78ad74f2e244d77ad906c5aa89a834baa132eda71007d8b5827c",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                97,
+                97
+              ],
+              "topic": "第 6 章 超节点 > 6.1 从单卡到多卡 > 6.1.4 并行方式一览：切分哪个维度",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "341ab903728484db66f3e79c",
+                "4ff5605f07e8c1ce8de6568b",
+                "791358708220a02dbb2722fd",
+                "c026012cb669b650bc143e13",
+                "1f5b3c5b944a677dc5e60255",
+                "fd17b5e63604d68d41558ea2",
+                "c0b4790ca3a7488ea7d938f1"
+              ]
+            }
+          },
+          {
+            "citation_id": "E2b95e9ae8ce317c0e53f5981",
+            "chunk_id": "426bec3d056640ae88a3160e",
+            "parent_id": "dfb317bb274a34c883369de5",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md#L197-L197",
+            "page": null,
+            "start_line": 197,
+            "end_line": 197,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "若两张卡都需要完整结果，就执行 AllReduce。若下一个算子可以继续使用分片，则执行 **ReduceScatter（归约后分散）**：先求和，再把求和结果的不同片段留在不同的卡上。要从分片恢复完整数据，则执行 **AllGather（全收集）**，把各卡持有的片段拼起来。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "ai-infra-book/manuscripts/06-超节点.md",
+              "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/06-%E8%B6%85%E8%8A%82%E7%82%B9.md",
+              "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+              "release": null,
+              "sha256": "f1e5eb3df45f78ad74f2e244d77ad906c5aa89a834baa132eda71007d8b5827c",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                197,
+                197
+              ],
+              "topic": "第 6 章 超节点 > 6.2 六种并行方式 > 6.2.2 张量并行：切分一层内的矩阵",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "91c2bd2dba469ec093bef789"
+              ]
+            }
+          },
+          {
+            "citation_id": "E73d3770b22de33f251da0fc7",
+            "chunk_id": "47b27c107d824b392be148f9",
+            "parent_id": "dfb317bb274a34c883369de5",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md#L135-L135",
+            "page": null,
+            "start_line": 135,
+            "end_line": 135,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "*图 6-5：注意力按头分给两张卡，前馈网络按中间维分给两张卡；两处的最后一个投影都只得到部分和，各需要一次 AllReduce 把两卡的部分和相加。m 为一次处理的 token 数，h 为隐藏维。*",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "ai-infra-book/manuscripts/06-超节点.md",
+              "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/06-%E8%B6%85%E8%8A%82%E7%82%B9.md",
+              "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+              "release": null,
+              "sha256": "f1e5eb3df45f78ad74f2e244d77ad906c5aa89a834baa132eda71007d8b5827c",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                135,
+                135
+              ],
+              "topic": "第 6 章 超节点 > 6.2 六种并行方式 > 6.2.2 张量并行：切分一层内的矩阵",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "896ce61818c9587fa14c5854"
+              ]
+            }
+          }
+        ],
+        "context": "[Eb463fe0657a141534e75cbb2] 📑 章节结构 > 3. Row Parallel Linear（按行切分）\n- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影\n\n[Ed46488720761409a4083faf2] 第 11 章 分布式推理、MoE 与 PD 分离 > 11.2 并行策略：DP / TP / PP / EP / SP\n- **DP（Data Parallel，数据并行）**：每张卡放一份完整模型，把数据切分到各卡。\n- **TP（Tensor Parallel，张量并行）**：把同一层的权重矩阵按维度切到多卡，层内需要频繁通信。\n- **PP（Pipeline Parallel，流水线并行）**：按层切分到不同卡，形成流水线。\n- **EP（Expert Parallel，专家并行）**：MoE 场景下把不同 Expert 放到不同卡。\n- **SP（Sequence Parallel，序列并行）**：沿序列维度切分，常用于降低激活显存。\n- **Micro-batch（微批次）**：PP 中把一个大 Batch 拆成多个小批，填充流水线以减少气泡。\n- **Pipeline Bubble（流水线气泡）**：流水线启动/排空阶段部分阶段空闲造成的浪费。\n- **All-Reduce（全归约）**：所有卡的数据求和后广播回每张卡。\n\n[E6cbad38f754b62f29f19aec5] 第 6 章 超节点 > 6.1 从单卡到多卡 > 6.1.4 并行方式一览：切分哪个维度\n表中隐含着一项贯穿全章的区别。切样本、序列位置、层或专家时，每张卡得到的是不同数据或不同层的完整结果，需要时收集或交接即可；切特征时，各卡往往只得到同一个输出的一部分贡献，必须把这些部分和相加，结果才能使用。第 5.2.4 节在单卡内区分过输出维与归约维的切分，跨卡时区别相同，只是相加部分和要经过卡间互联。\n\n[E2b95e9ae8ce317c0e53f5981] 第 6 章 超节点 > 6.2 六种并行方式 > 6.2.2 张量并行：切分一层内的矩阵\n若两张卡都需要完整结果，就执行 AllReduce。若下一个算子可以继续使用分片，则执行 **ReduceScatter（归约后分散）**：先求和，再把求和结果的不同片段留在不同的卡上。要从分片恢复完整数据，则执行 **AllGather（全收集）**，把各卡持有的片段拼起来。\n\n[E73d3770b22de33f251da0fc7] 第 6 章 超节点 > 6.2 六种并行方式 > 6.2.2 张量并行：切分一层内的矩阵\n*图 6-5：注意力按头分给两张卡，前馈网络按中间维分给两张卡；两处的最后一个投影都只得到部分和，各需要一次 AllReduce 把两卡的部分和相加。m 为一次处理的 token 数，h 为隐藏维。*",
+        "budget": {
+          "tokens": 1200,
+          "characters": 4000
+        },
+        "used_tokens": 1097,
+        "used_characters": 1417,
+        "omitted_chunk_ids": []
+      }
+    }
+  ],
+  "response": {
+    "conversation_id": "52986e30-37b9-46b0-bfba-c3d92ffc4d00",
+    "answer": "FFN第二层按归约维度切到多卡时，各卡只得到部分和，下一层需要完整结果时，需要通过 AllReduce（求和）把各卡的部分和相加，得到完整输出 [Eb463fe0657a141534e75cbb2][E6cbad38f754b62f29f19aec5][E73d3770b22de33f251da0fc7]。",
+    "citations": [
+      {
+        "citation_id": "Eb463fe0657a141534e75cbb2",
+        "chunk_id": "7d9f012af6b60ed67f0d3d2a",
+        "parent_id": "a20c30e254aeb0ab9655aadd",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md#L34-L38",
+        "page": null,
+        "start_line": 34,
+        "end_line": 38,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "- **切分方式**：权重 $A$ 按行切分，每卡持有 $A_i$（行方向的分片）\n- **输入要求**：输入 $X$ 也需按列分片为 $X_i$（与 Column Parallel 的输出对接）\n- **计算过程**：$Y_i = X_i \\cdot A_i$（每卡计算部分结果）\n- **通信**：各卡的 $Y_i$ 通过 **AllReduce**（求和）得到完整输出 $Y$\n- **应用位置**：FFN 的第二个线性层、Attention 的输出投影",
+        "truncated": false,
+        "metadata": {
+          "collection": "community",
+          "document_id": "AIInfraGuide/docs/guides/模块三-分布式训练/第6章-张量并行与序列并行.md",
+          "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%89-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/%E7%AC%AC6%E7%AB%A0-%E5%BC%A0%E9%87%8F%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%BA%8F%E5%88%97%E5%B9%B6%E8%A1%8C.md",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "release": null,
+          "sha256": "04ba43577a366eb9612475ad7ab7f438e9a3251f826361b48f430c46122df657",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "explanation",
+          "original_lines": [
+            34,
+            38
+          ],
+          "topic": "📑 章节结构 > 3. Row Parallel Linear（按行切分）",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "a814f14a71906dc69749b385"
+          ]
+        }
+      },
+      {
+        "citation_id": "E6cbad38f754b62f29f19aec5",
+        "chunk_id": "48e9b16c04fa3c6e9c0960f5",
+        "parent_id": "8fb65550b8a82fe8892b2a4e",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md#L97-L97",
+        "page": null,
+        "start_line": 97,
+        "end_line": 97,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "表中隐含着一项贯穿全章的区别。切样本、序列位置、层或专家时，每张卡得到的是不同数据或不同层的完整结果，需要时收集或交接即可；切特征时，各卡往往只得到同一个输出的一部分贡献，必须把这些部分和相加，结果才能使用。第 5.2.4 节在单卡内区分过输出维与归约维的切分，跨卡时区别相同，只是相加部分和要经过卡间互联。",
+        "truncated": false,
+        "metadata": {
+          "collection": "community",
+          "document_id": "ai-infra-book/manuscripts/06-超节点.md",
+          "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/06-%E8%B6%85%E8%8A%82%E7%82%B9.md",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "release": null,
+          "sha256": "f1e5eb3df45f78ad74f2e244d77ad906c5aa89a834baa132eda71007d8b5827c",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "explanation",
+          "original_lines": [
+            97,
+            97
+          ],
+          "topic": "第 6 章 超节点 > 6.1 从单卡到多卡 > 6.1.4 并行方式一览：切分哪个维度",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "341ab903728484db66f3e79c",
+            "4ff5605f07e8c1ce8de6568b",
+            "791358708220a02dbb2722fd",
+            "c026012cb669b650bc143e13",
+            "1f5b3c5b944a677dc5e60255",
+            "fd17b5e63604d68d41558ea2",
+            "c0b4790ca3a7488ea7d938f1"
+          ]
+        }
+      },
+      {
+        "citation_id": "E73d3770b22de33f251da0fc7",
+        "chunk_id": "47b27c107d824b392be148f9",
+        "parent_id": "dfb317bb274a34c883369de5",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/06-超节点.md#L135-L135",
+        "page": null,
+        "start_line": 135,
+        "end_line": 135,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "*图 6-5：注意力按头分给两张卡，前馈网络按中间维分给两张卡；两处的最后一个投影都只得到部分和，各需要一次 AllReduce 把两卡的部分和相加。m 为一次处理的 token 数，h 为隐藏维。*",
+        "truncated": false,
+        "metadata": {
+          "collection": "community",
+          "document_id": "ai-infra-book/manuscripts/06-超节点.md",
+          "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/06-%E8%B6%85%E8%8A%82%E7%82%B9.md",
+          "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+          "release": null,
+          "sha256": "f1e5eb3df45f78ad74f2e244d77ad906c5aa89a834baa132eda71007d8b5827c",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "explanation",
+          "original_lines": [
+            135,
+            135
+          ],
+          "topic": "第 6 章 超节点 > 6.2 六种并行方式 > 6.2.2 张量并行：切分一层内的矩阵",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "896ce61818c9587fa14c5854"
+          ]
+        }
+      }
+    ],
+    "status": "answered",
+    "trace": [
+      {
+        "step": "retrieve",
+        "duration_ms": 11.5,
+        "query": "FFN第二层按归约维度切到多卡，各卡只得到部分和，下一层要完整结果时需要什么通信？",
+        "hits": 5,
+        "evidence": 5
+      },
+      {
+        "step": "generate",
+        "duration_ms": 1361.4,
+        "provider": "anthropic-compatible",
+        "model": "deepseek-flash",
+        "validated": true
+      }
+    ]
+  },
+  "error": null,
+  "model_calls": 1,
+  "input_tokens": 1230,
+  "output_tokens": 152,
+  "latency_ms": 1374.9111250508577,
+  "source_hashes_verified": true,
+  "semantic_review": "pending",
+  "events": []
+}

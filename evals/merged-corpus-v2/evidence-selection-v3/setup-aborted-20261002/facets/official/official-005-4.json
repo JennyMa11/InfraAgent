@@ -1,0 +1,41 @@
+{
+  "original_query": "vLLM v0.10.2：先解释KV空间不足时抢占请求的恢复成本，再从内存优化指南找出将模型跨GPU拆分的参数。",
+  "scoring_query": "vLLM v0.10.2: First explain the recovery cost of preempted requests when KV space is insufficient, then find the parameter for splitting the model across GPUs from the memory optimization guide.",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In vLLM v0.10.2, what is the recovery cost of preempted requests when KV space is insufficient?",
+      "anchor_quote": "先解释KV空间不足时抢占请求的恢复成本"
+    },
+    {
+      "question": "In vLLM v0.10.2, from the memory optimization guide, what is the parameter for splitting the model across GPUs?",
+      "anchor_quote": "再从内存优化指南找出将模型跨GPU拆分的参数"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：先解释KV空间不足时抢占请求的恢复成本，再从内存优化指南找出将模型跨GPU拆分的参数。\", \"scoring_query\": \"vLLM v0.10.2: First explain the recovery cost of preempted requests when KV space is insufficient, then find the parameter for splitting the model across GPUs from the memory optimization guide.\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In vLLM v0.10.2, what is the recovery cost of preempted requests when KV space is insufficient?\",\"anchor_quote\":\"先解释KV空间不足时抢占请求的恢复成本\"},{\"question\":\"In vLLM v0.10.2, from the memory optimization guide, what is the parameter for splitting the model across GPUs?\",\"anchor_quote\":\"再从内存优化指南找出将模型跨GPU拆分的参数\"}]}",
+  "provider_response": {
+    "id": "ae621d18-29ee-47a5-bc26-3ecc586a76a2",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 210,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 103,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 599.940708023496,
+  "sha256": "b7a4a9d8adf6f7d09f53d1328a11f3d64f3e5f2efabdf812f152dc91a0d5576d"
+}

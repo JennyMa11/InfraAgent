@@ -1,0 +1,16 @@
+{
+  "pytest": {
+    "command": "uv run --extra dev pytest -q",
+    "passed": 155,
+    "failed": 0
+  },
+  "ruff": {
+    "command": "uv run --extra dev ruff check src tests scripts",
+    "status": "passed"
+  },
+  "build": {
+    "command": "uv build",
+    "status": "passed"
+  },
+  "test_sha256": "a2aa27c23288eafd82843e1b1c0e2c7cdfa9a7b0b72fd137f9a176cca75cee7b"
+}

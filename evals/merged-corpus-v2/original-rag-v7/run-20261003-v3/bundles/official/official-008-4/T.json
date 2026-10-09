@@ -1,0 +1,526 @@
+{
+  "scoring_query": "vLLM v0.10.2: According to the SGLang description, first identify the role of the disaggregation phase, then based on vLLM limitations determine whether decoupling can be directly treated as a guarantee of throughput improvement.",
+  "hits": [
+    {
+      "chunk_id": "456668035a221f0d92241409",
+      "score": 0.015151515151515152,
+      "rerank_score": 0.792576789855957
+    },
+    {
+      "chunk_id": "9c3128daf316420c015316da",
+      "score": 0.01639344262295082,
+      "rerank_score": 0.6539716720581055
+    },
+    {
+      "chunk_id": "d028346aa39730dd6d697e3e",
+      "score": 0.011363636363636364,
+      "rerank_score": 0.490643709897995
+    },
+    {
+      "chunk_id": "7cc4a393f2882f6ee7fcf444",
+      "score": 0.015384615384615385,
+      "rerank_score": 0.45876190066337585
+    },
+    {
+      "chunk_id": "19f75a7fb7f9813b2b64773a",
+      "score": 0.012048192771084338,
+      "rerank_score": 0.08221212774515152
+    },
+    {
+      "chunk_id": "ce4541c5a8ec512a3b64d446",
+      "score": 0.013157894736842105,
+      "rerank_score": 0.05638875067234039
+    },
+    {
+      "chunk_id": "335eb9618d06040d1da040ba",
+      "score": 0.011235955056179775,
+      "rerank_score": 0.04978962242603302
+    },
+    {
+      "chunk_id": "a03867b1f15e826c04f24d7b",
+      "score": 0.015873015873015872,
+      "rerank_score": 0.0456843376159668
+    },
+    {
+      "chunk_id": "1798384adead8b61c451f10d",
+      "score": 0.012987012987012988,
+      "rerank_score": 0.04331567883491516
+    },
+    {
+      "chunk_id": "c8a513cff23a8e1e4b1453a0",
+      "score": 0.011494252873563218,
+      "rerank_score": 0.042358193546533585
+    },
+    {
+      "chunk_id": "088bfe0aa34b2714b4b31c4b",
+      "score": 0.011235955056179775,
+      "rerank_score": 0.029230596497654915
+    },
+    {
+      "chunk_id": "5060310073caa1e838cbc88b",
+      "score": 0.012987012987012988,
+      "rerank_score": 0.024918727576732635
+    },
+    {
+      "chunk_id": "23a9492524c86f62bca88217",
+      "score": 0.011904761904761904,
+      "rerank_score": 0.023426465690135956
+    },
+    {
+      "chunk_id": "fabe9ef79ef7e7d7542d7af8",
+      "score": 0.014492753623188406,
+      "rerank_score": 0.02327164076268673
+    },
+    {
+      "chunk_id": "82b1137af079609f16c5f9e0",
+      "score": 0.012345679012345678,
+      "rerank_score": 0.020720629021525383
+    },
+    {
+      "chunk_id": "de23a3495f9a981c2b800c3c",
+      "score": 0.012195121951219513,
+      "rerank_score": 0.02002403326332569
+    },
+    {
+      "chunk_id": "e6f01c3020f092b5e5d5810e",
+      "score": 0.011111111111111112,
+      "rerank_score": 0.01710791327059269
+    },
+    {
+      "chunk_id": "14b37ed25a080127d2f82ad6",
+      "score": 0.0136986301369863,
+      "rerank_score": 0.015578584745526314
+    },
+    {
+      "chunk_id": "38f93edc9a15402cdea82dac",
+      "score": 0.014084507042253521,
+      "rerank_score": 0.015037775039672852
+    },
+    {
+      "chunk_id": "034ddc231b972b918ec8c830",
+      "score": 0.015625,
+      "rerank_score": 0.014261399395763874
+    },
+    {
+      "chunk_id": "365d0a7582cd4f10593148fb",
+      "score": 0.014285714285714285,
+      "rerank_score": 0.013287120498716831
+    },
+    {
+      "chunk_id": "9ce05fa7ec4bee6c47037d93",
+      "score": 0.016129032258064516,
+      "rerank_score": 0.009815363213419914
+    },
+    {
+      "chunk_id": "0179e07d1f12a7a5981161cb",
+      "score": 0.011764705882352941,
+      "rerank_score": 0.008663387969136238
+    },
+    {
+      "chunk_id": "ca7ea09fdde24698dae8409e",
+      "score": 0.012658227848101266,
+      "rerank_score": 0.00818137638270855
+    },
+    {
+      "chunk_id": "6b6fdb12a9f8331a4cae409c",
+      "score": 0.015873015873015872,
+      "rerank_score": 0.008119925856590271
+    },
+    {
+      "chunk_id": "b34faa04696be669c17a5be5",
+      "score": 0.012658227848101266,
+      "rerank_score": 0.008044704794883728
+    },
+    {
+      "chunk_id": "6efa919f6b9b9f68d284d1d5",
+      "score": 0.015151515151515152,
+      "rerank_score": 0.005146723240613937
+    },
+    {
+      "chunk_id": "1b11283af77ca6e58594eec1",
+      "score": 0.013513513513513514,
+      "rerank_score": 0.004962562583386898
+    },
+    {
+      "chunk_id": "4390eb6a670fcfb350aea1cb",
+      "score": 0.0125,
+      "rerank_score": 0.0045311106368899345
+    },
+    {
+      "chunk_id": "8c4c2254add96c6f50694b89",
+      "score": 0.013888888888888888,
+      "rerank_score": 0.003984716255217791
+    },
+    {
+      "chunk_id": "3963eacfd806b86e2ee70acd",
+      "score": 0.011904761904761904,
+      "rerank_score": 0.0030699886847287416
+    },
+    {
+      "chunk_id": "fe55d42c261d334c6aba191b",
+      "score": 0.013888888888888888,
+      "rerank_score": 0.003053194610401988
+    },
+    {
+      "chunk_id": "63e559395ffa0f20f9d023ca",
+      "score": 0.014285714285714285,
+      "rerank_score": 0.0030284523963928223
+    },
+    {
+      "chunk_id": "fca9e084e6608e5874139691",
+      "score": 0.01639344262295082,
+      "rerank_score": 0.0028895135037600994
+    },
+    {
+      "chunk_id": "0070ed0d0aabff5292cb9555",
+      "score": 0.013333333333333334,
+      "rerank_score": 0.0028739855624735355
+    },
+    {
+      "chunk_id": "1427eecb1badab1ac10eb933",
+      "score": 0.011627906976744186,
+      "rerank_score": 0.002708769403398037
+    },
+    {
+      "chunk_id": "ded5a98b5fd42fabe2b721d8",
+      "score": 0.015625,
+      "rerank_score": 0.0023231569211930037
+    },
+    {
+      "chunk_id": "cfec6505f5f5b012d92ea5b1",
+      "score": 0.015384615384615385,
+      "rerank_score": 0.0020806496031582355
+    },
+    {
+      "chunk_id": "e1d58efa4c4c7a21c8d84f49",
+      "score": 0.016129032258064516,
+      "rerank_score": 0.001578610623255372
+    },
+    {
+      "chunk_id": "17e06e5700eca5db587e8103",
+      "score": 0.014705882352941176,
+      "rerank_score": 0.001410023309290409
+    },
+    {
+      "chunk_id": "0cf9fec317d037b49cd47755",
+      "score": 0.011764705882352941,
+      "rerank_score": 0.0011065485887229443
+    },
+    {
+      "chunk_id": "eefe639725828cd616a3a57e",
+      "score": 0.014925373134328358,
+      "rerank_score": 0.0010747516062110662
+    },
+    {
+      "chunk_id": "de543fe6419445ee5ebce651",
+      "score": 0.011111111111111112,
+      "rerank_score": 0.0006798137328587472
+    },
+    {
+      "chunk_id": "f6d4f9be8981bf6a2fd6c045",
+      "score": 0.015384615384615385,
+      "rerank_score": 0.0005990720237605274
+    },
+    {
+      "chunk_id": "b61bf7cf53be4fb6c1884dfc",
+      "score": 0.014925373134328358,
+      "rerank_score": 0.0005500522092916071
+    },
+    {
+      "chunk_id": "fdf059b3ef2a17fe4c73927f",
+      "score": 0.0136986301369863,
+      "rerank_score": 0.0005024289130233228
+    },
+    {
+      "chunk_id": "c6a7033702232b30f3e74e16",
+      "score": 0.012048192771084338,
+      "rerank_score": 0.00047516939230263233
+    },
+    {
+      "chunk_id": "6401faf901e9659b61c30982",
+      "score": 0.011904761904761904,
+      "rerank_score": 0.0004457492323126644
+    },
+    {
+      "chunk_id": "c41cd6e85ea0933c0cb738a9",
+      "score": 0.013333333333333334,
+      "rerank_score": 0.0004342844767961651
+    },
+    {
+      "chunk_id": "f20808dfb42f3f05eecd2127",
+      "score": 0.011627906976744186,
+      "rerank_score": 0.000404409016482532
+    },
+    {
+      "chunk_id": "071361eaa9f1a926356caad1",
+      "score": 0.01282051282051282,
+      "rerank_score": 0.0003243931569159031
+    },
+    {
+      "chunk_id": "92c39fd3f5918fe1a26943b3",
+      "score": 0.014925373134328358,
+      "rerank_score": 0.0002254636347061023
+    },
+    {
+      "chunk_id": "d2d07e5ee68c1ec3547b1d7a",
+      "score": 0.014705882352941176,
+      "rerank_score": 0.00021885633759666234
+    },
+    {
+      "chunk_id": "d8852a82a000e01c9b70907f",
+      "score": 0.01282051282051282,
+      "rerank_score": 0.00011305829684715718
+    },
+    {
+      "chunk_id": "f0cd4c2bc4ec71601fe6d2cc",
+      "score": 0.012345679012345678,
+      "rerank_score": 9.83569843810983e-05
+    },
+    {
+      "chunk_id": "56e7865899d962b861fd5a1a",
+      "score": 0.013157894736842105,
+      "rerank_score": 7.590743916807696e-05
+    },
+    {
+      "chunk_id": "c882cb1919837a85764768d4",
+      "score": 0.015625,
+      "rerank_score": 7.261850259965286e-05
+    },
+    {
+      "chunk_id": "155e4dd3c440ac70700bc022",
+      "score": 0.014084507042253521,
+      "rerank_score": 6.613558798562735e-05
+    },
+    {
+      "chunk_id": "1d09c02b0d8c8727fe3785a6",
+      "score": 0.011235955056179775,
+      "rerank_score": 5.573005182668567e-05
+    },
+    {
+      "chunk_id": "2f63815c55222ce3f5593148",
+      "score": 0.0125,
+      "rerank_score": 5.048284219810739e-05
+    },
+    {
+      "chunk_id": "0cd83f4b5c875ddd3330e418",
+      "score": 0.014492753623188406,
+      "rerank_score": 5.032379340264015e-05
+    },
+    {
+      "chunk_id": "0c399bdaf35ebe6ebfe72e31",
+      "score": 0.012195121951219513,
+      "rerank_score": 4.9600552301853895e-05
+    },
+    {
+      "chunk_id": "37ab0e7529423dc3c0f44589",
+      "score": 0.011111111111111112,
+      "rerank_score": 4.795799759449437e-05
+    },
+    {
+      "chunk_id": "fa9847bea781124d72d3fce4",
+      "score": 0.011494252873563218,
+      "rerank_score": 4.1697261622175574e-05
+    },
+    {
+      "chunk_id": "8ca412955feadc03c59294e3",
+      "score": 0.011363636363636364,
+      "rerank_score": 3.85259190807119e-05
+    },
+    {
+      "chunk_id": "8301f6c257f8812d94e8e951",
+      "score": 0.0136986301369863,
+      "rerank_score": 3.776681478484534e-05
+    },
+    {
+      "chunk_id": "a127413803e256f56af33274",
+      "score": 0.015151515151515152,
+      "rerank_score": 3.77065698557999e-05
+    },
+    {
+      "chunk_id": "55775f285ba2ced752980744",
+      "score": 0.015873015873015872,
+      "rerank_score": 3.734428173629567e-05
+    },
+    {
+      "chunk_id": "a8ee0de0a0dc450082236e5f",
+      "score": 0.013513513513513514,
+      "rerank_score": 3.7291574699338526e-05
+    },
+    {
+      "chunk_id": "7d8673e4c60ba881633d875a",
+      "score": 0.013513513513513514,
+      "rerank_score": 3.728528099600226e-05
+    },
+    {
+      "chunk_id": "267c9b6b8d78f360523ff162",
+      "score": 0.012345679012345678,
+      "rerank_score": 3.7284997233655304e-05
+    }
+  ],
+  "sha256": "a3ccd2a53adedcc34b0d68b188d384941a909e728d7bb9776fba6b20d09a317f",
+  "recall_traces": [
+    {
+      "kind": "technical_bm25",
+      "identity": "2a8f6606ae3a2141c99080b98eab9c005e019f0b81bf325b5c8268086505326f",
+      "query": "vLLM v0.10.2: According to the SGLang description, first identify the role of the disaggregation phase, then based on vLLM limitations determine whether decoupling can be directly treated as a guarantee of throughput improvement.",
+      "channels": {
+        "bm25": {
+          "ranking": [
+            {
+              "chunk_id": "fca9e084e6608e5874139691",
+              "score": 81.74201444354789,
+              "rank": 1
+            },
+            {
+              "chunk_id": "e1d58efa4c4c7a21c8d84f49",
+              "score": 58.67448523417214,
+              "rank": 2
+            },
+            {
+              "chunk_id": "6b6fdb12a9f8331a4cae409c",
+              "score": 58.59100535351459,
+              "rank": 3
+            },
+            {
+              "chunk_id": "c882cb1919837a85764768d4",
+              "score": 53.01868316953856,
+              "rank": 4
+            },
+            {
+              "chunk_id": "7cc4a393f2882f6ee7fcf444",
+              "score": 51.80112271928434,
+              "rank": 5
+            },
+            {
+              "chunk_id": "a127413803e256f56af33274",
+              "score": 51.748266675989505,
+              "rank": 6
+            },
+            {
+              "chunk_id": "92c39fd3f5918fe1a26943b3",
+              "score": 50.911712435020114,
+              "rank": 7
+            },
+            {
+              "chunk_id": "f6d4f9be8981bf6a2fd6c045",
+              "score": 50.8084149135191,
+              "rank": 8
+            },
+            {
+              "chunk_id": "ded5a98b5fd42fabe2b721d8",
+              "score": 50.68716781272219,
+              "rank": 9
+            },
+            {
+              "chunk_id": "55775f285ba2ced752980744",
+              "score": 50.522471330120624,
+              "rank": 10
+            },
+            {
+              "chunk_id": "b61bf7cf53be4fb6c1884dfc",
+              "score": 49.56508164886019,
+              "rank": 11
+            },
+            {
+              "chunk_id": "456668035a221f0d92241409",
+              "score": 49.0000972541317,
+              "rank": 12
+            },
+            {
+              "chunk_id": "fdf059b3ef2a17fe4c73927f",
+              "score": 48.56940849894909,
+              "rank": 13
+            },
+            {
+              "chunk_id": "7d8673e4c60ba881633d875a",
+              "score": 48.26740648052112,
+              "rank": 14
+            },
+            {
+              "chunk_id": "d2d07e5ee68c1ec3547b1d7a",
+              "score": 47.99500950693659,
+              "rank": 15
+            },
+            {
+              "chunk_id": "0cd83f4b5c875ddd3330e418",
+              "score": 47.96034759766111,
+              "rank": 16
+            },
+            {
+              "chunk_id": "155e4dd3c440ac70700bc022",
+              "score": 47.612278618888666,
+              "rank": 17
+            },
+            {
+              "chunk_id": "8c4c2254add96c6f50694b89",
+              "score": 47.11481652378395,
+              "rank": 18
+            },
+            {
+              "chunk_id": "8301f6c257f8812d94e8e951",
+              "score": 46.358741560320226,
+              "rank": 19
+            },
+            {
+              "chunk_id": "a8ee0de0a0dc450082236e5f",
+              "score": 45.864659810482124,
+              "rank": 20
+            },
+            {
+              "chunk_id": "267c9b6b8d78f360523ff162",
+              "score": 45.820058781028166,
+              "rank": 21
+            },
+            {
+              "chunk_id": "365d0a7582cd4f10593148fb",
+              "score": 45.57710778781316,
+              "rank": 22
+            },
+            {
+              "chunk_id": "c41cd6e85ea0933c0cb738a9",
+              "score": 45.243790274628644,
+              "rank": 23
+            },
+            {
+              "chunk_id": "6401faf901e9659b61c30982",
+              "score": 44.946496585135826,
+              "rank": 24
+            },
+            {
+              "chunk_id": "1798384adead8b61c451f10d",
+              "score": 44.92968493317453,
+              "rank": 25
+            },
+            {
+              "chunk_id": "56e7865899d962b861fd5a1a",
+              "score": 44.898219171418404,
+              "rank": 26
+            },
+            {
+              "chunk_id": "b34faa04696be669c17a5be5",
+              "score": 44.64038235073618,
+              "rank": 27
+            },
+            {
+              "chunk_id": "5060310073caa1e838cbc88b",
+              "score": 44.63485112596784,
+              "rank": 28
+            },
+            {
+              "chunk_id": "088bfe0aa34b2714b4b31c4b",
+              "score": 44.50579413859792,
+              "rank": 29
+            },
+            {
+              "chunk_id": "de543fe6419445ee5ebce651",
+              "score": 44.30726155000506,
+              "rank": 30
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "focused_queries": [],
+  "focus_fallback": null
+}

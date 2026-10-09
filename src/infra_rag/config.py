@@ -27,6 +27,8 @@ class Settings:
     heading_context: bool = False
     fusion_candidates: str = "truncate"
     lexical_query_mode: str = "raw"
+    query_language: str = "none"
+    preprocessing_version: str | None = None
 
     def __post_init__(self):
         if self.backend not in {"demo", "bge"}:
@@ -53,9 +55,13 @@ class Settings:
             raise ValueError("fusion_candidates must be truncate or union")
         if self.lexical_query_mode not in {"raw", "technical"}:
             raise ValueError("lexical_query_mode must be raw or technical")
+        if self.query_language not in {"none", "english", "bilingual"}:
+            raise ValueError("query_language must be none, english or bilingual")
 
     def fingerprint(self):
         values = asdict(self)
+        if self.preprocessing_version is None:
+            values.pop("preprocessing_version")
         # Preserve compatibility with existing indexes when the new mode is disabled.
         if not self.heading_context:
             values.pop("heading_context")
@@ -73,5 +79,6 @@ class Settings:
                 "context_mode",
                 "fusion_candidates",
                 "lexical_query_mode",
+                "query_language",
             }
         } | {"schema_version": 2, "embedding_pooling": "token-window-mean-v1"}

@@ -1,0 +1,37 @@
+{
+  "original_query": "vLLM v0.10.2：在Ampere部署FP8模型时把激活也按8bit支持处理，应先核对哪个限制？",
+  "scoring_query": "vLLM v0.10.2: When deploying an FP8 model on Ampere and treating activations as 8-bit supported as well, which limitation should be checked first?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In vLLM v0.10.2, when deploying an FP8 model on Ampere, which limitation should be checked first if activations are also to be treated as 8-bit supported?",
+      "anchor_quote": "vLLM v0.10.2：在Ampere部署FP8模型时把激活也按8bit支持处理，应先核对哪个限制？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：在Ampere部署FP8模型时把激活也按8bit支持处理，应先核对哪个限制？\", \"scoring_query\": \"vLLM v0.10.2: When deploying an FP8 model on Ampere and treating activations as 8-bit supported as well, which limitation should be checked first?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In vLLM v0.10.2, when deploying an FP8 model on Ampere, which limitation should be checked first if activations are also to be treated as 8-bit supported?\",\"anchor_quote\":\"vLLM v0.10.2：在Ampere部署FP8模型时把激活也按8bit支持处理，应先核对哪个限制？\"}]}",
+  "provider_response": {
+    "id": "bf2d79dc-aefc-4ad6-9dde-4a661d0eab80",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 202,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 88,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 785.9744160668924,
+  "sha256": "4f8a2f33831affa59731208de45317c00217013e34a29375ff2e404821b9d7eb"
+}

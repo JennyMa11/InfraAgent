@@ -1,0 +1,37 @@
+{
+  "original_query": "相同前缀的请求为什么可以共享历史KV？",
+  "scoring_query": "相同前缀的请求为什么可以共享历史KV？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "相同前缀的请求为什么可以共享历史KV？",
+      "anchor_quote": "相同前缀的请求为什么可以共享历史KV？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"相同前缀的请求为什么可以共享历史KV？\", \"scoring_query\": \"相同前缀的请求为什么可以共享历史KV？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"相同前缀的请求为什么可以共享历史KV？\",\"anchor_quote\":\"相同前缀的请求为什么可以共享历史KV？\"}]}",
+  "provider_response": {
+    "id": "32bb9a4c-6b24-4553-b5ed-a0e3b38e1d40",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 153,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 35,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 723.448249977082,
+  "sha256": "829faac88287d9c189d86ddfc9a2158be29718df635d1b36146b6d0ed4bd6a73"
+}

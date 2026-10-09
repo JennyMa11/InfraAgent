@@ -1,0 +1,41 @@
+{
+  "original_query": "历史修复 PR21611：先从Issue21175辨认错误输出与KV复用的关系，再说明PR21611在哪个输入身份信息上修复了connector缓存键。",
+  "scoring_query": "Historical fix PR21611: first identify from Issue21175 the relationship between erroneous output and KV reuse, then explain on which input identity information PR21611 fixed the connector cache key.",
+  "language": "English",
+  "facets": [
+    {
+      "question": "What is the relationship between erroneous output and KV reuse as identified from Issue21175?",
+      "anchor_quote": "先从Issue21175辨认错误输出与KV复用的关系"
+    },
+    {
+      "question": "On which input identity information did PR21611 fix the connector cache key?",
+      "anchor_quote": "再说明PR21611在哪个输入身份信息上修复了connector缓存键"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"历史修复 PR21611：先从Issue21175辨认错误输出与KV复用的关系，再说明PR21611在哪个输入身份信息上修复了connector缓存键。\", \"scoring_query\": \"Historical fix PR21611: first identify from Issue21175 the relationship between erroneous output and KV reuse, then explain on which input identity information PR21611 fixed the connector cache key.\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"What is the relationship between erroneous output and KV reuse as identified from Issue21175?\",\"anchor_quote\":\"先从Issue21175辨认错误输出与KV复用的关系\"},{\"question\":\"On which input identity information did PR21611 fix the connector cache key?\",\"anchor_quote\":\"再说明PR21611在哪个输入身份信息上修复了connector缓存键\"}]}",
+  "provider_response": {
+    "id": "0e81dfae-e36b-408d-9fec-ba7f6456d43e",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 206,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 85,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 758.6137079633772,
+  "sha256": "c6c7955b0941a781876bc312c6cb989be44251534faddb5b3ea77aa6b79fb1de"
+}

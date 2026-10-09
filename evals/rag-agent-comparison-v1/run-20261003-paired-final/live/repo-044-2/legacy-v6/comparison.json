@@ -1,0 +1,944 @@
+{
+  "id": "repo-044-2",
+  "group_id": "speculative-decoding",
+  "dataset": "repository",
+  "arm": "legacy-v6",
+  "query": "Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？",
+  "answerable": true,
+  "delivered": {
+    "coverage": 1.0,
+    "complete": 1.0
+  },
+  "evidence": [
+    {
+      "citation_id": "E07d9a47366c0e6a59a112233",
+      "chunk_id": "63d301df4a1fd4db36ada596",
+      "parent_id": "92420ff7a5a343ab4d27e690",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L1631-L1632",
+      "page": null,
+      "start_line": 1631,
+      "end_line": 1632,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "1. **Draft Model + Target Model**\n   Draft Model 自回归生成 `x_{t+1}, x_{t+2}, x_{t+3}`；Target Model 把整段候选一次性 Forward，并行计算各位置概率，逐个 Accept/Reject。只要 Draft 足够轻且与 Target 分布接近，一次 Target Forward 就能接受多个 Token。",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "release": null,
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          1631,
+          1632
+        ],
+        "topic": "第 9 章 量化与投机解码 > 9.9 统一流程",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "c7c8eabe4795c3a2d85b1e75"
+        ]
+      }
+    },
+    {
+      "citation_id": "Ed831077e98e9055c199b6164",
+      "chunk_id": "a4d9fdd7d4ca1aa38e4b6545",
+      "parent_id": "dabe49da96b9c91df95ac76b",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L1396-L1396",
+      "page": null,
+      "start_line": 1396,
+      "end_line": 1396,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "投机解码把 Draft 的多个候选交给 Target **一次验证前向**，随后按顺序接受或拒绝。MTP 用模型额外预测头给候选，EAGLE 从特征空间构造 Draft，Medusa 用多个解码头与候选树；验证、回退和 KV 提交是系统实现的关键。看吞吐时同时统计 draft 长度、平均接受 token、Target 验证耗时、Draft 耗时、KV 回滚次数；接受率高但 Draft 太慢仍可能负收益。采样分布正确性不能用贪心验证逻辑替代随机采样的接受/修正规则。",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "release": null,
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "condition",
+        "original_lines": [
+          1396,
+          1396
+        ],
+        "topic": "第 9 章 量化与投机解码 > 9.1 量化与投机的工程验证顺序",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "e77ae998de3187e77a0044ad"
+        ]
+      }
+    },
+    {
+      "citation_id": "E822ee4cb9903199ec708d0c8",
+      "chunk_id": "6520ea824317157ed324108d",
+      "parent_id": "65224268d8398ca549a6aefe",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md#L40-L40",
+      "page": null,
+      "start_line": 40,
+      "end_line": 40,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "Medusa 在主模型表示上增加多个预测 Head，分别给出后续不同位置的候选。每个位置可取多个高概率 Token，组合成共享前缀的候选树。Tree Attention 让一次 Target 前向检查多条路径，同时用掩码防止兄弟分支互相“偷看”。它避免独立 Draft 模型，却需要训练 Head、构树和树形注意力支持；树越宽，验证开销也越高。[Medusa 论文](https://arxiv.org/abs/2401.10774)区分了可保持目标分布的验收与以质量换接受率的 typical acceptance，不能把两者都称作严格无损。",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "release": null,
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "condition",
+        "original_lines": [
+          40,
+          40
+        ],
+        "topic": "4. Medusa：多个 Head 并行，候选组成树",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "a9cf3e58e01859940b7b27fb"
+        ]
+      }
+    },
+    {
+      "citation_id": "E29b264fd3542783127489d31",
+      "chunk_id": "bcfaa2a15402a60edd0a4930",
+      "parent_id": "a14f8e27ea543d928d732cfe",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md#L10-L10",
+      "page": null,
+      "start_line": 10,
+      "end_line": 10,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "release": null,
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "condition",
+        "original_lines": [
+          10,
+          10
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "bcfaa2a15402a60edd0a4930"
+        ]
+      }
+    },
+    {
+      "citation_id": "Ea815cb8c446cdb5ed872adbf",
+      "chunk_id": "2c38700bf08612e645b98ef6",
+      "parent_id": "27cc5faff2ab07d7fd53cd23",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L1558-L1567",
+      "page": null,
+      "start_line": 1558,
+      "end_line": 1567,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "```text\n普通 Decode（串行）:\n  Forward → t1 → Forward → t2 → Forward → t3 → ...   （N 次 Forward 出 N 个 Token）\n\n投机解码:\n  Draft 快速生成 t1,t2,t3,t4（低成本）\n  Target 一次 Forward 并行验证这 4 个候选\n  → 接受前 k 个（如接受 t1,t2），拒绝后续\n  → 1 次 Target Forward 出了 2 个 Token\n```",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "release": null,
+        "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "code",
+        "original_lines": [
+          1558,
+          1567
+        ],
+        "topic": "第 9 章 量化与投机解码 > 9.7 核心思想",
+        "hardware_mentions": [],
+        "description_lines": [
+          1550,
+          1556
+        ],
+        "original_chunk_ids": [
+          "dee99c54b63f7feb6118d3a8",
+          "f4bc0bd98391095c21afca59",
+          "724b91a602a18b4dd806d0d4"
+        ]
+      }
+    },
+    {
+      "citation_id": "Ee74f07f9b98de8476aeb2943",
+      "chunk_id": "e011f73c7b407ba7aa475142",
+      "parent_id": "a14f8e27ea543d928d732cfe",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md#L14-L14",
+      "page": null,
+      "start_line": 14,
+      "end_line": 14,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "*图 1：一次 Target 前向并行算出候选位置的概率；遇到首个拒绝位置，就丢弃其后的候选。*",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+        "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx",
+        "commit": "188467456afaff48887869462951a1b5457c0387",
+        "release": null,
+        "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          14,
+          14
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "e011f73c7b407ba7aa475142"
+        ]
+      }
+    },
+    {
+      "citation_id": "Ef4ed6410065c3bdf2d1a013b",
+      "chunk_id": "3181986cb39b28143bcd5f9d",
+      "parent_id": "5ab0bbca5d5a241638206ed9",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md#L504-L504",
+      "page": null,
+      "start_line": 504,
+      "end_line": 504,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "前两节主要改变数据的存放和读取方式，每条请求仍要逐轮生成。若能让一次目标模型计算确定多个输出，生成 256 个 token 就不必再执行同样多的轮次。普通 decode 中，目标模型每次前向计算生成一个 token。第 8.2 节将不同请求合并计算，使一次权重读取用于更多行。推测解码采用另一种办法：先为同一请求生成一段**草稿序列**，再由目标模型同时验证其中的多个 token。若目标模型接受了多个草稿 token，一次计算就能确定多个输出。",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "ai-infra-book/manuscripts/08-推理优化.md",
+        "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/08-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md",
+        "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+        "release": null,
+        "sha256": "d7d17973529ffacc7eedfa543af6ffa559ec48a6bbc2883b412a37e75bc6f5db",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          504,
+          504
+        ],
+        "topic": "第 8 章 推理优化 > 8.5 推测解码 > 8.5.1 草稿、验证、回退与正确性",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "8a36759c968333256ad93cfa"
+        ]
+      }
+    }
+  ],
+  "cumulative_candidate_complete": 1.0,
+  "searches": [
+    {
+      "query": "Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？",
+      "diagnostics": {
+        "candidates": [
+          "63d301df4a1fd4db36ada596",
+          "6520ea824317157ed324108d",
+          "a4d9fdd7d4ca1aa38e4b6545",
+          "bcfaa2a15402a60edd0a4930",
+          "2c38700bf08612e645b98ef6",
+          "3181986cb39b28143bcd5f9d",
+          "e011f73c7b407ba7aa475142",
+          "e83aa5df4db9f152a0431768",
+          "4c6e0d89e2bd556ed2a009f7",
+          "dd9fe9fd65465341b0027671",
+          "33a976757d112fd402763807",
+          "db1a3a42ee175ba0c41e352f",
+          "73ceb38ca2d4d5ed0c8ebd87",
+          "728c03693cd2dff4a6f002fa",
+          "e0c7eb07f3c6e296c1b606db",
+          "b6a3278037d0ccd2bbea1fb7",
+          "3dbe75e920a0389e92b05184",
+          "53f310184d2612329f753779",
+          "b889292ec1045c05c8619ce5",
+          "7740265b78615fd7a704f5ce",
+          "7e3d01b8aa14eb4f7fc2b806",
+          "6bab08c888b9aa164ebedb91",
+          "e2fe7bc1daad62ac3fb2247a",
+          "f32dca9409655f6d01d48db0",
+          "bd7fb35134e7d9079ec2ff08",
+          "fbd5c33b8274fa9f5206b443",
+          "ba5d141f845ddbdda731f3b0",
+          "45e8ddc4d5c73a7d9e45a593",
+          "4872a3d0c1c08102517bce22",
+          "051ae469d904e291e2deb141",
+          "cfb0f87c9eb191129b00253d",
+          "74e40d7f57a2e34ef24622ac",
+          "3e645ba28f042c8651dc58b4",
+          "a630deab7d9fc78d6c0be4f0",
+          "5b41a0c261cb2c9c67b76fa5",
+          "de36ac6894ebf53f089b8e02",
+          "100b3046a5730681cf09b99b",
+          "b15cf5b5cb5def3934bdaae2",
+          "85f3a388162e3a17ea471798",
+          "d7535839b0829247dc2d9f91",
+          "b6efce6043712a04b93aea7d",
+          "0c211494234d67f86cea80f0",
+          "32da8270cede7f85b94a08b8",
+          "d2f776990ffcbdfe5e7432f8",
+          "629269f8e28c715da2c963d0",
+          "952cecf478851beae314a08d",
+          "391605d861cdad6db0d9eaa7",
+          "770a68752742fd5c96801e4a",
+          "ccf39cdbacd7be3838738289",
+          "43a33d288b2b84957efe491b",
+          "a2176597c28cd5d84257b249",
+          "40cddaa5fca96f231fb264ac",
+          "da55c2452c3a289c12878f4d",
+          "a6816859ff669ee60f440d93"
+        ],
+        "final": [
+          {
+            "chunk_id": "63d301df4a1fd4db36ada596",
+            "rerank_score": 0.9939631819725037
+          },
+          {
+            "chunk_id": "a4d9fdd7d4ca1aa38e4b6545",
+            "rerank_score": 0.9547916054725647
+          },
+          {
+            "chunk_id": "6520ea824317157ed324108d",
+            "rerank_score": 0.9668649435043335
+          },
+          {
+            "chunk_id": "bcfaa2a15402a60edd0a4930",
+            "rerank_score": 0.8806955814361572
+          },
+          {
+            "chunk_id": "2c38700bf08612e645b98ef6",
+            "rerank_score": 0.8728099465370178
+          },
+          {
+            "chunk_id": "e011f73c7b407ba7aa475142",
+            "rerank_score": 0.7688702344894409
+          },
+          {
+            "chunk_id": "3181986cb39b28143bcd5f9d",
+            "rerank_score": 0.7706655263900757
+          }
+        ],
+        "comparison_provenance": "frozen_original_candidates",
+        "scoring_query": "Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？",
+        "selection": {
+          "eligible_ids": [
+            "63d301df4a1fd4db36ada596",
+            "6520ea824317157ed324108d",
+            "a4d9fdd7d4ca1aa38e4b6545",
+            "bcfaa2a15402a60edd0a4930",
+            "2c38700bf08612e645b98ef6",
+            "3181986cb39b28143bcd5f9d",
+            "e011f73c7b407ba7aa475142",
+            "e83aa5df4db9f152a0431768",
+            "4c6e0d89e2bd556ed2a009f7",
+            "dd9fe9fd65465341b0027671",
+            "33a976757d112fd402763807",
+            "db1a3a42ee175ba0c41e352f",
+            "73ceb38ca2d4d5ed0c8ebd87",
+            "728c03693cd2dff4a6f002fa",
+            "e0c7eb07f3c6e296c1b606db"
+          ],
+          "selection_trace": [
+            {
+              "chunk_id": "63d301df4a1fd4db36ada596",
+              "protected": true,
+              "preview_truncated": false
+            },
+            {
+              "chunk_id": "a4d9fdd7d4ca1aa38e4b6545",
+              "utility": 0.9808205713361319,
+              "novelty": 0.11005046473513924,
+              "redundancy": 0.05263157894736842,
+              "cost_tokens": 224,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "6520ea824317157ed324108d",
+              "utility": 0.9477127171974095,
+              "novelty": 0.03427752671062112,
+              "redundancy": 0.07264957264957266,
+              "cost_tokens": 239,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "bcfaa2a15402a60edd0a4930",
+              "utility": 0.9121403516153423,
+              "novelty": 0.16664613552417384,
+              "redundancy": 0.08791208791208792,
+              "cost_tokens": 137,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "2c38700bf08612e645b98ef6",
+              "utility": 0.8190065936682975,
+              "novelty": 0.0,
+              "redundancy": 0.1232876712328767,
+              "cost_tokens": 152,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "e011f73c7b407ba7aa475142",
+              "utility": 0.7494775776717691,
+              "novelty": 0.040940860836272845,
+              "redundancy": 0.08955223880597014,
+              "cost_tokens": 57,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "3181986cb39b28143bcd5f9d",
+              "utility": 0.748928806414971,
+              "novelty": 0.0,
+              "redundancy": 0.05641025641025641,
+              "cost_tokens": 245,
+              "score_origin": "reranker"
+            }
+          ],
+          "neighbor_priors": {},
+          "query_words": [
+            "target",
+            "token",
+            "一次",
+            "个候",
+            "了五",
+            "五个",
+            "交五",
+            "什么",
+            "位置",
+            "候选",
+            "出了",
+            "前向",
+            "前向算出",
+            "向算",
+            "否直",
+            "序是",
+            "接提",
+            "提交",
+            "收顺",
+            "是什",
+            "次前",
+            "直接",
+            "算出",
+            "能否",
+            "选位",
+            "顺序",
+            "验收"
+          ],
+          "parameters": {
+            "limit": 8,
+            "length_power": 0.0,
+            "protect": 1,
+            "neighbors": false
+          }
+        }
+      },
+      "context": {
+        "evidence": [
+          {
+            "citation_id": "E07d9a47366c0e6a59a112233",
+            "chunk_id": "63d301df4a1fd4db36ada596",
+            "parent_id": "92420ff7a5a343ab4d27e690",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L1631-L1632",
+            "page": null,
+            "start_line": 1631,
+            "end_line": 1632,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "1. **Draft Model + Target Model**\n   Draft Model 自回归生成 `x_{t+1}, x_{t+2}, x_{t+3}`；Target Model 把整段候选一次性 Forward，并行计算各位置概率，逐个 Accept/Reject。只要 Draft 足够轻且与 Target 分布接近，一次 Target Forward 就能接受多个 Token。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+              "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md",
+              "commit": "188467456afaff48887869462951a1b5457c0387",
+              "release": null,
+              "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                1631,
+                1632
+              ],
+              "topic": "第 9 章 量化与投机解码 > 9.9 统一流程",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "c7c8eabe4795c3a2d85b1e75"
+              ]
+            }
+          },
+          {
+            "citation_id": "Ed831077e98e9055c199b6164",
+            "chunk_id": "a4d9fdd7d4ca1aa38e4b6545",
+            "parent_id": "dabe49da96b9c91df95ac76b",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L1396-L1396",
+            "page": null,
+            "start_line": 1396,
+            "end_line": 1396,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "投机解码把 Draft 的多个候选交给 Target **一次验证前向**，随后按顺序接受或拒绝。MTP 用模型额外预测头给候选，EAGLE 从特征空间构造 Draft，Medusa 用多个解码头与候选树；验证、回退和 KV 提交是系统实现的关键。看吞吐时同时统计 draft 长度、平均接受 token、Target 验证耗时、Draft 耗时、KV 回滚次数；接受率高但 Draft 太慢仍可能负收益。采样分布正确性不能用贪心验证逻辑替代随机采样的接受/修正规则。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+              "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md",
+              "commit": "188467456afaff48887869462951a1b5457c0387",
+              "release": null,
+              "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                1396,
+                1396
+              ],
+              "topic": "第 9 章 量化与投机解码 > 9.1 量化与投机的工程验证顺序",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "e77ae998de3187e77a0044ad"
+              ]
+            }
+          },
+          {
+            "citation_id": "E822ee4cb9903199ec708d0c8",
+            "chunk_id": "6520ea824317157ed324108d",
+            "parent_id": "65224268d8398ca549a6aefe",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md#L40-L40",
+            "page": null,
+            "start_line": 40,
+            "end_line": 40,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "Medusa 在主模型表示上增加多个预测 Head，分别给出后续不同位置的候选。每个位置可取多个高概率 Token，组合成共享前缀的候选树。Tree Attention 让一次 Target 前向检查多条路径，同时用掩码防止兄弟分支互相“偷看”。它避免独立 Draft 模型，却需要训练 Head、构树和树形注意力支持；树越宽，验证开销也越高。[Medusa 论文](https://arxiv.org/abs/2401.10774)区分了可保持目标分布的验收与以质量换接受率的 typical acceptance，不能把两者都称作严格无损。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+              "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx",
+              "commit": "188467456afaff48887869462951a1b5457c0387",
+              "release": null,
+              "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                40,
+                40
+              ],
+              "topic": "4. Medusa：多个 Head 并行，候选组成树",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "a9cf3e58e01859940b7b27fb"
+              ]
+            }
+          },
+          {
+            "citation_id": "E29b264fd3542783127489d31",
+            "chunk_id": "bcfaa2a15402a60edd0a4930",
+            "parent_id": "a14f8e27ea543d928d732cfe",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md#L10-L10",
+            "page": null,
+            "start_line": 10,
+            "end_line": 10,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+              "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx",
+              "commit": "188467456afaff48887869462951a1b5457c0387",
+              "release": null,
+              "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                10,
+                10
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "bcfaa2a15402a60edd0a4930"
+              ]
+            }
+          },
+          {
+            "citation_id": "Ea815cb8c446cdb5ed872adbf",
+            "chunk_id": "2c38700bf08612e645b98ef6",
+            "parent_id": "27cc5faff2ab07d7fd53cd23",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L1558-L1567",
+            "page": null,
+            "start_line": 1558,
+            "end_line": 1567,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "```text\n普通 Decode（串行）:\n  Forward → t1 → Forward → t2 → Forward → t3 → ...   （N 次 Forward 出 N 个 Token）\n\n投机解码:\n  Draft 快速生成 t1,t2,t3,t4（低成本）\n  Target 一次 Forward 并行验证这 4 个候选\n  → 接受前 k 个（如接受 t1,t2），拒绝后续\n  → 1 次 Target Forward 出了 2 个 Token\n```",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+              "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md",
+              "commit": "188467456afaff48887869462951a1b5457c0387",
+              "release": null,
+              "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "code",
+              "original_lines": [
+                1558,
+                1567
+              ],
+              "topic": "第 9 章 量化与投机解码 > 9.7 核心思想",
+              "hardware_mentions": [],
+              "description_lines": [
+                1550,
+                1556
+              ],
+              "original_chunk_ids": [
+                "dee99c54b63f7feb6118d3a8",
+                "f4bc0bd98391095c21afca59",
+                "724b91a602a18b4dd806d0d4"
+              ]
+            }
+          },
+          {
+            "citation_id": "Ee74f07f9b98de8476aeb2943",
+            "chunk_id": "e011f73c7b407ba7aa475142",
+            "parent_id": "a14f8e27ea543d928d732cfe",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md#L14-L14",
+            "page": null,
+            "start_line": 14,
+            "end_line": 14,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "*图 1：一次 Target 前向并行算出候选位置的概率；遇到首个拒绝位置，就丢弃其后的候选。*",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+              "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx",
+              "commit": "188467456afaff48887869462951a1b5457c0387",
+              "release": null,
+              "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                14,
+                14
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "e011f73c7b407ba7aa475142"
+              ]
+            }
+          },
+          {
+            "citation_id": "Ef4ed6410065c3bdf2d1a013b",
+            "chunk_id": "3181986cb39b28143bcd5f9d",
+            "parent_id": "5ab0bbca5d5a241638206ed9",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/08-推理优化.md#L504-L504",
+            "page": null,
+            "start_line": 504,
+            "end_line": 504,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "前两节主要改变数据的存放和读取方式，每条请求仍要逐轮生成。若能让一次目标模型计算确定多个输出，生成 256 个 token 就不必再执行同样多的轮次。普通 decode 中，目标模型每次前向计算生成一个 token。第 8.2 节将不同请求合并计算，使一次权重读取用于更多行。推测解码采用另一种办法：先为同一请求生成一段**草稿序列**，再由目标模型同时验证其中的多个 token。若目标模型接受了多个草稿 token，一次计算就能确定多个输出。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "ai-infra-book/manuscripts/08-推理优化.md",
+              "url": "https://github.com/bojieli/ai-infra-book/blob/56ecb425b07ea6d16e891cba87bf7db416927d09/manuscripts/08-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md",
+              "commit": "56ecb425b07ea6d16e891cba87bf7db416927d09",
+              "release": null,
+              "sha256": "d7d17973529ffacc7eedfa543af6ffa559ec48a6bbc2883b412a37e75bc6f5db",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                504,
+                504
+              ],
+              "topic": "第 8 章 推理优化 > 8.5 推测解码 > 8.5.1 草稿、验证、回退与正确性",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "8a36759c968333256ad93cfa"
+              ]
+            }
+          }
+        ],
+        "context": "[E07d9a47366c0e6a59a112233] 第 9 章 量化与投机解码 > 9.9 统一流程\n1. **Draft Model + Target Model**\n   Draft Model 自回归生成 `x_{t+1}, x_{t+2}, x_{t+3}`；Target Model 把整段候选一次性 Forward，并行计算各位置概率，逐个 Accept/Reject。只要 Draft 足够轻且与 Target 分布接近，一次 Target Forward 就能接受多个 Token。\n\n[Ed831077e98e9055c199b6164] 第 9 章 量化与投机解码 > 9.1 量化与投机的工程验证顺序\n投机解码把 Draft 的多个候选交给 Target **一次验证前向**，随后按顺序接受或拒绝。MTP 用模型额外预测头给候选，EAGLE 从特征空间构造 Draft，Medusa 用多个解码头与候选树；验证、回退和 KV 提交是系统实现的关键。看吞吐时同时统计 draft 长度、平均接受 token、Target 验证耗时、Draft 耗时、KV 回滚次数；接受率高但 Draft 太慢仍可能负收益。采样分布正确性不能用贪心验证逻辑替代随机采样的接受/修正规则。\n\n[E822ee4cb9903199ec708d0c8] 4. Medusa：多个 Head 并行，候选组成树\nMedusa 在主模型表示上增加多个预测 Head，分别给出后续不同位置的候选。每个位置可取多个高概率 Token，组合成共享前缀的候选树。Tree Attention 让一次 Target 前向检查多条路径，同时用掩码防止兄弟分支互相“偷看”。它避免独立 Draft 模型，却需要训练 Head、构树和树形注意力支持；树越宽，验证开销也越高。[Medusa 论文](https://arxiv.org/abs/2401.10774)区分了可保持目标分布的验收与以质量换接受率的 typical acceptance，不能把两者都称作严格无损。\n\n[E29b264fd3542783127489d31] \n大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。\n\n[Ea815cb8c446cdb5ed872adbf] 第 9 章 量化与投机解码 > 9.7 核心思想\n```text\n普通 Decode（串行）:\n  Forward → t1 → Forward → t2 → Forward → t3 → ...   （N 次 Forward 出 N 个 Token）\n\n投机解码:\n  Draft 快速生成 t1,t2,t3,t4（低成本）\n  Target 一次 Forward 并行验证这 4 个候选\n  → 接受前 k 个（如接受 t1,t2），拒绝后续\n  → 1 次 Target Forward 出了 2 个 Token\n```\n\n[Ee74f07f9b98de8476aeb2943] \n*图 1：一次 Target 前向并行算出候选位置的概率；遇到首个拒绝位置，就丢弃其后的候选。*\n\n[Ef4ed6410065c3bdf2d1a013b] 第 8 章 推理优化 > 8.5 推测解码 > 8.5.1 草稿、验证、回退与正确性\n前两节主要改变数据的存放和读取方式，每条请求仍要逐轮生成。若能让一次目标模型计算确定多个输出，生成 256 个 token 就不必再执行同样多的轮次。普通 decode 中，目标模型每次前向计算生成一个 token。第 8.2 节将不同请求合并计算，使一次权重读取用于更多行。推测解码采用另一种办法：先为同一请求生成一段**草稿序列**，再由目标模型同时验证其中的多个 token。若目标模型接受了多个草稿 token，一次计算就能确定多个输出。",
+        "budget": {
+          "tokens": 1200,
+          "characters": 4000
+        },
+        "used_tokens": 1198,
+        "used_characters": 1705,
+        "omitted_chunk_ids": []
+      }
+    }
+  ],
+  "response": {
+    "conversation_id": "e37fd04a-19e1-4319-bd03-fa3a9e72121d",
+    "answer": "不能直接提交五个 token。Target 一次前向只是并行算出各候选位置的概率，候选仍须按顺序逐个验证，遇到首个拒绝位置就丢弃其后的候选，只接受前 k 个（例如接受 t1、t2，拒绝后续）[E29b264fd3542783127489d31][Ee74f07f9b98de8476aeb2943][Ea815cb8c446cdb5ed872adbf]。",
+    "citations": [
+      {
+        "citation_id": "E29b264fd3542783127489d31",
+        "chunk_id": "bcfaa2a15402a60edd0a4930",
+        "parent_id": "a14f8e27ea543d928d732cfe",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md#L10-L10",
+        "page": null,
+        "start_line": 10,
+        "end_line": 10,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "大模型逐 Token 解码时，下一步必须等上一步完成。投机解码先用便宜的方法猜出一串候选，再让目标模型（Target）在一次前向中计算这些位置的分布。它节省的是**昂贵目标模型的串行调用次数**；候选仍须按顺序验证，不能因为一次前向算出了所有位置就全部接受。",
+        "truncated": false,
+        "metadata": {
+          "collection": "community",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "release": null,
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "condition",
+          "original_lines": [
+            10,
+            10
+          ],
+          "topic": "",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "bcfaa2a15402a60edd0a4930"
+          ]
+        }
+      },
+      {
+        "citation_id": "Ee74f07f9b98de8476aeb2943",
+        "chunk_id": "e011f73c7b407ba7aa475142",
+        "parent_id": "a14f8e27ea543d928d732cfe",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/src/content/blog/speculative-decoding-methods.md#L14-L14",
+        "page": null,
+        "start_line": 14,
+        "end_line": 14,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "*图 1：一次 Target 前向并行算出候选位置的概率；遇到首个拒绝位置，就丢弃其后的候选。*",
+        "truncated": false,
+        "metadata": {
+          "collection": "community",
+          "document_id": "JennyMa11.github.io/src/content/blog/speculative-decoding-methods.mdx",
+          "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/src/content/blog/speculative-decoding-methods.mdx",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "release": null,
+          "sha256": "f243b240b2ec1756a6e2c4f7a306e74fc73b9a6e271cbe9bfa0feab3d8401b9b",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "explanation",
+          "original_lines": [
+            14,
+            14
+          ],
+          "topic": "",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "e011f73c7b407ba7aa475142"
+          ]
+        }
+      },
+      {
+        "citation_id": "Ea815cb8c446cdb5ed872adbf",
+        "chunk_id": "2c38700bf08612e645b98ef6",
+        "parent_id": "27cc5faff2ab07d7fd53cd23",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/JennyMa11.github.io/infra/inference_accel_handbook_zh.md#L1558-L1567",
+        "page": null,
+        "start_line": 1558,
+        "end_line": 1567,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "```text\n普通 Decode（串行）:\n  Forward → t1 → Forward → t2 → Forward → t3 → ...   （N 次 Forward 出 N 个 Token）\n\n投机解码:\n  Draft 快速生成 t1,t2,t3,t4（低成本）\n  Target 一次 Forward 并行验证这 4 个候选\n  → 接受前 k 个（如接受 t1,t2），拒绝后续\n  → 1 次 Target Forward 出了 2 个 Token\n```",
+        "truncated": false,
+        "metadata": {
+          "collection": "community",
+          "document_id": "JennyMa11.github.io/infra/inference_accel_handbook_zh.md",
+          "url": "https://github.com/JennyMa11/JennyMa11.github.io/blob/188467456afaff48887869462951a1b5457c0387/infra/inference_accel_handbook_zh.md",
+          "commit": "188467456afaff48887869462951a1b5457c0387",
+          "release": null,
+          "sha256": "a2d543063b239e2e17f6d870c5d4485c050c968c27c82ba62884054cd26f2ee9",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "code",
+          "original_lines": [
+            1558,
+            1567
+          ],
+          "topic": "第 9 章 量化与投机解码 > 9.7 核心思想",
+          "hardware_mentions": [],
+          "description_lines": [
+            1550,
+            1556
+          ],
+          "original_chunk_ids": [
+            "dee99c54b63f7feb6118d3a8",
+            "f4bc0bd98391095c21afca59",
+            "724b91a602a18b4dd806d0d4"
+          ]
+        }
+      }
+    ],
+    "status": "answered",
+    "trace": [
+      {
+        "step": "retrieve",
+        "duration_ms": 15.1,
+        "query": "Target一次前向算出了五个候选位置，能否直接提交五个token，验收顺序是什么？",
+        "hits": 7,
+        "evidence": 7
+      },
+      {
+        "step": "generate",
+        "duration_ms": 1412.2,
+        "provider": "anthropic-compatible",
+        "model": "deepseek-flash",
+        "validated": true
+      }
+    ]
+  },
+  "error": null,
+  "model_calls": 1,
+  "input_tokens": 1471,
+  "output_tokens": 159,
+  "latency_ms": 1432.7362920157611,
+  "source_hashes_verified": true,
+  "semantic_review": "pending",
+  "events": []
+}

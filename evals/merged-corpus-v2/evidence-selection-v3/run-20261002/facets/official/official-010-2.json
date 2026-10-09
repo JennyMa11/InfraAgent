@@ -1,0 +1,37 @@
+{
+  "original_query": "历史修复 PR21611：相同文本和相同图像尺寸是否足以安全复用多模态KV？",
+  "scoring_query": "Historical fix PR21611: Are identical text and identical image dimensions sufficient to safely reuse multimodal KV?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "Does historical fix PR21611 address whether identical text and identical image dimensions are sufficient to safely reuse multimodal KV?",
+      "anchor_quote": "历史修复 PR21611：相同文本和相同图像尺寸是否足以安全复用多模态KV？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"历史修复 PR21611：相同文本和相同图像尺寸是否足以安全复用多模态KV？\", \"scoring_query\": \"Historical fix PR21611: Are identical text and identical image dimensions sufficient to safely reuse multimodal KV?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Does historical fix PR21611 address whether identical text and identical image dimensions are sufficient to safely reuse multimodal KV?\",\"anchor_quote\":\"历史修复 PR21611：相同文本和相同图像尺寸是否足以安全复用多模态KV？\"}]}",
+  "provider_response": {
+    "id": "77735251-58bb-4433-a382-5423ba09ae46",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 172,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 57,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 749.244499951601,
+  "sha256": "d2c566a84bfec628fdbeb71b41f484cf8493d5eb3687c8d7a2c740adac57444d"
+}

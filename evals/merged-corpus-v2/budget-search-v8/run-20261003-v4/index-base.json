@@ -1,0 +1,22 @@
+{
+  "directory": "/Users/jennyma/Projects/InfraAgent/data/original-rag-v7/fb466c75d6d136af/base",
+  "fingerprint": {
+    "backend": "bge",
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "multimodal": false,
+    "chunk_size": 450,
+    "chunk_strategy": "semantic",
+    "refinement_threshold": 0.55,
+    "image_merge_threshold": 0.88,
+    "image_max_side": 768,
+    "image_min_area": 0.005,
+    "image_max_regions": 24,
+    "clip_text_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+    "clip_image_model": "sentence-transformers/clip-ViT-B-32",
+    "semantic_threshold": 0.72,
+    "preprocessing_version": "rules-structure-v1",
+    "schema_version": 2,
+    "embedding_pooling": "token-window-mean-v1"
+  },
+  "index_sha256": "37f6b3676131966aec02325d38c2ba6bdc73d28568aa2c0a9f4195fa3770bdfb"
+}

@@ -1,0 +1,41 @@
+{
+  "original_query": "vLLM v0.10.2：先确认服务模型支持LoRA，再考虑两个LoRA请求文本相同，为什么缓存键仍需额外区分身份？",
+  "scoring_query": "vLLM v0.10.2: First confirm that the serving model supports LoRA, then consider that two LoRA requests have identical text; why does the cache key still need to additionally distinguish identity?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "Does vLLM v0.10.2 confirm that the serving model supports LoRA?",
+      "anchor_quote": "先确认服务模型支持LoRA"
+    },
+    {
+      "question": "In vLLM v0.10.2, when two LoRA requests have identical text, why does the cache key still need to additionally distinguish identity?",
+      "anchor_quote": "两个LoRA请求文本相同，为什么缓存键仍需额外区分身份？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：先确认服务模型支持LoRA，再考虑两个LoRA请求文本相同，为什么缓存键仍需额外区分身份？\", \"scoring_query\": \"vLLM v0.10.2: First confirm that the serving model supports LoRA, then consider that two LoRA requests have identical text; why does the cache key still need to additionally distinguish identity?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Does vLLM v0.10.2 confirm that the serving model supports LoRA?\",\"anchor_quote\":\"先确认服务模型支持LoRA\"},{\"question\":\"In vLLM v0.10.2, when two LoRA requests have identical text, why does the cache key still need to additionally distinguish identity?\",\"anchor_quote\":\"两个LoRA请求文本相同，为什么缓存键仍需额外区分身份？\"}]}",
+  "provider_response": {
+    "id": "7975e09d-1e94-48d9-9fe0-1b9fe519ed06",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 210,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 97,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 658.5264999885112,
+  "sha256": "4a7250eca5b8645740332490006acf378b9c04735dc4815423ae9382b09f31a1"
+}

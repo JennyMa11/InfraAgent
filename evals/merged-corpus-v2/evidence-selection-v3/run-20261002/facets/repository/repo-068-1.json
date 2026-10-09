@@ -1,0 +1,37 @@
+{
+  "original_query": "改变推理并行度时为什么传完权重不等于实例迁移完成？",
+  "scoring_query": "改变推理并行度时为什么传完权重不等于实例迁移完成？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "改变推理并行度时，为什么传完权重不等于实例迁移完成？",
+      "anchor_quote": "改变推理并行度时为什么传完权重不等于实例迁移完成？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"改变推理并行度时为什么传完权重不等于实例迁移完成？\", \"scoring_query\": \"改变推理并行度时为什么传完权重不等于实例迁移完成？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"改变推理并行度时，为什么传完权重不等于实例迁移完成？\",\"anchor_quote\":\"改变推理并行度时为什么传完权重不等于实例迁移完成？\"}]}",
+  "provider_response": {
+    "id": "dbeab717-8aea-44f7-8c9b-eaef567e21d7",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 161,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 44,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 522.4129579728469,
+  "sha256": "8a37150ee278b96f4f0be7c8f31a9bab328a47f26aa6c8314b72ff0835f22fed"
+}

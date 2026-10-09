@@ -1,0 +1,75 @@
+{
+  "http_status": 200,
+  "response": {
+    "conversation_id": "a4efb2bc-65c4-4902-ac0b-ba0667cecb70",
+    "answer": "除文本（块内 token 及前缀 token）外，缓存块身份还需要额外哈希（Extra hashes），例如 LoRA ID、多模态输入哈希，以及用于多租户环境隔离缓存的 cache salt。[E3684ca4dceac3907e2f63078]",
+    "citations": [
+      {
+        "citation_id": "E3684ca4dceac3907e2f63078",
+        "chunk_id": "d2ff94675785a324f32b455e",
+        "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L17-L19",
+        "page": null,
+        "start_line": 17,
+        "end_line": 19,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "* Parent hash value: The hash value of the parent hash block.\n* Block tokens: A tuple of tokens in this block. The reason to include the exact tokens is to reduce potential hash value collision.\n* Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+        "truncated": false,
+        "metadata": {
+          "collection": "official",
+          "document_id": "vllm-prefix_caching",
+          "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+          "product": "vllm",
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "explanation",
+          "original_lines": [
+            17,
+            19
+          ],
+          "topic": "Automatic Prefix Caching",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "47a8a3a804e4497c937560cd",
+            "52d06965a14a4454a59d58ee",
+            "94b777157ed4ca867fa7d39a"
+          ]
+        }
+      }
+    ],
+    "status": "answered",
+    "trace": [
+      {
+        "step": "query_translate",
+        "original_query": "vLLM v0.10.2：缓存块身份除了文本还需要哪些额外哈希？",
+        "english_query": "vLLM v0.10.2: What additional hashes are needed for cache block identity besides the text?",
+        "mode": "english",
+        "cached": false,
+        "duration_ms": 877.9
+      },
+      {
+        "step": "retrieve",
+        "duration_ms": 4864.2,
+        "query": "vLLM v0.10.2: What additional hashes are needed for cache block identity besides the text?",
+        "hits": 5,
+        "evidence": 9
+      },
+      {
+        "step": "generate",
+        "duration_ms": 774.5,
+        "provider": "anthropic-compatible",
+        "model": "deepseek-flash",
+        "validated": true
+      }
+    ]
+  }
+}

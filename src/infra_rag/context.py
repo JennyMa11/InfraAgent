@@ -33,6 +33,18 @@ def pack_context(hits, parents, count, token_budget, char_budget, domain=None, m
         hit.sibling_ids = []
         hit.evidence = []
         hit.context_ref = parent
+    # Structural descriptions stay ahead of unrelated neighboring paragraphs.
+    for hit in hits:
+        description = hit.chunk.metadata.get("description_lines")
+        if description:
+            for chunk in parents[hit.chunk.parent_id]:
+                if (
+                    chunk.id not in seen
+                    and chunk.start_line is not None
+                    and (description[0] <= chunk.start_line <= description[1])
+                ):
+                    candidates.append(chunk)
+                    seen.add(chunk.id)
     for parent in owners:
         siblings = [
             c
@@ -83,6 +95,7 @@ def pack_context(hits, parents, count, token_budget, char_budget, domain=None, m
             "caption_locator": chunk.caption_locator,
             "content": content,
             "truncated": content != chunk.content,
+            "metadata": chunk.metadata,
         }
         owner = owners[chunk.parent_id]
         owner.evidence.append(evidence)

@@ -1,0 +1,37 @@
+{
+  "original_query": "复用前缀KV时除token内容还需校验哪些上下文？",
+  "scoring_query": "复用前缀KV时除token内容还需校验哪些上下文？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "复用前缀KV时，除token内容外，还需要校验哪些上下文？",
+      "anchor_quote": "复用前缀KV时除token内容还需校验哪些上下文？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"复用前缀KV时除token内容还需校验哪些上下文？\", \"scoring_query\": \"复用前缀KV时除token内容还需校验哪些上下文？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"复用前缀KV时，除token内容外，还需要校验哪些上下文？\",\"anchor_quote\":\"复用前缀KV时除token内容还需校验哪些上下文？\"}]}",
+  "provider_response": {
+    "id": "b4e45fe4-6759-49f5-8d98-29859e8d3dac",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 157,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 42,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 838.0445840302855,
+  "sha256": "c7deff627fe9fe947eac7af991ff420880acc7beacff890e57b7c165ed71f75c"
+}

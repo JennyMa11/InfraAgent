@@ -1,0 +1,49 @@
+{
+  "original_query": "SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在quantization场景下精确的P95延迟毫秒值吗？",
+  "scoring_query": "SGLang v0.5.2: Based solely on the current official materials, can you give the exact P95 latency in milliseconds for my private deployment in a quantization scenario, without the hardware, model, and logs I have not provided?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "Based solely on the current official materials for SGLang v0.5.2, can an exact P95 latency in milliseconds be given?",
+      "anchor_quote": "仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在quantization场景下精确的P95延迟毫秒值吗？"
+    },
+    {
+      "question": "Does the request concern a private deployment in a quantization scenario?",
+      "anchor_quote": "我未提供硬件、模型和日志的私有部署在quantization场景下"
+    },
+    {
+      "question": "Is the request made without the hardware, model, and logs having been provided?",
+      "anchor_quote": "我未提供硬件、模型和日志"
+    },
+    {
+      "question": "Is the exact P95 latency value requested in milliseconds?",
+      "anchor_quote": "精确的P95延迟毫秒值"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在quantization场景下精确的P95延迟毫秒值吗？\", \"scoring_query\": \"SGLang v0.5.2: Based solely on the current official materials, can you give the exact P95 latency in milliseconds for my private deployment in a quantization scenario, without the hardware, model, and logs I have not provided?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Based solely on the current official materials for SGLang v0.5.2, can an exact P95 latency in milliseconds be given?\",\"anchor_quote\":\"仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在quantization场景下精确的P95延迟毫秒值吗？\"},{\"question\":\"Does the request concern a private deployment in a quantization scenario?\",\"anchor_quote\":\"我未提供硬件、模型和日志的私有部署在quantization场景下\"},{\"question\":\"Is the request made without the hardware, model, and logs having been provided?\",\"anchor_quote\":\"我未提供硬件、模型和日志\"},{\"question\":\"Is the exact P95 latency value requested in milliseconds?\",\"anchor_quote\":\"精确的P95延迟毫秒值\"}]}",
+  "provider_response": {
+    "id": "c65415d7-3b00-4b47-b626-8457856c9ab6",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 226,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 176,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 1062.5090419780463,
+  "sha256": "06e5a167e4db9bee17312e2f9929af7e04816afa67446135561bc415b1b4a2a0"
+}

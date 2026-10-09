@@ -1,0 +1,27 @@
+{
+  "decided_at": "2026-10-03T17:26:53+08:00",
+  "authority": "explicit_user_instruction",
+  "decision": "keep_existing_answer_service_do_not_adopt_new_research_agent",
+  "active_path": "/chat -> AnswerService -> RetrievalService",
+  "removed_entrypoint": "infra-rag agent",
+  "new_research_agent_live_experiments": "not_to_be_run",
+  "preserved": "historical experiment code, offline regressions, evaluation rules and immutable artifacts",
+  "existing_retrieval_settings_changed": false,
+  "checks": {
+    "pytest_passed": 269,
+    "pytest_skipped": 0,
+    "ruff": "passed",
+    "format": "passed",
+    "build": "passed",
+    "cli_help_has_agent_command": false,
+    "new_model_api_requests": 0
+  },
+  "changed_file_hashes": {
+    "src/infra_rag/cli.py": "c4031d52c67057848d5bc1da946f00442341b754b4fae43c87261f716ebf4ca5",
+    "tests/test_agent.py": "d245044901dfa3badfa812f895c3e58bd387f9fccf4f6f558430f2a95910ff36",
+    "tests/test_assistant.py": "ea34473b7b985236eabdc5ee113dcd24bc3447e49c8d867056d05c93500d6a4b",
+    "README.md": "21f3e5c396f9986d406fa0dd278533608786dcbdebdd21f712fd0ee33a5368d7",
+    "AGENT.md": "f9b0c1e8326099d446c4bdc02d0785e305345524d0841fae3a1810ae64943bd6",
+    "docs/read-only-agent.md": "dc55d507517f9fb4ba08047134fee3e116bb9716ee8adf2d53b5abf87215ad06"
+  }
+}

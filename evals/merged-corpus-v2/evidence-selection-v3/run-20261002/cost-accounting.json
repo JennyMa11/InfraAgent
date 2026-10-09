@@ -1,0 +1,60 @@
+{
+  "source": "supplier_response.usage; monetary price not measured",
+  "stages": {
+    "dev_facets": {
+      "attempted_calls": 110,
+      "calls_with_supplier_usage": 110,
+      "supplier_reported_usage": {
+        "input_tokens": 20118,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 8509
+      },
+      "supplier_reported_models": {
+        "deepseek-flash": 110
+      }
+    },
+    "answers": {
+      "attempted_calls": 48,
+      "calls_with_supplier_usage": 48,
+      "supplier_reported_usage": {
+        "input_tokens": 34021,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 34812,
+        "output_tokens": 7433
+      },
+      "supplier_reported_models": {
+        "deepseek-flash": 48
+      }
+    },
+    "quarantine_answers": {
+      "attempted_calls": 2,
+      "calls_with_supplier_usage": 2,
+      "supplier_reported_usage": {
+        "input_tokens": 1129,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 1664,
+        "output_tokens": 541
+      },
+      "supplier_reported_models": {
+        "deepseek-flash": 2
+      }
+    },
+    "uncached_latency_facets": {
+      "attempted_calls": 23,
+      "calls_with_supplier_usage": 23,
+      "supplier_reported_usage": {
+        "input_tokens": 4402,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 1866
+      },
+      "supplier_reported_models": {
+        "deepseek-flash": 23
+      }
+    }
+  },
+  "additional_bge_pairs": 18881,
+  "bge_pairs_would_truncate": 19,
+  "confirmation_accounting": "separate confirmation artifacts, if dev gate passes"
+}

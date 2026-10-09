@@ -1,0 +1,46 @@
+{
+  "quality_gate": true,
+  "equivalence_checked": 330,
+  "quality_source": "evals/merged-corpus-v2/budget-search-v8/run-20261003",
+  "official_delivery": [
+    47,
+    54
+  ],
+  "repository_delivery": [
+    41,
+    50
+  ],
+  "latency_gate": true,
+  "p95_ratio": 1.0722368104202504,
+  "warm_latency": {
+    "B-O15": {
+      "n": 110,
+      "p50_ms": 1492.0663749799132,
+      "p95_ms": 3410.884500015527
+    },
+    "Ladj-X30": {
+      "n": 110,
+      "p50_ms": 2022.7260624524206,
+      "p95_ms": 3657.275917008519
+    }
+  },
+  "historical_v8b_component_latency": {
+    "original": {
+      "n": 110,
+      "p50_ms": 400.7042709272355,
+      "p95_ms": 2586.312625091523
+    },
+    "optimized": {
+      "n": 110,
+      "p50_ms": 94.8772500269115,
+      "p95_ms": 658.7445409968495
+    }
+  },
+  "independent_review_gate": null,
+  "independent_review": "pending",
+  "adoption_allowed": false,
+  "default_changed": false,
+  "confirmation_allowed": false,
+  "holdout_test_read": false,
+  "generation_api_calls": 0
+}

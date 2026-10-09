@@ -1,0 +1,37 @@
+{
+  "original_query": "CUDA 13.0.1：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在memory-hierarchy场景下精确的P95延迟毫秒值吗？",
+  "scoring_query": "CUDA 13.0.1: Based solely on the current official documentation, can you give the exact P95 latency in milliseconds for my private deployment in a memory-hierarchy scenario, given that I have not provided the hardware, model, or logs?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "CUDA 13.0.1: Based solely on the current official documentation, can you give the exact P95 latency in milliseconds for my private deployment in a memory-hierarchy scenario, given that I have not provided the hardware, model, or logs?",
+      "anchor_quote": "CUDA 13.0.1：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在memory-hierarchy场景下精确的P95延迟毫秒值吗？"
+    }
+  ],
+  "fallback": "invalid_facets",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在memory-hierarchy场景下精确的P95延迟毫秒值吗？\", \"scoring_query\": \"CUDA 13.0.1: Based solely on the current official documentation, can you give the exact P95 latency in milliseconds for my private deployment in a memory-hierarchy scenario, given that I have not provided the hardware, model, or logs?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Does CUDA 13.0.1 exist in the current official documentation?\",\"anchor_quote\":\"CUDA 13.0.1：仅凭当前官方资料\"},{\"question\":\"Can the exact P95 latency in milliseconds be given based solely on the current official documentation?\",\"anchor_quote\":\"仅凭当前官方资料，能给出...精确的P95延迟毫秒值吗？\"},{\"question\":\"Is the deployment private and in a memory-hierarchy scenario?\",\"anchor_quote\":\"私有部署在memory-hierarchy场景下\"},{\"question\":\"Have the hardware, model, and logs not been provided?\",\"anchor_quote\":\"我未提供硬件、模型和日志\"}]}",
+  "provider_response": {
+    "id": "88fa6d76-94b1-4884-9586-4276feaf92f4",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 228,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 149,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 783.192583010532,
+  "sha256": "f34902d7052def58729aad667b9e273433a3be2949e0d0ed65f97ea1b48e205a"
+}

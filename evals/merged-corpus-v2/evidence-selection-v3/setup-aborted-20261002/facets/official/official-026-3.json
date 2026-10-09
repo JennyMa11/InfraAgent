@@ -1,0 +1,37 @@
+{
+  "original_query": "CUDA 13.0.1：排查该主题时，有人声称“所有带Async后缀的调用都无条件异步。”，根据文档这个说法哪里需要纠正？",
+  "scoring_query": "CUDA 13.0.1: When investigating this topic, someone claimed that \"all calls with the Async suffix are unconditionally asynchronous.\" According to the documentation, where does this claim need to be corrected?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "According to the documentation for CUDA 13.0.1, where does the claim that all calls with the Async suffix are unconditionally asynchronous need to be corrected?",
+      "anchor_quote": "CUDA 13.0.1：排查该主题时，有人声称“所有带Async后缀的调用都无条件异步。”，根据文档这个说法哪里需要纠正？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：排查该主题时，有人声称“所有带Async后缀的调用都无条件异步。”，根据文档这个说法哪里需要纠正？\", \"scoring_query\": \"CUDA 13.0.1: When investigating this topic, someone claimed that \\\"all calls with the Async suffix are unconditionally asynchronous.\\\" According to the documentation, where does this claim need to be corrected?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"According to the documentation for CUDA 13.0.1, where does the claim that all calls with the Async suffix are unconditionally asynchronous need to be corrected?\",\"anchor_quote\":\"CUDA 13.0.1：排查该主题时，有人声称“所有带Async后缀的调用都无条件异步。”，根据文档这个说法哪里需要纠正？\"}]}",
+  "provider_response": {
+    "id": "c9e3a367-0fb0-44dc-91de-c3e7b0f43057",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 212,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 85,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 851.5377920120955,
+  "sha256": "ccef67f5584aa68b790f9f8087fdd3687ef388c9608bfcaef02c73a60f87c0d0"
+}

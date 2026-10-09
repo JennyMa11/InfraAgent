@@ -1,0 +1,502 @@
+{
+  "kind": "post_run_fixed_trajectory_component_analysis",
+  "experiment_manifest_sha256": "31fb054da529073ab88059eee9d6166d1fed06fcaabb73fe12edd065e986fcf8",
+  "new_model_requests": 0,
+  "new_retrieval_calls": 0,
+  "header_losses": [
+    {
+      "id": "official-010-3",
+      "old_tokens": 1191,
+      "old_characters": 2979,
+      "same_bodies_agent_headers_tokens": 1349,
+      "same_bodies_agent_headers_characters": 3140,
+      "actual_agent_tokens": 1196,
+      "actual_agent_characters": 2753,
+      "omitted_ids": [
+        "e085d31e7b124f5399b5f94d"
+      ],
+      "shortened_ids": []
+    },
+    {
+      "id": "official-030-4",
+      "old_tokens": 1096,
+      "old_characters": 3174,
+      "same_bodies_agent_headers_tokens": 1568,
+      "same_bodies_agent_headers_characters": 4137,
+      "actual_agent_tokens": 1180,
+      "actual_agent_characters": 3128,
+      "omitted_ids": [
+        "fe2d6e472702fefa2a0e898c",
+        "e4610a8ee114cf948bd7b531"
+      ],
+      "shortened_ids": []
+    },
+    {
+      "id": "repo-020-1",
+      "old_tokens": 1181,
+      "old_characters": 1618,
+      "same_bodies_agent_headers_tokens": 1555,
+      "same_bodies_agent_headers_characters": 2375,
+      "actual_agent_tokens": 1158,
+      "actual_agent_characters": 1717,
+      "omitted_ids": [
+        "8fe95008c814d84216a26905",
+        "f0052f442851327e88190b23"
+      ],
+      "shortened_ids": []
+    }
+  ],
+  "fixed_trajectory_rows": [
+    {
+      "id": "official-022-1",
+      "arm": "agent-v6-fifo",
+      "actual": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "cumulative_candidate_complete": 1.0,
+      "same_tool_returns_fifo": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "CUDA 13.0.1 local memory shared memory scope lifetime",
+          "candidate_complete": 1.0,
+          "tool_delivery": {
+            "coverage": 1.0,
+            "complete": 1.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "official-022-1",
+      "arm": "agent-v6-coverage",
+      "actual": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "cumulative_candidate_complete": 1.0,
+      "same_tool_returns_fifo": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "CUDA 13.0.1 local memory shared memory scope lifetime",
+          "candidate_complete": 1.0,
+          "tool_delivery": {
+            "coverage": 1.0,
+            "complete": 1.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "official-030-2",
+      "arm": "agent-v6-fifo",
+      "actual": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "cumulative_candidate_complete": 1.0,
+      "same_tool_returns_fifo": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "CUDA 13.0.1 serial control loop data parallel operations host device programming guide",
+          "candidate_complete": 1.0,
+          "tool_delivery": {
+            "coverage": 0.0,
+            "complete": 0.0
+          }
+        },
+        {
+          "query": "CUDA serial control loop host device data parallel operations",
+          "candidate_complete": 1.0,
+          "tool_delivery": {
+            "coverage": 1.0,
+            "complete": 1.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "official-030-2",
+      "arm": "agent-v6-coverage",
+      "actual": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "cumulative_candidate_complete": 1.0,
+      "same_tool_returns_fifo": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "CUDA 13.0.1 programming guide serial control loop host device data parallel",
+          "candidate_complete": 1.0,
+          "tool_delivery": {
+            "coverage": 1.0,
+            "complete": 1.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "official-010-1",
+      "arm": "agent-v6-coverage",
+      "actual": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "cumulative_candidate_complete": 1.0,
+      "same_tool_returns_fifo": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "PR21611 connector KV cache multimodal input distinguish",
+          "candidate_complete": 1.0,
+          "tool_delivery": {
+            "coverage": 1.0,
+            "complete": 1.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "official-010-1",
+      "arm": "agent-v6-fifo",
+      "actual": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "cumulative_candidate_complete": 1.0,
+      "same_tool_returns_fifo": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "PR21611 connector distinguish KV different multimodal inputs",
+          "candidate_complete": 1.0,
+          "tool_delivery": {
+            "coverage": 1.0,
+            "complete": 1.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "repo-044-2",
+      "arm": "agent-v6-fifo",
+      "actual": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "cumulative_candidate_complete": 1.0,
+      "same_tool_returns_fifo": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 1.0,
+        "complete": 1.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "Target一次前向 五个候选位置 提交五个token 验收顺序",
+          "candidate_complete": 1.0,
+          "tool_delivery": {
+            "coverage": 1.0,
+            "complete": 1.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "repo-044-2",
+      "arm": "agent-v6-coverage",
+      "actual": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "cumulative_candidate_complete": 0.0,
+      "same_tool_returns_fifo": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "target forward five candidate positions submit five tokens acceptance order",
+          "candidate_complete": 0.0,
+          "tool_delivery": {
+            "coverage": 0.0,
+            "complete": 0.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "repo-014-2",
+      "arm": "agent-v6-fifo",
+      "actual": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "cumulative_candidate_complete": 0.0,
+      "same_tool_returns_fifo": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "FFN second layer reduction dimension tensor parallel partial sum all-reduce communication",
+          "candidate_complete": 0.0,
+          "tool_delivery": {
+            "coverage": 0.0,
+            "complete": 0.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "repo-014-2",
+      "arm": "agent-v6-coverage",
+      "actual": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "cumulative_candidate_complete": 0.0,
+      "same_tool_returns_fifo": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "FFN second layer reduction dimension tensor parallel partial sum all-reduce",
+          "candidate_complete": 0.0,
+          "tool_delivery": {
+            "coverage": 0.0,
+            "complete": 0.0
+          }
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "repo-022-1",
+      "arm": "agent-v6-coverage",
+      "actual": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "cumulative_candidate_complete": 0.0,
+      "same_tool_returns_fifo": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "prefix caching shared KV cache same prefix transformer inference",
+          "candidate_complete": 0.0,
+          "tool_delivery": {
+            "coverage": 0.0,
+            "complete": 0.0
+          }
+        }
+      ],
+      "events": [
+        "invalid_action_json"
+      ]
+    },
+    {
+      "id": "repo-022-1",
+      "arm": "agent-v6-fifo",
+      "actual": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "cumulative_candidate_complete": 0.0,
+      "same_tool_returns_fifo": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "same_tool_returns_coverage": {
+        "coverage": 0.0,
+        "complete": 0.0
+      },
+      "exact_actual_replay": true,
+      "search_rounds": [
+        {
+          "query": "prefix caching shared KV cache transformer attention",
+          "candidate_complete": 0.0,
+          "tool_delivery": {
+            "coverage": 0.0,
+            "complete": 0.0
+          }
+        }
+      ],
+      "events": []
+    }
+  ],
+  "actual_input_checks": [
+    {
+      "id": "official-022-1",
+      "arm": "legacy-v6",
+      "actual_input_verified": true
+    },
+    {
+      "id": "official-022-1",
+      "arm": "agent-v6-fifo",
+      "actual_input_verified": true
+    },
+    {
+      "id": "official-022-1",
+      "arm": "agent-v6-coverage",
+      "actual_input_verified": true
+    },
+    {
+      "id": "official-030-2",
+      "arm": "agent-v6-fifo",
+      "actual_input_verified": true
+    },
+    {
+      "id": "official-030-2",
+      "arm": "agent-v6-coverage",
+      "actual_input_verified": true
+    },
+    {
+      "id": "official-030-2",
+      "arm": "legacy-v6",
+      "actual_input_verified": true
+    },
+    {
+      "id": "official-010-1",
+      "arm": "agent-v6-coverage",
+      "actual_input_verified": true
+    },
+    {
+      "id": "official-010-1",
+      "arm": "legacy-v6",
+      "actual_input_verified": true
+    },
+    {
+      "id": "official-010-1",
+      "arm": "agent-v6-fifo",
+      "actual_input_verified": true
+    },
+    {
+      "id": "repo-044-2",
+      "arm": "legacy-v6",
+      "actual_input_verified": true
+    },
+    {
+      "id": "repo-044-2",
+      "arm": "agent-v6-fifo",
+      "actual_input_verified": true
+    },
+    {
+      "id": "repo-044-2",
+      "arm": "agent-v6-coverage",
+      "actual_input_verified": true
+    },
+    {
+      "id": "repo-014-2",
+      "arm": "agent-v6-fifo",
+      "actual_input_verified": true
+    },
+    {
+      "id": "repo-014-2",
+      "arm": "agent-v6-coverage",
+      "actual_input_verified": true
+    },
+    {
+      "id": "repo-014-2",
+      "arm": "legacy-v6",
+      "actual_input_verified": true
+    },
+    {
+      "id": "repo-022-1",
+      "arm": "agent-v6-coverage",
+      "actual_input_verified": true
+    },
+    {
+      "id": "repo-022-1",
+      "arm": "legacy-v6",
+      "actual_input_verified": true
+    },
+    {
+      "id": "repo-022-1",
+      "arm": "agent-v6-fifo",
+      "actual_input_verified": true
+    }
+  ],
+  "historical_archive_file_hashes_verified": 1128
+}

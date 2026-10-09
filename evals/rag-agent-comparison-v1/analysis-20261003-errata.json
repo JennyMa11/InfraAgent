@@ -1,0 +1,6 @@
+{
+  "superseded_analysis": "analysis-20261003",
+  "reason": "initial analyzer hardcoded software success before final analyzer lint; data and exact replay results remain valid",
+  "correction": "analyzer now loads actual external verification and computes report counts from results; final lint passed",
+  "replacement": "analysis-20261003-final"
+}

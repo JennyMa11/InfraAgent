@@ -1,0 +1,12 @@
+{
+  "arguments": {
+    "query": "检索 vLLM APC；成功响应不满足工具后置条件时转人工。"
+  },
+  "observation": {
+    "error": "tool_failure_or_postcondition",
+    "error_type": "ValueError"
+  },
+  "operation_id": "op0",
+  "postcondition_ok": false,
+  "retry_of": "s2"
+}

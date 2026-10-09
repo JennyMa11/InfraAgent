@@ -1,0 +1,1277 @@
+{
+  "arguments": {
+    "query": "vLLM server enable LoRA flag"
+  },
+  "observation": {
+    "evidence": [
+      {
+        "id": "E81805b2e03ff0c45a472fea8",
+        "chunk_id": "e174aa69fb0a94f62a32c952",
+        "parent_id": "5c6b51b4726b0df7e068a1a6",
+        "source": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md",
+        "sha256": "ea46686b99b86733243e952f49574c17f9011b5a96ca270a48f4d140c1a3d6c8",
+        "locator": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md#L110-L115",
+        "content": "In addition to serving LoRA adapters at server startup, the vLLM server supports dynamically configuring LoRA adapters at runtime through dedicated API endpoints and plugins.\nThis feature can be particularly useful when the flexibility to change models on-the-fly is needed.\nNote: Enabling this feature in production environments is risky as users may participate in model adapter management.",
+        "truncated": false,
+        "metadata": {
+          "release": "v0.10.2",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "source_type": "documentation"
+        }
+      },
+      {
+        "id": "Efe9ca4bd5766d890811eeb97",
+        "chunk_id": "20078d3d1ae53a7a98b22240",
+        "parent_id": "8a6a7a36756c830fa7a7e6f7",
+        "source": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md",
+        "sha256": "ea46686b99b86733243e952f49574c17f9011b5a96ca270a48f4d140c1a3d6c8",
+        "locator": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md#L3-L27",
+        "content": "```python\nfrom huggingface_hub import snapshot_download\n\nsql_lora_path = snapshot_download(repo_id=\"yard1/llama-2-7b-sql-lora-test\")\n```\nThen we instantiate the base model and pass in the `enable_lora=True` flag:\n```python\nfrom vllm import LLM, SamplingParams\nfrom vllm.lora.request import LoRARequest\n\nllm = LLM(model=\"meta-llama/Llama-2-7b-hf\", enable_lora=True)\n```",
+        "truncated": false,
+        "metadata": {
+          "release": "v0.10.2",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "source_type": "documentation"
+        }
+      },
+      {
+        "id": "E27e0044e8d3741349af545f9",
+        "chunk_id": "691d23dc6f59c806abde5195",
+        "parent_id": "0caf6bf3e6af634c6f12f24c",
+        "source": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md",
+        "sha256": "ea46686b99b86733243e952f49574c17f9011b5a96ca270a48f4d140c1a3d6c8",
+        "locator": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md#L54-L61",
+        "content": "LoRA adapted models can also be served with the Open-AI compatible vLLM server. To do so, we use\n`--lora-modules {name}={path} {name}={path}` to specify each LoRA module when we kick off the server:\n\n```bash\nvllm serve meta-llama/Llama-2-7b-hf \\\n    --enable-lora \\\n    --lora-modules sql-lora=$HOME/.cache/huggingface/hub/models--yard1--llama-2-7b-sql-lora-test/snapshots/0dfa347e8877a4d4ed19ee56c140fa518470028c/\n```",
+        "truncated": false,
+        "metadata": {
+          "release": "v0.10.2",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "source_type": "documentation"
+        }
+      },
+      {
+        "id": "Ee77dff060b4733bbb9fbb5d6",
+        "chunk_id": "e56346048e1013ad7a04cf93",
+        "parent_id": "5e04e802efe14a1fc6a84edd",
+        "source": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md",
+        "sha256": "ea46686b99b86733243e952f49574c17f9011b5a96ca270a48f4d140c1a3d6c8",
+        "locator": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md#L165-L168",
+        "content": "You can either install existing plugins or implement your own.\nBy default, vLLM comes with a [resolver plugin to load LoRA adapters from a local directory.](https://github.com/vllm-project/vllm/tree/main/vllm/plugins/lora_resolvers)\nTo enable this resolver, set `VLLM_ALLOW_RUNTIME_LORA_UPDATING` to True, set `VLLM_PLUGINS` to include `lora_filesystem_resolver`, and then set `VLLM_LORA_RESOLVER_CACHE_DIR` to a local directory.",
+        "truncated": false,
+        "metadata": {
+          "release": "v0.10.2",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "source_type": "documentation"
+        }
+      },
+      {
+        "id": "E7cbb435fb0cc51fda300bffb",
+        "chunk_id": "37db340642bdab74e8ccae24",
+        "parent_id": "5c6b51b4726b0df7e068a1a6",
+        "source": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md",
+        "sha256": "ea46686b99b86733243e952f49574c17f9011b5a96ca270a48f4d140c1a3d6c8",
+        "locator": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md#L110-L115",
+        "content": "To enable dynamic LoRA configuration, ensure that the environment variable `VLLM_ALLOW_RUNTIME_LORA_UPDATING`\nis set to `True`.",
+        "truncated": false,
+        "metadata": {
+          "release": "v0.10.2",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "source_type": "documentation"
+        }
+      },
+      {
+        "id": "E2dca3e952d1effe9f0a62fd6",
+        "chunk_id": "1e705a7a8a10fddc30defedf",
+        "parent_id": "8a6a7a36756c830fa7a7e6f7",
+        "source": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md",
+        "sha256": "ea46686b99b86733243e952f49574c17f9011b5a96ca270a48f4d140c1a3d6c8",
+        "locator": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md#L3-L27",
+        "content": "This document shows you how to use [LoRA adapters](https://arxiv.org/abs/2106.09685) with vLLM on top of a base model.\nLoRA adapters can be used with any vLLM model that implements [SupportsLoRA][vllm.model_executor.models.interfaces.SupportsLoRA].\nAdapters can be efficiently served on a per request basis with minimal overhead.\nFirst we download the adapter(s) and save\nthem locally with",
+        "truncated": false,
+        "metadata": {
+          "release": "v0.10.2",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "source_type": "documentation"
+        }
+      },
+      {
+        "id": "E5440a20c954bfc4c1a67d3da",
+        "chunk_id": "557065bb166f4ca567fc9700",
+        "parent_id": "8a6a7a36756c830fa7a7e6f7",
+        "source": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md",
+        "sha256": "ea46686b99b86733243e952f49574c17f9011b5a96ca270a48f4d140c1a3d6c8",
+        "locator": "/Users/jennyma/Projects/InfraAgent/evals/agent-e2e-v1/corpus/vllm-lora.md#L3-L27",
+        "content": "We can now submit the prompts and call `llm.generate` with the `lora_request` parameter.\nThe first parameter\nof `LoRARequest` is a human identifiable name, the second parameter is a globally unique ID for the adapter and\nthe third parameter is the path to the LoRA adapter.",
+        "truncated": false,
+        "metadata": {
+          "release": "v0.10.2",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "source_type": "documentation"
+        }
+      }
+    ],
+    "parents": [
+      "5c6b51b4726b0df7e068a1a6",
+      "8a6a7a36756c830fa7a7e6f7",
+      "0caf6bf3e6af634c6f12f24c",
+      "5e04e802efe14a1fc6a84edd"
+    ],
+    "postcondition_ok": true,
+    "candidate_ids": [
+      "691d23dc6f59c806abde5195",
+      "20078d3d1ae53a7a98b22240",
+      "37db340642bdab74e8ccae24",
+      "acbf31b40524ea2d3538457e",
+      "e56346048e1013ad7a04cf93",
+      "86ce5a2f7185d5d3319a9b8b",
+      "e174aa69fb0a94f62a32c952",
+      "0538dace7efe2e82ce9af59e",
+      "dd97e4a7a2e66f40a06ea64d",
+      "462a93dc59d9f6caf9f0ad84",
+      "130d9cf596ea5902932a75fe",
+      "5e60d2da6d033556f62d552d",
+      "c1031fd4a89ca848eecd7d4c",
+      "12efbe17cd256c58d1de4fa9",
+      "80078b096cc38a9213137a5d",
+      "6ede8a67e9df3c5bc2294d94",
+      "f650b92e1340e28ad53e3be0",
+      "2160b85efeebb195daa2ca1d",
+      "8423148a393e59df9cac5b91",
+      "9923cc501e7f7768c4aa3ae6",
+      "db29b446083dedb97def7581",
+      "da9dd57165c4172148c8bbc4",
+      "5329dd5e3c5bb90b2c253d87",
+      "9eac1deeac4f5f50544e60fc",
+      "adacbc6911184a7d0b3f6d7b",
+      "57c2d0608f1f193f86fa78f6",
+      "b1449945e1cdab5b052a094f",
+      "f45ea5315012fe68e5b69038",
+      "02a77e667fbb0dd65c94556e",
+      "573a059889f32dadf46d1b2f",
+      "f49700ca6a0b8b66a6f834a4",
+      "77e8139441c82f895b6bf83c",
+      "0a9117d74f08bc5cb4338a84",
+      "9e1d423838d33a4c2248f26b",
+      "09c2e6a85e258a6450cf43e1",
+      "1184b4d2d854b3c2995b0fee",
+      "9365e35172f0e095597f0f1f",
+      "3b9bba80dcd5522b650413e0",
+      "208c139dbb9b834299f8a244",
+      "cfadee12275eaa2eff5edc62",
+      "1be8dbd4edecf4df93089b3d",
+      "50ff27e535baea371ce7d1f4"
+    ],
+    "ranked_ids": [
+      "e174aa69fb0a94f62a32c952",
+      "20078d3d1ae53a7a98b22240",
+      "691d23dc6f59c806abde5195",
+      "e56346048e1013ad7a04cf93",
+      "37db340642bdab74e8ccae24",
+      "86ce5a2f7185d5d3319a9b8b",
+      "f45ea5315012fe68e5b69038",
+      "0538dace7efe2e82ce9af59e",
+      "130d9cf596ea5902932a75fe",
+      "acbf31b40524ea2d3538457e",
+      "f49700ca6a0b8b66a6f834a4",
+      "dd97e4a7a2e66f40a06ea64d",
+      "573a059889f32dadf46d1b2f",
+      "9365e35172f0e095597f0f1f",
+      "db29b446083dedb97def7581",
+      "462a93dc59d9f6caf9f0ad84",
+      "c1031fd4a89ca848eecd7d4c",
+      "80078b096cc38a9213137a5d",
+      "1184b4d2d854b3c2995b0fee",
+      "9923cc501e7f7768c4aa3ae6",
+      "2160b85efeebb195daa2ca1d",
+      "9eac1deeac4f5f50544e60fc",
+      "57c2d0608f1f193f86fa78f6",
+      "1be8dbd4edecf4df93089b3d",
+      "cfadee12275eaa2eff5edc62",
+      "0a9117d74f08bc5cb4338a84",
+      "f650b92e1340e28ad53e3be0",
+      "5e60d2da6d033556f62d552d",
+      "da9dd57165c4172148c8bbc4",
+      "50ff27e535baea371ce7d1f4",
+      "8423148a393e59df9cac5b91",
+      "5329dd5e3c5bb90b2c253d87",
+      "3b9bba80dcd5522b650413e0",
+      "208c139dbb9b834299f8a244",
+      "b1449945e1cdab5b052a094f",
+      "adacbc6911184a7d0b3f6d7b",
+      "6ede8a67e9df3c5bc2294d94",
+      "12efbe17cd256c58d1de4fa9",
+      "77e8139441c82f895b6bf83c",
+      "09c2e6a85e258a6450cf43e1",
+      "9e1d423838d33a4c2248f26b",
+      "02a77e667fbb0dd65c94556e"
+    ],
+    "diagnostics": {
+      "channels": {
+        "bm25": {
+          "score_kind": "bm25_score",
+          "ranking": [
+            {
+              "chunk_id": "8423148a393e59df9cac5b91",
+              "rank": 1,
+              "score": 17.41551016230961
+            },
+            {
+              "chunk_id": "db29b446083dedb97def7581",
+              "rank": 2,
+              "score": 15.991491668689768
+            },
+            {
+              "chunk_id": "20078d3d1ae53a7a98b22240",
+              "rank": 3,
+              "score": 12.311126284436883
+            },
+            {
+              "chunk_id": "691d23dc6f59c806abde5195",
+              "rank": 4,
+              "score": 10.340639651846578
+            },
+            {
+              "chunk_id": "37db340642bdab74e8ccae24",
+              "rank": 5,
+              "score": 7.908988084274812
+            },
+            {
+              "chunk_id": "e174aa69fb0a94f62a32c952",
+              "rank": 6,
+              "score": 7.705179322302317
+            },
+            {
+              "chunk_id": "462a93dc59d9f6caf9f0ad84",
+              "rank": 7,
+              "score": 7.629080483013759
+            },
+            {
+              "chunk_id": "86ce5a2f7185d5d3319a9b8b",
+              "rank": 8,
+              "score": 7.33095099618245
+            },
+            {
+              "chunk_id": "dd97e4a7a2e66f40a06ea64d",
+              "rank": 9,
+              "score": 6.730154107430401
+            },
+            {
+              "chunk_id": "acbf31b40524ea2d3538457e",
+              "rank": 10,
+              "score": 6.660653867626551
+            },
+            {
+              "chunk_id": "0538dace7efe2e82ce9af59e",
+              "rank": 11,
+              "score": 6.496162837402808
+            },
+            {
+              "chunk_id": "e56346048e1013ad7a04cf93",
+              "rank": 12,
+              "score": 6.381378477235142
+            },
+            {
+              "chunk_id": "130d9cf596ea5902932a75fe",
+              "rank": 13,
+              "score": 6.336227334661327
+            },
+            {
+              "chunk_id": "f45ea5315012fe68e5b69038",
+              "rank": 14,
+              "score": 6.225499315433487
+            },
+            {
+              "chunk_id": "02a77e667fbb0dd65c94556e",
+              "rank": 15,
+              "score": 5.607094046342008
+            },
+            {
+              "chunk_id": "f49700ca6a0b8b66a6f834a4",
+              "rank": 16,
+              "score": 5.366684623063238
+            },
+            {
+              "chunk_id": "c1031fd4a89ca848eecd7d4c",
+              "rank": 17,
+              "score": 5.31414571286096
+            },
+            {
+              "chunk_id": "77e8139441c82f895b6bf83c",
+              "rank": 18,
+              "score": 5.269240735678296
+            },
+            {
+              "chunk_id": "9e1d423838d33a4c2248f26b",
+              "rank": 19,
+              "score": 3.915515460637896
+            },
+            {
+              "chunk_id": "09c2e6a85e258a6450cf43e1",
+              "rank": 20,
+              "score": 3.8907818817060864
+            },
+            {
+              "chunk_id": "80078b096cc38a9213137a5d",
+              "rank": 21,
+              "score": 3.2190463109026486
+            },
+            {
+              "chunk_id": "6ede8a67e9df3c5bc2294d94",
+              "rank": 22,
+              "score": 3.1680751968426635
+            },
+            {
+              "chunk_id": "5e60d2da6d033556f62d552d",
+              "rank": 23,
+              "score": 3.1312017581064415
+            },
+            {
+              "chunk_id": "2160b85efeebb195daa2ca1d",
+              "rank": 24,
+              "score": 3.1244289008649697
+            },
+            {
+              "chunk_id": "12efbe17cd256c58d1de4fa9",
+              "rank": 25,
+              "score": 3.1082610642095196
+            },
+            {
+              "chunk_id": "3b9bba80dcd5522b650413e0",
+              "rank": 26,
+              "score": 3.0857377796122645
+            },
+            {
+              "chunk_id": "208c139dbb9b834299f8a244",
+              "rank": 27,
+              "score": 3.07076889885824
+            },
+            {
+              "chunk_id": "f650b92e1340e28ad53e3be0",
+              "rank": 28,
+              "score": 3.038374723619857
+            },
+            {
+              "chunk_id": "cfadee12275eaa2eff5edc62",
+              "rank": 29,
+              "score": 3.036485316579026
+            },
+            {
+              "chunk_id": "50ff27e535baea371ce7d1f4",
+              "rank": 30,
+              "score": 3.027455232203026
+            }
+          ]
+        },
+        "dense": {
+          "score_kind": "cosine_distance",
+          "ranking": [
+            {
+              "chunk_id": "acbf31b40524ea2d3538457e",
+              "rank": 1,
+              "score": 0.3653675317764282
+            },
+            {
+              "chunk_id": "9923cc501e7f7768c4aa3ae6",
+              "rank": 2,
+              "score": 0.39352691173553467
+            },
+            {
+              "chunk_id": "691d23dc6f59c806abde5195",
+              "rank": 3,
+              "score": 0.3939758539199829
+            },
+            {
+              "chunk_id": "37db340642bdab74e8ccae24",
+              "rank": 4,
+              "score": 0.39479756355285645
+            },
+            {
+              "chunk_id": "20078d3d1ae53a7a98b22240",
+              "rank": 5,
+              "score": 0.4021119475364685
+            },
+            {
+              "chunk_id": "da9dd57165c4172148c8bbc4",
+              "rank": 6,
+              "score": 0.4053824543952942
+            },
+            {
+              "chunk_id": "5329dd5e3c5bb90b2c253d87",
+              "rank": 7,
+              "score": 0.409904420375824
+            },
+            {
+              "chunk_id": "e56346048e1013ad7a04cf93",
+              "rank": 8,
+              "score": 0.4120103120803833
+            },
+            {
+              "chunk_id": "9eac1deeac4f5f50544e60fc",
+              "rank": 9,
+              "score": 0.4140220880508423
+            },
+            {
+              "chunk_id": "adacbc6911184a7d0b3f6d7b",
+              "rank": 10,
+              "score": 0.41770392656326294
+            },
+            {
+              "chunk_id": "57c2d0608f1f193f86fa78f6",
+              "rank": 11,
+              "score": 0.41789841651916504
+            },
+            {
+              "chunk_id": "5e60d2da6d033556f62d552d",
+              "rank": 12,
+              "score": 0.4185183048248291
+            },
+            {
+              "chunk_id": "86ce5a2f7185d5d3319a9b8b",
+              "rank": 13,
+              "score": 0.41854751110076904
+            },
+            {
+              "chunk_id": "b1449945e1cdab5b052a094f",
+              "rank": 14,
+              "score": 0.41992640495300293
+            },
+            {
+              "chunk_id": "0538dace7efe2e82ce9af59e",
+              "rank": 15,
+              "score": 0.41995787620544434
+            },
+            {
+              "chunk_id": "573a059889f32dadf46d1b2f",
+              "rank": 16,
+              "score": 0.4216011166572571
+            },
+            {
+              "chunk_id": "e174aa69fb0a94f62a32c952",
+              "rank": 17,
+              "score": 0.4219614267349243
+            },
+            {
+              "chunk_id": "dd97e4a7a2e66f40a06ea64d",
+              "rank": 18,
+              "score": 0.42288029193878174
+            },
+            {
+              "chunk_id": "0a9117d74f08bc5cb4338a84",
+              "rank": 19,
+              "score": 0.42527472972869873
+            },
+            {
+              "chunk_id": "1184b4d2d854b3c2995b0fee",
+              "rank": 20,
+              "score": 0.42884010076522827
+            },
+            {
+              "chunk_id": "130d9cf596ea5902932a75fe",
+              "rank": 21,
+              "score": 0.4347008466720581
+            },
+            {
+              "chunk_id": "12efbe17cd256c58d1de4fa9",
+              "rank": 22,
+              "score": 0.4348594546318054
+            },
+            {
+              "chunk_id": "f650b92e1340e28ad53e3be0",
+              "rank": 23,
+              "score": 0.436387836933136
+            },
+            {
+              "chunk_id": "9365e35172f0e095597f0f1f",
+              "rank": 24,
+              "score": 0.4365057945251465
+            },
+            {
+              "chunk_id": "462a93dc59d9f6caf9f0ad84",
+              "rank": 25,
+              "score": 0.4366285800933838
+            },
+            {
+              "chunk_id": "6ede8a67e9df3c5bc2294d94",
+              "rank": 26,
+              "score": 0.43668240308761597
+            },
+            {
+              "chunk_id": "80078b096cc38a9213137a5d",
+              "rank": 27,
+              "score": 0.4367443919181824
+            },
+            {
+              "chunk_id": "c1031fd4a89ca848eecd7d4c",
+              "rank": 28,
+              "score": 0.43687576055526733
+            },
+            {
+              "chunk_id": "2160b85efeebb195daa2ca1d",
+              "rank": 29,
+              "score": 0.4375234842300415
+            },
+            {
+              "chunk_id": "1be8dbd4edecf4df93089b3d",
+              "rank": 30,
+              "score": 0.4387996792793274
+            }
+          ]
+        }
+      },
+      "timings_ms": {
+        "lock_wait": 0.011084135621786118,
+        "filter": 0.05391612648963928,
+        "bm25": 0.8964999578893185,
+        "dense": 54.04754099436104,
+        "fusion": 0.2615419216454029,
+        "rerank": 468.15345785580575,
+        "context": 6.355291930958629,
+        "total": 529.8049170523882
+      },
+      "rerank": {
+        "enabled": true,
+        "pair_limit": 512,
+        "pairs": [
+          {
+            "input_tokens": 200,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 164,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 73,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 145,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 189,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 103,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 120,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 116,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 102,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 77,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 132,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 36,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 115,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 41,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 95,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 47,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 102,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 60,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 81,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 25,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 134,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 114,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 121,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 136,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 153,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 68,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 179,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 125,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 97,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 96,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 162,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 97,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 112,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 60,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 98,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 107,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 121,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 50,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 39,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 106,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 189,
+            "would_truncate": false
+          },
+          {
+            "input_tokens": 169,
+            "would_truncate": false
+          }
+        ],
+        "scope": "text_and_image_captions"
+      },
+      "eligible_chunks": 233,
+      "candidate_k": 30,
+      "dense_query": {
+        "input_tokens": 30,
+        "window_limit": 510,
+        "windows": 1,
+        "handling": "token_window_mean"
+      },
+      "fusion": [
+        {
+          "chunk_id": "691d23dc6f59c806abde5195",
+          "rank": 1,
+          "rrf_score": 0.03149801587301587,
+          "retained": true
+        },
+        {
+          "chunk_id": "20078d3d1ae53a7a98b22240",
+          "rank": 2,
+          "rrf_score": 0.03125763125763126,
+          "retained": true
+        },
+        {
+          "chunk_id": "37db340642bdab74e8ccae24",
+          "rank": 3,
+          "rrf_score": 0.031009615384615385,
+          "retained": true
+        },
+        {
+          "chunk_id": "acbf31b40524ea2d3538457e",
+          "rank": 4,
+          "rrf_score": 0.030679156908665108,
+          "retained": true
+        },
+        {
+          "chunk_id": "e56346048e1013ad7a04cf93",
+          "rank": 5,
+          "rrf_score": 0.028594771241830064,
+          "retained": true
+        },
+        {
+          "chunk_id": "86ce5a2f7185d5d3319a9b8b",
+          "rank": 6,
+          "rrf_score": 0.028404512489927477,
+          "retained": true
+        },
+        {
+          "chunk_id": "e174aa69fb0a94f62a32c952",
+          "rank": 7,
+          "rrf_score": 0.02813852813852814,
+          "retained": true
+        },
+        {
+          "chunk_id": "0538dace7efe2e82ce9af59e",
+          "rank": 8,
+          "rrf_score": 0.027417840375586856,
+          "retained": true
+        },
+        {
+          "chunk_id": "dd97e4a7a2e66f40a06ea64d",
+          "rank": 9,
+          "rrf_score": 0.027313266443701224,
+          "retained": true
+        },
+        {
+          "chunk_id": "462a93dc59d9f6caf9f0ad84",
+          "rank": 10,
+          "rrf_score": 0.0266900790166813,
+          "retained": true
+        },
+        {
+          "chunk_id": "130d9cf596ea5902932a75fe",
+          "rank": 11,
+          "rrf_score": 0.02604430914933198,
+          "retained": true
+        },
+        {
+          "chunk_id": "5e60d2da6d033556f62d552d",
+          "rank": 12,
+          "rrf_score": 0.025937081659973226,
+          "retained": true
+        },
+        {
+          "chunk_id": "c1031fd4a89ca848eecd7d4c",
+          "rank": 13,
+          "rrf_score": 0.024350649350649352,
+          "retained": true
+        },
+        {
+          "chunk_id": "12efbe17cd256c58d1de4fa9",
+          "rank": 14,
+          "rrf_score": 0.023959827833572454,
+          "retained": true
+        },
+        {
+          "chunk_id": "80078b096cc38a9213137a5d",
+          "rank": 15,
+          "rrf_score": 0.023839931885908897,
+          "retained": true
+        },
+        {
+          "chunk_id": "6ede8a67e9df3c5bc2294d94",
+          "rank": 16,
+          "rrf_score": 0.0238230289279637,
+          "retained": true
+        },
+        {
+          "chunk_id": "f650b92e1340e28ad53e3be0",
+          "rank": 17,
+          "rrf_score": 0.023411829134720702,
+          "retained": true
+        },
+        {
+          "chunk_id": "2160b85efeebb195daa2ca1d",
+          "rank": 18,
+          "rrf_score": 0.02314071696094168,
+          "retained": true
+        },
+        {
+          "chunk_id": "8423148a393e59df9cac5b91",
+          "rank": 19,
+          "rrf_score": 0.01639344262295082,
+          "retained": true
+        },
+        {
+          "chunk_id": "9923cc501e7f7768c4aa3ae6",
+          "rank": 20,
+          "rrf_score": 0.016129032258064516,
+          "retained": true
+        },
+        {
+          "chunk_id": "db29b446083dedb97def7581",
+          "rank": 21,
+          "rrf_score": 0.016129032258064516,
+          "retained": true
+        },
+        {
+          "chunk_id": "da9dd57165c4172148c8bbc4",
+          "rank": 22,
+          "rrf_score": 0.015151515151515152,
+          "retained": true
+        },
+        {
+          "chunk_id": "5329dd5e3c5bb90b2c253d87",
+          "rank": 23,
+          "rrf_score": 0.014925373134328358,
+          "retained": true
+        },
+        {
+          "chunk_id": "9eac1deeac4f5f50544e60fc",
+          "rank": 24,
+          "rrf_score": 0.014492753623188406,
+          "retained": true
+        },
+        {
+          "chunk_id": "adacbc6911184a7d0b3f6d7b",
+          "rank": 25,
+          "rrf_score": 0.014285714285714285,
+          "retained": true
+        },
+        {
+          "chunk_id": "57c2d0608f1f193f86fa78f6",
+          "rank": 26,
+          "rrf_score": 0.014084507042253521,
+          "retained": true
+        },
+        {
+          "chunk_id": "b1449945e1cdab5b052a094f",
+          "rank": 27,
+          "rrf_score": 0.013513513513513514,
+          "retained": true
+        },
+        {
+          "chunk_id": "f45ea5315012fe68e5b69038",
+          "rank": 28,
+          "rrf_score": 0.013513513513513514,
+          "retained": true
+        },
+        {
+          "chunk_id": "02a77e667fbb0dd65c94556e",
+          "rank": 29,
+          "rrf_score": 0.013333333333333334,
+          "retained": true
+        },
+        {
+          "chunk_id": "573a059889f32dadf46d1b2f",
+          "rank": 30,
+          "rrf_score": 0.013157894736842105,
+          "retained": true
+        },
+        {
+          "chunk_id": "f49700ca6a0b8b66a6f834a4",
+          "rank": 31,
+          "rrf_score": 0.013157894736842105,
+          "retained": true
+        },
+        {
+          "chunk_id": "77e8139441c82f895b6bf83c",
+          "rank": 32,
+          "rrf_score": 0.01282051282051282,
+          "retained": true
+        },
+        {
+          "chunk_id": "0a9117d74f08bc5cb4338a84",
+          "rank": 33,
+          "rrf_score": 0.012658227848101266,
+          "retained": true
+        },
+        {
+          "chunk_id": "9e1d423838d33a4c2248f26b",
+          "rank": 34,
+          "rrf_score": 0.012658227848101266,
+          "retained": true
+        },
+        {
+          "chunk_id": "09c2e6a85e258a6450cf43e1",
+          "rank": 35,
+          "rrf_score": 0.0125,
+          "retained": true
+        },
+        {
+          "chunk_id": "1184b4d2d854b3c2995b0fee",
+          "rank": 36,
+          "rrf_score": 0.0125,
+          "retained": true
+        },
+        {
+          "chunk_id": "9365e35172f0e095597f0f1f",
+          "rank": 37,
+          "rrf_score": 0.011904761904761904,
+          "retained": true
+        },
+        {
+          "chunk_id": "3b9bba80dcd5522b650413e0",
+          "rank": 38,
+          "rrf_score": 0.011627906976744186,
+          "retained": true
+        },
+        {
+          "chunk_id": "208c139dbb9b834299f8a244",
+          "rank": 39,
+          "rrf_score": 0.011494252873563218,
+          "retained": true
+        },
+        {
+          "chunk_id": "cfadee12275eaa2eff5edc62",
+          "rank": 40,
+          "rrf_score": 0.011235955056179775,
+          "retained": true
+        },
+        {
+          "chunk_id": "1be8dbd4edecf4df93089b3d",
+          "rank": 41,
+          "rrf_score": 0.011111111111111112,
+          "retained": true
+        },
+        {
+          "chunk_id": "50ff27e535baea371ce7d1f4",
+          "rank": 42,
+          "rrf_score": 0.011111111111111112,
+          "retained": true
+        }
+      ],
+      "candidates": [
+        "691d23dc6f59c806abde5195",
+        "20078d3d1ae53a7a98b22240",
+        "37db340642bdab74e8ccae24",
+        "acbf31b40524ea2d3538457e",
+        "e56346048e1013ad7a04cf93",
+        "86ce5a2f7185d5d3319a9b8b",
+        "e174aa69fb0a94f62a32c952",
+        "0538dace7efe2e82ce9af59e",
+        "dd97e4a7a2e66f40a06ea64d",
+        "462a93dc59d9f6caf9f0ad84",
+        "130d9cf596ea5902932a75fe",
+        "5e60d2da6d033556f62d552d",
+        "c1031fd4a89ca848eecd7d4c",
+        "12efbe17cd256c58d1de4fa9",
+        "80078b096cc38a9213137a5d",
+        "6ede8a67e9df3c5bc2294d94",
+        "f650b92e1340e28ad53e3be0",
+        "2160b85efeebb195daa2ca1d",
+        "8423148a393e59df9cac5b91",
+        "9923cc501e7f7768c4aa3ae6",
+        "db29b446083dedb97def7581",
+        "da9dd57165c4172148c8bbc4",
+        "5329dd5e3c5bb90b2c253d87",
+        "9eac1deeac4f5f50544e60fc",
+        "adacbc6911184a7d0b3f6d7b",
+        "57c2d0608f1f193f86fa78f6",
+        "b1449945e1cdab5b052a094f",
+        "f45ea5315012fe68e5b69038",
+        "02a77e667fbb0dd65c94556e",
+        "573a059889f32dadf46d1b2f",
+        "f49700ca6a0b8b66a6f834a4",
+        "77e8139441c82f895b6bf83c",
+        "0a9117d74f08bc5cb4338a84",
+        "9e1d423838d33a4c2248f26b",
+        "09c2e6a85e258a6450cf43e1",
+        "1184b4d2d854b3c2995b0fee",
+        "9365e35172f0e095597f0f1f",
+        "3b9bba80dcd5522b650413e0",
+        "208c139dbb9b834299f8a244",
+        "cfadee12275eaa2eff5edc62",
+        "1be8dbd4edecf4df93089b3d",
+        "50ff27e535baea371ce7d1f4"
+      ],
+      "final": [
+        {
+          "chunk_id": "e174aa69fb0a94f62a32c952",
+          "rank": 1,
+          "before_rerank_rank": 7,
+          "rerank_score": 0.9930879473686218
+        },
+        {
+          "chunk_id": "20078d3d1ae53a7a98b22240",
+          "rank": 2,
+          "before_rerank_rank": 2,
+          "rerank_score": 0.9912857413291931
+        },
+        {
+          "chunk_id": "691d23dc6f59c806abde5195",
+          "rank": 3,
+          "before_rerank_rank": 1,
+          "rerank_score": 0.9862631559371948
+        },
+        {
+          "chunk_id": "e56346048e1013ad7a04cf93",
+          "rank": 4,
+          "before_rerank_rank": 5,
+          "rerank_score": 0.9700465798377991
+        },
+        {
+          "chunk_id": "37db340642bdab74e8ccae24",
+          "rank": 5,
+          "before_rerank_rank": 3,
+          "rerank_score": 0.9659961462020874
+        },
+        {
+          "chunk_id": "86ce5a2f7185d5d3319a9b8b",
+          "rank": 6,
+          "before_rerank_rank": 6,
+          "rerank_score": 0.9502478241920471
+        },
+        {
+          "chunk_id": "f45ea5315012fe68e5b69038",
+          "rank": 7,
+          "before_rerank_rank": 28,
+          "rerank_score": 0.8905736804008484
+        },
+        {
+          "chunk_id": "0538dace7efe2e82ce9af59e",
+          "rank": 8,
+          "before_rerank_rank": 8,
+          "rerank_score": 0.8687692284584045
+        },
+        {
+          "chunk_id": "130d9cf596ea5902932a75fe",
+          "rank": 9,
+          "before_rerank_rank": 11,
+          "rerank_score": 0.7943822145462036
+        },
+        {
+          "chunk_id": "acbf31b40524ea2d3538457e",
+          "rank": 10,
+          "before_rerank_rank": 4,
+          "rerank_score": 0.7650994658470154
+        },
+        {
+          "chunk_id": "f49700ca6a0b8b66a6f834a4",
+          "rank": 11,
+          "before_rerank_rank": 31,
+          "rerank_score": 0.7021786570549011
+        },
+        {
+          "chunk_id": "dd97e4a7a2e66f40a06ea64d",
+          "rank": 12,
+          "before_rerank_rank": 9,
+          "rerank_score": 0.4435617923736572
+        },
+        {
+          "chunk_id": "573a059889f32dadf46d1b2f",
+          "rank": 13,
+          "before_rerank_rank": 30,
+          "rerank_score": 0.2980533838272095
+        },
+        {
+          "chunk_id": "9365e35172f0e095597f0f1f",
+          "rank": 14,
+          "before_rerank_rank": 37,
+          "rerank_score": 0.2952851355075836
+        },
+        {
+          "chunk_id": "db29b446083dedb97def7581",
+          "rank": 15,
+          "before_rerank_rank": 21,
+          "rerank_score": 0.2809820771217346
+        },
+        {
+          "chunk_id": "462a93dc59d9f6caf9f0ad84",
+          "rank": 16,
+          "before_rerank_rank": 10,
+          "rerank_score": 0.2704952657222748
+        },
+        {
+          "chunk_id": "c1031fd4a89ca848eecd7d4c",
+          "rank": 17,
+          "before_rerank_rank": 13,
+          "rerank_score": 0.26544827222824097
+        },
+        {
+          "chunk_id": "80078b096cc38a9213137a5d",
+          "rank": 18,
+          "before_rerank_rank": 15,
+          "rerank_score": 0.24610288441181183
+        },
+        {
+          "chunk_id": "1184b4d2d854b3c2995b0fee",
+          "rank": 19,
+          "before_rerank_rank": 36,
+          "rerank_score": 0.21511200070381165
+        },
+        {
+          "chunk_id": "9923cc501e7f7768c4aa3ae6",
+          "rank": 20,
+          "before_rerank_rank": 20,
+          "rerank_score": 0.12875564396381378
+        },
+        {
+          "chunk_id": "2160b85efeebb195daa2ca1d",
+          "rank": 21,
+          "before_rerank_rank": 18,
+          "rerank_score": 0.09541504830121994
+        },
+        {
+          "chunk_id": "9eac1deeac4f5f50544e60fc",
+          "rank": 22,
+          "before_rerank_rank": 24,
+          "rerank_score": 0.09217328578233719
+        },
+        {
+          "chunk_id": "57c2d0608f1f193f86fa78f6",
+          "rank": 23,
+          "before_rerank_rank": 26,
+          "rerank_score": 0.08892888575792313
+        },
+        {
+          "chunk_id": "1be8dbd4edecf4df93089b3d",
+          "rank": 24,
+          "before_rerank_rank": 41,
+          "rerank_score": 0.08194158971309662
+        },
+        {
+          "chunk_id": "cfadee12275eaa2eff5edc62",
+          "rank": 25,
+          "before_rerank_rank": 40,
+          "rerank_score": 0.07920044660568237
+        },
+        {
+          "chunk_id": "0a9117d74f08bc5cb4338a84",
+          "rank": 26,
+          "before_rerank_rank": 33,
+          "rerank_score": 0.06801141053438187
+        },
+        {
+          "chunk_id": "f650b92e1340e28ad53e3be0",
+          "rank": 27,
+          "before_rerank_rank": 17,
+          "rerank_score": 0.06487541645765305
+        },
+        {
+          "chunk_id": "5e60d2da6d033556f62d552d",
+          "rank": 28,
+          "before_rerank_rank": 12,
+          "rerank_score": 0.06213628873229027
+        },
+        {
+          "chunk_id": "da9dd57165c4172148c8bbc4",
+          "rank": 29,
+          "before_rerank_rank": 22,
+          "rerank_score": 0.06121481582522392
+        },
+        {
+          "chunk_id": "50ff27e535baea371ce7d1f4",
+          "rank": 30,
+          "before_rerank_rank": 42,
+          "rerank_score": 0.06110242381691933
+        },
+        {
+          "chunk_id": "8423148a393e59df9cac5b91",
+          "rank": 31,
+          "before_rerank_rank": 19,
+          "rerank_score": 0.05540797486901283
+        },
+        {
+          "chunk_id": "5329dd5e3c5bb90b2c253d87",
+          "rank": 32,
+          "before_rerank_rank": 23,
+          "rerank_score": 0.05371278151869774
+        },
+        {
+          "chunk_id": "3b9bba80dcd5522b650413e0",
+          "rank": 33,
+          "before_rerank_rank": 38,
+          "rerank_score": 0.05272030085325241
+        },
+        {
+          "chunk_id": "208c139dbb9b834299f8a244",
+          "rank": 34,
+          "before_rerank_rank": 39,
+          "rerank_score": 0.04542064294219017
+        },
+        {
+          "chunk_id": "b1449945e1cdab5b052a094f",
+          "rank": 35,
+          "before_rerank_rank": 27,
+          "rerank_score": 0.04439399391412735
+        },
+        {
+          "chunk_id": "adacbc6911184a7d0b3f6d7b",
+          "rank": 36,
+          "before_rerank_rank": 25,
+          "rerank_score": 0.039000920951366425
+        },
+        {
+          "chunk_id": "6ede8a67e9df3c5bc2294d94",
+          "rank": 37,
+          "before_rerank_rank": 16,
+          "rerank_score": 0.025828097015619278
+        },
+        {
+          "chunk_id": "12efbe17cd256c58d1de4fa9",
+          "rank": 38,
+          "before_rerank_rank": 14,
+          "rerank_score": 0.02292802929878235
+        },
+        {
+          "chunk_id": "77e8139441c82f895b6bf83c",
+          "rank": 39,
+          "before_rerank_rank": 32,
+          "rerank_score": 0.00473292451351881
+        },
+        {
+          "chunk_id": "09c2e6a85e258a6450cf43e1",
+          "rank": 40,
+          "before_rerank_rank": 35,
+          "rerank_score": 0.0016034332802519202
+        },
+        {
+          "chunk_id": "9e1d423838d33a4c2248f26b",
+          "rank": 41,
+          "before_rerank_rank": 34,
+          "rerank_score": 0.0012300658272579312
+        },
+        {
+          "chunk_id": "02a77e667fbb0dd65c94556e",
+          "rank": 42,
+          "before_rerank_rank": 29,
+          "rerank_score": 0.0012083108304068446
+        }
+      ],
+      "returned_chunk_ids": [
+        "e174aa69fb0a94f62a32c952",
+        "20078d3d1ae53a7a98b22240",
+        "691d23dc6f59c806abde5195",
+        "e56346048e1013ad7a04cf93",
+        "37db340642bdab74e8ccae24"
+      ]
+    }
+  },
+  "operation_id": "op0",
+  "postcondition_ok": true
+}

@@ -1,0 +1,37 @@
+{
+  "original_query": "vLLM v0.10.2：抢占是否意味着后续恢复完全不需要重算？",
+  "scoring_query": "vLLM v0.10.2: Does preemption mean that subsequent resumption completely does not require recomputation?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "Does preemption in vLLM v0.10.2 mean that subsequent resumption completely does not require recomputation?",
+      "anchor_quote": "vLLM v0.10.2：抢占是否意味着后续恢复完全不需要重算？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：抢占是否意味着后续恢复完全不需要重算？\", \"scoring_query\": \"vLLM v0.10.2: Does preemption mean that subsequent resumption completely does not require recomputation?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Does preemption in vLLM v0.10.2 mean that subsequent resumption completely does not require recomputation?\",\"anchor_quote\":\"vLLM v0.10.2：抢占是否意味着后续恢复完全不需要重算？\"}]}",
+  "provider_response": {
+    "id": "eee9efe0-933a-4400-b9fc-f8fb1790dccd",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 177,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 60,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 568.8518750248477,
+  "sha256": "ebeade45b79b7d1c39803ee44dcd16c285fa0868f949f30ef541cc12fdf16825"
+}

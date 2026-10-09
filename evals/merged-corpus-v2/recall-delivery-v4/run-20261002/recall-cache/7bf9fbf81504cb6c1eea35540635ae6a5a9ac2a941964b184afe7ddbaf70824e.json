@@ -1,0 +1,318 @@
+{
+  "query": "Question context identifiers: vLLM | v0.10.2 | LoRA\nSpecific requirement: Does vLLM v0.10.2 confirm that the serving model supports LoRA?",
+  "candidate_k": 30,
+  "channels": {
+    "bm25": {
+      "score_kind": "bm25_score",
+      "ranking": [
+        {
+          "chunk_id": "4f8af58b36bd29828413d500",
+          "rank": 1,
+          "score": 41.065784803204465
+        },
+        {
+          "chunk_id": "869d2635368dd9fb4b08c544",
+          "rank": 2,
+          "score": 39.921899625440034
+        },
+        {
+          "chunk_id": "b197b820213b8e5c2dad10ce",
+          "rank": 3,
+          "score": 37.86295397354095
+        },
+        {
+          "chunk_id": "ed1d82b6e64f7045917c58a7",
+          "rank": 4,
+          "score": 36.81874909791485
+        },
+        {
+          "chunk_id": "4213dd9e8b3ba577d860beb6",
+          "rank": 5,
+          "score": 36.173277792593844
+        },
+        {
+          "chunk_id": "e1d58efa4c4c7a21c8d84f49",
+          "rank": 6,
+          "score": 35.23383617586326
+        },
+        {
+          "chunk_id": "2574b186a8c1248bde44210a",
+          "rank": 7,
+          "score": 33.969025373460106
+        },
+        {
+          "chunk_id": "4f9ce4dece0cfc33cbfdd8ff",
+          "rank": 8,
+          "score": 33.58463630215457
+        },
+        {
+          "chunk_id": "16416bd28ded1e1ff3730a23",
+          "rank": 9,
+          "score": 33.543707125962825
+        },
+        {
+          "chunk_id": "04cec2fd5d2d109cf0ee286a",
+          "rank": 10,
+          "score": 33.08745898385516
+        },
+        {
+          "chunk_id": "9f004c7df7f180e7dc1a3cfb",
+          "rank": 11,
+          "score": 32.875863128649364
+        },
+        {
+          "chunk_id": "f4e4646b10829ca6495f8f92",
+          "rank": 12,
+          "score": 31.7864011621643
+        },
+        {
+          "chunk_id": "5060310073caa1e838cbc88b",
+          "rank": 13,
+          "score": 30.80288485714801
+        },
+        {
+          "chunk_id": "cd3a9485a3dae20bfe10957e",
+          "rank": 14,
+          "score": 30.432849155022087
+        },
+        {
+          "chunk_id": "7d8673e4c60ba881633d875a",
+          "rank": 15,
+          "score": 29.760424401670893
+        },
+        {
+          "chunk_id": "beebe3bf14602b45a3d7977b",
+          "rank": 16,
+          "score": 29.72774335403049
+        },
+        {
+          "chunk_id": "5ad8c26f982e57496ee74d0a",
+          "rank": 17,
+          "score": 29.72577146069732
+        },
+        {
+          "chunk_id": "b566ced8a8bba07658a1098e",
+          "rank": 18,
+          "score": 29.56334218679606
+        },
+        {
+          "chunk_id": "d8852a82a000e01c9b70907f",
+          "rank": 19,
+          "score": 29.554928986547147
+        },
+        {
+          "chunk_id": "a7eafcc179db354e667693b2",
+          "rank": 20,
+          "score": 29.452919790054708
+        },
+        {
+          "chunk_id": "eefe639725828cd616a3a57e",
+          "rank": 21,
+          "score": 29.257441858262748
+        },
+        {
+          "chunk_id": "a54cb1f562e47ca6eb3c7272",
+          "rank": 22,
+          "score": 29.12629470296256
+        },
+        {
+          "chunk_id": "4ff0b8eb7c0ab1a514d485dd",
+          "rank": 23,
+          "score": 29.052338894425496
+        },
+        {
+          "chunk_id": "c19f1ffd62a10de119c4c01a",
+          "rank": 24,
+          "score": 29.044749501426793
+        },
+        {
+          "chunk_id": "ef6d742581f8ed804cc184ed",
+          "rank": 25,
+          "score": 28.384005642316225
+        },
+        {
+          "chunk_id": "433f5268fb75d23790a6ee5c",
+          "rank": 26,
+          "score": 27.798423410235603
+        },
+        {
+          "chunk_id": "076c4bc8e440f5d526096209",
+          "rank": 27,
+          "score": 27.227508786270647
+        },
+        {
+          "chunk_id": "12277ec30c88b0dd0f16a21c",
+          "rank": 28,
+          "score": 27.12029613981054
+        },
+        {
+          "chunk_id": "585d22b37c64fbc8047f12a6",
+          "rank": 29,
+          "score": 26.956186970161305
+        },
+        {
+          "chunk_id": "6efa919f6b9b9f68d284d1d5",
+          "rank": 30,
+          "score": 26.33671838938068
+        }
+      ]
+    },
+    "dense": {
+      "score_kind": "cosine_distance",
+      "ranking": [
+        {
+          "chunk_id": "f4e4646b10829ca6495f8f92",
+          "rank": 1,
+          "score": 0.19604593515396118
+        },
+        {
+          "chunk_id": "a54cb1f562e47ca6eb3c7272",
+          "rank": 2,
+          "score": 0.25666677951812744
+        },
+        {
+          "chunk_id": "034ddc231b972b918ec8c830",
+          "rank": 3,
+          "score": 0.25994908809661865
+        },
+        {
+          "chunk_id": "eefe639725828cd616a3a57e",
+          "rank": 4,
+          "score": 0.26477861404418945
+        },
+        {
+          "chunk_id": "42c0eaf02eb248a4c663f395",
+          "rank": 5,
+          "score": 0.27651917934417725
+        },
+        {
+          "chunk_id": "dcb336a58436b44d6a3426b3",
+          "rank": 6,
+          "score": 0.2778271436691284
+        },
+        {
+          "chunk_id": "b197b820213b8e5c2dad10ce",
+          "rank": 7,
+          "score": 0.2814427614212036
+        },
+        {
+          "chunk_id": "9ce05fa7ec4bee6c47037d93",
+          "rank": 8,
+          "score": 0.28173553943634033
+        },
+        {
+          "chunk_id": "8ca412955feadc03c59294e3",
+          "rank": 9,
+          "score": 0.28911060094833374
+        },
+        {
+          "chunk_id": "da24637043208b36b7629597",
+          "rank": 10,
+          "score": 0.2921220064163208
+        },
+        {
+          "chunk_id": "43f3a32a57373d62d0752d2b",
+          "rank": 11,
+          "score": 0.29505980014801025
+        },
+        {
+          "chunk_id": "4213dd9e8b3ba577d860beb6",
+          "rank": 12,
+          "score": 0.2952086925506592
+        },
+        {
+          "chunk_id": "2619b55afcaeff90c55200d3",
+          "rank": 13,
+          "score": 0.29994720220565796
+        },
+        {
+          "chunk_id": "cfec6505f5f5b012d92ea5b1",
+          "rank": 14,
+          "score": 0.30070024728775024
+        },
+        {
+          "chunk_id": "e6f01c3020f092b5e5d5810e",
+          "rank": 15,
+          "score": 0.3018749952316284
+        },
+        {
+          "chunk_id": "4f9ce4dece0cfc33cbfdd8ff",
+          "rank": 16,
+          "score": 0.3028375506401062
+        },
+        {
+          "chunk_id": "ffd91ad179fd2a1ba64ffddf",
+          "rank": 17,
+          "score": 0.3032562732696533
+        },
+        {
+          "chunk_id": "9c3128daf316420c015316da",
+          "rank": 18,
+          "score": 0.3062911629676819
+        },
+        {
+          "chunk_id": "14b37ed25a080127d2f82ad6",
+          "rank": 19,
+          "score": 0.3067258596420288
+        },
+        {
+          "chunk_id": "3b452d69199839c0069b8352",
+          "rank": 20,
+          "score": 0.3074735999107361
+        },
+        {
+          "chunk_id": "6efa919f6b9b9f68d284d1d5",
+          "rank": 21,
+          "score": 0.30801790952682495
+        },
+        {
+          "chunk_id": "7d8673e4c60ba881633d875a",
+          "rank": 22,
+          "score": 0.3087480068206787
+        },
+        {
+          "chunk_id": "a03867b1f15e826c04f24d7b",
+          "rank": 23,
+          "score": 0.3098273277282715
+        },
+        {
+          "chunk_id": "869d2635368dd9fb4b08c544",
+          "rank": 24,
+          "score": 0.3107595443725586
+        },
+        {
+          "chunk_id": "a7eafcc179db354e667693b2",
+          "rank": 25,
+          "score": 0.31293267011642456
+        },
+        {
+          "chunk_id": "4e01d83f580714efa76baea1",
+          "rank": 26,
+          "score": 0.3137180209159851
+        },
+        {
+          "chunk_id": "ec29e46e3669a5cf7967f372",
+          "rank": 27,
+          "score": 0.31401681900024414
+        },
+        {
+          "chunk_id": "17e06e5700eca5db587e8103",
+          "rank": 28,
+          "score": 0.31510961055755615
+        },
+        {
+          "chunk_id": "728b87f68e17f7dbe17265a2",
+          "rank": 29,
+          "score": 0.3152594566345215
+        },
+        {
+          "chunk_id": "0ce09c9e3c544b39b598a6bc",
+          "rank": 30,
+          "score": 0.31682753562927246
+        }
+      ]
+    }
+  },
+  "latency_ms": 127.72737501654774,
+  "index": "/Users/jennyma/Projects/InfraAgent/data/merged-corpus-v2/800518d3f71b601f/index"
+}

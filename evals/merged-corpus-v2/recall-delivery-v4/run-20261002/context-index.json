@@ -1,0 +1,35 @@
+{
+  "identity": "e624132ff5b8a3d6274b4a79861d15afedd0ce031b38fb84e9b36ec4d100dcb9",
+  "directory": "data/merged-corpus-v4/e624132ff5b8a3d6",
+  "fingerprint": {
+    "backend": "bge",
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "multimodal": false,
+    "chunk_size": 450,
+    "chunk_strategy": "semantic",
+    "refinement_threshold": 0.55,
+    "image_merge_threshold": 0.88,
+    "image_max_side": 768,
+    "image_min_area": 0.005,
+    "image_max_regions": 24,
+    "clip_text_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+    "clip_image_model": "sentence-transformers/clip-ViT-B-32",
+    "semantic_threshold": 0.72,
+    "preprocessing_version": "rules-structure-v1:e624132ff5b8a3d6274b4a79861d15afedd0ce031b38fb84e9b36ec4d100dcb9",
+    "schema_version": 2,
+    "embedding_pooling": "token-window-mean-v1"
+  },
+  "chunks": 16320,
+  "index_sha256": "a1c2167e9375e32c220fd3d9e1475527f4e93840fc43e5e770c190daa0d9e750",
+  "build_or_load_ms": 57185.18862500787,
+  "loaded_existing": false,
+  "views_sha256": "a0e44ac7040cde8888f0539cf0c0d06c93cdabb1771c1cd8b961d89d81207cc6",
+  "encoder_update": {
+    "text_vectors": {
+      "encoded": 16277,
+      "reused": 43
+    }
+  },
+  "corpus_only": true,
+  "original_bodies_used_for_rerank_and_answers": true
+}

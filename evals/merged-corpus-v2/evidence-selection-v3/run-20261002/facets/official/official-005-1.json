@@ -1,0 +1,41 @@
+{
+  "original_query": "vLLM v0.10.2：KV空间不足导致抢占后，请求如何恢复执行？",
+  "scoring_query": "vLLM v0.10.2: After preemption due to insufficient KV space, how does a request resume execution?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In vLLM v0.10.2, what causes insufficient KV space that leads to preemption?",
+      "anchor_quote": "KV空间不足导致抢占"
+    },
+    {
+      "question": "In vLLM v0.10.2, after a request is preempted due to insufficient KV space, how does the request resume execution?",
+      "anchor_quote": "抢占后，请求如何恢复执行？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：KV空间不足导致抢占后，请求如何恢复执行？\", \"scoring_query\": \"vLLM v0.10.2: After preemption due to insufficient KV space, how does a request resume execution?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In vLLM v0.10.2, what causes insufficient KV space that leads to preemption?\",\"anchor_quote\":\"KV空间不足导致抢占\"},{\"question\":\"In vLLM v0.10.2, after a request is preempted due to insufficient KV space, how does the request resume execution?\",\"anchor_quote\":\"抢占后，请求如何恢复执行？\"}]}",
+  "provider_response": {
+    "id": "497ee098-1cd5-460e-8627-2f9163ab90af",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 180,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 90,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 1336.7286249995232,
+  "sha256": "300f6fc034dd8068c108918dbf5d27e9cfcea881d2a0d0aa2dd234787fa472fc"
+}

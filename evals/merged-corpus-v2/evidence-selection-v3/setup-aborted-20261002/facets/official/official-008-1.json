@@ -1,0 +1,37 @@
+{
+  "original_query": "vLLM v0.10.2：文档对解耦prefill的吞吐收益作出什么限制？",
+  "scoring_query": "vLLM v0.10.2: What limitation does the documentation place on the throughput benefit of disaggregated prefill?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "What limitation does the documentation for vLLM v0.10.2 place on the throughput benefit of disaggregated prefill?",
+      "anchor_quote": "文档对解耦prefill的吞吐收益作出什么限制？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：文档对解耦prefill的吞吐收益作出什么限制？\", \"scoring_query\": \"vLLM v0.10.2: What limitation does the documentation place on the throughput benefit of disaggregated prefill?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"What limitation does the documentation for vLLM v0.10.2 place on the throughput benefit of disaggregated prefill?\",\"anchor_quote\":\"文档对解耦prefill的吞吐收益作出什么限制？\"}]}",
+  "provider_response": {
+    "id": "6c06b17a-b148-43ca-b55c-cce58956246e",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 182,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 55,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 563.76795808319,
+  "sha256": "aab25112ac0896b5998ea0adc87b86460e9214395dc7c80056e82fdd29210278"
+}

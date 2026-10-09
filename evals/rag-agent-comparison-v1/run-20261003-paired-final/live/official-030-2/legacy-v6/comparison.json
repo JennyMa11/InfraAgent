@@ -1,0 +1,989 @@
+{
+  "id": "official-030-2",
+  "group_id": "official-scenario-030",
+  "dataset": "official",
+  "arm": "legacy-v6",
+  "query": "CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？",
+  "answerable": true,
+  "delivered": {
+    "coverage": 1.0,
+    "complete": 1.0
+  },
+  "evidence": [
+    {
+      "citation_id": "E337b66565141142df21873de",
+      "chunk_id": "45a513233cb59baabff75274",
+      "parent_id": "3d31297aa33ec7597b441fe4",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md#L434-L434",
+      "page": null,
+      "start_line": 434,
+      "end_line": 434,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "There are many workflows which need to make data-dependent decisions during runtime and execute different operations depending on those decisions. Rather than offloading this decision-making process to the host, which may require a round-trip from the device, users may prefer to perform it on the device. To that end, CUDA provides a mechanism to launch graphs from the device.",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-cuda-graphs",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "condition",
+        "original_lines": [
+          434,
+          434
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "f39a71f4fcce30307ee4449f",
+          "1f695576cbcb775461c4163a",
+          "c4ed71250d93bf0dc4ebcd9a",
+          "31538e92ae6638cbb5088582"
+        ]
+      }
+    },
+    {
+      "citation_id": "E7fbb97b1535281a3457fa8b6",
+      "chunk_id": "7e2ef60cf1af5ba4128c5135",
+      "parent_id": "7e6bc9064251c975ad100ced",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-device-memory.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-device-memory.md#L3-L3",
+      "page": null,
+      "start_line": 3,
+      "end_line": 3,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "As mentioned in Heterogeneous Programming, the CUDA programming model assumes a system composed of a host and a device, each with their own separate memory. Kernels operate out of device memory, so the runtime provides functions to allocate, deallocate, and copy device memory, as well as transfer data between host memory and device memory.",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-device-memory",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#device-memory",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "ed213e07968b4cc0abcb6a0af1e2d1859e9bd98bf3b7f1ae6d69ca26fda19d03",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          3,
+          3
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "3ed8b09ae98d2538e2b9b8d1",
+          "ee1d638089a7cb69d10126fd",
+          "ca438b3ba14c2c99c0d29215"
+        ]
+      }
+    },
+    {
+      "citation_id": "E975deafa225ca4d6fc6b62f9",
+      "chunk_id": "fe2d6e472702fefa2a0e898c",
+      "parent_id": "a79bf156e52f6563313513ce",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md#L7-L7",
+      "page": null,
+      "start_line": 7,
+      "end_line": 7,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "At a high level, the application should maximize parallel execution between the host, the devices, and the bus connecting the host to the devices, by using asynchronous functions calls and streams as described in Asynchronous Concurrent Execution. It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-maximize-utilization",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          7,
+          7
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "996cb336c90a8ca8e7babcab",
+          "c0d0ccb22da593b945a326d6",
+          "88702135a61a5d9867df5a5d"
+        ]
+      }
+    },
+    {
+      "citation_id": "E2eec58a512990f7feac77fcc",
+      "chunk_id": "dbe946adb657b64e4d37e631",
+      "parent_id": "9955ac41857f898c8c544170",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md#L79-L82",
+      "page": null,
+      "start_line": 79,
+      "end_line": 82,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "For example, on devices that do not support concurrent data transfers, the two streams of the code sample of Creation and Destruction of Streams\ndo not overlap at all because the memory copy from host to device is issued to stream[1] after the memory copy from device to host\nis issued to stream[0], so it can only start once the memory copy from device to host issued to stream[0] has completed.\nIf the",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-streams",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#streams",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "6fafa2f5f75fb089f1117c64b5688e08a72992b573f1a502bc1797918d2b516e",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "condition",
+        "original_lines": [
+          79,
+          82
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "5c13fcac6509b437918ffc99",
+          "b41f8ce2c70f0b864fb23d6f",
+          "4d0e6c9453daee36aa4c167d"
+        ]
+      }
+    },
+    {
+      "citation_id": "Ea3812b118f5de0d8fd8e7c2e",
+      "chunk_id": "2d2b62dc557d5b2a177d2734",
+      "parent_id": "9955ac41857f898c8c544170",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md#L79-L82",
+      "page": null,
+      "start_line": 79,
+      "end_line": 82,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "code is rewritten the following way (and assuming the device supports overlap of data transfer and kernel execution)",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-streams",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#streams",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "6fafa2f5f75fb089f1117c64b5688e08a72992b573f1a502bc1797918d2b516e",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "condition",
+        "original_lines": [
+          79,
+          82
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "5c13fcac6509b437918ffc99",
+          "b41f8ce2c70f0b864fb23d6f",
+          "4d0e6c9453daee36aa4c167d"
+        ]
+      }
+    },
+    {
+      "citation_id": "E3ad1111aff841e44ef0b7605",
+      "chunk_id": "834a38c48bbe3a36b95babe0",
+      "parent_id": "99187074fafa543fade7f27c",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-unified-memory-programming.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-unified-memory-programming.md#L1177-L1181",
+      "page": null,
+      "start_line": 1177,
+      "end_line": 1181,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "CUDA Unified Memory supports all atomic operations available to host and device threads,\nenabling all threads to cooperate by concurrently accessing the same shared memory location.\nThe CUDA C++ standard library\nprovides many heterogeneous synchronization primitives tuned for concurrent use between host and device threads,\nincluding cuda::atomic, cuda::atomic_ref, cuda::barrier, cuda::semaphore, among many others.",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-unified-memory-programming",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#unified-memory-programming",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "360b2b02922954808049d9df6ff54db82db327e5aacfe9a44f80f5a4f2556946",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          1177,
+          1181
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "02020a06e09eb82dc8f9daf3",
+          "cff31ff9ca29c83655ea3e90",
+          "0a4767573c1b5245f8a81114",
+          "f7a8d30e73ac12f9e0532418"
+        ]
+      }
+    },
+    {
+      "citation_id": "Eff281c644d3becc017753266",
+      "chunk_id": "631ce7f7070b8696f7f2bebe",
+      "parent_id": "9955ac41857f898c8c544170",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md#L96-L98",
+      "page": null,
+      "start_line": 96,
+      "end_line": 98,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "On devices that do support concurrent data transfers, the two streams of the code sample of Creation and Destruction of Streams\ndo overlap: The memory copy from host to device issued to stream[1] overlaps with the memory copy from device to host issued to\nstream[0] and even with the kernel launch issued to stream[0] (assuming the device supports overlap of data transfer and kernel execution).",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-streams",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#streams",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "6fafa2f5f75fb089f1117c64b5688e08a72992b573f1a502bc1797918d2b516e",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          96,
+          98
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "34f971f17b9fbc254630e2ef",
+          "5b2528e3e089b0ebd7b2c18a",
+          "a0d2ad6f7863991c0da31964"
+        ]
+      }
+    },
+    {
+      "citation_id": "E7a9b96e37ee1f84ebc1ad1c1",
+      "chunk_id": "cb7f6bf0cb08a095c3d2eb51",
+      "parent_id": "5a68775f2b82aa71718bf100",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md#L222-L222",
+      "page": null,
+      "start_line": 222,
+      "end_line": 222,
+      "modality": "text",
+      "bbox": null,
+      "coordinate_space": null,
+      "image_path": null,
+      "caption_source": null,
+      "caption_locator": null,
+      "content": "When a synchronous function is called, control is not returned to the host thread before the device has completed the requested task. Whether the host thread will then yield, block, or spin can be specified by calling cudaSetDeviceFlags()with some specific flags (see reference manual for details) before any other CUDA call is performed by the host thread.",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-asynchronous-concurrent-execution",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "condition",
+        "original_lines": [
+          222,
+          222
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "dc70ca106ddaf673ac5817d5"
+        ]
+      }
+    }
+  ],
+  "cumulative_candidate_complete": 1.0,
+  "searches": [
+    {
+      "query": "CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？",
+      "diagnostics": {
+        "candidates": [
+          "45a513233cb59baabff75274",
+          "7e2ef60cf1af5ba4128c5135",
+          "fe2d6e472702fefa2a0e898c",
+          "dbe946adb657b64e4d37e631",
+          "631ce7f7070b8696f7f2bebe",
+          "2d2b62dc557d5b2a177d2734",
+          "834a38c48bbe3a36b95babe0",
+          "cb7f6bf0cb08a095c3d2eb51",
+          "2bfd1cb11d237d79fc70392b",
+          "1b62fc18e30e4c57223ff00b",
+          "d7c1e62ef22825880f78c047",
+          "1e9d9952cc4afb4d8d72928d",
+          "c8047250108921003035b9b5",
+          "fd3eca2c8651fb1bb4a39ea3",
+          "91d6ec62b051449e9330106f",
+          "bd325869fa742f67680cb201",
+          "059b00b3cd19454ff5c50e7a",
+          "a82dca52364fa5857399ca39",
+          "74d0129e5f4e1dd03e7ac882",
+          "18b1ab9c601d6115eaa6e2d3",
+          "da7399fd7687047996f4e261",
+          "1d09c02b0d8c8727fe3785a6",
+          "d4d327891b68ea25c6bf0aef",
+          "a127413803e256f56af33274",
+          "476c3474147af12ee4e3d340",
+          "a477609597eb3de2d6229dec",
+          "ebb7d63473eb147c50d307b9",
+          "70996283193df4c316f2e18e",
+          "be94e9bb5d822ce361b6c3e8",
+          "f38a98d57a77e56605f982b6",
+          "0043ba73f3f134256eafbbe8",
+          "3f97f0bc488c9c0a809d2935",
+          "95ff0a28b5bd0e53d2baa152",
+          "c4fba3c46a0766d502cbac70",
+          "2406c1398059964c5d0fee6a",
+          "48a0e8a7511cc34ff3d51327",
+          "34fd7ce46d7b52446f8bf1f2",
+          "2bcdc886cb841b58700e6aa1",
+          "443055044e34c18f04de2bf3",
+          "37ab0e7529423dc3c0f44589",
+          "9ae10a6b2a4ffe916e30be89",
+          "798d385ddecd2514b63cf16b",
+          "45b612eab31c61ad2c896064",
+          "6a9b7049edf585da9e00e186",
+          "7ab8b6c6acaa4c94af2d7ada",
+          "2e9c77b1b8ea8a6722b0d802",
+          "1ca9d81d6a32a7edaf8f7bcd",
+          "d7382d2f2fb36afc502d6db3",
+          "56e7865899d962b861fd5a1a",
+          "87ca5b8455068c1f48839821",
+          "e0ae33b23619522db7794992",
+          "ae5a1e760d4da7a78b6b97a1",
+          "fb56f99a8465120d328b40f4",
+          "d52a569cab733984de7cb721"
+        ],
+        "final": [
+          {
+            "chunk_id": "45a513233cb59baabff75274",
+            "rerank_score": 0.6701600551605225
+          },
+          {
+            "chunk_id": "7e2ef60cf1af5ba4128c5135",
+            "rerank_score": 0.4876159727573395
+          },
+          {
+            "chunk_id": "fe2d6e472702fefa2a0e898c",
+            "rerank_score": 0.20051240921020508
+          },
+          {
+            "chunk_id": "dbe946adb657b64e4d37e631",
+            "rerank_score": 0.17341050505638123
+          },
+          {
+            "chunk_id": "2d2b62dc557d5b2a177d2734",
+            "rerank_score": 0.06531645357608795
+          },
+          {
+            "chunk_id": "834a38c48bbe3a36b95babe0",
+            "rerank_score": 0.06445614248514175
+          },
+          {
+            "chunk_id": "631ce7f7070b8696f7f2bebe",
+            "rerank_score": 0.08245750516653061
+          },
+          {
+            "chunk_id": "cb7f6bf0cb08a095c3d2eb51",
+            "rerank_score": 0.060633592307567596
+          }
+        ],
+        "comparison_provenance": "frozen_original_candidates",
+        "scoring_query": "CUDA 13.0.1: In heterogeneous code, should serial control loops and data-parallel operations be placed on the host or the device according to the guidelines?",
+        "selection": {
+          "eligible_ids": [
+            "45a513233cb59baabff75274",
+            "7e2ef60cf1af5ba4128c5135",
+            "fe2d6e472702fefa2a0e898c",
+            "dbe946adb657b64e4d37e631",
+            "631ce7f7070b8696f7f2bebe",
+            "2d2b62dc557d5b2a177d2734",
+            "834a38c48bbe3a36b95babe0",
+            "cb7f6bf0cb08a095c3d2eb51",
+            "2bfd1cb11d237d79fc70392b",
+            "1b62fc18e30e4c57223ff00b",
+            "d7c1e62ef22825880f78c047",
+            "1e9d9952cc4afb4d8d72928d",
+            "c8047250108921003035b9b5",
+            "fd3eca2c8651fb1bb4a39ea3",
+            "91d6ec62b051449e9330106f"
+          ],
+          "selection_trace": [
+            {
+              "chunk_id": "45a513233cb59baabff75274",
+              "protected": true,
+              "preview_truncated": false
+            },
+            {
+              "chunk_id": "7e2ef60cf1af5ba4128c5135",
+              "utility": 0.46435200209822936,
+              "novelty": 0.01661493150365994,
+              "redundancy": 0.1111111111111111,
+              "cost_tokens": 121,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "fe2d6e472702fefa2a0e898c",
+              "utility": 0.19796520616885804,
+              "novelty": 0.03968953794351641,
+              "redundancy": 0.06382978723404255,
+              "cost_tokens": 142,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "dbe946adb657b64e4d37e631",
+              "utility": 0.16482926751617374,
+              "novelty": 0.01285506578840094,
+              "redundancy": 0.1111111111111111,
+              "cost_tokens": 143,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "2d2b62dc557d5b2a177d2734",
+              "utility": 0.061357880632082626,
+              "novelty": 0.0,
+              "redundancy": 0.12121212121212122,
+              "cost_tokens": 60,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "834a38c48bbe3a36b95babe0",
+              "utility": 0.06027842954628998,
+              "novelty": 0.0,
+              "redundancy": 0.12962962962962962,
+              "cost_tokens": 166,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "631ce7f7070b8696f7f2bebe",
+              "utility": 0.05996909466656772,
+              "novelty": 0.0,
+              "redundancy": 0.5454545454545454,
+              "cost_tokens": 146,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "cb7f6bf0cb08a095c3d2eb51",
+              "utility": 0.059339147804982756,
+              "novelty": 0.01661493150365994,
+              "redundancy": 0.058823529411764705,
+              "cost_tokens": 127,
+              "score_origin": "reranker"
+            }
+          ],
+          "neighbor_priors": {},
+          "query_words": [
+            "13.0",
+            "13.0.1",
+            "according",
+            "code",
+            "control",
+            "cuda",
+            "data",
+            "data-parallel",
+            "device",
+            "guidelines",
+            "heterogeneous",
+            "host",
+            "loops",
+            "operations",
+            "parallel",
+            "placed",
+            "serial",
+            "与数",
+            "中的",
+            "串行",
+            "代码",
+            "分别",
+            "别放",
+            "制循",
+            "南应",
+            "并行",
+            "应分",
+            "异构",
+            "循环",
+            "指南",
+            "按指",
+            "据并",
+            "控制",
+            "放在",
+            "数据",
+            "数据并行",
+            "构代",
+            "环与",
+            "的串",
+            "码中",
+            "行控",
+            "行运",
+            "运算",
+            "还是"
+          ],
+          "parameters": {
+            "limit": 8,
+            "length_power": 0.0,
+            "protect": 1,
+            "neighbors": false
+          }
+        }
+      },
+      "context": {
+        "evidence": [
+          {
+            "citation_id": "E337b66565141142df21873de",
+            "chunk_id": "45a513233cb59baabff75274",
+            "parent_id": "3d31297aa33ec7597b441fe4",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md#L434-L434",
+            "page": null,
+            "start_line": 434,
+            "end_line": 434,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "There are many workflows which need to make data-dependent decisions during runtime and execute different operations depending on those decisions. Rather than offloading this decision-making process to the host, which may require a round-trip from the device, users may prefer to perform it on the device. To that end, CUDA provides a mechanism to launch graphs from the device.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-cuda-graphs",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                434,
+                434
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "f39a71f4fcce30307ee4449f",
+                "1f695576cbcb775461c4163a",
+                "c4ed71250d93bf0dc4ebcd9a",
+                "31538e92ae6638cbb5088582"
+              ]
+            }
+          },
+          {
+            "citation_id": "E7fbb97b1535281a3457fa8b6",
+            "chunk_id": "7e2ef60cf1af5ba4128c5135",
+            "parent_id": "7e6bc9064251c975ad100ced",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-device-memory.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-device-memory.md#L3-L3",
+            "page": null,
+            "start_line": 3,
+            "end_line": 3,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "As mentioned in Heterogeneous Programming, the CUDA programming model assumes a system composed of a host and a device, each with their own separate memory. Kernels operate out of device memory, so the runtime provides functions to allocate, deallocate, and copy device memory, as well as transfer data between host memory and device memory.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-device-memory",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#device-memory",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "ed213e07968b4cc0abcb6a0af1e2d1859e9bd98bf3b7f1ae6d69ca26fda19d03",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                3,
+                3
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "3ed8b09ae98d2538e2b9b8d1",
+                "ee1d638089a7cb69d10126fd",
+                "ca438b3ba14c2c99c0d29215"
+              ]
+            }
+          },
+          {
+            "citation_id": "E975deafa225ca4d6fc6b62f9",
+            "chunk_id": "fe2d6e472702fefa2a0e898c",
+            "parent_id": "a79bf156e52f6563313513ce",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md#L7-L7",
+            "page": null,
+            "start_line": 7,
+            "end_line": 7,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "At a high level, the application should maximize parallel execution between the host, the devices, and the bus connecting the host to the devices, by using asynchronous functions calls and streams as described in Asynchronous Concurrent Execution. It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-maximize-utilization",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                7,
+                7
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "996cb336c90a8ca8e7babcab",
+                "c0d0ccb22da593b945a326d6",
+                "88702135a61a5d9867df5a5d"
+              ]
+            }
+          },
+          {
+            "citation_id": "E2eec58a512990f7feac77fcc",
+            "chunk_id": "dbe946adb657b64e4d37e631",
+            "parent_id": "9955ac41857f898c8c544170",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md#L79-L82",
+            "page": null,
+            "start_line": 79,
+            "end_line": 82,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "For example, on devices that do not support concurrent data transfers, the two streams of the code sample of Creation and Destruction of Streams\ndo not overlap at all because the memory copy from host to device is issued to stream[1] after the memory copy from device to host\nis issued to stream[0], so it can only start once the memory copy from device to host issued to stream[0] has completed.\nIf the",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-streams",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#streams",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "6fafa2f5f75fb089f1117c64b5688e08a72992b573f1a502bc1797918d2b516e",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                79,
+                82
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "5c13fcac6509b437918ffc99",
+                "b41f8ce2c70f0b864fb23d6f",
+                "4d0e6c9453daee36aa4c167d"
+              ]
+            }
+          },
+          {
+            "citation_id": "Ea3812b118f5de0d8fd8e7c2e",
+            "chunk_id": "2d2b62dc557d5b2a177d2734",
+            "parent_id": "9955ac41857f898c8c544170",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md#L79-L82",
+            "page": null,
+            "start_line": 79,
+            "end_line": 82,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "code is rewritten the following way (and assuming the device supports overlap of data transfer and kernel execution)",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-streams",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#streams",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "6fafa2f5f75fb089f1117c64b5688e08a72992b573f1a502bc1797918d2b516e",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                79,
+                82
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "5c13fcac6509b437918ffc99",
+                "b41f8ce2c70f0b864fb23d6f",
+                "4d0e6c9453daee36aa4c167d"
+              ]
+            }
+          },
+          {
+            "citation_id": "E3ad1111aff841e44ef0b7605",
+            "chunk_id": "834a38c48bbe3a36b95babe0",
+            "parent_id": "99187074fafa543fade7f27c",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-unified-memory-programming.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-unified-memory-programming.md#L1177-L1181",
+            "page": null,
+            "start_line": 1177,
+            "end_line": 1181,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "CUDA Unified Memory supports all atomic operations available to host and device threads,\nenabling all threads to cooperate by concurrently accessing the same shared memory location.\nThe CUDA C++ standard library\nprovides many heterogeneous synchronization primitives tuned for concurrent use between host and device threads,\nincluding cuda::atomic, cuda::atomic_ref, cuda::barrier, cuda::semaphore, among many others.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-unified-memory-programming",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#unified-memory-programming",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "360b2b02922954808049d9df6ff54db82db327e5aacfe9a44f80f5a4f2556946",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                1177,
+                1181
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "02020a06e09eb82dc8f9daf3",
+                "cff31ff9ca29c83655ea3e90",
+                "0a4767573c1b5245f8a81114",
+                "f7a8d30e73ac12f9e0532418"
+              ]
+            }
+          },
+          {
+            "citation_id": "Eff281c644d3becc017753266",
+            "chunk_id": "631ce7f7070b8696f7f2bebe",
+            "parent_id": "9955ac41857f898c8c544170",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-streams.md#L96-L98",
+            "page": null,
+            "start_line": 96,
+            "end_line": 98,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "On devices that do support concurrent data transfers, the two streams of the code sample of Creation and Destruction of Streams\ndo overlap: The memory copy from host to device issued to stream[1] overlaps with the memory copy from device to host issued to\nstream[0] and even with the kernel launch issued to stream[0] (assuming the device supports overlap of data transfer and kernel execution).",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-streams",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#streams",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "6fafa2f5f75fb089f1117c64b5688e08a72992b573f1a502bc1797918d2b516e",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                96,
+                98
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "34f971f17b9fbc254630e2ef",
+                "5b2528e3e089b0ebd7b2c18a",
+                "a0d2ad6f7863991c0da31964"
+              ]
+            }
+          },
+          {
+            "citation_id": "E7a9b96e37ee1f84ebc1ad1c1",
+            "chunk_id": "cb7f6bf0cb08a095c3d2eb51",
+            "parent_id": "5a68775f2b82aa71718bf100",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md#L222-L222",
+            "page": null,
+            "start_line": 222,
+            "end_line": 222,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "When a synchronous function is called, control is not returned to the host thread before the device has completed the requested task. Whether the host thread will then yield, block, or spin can be specified by calling cudaSetDeviceFlags()with some specific flags (see reference manual for details) before any other CUDA call is performed by the host thread.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-asynchronous-concurrent-execution",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                222,
+                222
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "dc70ca106ddaf673ac5817d5"
+              ]
+            }
+          }
+        ],
+        "context": "[E337b66565141142df21873de] \nThere are many workflows which need to make data-dependent decisions during runtime and execute different operations depending on those decisions. Rather than offloading this decision-making process to the host, which may require a round-trip from the device, users may prefer to perform it on the device. To that end, CUDA provides a mechanism to launch graphs from the device.\n\n[E7fbb97b1535281a3457fa8b6] \nAs mentioned in Heterogeneous Programming, the CUDA programming model assumes a system composed of a host and a device, each with their own separate memory. Kernels operate out of device memory, so the runtime provides functions to allocate, deallocate, and copy device memory, as well as transfer data between host memory and device memory.\n\n[E975deafa225ca4d6fc6b62f9] \nAt a high level, the application should maximize parallel execution between the host, the devices, and the bus connecting the host to the devices, by using asynchronous functions calls and streams as described in Asynchronous Concurrent Execution. It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.\n\n[E2eec58a512990f7feac77fcc] \nFor example, on devices that do not support concurrent data transfers, the two streams of the code sample of Creation and Destruction of Streams\ndo not overlap at all because the memory copy from host to device is issued to stream[1] after the memory copy from device to host\nis issued to stream[0], so it can only start once the memory copy from device to host issued to stream[0] has completed.\nIf the\n\n[Ea3812b118f5de0d8fd8e7c2e] \ncode is rewritten the following way (and assuming the device supports overlap of data transfer and kernel execution)\n\n[E3ad1111aff841e44ef0b7605] \nCUDA Unified Memory supports all atomic operations available to host and device threads,\nenabling all threads to cooperate by concurrently accessing the same shared memory location.\nThe CUDA C++ standard library\nprovides many heterogeneous synchronization primitives tuned for concurrent use between host and device threads,\nincluding cuda::atomic, cuda::atomic_ref, cuda::barrier, cuda::semaphore, among many others.\n\n[Eff281c644d3becc017753266] \nOn devices that do support concurrent data transfers, the two streams of the code sample of Creation and Destruction of Streams\ndo overlap: The memory copy from host to device issued to stream[1] overlaps with the memory copy from device to host issued to\nstream[0] and even with the kernel launch issued to stream[0] (assuming the device supports overlap of data transfer and kernel execution).\n\n[E7a9b96e37ee1f84ebc1ad1c1] \nWhen a synchronous function is called, control is not returned to the host thread before the device has completed the requested task. Whether the host thread will then yield, block, or spin can be specified by calling cudaSetDeviceFlags()with some specific flags (see reference manual for details) before any other CUDA call is performed by the host thread.",
+        "budget": {
+          "tokens": 1200,
+          "characters": 4000
+        },
+        "used_tokens": 1046,
+        "used_characters": 3031,
+        "omitted_chunk_ids": []
+      }
+    }
+  ],
+  "response": {
+    "conversation_id": "622930dd-afee-4898-8f72-be12b29a4b3a",
+    "answer": "按指南，串行工作负载应分配给 host，并行工作负载应分配给 device。[E975deafa225ca4d6fc6b62f9]",
+    "citations": [
+      {
+        "citation_id": "E975deafa225ca4d6fc6b62f9",
+        "chunk_id": "fe2d6e472702fefa2a0e898c",
+        "parent_id": "a79bf156e52f6563313513ce",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md#L7-L7",
+        "page": null,
+        "start_line": 7,
+        "end_line": 7,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "At a high level, the application should maximize parallel execution between the host, the devices, and the bus connecting the host to the devices, by using asynchronous functions calls and streams as described in Asynchronous Concurrent Execution. It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+        "truncated": false,
+        "metadata": {
+          "collection": "official",
+          "document_id": "cuda-maximize-utilization",
+          "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+          "commit": null,
+          "release": "13.0.1",
+          "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+          "product": "cuda",
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "explanation",
+          "original_lines": [
+            7,
+            7
+          ],
+          "topic": "",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "996cb336c90a8ca8e7babcab",
+            "c0d0ccb22da593b945a326d6",
+            "88702135a61a5d9867df5a5d"
+          ]
+        }
+      }
+    ],
+    "status": "answered",
+    "trace": [
+      {
+        "step": "retrieve",
+        "duration_ms": 10.0,
+        "query": "CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？",
+        "hits": 8,
+        "evidence": 8
+      },
+      {
+        "step": "generate",
+        "duration_ms": 1002.9,
+        "provider": "anthropic-compatible",
+        "model": "deepseek-flash",
+        "validated": true
+      }
+    ]
+  },
+  "error": null,
+  "model_calls": 1,
+  "input_tokens": 1488,
+  "output_tokens": 63,
+  "latency_ms": 1020.34533303231,
+  "source_hashes_verified": true,
+  "semantic_review": "pending",
+  "events": []
+}

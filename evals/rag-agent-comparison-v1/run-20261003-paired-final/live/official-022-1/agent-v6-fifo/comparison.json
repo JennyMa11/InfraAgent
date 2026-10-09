@@ -1,0 +1,788 @@
+{
+  "id": "official-022-1",
+  "group_id": "official-scenario-022",
+  "dataset": "official",
+  "arm": "agent-v6-fifo",
+  "query": "CUDA 13.0.1：local与shared memory的作用域和生命周期有何区别？",
+  "answerable": true,
+  "delivered": {
+    "coverage": 1.0,
+    "complete": 1.0
+  },
+  "evidence": [
+    {
+      "id": "Ebc7ad26d2455a002a568fc69",
+      "chunk_id": "421311403e54d265aa286752",
+      "parent_id": "5252eb885f4f68061e56e7d9",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md",
+      "sha256": "ef0620cf5fe38149d48980cb5f30d4b1936ba18b19785f54bc60eb894491b883",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md#L3-L3",
+      "content": "CUDA threads may access data from multiple memory spaces during their execution as illustrated by Figure 6. Each thread has private local memory. Each thread block has shared memory visible to all threads of the block and with the same lifetime as the block. Thread blocks in a thread block cluster can perform read, write, and atomics operations on each other’s shared memory. All threads have access to the same global memory.",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-memory-hierarchy",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#memory-hierarchy",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "ef0620cf5fe38149d48980cb5f30d4b1936ba18b19785f54bc60eb894491b883",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          3,
+          3
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "06cce622e227594786e83c38",
+          "861db9d999afa1f3be2c862c",
+          "473e83dab82eed794fadaec8"
+        ]
+      }
+    },
+    {
+      "id": "E35b5a1ab816d17b15bb2a71b",
+      "chunk_id": "b0b8b0420b57532903834eb3",
+      "parent_id": "7e6bc9064251c975ad100ced",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-device-memory.md",
+      "sha256": "ed213e07968b4cc0abcb6a0af1e2d1859e9bd98bf3b7f1ae6d69ca26fda19d03",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-device-memory.md#L5-L5",
+      "content": "Device memory can be allocated either as linear memory or as CUDA arrays.",
+      "truncated": false,
+      "metadata": {
+        "collection": "official",
+        "document_id": "cuda-device-memory",
+        "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#device-memory",
+        "commit": null,
+        "release": "13.0.1",
+        "sha256": "ed213e07968b4cc0abcb6a0af1e2d1859e9bd98bf3b7f1ae6d69ca26fda19d03",
+        "product": "cuda",
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          5,
+          5
+        ],
+        "topic": "",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "3ed8b09ae98d2538e2b9b8d1",
+          "ee1d638089a7cb69d10126fd",
+          "ca438b3ba14c2c99c0d29215"
+        ]
+      }
+    },
+    {
+      "id": "E6598dfbe15df0308feb826a1",
+      "chunk_id": "b2ca4eed22c288ec6c23fddd",
+      "parent_id": "1e0016a792e86f138297fbb0",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/5.1-CUDA Softmax朴素实现优化.md",
+      "sha256": "97b2b9151fb1a92fdac922bea6d0f3eecab5a93962480c4048f9309ce2d51b4c",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/5.1-CUDA Softmax朴素实现优化.md#L433-L475",
+      "content": "```cuda\n    float max_val = blockReduceMaxShuffle(local_max);\n\n    // Pass 2: 计算 exp 并暂存，同时累加求 sum\n    float local_sum = 0.0f;\n    for (int i = tid; i < N; i += blockDim.x) {\n        float exp_val = expf(x[i] - max_val);\n        smem[i] = exp_val;  // 暂存到 Shared Memory\n        local_sum += exp_val;\n    }\n    float sum = blockReduceSumShuffle(local_sum);\n\n    // 直接从 Shared Memory 读取 exp 值并归一化写出\n    float inv_sum = 1.0f / sum;\n```",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/5.1-CUDA Softmax朴素实现优化.md",
+        "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/5.1-CUDA%20Softmax%E6%9C%B4%E7%B4%A0%E5%AE%9E%E7%8E%B0%E4%BC%98%E5%8C%96.md",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "release": null,
+        "sha256": "97b2b9151fb1a92fdac922bea6d0f3eecab5a93962480c4048f9309ce2d51b4c",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "code",
+        "original_lines": [
+          433,
+          475
+        ],
+        "topic": "6. 版本 V4：两遍融合 Kernel > 6.2 Kernel 实现",
+        "hardware_mentions": [],
+        "description_lines": [
+          431,
+          431
+        ],
+        "original_chunk_ids": [
+          "4d98330179fa81b585611c1c",
+          "2cae03198cc2e1a470b66086",
+          "ed655159fa92b157c99c6431",
+          "b8ee805ccc2ecaa966fb41b9"
+        ]
+      }
+    },
+    {
+      "id": "E4c3e2f1e89fd2ec857db061c",
+      "chunk_id": "a2ebd4c17d20fbde31c374f2",
+      "parent_id": "041e01b7dbcbdb02ce84403e",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md",
+      "sha256": "8c6183229c3df5712c159dceb8d3071f11d0b1184c1fec468f3eddf2f595b7a2",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md#L525-L535",
+      "content": "```cuda\n// 从 Global Memory 加载 A 的一行（连续），转置存入 Shared Memory\nfloat4 a_val = FLOAT4(A[global_row * K + bk + load_col]);\nAs[load_col + 0][local_row] = a_val.x;\nAs[load_col + 1][local_row] = a_val.y;\nAs[load_col + 2][local_row] = a_val.z;\nAs[load_col + 3][local_row] = a_val.w;\n\n// 从 Shared Memory 读取时可以用 float4（连续地址）\nfloat4 a_frag_vec = FLOAT4(As[k][thread_row]);\n```",
+      "truncated": false,
+      "metadata": {
+        "collection": "community",
+        "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md",
+        "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/4.1-CUDA%20GEMM%E7%AE%97%E5%AD%90%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "release": null,
+        "sha256": "8c6183229c3df5712c159dceb8d3071f11d0b1184c1fec468f3eddf2f595b7a2",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "code",
+        "original_lines": [
+          525,
+          535
+        ],
+        "topic": "7. 向量化访存：float4 优化 > 7.3 转置A存储策略",
+        "hardware_mentions": [],
+        "description_lines": [
+          523,
+          523
+        ],
+        "original_chunk_ids": [
+          "050f54f8ea9a66fb0dd013f3",
+          "e127d46f98458594c50548df"
+        ]
+      }
+    },
+    {
+      "id": "E8abc31e9f109f2b04f0080c9",
+      "chunk_id": "69fdf62aca65e69fa7b27a6f",
+      "parent_id": "95182dd19f1b0da444d8bb87",
+      "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md",
+      "sha256": "1d009982e7f87e43bee52a4d57371be3e92aa68b3d02423c15debee11a6c0e36",
+      "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md#L1227-L1240",
+      "content": "- 能解释 Grid → Block → Thread 的三层结构，并根据数据规模配置合适的 Block 大小\n- 能区分 GPU 的 5 种内存类型（寄存器、Local、Shared、Global、Constant），并说明各自的作用域和生命周期\n- 能解释什么是 Warp、合并访存（Coalesced Access）和 Bank Conflict\n- 能解释 SM、CUDA Core、Tensor Core、Warp Scheduler、寄存器文件分别负责什么\n- 能用自己的话解释延迟隐藏，以及它和 Occupancy 的关系",
+      "truncated": true,
+      "metadata": {
+        "collection": "community",
+        "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md",
+        "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/CUDA%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.md",
+        "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+        "release": null,
+        "sha256": "1d009982e7f87e43bee52a4d57371be3e92aa68b3d02423c15debee11a6c0e36",
+        "product": null,
+        "metadata_method": "frozen_manifest",
+        "preprocessing_version": "rules-structure-v1",
+        "body_type": "explanation",
+        "original_lines": [
+          1227,
+          1240
+        ],
+        "topic": "11. 自我检验清单",
+        "hardware_mentions": [],
+        "original_chunk_ids": [
+          "547c121c3464ce97c4bc3dd5",
+          "0f59d82ce85424813a25ad73",
+          "734e0f0dae794480d9b710a3",
+          "33d645e72c0f57dee25ec156"
+        ]
+      }
+    }
+  ],
+  "cumulative_candidate_complete": 1.0,
+  "searches": [
+    {
+      "query": "CUDA 13.0.1 local memory shared memory scope lifetime",
+      "diagnostics": {
+        "candidates": [
+          "421311403e54d265aa286752",
+          "b0b8b0420b57532903834eb3",
+          "b2ca4eed22c288ec6c23fddd",
+          "a2ebd4c17d20fbde31c374f2",
+          "69fdf62aca65e69fa7b27a6f",
+          "41b07fbbe3af991b72251abb",
+          "2216e57f11fb4cb1c06cbca6",
+          "5404a7b8a22e28045538e4b8",
+          "aba3e9d786c5c7d0fd530289",
+          "02fb4559c21de6715f597988",
+          "5342588b5d8921cebabbae22",
+          "2b10db42f2e35104ed082d38",
+          "b43e7048a9fce4d522e45707",
+          "698fd68bf38ed5509b3de66f",
+          "04a1b1cf9c0c88d849246a72",
+          "21e90d0996a9a8ba0a617dfe",
+          "656aab5e05cedf0aa541e4f5",
+          "dafa666b375c67a6f2829bf8",
+          "fe94e61da90c1875ca8b5741",
+          "34a35cec7e0ae6dba1629d5f",
+          "9ced9cae9d30966f6529d109",
+          "2d2186587624ca14383fb516",
+          "93a91c7580a801415285aa50",
+          "88723841f763352f7c4a4453",
+          "0d66a7720935731e4e3df1c9",
+          "06f5fc256525024981a64c53",
+          "8f3b176274763b34e876a9f3",
+          "82b9a67638db21114dd55df2",
+          "33427b948c6c6112fb965971",
+          "035ab247c7543ba1c3bfc772",
+          "162ab5b47660d48d5ce8ead5",
+          "b82c5de5736aebd4a072c615",
+          "fba1c3e1e3c1673057d6c424",
+          "7bb91598811a825806615571",
+          "7a2d9bf40c305159e97135ed",
+          "1f40af4f69699ab222dff718",
+          "c07f5db05169a5d08c1d1bad",
+          "17d96e62bad5615aab2b6fd4",
+          "93d56d5857cc47db0db7459c",
+          "6d7d2ccf3506a833db13703c",
+          "7ab8b6c6acaa4c94af2d7ada",
+          "5c3e71f30901de57716385ed",
+          "ec8d22ddc2f6a8c38d1ed956",
+          "df656852ab6aed24b62b4442",
+          "21742dc3eb689337589c1f98",
+          "1b62fc18e30e4c57223ff00b",
+          "001e3ffa2d5005e9f894e9ad",
+          "ffa1a8b1d3af9972100378f2",
+          "4d04d6dc92061b355fc2b414",
+          "5078940f2729b12130d0c185",
+          "d5964aa130540544361b3e7d",
+          "1c1024799a4e1232a16ab2f8",
+          "7feb39d21446783271ad0f8f",
+          "4f992f847897a3dc8414a4f5",
+          "7cbdeda8cfffbecdda3d83fe",
+          "e15648edd8cbce1d1ca0d015",
+          "81ccc2538582c150f4fd01d8",
+          "47d27d8693043c92654e50a9",
+          "d72a600675edcc4adf121341",
+          "409a87d5c20d2fb514775046",
+          "f63fc65ccdd1c30a4cc6d8c4",
+          "352a4f50be05e0e48488ba33",
+          "4ff123649fb62503a44f3c1c",
+          "d2944ab5fa78f5446462e552",
+          "8f199fde351f746652dddb6e",
+          "9b12fcd8fcdfce8af58eb891",
+          "15c91a9ac3a154dc5d72abd1",
+          "ff7819109b68e5afca52cdfe",
+          "730502a4032962d8612d6461",
+          "9004bb738e4be6b563926f00",
+          "3dc300b2be7fc7cc2c2a0e52",
+          "6137491c7d13dfe59ae3b024",
+          "095cc49412a87be6b0e9d7bf",
+          "001fe388b139a12614c6d348",
+          "646549aca3f276d92c72fe3e",
+          "59e54b2738cb7526b87b9457",
+          "9eaedb2c6bbfcbafad9f9faa",
+          "4d0ba6dbf988be2758426bfa",
+          "426946a13e1b6566933bffa9",
+          "1ceff6ee6ac80a508616ab6f",
+          "37ab0e7529423dc3c0f44589",
+          "5cd82161daf9118aac49cc0d",
+          "7a19196a34b55c52dfd49734",
+          "91d6ec62b051449e9330106f",
+          "834a38c48bbe3a36b95babe0",
+          "337e00e4ac597cb88fc5dd90",
+          "b5f86b7b12ffd61c4607199e",
+          "27a8649a10d267a12e7d98b7",
+          "ba2c72978ba2b49443fd2d97",
+          "74aeaef6c3466a7f7c28a9c6",
+          "f0e7b19432d13ee39deae41a",
+          "528c688af0e2461d77f69aaa",
+          "20bd8341af1f456bdb5bc127",
+          "b2b604889b4111eda313730a",
+          "3a4ec85ad4691b3673e002e9",
+          "6a1e486866b2de54a6da42dc",
+          "c7ebcb3cea164942058c4ca6",
+          "e04723c23e8da1e787c86ce0",
+          "af0f3d9bb3a2a621f22979a2",
+          "6ca06ee62de709a9bc2cc49a",
+          "b062c616425851b6df43bfe6",
+          "70482343f3d8f3301067d989",
+          "f2fc67adbaa026db73a52dd5",
+          "a82dca52364fa5857399ca39",
+          "9dc14e970321bebf2088b6b8",
+          "7d168d3117108a1f46a947ba",
+          "e464de0b7dfd89dce372c544",
+          "cc9ba442516b3e08d7b22dfd",
+          "caccf4eec0a2eae7e1c1eb54",
+          "452b77a12e4575c06b855a72",
+          "ee6287bdb1099398b0337d09",
+          "a3752bd3f45827df52410c80",
+          "cb1fd2f47f49748a63d3d24e",
+          "3b2bccd1f8b9c7bef1519a40",
+          "63dac99215c219ed12618a25",
+          "6236ed9890381a871238514e",
+          "ed7e5b2dbd1cc155b2cd36d7",
+          "27499cd55fe4dd0610f0e275",
+          "f0c4b48518edd8c95caa9a91",
+          "251c5f410c30e246bc04e5d8",
+          "1afd60d9a57aa227b25f93b2",
+          "c95b3e08d48975ae68dcf440",
+          "2406c1398059964c5d0fee6a",
+          "f66f5fdd5a89833c8d5275df",
+          "9ab99f1c8718cde2305c9ec5",
+          "ed670380114d9415cf5fa88a",
+          "657f05ed4a7de7c062766fa9",
+          "e3445a6f5b5911afa7d3196b",
+          "41fe7f204a6aac1ca7be9fa3",
+          "506d344713ec65f2e09e78b4",
+          "500b2df57e5de0044a40f952",
+          "9a5280b8196d3cb4aa90bc5a",
+          "24c44630e1774f4334a96bde",
+          "18b1ab9c601d6115eaa6e2d3",
+          "050c17bf024e6a70c335f51d",
+          "a03d251c8c7412a6977eb093",
+          "fab025232b160788d212a904",
+          "5e2b717d6ba75d445dc4b665",
+          "f72c041e75950c8063b6622c",
+          "366b218e4c6b0e2fcf622fd0",
+          "2465859666f0cc790a95f79f",
+          "1ca9d81d6a32a7edaf8f7bcd",
+          "ae5a1e760d4da7a78b6b97a1",
+          "2d30b9e7eb16955aaeb94b81",
+          "6d7ecfb2a6d62577f9d67710",
+          "31978cbcc230d0b8ffc28d75",
+          "59df2e487b777b8e7a9a9ef2",
+          "04d887e561dde0763cbbc59c",
+          "e7101f38bac0735d2d303b9d",
+          "d783852fcfe936afd69e9946",
+          "7d58d3af8e470416eb6fab1c",
+          "74d0129e5f4e1dd03e7ac882",
+          "f906079d738ce9b711b411ee",
+          "b2619f7059d4522d7a188da3",
+          "738dcf1226af9d68b5bc1ef4",
+          "0c43e8899c00f96970db8089",
+          "b176ee18b7a35f338c978a7e",
+          "f6f45639d583d2c4bf9f93e5",
+          "472f92f8384c598057a85fc5",
+          "11fdb37f4bd6e025434a79a2",
+          "b4a1179ca7ea05620b5ea928",
+          "9e9edbcbe09ea6f0bd7555b2",
+          "4acd95fddbdb80063c4e10a1",
+          "bfd2d8fcda09b6a897ee74eb",
+          "a8d55ce9741d89e55e630903",
+          "64c23918fe288676b428e089",
+          "cd2bfe3c2c4d86a6fd3cad27",
+          "74ae6f6718190a40dccf4ec6",
+          "4ff105421cc65903bb050db5",
+          "3be4b25a6b95a75aa5f51295",
+          "6d8667905ab99c773285ba1b",
+          "111fbbd8108601b5c5b44cf2",
+          "1ea520dab00d014ea143593d",
+          "ddc675b9065d7f484cf674a6",
+          "9e921297589a8e700642f0c1",
+          "0d7b814088da9dd8d2298c79",
+          "725afa5773a491eb2bde5bc7",
+          "4c5523a7816c88356456481a",
+          "66781c775c30a4ff87e2e080",
+          "cd319cb64fcc33d7fdf53069"
+        ],
+        "final": [
+          {
+            "chunk_id": "421311403e54d265aa286752",
+            "rerank_score": 0.5808422565460205
+          },
+          {
+            "chunk_id": "b0b8b0420b57532903834eb3",
+            "rerank_score": 0.5347820520401001
+          },
+          {
+            "chunk_id": "b2ca4eed22c288ec6c23fddd",
+            "rerank_score": 0.4279499053955078
+          },
+          {
+            "chunk_id": "a2ebd4c17d20fbde31c374f2",
+            "rerank_score": 0.3505323529243469
+          },
+          {
+            "chunk_id": "69fdf62aca65e69fa7b27a6f",
+            "rerank_score": 0.28225260972976685
+          },
+          {
+            "chunk_id": "41b07fbbe3af991b72251abb",
+            "rerank_score": 0.2529408931732178
+          }
+        ],
+        "comparison_provenance": "new_live_retrieval",
+        "scoring_query": "CUDA 13.0.1 local memory shared memory scope lifetime",
+        "selection": {
+          "eligible_ids": [
+            "421311403e54d265aa286752",
+            "b0b8b0420b57532903834eb3",
+            "b2ca4eed22c288ec6c23fddd",
+            "a2ebd4c17d20fbde31c374f2",
+            "69fdf62aca65e69fa7b27a6f",
+            "41b07fbbe3af991b72251abb",
+            "2216e57f11fb4cb1c06cbca6",
+            "5404a7b8a22e28045538e4b8",
+            "aba3e9d786c5c7d0fd530289",
+            "02fb4559c21de6715f597988",
+            "5342588b5d8921cebabbae22",
+            "2b10db42f2e35104ed082d38",
+            "b43e7048a9fce4d522e45707",
+            "698fd68bf38ed5509b3de66f",
+            "04a1b1cf9c0c88d849246a72"
+          ],
+          "selection_trace": [
+            {
+              "chunk_id": "421311403e54d265aa286752",
+              "protected": true,
+              "preview_truncated": false
+            },
+            {
+              "chunk_id": "b0b8b0420b57532903834eb3",
+              "utility": 0.5185765353116122,
+              "novelty": 0.0,
+              "redundancy": 0.06060606060606061,
+              "cost_tokens": 44,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "b2ca4eed22c288ec6c23fddd",
+              "utility": 0.41572276524135043,
+              "novelty": 0.0,
+              "redundancy": 0.05714285714285714,
+              "cost_tokens": 238,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "a2ebd4c17d20fbde31c374f2",
+              "utility": 0.33300573527812954,
+              "novelty": 0.0,
+              "redundancy": 0.1,
+              "cost_tokens": 260,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "69fdf62aca65e69fa7b27a6f",
+              "utility": 0.27487345653421735,
+              "novelty": 0.0,
+              "redundancy": 0.05228758169934641,
+              "cost_tokens": 290,
+              "score_origin": "reranker"
+            },
+            {
+              "chunk_id": "41b07fbbe3af991b72251abb",
+              "utility": 0.23607816696166992,
+              "novelty": 0.0,
+              "redundancy": 0.13333333333333333,
+              "cost_tokens": 233,
+              "score_origin": "reranker"
+            }
+          ],
+          "neighbor_priors": {},
+          "query_words": [
+            "13.0",
+            "13.0.1",
+            "cuda",
+            "lifetime",
+            "local",
+            "memory",
+            "scope",
+            "shared"
+          ],
+          "parameters": {
+            "limit": 8,
+            "length_power": 0.0,
+            "protect": 1,
+            "neighbors": false
+          }
+        }
+      },
+      "context": {
+        "evidence": [
+          {
+            "citation_id": "Ebc7ad26d2455a002a568fc69",
+            "chunk_id": "421311403e54d265aa286752",
+            "parent_id": "5252eb885f4f68061e56e7d9",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md#L3-L3",
+            "page": null,
+            "start_line": 3,
+            "end_line": 3,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "CUDA threads may access data from multiple memory spaces during their execution as illustrated by Figure 6. Each thread has private local memory. Each thread block has shared memory visible to all threads of the block and with the same lifetime as the block. Thread blocks in a thread block cluster can perform read, write, and atomics operations on each other’s shared memory. All threads have access to the same global memory.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-memory-hierarchy",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#memory-hierarchy",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "ef0620cf5fe38149d48980cb5f30d4b1936ba18b19785f54bc60eb894491b883",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                3,
+                3
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "06cce622e227594786e83c38",
+                "861db9d999afa1f3be2c862c",
+                "473e83dab82eed794fadaec8"
+              ]
+            }
+          },
+          {
+            "citation_id": "E35b5a1ab816d17b15bb2a71b",
+            "chunk_id": "b0b8b0420b57532903834eb3",
+            "parent_id": "7e6bc9064251c975ad100ced",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-device-memory.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-device-memory.md#L5-L5",
+            "page": null,
+            "start_line": 5,
+            "end_line": 5,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "Device memory can be allocated either as linear memory or as CUDA arrays.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "cuda-device-memory",
+              "url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#device-memory",
+              "commit": null,
+              "release": "13.0.1",
+              "sha256": "ed213e07968b4cc0abcb6a0af1e2d1859e9bd98bf3b7f1ae6d69ca26fda19d03",
+              "product": "cuda",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                5,
+                5
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "3ed8b09ae98d2538e2b9b8d1",
+                "ee1d638089a7cb69d10126fd",
+                "ca438b3ba14c2c99c0d29215"
+              ]
+            }
+          },
+          {
+            "citation_id": "E6598dfbe15df0308feb826a1",
+            "chunk_id": "b2ca4eed22c288ec6c23fddd",
+            "parent_id": "1e0016a792e86f138297fbb0",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/5.1-CUDA Softmax朴素实现优化.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/5.1-CUDA Softmax朴素实现优化.md#L433-L475",
+            "page": null,
+            "start_line": 433,
+            "end_line": 475,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "```cuda\n    float max_val = blockReduceMaxShuffle(local_max);\n\n    // Pass 2: 计算 exp 并暂存，同时累加求 sum\n    float local_sum = 0.0f;\n    for (int i = tid; i < N; i += blockDim.x) {\n        float exp_val = expf(x[i] - max_val);\n        smem[i] = exp_val;  // 暂存到 Shared Memory\n        local_sum += exp_val;\n    }\n    float sum = blockReduceSumShuffle(local_sum);\n\n    // 直接从 Shared Memory 读取 exp 值并归一化写出\n    float inv_sum = 1.0f / sum;\n```",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/5.1-CUDA Softmax朴素实现优化.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/5.1-CUDA%20Softmax%E6%9C%B4%E7%B4%A0%E5%AE%9E%E7%8E%B0%E4%BC%98%E5%8C%96.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "97b2b9151fb1a92fdac922bea6d0f3eecab5a93962480c4048f9309ce2d51b4c",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "code",
+              "original_lines": [
+                433,
+                475
+              ],
+              "topic": "6. 版本 V4：两遍融合 Kernel > 6.2 Kernel 实现",
+              "hardware_mentions": [],
+              "description_lines": [
+                431,
+                431
+              ],
+              "original_chunk_ids": [
+                "4d98330179fa81b585611c1c",
+                "2cae03198cc2e1a470b66086",
+                "ed655159fa92b157c99c6431",
+                "b8ee805ccc2ecaa966fb41b9"
+              ]
+            }
+          },
+          {
+            "citation_id": "E4c3e2f1e89fd2ec857db061c",
+            "chunk_id": "a2ebd4c17d20fbde31c374f2",
+            "parent_id": "041e01b7dbcbdb02ce84403e",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md#L525-L535",
+            "page": null,
+            "start_line": 525,
+            "end_line": 535,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "```cuda\n// 从 Global Memory 加载 A 的一行（连续），转置存入 Shared Memory\nfloat4 a_val = FLOAT4(A[global_row * K + bk + load_col]);\nAs[load_col + 0][local_row] = a_val.x;\nAs[load_col + 1][local_row] = a_val.y;\nAs[load_col + 2][local_row] = a_val.z;\nAs[load_col + 3][local_row] = a_val.w;\n\n// 从 Shared Memory 读取时可以用 float4（连续地址）\nfloat4 a_frag_vec = FLOAT4(As[k][thread_row]);\n```",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/4.1-CUDA GEMM算子性能优化.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/4.1-CUDA%20GEMM%E7%AE%97%E5%AD%90%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "8c6183229c3df5712c159dceb8d3071f11d0b1184c1fec468f3eddf2f595b7a2",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "code",
+              "original_lines": [
+                525,
+                535
+              ],
+              "topic": "7. 向量化访存：float4 优化 > 7.3 转置A存储策略",
+              "hardware_mentions": [],
+              "description_lines": [
+                523,
+                523
+              ],
+              "original_chunk_ids": [
+                "050f54f8ea9a66fb0dd013f3",
+                "e127d46f98458594c50548df"
+              ]
+            }
+          },
+          {
+            "citation_id": "E8abc31e9f109f2b04f0080c9",
+            "chunk_id": "69fdf62aca65e69fa7b27a6f",
+            "parent_id": "95182dd19f1b0da444d8bb87",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md#L1227-L1240",
+            "page": null,
+            "start_line": 1227,
+            "end_line": 1240,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "- 能解释 Grid → Block → Thread 的三层结构，并根据数据规模配置合适的 Block 大小\n- 能区分 GPU 的 5 种内存类型（寄存器、Local、Shared、Global、Constant），并说明各自的作用域和生命周期\n- 能解释什么是 Warp、合并访存（Coalesced Access）和 Bank Conflict\n- 能解释 SM、CUDA Core、Tensor Core、Warp Scheduler、寄存器文件分别负责什么\n- 能用自己的话解释延迟隐藏，以及它和 Occupancy 的关系\n- 能判断一个 Kernel 是 memory-bound 还是 compute-bound，并知道算术强度 / Roofline 模型在说什么\n- 能区分 PTX、SASS、Compute Capability，并解释 `-arch=` 参数的作用\n- 能编写一个基本的 CUDA Kernel（如向量加法），并用 nvcc 编译运行",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块二-CUDA编程与算子优化/CUDA编程入门指南.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%BA%8C-CUDA%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E5%AD%90%E4%BC%98%E5%8C%96/CUDA%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "1d009982e7f87e43bee52a4d57371be3e92aa68b3d02423c15debee11a6c0e36",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                1227,
+                1240
+              ],
+              "topic": "11. 自我检验清单",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "547c121c3464ce97c4bc3dd5",
+                "0f59d82ce85424813a25ad73",
+                "734e0f0dae794480d9b710a3",
+                "33d645e72c0f57dee25ec156"
+              ]
+            }
+          },
+          {
+            "citation_id": "E99ceb3c5b1c9bc9e75cefead",
+            "chunk_id": "41b07fbbe3af991b72251abb",
+            "parent_id": "6d6302384a3db8d56c7de79d",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/gpu/gpu-basics.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/gpu/gpu-basics.md#L287-L293",
+            "page": null,
+            "start_line": 287,
+            "end_line": 293,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "| 📊 CUDA 内存类型 | 声明方式 | 硬件位置 | 作用域 | 生命周期 |\n|---|---|---|---|---|\n| Register | 局部变量 | SM 寄存器堆 | 单线程 | Kernel |\n| Local Memory | 溢出的局部变量 | HBM（显存） | 单线程 | Kernel |\n| Shared Memory | `__shared__` | SM 片上存储 | Block 内 | Kernel |\n| Global Memory | `__device__` / cudaMalloc | HBM（显存） | 所有线程 | 应用 |\n| Constant Memory | `__constant__` | HBM + 缓存 | 所有线程 | 应用 |",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块一-前置知识/gpu/gpu-basics.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E4%B8%80-%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/gpu/gpu-basics.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "61210031b331bd7fe494d7768d333aa2f9a5105013f693d9ac799dce78eb6ed2",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "table",
+              "original_lines": [
+                287,
+                293
+              ],
+              "topic": "5. CUDA 编程模型 > 5.3 内存模型与存储对应",
+              "hardware_mentions": [],
+              "description_lines": [
+                285,
+                285
+              ],
+              "original_chunk_ids": [
+                "2b033581eb0ae86f78bec141"
+              ]
+            }
+          }
+        ],
+        "context": "[Ebc7ad26d2455a002a568fc69] \nCUDA threads may access data from multiple memory spaces during their execution as illustrated by Figure 6. Each thread has private local memory. Each thread block has shared memory visible to all threads of the block and with the same lifetime as the block. Thread blocks in a thread block cluster can perform read, write, and atomics operations on each other’s shared memory. All threads have access to the same global memory.\n\n[E35b5a1ab816d17b15bb2a71b] \nDevice memory can be allocated either as linear memory or as CUDA arrays.\n\n[E6598dfbe15df0308feb826a1] 6. 版本 V4：两遍融合 Kernel > 6.2 Kernel 实现\n```cuda\n    float max_val = blockReduceMaxShuffle(local_max);\n\n    // Pass 2: 计算 exp 并暂存，同时累加求 sum\n    float local_sum = 0.0f;\n    for (int i = tid; i < N; i += blockDim.x) {\n        float exp_val = expf(x[i] - max_val);\n        smem[i] = exp_val;  // 暂存到 Shared Memory\n        local_sum += exp_val;\n    }\n    float sum = blockReduceSumShuffle(local_sum);\n\n    // 直接从 Shared Memory 读取 exp 值并归一化写出\n    float inv_sum = 1.0f / sum;\n```\n\n[E4c3e2f1e89fd2ec857db061c] 7. 向量化访存：float4 优化 > 7.3 转置A存储策略\n```cuda\n// 从 Global Memory 加载 A 的一行（连续），转置存入 Shared Memory\nfloat4 a_val = FLOAT4(A[global_row * K + bk + load_col]);\nAs[load_col + 0][local_row] = a_val.x;\nAs[load_col + 1][local_row] = a_val.y;\nAs[load_col + 2][local_row] = a_val.z;\nAs[load_col + 3][local_row] = a_val.w;\n\n// 从 Shared Memory 读取时可以用 float4（连续地址）\nfloat4 a_frag_vec = FLOAT4(As[k][thread_row]);\n```\n\n[E8abc31e9f109f2b04f0080c9] 11. 自我检验清单\n- 能解释 Grid → Block → Thread 的三层结构，并根据数据规模配置合适的 Block 大小\n- 能区分 GPU 的 5 种内存类型（寄存器、Local、Shared、Global、Constant），并说明各自的作用域和生命周期\n- 能解释什么是 Warp、合并访存（Coalesced Access）和 Bank Conflict\n- 能解释 SM、CUDA Core、Tensor Core、Warp Scheduler、寄存器文件分别负责什么\n- 能用自己的话解释延迟隐藏，以及它和 Occupancy 的关系\n- 能判断一个 Kernel 是 memory-bound 还是 compute-bound，并知道算术强度 / Roofline 模型在说什么\n- 能区分 PTX、SASS、Compute Capability，并解释 `-arch=` 参数的作用\n- 能编写一个基本的 CUDA Kernel（如向量加法），并用 nvcc 编译运行\n\n[E99ceb3c5b1c9bc9e75cefead] 5. CUDA 编程模型 > 5.3 内存模型与存储对应\n| 📊 CUDA 内存类型 | 声明方式 | 硬件位置 | 作用域 | 生命周期 |\n|---|---|---|---|---|\n| Register | 局部变量 | SM 寄存器堆 | 单线程 | Kernel |\n| Local Memory | 溢出的局部变量 | HBM（显存） | 单线程 | Kernel |\n| Shared Memory | `__shared__` | SM 片上存储 | Block 内 | Kernel |\n| Global Memory | `__device__` / cudaMalloc | HBM（显存） | 所有线程 | 应用 |\n| Constant Memory | `__constant__` | HBM + 缓存 | 所有线程 | 应用 |",
+        "budget": {
+          "tokens": 1200,
+          "characters": 4000
+        },
+        "used_tokens": 1197,
+        "used_characters": 2374,
+        "omitted_chunk_ids": []
+      }
+    }
+  ],
+  "response": {
+    "status": "answered",
+    "answer": "根据 CUDA 13.0.1 官方编程指南，local memory 与 shared memory 在作用域和生命周期上的区别如下：\n\n- Local memory：每个线程私有（作用域限于单个线程），即每个线程拥有自己的 private local memory [Ebc7ad26d2455a002a568fc69]。\n- Shared memory：每个线程块（thread block）拥有 shared memory，对该块内所有线程可见（作用域为整个线程块），并且其生命周期与线程块相同（lifetime as the block）[Ebc7ad26d2455a002a568fc69]。\n- 补充：位于同一线程块簇（thread block cluster）中的线程块可以对他人的 shared memory 执行读、写和原子操作 [Ebc7ad26d2455a002a568fc69]。\n\n注意：所提供的证据未明确说明 local memory 的生命周期（仅说明其私有作用域），因此不对 local memory 的生命周期作断言。",
+    "citations": [
+      {
+        "claim_id": "c1",
+        "evidence_id": "Ebc7ad26d2455a002a568fc69"
+      },
+      {
+        "claim_id": "c2",
+        "evidence_id": "Ebc7ad26d2455a002a568fc69"
+      },
+      {
+        "claim_id": "c3",
+        "evidence_id": "Ebc7ad26d2455a002a568fc69"
+      },
+      {
+        "claim_id": "c4",
+        "evidence_id": "Ebc7ad26d2455a002a568fc69"
+      }
+    ]
+  },
+  "error": null,
+  "model_calls": 2,
+  "input_tokens": 4101,
+  "output_tokens": 429,
+  "latency_ms": 17361.405290896073,
+  "source_hashes_verified": true,
+  "semantic_review": "pending",
+  "events": []
+}

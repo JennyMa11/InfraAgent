@@ -1,0 +1,34 @@
+[
+  {
+    "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块一-前置知识/transformer/3.4 Transformer前馈网络FFN深入理解.md",
+    "line": 585,
+    "quote": "- **模型总参数量** = 64 个专家的参数量之和（很大）",
+    "context": [
+      "基本思路非常直观：与其使用一个巨大的 FFN，不如将其拆分为多个较小的\"专家\"（Expert），每个专家都是一个独立的 FFN。对于每个输入 token，只激活其中少数几个专家进行计算，其余专家保持\"休眠\"。",
+      "",
+      "例如，一个 MoE 层可能包含 64 个专家 FFN，但每个 token 只选择其中 2 个专家（Top-2）进行前向计算。这意味着：",
+      "- **模型总参数量** = 64 个专家的参数量之和（很大）",
+      "- **每个 token 的计算量** = 2 个专家的计算量（很小）",
+      ""
+    ],
+    "method": "AI qualitative source-scope review; pending human review",
+    "issue": "此处模型总参数量与专家FFN参数和的范围可能混用，需审核其他模块是否包含。",
+    "action": "retain original; do not ingest suggested corrections"
+  },
+  {
+    "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/ai-infra-book/manuscripts/02-模型架构.md",
+    "line": 721,
+    "quote": "下面将各模型的参数划分为互不重叠的六类：嵌入与输出、注意力投影、稠密或共享 FFN、路由专家、Engram、其余组件。将各类参数相加即为模型总参数量，再按每个参数 2 字节换算，就得到图 2-28 的权重容量。这种分解能直观展示参数的分布，也是解释下一张表的依据。",
+    "context": [
+      "",
+      "Kimi K3 文本主干约有 2.78 万亿个参数，绝大多数位于 92 个 MoE 层的路由专家中。每个 token 在每层只选择 16 个专家，因此完整模型的存储容量与单 token 的计算量取决于不同的因素：前者由全部专家决定，后者由选中的专家及共同执行的注意力、共享专家和投影决定。[^source-7]",
+      "",
+      "下面将各模型的参数划分为互不重叠的六类：嵌入与输出、注意力投影、稠密或共享 FFN、路由专家、Engram、其余组件。将各类参数相加即为模型总参数量，再按每个参数 2 字节换算，就得到图 2-28 的权重容量。这种分解能直观展示参数的分布，也是解释下一张表的依据。",
+      "",
+      ""
+    ],
+    "method": "AI qualitative source-scope review; pending human review",
+    "issue": "此处模型总参数量与专家FFN参数和的范围可能混用，需审核其他模块是否包含。",
+    "action": "retain original; do not ingest suggested corrections"
+  }
+]

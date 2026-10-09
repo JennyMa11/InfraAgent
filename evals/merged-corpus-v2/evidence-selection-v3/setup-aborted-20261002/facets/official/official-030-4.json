@@ -1,0 +1,37 @@
+{
+  "original_query": "CUDA 13.0.1：对maximize-utilization相关代码进行review时，为何不能接受“所有串行工作都应无条件搬到GPU。”作为正确性依据？",
+  "scoring_query": "CUDA 13.0.1: When reviewing code related to maximize-utilization, why can't \"all serial work should be unconditionally moved to the GPU\" be accepted as a correctness basis?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In CUDA 13.0.1, when reviewing code related to maximize-utilization, why can't \"all serial work should be unconditionally moved to the GPU\" be accepted as a correctness basis?",
+      "anchor_quote": "CUDA 13.0.1：对maximize-utilization相关代码进行review时，为何不能接受“所有串行工作都应无条件搬到GPU。”作为正确性依据？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：对maximize-utilization相关代码进行review时，为何不能接受“所有串行工作都应无条件搬到GPU。”作为正确性依据？\", \"scoring_query\": \"CUDA 13.0.1: When reviewing code related to maximize-utilization, why can't \\\"all serial work should be unconditionally moved to the GPU\\\" be accepted as a correctness basis?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In CUDA 13.0.1, when reviewing code related to maximize-utilization, why can't \\\"all serial work should be unconditionally moved to the GPU\\\" be accepted as a correctness basis?\",\"anchor_quote\":\"CUDA 13.0.1：对maximize-utilization相关代码进行review时，为何不能接受“所有串行工作都应无条件搬到GPU。”作为正确性依据？\"}]}",
+  "provider_response": {
+    "id": "3752bcba-bfad-4e46-9e98-2d6bb02742b9",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 213,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 97,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 773.3370419591665,
+  "sha256": "7fd83eb9cbca34df4080a4e42be235cb8ad9b7e2452d62e127e0cefecb584137"
+}

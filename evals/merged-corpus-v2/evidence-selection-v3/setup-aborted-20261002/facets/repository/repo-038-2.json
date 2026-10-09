@@ -1,0 +1,45 @@
+{
+  "original_query": "服务跑久后free blocks只降不升，取消请求漏了release，怎样修复并验证共享与抢占交错？",
+  "scoring_query": "服务跑久后free blocks只降不升，取消请求漏了release，怎样修复并验证共享与抢占交错？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "服务跑久后 free blocks 只降不升的原因是什么？",
+      "anchor_quote": "服务跑久后free blocks只降不升"
+    },
+    {
+      "question": "取消请求漏了 release 该如何修复？",
+      "anchor_quote": "取消请求漏了release，怎样修复"
+    },
+    {
+      "question": "如何验证共享与抢占交错？",
+      "anchor_quote": "怎样修复并验证共享与抢占交错？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"服务跑久后free blocks只降不升，取消请求漏了release，怎样修复并验证共享与抢占交错？\", \"scoring_query\": \"服务跑久后free blocks只降不升，取消请求漏了release，怎样修复并验证共享与抢占交错？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"服务跑久后 free blocks 只降不升的原因是什么？\",\"anchor_quote\":\"服务跑久后free blocks只降不升\"},{\"question\":\"取消请求漏了 release 该如何修复？\",\"anchor_quote\":\"取消请求漏了release，怎样修复\"},{\"question\":\"如何验证共享与抢占交错？\",\"anchor_quote\":\"怎样修复并验证共享与抢占交错？\"}]}",
+  "provider_response": {
+    "id": "3506afff-c0ba-4b49-a2d3-469f944b5159",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 185,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 90,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 653.682249947451,
+  "sha256": "e3f468ca330d07d4a7709031832e025aa270d2ced1d791e4e945632bc7fbf528"
+}

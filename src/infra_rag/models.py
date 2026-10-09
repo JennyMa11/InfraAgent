@@ -22,6 +22,7 @@ class Chunk:
     caption_source: str | None = None
     caption_locator: str | None = None
     visual_features: dict[str, float] = field(default_factory=dict)
+    metadata: dict = field(default_factory=dict)
 
 
 @dataclass

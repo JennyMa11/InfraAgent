@@ -1,0 +1,37 @@
+{
+  "original_query": "SGLang v0.5.2：加载预量化模型时应避免哪个重复量化动作？",
+  "scoring_query": "SGLang v0.5.2: Which duplicate quantization action should be avoided when loading a pre-quantized model?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In SGLang v0.5.2, which duplicate quantization action should be avoided when loading a pre-quantized model?",
+      "anchor_quote": "加载预量化模型时应避免哪个重复量化动作？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"SGLang v0.5.2：加载预量化模型时应避免哪个重复量化动作？\", \"scoring_query\": \"SGLang v0.5.2: Which duplicate quantization action should be avoided when loading a pre-quantized model?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In SGLang v0.5.2, which duplicate quantization action should be avoided when loading a pre-quantized model?\",\"anchor_quote\":\"加载预量化模型时应避免哪个重复量化动作？\"}]}",
+  "provider_response": {
+    "id": "6b5a2822-40c4-4a76-a31b-caa9a8c6074f",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 179,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 53,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 730.4332919884473,
+  "sha256": "fa7e3c7cd755362de8e72fa9125cafb0dbe00b056531b10958e2aa431c794c66"
+}

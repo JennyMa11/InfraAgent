@@ -1,0 +1,988 @@
+{
+  "input_sha256": "56828c2c58951fdcc884bd70c5139d52151de29544441d8cc0fa340157dc5a0e",
+  "ids": [
+    "046e5b7be703f63bd940190c",
+    "051ae469d904e291e2deb141",
+    "057a2dd2a23d0aae3feee7df",
+    "072b4595cf715affb1775acc",
+    "073563ebd3a0abe233e94f1e",
+    "09a0466323d892f62aab8abf",
+    "0ba9f9e807217e03d93f3f04",
+    "0f1ddf17f81986a8e3ed83d8",
+    "13be1c9df3cffc47a3fca915",
+    "173b45c5d5d49f1c2f159282",
+    "1be15d21ea40ab44bf7a6d44",
+    "1ce19c93c958f2ce6932af8e",
+    "1d1c070d4e08be8f711570ee",
+    "1df71e940d6e126b89d99e80",
+    "235e261ea79593a2e97d08bc",
+    "24a15719b43f4024868ef9f7",
+    "28a51cfb367bdb81faf0aeaf",
+    "2952ce3a958d0e0d39aafebd",
+    "2a31d296c43f0cc532abedd2",
+    "2ca028cb82e20f44ae8d3969",
+    "2d3746c8895840ee2e79fbb7",
+    "2df7e46217dc8c5ee07fe630",
+    "316f9da9660e735204ae427b",
+    "3181986cb39b28143bcd5f9d",
+    "3e0f31e7324d2825ea67a3b0",
+    "3fac5cd12c454dd7e2ebac88",
+    "433f5268fb75d23790a6ee5c",
+    "469e3fccb4c83cf2d8e58f0b",
+    "5194aa34e6e312b04a9bc237",
+    "526ab9d2ac70d06907b402a0",
+    "5b41a0c261cb2c9c67b76fa5",
+    "678dc5c1eaa2465b83d9d71f",
+    "69c6674815b185878609cbc7",
+    "6d0d61c3f631fef604bdb0d4",
+    "6f1c03902b2e326aa4dadc08",
+    "742b8c7eff1d362f1631f083",
+    "7978d245ba23e7d626f29706",
+    "7a0766c801f169b14eb78a0b",
+    "7a31fab80fde400aef21a2cc",
+    "7c27ef26cce7ff6a374c9b2b",
+    "811177b8d2c0ba8e016147e4",
+    "81e24015e12eeda0b68a922e",
+    "81f92fd9f490f087ddb77393",
+    "8200b34ba65632f170869fa4",
+    "8e0850ea74aa43488a45dc8d",
+    "90d206e4d97e41a3fdbeac71",
+    "9364ab5bf8a3b01a684e0791",
+    "93ff6e03c3c9170ec965ba63",
+    "959171906347cf26ee3f2798",
+    "98b883ad77168e5af5907431",
+    "98cdef2361ac3540717d19aa",
+    "9b7fbdae233f581f3be28617",
+    "9ca2cef45aa7a20c86133b9a",
+    "9fc0531b442aed621157a743",
+    "a2176597c28cd5d84257b249",
+    "a47dee44ec90424a6cd5366b",
+    "a716c2758a9162a5075b4156",
+    "a75904ae1a92413aac543859",
+    "b6a3278037d0ccd2bbea1fb7",
+    "b6e3f7c032517fccb8d7f18d",
+    "b9780d338c10a50af08f75b1",
+    "bd6b2d31d1efe991689b55d4",
+    "be996e9c9bebace4fc780861",
+    "bfd18b3f76e40df35ac4e8a0",
+    "c2023f902228435881a4bb4c",
+    "c3701661d2147367653c90b4",
+    "c4b4724e9b1e9c07384a9f39",
+    "c94f0c4131c8e9b19ba69301",
+    "ccf826db223b76e3a5ee81c4",
+    "cfd82214ecc5e98979a937be",
+    "d0e578ad63ac1912a7c61cce",
+    "d5a9429496fc1557f3672609",
+    "d5fd3ba9e8978e162ba25bd6",
+    "d7c1e62ef22825880f78c047",
+    "d95267bd64766a97fd2d18df",
+    "dec9f66a2767e2f0df24164f",
+    "e0c7eb07f3c6e296c1b606db",
+    "e2619b6f5765ec1ea42d28d0",
+    "e28f7f4fbd7dc0ace7b3f06a",
+    "e4f9662a5b2fb2bf247053fb",
+    "e60eedef232a7fb2d5080b54",
+    "e83aa5df4db9f152a0431768",
+    "ea4aef97b699206413a48da1",
+    "eec6894c4201f737e852cf6b",
+    "f05ab27fd2b667581515e266",
+    "fc097ebd346396e2420f876a",
+    "ff12ad48bd561b4948ae59e5"
+  ],
+  "facets": [
+    {
+      "question": "代码编辑输出经常复制上下文时，应采用什么候选生成路线？",
+      "anchor_quote": "代码编辑输出经常复制上下文"
+    },
+    {
+      "question": "没有显存放草稿模型时，应采用什么候选生成路线？",
+      "anchor_quote": "没有显存放草稿模型"
+    }
+  ],
+  "matrix": [
+    [
+      0.03241278603672981,
+      0.0033912959042936563,
+      0.0025468680541962385,
+      0.024107106029987335,
+      0.02037253975868225,
+      0.02126823551952839,
+      0.06866231560707092,
+      0.01935441419482231,
+      7.786212518112734e-05,
+      0.005954344756901264,
+      0.0019688818138092756,
+      0.0008170463261194527,
+      0.08638504147529602,
+      0.008993962779641151,
+      0.02588316798210144,
+      0.014993500895798206,
+      0.009905374608933926,
+      0.022636692970991135,
+      0.0001528143766336143,
+      0.0001148642404587008,
+      0.09479565918445587,
+      0.00026243890170007944,
+      0.009356128983199596,
+      0.036763641983270645,
+      0.010595522820949554,
+      0.005747122690081596,
+      0.0029729525558650494,
+      0.004995692986994982,
+      0.049619369208812714,
+      0.014068764634430408,
+      0.0033874076325446367,
+      3.72884824173525e-05,
+      0.0019504515221342444,
+      0.6040281057357788,
+      0.01083669625222683,
+      0.002716825809329748,
+      0.04082094132900238,
+      0.0743069052696228,
+      0.0034024924971163273,
+      0.0033751234877854586,
+      0.003920863848179579,
+      9.950678213499486e-05,
+      0.01804836094379425,
+      0.006041162181645632,
+      0.00010214875510428101,
+      0.0041733128018677235,
+      0.001933310180902481,
+      0.00972701981663704,
+      0.08230024576187134,
+      0.03775002434849739,
+      0.0017184738535434008,
+      0.0013477010652422905,
+      0.00045468934695236385,
+      0.07708244770765305,
+      0.010060680098831654,
+      0.042312201112508774,
+      0.013149240985512733,
+      0.02497595176100731,
+      0.0644170343875885,
+      0.00848271232098341,
+      0.033217769116163254,
+      0.025843871757388115,
+      0.06289433687925339,
+      0.013928419910371304,
+      0.032771386206150055,
+      0.18882116675376892,
+      0.009957338683307171,
+      0.32207927107810974,
+      0.0030127831269055605,
+      7.597782678203657e-05,
+      0.0447370782494545,
+      0.022936930879950523,
+      0.06400246918201447,
+      6.400736310752109e-05,
+      0.0037510828115046024,
+      0.008710869587957859,
+      0.06840713322162628,
+      0.0038815459702163935,
+      0.0054955435916781425,
+      7.597782678203657e-05,
+      0.00017427840793970972,
+      0.33184757828712463,
+      0.0004538603243418038,
+      0.009087870828807354,
+      0.0016684295842424035,
+      0.031171010807156563,
+      0.0014188219793140888
+    ],
+    [
+      0.012165292166173458,
+      0.0025812331587076187,
+      3.8601494452450424e-05,
+      0.0009620434138923883,
+      0.0015511623350903392,
+      0.008742841891944408,
+      0.027147632092237473,
+      0.001485895598307252,
+      3.751289477804676e-05,
+      0.0024426232557743788,
+      0.0007354663102887571,
+      0.0002580698928795755,
+      0.00025082085630856454,
+      0.0006056567654013634,
+      0.06108907610177994,
+      0.00046623454545624554,
+      0.04582497105002403,
+      0.0028550021816045046,
+      3.728336378117092e-05,
+      3.7302208511391655e-05,
+      0.013419318944215775,
+      5.300497286953032e-05,
+      0.010298555716872215,
+      0.04231904447078705,
+      0.0016966686816886067,
+      0.0026402848307043314,
+      0.00040675257332623005,
+      0.00025331645156256855,
+      0.010111918672919273,
+      0.5871650576591492,
+      0.009895591996610165,
+      3.830092464340851e-05,
+      0.0006447809282690287,
+      0.01579924300312996,
+      0.04288558289408684,
+      0.0007822049083188176,
+      0.046163979917764664,
+      0.1347198486328125,
+      0.0018517059506848454,
+      0.0009038819698616862,
+      0.000633407267741859,
+      4.676550815929659e-05,
+      0.003101163078099489,
+      0.01748029701411724,
+      9.332961781183258e-05,
+      0.005237122066318989,
+      0.0004576737410388887,
+      0.0010186154395341873,
+      0.0173775777220726,
+      0.003105366136878729,
+      0.001984119415283203,
+      5.079470429336652e-05,
+      0.0005840500816702843,
+      0.01782706007361412,
+      0.006437751930207014,
+      0.061894405633211136,
+      0.01124559435993433,
+      0.01034795492887497,
+      0.1307208091020584,
+      0.02543175034224987,
+      0.04211976379156113,
+      0.01378779485821724,
+      0.008381741121411324,
+      0.0004937289631925523,
+      0.10392812639474869,
+      0.014763100072741508,
+      0.0005855569615960121,
+      0.10163381695747375,
+      0.0008066718000918627,
+      3.7322421121643856e-05,
+      0.00021737148927059025,
+      0.26377809047698975,
+      0.04367907717823982,
+      3.729395757545717e-05,
+      0.1676093488931656,
+      0.0007436677697114646,
+      0.14545060694217682,
+      0.000640088168438524,
+      0.02212332747876644,
+      3.7322421121643856e-05,
+      4.431118941283785e-05,
+      0.014737335033714771,
+      4.917657497571781e-05,
+      0.0010694762459024787,
+      0.0004940361832268536,
+      0.0064304294064641,
+      4.836205698666163e-05
+    ]
+  ],
+  "pairs": 174,
+  "input_diagnostics": {
+    "enabled": true,
+    "pair_limit": 512,
+    "pairs": [
+      {
+        "input_tokens": 244,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 260,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 130,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 222,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 139,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 114,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 184,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 126,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 73,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 82,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 85,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 75,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 39,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 38,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 120,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 68,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 89,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 55,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 42,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 82,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 71,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 222,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 161,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 127,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 134,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 108,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 101,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 88,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 224,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 97,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 76,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 73,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 184,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 121,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 105,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 121,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 42,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 42,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 86,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 50,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 87,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 138,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 110,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 112,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 61,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 63,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 151,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 118,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 98,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 103,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 78,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 153,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 176,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 207,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 242,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 146,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 31,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 199,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 101,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 93,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 40,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 158,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 123,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 138,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 133,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 133,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 105,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 232,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 66,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 304,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 58,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 210,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 77,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 75,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 133,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 125,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 69,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 94,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 94,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 75,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 161,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 94,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 244,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 260,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 130,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 222,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 139,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 114,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 184,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 126,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 73,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 82,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 85,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 75,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 39,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 38,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 120,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 68,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 89,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 55,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 42,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 82,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 71,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 222,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 161,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 127,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 134,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 108,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 101,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 88,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 224,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 97,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 76,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 73,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 184,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 121,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 105,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 121,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 42,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 42,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 86,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 50,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 87,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 138,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 110,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 112,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 61,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 63,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 151,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 118,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 98,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 103,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 78,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 153,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 176,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 207,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 242,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 146,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 31,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 199,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 101,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 93,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 40,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 158,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 123,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 138,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 79,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 133,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 133,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 105,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 232,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 66,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 304,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 58,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 210,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 77,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 75,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 133,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 125,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 69,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 94,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 94,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 75,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 161,
+        "would_truncate": false
+      },
+      {
+        "input_tokens": 94,
+        "would_truncate": false
+      }
+    ],
+    "scope": "text_and_image_captions"
+  },
+  "inference_latency_ms": 3539.3991250311956,
+  "sha256": "4310112ef09863b00d451e21cf04cd7a610a467c1774269be559ff88e8373354"
+}

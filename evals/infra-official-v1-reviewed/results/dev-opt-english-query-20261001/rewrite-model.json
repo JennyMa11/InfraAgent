@@ -1,0 +1,15 @@
+{
+  "provider": "anthropic-compatible",
+  "base_url": "https://api.deepseek.com/anthropic",
+  "model": "deepseek-flash",
+  "options": {
+    "temperature": 0,
+    "max_tokens": 220,
+    "thinking": {
+      "type": "disabled"
+    }
+  },
+  "authentication": "x-api-key",
+  "api_version": "2023-06-01",
+  "format": "JSON requested by unchanged system prompt; no transport JSON constraint"
+}

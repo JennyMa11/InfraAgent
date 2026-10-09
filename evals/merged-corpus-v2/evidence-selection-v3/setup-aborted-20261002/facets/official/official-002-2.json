@@ -1,0 +1,37 @@
+{
+  "original_query": "vLLM v0.10.2：两个适配器使用相同文本，是否可以只按文本共享缓存？",
+  "scoring_query": "vLLM v0.10.2: If two adapters use the same text, is it possible to share the cache only by text?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In vLLM v0.10.2, if two adapters use the same text, is it possible to share the cache only by text?",
+      "anchor_quote": "vLLM v0.10.2：两个适配器使用相同文本，是否可以只按文本共享缓存？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：两个适配器使用相同文本，是否可以只按文本共享缓存？\", \"scoring_query\": \"vLLM v0.10.2: If two adapters use the same text, is it possible to share the cache only by text?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In vLLM v0.10.2, if two adapters use the same text, is it possible to share the cache only by text?\",\"anchor_quote\":\"vLLM v0.10.2：两个适配器使用相同文本，是否可以只按文本共享缓存？\"}]}",
+  "provider_response": {
+    "id": "f91e04c9-270f-488e-aecf-ed39b1bce852",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 186,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 70,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 564.484249916859,
+  "sha256": "61ba51453750b435b4c5716f2f4dae2ad42e08af43fb0d8d7ea64e5dd623d8ce"
+}

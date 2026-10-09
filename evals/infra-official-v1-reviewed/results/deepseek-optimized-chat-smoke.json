@@ -1,0 +1,53 @@
+{
+  "kind": "online_chat_smoke_not_quality_score",
+  "original_question": "vLLM v0.10.2：缓存块身份除了文本还需要哪些额外哈希？",
+  "response": {
+    "conversation_id": "3de5854e-b5c5-4a3d-a4a8-d832f5131f50",
+    "answer": "除文本（块内 token 及前缀 token）外，缓存块身份还需要额外哈希（Extra hashes），例如 LoRA ID、多模态输入哈希，以及用于在多租户环境中隔离缓存的多租户 cache salt。[E3129f01f4bc9f6da4c0fbbdc]",
+    "citations": [
+      {
+        "citation_id": "E3129f01f4bc9f6da4c0fbbdc",
+        "chunk_id": "94b777157ed4ca867fa7d39a",
+        "parent_id": "d7c7d1d7bc7c37bb0fe0a092",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L7-L19",
+        "page": null,
+        "start_line": 7,
+        "end_line": 19,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "* Parent hash value: The hash value of the parent hash block.\n* Block tokens: A tuple of tokens in this block.\nThe reason to include the exact tokens is to reduce potential hash value collision.\n* Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+        "truncated": false
+      }
+    ],
+    "status": "answered",
+    "trace": [
+      {
+        "step": "query_translate",
+        "original_query": "vLLM v0.10.2：缓存块身份除了文本还需要哪些额外哈希？",
+        "english_query": "vLLM v0.10.2: What additional hashes are needed for cache block identity besides the text?",
+        "mode": "english",
+        "cached": false,
+        "duration_ms": 590.5
+      },
+      {
+        "step": "retrieve",
+        "duration_ms": 710.6,
+        "query": "vLLM v0.10.2: What additional hashes are needed for cache block identity besides the text?",
+        "hits": 5,
+        "evidence": 8
+      },
+      {
+        "step": "generate",
+        "duration_ms": 839.8,
+        "provider": "anthropic-compatible",
+        "model": "deepseek-flash",
+        "validated": true
+      }
+    ]
+  }
+}

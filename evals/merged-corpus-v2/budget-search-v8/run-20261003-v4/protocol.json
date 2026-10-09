@@ -1,0 +1,118 @@
+{
+  "kind": "v8d_complete_actual_trace_demand_runtime_optimization",
+  "inputs": {
+    "evals/merged-corpus-v2/original-rag-v7/run-20261003-v3/protocol.json": "588570018f77fb5b1770fa07f9eed028819b7f1d900a337e1ededcb0fe91d048",
+    "evals/merged-corpus-v2/original-rag-v7/run-20261003-v3/rows.jsonl": "94ad886a4d85cdf3bceb75334a9cfcc75522f7dce7e88601e2abfd7483f544d8",
+    "evals/merged-corpus-v2/original-rag-v7/run-20261003-v3/label-review-pending.json": "395dfa02b65977ba13be6556b00f66966a932450a692da7fa4085dfa048beecc",
+    "evals/merged-corpus-v2/original-rag-v7/run-20261003-v3/summary.json": "e747fdf5290c0411a4655f50a399a4d060b696ec3d8156021ed8c1b1a1ac8c42",
+    "data/merged-corpus-v2/800518d3f71b601f/chunks.json": "957eb34875cdaeb3b2d8767ec0070d368a67717e67f5d7fc1b1a7a722a2214cf",
+    "evals/merged-corpus-v2/recall-delivery-v4/run-20261002/source-audit.json": "812c648bc1e9ace4ec0ba1fbe10daf93f8eb90be1e17edeec80e97492da6320f",
+    "evals/merged-corpus-v2/budget-search-v8/run-20261003/artifacts-manifest.json": "41b720cc65e63566068639381ef735e4ee1a1e7d7c8ac8d1e6d1ca315fa36a49",
+    "evals/merged-corpus-v2/budget-search-v8/run-20261003-v2/components.jsonl": "55ca57004e4b2eed5c3395e4df7e9319f7504acfb06a00583b8c8eff0cdb5022"
+  },
+  "models": {
+    "embedding": {
+      "model": "BAAI/bge-small-zh-v1.5",
+      "path": "/Users/jennyma/.cache/huggingface/hub/models--BAAI--bge-small-zh-v1.5/snapshots/7999e1d3359715c523056ef9478215996d62a620",
+      "files": {
+        "1_Pooling/config.json": "aaa8861589f80c961a03cc86c7eeaef7605c1676b9ab55329d33a304738769c6",
+        "README.md": "c48a4eeea77f6b1d38b48ec1c5b8d4f86d5550cc43fa345a0db1b2ca1d082369",
+        "config.json": "3853a7979202c348751b753e36f579c41d8da7d36af617d3d907e1fc9b441f2a",
+        "config_sentence_transformers.json": "940d5f50db195fa6e5e6a4f122c095f77880de259d74b14a65779ed48bdd7c56",
+        "model.safetensors": "354763b9b1357bc9c44f62c6be2276321081ed2567773608c0d0785b61d5a026",
+        "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+        "sentence_bert_config.json": "84e39fda68ccbff05bfa723ae9c0e70e23e2ec373b76e0f8c6e71af72a693cbf",
+        "special_tokens_map.json": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+        "tokenizer.json": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26",
+        "tokenizer_config.json": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a",
+        "vocab.txt": "45bbac6b341c319adc98a532532882e91a9cefc0329aa57bac9ae761c27b291c"
+      },
+      "revision": "7999e1d3359715c523056ef9478215996d62a620"
+    },
+    "reranker": {
+      "model": "BAAI/bge-reranker-base",
+      "path": "/Users/jennyma/.cache/huggingface/hub/models--BAAI--bge-reranker-base/snapshots/2cfc18c9415c912f9d8155881c133215df768a70",
+      "files": {
+        "config.json": "289adf7ada1eb6b4afa7589a48a032d45a076cf2e46dcdb3b4cabc33be14f708",
+        "model.safetensors": "ced967c45fd1902eb92716c9ceeca7c95a936770ea9db611f5a841b926e33fbd",
+        "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "special_tokens_map.json": "d5469a60db23249c7f8945013d78df30b44b6bf686c6bb4740f4223f77b1b535",
+        "tokenizer.json": "9eb652ac4e40cc093272bbbe0f55d521cf67570060227109b5cdc20945a4489e",
+        "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+      },
+      "revision": "2cfc18c9415c912f9d8155881c133215df768a70"
+    },
+    "packages": {
+      "torch": "2.14.0",
+      "sentence-transformers": "5.7.0",
+      "transformers": "5.17.0",
+      "chromadb": "1.5.9"
+    }
+  },
+  "directory": "data/merged-corpus-v2/800518d3f71b601f",
+  "implementation": {
+    "src/infra_rag/__init__.py": "f332dc60bc2c27078387d611eac64dfbacdc51b6e0517e888564cbdd48643b66",
+    "src/infra_rag/agent.py": "edd94b3024db89982f15a81858379a71ba6fac8f51767215ec1f2e8c69d38340",
+    "src/infra_rag/agent_comparison.py": "084c8b77e080bb51b158c7e3266629f0b1f1ca2f6ff0cd2d009c14dc5c5c287e",
+    "src/infra_rag/agent_evaluation.py": "1c50bd05a2fa748a7b691d9a2b34be2ded4f32f5ac53e169af305857026970ed",
+    "src/infra_rag/api.py": "2308b59435c00e68034407e27a7ad163e4236e79d3274981382feaa88e342380",
+    "src/infra_rag/assistant.py": "56eb1fdaffdf26a601623995ba097224690536fcebff63b177a7507bbb3b0df5",
+    "src/infra_rag/benchmarking.py": "d45fc37d5c76f56e4c4d2fa49fb38d2fb97858e4dbfa82e4160e4d2591064b8a",
+    "src/infra_rag/budget_ablation.py": "83e9cc03125d9eae421488e5f02119a6efc4aef94436566b32645bb0f86b1508",
+    "src/infra_rag/budget_evidence.py": "49388592fd91a82e61ef00f6ae56294bc732e263c5ce39154c80d5f401774953",
+    "src/infra_rag/budget_search.py": "257dd75ebf4135c86922f045fca6c77e606769e7403a29371da41c4e3eae5976",
+    "src/infra_rag/chunking.py": "701f7c230582e88a5b6db67ce5c2ed920dcb67613d8798514bf9c40ae0643b5f",
+    "src/infra_rag/claim_guard.py": "2b4e08df6166b997587f7ad4c32b36c6682ccadfbefe45bb3a586dc25df98d82",
+    "src/infra_rag/cli.py": "c4031d52c67057848d5bc1da946f00442341b754b4fae43c87261f716ebf4ca5",
+    "src/infra_rag/config.py": "b6c6894097ede50d61cca7ed4a9ad04824d1d4fc8f6e8f42e22669c4a10dc565",
+    "src/infra_rag/context.py": "4774f2eb5a79fd1f7da006637d02a8a37c2b2fe91f540bee8a51d283d2cd365a",
+    "src/infra_rag/document_local.py": "be8ea25e432c0642b5204eeedffe84eb3f0fbc9b065603be1e98cbca27dae78b",
+    "src/infra_rag/encoding.py": "4fa9678a94d8e947ae5ff8f2c00468acb61d86c91e60cb3f447958fc588a2036",
+    "src/infra_rag/evaluation.py": "5eabfa46d05ac6ddb8a2f92fdacdf814fd3fdf543d2ea60cb51a260cf7bb9ae1",
+    "src/infra_rag/evidence_metadata.py": "ddce71ee5e27c2d3123b2bff5f3da12fb253872db92fa7391782dfa453d4c73b",
+    "src/infra_rag/evidence_selection.py": "5fc28a0d19222fcfbdc2c109068a5a1539170eda9a9cd80a51495b332916bf21",
+    "src/infra_rag/image_chunking.py": "1b3d8f1827bb6d187dba84ef4404cbdccf893572b603d9375f0080eb8e5e548a",
+    "src/infra_rag/lexical.py": "1e05f9baa8d8204a50d4d1b2004862698723b02320771d874f359268af08898b",
+    "src/infra_rag/model_clients.py": "9bea16de014eaa0bb851d70ccd483e05806a1795d5fd8e504f24a22a824fa9c1",
+    "src/infra_rag/models.py": "3427d94ea415cdb3fdf69915db2a7434414b45a9da428e68a31917c15473c8c8",
+    "src/infra_rag/offline_evaluation.py": "cd68b7d532566a1c47cf5eb973457b35581e65da2024ae8ec948b0b65cb85112",
+    "src/infra_rag/original_rag_experiments.py": "3dbf6cf7dadb2f3312905ccb5ec0fe4ea73f583ae84c536fb756db7b37c84d4e",
+    "src/infra_rag/paired_statistics.py": "885fa336cc6acef6e9b8dc6de9a0f61ef9f6e8af99ab1d06cca02e3971493378",
+    "src/infra_rag/partitioned.py": "b468327895b8651e64decdf33ca1ebf69cd9d96bc133701d3b5a1c0b198fb8a6",
+    "src/infra_rag/preprocessing.py": "51aae47a7387a523c75c13a4a93a984dfa25fdc2cc51c5a0b2805b6521904236",
+    "src/infra_rag/query_expansion.py": "768307aa65941875fbd40f97eb29df9cf8ecbe72698297a57fdfbc0fad5812f0",
+    "src/infra_rag/recall_experiments.py": "9cf3cdde7d371725484d968d7b9e8d8a9ebdeccfd10c879721ed6fc1f2a8ae85",
+    "src/infra_rag/service.py": "f0ff6a72a0a81b28f6276fb9ea443573dfd9b5dfb34c0195d825d3f95de91f41",
+    "src/infra_rag/source_quarantine.py": "85e85fef1c006f650a616c76b263f2ccaf441781868af38ddbc5108473f3bd3e",
+    "src/infra_rag/text_chunking.py": "038031ccb91d7f62cd4dfc3c3dba0675a028ece59e8d55ee9bc58b653e849dc6",
+    "src/infra_rag/vector_cache.py": "cc099843e87cba4151fe09001d5c8d79782e07f0646edaa1656f394a09747c4b",
+    "scripts/benchmark_budget_search_trace_runtime_v8.py": "5fe0c857d741d62d6b861a16b202ba33c776aef0d495d9267e636f2d812e8954",
+    "scripts/benchmark_budget_search_v8.py": "b345e5b83793b29e6af450e80d07cbab3b1def15701a9cf226a9b65eca84a077",
+    "scripts/benchmark_original_rag_v7.py": "66c0e6accdb5748ce862e13437e2291791049aa78288ed3ba7c02402f932ceec",
+    "scripts/prepare_corpus_v2.py": "b0744f498dd7e08f63f8194392aa5a6a0573f8c971768ab7c16ab62e008787f2",
+    "scripts/operation_log.py": "4930983e45a8ca85b14913f10b12aa6e938fe2c8e697bab5230642a2abc1a403"
+  },
+  "plan_sha256": "fc681740a07f8866eb93785340adbd54b263389cc367a42fc73db9b588dd113a",
+  "quality_inheritance_requires_context_equivalence": 330,
+  "runtime_arms": [
+    "B-O15",
+    "Ladj-X30"
+  ],
+  "runtime_expected_records": 220,
+  "adjacency_channels_used": [
+    "bm25"
+  ],
+  "discarded_adjacency_dense_computation": false,
+  "discarded_adjacency_preview_packing": false,
+  "component_expected_records": 220,
+  "component_measurements": "historical v8b; not remeasured in v8c",
+  "latency_ratio_cap": 1.5,
+  "context_tokens": 1200,
+  "context_chars": 4000,
+  "candidate_cap": 90,
+  "generation_api_calls": 0,
+  "independent_review": "pending",
+  "holdout_test_read": false,
+  "default_changed": false,
+  "reuse_run": null
+}

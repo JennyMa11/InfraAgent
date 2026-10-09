@@ -1,0 +1,37 @@
+{
+  "original_query": "一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？",
+  "scoring_query": "一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？",
+      "anchor_quote": "一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？\", \"scoring_query\": \"一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？\",\"anchor_quote\":\"一次Target前向检查多条候选分支时，怎样防止兄弟路径互相看到token？\"}]}",
+  "provider_response": {
+    "id": "f1c8ec4b-7278-458e-8d51-46275db1c8fd",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 169,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 51,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 826.9967910600826,
+  "sha256": "3575549f86cf0246345cd2bd50b022a7608ad54317bfc0267d131718d7f73e8b"
+}

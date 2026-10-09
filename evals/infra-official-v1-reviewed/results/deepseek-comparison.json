@@ -1,0 +1,707 @@
+{
+  "local": {
+    "rows": 300,
+    "states": {
+      "no_evidence": 178,
+      "answered": 120,
+      "error": 2
+    },
+    "model_invoked_rows": 294,
+    "requests_including_validation_retries": 304,
+    "retry_rows": 10,
+    "generation_ms_median_with_calls": 5771.548770950176,
+    "last_raw_structure": {
+      "valid_schema": 291,
+      "unknown_citation_ids": 3,
+      "inline_ids_missing_from_list": 2,
+      "supported_without_citation": 0,
+      "non_json": 3
+    },
+    "provider_usage_sum": {},
+    "returned_models": {},
+    "stop_reasons": {},
+    "fact_correct": null
+  },
+  "api": {
+    "rows": 300,
+    "states": {
+      "answered": 169,
+      "no_evidence": 131
+    },
+    "model_invoked_rows": 294,
+    "requests_including_validation_retries": 294,
+    "retry_rows": 0,
+    "generation_ms_median_with_calls": 964.8842504248023,
+    "last_raw_structure": {
+      "valid_schema": 294,
+      "unknown_citation_ids": 0,
+      "inline_ids_missing_from_list": 0,
+      "supported_without_citation": 0
+    },
+    "provider_usage_sum": {
+      "input_tokens": 320948,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 21632,
+      "output_tokens": 27423
+    },
+    "returned_models": {
+      "deepseek-flash": 294
+    },
+    "stop_reasons": {
+      "end_turn": 294
+    },
+    "fact_correct": null
+  },
+  "matched_rows": 300,
+  "fixed_input_mismatches": [],
+  "status_changes": [
+    {
+      "review_key": "official-002-1:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-002-2:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-004-2:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-004-2:dense:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-004-2:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-004-3:dense:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-005-1:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-005-3:dense:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-008-3:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-010-1:bm25:retrieved",
+      "local_status": "answered",
+      "api_status": "no_evidence",
+      "answerable": true
+    },
+    {
+      "review_key": "official-010-2:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-010-2:dense:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-010-2:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-010-3:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-010-3:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-010-4:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-012-2:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-012-2:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-012-4:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-012-4:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-012-4:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-014-1:dense:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-014-2:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-014-2:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-016-1:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-016-1:dense:retrieved",
+      "local_status": "answered",
+      "api_status": "no_evidence",
+      "answerable": true
+    },
+    {
+      "review_key": "official-016-2:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-016-3:oracle:oracle",
+      "local_status": "error",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-016-3:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-017-2:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-017-3:oracle:oracle",
+      "local_status": "error",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-017-3:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-017-3:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-017-3:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-022-2:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-022-2:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-022-2:dense:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-022-2:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-022-2:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-022-3:dense:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-024-2:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-024-2:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-024-2:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-024-4:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": false
+    },
+    {
+      "review_key": "official-026-2:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-026-3:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-026-4:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-026-4:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-026-4:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-028-1:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-028-2:dense:retrieved",
+      "local_status": "answered",
+      "api_status": "no_evidence",
+      "answerable": true
+    },
+    {
+      "review_key": "official-028-4:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-028-4:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-028-4:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-028-4:hybrid_rerank:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-030-1:dense:retrieved",
+      "local_status": "answered",
+      "api_status": "no_evidence",
+      "answerable": true
+    },
+    {
+      "review_key": "official-030-1:hybrid:retrieved",
+      "local_status": "answered",
+      "api_status": "no_evidence",
+      "answerable": true
+    },
+    {
+      "review_key": "official-030-2:hybrid:retrieved",
+      "local_status": "answered",
+      "api_status": "no_evidence",
+      "answerable": true
+    },
+    {
+      "review_key": "official-030-4:oracle:oracle",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-030-4:bm25:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    },
+    {
+      "review_key": "official-030-4:hybrid:retrieved",
+      "local_status": "no_evidence",
+      "api_status": "answered",
+      "answerable": true
+    }
+  ],
+  "priority_review_keys": [
+    "official-004-2:oracle:oracle",
+    "official-012-4:oracle:oracle",
+    "official-024-4:bm25:retrieved"
+  ],
+  "by_variant": {
+    "oracle": {
+      "local": {
+        "rows": 60,
+        "states": {
+          "no_evidence": 18,
+          "answered": 40,
+          "error": 2
+        },
+        "model_invoked_rows": 54,
+        "requests_including_validation_retries": 60,
+        "retry_rows": 6,
+        "generation_ms_median_with_calls": 4397.6901870337315,
+        "last_raw_structure": {
+          "valid_schema": 52,
+          "unknown_citation_ids": 2,
+          "inline_ids_missing_from_list": 0,
+          "supported_without_citation": 0,
+          "non_json": 2
+        },
+        "provider_usage_sum": {},
+        "returned_models": {},
+        "stop_reasons": {},
+        "fact_correct": null
+      },
+      "api": {
+        "rows": 60,
+        "states": {
+          "answered": 52,
+          "no_evidence": 8
+        },
+        "model_invoked_rows": 54,
+        "requests_including_validation_retries": 54,
+        "retry_rows": 0,
+        "generation_ms_median_with_calls": 944.891249993816,
+        "last_raw_structure": {
+          "valid_schema": 54,
+          "unknown_citation_ids": 0,
+          "inline_ids_missing_from_list": 0,
+          "supported_without_citation": 0
+        },
+        "provider_usage_sum": {
+          "input_tokens": 18928,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 4273
+        },
+        "returned_models": {
+          "deepseek-flash": 54
+        },
+        "stop_reasons": {
+          "end_turn": 54
+        },
+        "fact_correct": null
+      }
+    },
+    "bm25": {
+      "local": {
+        "rows": 60,
+        "states": {
+          "no_evidence": 41,
+          "answered": 19
+        },
+        "model_invoked_rows": 60,
+        "requests_including_validation_retries": 62,
+        "retry_rows": 2,
+        "generation_ms_median_with_calls": 5836.166437482461,
+        "last_raw_structure": {
+          "valid_schema": 59,
+          "unknown_citation_ids": 0,
+          "inline_ids_missing_from_list": 0,
+          "supported_without_citation": 0,
+          "non_json": 1
+        },
+        "provider_usage_sum": {},
+        "returned_models": {},
+        "stop_reasons": {},
+        "fact_correct": null
+      },
+      "api": {
+        "rows": 60,
+        "states": {
+          "no_evidence": 26,
+          "answered": 34
+        },
+        "model_invoked_rows": 60,
+        "requests_including_validation_retries": 60,
+        "retry_rows": 0,
+        "generation_ms_median_with_calls": 1036.1463750014082,
+        "last_raw_structure": {
+          "valid_schema": 60,
+          "unknown_citation_ids": 0,
+          "inline_ids_missing_from_list": 0,
+          "supported_without_citation": 0
+        },
+        "provider_usage_sum": {
+          "input_tokens": 77307,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 2816,
+          "output_tokens": 6210
+        },
+        "returned_models": {
+          "deepseek-flash": 60
+        },
+        "stop_reasons": {
+          "end_turn": 60
+        },
+        "fact_correct": null
+      }
+    },
+    "dense": {
+      "local": {
+        "rows": 60,
+        "states": {
+          "no_evidence": 48,
+          "answered": 12
+        },
+        "model_invoked_rows": 60,
+        "requests_including_validation_retries": 60,
+        "retry_rows": 0,
+        "generation_ms_median_with_calls": 5368.042375484947,
+        "last_raw_structure": {
+          "valid_schema": 60,
+          "unknown_citation_ids": 1,
+          "inline_ids_missing_from_list": 0,
+          "supported_without_citation": 0
+        },
+        "provider_usage_sum": {},
+        "returned_models": {},
+        "stop_reasons": {},
+        "fact_correct": null
+      },
+      "api": {
+        "rows": 60,
+        "states": {
+          "no_evidence": 44,
+          "answered": 16
+        },
+        "model_invoked_rows": 60,
+        "requests_including_validation_retries": 60,
+        "retry_rows": 0,
+        "generation_ms_median_with_calls": 881.1456045368686,
+        "last_raw_structure": {
+          "valid_schema": 60,
+          "unknown_citation_ids": 0,
+          "inline_ids_missing_from_list": 0,
+          "supported_without_citation": 0
+        },
+        "provider_usage_sum": {
+          "input_tokens": 75797,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 4352,
+          "output_tokens": 4291
+        },
+        "returned_models": {
+          "deepseek-flash": 60
+        },
+        "stop_reasons": {
+          "end_turn": 60
+        },
+        "fact_correct": null
+      }
+    },
+    "hybrid": {
+      "local": {
+        "rows": 60,
+        "states": {
+          "no_evidence": 39,
+          "answered": 21
+        },
+        "model_invoked_rows": 60,
+        "requests_including_validation_retries": 61,
+        "retry_rows": 1,
+        "generation_ms_median_with_calls": 6362.267853517551,
+        "last_raw_structure": {
+          "valid_schema": 60,
+          "unknown_citation_ids": 0,
+          "inline_ids_missing_from_list": 1,
+          "supported_without_citation": 0
+        },
+        "provider_usage_sum": {},
+        "returned_models": {},
+        "stop_reasons": {},
+        "fact_correct": null
+      },
+      "api": {
+        "rows": 60,
+        "states": {
+          "no_evidence": 31,
+          "answered": 29
+        },
+        "model_invoked_rows": 60,
+        "requests_including_validation_retries": 60,
+        "retry_rows": 0,
+        "generation_ms_median_with_calls": 1062.8279994707555,
+        "last_raw_structure": {
+          "valid_schema": 60,
+          "unknown_citation_ids": 0,
+          "inline_ids_missing_from_list": 0,
+          "supported_without_citation": 0
+        },
+        "provider_usage_sum": {
+          "input_tokens": 73128,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 7936,
+          "output_tokens": 5763
+        },
+        "returned_models": {
+          "deepseek-flash": 60
+        },
+        "stop_reasons": {
+          "end_turn": 60
+        },
+        "fact_correct": null
+      }
+    },
+    "hybrid_rerank": {
+      "local": {
+        "rows": 60,
+        "states": {
+          "no_evidence": 32,
+          "answered": 28
+        },
+        "model_invoked_rows": 60,
+        "requests_including_validation_retries": 61,
+        "retry_rows": 1,
+        "generation_ms_median_with_calls": 6838.4453959879465,
+        "last_raw_structure": {
+          "valid_schema": 60,
+          "unknown_citation_ids": 0,
+          "inline_ids_missing_from_list": 1,
+          "supported_without_citation": 0
+        },
+        "provider_usage_sum": {},
+        "returned_models": {},
+        "stop_reasons": {},
+        "fact_correct": null
+      },
+      "api": {
+        "rows": 60,
+        "states": {
+          "no_evidence": 22,
+          "answered": 38
+        },
+        "model_invoked_rows": 60,
+        "requests_including_validation_retries": 60,
+        "retry_rows": 0,
+        "generation_ms_median_with_calls": 1101.4922505128197,
+        "last_raw_structure": {
+          "valid_schema": 60,
+          "unknown_citation_ids": 0,
+          "inline_ids_missing_from_list": 0,
+          "supported_without_citation": 0
+        },
+        "provider_usage_sum": {
+          "input_tokens": 75788,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 6528,
+          "output_tokens": 6886
+        },
+        "returned_models": {
+          "deepseek-flash": 60
+        },
+        "stop_reasons": {
+          "end_turn": 60
+        },
+        "fact_correct": null
+      }
+    }
+  },
+  "human_semantic_metrics": null,
+  "notes": [
+    "Question approval does not approve answers.",
+    "No-evidence bypasses are excluded from raw structure statistics.",
+    "citation_ids_valid in original summaries is answer-only validation, not a citation error rate for refusals.",
+    "Usage covers measured calls and validation retries, excludes preloads."
+  ]
+}

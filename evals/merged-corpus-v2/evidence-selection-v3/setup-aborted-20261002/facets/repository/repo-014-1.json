@@ -1,0 +1,37 @@
+{
+  "original_query": "Row Parallel线性层如何合并各卡的局部输出？",
+  "scoring_query": "Row Parallel线性层如何合并各卡的局部输出？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "Row Parallel线性层如何合并各卡的局部输出？",
+      "anchor_quote": "Row Parallel线性层如何合并各卡的局部输出？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"Row Parallel线性层如何合并各卡的局部输出？\", \"scoring_query\": \"Row Parallel线性层如何合并各卡的局部输出？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Row Parallel线性层如何合并各卡的局部输出？\",\"anchor_quote\":\"Row Parallel线性层如何合并各卡的局部输出？\"}]}",
+  "provider_response": {
+    "id": "a6149d78-4f07-47cb-a266-efaa871dc4c1",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 155,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 37,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 582.6377500779927,
+  "sha256": "22eae9a22932d92e66046100435b60df09b5f27ed021675c9175704424f4b2c8"
+}

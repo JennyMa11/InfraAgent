@@ -1,0 +1,37 @@
+{
+  "original_query": "长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？",
+  "scoring_query": "长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？",
+      "anchor_quote": "长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？\", \"scoring_query\": \"长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？\",\"anchor_quote\":\"长序列并行方案需要在head分片与序列分片之间转换，应检索哪类All-to-All重排策略？\"}]}",
+  "provider_response": {
+    "id": "f150c53a-3fec-42ec-9ae1-575a63059899",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 187,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 69,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 881.0369580751285,
+  "sha256": "4beb17fe9d8b3e32cbf6f579cf20ce4bbd7ee5fc0936a605793058ad765df1ed"
+}

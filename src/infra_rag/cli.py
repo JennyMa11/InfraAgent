@@ -10,11 +10,19 @@ from .service import RetrievalService
 
 
 def main():
+    from .model_clients import model_environment
+
     parser = argparse.ArgumentParser(description="Infra RAG retrieval service")
     parser.add_argument("--data-dir", type=Path, default=Path("data/default-v2"))
     parser.add_argument("--backend", choices=["demo", "bge"], default="demo")
     parser.add_argument("--embedding-model", default="BAAI/bge-small-zh-v1.5")
     parser.add_argument("--rerank", action="store_true")
+    parser.add_argument(
+        "--query-language",
+        choices=["none", "english", "bilingual"],
+        default=model_environment().get("INFRA_RAG_QUERY_LANGUAGE", "none"),
+        help="Translate chat retrieval queries; search/evaluate keep literal queries",
+    )
     parser.add_argument("--multimodal", action="store_true")
     parser.add_argument("--heading-context", action="store_true")
     parser.add_argument("--fusion-candidates", choices=["truncate", "union"], default="truncate")
@@ -59,6 +67,7 @@ def main():
             backend=args.backend,
             embedding_model=args.embedding_model,
             rerank=args.rerank,
+            query_language=args.query_language,
             multimodal=args.multimodal,
             heading_context=args.heading_context,
             fusion_candidates=args.fusion_candidates,

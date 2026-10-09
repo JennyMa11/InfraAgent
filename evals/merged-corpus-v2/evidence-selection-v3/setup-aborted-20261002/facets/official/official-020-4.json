@@ -1,0 +1,49 @@
+{
+  "original_query": "SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在amd_gpu场景下精确的P95延迟毫秒值吗？",
+  "scoring_query": "SGLang v0.5.2: Based solely on the current official materials, can you give the exact P95 latency in milliseconds for my private deployment in an amd_gpu scenario, given that I have not provided hardware, model, or logs?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "Does SGLang v0.5.2 official documentation provide exact P95 latency in milliseconds for private deployments in an amd_gpu scenario?",
+      "anchor_quote": "SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在amd_gpu场景下精确的P95延迟毫秒值吗？"
+    },
+    {
+      "question": "Can exact P95 latency in milliseconds be determined for a private deployment in an amd_gpu scenario without hardware, model, or logs?",
+      "anchor_quote": "能给出我未提供硬件、模型和日志的私有部署在amd_gpu场景下精确的P95延迟毫秒值吗？"
+    },
+    {
+      "question": "Does the answer rely solely on current official materials for SGLang v0.5.2?",
+      "anchor_quote": "仅凭当前官方资料"
+    },
+    {
+      "question": "Is the deployment scenario specifically amd_gpu?",
+      "anchor_quote": "amd_gpu场景"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在amd_gpu场景下精确的P95延迟毫秒值吗？\", \"scoring_query\": \"SGLang v0.5.2: Based solely on the current official materials, can you give the exact P95 latency in milliseconds for my private deployment in an amd_gpu scenario, given that I have not provided hardware, model, or logs?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Does SGLang v0.5.2 official documentation provide exact P95 latency in milliseconds for private deployments in an amd_gpu scenario?\",\"anchor_quote\":\"SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在amd_gpu场景下精确的P95延迟毫秒值吗？\"},{\"question\":\"Can exact P95 latency in milliseconds be determined for a private deployment in an amd_gpu scenario without hardware, model, or logs?\",\"anchor_quote\":\"能给出我未提供硬件、模型和日志的私有部署在amd_gpu场景下精确的P95延迟毫秒值吗？\"},{\"question\":\"Does the answer rely solely on current official materials for SGLang v0.5.2?\",\"anchor_quote\":\"仅凭当前官方资料\"},{\"question\":\"Is the deployment scenario specifically amd_gpu?\",\"anchor_quote\":\"amd_gpu场景\"}]}",
+  "provider_response": {
+    "id": "26ecdc8c-e268-4f0f-8cbb-ed34366341a7",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 230,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 213,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 1399.1562499431893,
+  "sha256": "f6ba1d661ecebf93407a9c23d8c5d37883c893bbf3d9b53ae5dfc8934e60ae0a"
+}

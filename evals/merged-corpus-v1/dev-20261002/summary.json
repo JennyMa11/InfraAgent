@@ -1,0 +1,884 @@
+{
+  "official_english": {
+    "questions": 60,
+    "answerable": 54,
+    "at_k": {
+      "5": {
+        "recall": 0.7623456790123457,
+        "precision": 0.17407407407407408,
+        "f1": 0.2791005291005291,
+        "mrr": 0.5469135802469136,
+        "ndcg": 0.5900127802345294,
+        "complete_evidence_hit": 0.7222222222222222,
+        "evidence_mrr": 0.4759259259259259,
+        "evidence_coverage": 0.7623456790123457
+      },
+      "10": {
+        "recall": 0.8734567901234568,
+        "precision": 0.1,
+        "f1": 0.17769576102909437,
+        "mrr": 0.5617210464432687,
+        "ndcg": 0.6272075972675578,
+        "complete_evidence_hit": 0.8333333333333334,
+        "evidence_mrr": 0.490733392122281,
+        "evidence_coverage": 0.8734567901234568
+      }
+    },
+    "context_complete_ci95": {
+      "mean": 0.7407407407407407,
+      "ci95": [
+        0.5925925925925926,
+        0.8679245283018868
+      ],
+      "groups": 15,
+      "samples": 2000,
+      "seed": 42
+    },
+    "retrieval_complete_at_5_ci95": {
+      "mean": 0.7222222222222222,
+      "ci95": [
+        0.5666666666666667,
+        0.8545454545454545
+      ],
+      "groups": 15,
+      "samples": 2000,
+      "seed": 42
+    },
+    "retrieval_ci95": {
+      "5": {
+        "recall": {
+          "mean": 0.7623456790123457,
+          "ci95": [
+            0.6111111111111112,
+            0.8846153846153846
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "mrr": {
+          "mean": 0.5469135802469136,
+          "ci95": [
+            0.41728395061728396,
+            0.6672727272727272
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "ndcg": {
+          "mean": 0.5900127802345294,
+          "ci95": [
+            0.46658077735344283,
+            0.6992099620537834
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "complete_evidence_hit": {
+          "mean": 0.7222222222222222,
+          "ci95": [
+            0.5666666666666667,
+            0.8545454545454545
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        }
+      },
+      "10": {
+        "recall": {
+          "mean": 0.8734567901234568,
+          "ci95": [
+            0.7924528301886793,
+            0.9506172839506173
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "mrr": {
+          "mean": 0.5617210464432687,
+          "ci95": [
+            0.44355526161081715,
+            0.6756944444444445
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "ndcg": {
+          "mean": 0.6272075972675578,
+          "ci95": [
+            0.5243952928527706,
+            0.720451055377843
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "complete_evidence_hit": {
+          "mean": 0.8333333333333334,
+          "ci95": [
+            0.7454545454545455,
+            0.9230769230769231
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        }
+      }
+    },
+    "candidate_hit": 0.9444444444444444,
+    "candidate_complete": 0.8888888888888888,
+    "retrieval_latency": {
+      "p50_ms": 685.6781875248998,
+      "p95_ms": 842.5726660061628
+    },
+    "generation_latency": null,
+    "generation_with_model_latency": null,
+    "generation_errors": 0,
+    "format_valid": 0,
+    "citation_ids_valid": 0,
+    "fact_correct": null,
+    "generation_sample": {
+      "questions": 12,
+      "answerable": 10,
+      "at_k": {
+        "5": {
+          "recall": 0.8,
+          "precision": 0.18000000000000002,
+          "f1": 0.2904761904761905,
+          "mrr": 0.6083333333333333,
+          "ndcg": 0.6581597487880526,
+          "complete_evidence_hit": 0.8,
+          "evidence_mrr": 0.5833333333333334,
+          "evidence_coverage": 0.8
+        },
+        "10": {
+          "recall": 0.85,
+          "precision": 0.1,
+          "f1": 0.17727272727272728,
+          "mrr": 0.6194444444444445,
+          "ndcg": 0.6766173184660094,
+          "complete_evidence_hit": 0.8,
+          "evidence_mrr": 0.5833333333333334,
+          "evidence_coverage": 0.85
+        }
+      },
+      "context_complete_ci95": {
+        "mean": 0.8,
+        "ci95": [
+          0.5384615384615384,
+          1.0
+        ],
+        "groups": 4,
+        "samples": 2000,
+        "seed": 42
+      },
+      "retrieval_complete_at_5_ci95": {
+        "mean": 0.8,
+        "ci95": [
+          0.5384615384615384,
+          1.0
+        ],
+        "groups": 4,
+        "samples": 2000,
+        "seed": 42
+      },
+      "retrieval_ci95": {
+        "5": {
+          "recall": {
+            "mean": 0.8,
+            "ci95": [
+              0.5384615384615384,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "mrr": {
+            "mean": 0.6083333333333333,
+            "ci95": [
+              0.29166666666666663,
+              0.8269230769230769
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "ndcg": {
+            "mean": 0.6581597487880526,
+            "ci95": [
+              0.46533827903669656,
+              0.8756491805765224
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "complete_evidence_hit": {
+            "mean": 0.8,
+            "ci95": [
+              0.5384615384615384,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          }
+        },
+        "10": {
+          "recall": {
+            "mean": 0.85,
+            "ci95": [
+              0.6538461538461539,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "mrr": {
+            "mean": 0.6194444444444445,
+            "ci95": [
+              0.29166666666666663,
+              0.8269230769230769
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "ndcg": {
+            "mean": 0.6766173184660094,
+            "ci95": [
+              0.46533827903669656,
+              0.8756491805765224
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "complete_evidence_hit": {
+            "mean": 0.8,
+            "ci95": [
+              0.5384615384615384,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          }
+        }
+      },
+      "candidate_hit": 0.9,
+      "candidate_complete": 0.8,
+      "retrieval_latency": {
+        "p50_ms": 734.9470630288124,
+        "p95_ms": 5332.473292015493
+      },
+      "generation_latency": {
+        "p50_ms": 972.2679994883947,
+        "p95_ms": 1622.9161249939352
+      },
+      "generation_with_model_latency": {
+        "p50_ms": 972.2679994883947,
+        "p95_ms": 1622.9161249939352
+      },
+      "generation_errors": 0,
+      "format_valid": 12,
+      "citation_ids_valid": 8,
+      "fact_correct": null
+    }
+  },
+  "merged_english": {
+    "questions": 60,
+    "answerable": 54,
+    "at_k": {
+      "5": {
+        "recall": 0.7530864197530864,
+        "precision": 0.17037037037037037,
+        "f1": 0.27380952380952384,
+        "mrr": 0.5361111111111111,
+        "ndcg": 0.5784234743111578,
+        "complete_evidence_hit": 0.7222222222222222,
+        "evidence_mrr": 0.4641975308641975,
+        "evidence_coverage": 0.7530864197530864
+      },
+      "10": {
+        "recall": 0.845679012345679,
+        "precision": 0.0962962962962963,
+        "f1": 0.1712423379090046,
+        "mrr": 0.5480893592004703,
+        "ndcg": 0.6091533151223011,
+        "complete_evidence_hit": 0.8148148148148148,
+        "evidence_mrr": 0.4759700176366843,
+        "evidence_coverage": 0.845679012345679
+      }
+    },
+    "context_complete_ci95": {
+      "mean": 0.7407407407407407,
+      "ci95": [
+        0.5892857142857143,
+        0.8823529411764706
+      ],
+      "groups": 15,
+      "samples": 2000,
+      "seed": 42
+    },
+    "retrieval_complete_at_5_ci95": {
+      "mean": 0.7222222222222222,
+      "ci95": [
+        0.5689655172413793,
+        0.8679245283018868
+      ],
+      "groups": 15,
+      "samples": 2000,
+      "seed": 42
+    },
+    "retrieval_ci95": {
+      "5": {
+        "recall": {
+          "mean": 0.7530864197530864,
+          "ci95": [
+            0.6011904761904762,
+            0.8888888888888888
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "mrr": {
+          "mean": 0.5361111111111111,
+          "ci95": [
+            0.41812865497076024,
+            0.6428104575163399
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "ndcg": {
+          "mean": 0.5784234743111578,
+          "ci95": [
+            0.45913988044326826,
+            0.682325998925881
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "complete_evidence_hit": {
+          "mean": 0.7222222222222222,
+          "ci95": [
+            0.5689655172413793,
+            0.8679245283018868
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        }
+      },
+      "10": {
+        "recall": {
+          "mean": 0.845679012345679,
+          "ci95": [
+            0.7470238095238095,
+            0.9433962264150944
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "mrr": {
+          "mean": 0.5480893592004703,
+          "ci95": [
+            0.4382000598981731,
+            0.6481481481481481
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "ndcg": {
+          "mean": 0.6091533151223011,
+          "ci95": [
+            0.5130891551098943,
+            0.6987919047616111
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "complete_evidence_hit": {
+          "mean": 0.8148148148148148,
+          "ci95": [
+            0.7017543859649122,
+            0.9245283018867925
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        }
+      }
+    },
+    "candidate_hit": 0.9074074074074074,
+    "candidate_complete": 0.8518518518518519,
+    "retrieval_latency": {
+      "p50_ms": 875.4776874557137,
+      "p95_ms": 1439.2614579992369
+    },
+    "generation_latency": null,
+    "generation_with_model_latency": null,
+    "generation_errors": 0,
+    "format_valid": 0,
+    "citation_ids_valid": 0,
+    "fact_correct": null,
+    "generation_sample": {
+      "questions": 12,
+      "answerable": 10,
+      "at_k": {
+        "5": {
+          "recall": 0.8,
+          "precision": 0.18000000000000002,
+          "f1": 0.2904761904761905,
+          "mrr": 0.5916666666666667,
+          "ndcg": 0.6474447867225418,
+          "complete_evidence_hit": 0.8,
+          "evidence_mrr": 0.5783333333333334,
+          "evidence_coverage": 0.8
+        },
+        "10": {
+          "recall": 0.85,
+          "precision": 0.1,
+          "f1": 0.17727272727272728,
+          "mrr": 0.6027777777777777,
+          "ndcg": 0.6659023564004987,
+          "complete_evidence_hit": 0.8,
+          "evidence_mrr": 0.5783333333333334,
+          "evidence_coverage": 0.85
+        }
+      },
+      "context_complete_ci95": {
+        "mean": 0.8,
+        "ci95": [
+          0.5384615384615384,
+          1.0
+        ],
+        "groups": 4,
+        "samples": 2000,
+        "seed": 42
+      },
+      "retrieval_complete_at_5_ci95": {
+        "mean": 0.8,
+        "ci95": [
+          0.5384615384615384,
+          1.0
+        ],
+        "groups": 4,
+        "samples": 2000,
+        "seed": 42
+      },
+      "retrieval_ci95": {
+        "5": {
+          "recall": {
+            "mean": 0.8,
+            "ci95": [
+              0.5384615384615384,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "mrr": {
+            "mean": 0.5916666666666667,
+            "ci95": [
+              0.29166666666666663,
+              0.7884615384615384
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "ndcg": {
+            "mean": 0.6474447867225418,
+            "ci95": [
+              0.46533827903669656,
+              0.8509223450407284
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "complete_evidence_hit": {
+            "mean": 0.8,
+            "ci95": [
+              0.5384615384615384,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          }
+        },
+        "10": {
+          "recall": {
+            "mean": 0.85,
+            "ci95": [
+              0.6538461538461539,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "mrr": {
+            "mean": 0.6027777777777777,
+            "ci95": [
+              0.29166666666666663,
+              0.7884615384615384
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "ndcg": {
+            "mean": 0.6659023564004987,
+            "ci95": [
+              0.46533827903669656,
+              0.8509223450407284
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "complete_evidence_hit": {
+            "mean": 0.8,
+            "ci95": [
+              0.5384615384615384,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          }
+        }
+      },
+      "candidate_hit": 0.9,
+      "candidate_complete": 0.8,
+      "retrieval_latency": {
+        "p50_ms": 790.2143124956638,
+        "p95_ms": 5039.466083981097
+      },
+      "generation_latency": {
+        "p50_ms": 946.0295829921961,
+        "p95_ms": 1186.6192920133471
+      },
+      "generation_with_model_latency": {
+        "p50_ms": 946.0295829921961,
+        "p95_ms": 1186.6192920133471
+      },
+      "generation_errors": 0,
+      "format_valid": 12,
+      "citation_ids_valid": 9,
+      "fact_correct": null
+    }
+  },
+  "merged_bilingual": {
+    "questions": 60,
+    "answerable": 54,
+    "at_k": {
+      "5": {
+        "recall": 0.4876543209876543,
+        "precision": 0.10370370370370371,
+        "f1": 0.1695326278659612,
+        "mrr": 0.3212962962962963,
+        "ndcg": 0.3518586177036379,
+        "complete_evidence_hit": 0.46296296296296297,
+        "evidence_mrr": 0.2873456790123457,
+        "evidence_coverage": 0.4876543209876543
+      },
+      "10": {
+        "recall": 0.6265432098765432,
+        "precision": 0.06851851851851852,
+        "f1": 0.12265820599153933,
+        "mrr": 0.34188712522045855,
+        "ndcg": 0.3995799719302224,
+        "complete_evidence_hit": 0.5925925925925926,
+        "evidence_mrr": 0.30518077601410937,
+        "evidence_coverage": 0.6265432098765432
+      }
+    },
+    "context_complete_ci95": {
+      "mean": 0.46296296296296297,
+      "ci95": [
+        0.3157894736842105,
+        0.6274509803921569
+      ],
+      "groups": 15,
+      "samples": 2000,
+      "seed": 42
+    },
+    "retrieval_complete_at_5_ci95": {
+      "mean": 0.46296296296296297,
+      "ci95": [
+        0.3157894736842105,
+        0.6274509803921569
+      ],
+      "groups": 15,
+      "samples": 2000,
+      "seed": 42
+    },
+    "retrieval_ci95": {
+      "5": {
+        "recall": {
+          "mean": 0.4876543209876543,
+          "ci95": [
+            0.35119047619047616,
+            0.6410256410256411
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "mrr": {
+          "mean": 0.3212962962962963,
+          "ci95": [
+            0.22407407407407406,
+            0.42291666666666666
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "ndcg": {
+          "mean": 0.3518586177036379,
+          "ci95": [
+            0.2500364919442177,
+            0.45940067457071027
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "complete_evidence_hit": {
+          "mean": 0.46296296296296297,
+          "ci95": [
+            0.3157894736842105,
+            0.6274509803921569
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        }
+      },
+      "10": {
+        "recall": {
+          "mean": 0.6265432098765432,
+          "ci95": [
+            0.49707602339181284,
+            0.7685185185185185
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "mrr": {
+          "mean": 0.34188712522045855,
+          "ci95": [
+            0.24777628032345014,
+            0.438544474393531
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "ndcg": {
+          "mean": 0.3995799719302224,
+          "ci95": [
+            0.3090020041082666,
+            0.49869789937955394
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        },
+        "complete_evidence_hit": {
+          "mean": 0.5925925925925926,
+          "ci95": [
+            0.45614035087719296,
+            0.74
+          ],
+          "groups": 15,
+          "samples": 2000,
+          "seed": 42
+        }
+      }
+    },
+    "candidate_hit": 0.8148148148148148,
+    "candidate_complete": 0.7592592592592593,
+    "retrieval_latency": {
+      "p50_ms": 1513.8717084773816,
+      "p95_ms": 2667.9491669638082
+    },
+    "generation_latency": null,
+    "generation_with_model_latency": null,
+    "generation_errors": 0,
+    "format_valid": 0,
+    "citation_ids_valid": 0,
+    "fact_correct": null,
+    "generation_sample": {
+      "questions": 12,
+      "answerable": 10,
+      "at_k": {
+        "5": {
+          "recall": 0.6,
+          "precision": 0.12000000000000001,
+          "f1": 0.2,
+          "mrr": 0.37333333333333335,
+          "ndcg": 0.4273705614469083,
+          "complete_evidence_hit": 0.6,
+          "evidence_mrr": 0.37333333333333335,
+          "evidence_coverage": 0.6
+        },
+        "10": {
+          "recall": 0.65,
+          "precision": 0.07,
+          "f1": 0.12575757575757576,
+          "mrr": 0.39,
+          "ndcg": 0.44921130512872476,
+          "complete_evidence_hit": 0.6,
+          "evidence_mrr": 0.37333333333333335,
+          "evidence_coverage": 0.65
+        }
+      },
+      "context_complete_ci95": {
+        "mean": 0.6,
+        "ci95": [
+          0.3076923076923077,
+          1.0
+        ],
+        "groups": 4,
+        "samples": 2000,
+        "seed": 42
+      },
+      "retrieval_complete_at_5_ci95": {
+        "mean": 0.6,
+        "ci95": [
+          0.3076923076923077,
+          1.0
+        ],
+        "groups": 4,
+        "samples": 2000,
+        "seed": 42
+      },
+      "retrieval_ci95": {
+        "5": {
+          "recall": {
+            "mean": 0.6,
+            "ci95": [
+              0.3076923076923077,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "mrr": {
+            "mean": 0.37333333333333335,
+            "ci95": [
+              0.10666666666666666,
+              0.7428571428571429
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "ndcg": {
+            "mean": 0.4273705614469083,
+            "ci95": [
+              0.16619680166950962,
+              0.7695504010335059
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "complete_evidence_hit": {
+            "mean": 0.6,
+            "ci95": [
+              0.3076923076923077,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          }
+        },
+        "10": {
+          "recall": {
+            "mean": 0.65,
+            "ci95": [
+              0.3076923076923077,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "mrr": {
+            "mean": 0.39,
+            "ci95": [
+              0.10666666666666666,
+              0.7666666666666667
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "ndcg": {
+            "mean": 0.44921130512872476,
+            "ci95": [
+              0.16619680166950962,
+              0.8007514634361008
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          },
+          "complete_evidence_hit": {
+            "mean": 0.6,
+            "ci95": [
+              0.3076923076923077,
+              1.0
+            ],
+            "groups": 4,
+            "samples": 2000,
+            "seed": 42
+          }
+        }
+      },
+      "candidate_hit": 0.8,
+      "candidate_complete": 0.7,
+      "retrieval_latency": {
+        "p50_ms": 1597.1368750324473,
+        "p95_ms": 5109.839999931864
+      },
+      "generation_latency": {
+        "p50_ms": 942.5609793979675,
+        "p95_ms": 1217.9969580611214
+      },
+      "generation_with_model_latency": {
+        "p50_ms": 942.5609793979675,
+        "p95_ms": 1217.9969580611214
+      },
+      "generation_errors": 0,
+      "format_valid": 12,
+      "citation_ids_valid": 8,
+      "fact_correct": null
+    }
+  }
+}

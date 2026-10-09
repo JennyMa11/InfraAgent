@@ -1,0 +1,37 @@
+{
+  "original_query": "大量请求使用同一系统提示词，因果注意力的哪项性质允许前缀KV只算一次？",
+  "scoring_query": "大量请求使用同一系统提示词，因果注意力的哪项性质允许前缀KV只算一次？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "因果注意力的哪项性质允许前缀KV只算一次？",
+      "anchor_quote": "因果注意力的哪项性质允许前缀KV只算一次？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"大量请求使用同一系统提示词，因果注意力的哪项性质允许前缀KV只算一次？\", \"scoring_query\": \"大量请求使用同一系统提示词，因果注意力的哪项性质允许前缀KV只算一次？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"因果注意力的哪项性质允许前缀KV只算一次？\",\"anchor_quote\":\"因果注意力的哪项性质允许前缀KV只算一次？\"}]}",
+  "provider_response": {
+    "id": "393a083a-bd94-40fa-83d0-d3a04aa47a4a",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 175,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 41,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 407.01516601257026,
+  "sha256": "e8e634717187848ea8ce706215fa84a9ed1aa8c89604c653de4bd8ad6ce33742"
+}

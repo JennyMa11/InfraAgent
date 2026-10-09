@@ -1,0 +1,41 @@
+{
+  "original_query": "接受率0.8且草稿长4时报告2.36个接受草稿，为何每轮实际期望输出约3.36个？",
+  "scoring_query": "接受率0.8且草稿长4时报告2.36个接受草稿，为何每轮实际期望输出约3.36个？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "接受率为0.8且草稿长度为4时，报告接受草稿数为2.36个，这个数值是如何得出的？",
+      "anchor_quote": "接受率0.8且草稿长4时报告2.36个接受草稿"
+    },
+    {
+      "question": "为什么每轮实际期望输出约为3.36个？",
+      "anchor_quote": "为何每轮实际期望输出约3.36个？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"接受率0.8且草稿长4时报告2.36个接受草稿，为何每轮实际期望输出约3.36个？\", \"scoring_query\": \"接受率0.8且草稿长4时报告2.36个接受草稿，为何每轮实际期望输出约3.36个？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"接受率为0.8且草稿长度为4时，报告接受草稿数为2.36个，这个数值是如何得出的？\",\"anchor_quote\":\"接受率0.8且草稿长4时报告2.36个接受草稿\"},{\"question\":\"为什么每轮实际期望输出约为3.36个？\",\"anchor_quote\":\"为何每轮实际期望输出约3.36个？\"}]}",
+  "provider_response": {
+    "id": "d75d1ddd-5322-4798-9028-e86c71dc8be1",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 197,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 94,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 641.2440000567585,
+  "sha256": "7b0a8fa9b041b1eb38ad638765261722e1b9b6fbb18ccc9df4bb20f09bd2ccd3"
+}

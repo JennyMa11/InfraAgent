@@ -1,0 +1,37 @@
+{
+  "original_query": "小模型先猜若干词再由大模型验证，哪个验收机制才能支持严格的分布正确性？",
+  "scoring_query": "小模型先猜若干词再由大模型验证，哪个验收机制才能支持严格的分布正确性？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "小模型先猜若干词再由大模型验证的流程中，哪个验收机制才能支持严格的分布正确性？",
+      "anchor_quote": "小模型先猜若干词再由大模型验证，哪个验收机制才能支持严格的分布正确性？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"小模型先猜若干词再由大模型验证，哪个验收机制才能支持严格的分布正确性？\", \"scoring_query\": \"小模型先猜若干词再由大模型验证，哪个验收机制才能支持严格的分布正确性？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"小模型先猜若干词再由大模型验证的流程中，哪个验收机制才能支持严格的分布正确性？\",\"anchor_quote\":\"小模型先猜若干词再由大模型验证，哪个验收机制才能支持严格的分布正确性？\"}]}",
+  "provider_response": {
+    "id": "cbb64542-82aa-46fb-bbd3-0b0c56993a0b",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 175,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 60,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 619.1129999933764,
+  "sha256": "4e7bc0441ac75d9f00787783c10fd74401605a24ae2c6dc0ab7f9f7001767ce4"
+}

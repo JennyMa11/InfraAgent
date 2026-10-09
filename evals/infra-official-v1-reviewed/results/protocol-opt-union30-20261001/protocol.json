@@ -1,0 +1,96 @@
+{
+  "dataset": "/Users/jennyma/Projects/InfraAgent/evals/infra-official-v1-reviewed",
+  "diagnostic": false,
+  "dataset_manifest_sha256": "de647cafaaf8c053ebbc53411038ae8a368f7a556caa9e31657792bc159af651",
+  "corpus_manifest_sha256": "d3c706fae8b2d8ac32082eae238f140ddc60eb9c5d11e61649530301948e86ca",
+  "implementation_sha256": "3bc89cae668a8ee7e72d3ac1458d3c54d5c7e06b4c51d0ec94a814580187f70c",
+  "models": {
+    "embedding": {
+      "model": "BAAI/bge-small-zh-v1.5",
+      "path": "/Users/jennyma/.cache/huggingface/hub/models--BAAI--bge-small-zh-v1.5/snapshots/7999e1d3359715c523056ef9478215996d62a620",
+      "files": {
+        "1_Pooling/config.json": "aaa8861589f80c961a03cc86c7eeaef7605c1676b9ab55329d33a304738769c6",
+        "README.md": "c48a4eeea77f6b1d38b48ec1c5b8d4f86d5550cc43fa345a0db1b2ca1d082369",
+        "config.json": "3853a7979202c348751b753e36f579c41d8da7d36af617d3d907e1fc9b441f2a",
+        "config_sentence_transformers.json": "940d5f50db195fa6e5e6a4f122c095f77880de259d74b14a65779ed48bdd7c56",
+        "model.safetensors": "354763b9b1357bc9c44f62c6be2276321081ed2567773608c0d0785b61d5a026",
+        "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+        "sentence_bert_config.json": "84e39fda68ccbff05bfa723ae9c0e70e23e2ec373b76e0f8c6e71af72a693cbf",
+        "special_tokens_map.json": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+        "tokenizer.json": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26",
+        "tokenizer_config.json": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a",
+        "vocab.txt": "45bbac6b341c319adc98a532532882e91a9cefc0329aa57bac9ae761c27b291c"
+      }
+    },
+    "reranker": {
+      "model": "BAAI/bge-reranker-base",
+      "path": "/Users/jennyma/.cache/huggingface/hub/models--BAAI--bge-reranker-base/snapshots/2cfc18c9415c912f9d8155881c133215df768a70",
+      "files": {
+        "config.json": "289adf7ada1eb6b4afa7589a48a032d45a076cf2e46dcdb3b4cabc33be14f708",
+        "model.safetensors": "ced967c45fd1902eb92716c9ceeca7c95a936770ea9db611f5a841b926e33fbd",
+        "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "special_tokens_map.json": "d5469a60db23249c7f8945013d78df30b44b6bf686c6bb4740f4223f77b1b535",
+        "tokenizer.json": "9eb652ac4e40cc093272bbbe0f55d521cf67570060227109b5cdc20945a4489e",
+        "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+      }
+    }
+  },
+  "settings": {
+    "backend": "bge",
+    "embedding_model": "/Users/jennyma/.cache/huggingface/hub/models--BAAI--bge-small-zh-v1.5/snapshots/7999e1d3359715c523056ef9478215996d62a620",
+    "reranker_model": "/Users/jennyma/.cache/huggingface/hub/models--BAAI--bge-reranker-base/snapshots/2cfc18c9415c912f9d8155881c133215df768a70",
+    "rerank": false,
+    "multimodal": false,
+    "chunk_size": 450,
+    "chunk_strategy": "semantic",
+    "refinement_threshold": 0.55,
+    "image_merge_threshold": 0.88,
+    "image_max_side": 768,
+    "image_min_area": 0.005,
+    "image_max_regions": 24,
+    "clip_text_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+    "clip_image_model": "sentence-transformers/clip-ViT-B-32",
+    "semantic_threshold": 0.72,
+    "candidate_k": 30,
+    "context_chars": 4000,
+    "context_tokens": 1200,
+    "context_mode": "neighbors",
+    "heading_context": false,
+    "fusion_candidates": "union",
+    "lexical_query_mode": "raw"
+  },
+  "variants": [
+    "bm25",
+    "dense",
+    "hybrid",
+    "hybrid_rerank"
+  ],
+  "top_k": [
+    5,
+    10
+  ],
+  "generation": {
+    "mode": "none",
+    "provider": "ollama",
+    "base_url": "http://127.0.0.1:11434",
+    "options": {
+      "temperature": 0,
+      "num_predict": 650,
+      "num_ctx": 8192
+    },
+    "identity": null
+  },
+  "seed": 42,
+  "bootstrap_samples": 2000,
+  "human_scoring": "explicit independent review; missing labels remain null",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "packages": {
+      "sentence-transformers": "5.7.0",
+      "chromadb": "1.5.9",
+      "torch": "2.14.0",
+      "jieba": "0.42.1"
+    }
+  }
+}

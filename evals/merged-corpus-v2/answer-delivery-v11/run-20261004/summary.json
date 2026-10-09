@@ -1,0 +1,369 @@
+{
+  "expected_outputs": 32,
+  "actual_outputs": 32,
+  "missing": [],
+  "results": {
+    "B-O15": {
+      "outputs": 16,
+      "independent_cases": 8,
+      "mechanical_json_valid": {
+        "numerator": 16,
+        "denominator": 16,
+        "value": 1.0
+      },
+      "answered_status": 11,
+      "refused_status": 5,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1066.4847085718066,
+        "p95_ms": 1629.8186250496656
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "Ladj-X30": {
+      "outputs": 16,
+      "independent_cases": 8,
+      "mechanical_json_valid": {
+        "numerator": 16,
+        "denominator": 16,
+        "value": 1.0
+      },
+      "answered_status": 10,
+      "refused_status": 6,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1016.5466669714078,
+        "p95_ms": 1248.6163340508938
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "B-O15:official:code_api": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 920.0212914729491,
+        "p95_ms": 941.0261670127511
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "Ladj-X30:official:code_api": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 960.0445834221318,
+        "p95_ms": 1225.2525419462472
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "Ladj-X30:official:conditional": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 0,
+      "refused_status": 2,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 905.5353539297357,
+        "p95_ms": 905.8193748351187
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "B-O15:official:conditional": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 0,
+      "refused_status": 2,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 720.8891250193119,
+        "p95_ms": 914.9258751422167
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "B-O15:official:debugging": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1213.609499973245,
+        "p95_ms": 1226.205375045538
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "Ladj-X30:official:debugging": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1185.8830630080774,
+        "p95_ms": 1248.6163340508938
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "Ladj-X30:official:multi_hop": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 0,
+      "refused_status": 2,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1098.6502079758793,
+        "p95_ms": 1216.2516659591347
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "B-O15:official:multi_hop": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 1,
+      "refused_status": 1,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1444.4529375759885,
+        "p95_ms": 1629.8186250496656
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "B-O15:official:single_hop": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1071.2277084821835,
+        "p95_ms": 1074.2052919231355
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "Ladj-X30:official:single_hop": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 893.3568334905431,
+        "p95_ms": 1120.026959106326
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "Ladj-X30:official:unanswerable": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 0,
+      "refused_status": 2,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 984.7293546190485,
+        "p95_ms": 1158.9405841659755
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "B-O15:official:unanswerable": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 0,
+      "refused_status": 2,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1060.666500008665,
+        "p95_ms": 1312.7711249981076
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "B-O15:repository:knowledge": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1150.2880625193939,
+        "p95_ms": 1256.216875044629
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "Ladj-X30:repository:knowledge": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 788.6452504899353,
+        "p95_ms": 1009.9597088992596
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "Ladj-X30:repository:scenario": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1048.5278540290892,
+        "p95_ms": 1073.9220830146223
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    },
+    "B-O15:repository:scenario": {
+      "outputs": 2,
+      "independent_cases": 1,
+      "mechanical_json_valid": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1.0
+      },
+      "answered_status": 2,
+      "refused_status": 0,
+      "errors": 0,
+      "generation_latency": {
+        "p50_ms": 1042.8903959691525,
+        "p95_ms": 1064.7192921023816
+      },
+      "answer_correctness": null,
+      "citation_precision": null,
+      "hallucination_rate": null
+    }
+  },
+  "actual_requests": 32,
+  "supplier_usage": {
+    "input_tokens": 13366,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 27904,
+    "output_tokens": 3793
+  },
+  "usage_coverage": {
+    "numerator": 32,
+    "denominator": 32,
+    "value": 1.0
+  },
+  "independent_review_coverage": {
+    "numerator": 0,
+    "denominator": 32,
+    "value": 0.0
+  },
+  "monetary_cost_usd": null,
+  "semantic_review": null,
+  "adoption_allowed": false
+}

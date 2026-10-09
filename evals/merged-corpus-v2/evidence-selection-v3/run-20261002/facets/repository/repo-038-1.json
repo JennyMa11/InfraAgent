@@ -1,0 +1,37 @@
+{
+  "original_query": "请求取消导致KV泄漏应如何统一资源清理路径？",
+  "scoring_query": "请求取消导致KV泄漏应如何统一资源清理路径？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "请求取消导致KV泄漏时，应如何统一资源清理路径？",
+      "anchor_quote": "请求取消导致KV泄漏应如何统一资源清理路径？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"请求取消导致KV泄漏应如何统一资源清理路径？\", \"scoring_query\": \"请求取消导致KV泄漏应如何统一资源清理路径？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"请求取消导致KV泄漏时，应如何统一资源清理路径？\",\"anchor_quote\":\"请求取消导致KV泄漏应如何统一资源清理路径？\"}]}",
+  "provider_response": {
+    "id": "c75516ed-5507-470a-9703-69857be390d6",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 157,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 41,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 862.9047500435263,
+  "sha256": "5894f4791973d85180c6f41a3fa36b20ab0a123a0193adafd4bd721b0036c74f"
+}

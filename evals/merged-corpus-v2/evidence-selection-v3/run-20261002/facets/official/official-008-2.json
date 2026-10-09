@@ -1,0 +1,37 @@
+{
+  "original_query": "vLLM v0.10.2：能否仅凭启用prefill/decode解耦就宣称吞吐提升？",
+  "scoring_query": "vLLM v0.10.2: Can one claim a throughput improvement solely by enabling prefill/decode disaggregation?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "Can one claim a throughput improvement solely by enabling prefill/decode disaggregation in vLLM v0.10.2?",
+      "anchor_quote": "能否仅凭启用prefill/decode解耦就宣称吞吐提升？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：能否仅凭启用prefill/decode解耦就宣称吞吐提升？\", \"scoring_query\": \"vLLM v0.10.2: Can one claim a throughput improvement solely by enabling prefill/decode disaggregation?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Can one claim a throughput improvement solely by enabling prefill/decode disaggregation in vLLM v0.10.2?\",\"anchor_quote\":\"能否仅凭启用prefill/decode解耦就宣称吞吐提升？\"}]}",
+  "provider_response": {
+    "id": "d3c06705-1d19-4570-8b39-e7716af16f15",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 184,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 57,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 643.7752920901403,
+  "sha256": "3f897cd914c83412664a4d67d1755d8e433a80f76eec1f8c9032f384505ea6c6"
+}

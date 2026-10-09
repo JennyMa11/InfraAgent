@@ -1,0 +1,41 @@
+{
+  "original_query": "Ulysses通过什么通信重排Head和序列的切分维度？",
+  "scoring_query": "Ulysses通过什么通信重排Head和序列的切分维度？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "Ulysses通过什么通信重排Head的切分维度？",
+      "anchor_quote": "Ulysses通过什么通信重排Head和序列的切分维度？"
+    },
+    {
+      "question": "Ulysses通过什么通信重排序列的切分维度？",
+      "anchor_quote": "Ulysses通过什么通信重排Head和序列的切分维度？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"Ulysses通过什么通信重排Head和序列的切分维度？\", \"scoring_query\": \"Ulysses通过什么通信重排Head和序列的切分维度？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Ulysses通过什么通信重排Head的切分维度？\",\"anchor_quote\":\"Ulysses通过什么通信重排Head和序列的切分维度？\"},{\"question\":\"Ulysses通过什么通信重排序列的切分维度？\",\"anchor_quote\":\"Ulysses通过什么通信重排Head和序列的切分维度？\"}]}",
+  "provider_response": {
+    "id": "5c6bb0df-6d12-4a27-bbc6-65fc9d871813",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 163,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 80,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 606.0651659499854,
+  "sha256": "b0d2dd5e8e26cbeb63a9941108041a344bef205e2d7a0ed97428af71a4f6d87d"
+}

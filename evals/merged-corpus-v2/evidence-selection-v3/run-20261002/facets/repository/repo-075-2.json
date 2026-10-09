@@ -1,0 +1,41 @@
+{
+  "original_query": "手机逐token生成受LPDDR读取权重限制，量化为什么能提高理论出词速度？",
+  "scoring_query": "手机逐token生成受LPDDR读取权重限制，量化为什么能提高理论出词速度？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "手机逐token生成为什么受LPDDR读取权重限制？",
+      "anchor_quote": "手机逐token生成受LPDDR读取权重限制"
+    },
+    {
+      "question": "量化为什么能提高理论出词速度？",
+      "anchor_quote": "量化为什么能提高理论出词速度？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"手机逐token生成受LPDDR读取权重限制，量化为什么能提高理论出词速度？\", \"scoring_query\": \"手机逐token生成受LPDDR读取权重限制，量化为什么能提高理论出词速度？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"手机逐token生成为什么受LPDDR读取权重限制？\",\"anchor_quote\":\"手机逐token生成受LPDDR读取权重限制\"},{\"question\":\"量化为什么能提高理论出词速度？\",\"anchor_quote\":\"量化为什么能提高理论出词速度？\"}]}",
+  "provider_response": {
+    "id": "0b5d4839-27b1-49a5-bf4c-aa2a46fac276",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 175,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 67,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 720.8478749962524,
+  "sha256": "5d95ec9161e8d148a00981396d45c8cc19449c4c793b8e55d991ab65da4d3770"
+}

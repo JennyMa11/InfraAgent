@@ -1,0 +1,37 @@
+{
+  "original_query": "CUDA 13.0.1：对cuda-graphs相关代码进行review时，为何不能接受“CUDA Graph只是把相互依赖的kernel无条件同时启动。”作为正确性依据？",
+  "scoring_query": "CUDA 13.0.1: When reviewing cuda-graphs-related code, why can't \"CUDA Graph simply launches mutually dependent kernels unconditionally at the same time.\" be accepted as a basis for correctness?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In CUDA 13.0.1, when reviewing cuda-graphs-related code, why can't the statement \"CUDA Graph simply launches mutually dependent kernels unconditionally at the same time.\" be accepted as a basis for correctness?",
+      "anchor_quote": "CUDA 13.0.1：对cuda-graphs相关代码进行review时，为何不能接受“CUDA Graph只是把相互依赖的kernel无条件同时启动。”作为正确性依据？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：对cuda-graphs相关代码进行review时，为何不能接受“CUDA Graph只是把相互依赖的kernel无条件同时启动。”作为正确性依据？\", \"scoring_query\": \"CUDA 13.0.1: When reviewing cuda-graphs-related code, why can't \\\"CUDA Graph simply launches mutually dependent kernels unconditionally at the same time.\\\" be accepted as a basis for correctness?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In CUDA 13.0.1, when reviewing cuda-graphs-related code, why can't the statement \\\"CUDA Graph simply launches mutually dependent kernels unconditionally at the same time.\\\" be accepted as a basis for correctness?\",\"anchor_quote\":\"CUDA 13.0.1：对cuda-graphs相关代码进行review时，为何不能接受“CUDA Graph只是把相互依赖的kernel无条件同时启动。”作为正确性依据？\"}]}",
+  "provider_response": {
+    "id": "342f5f34-3c9a-4b80-852f-1b13ca948f8e",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 222,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 108,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 919.8464170331135,
+  "sha256": "5f033c91b81a3744d2fea7aebc1c9f1bda231e175b5505dbf5caaf91c0ada05f"
+}

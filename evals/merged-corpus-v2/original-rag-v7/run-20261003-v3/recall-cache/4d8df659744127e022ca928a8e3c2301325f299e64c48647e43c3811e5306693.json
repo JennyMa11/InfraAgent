@@ -1,0 +1,619 @@
+{
+  "query": "请求取消导致KV泄漏应如何统一资源清理路径？",
+  "candidate_k": 60,
+  "channels": {
+    "bm25": {
+      "score_kind": "bm25_score",
+      "ranking": [
+        {
+          "chunk_id": "7ce401b9a19a742211a99db3",
+          "rank": 1,
+          "score": 70.15572110232318
+        },
+        {
+          "chunk_id": "c628f7c85d974e805b0a6c1e",
+          "rank": 2,
+          "score": 50.47449617497569
+        },
+        {
+          "chunk_id": "47b3757ba127f451084978b5",
+          "rank": 3,
+          "score": 40.68669174357537
+        },
+        {
+          "chunk_id": "06bfa088411c7d9b2c4f81bd",
+          "rank": 4,
+          "score": 40.45020423481164
+        },
+        {
+          "chunk_id": "089f226670ca5f10c47086a5",
+          "rank": 5,
+          "score": 39.03733530154067
+        },
+        {
+          "chunk_id": "22edc0e25a8d695a325cee98",
+          "rank": 6,
+          "score": 38.64279606490054
+        },
+        {
+          "chunk_id": "f3bc79357e0b762c7d3ad8b2",
+          "rank": 7,
+          "score": 37.286179377911644
+        },
+        {
+          "chunk_id": "866a5312abc212edfc288c41",
+          "rank": 8,
+          "score": 37.07666123969244
+        },
+        {
+          "chunk_id": "a7d9c0a946d7679d014199e2",
+          "rank": 9,
+          "score": 36.80999912352107
+        },
+        {
+          "chunk_id": "e533a826e72407ba2f0bf700",
+          "rank": 10,
+          "score": 36.75998823748415
+        },
+        {
+          "chunk_id": "fc24a815a1b3e42ae248a2d7",
+          "rank": 11,
+          "score": 36.65339667562445
+        },
+        {
+          "chunk_id": "e2c874f7b2257eea01e5b81b",
+          "rank": 12,
+          "score": 36.117386678246795
+        },
+        {
+          "chunk_id": "9c3b91f8874979ea5061d047",
+          "rank": 13,
+          "score": 34.322479902410294
+        },
+        {
+          "chunk_id": "74a5c7852b0bb79d5bc93e10",
+          "rank": 14,
+          "score": 33.83785799415143
+        },
+        {
+          "chunk_id": "12e235f509fa49ee69ba9207",
+          "rank": 15,
+          "score": 33.65244779338033
+        },
+        {
+          "chunk_id": "3280b272b6319350a04f5302",
+          "rank": 16,
+          "score": 33.565464780834425
+        },
+        {
+          "chunk_id": "a436b89f0c86bd97fc460421",
+          "rank": 17,
+          "score": 33.50997254357479
+        },
+        {
+          "chunk_id": "9beebfabead210336d464a40",
+          "rank": 18,
+          "score": 33.46592942606982
+        },
+        {
+          "chunk_id": "713e5edef6f127345b530e7f",
+          "rank": 19,
+          "score": 33.45729520951207
+        },
+        {
+          "chunk_id": "c0ad4d5ac16c4cbab31e79b3",
+          "rank": 20,
+          "score": 33.44686163699454
+        },
+        {
+          "chunk_id": "cd2602376059c83d0405e4cd",
+          "rank": 21,
+          "score": 33.39965339918791
+        },
+        {
+          "chunk_id": "1c871eedf780b98b814baa62",
+          "rank": 22,
+          "score": 33.384753834719795
+        },
+        {
+          "chunk_id": "39cccc8d0d62174f249b3947",
+          "rank": 23,
+          "score": 33.23016440132813
+        },
+        {
+          "chunk_id": "5a31c14886028509627e8d56",
+          "rank": 24,
+          "score": 32.67424319779141
+        },
+        {
+          "chunk_id": "b836a4a70f7072c7d479dc50",
+          "rank": 25,
+          "score": 32.45333143351296
+        },
+        {
+          "chunk_id": "b7d4e1915fbbbe4996e2843f",
+          "rank": 26,
+          "score": 31.932394318309942
+        },
+        {
+          "chunk_id": "2413bda244df2dc99efe6e58",
+          "rank": 27,
+          "score": 31.794431609403425
+        },
+        {
+          "chunk_id": "7f05d7509f4a5eaee2d621af",
+          "rank": 28,
+          "score": 31.740752292216825
+        },
+        {
+          "chunk_id": "b5e20550957a1f80a4734aba",
+          "rank": 29,
+          "score": 31.630988354338363
+        },
+        {
+          "chunk_id": "88a235bf6a56fb4a27bb49c5",
+          "rank": 30,
+          "score": 31.54318337457104
+        },
+        {
+          "chunk_id": "a69b0e2976f51e662a07345a",
+          "rank": 31,
+          "score": 31.44045984972777
+        },
+        {
+          "chunk_id": "3fc988c4ea6eacf85d840ca5",
+          "rank": 32,
+          "score": 31.231082278804266
+        },
+        {
+          "chunk_id": "7bad9f9f71b7709fc149cb33",
+          "rank": 33,
+          "score": 31.204331212855266
+        },
+        {
+          "chunk_id": "a8fd0608b1e208a904c77cb3",
+          "rank": 34,
+          "score": 31.103978173639355
+        },
+        {
+          "chunk_id": "502320987b54efcbd9ff98b4",
+          "rank": 35,
+          "score": 31.087474167441787
+        },
+        {
+          "chunk_id": "c3701661d2147367653c90b4",
+          "rank": 36,
+          "score": 31.05551035189566
+        },
+        {
+          "chunk_id": "effc0950de9f45a086fa8197",
+          "rank": 37,
+          "score": 30.766837230332733
+        },
+        {
+          "chunk_id": "acd952c4692e0c2a8f6bfd6a",
+          "rank": 38,
+          "score": 30.699507478560854
+        },
+        {
+          "chunk_id": "614ef00c5211ce9d87947dcd",
+          "rank": 39,
+          "score": 30.589756778681163
+        },
+        {
+          "chunk_id": "fc484b9c103ee4108782e29c",
+          "rank": 40,
+          "score": 30.574819423514768
+        },
+        {
+          "chunk_id": "7a59a9f26344e7526435d2f8",
+          "rank": 41,
+          "score": 30.494885897476326
+        },
+        {
+          "chunk_id": "1242def1677098f2e42dcfaf",
+          "rank": 42,
+          "score": 30.45281269946455
+        },
+        {
+          "chunk_id": "1f517341ffe43655baa5640e",
+          "rank": 43,
+          "score": 30.437023119051922
+        },
+        {
+          "chunk_id": "7f004bc29ea32b7de73021b0",
+          "rank": 44,
+          "score": 30.30217134623502
+        },
+        {
+          "chunk_id": "8dc3787eaa3ded2a2a983a6c",
+          "rank": 45,
+          "score": 30.22309569604107
+        },
+        {
+          "chunk_id": "111f9b78c60fb5f46c29c12c",
+          "rank": 46,
+          "score": 30.035621049530427
+        },
+        {
+          "chunk_id": "9f93566573634f61fb2fbde4",
+          "rank": 47,
+          "score": 30.006119824738228
+        },
+        {
+          "chunk_id": "423496f3e61491d6ce1e1381",
+          "rank": 48,
+          "score": 29.951811377177567
+        },
+        {
+          "chunk_id": "6b2c6518528f98f729bf8cd7",
+          "rank": 49,
+          "score": 29.899987375897606
+        },
+        {
+          "chunk_id": "2e6be71a9f84b4138912bba4",
+          "rank": 50,
+          "score": 29.76253819757512
+        },
+        {
+          "chunk_id": "7a234e377d26d122c05eadec",
+          "rank": 51,
+          "score": 29.75355948373912
+        },
+        {
+          "chunk_id": "4ae32352ea5b93ff03a4d9c5",
+          "rank": 52,
+          "score": 29.71042001566732
+        },
+        {
+          "chunk_id": "98078fd7fce4de6bcae5264e",
+          "rank": 53,
+          "score": 29.707855628974603
+        },
+        {
+          "chunk_id": "57c6995ea27baae4cc76f0e9",
+          "rank": 54,
+          "score": 29.56327680278719
+        },
+        {
+          "chunk_id": "80ee001647a955334dbf2acf",
+          "rank": 55,
+          "score": 29.485502300434526
+        },
+        {
+          "chunk_id": "3028f3b858b0215261268ef1",
+          "rank": 56,
+          "score": 29.44584925309459
+        },
+        {
+          "chunk_id": "98f8747fc6bf36d236121a3c",
+          "rank": 57,
+          "score": 29.44222881317853
+        },
+        {
+          "chunk_id": "e7d1b0d725a7131bcef0dd42",
+          "rank": 58,
+          "score": 29.4264510912677
+        },
+        {
+          "chunk_id": "125db568e8c6ff471e2af274",
+          "rank": 59,
+          "score": 29.399053362423693
+        },
+        {
+          "chunk_id": "bcc0eeb82c5aaa5ede51a27d",
+          "rank": 60,
+          "score": 29.343670705230103
+        }
+      ]
+    },
+    "dense": {
+      "score_kind": "cosine_distance",
+      "ranking": [
+        {
+          "chunk_id": "7ce401b9a19a742211a99db3",
+          "rank": 1,
+          "score": 0.3124714493751526
+        },
+        {
+          "chunk_id": "f3bc79357e0b762c7d3ad8b2",
+          "rank": 2,
+          "score": 0.3991791605949402
+        },
+        {
+          "chunk_id": "22edc0e25a8d695a325cee98",
+          "rank": 3,
+          "score": 0.4024912118911743
+        },
+        {
+          "chunk_id": "618fba04ae1b787ea93fb72f",
+          "rank": 4,
+          "score": 0.40390121936798096
+        },
+        {
+          "chunk_id": "f652d04ab0b76125539151c0",
+          "rank": 5,
+          "score": 0.40978002548217773
+        },
+        {
+          "chunk_id": "d205a0631e9d1d91082449b2",
+          "rank": 6,
+          "score": 0.41130906343460083
+        },
+        {
+          "chunk_id": "111f9b78c60fb5f46c29c12c",
+          "rank": 7,
+          "score": 0.4139553904533386
+        },
+        {
+          "chunk_id": "b184e4b417f032799969f2fe",
+          "rank": 8,
+          "score": 0.4141846299171448
+        },
+        {
+          "chunk_id": "487a82833b7453012190c56a",
+          "rank": 9,
+          "score": 0.4143078923225403
+        },
+        {
+          "chunk_id": "6a7126319beb8821cf1b9e27",
+          "rank": 10,
+          "score": 0.41503608226776123
+        },
+        {
+          "chunk_id": "21d694fe69cb3894001bfd41",
+          "rank": 11,
+          "score": 0.4156210422515869
+        },
+        {
+          "chunk_id": "9fe5c83cf9c37af08340136b",
+          "rank": 12,
+          "score": 0.4174160957336426
+        },
+        {
+          "chunk_id": "7747de7d3b6f703b8d18dfe5",
+          "rank": 13,
+          "score": 0.4179336428642273
+        },
+        {
+          "chunk_id": "d219b710a3dedd16fa6ab68b",
+          "rank": 14,
+          "score": 0.41811805963516235
+        },
+        {
+          "chunk_id": "997e2575d00993698fa60d53",
+          "rank": 15,
+          "score": 0.41892188787460327
+        },
+        {
+          "chunk_id": "2fc20d2068bb0b559fd1e1d6",
+          "rank": 16,
+          "score": 0.4200533628463745
+        },
+        {
+          "chunk_id": "1cfbd9bcef1e92959eee0b68",
+          "rank": 17,
+          "score": 0.4227387309074402
+        },
+        {
+          "chunk_id": "6b2272a4654368c2c1b9b882",
+          "rank": 18,
+          "score": 0.42299842834472656
+        },
+        {
+          "chunk_id": "87f3c995969568a2165fd0b8",
+          "rank": 19,
+          "score": 0.4264487028121948
+        },
+        {
+          "chunk_id": "721d03eb36260fd04ebeba93",
+          "rank": 20,
+          "score": 0.42695266008377075
+        },
+        {
+          "chunk_id": "e69e9b1f8f9fcd0ec9f31afa",
+          "rank": 21,
+          "score": 0.42752373218536377
+        },
+        {
+          "chunk_id": "a47dee44ec90424a6cd5366b",
+          "rank": 22,
+          "score": 0.4276156425476074
+        },
+        {
+          "chunk_id": "0322367eeab55e98bc831fb9",
+          "rank": 23,
+          "score": 0.4277934432029724
+        },
+        {
+          "chunk_id": "3aca2c2c212a20916b72b1b9",
+          "rank": 24,
+          "score": 0.4278841018676758
+        },
+        {
+          "chunk_id": "fb2a013a04b7925193f22aad",
+          "rank": 25,
+          "score": 0.42914992570877075
+        },
+        {
+          "chunk_id": "09b97f72a9c4f2118f1071be",
+          "rank": 26,
+          "score": 0.4300234913825989
+        },
+        {
+          "chunk_id": "c3ab192d7997924bf831ba27",
+          "rank": 27,
+          "score": 0.4310224652290344
+        },
+        {
+          "chunk_id": "85c10f8dd7190f99b8440d2f",
+          "rank": 28,
+          "score": 0.4318782091140747
+        },
+        {
+          "chunk_id": "2f7f6c7afae3879e51dd3446",
+          "rank": 29,
+          "score": 0.43205684423446655
+        },
+        {
+          "chunk_id": "eb3c9fdd7b5091f5fa7a57ae",
+          "rank": 30,
+          "score": 0.4338815212249756
+        },
+        {
+          "chunk_id": "fdb157af3256b0c20ed671b3",
+          "rank": 31,
+          "score": 0.43392711877822876
+        },
+        {
+          "chunk_id": "20f8f5ad3f0e163aeb6b123f",
+          "rank": 32,
+          "score": 0.434215784072876
+        },
+        {
+          "chunk_id": "47a6b6a21230cb3028c9679a",
+          "rank": 33,
+          "score": 0.4366874694824219
+        },
+        {
+          "chunk_id": "57e56e426e1f2d1283661e77",
+          "rank": 34,
+          "score": 0.43712472915649414
+        },
+        {
+          "chunk_id": "c0856c782653dc754b21f01c",
+          "rank": 35,
+          "score": 0.4371935725212097
+        },
+        {
+          "chunk_id": "33b750c29b5fe1d3262a40de",
+          "rank": 36,
+          "score": 0.4374685287475586
+        },
+        {
+          "chunk_id": "11b79d9515b09ea8fd5acadf",
+          "rank": 37,
+          "score": 0.43791502714157104
+        },
+        {
+          "chunk_id": "535da9cf6b23236f83270255",
+          "rank": 38,
+          "score": 0.43903666734695435
+        },
+        {
+          "chunk_id": "49a3ad9e3e657a09b81839a5",
+          "rank": 39,
+          "score": 0.4391963481903076
+        },
+        {
+          "chunk_id": "ed46abc74f6e493710eabafb",
+          "rank": 40,
+          "score": 0.44020897150039673
+        },
+        {
+          "chunk_id": "caa45268e5730a63ef407c3f",
+          "rank": 41,
+          "score": 0.44026660919189453
+        },
+        {
+          "chunk_id": "db83d25aab7dfa3ed94d85be",
+          "rank": 42,
+          "score": 0.440354585647583
+        },
+        {
+          "chunk_id": "dcb4eb2856eb4445a203f9c5",
+          "rank": 43,
+          "score": 0.44079041481018066
+        },
+        {
+          "chunk_id": "ecc17d88c942e85aa6947bf3",
+          "rank": 44,
+          "score": 0.4413260817527771
+        },
+        {
+          "chunk_id": "aeb172ea0aa1e18b23bba3d2",
+          "rank": 45,
+          "score": 0.44155287742614746
+        },
+        {
+          "chunk_id": "9fe2126dd4ea392d389ed579",
+          "rank": 46,
+          "score": 0.44188475608825684
+        },
+        {
+          "chunk_id": "7853928c40594cdd651cb4bd",
+          "rank": 47,
+          "score": 0.44427353143692017
+        },
+        {
+          "chunk_id": "31d793067cf86ce01b512d24",
+          "rank": 48,
+          "score": 0.4443093538284302
+        },
+        {
+          "chunk_id": "97378678e0142d5e65b74903",
+          "rank": 49,
+          "score": 0.44519490003585815
+        },
+        {
+          "chunk_id": "4c7eba5d6740d914e0064c8f",
+          "rank": 50,
+          "score": 0.44532155990600586
+        },
+        {
+          "chunk_id": "9f3f8580942f527499362e98",
+          "rank": 51,
+          "score": 0.4455501437187195
+        },
+        {
+          "chunk_id": "70cf4bf2f8980b4d64341e77",
+          "rank": 52,
+          "score": 0.4456571340560913
+        },
+        {
+          "chunk_id": "57c6995ea27baae4cc76f0e9",
+          "rank": 53,
+          "score": 0.4457911252975464
+        },
+        {
+          "chunk_id": "e57ee3cea0f5d84d77083a98",
+          "rank": 54,
+          "score": 0.4458014965057373
+        },
+        {
+          "chunk_id": "cb9a35314f749a7a5ab4e439",
+          "rank": 55,
+          "score": 0.4458446502685547
+        },
+        {
+          "chunk_id": "d7535839b0829247dc2d9f91",
+          "rank": 56,
+          "score": 0.4459722638130188
+        },
+        {
+          "chunk_id": "a7d9c0a946d7679d014199e2",
+          "rank": 57,
+          "score": 0.4465360641479492
+        },
+        {
+          "chunk_id": "d2f776990ffcbdfe5e7432f8",
+          "rank": 58,
+          "score": 0.44687747955322266
+        },
+        {
+          "chunk_id": "48bf2a8e2c8e79e4161def5c",
+          "rank": 59,
+          "score": 0.44707030057907104
+        },
+        {
+          "chunk_id": "b23ce4712b0e068adef23e84",
+          "rank": 60,
+          "score": 0.4474303722381592
+        }
+      ]
+    }
+  },
+  "latency_ms": null,
+  "index": "/Users/jennyma/Projects/InfraAgent/data/merged-corpus-v2/800518d3f71b601f/index",
+  "cache_origin": "verified_v4"
+}

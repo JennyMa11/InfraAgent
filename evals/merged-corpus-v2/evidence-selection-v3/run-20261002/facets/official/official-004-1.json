@@ -1,0 +1,41 @@
+{
+  "original_query": "vLLM v0.10.2：Ampere在此版本支持的FP8配置与kernel是什么？",
+  "scoring_query": "vLLM v0.10.2: What are the FP8 configurations and kernels supported by Ampere in this version?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "What FP8 configurations does vLLM v0.10.2 support on Ampere?",
+      "anchor_quote": "Ampere在此版本支持的FP8配置"
+    },
+    {
+      "question": "What FP8 kernels does vLLM v0.10.2 support on Ampere?",
+      "anchor_quote": "Ampere在此版本支持的FP8配置与kernel是什么？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：Ampere在此版本支持的FP8配置与kernel是什么？\", \"scoring_query\": \"vLLM v0.10.2: What are the FP8 configurations and kernels supported by Ampere in this version?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"What FP8 configurations does vLLM v0.10.2 support on Ampere?\",\"anchor_quote\":\"Ampere在此版本支持的FP8配置\"},{\"question\":\"What FP8 kernels does vLLM v0.10.2 support on Ampere?\",\"anchor_quote\":\"Ampere在此版本支持的FP8配置与kernel是什么？\"}]}",
+  "provider_response": {
+    "id": "8cf94558-e577-4671-8ea7-2d18c6a49bd2",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 180,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 82,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 807.0974999573082,
+  "sha256": "7e7df3db4a2db4af52bdc25fc4175d0acec1bad899eff2613f83511411844c67"
+}

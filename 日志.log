@@ -77,6 +77,24 @@ BGE向量检索         0.525     0.106        0.176  0.382  0.530         26.0
 结果：向量库使用cosine；评估只看子块ID；父块扩展的上下文未计入证据命中。
 问题：无
 
+[2026-09-29T11:15:14+08:00]
+操作：排查悬浮窗不可见；将 NSPanel.hidesOnDeactivate 设为 false，应用改为 regular/Dock 模式，增加强制置前与 Dock 重新打开处理；重建并启动 Infra Lens
+原因：原 NSPanel 默认在应用失焦时隐藏，accessory 模式又缺少 Dock 找回入口
+结果：Swift 构建、plist、shell 语法及 git diff --check 通过；应用与本地 API 均运行正常；用户确认已经能看到悬浮窗
+问题：自动化 UI 工具仍未获准直接控制自建应用，窗口可见性由用户实际确认
+
+[2026-09-29T11:20:50+08:00]
+操作：将 Infra Lens 改为可拖动的 64 像素左右透明悬浮球，点击展开 420×500 检索面板；更新文档、重建并重启应用
+原因：原常驻检索窗口过大，用户希望类似 Codex 宠物的小型悬浮入口
+结果：Swift 编译、plist 与 git diff --check 通过；本地 API /health 正常，用户确认看得到小球且点击可以展开检索；应用与服务保持运行
+问题：首次尝试使用 @State 动画时本机 Swift 命令行工具缺少 SwiftUIMacros 插件，已改用 TimelineView 绘制呼吸动画并重新编译通过；拖动位置持久化尚未由自动化 UI 验证
+
+[2026-09-29T11:25:27+08:00]
+操作：检查本机 BGE 依赖和真实仓库索引；将已验证的 87 来源索引复制到独立 data/desktop-bge，调整桌面默认后端为 bge，重建并重启 Infra Lens，验证 /health 与 /search
+原因：按用户要求停止使用 demo，直接使用真实 BGE 模型检索，同时保持原评测索引不被桌面导入修改
+结果：Chroma 与 sentence-transformers 已安装；原/副本 index.json SHA256 相同；独立索引包含 11168 片段，CLI 与运行中 API 的混合检索均返回 PagedAttention 相关原文，命中包含 bm25 和 dense 通道及稳定引用；当前应用与服务均以 bge 运行；构建、plist、shell 语法和 git diff --check 通过
+问题：首次真实模型查询约 15 秒（含模型加载），后续查询可复用已加载模型；本次未启用 reranker，现有实验不支持声称它必然改善排序
+
 [2026-09-26T14:39:34+08:00]
 操作：复算两路Top30、RRF候选并对比精确向量Top30，写入failure-diagnostics.json
 原因：定位候选缺失、融合截断、重排序失败，检查近似向量检索影响
@@ -628,4 +646,1588 @@ BGE向量检索         0.525     0.106        0.176  0.382  0.530         26.0
 原因：保存当前已验收项目并建立远程备份
 结果：main首次推送成功；198个文件；53项pytest与Ruff通过；补充忽略dist/build/.env.*与密钥文件
 问题：data、虚拟环境与构建产物保持本地；远程地址 https://github.com/JennyMa11/InfraAgent
+
+[2026-09-29T11:09:06+08:00]
+操作：检查 API、CLI、项目状态与公开悬浮窗方案；新增 desktop/macos/InfraLens.swift、build.sh、scripts/desktop_backend.py 和 docs/desktop-macos.md，更新 README；完成构建、空索引导入检索和进程退出验证
+原因：把现有本地检索服务接成可在 macOS 使用的置顶悬浮窗，提供文档导入、带定位的证据检索与菜单栏快捷键
+结果：参考 MIT 许可 PopChat 的交互方式，界面代码独立实现；Swift 编译成功，空索引导入示例 3 文件/12 片段，PagedAttention 查询首条引用定位到 inference.md#L3-L4；应用退出后服务进程停止；Ruff lint/format、53 项 pytest、zsh 语法及 git diff --check 通过
+问题：自动化 UI 工具未获准访问新建的 Infra Lens 应用，未完成实际窗口视觉检查；默认 demo 后端仅验证流程，独立安装器、签名与公证仍未实现
+
+[2026-09-29T11:11:18+08:00]
+操作：执行 open dist/InfraLens.app，并检查应用、守护脚本和本地 API 进程及 /health
+原因：按用户要求直接启动 macOS 悬浮检索窗
+结果：Infra Lens、desktop_backend.py 与 infra-rag 服务均在运行；127.0.0.1:18774/health 返回正常，现有索引包含 3 个来源和 12 个片段
+问题：无
+
+[2026-09-29T11:42:32+08:00]
+操作：接入本机 Ollama qwen3:4b 问答、SQLite 对话历史、检索引用校验和阶段耗时；将 Infra Lens 面板改为可追问的聊天界面，并更新使用文档
+原因：让悬浮球从证据检索入口变成可用的本地知识问答助手
+结果：真实 BGE 索引 87 来源/11168 片段，两轮 API 问答、追问上下文与四条历史记录验证通过；针对模型将“物理块可不连续”误写成“找到连续空间”的问题收紧提示后重测，回答明确区分旧方案与分页方案；Swift 构建、56 项 pytest、Ruff lint/format、git diff --check 通过；新版应用及本地服务正在运行
+问题：引用 ID 校验只能确认来源存在，不能自动证明每项事实正确；当前没有 Salvo 的意图识别、工单转人工和自动评测闭环
+
+[2026-09-29T11:52:17+08:00]
+操作：对比 Qwen3 4B 的原始证据提示与压缩证据加 JSON Schema；为桌面版加入后台 BGE/Ollama 预热，Ollama 保留 10 分钟，预热与正式请求统一 8192 token 上下文
+原因：减少首次提问的冷加载等待，同时避免以牺牲事实准确性换取较短提示
+结果：对照中压缩提示 token 从 1731 降到 1183，但答案错误地称分页后能找到连续空间，因此未采用；启动预热完成后同题首问总耗时约 7.03 秒（检索 132 毫秒，生成 6.89 秒），回答正确区分旧方案连续空间失败与新方案物理块可不连续；Ollama 显示 100% GPU、8192 上下文；57 项 pytest、Ruff lint/format、Swift 构建、git diff --check 通过
+问题：单题计时受模型缓存和机器负载影响，尚不能代表整体延迟分布；预热把冷加载移到窗口启动阶段，未消除加载本身；长期回答质量仍需固定问答集评估
+
+[2026-09-29T11:59:28+08:00]
+操作：检查既有 dev50 题集并以其中 6 题试跑本地问答，保存逐题回答与引用到忽略目录 data/assistant-pilot-dev.json，生成人工复核表 data/assistant-pilot-review.md；另对两道失败题检查原始混合检索与可选重排结果
+原因：在 QLoRA 前区分检索失败与生成误读，避免用训练掩盖证据链问题
+结果：6 题均生成回答；其中 CUDA 显存事务场景题误引共享内存 bank conflict，属于相关证据未进入上下文；Row Parallel 场景题虽检到相关证据仍错答 AllGather，应为求和 AllReduce；可选重排使 Row Parallel 正确证据靠前，但 CUDA 题正确证据仅排第 4，未证明全局改善
+问题：题目与参考答案均由 AI 编写且待人工审核，本轮仅为开发诊断，不报告正式问答准确率；固定 test100 未用于调参，题目和参考答案未入库
+
+[2026-09-29T12:07:40+08:00]
+操作：按用户委托由 Codex 代审原 6 题和新增 12 道 dev 题，核对 18 条冻结来源的 SHA256 与原文，保存逐题证据、代审结论及参考答案清单于忽略目录 data/assistant-*-review.md 和 data/assistant-reviewed-dev.json
+原因：先建立有来源与审核记录的训练候选，再进行检索修复、微调和固定题集比较
+结果：18 道题覆盖 9 个不与固定 test100 重叠的概念组；原 6 题模型回答 2 道明确错误，新增 12 题 3 道需修订，参考片段哈希与文本均匹配；SmoothQuant 的额外表述另对照原论文，训练候选使用简短参考答案
+问题：审核者是 Codex，属于 AI 代审而非独立人工金标；新增候选尚未用于训练，固定 test100 未参与选择
+
+2026-09-29 12:15 +08:00 | 悬浮助手问答修复开发集复核
+- 数据：AI 编写并由 Codex 代理复核的开发集 6 题；未把这些题标为人工确认，固定 test100 未参与调参。
+- 根因一：CUDA global memory coalescing 问题原上下文缺少直接证据，旧回答错把共享内存 bank conflict 当成目标；启用 bge-reranker-base 后直接证据进入上下文，回答正确。
+- 根因二：FFN Row Parallel 问题原上下文同时出现 Column Parallel 的 AllGather 与 Row Parallel 的 AllReduce，Qwen3 4B 误把邻近对象的操作当成答案；重排后相关的完整 Row Parallel 证据靠前，回答正确。泛化提示词单独试验未纠正原上下文中的误读，因此没有采用。
+- 检索对照（固定 dev50、稀疏证据标签、top5）：无重排 28/50 题命中标注证据，重排 39/50；宏平均 Recall 0.56→0.78；13 题改善、2 题退步。该指标不能当作问答准确率。
+- 真实本地 API 重启后使用 --rerank；同一 6 题回答从初次代理复核的 4/6 提升到 6/6，引用 ID 均有效，详细结果 data/assistant-rerank-qa6.json。模型生成仍不能由引用 ID 校验证明语义正确，扩大样本及独立保留集复核继续进行。
+
+2026-09-29 12:20 +08:00 | Mac Qwen3 4B 小样本 QLoRA
+- 使用官方 Qwen/Qwen3-4B-MLX-4bit（本地快照 data/qlora/model）及 mlx-lm 0.31.3、mlx 0.32.3；与悬浮助手当前 Ollama GGUF 为不同运行格式，适配器不能直接挂到当前 Ollama 请求上。
+- 18 条 AI 代理复核的开发集样本按 9 个概念组拆成 6 组训练（12 条）、3 组验证（6 条），mask-prompt；固定 test100 未参与训练或模型选择。样本的参考答案仍是 AI 编写并代理复核，非独立人工金标。
+- 4bit QLoRA：batch 1、训练最后 4 层、最大序列 1024、梯度检查点、学习率 1e-5、随机种子 42、30 次更新、可训练参数 183.5 万（0.046%）。2 步冒烟成功；正式训练验证损失 2.015→0.614、训练损失 0.267，报告峰值内存 3.274 GB。adapter: data/qlora/adapter-30。损失改善仅证明拟合训练/验证格式，待固定保留集问答比较。
+- 同轮验证：`zsh -n desktop/macos/build.sh`、Swift `build.sh` 编译、`ruff check src tests scripts` 均通过；pytest 全套 57 passed。重启后 `/health` 显示 rerank=true、87 sources、11168 chunks，悬浮助手及本地 API 保持运行。
+
+2026-09-29 12:31 +08:00 | QLoRA 固定保留集接入门槛
+- 固定 test100 SHA256 aefb1d6e2943a98c67df88f0a364b4c7dfc9f442c72081da284a7a6d9a6f14ef；同一 MLX 4bit 基座、冻结证据、同样生成参数作原模型/适配器对比。引用格式 83/100→100/100，JSON 85/100→100/100，生成耗时中位数 2.33s→2.99s。
+- 逐题证据复核明确发现适配器事实退步：repo-058-2 把两步运算仍执行答成少算了 SiLU/乘法；repo-057-1 把 32 MiB 权重字节量错当工作量。两模型都在 repo-055-2 忽略工具等待时仍驻留上下文状态。引用格式改善不能抵消事实退步。
+- 模型辅助裁判连续输出不可解析内容，已停止且不纳入证据。详细记录 data/qlora/report.md；不报告无人工金标支撑的事实准确率。
+- 接入门槛判定失败，本轮不将适配器接入悬浮助手。固定 test100 已用于此次选择，不再用它调参；下一轮需要独立人工核验的新训练/验证/保留样本。
+
+2026-09-29 | 悬浮问答与 QLoRA 错误根因复查
+- 训练 12 题仅 6 段不同证据/6 个答案，每组两个问法；验证 6 题仅 3 段/3 个答案。所有样本 supported=true，缺少反事实、拒答、条件与否定对照。训练目标 934 token 中事实答案文本约 210 token（22.5%），其余主要是结构与引用；验证损失不能代表证据理解。
+- 未训练的开发集 repo-042-2：原基座和 2 步适配器正确否定无条件 AllGather，30 步适配器反答成无条件；repo-044-1 的“为何不能全部接受”在 30 步适配器中缺失。固定测试集 repo-058-2、057-1 亦见明确事实退步，仅用于分析，不用于调参。
+- 检索开发集 repo-068-1：直接证据重排前第 1、重排后第 6，线上 top5 漏掉并返回 no_evidence。repo-045-2：完整证据第 5→11；线上启用重排时错误选择原始 logits 且解释自相矛盾，关闭重排则同一 Ollama 模型答对。rerank top6 开发集稀疏证据命中 39/50→41/50，但未做答案级全面验证，线上配置未改。
+- 应用回答校验只确认引用 ID 存在，直接矛盾的回答仍可通过。MLX oracle-evidence 评测与线上 Ollama 检索问答不同，引用格式收益不能当作事实准确率。详细分析 data/error-root-cause.md。
+[2026-10-01T17:31:01+08:00]
+操作：冻结官方技术语料
+原因：为独立领域评测提供可追溯正文
+结果：40篇文档；未更改线上索引
+问题：题集仍需独立人工审核
+
+[2026-10-01T17:46:40+08:00]
+操作：生成120题官方语料候选集
+原因：补充版本条件、否定、代码、排障和拒答评测
+结果：dev60/holdout60，30场景组，全部pending
+问题：需要独立人工审核；未运行holdout
+
+[2026-10-01T18:05:16+08:00]
+操作：官方语料分层离线评测
+原因：区分召回、交付与生成错误
+结果：dev: 2题，4条输出，evals/infra-official-v1/results/dev-generation-smoke
+问题：答案事实评分仍需独立人工审核
+
+[2026-10-01T18:12:06+08:00]
+操作：官方语料分层离线评测
+原因：区分召回、交付与生成错误
+结果：dev: 60题，240条输出，evals/infra-official-v1/results/dev-retrieval
+问题：答案事实评分仍需独立人工审核
+
+[2026-10-01T18:21:37+08:00]
+操作：SciFact原生文档检索对照
+原因：补充独立标准检索协议
+结果：5183文档，300查询，四种配置，evals/public-benchmarks/scifact/results/baseline
+问题：无
+
+[2026-10-01T18:30:24+08:00]
+操作：交付官方语料评测与SciFact对照
+原因：建立冻结来源、独立人工审核和分层证据评测流程
+结果：40篇来源；120道pending候选；dev60四配置完成；SciFact5183文档300查询完成；78测试/Ruff/打包通过；90项历史哈希保持；候选holdout被禁止
+问题：领域标签未人工批准，正式dev/holdout生成未运行。2题×oracle/hybrid共4条冒烟最终均拒答，事实/引用支持率保持null。当前固定模型未训练QLoRA、未换embedding、未修改线上配置。重排领域完整证据@5=28/54(0.519)，SciFactRecall@5=0.761/nDCG@10=0.712，不能合并为QA准确率。
+
+[2026-10-01T18:37:25+08:00]
+操作：登记kylin人工题集审核结论
+原因：用户声明120道候选题已审核无问题，并提供署名与日期
+结果：全部approved；reviewer=kylin；reviewed_at=2026-10-01；保留题目哈希和声明来源
+问题：仅登记用户提供的题集审核；未批准尚未生成的答案
+
+[2026-10-01T19:13:55+08:00]
+操作：官方语料分层离线评测
+原因：区分召回、交付与生成错误
+结果：dev: 60题，300条输出，evals/infra-official-v1-reviewed/results/dev-20261001
+问题：答案事实评分仍需独立人工审核
+
+[2026-10-01T19:14:38+08:00]
+操作：正式dev传输错误恢复
+原因：只恢复主运行的HTTP500，不选择性重跑拒答或内容答案
+结果：原始2条服务错误；仅重放这些请求；恢复视图300条，剩余服务错误2；保留全部原始尝试
+问题：重放政策为运行后制定，延迟不是单次连续性能成绩；生成答案仍待人工审核，holdout未运行
+
+[2026-10-01T19:18:13+08:00]
+操作：dev重复token错误解码诊断
+原因：两条Oracle HTTP500均可复现token repeat limit reached
+结果：仅失败的两道dev题，repeat_penalty=1.1，其他模型/证据/提示词和参数不变，独立诊断结果已保留
+问题：不是正式完整dev，不替换主运行，不使用holdout；事实正确性仍待人工审核
+
+[2026-10-01T19:22:37+08:00]
+操作：完成kylin审核后的正式dev首轮与错误定位
+原因：继续已批准题集的分层评测，区分检索、交付和生成
+结果：dev60×5=300条；主运行最终作答120、最终拒答178、调用错误2。两条相同参数重放仍失败token repeat limit reached；独立repeat_penalty=1.1两题探针均正常作答且引用ID校验通过。题目审批120条，答案评分仍0条；90项保护哈希无变化
+问题：主运行含服务错误，未写dev-completed标记，holdout未运行。两题参数探针不替代正式结果，需新冻结协议完整dev验证。优先审核材料已导出。
+
+
+[2026-10-01T20:36:31+08:00]
+操作：审计dev首轮14条优先人工核验案例
+原因：确认priority-review.md的分类是评测框架缺陷还是模型事实错误
+结果：产出evals/infra-official-v1-reviewed/results/dev-20261001/priority-review-audit.md。14条中1条为校验规则误杀（014-2：答案与引用ID全合法，仅正文内联ID未进citations）、1条为模型引用ID转写错误（002-1：25字符写成26字符，重试未纠）、2条拒答结果本身正确（017-3交付完整度0且输出不可解析；002-2:hybrid交付完整度0）、10条疑似误拒答且8条正文已含正确结论；10条的delivered.complete全为1.0，非检索问题。另发现citation_ids_valid口径错误（175/180条失败仅因supported=false，真实引用缺陷仅2条）、answer-review.md只渲染后处理文案看不到模型原始输出、priority-review.md证据摘录取前两条致合法引用看似编造、两份诊断产物无生成脚本
+问题：审计为AI判断，不是金标；误拒答率仍需独立人工在answer-review.json填写。未修改冻结产物、未重跑、未读holdout
+[2026-10-01T21:36:13+08:00]
+操作：官方语料分层离线评测
+原因：区分召回、交付与生成错误
+结果：dev: 60题，300条输出，evals/infra-official-v1-reviewed/results/dev-deepseek-flash-20261001
+问题：答案事实评分仍需独立人工审核
+
+[2026-10-01T21:38:26+08:00]
+操作：接入DeepSeek官方API并完成完整dev对照
+原因：用户切换回答模型并要求保留本地、通过注释方便更改
+结果：官方Anthropic入口deepseek-flash连通；.env.deepseek独立保存且0600/Git忽略。dev60×5=300，API169作答131拒答0错误；294次实际调用全部JSON/引用ID结构合法且end_turn，无重试。固定排名/证据/首轮提示词差异0；本地120/178/2保留。生成中位耗时0.965秒对5.772秒。89测试、Ruff、构建通过；89历史文件未改，assistant仅接入模型配置；对照及验证已存deepseek-comparison.md/json和deepseek-verification.json
+问题：作答增多不代表正确率；答案仍待独立人工评审，事实指标为空。Oracle仍2条拒答；BM25不可回答024-4状态answered但正文为语义拒答，需人工确认。API与本地解码约束不同，服务端权重不可冻结；未跑holdout。原AgentRouter401仅为历史入口问题。
+
+[2026-10-01T21:53:17+08:00]
+操作：切换AIHubMix OpenAI兼容API hy3-free
+原因：用户要求独立API配置文件并指定模型与入口
+结果：新增忽略且0600的.env.aihubmix，默认选取hy3-free/max_tokens1024；保留DeepSeek/AgentRouter与本地Ollama配置并添加切换注释。接入Chat Completions与Bearer鉴权、响应文本/元数据记录及独立评测provider。97测试、Ruff、构建通过；文档与无密钥模板已更新
+问题：真实预热与用户示例原始参数均HTTP400/no_available_channel，服务端提示模型当前无法提供服务；没有替换模型、没有hy3评测成绩。需通道恢复后验证质量。
+
+[2026-10-01T22:36:47+08:00]
+操作：重新测试AIHubMix hy3-free连通性
+原因：用户要求再次尝试当前API
+结果：使用现有.env.aihubmix，项目客户端请求及用户原始示例请求分别重测，均HTTP400；错误code=no_available_channel，type=Aihubmix_api_error。诊断请求ID为2026100114363029784403439721475
+问题：服务端仍提示hy3-free当前无法提供服务；未更换模型，无法进入RAG生成测试，没有新评测成绩。
+
+[2026-10-01T22:41:05+08:00]
+操作：AIHubMix模型切换coding-glm-4.6-free并验证
+原因：用户要求仅替换模型且API Key保持不变
+结果：独立.env.aihubmix模型已替换，Key未改、0600权限保留，地址与max_tokens1024不变。真实Hello调用成功；沿用RAG系统提示词的独立合成证据冒烟JSON及引用ID校验通过。模板、README、配置文档已更新
+问题：两次服务端返回model均为glm-5.3-flash，与请求路由名不同；仅记录响应声明，未验证底层权重。含reasoning_tokens，未关闭思考。没有完整300条评测成绩。
+
+[2026-10-01T22:49:05+08:00]
+操作：官方语料分层离线评测
+原因：区分召回、交付与生成错误
+结果：dev: 60题，300条输出，evals/infra-official-v1-reviewed/results/dev-aihubmix-glm-20261001
+问题：答案事实评分仍需独立人工审核
+
+[2026-10-01T23:02:20+08:00]
+操作：保存AIHubMix完整dev执行记录及额度诊断
+原因：记录用户已授权实验，后续按新入口配置继续
+结果：原始300条已存dev-aihubmix-glm-20261001；三轮对照aihubmix-comparison.md/json。仅2条真实模型生成；159次响应为未充值账号10次试用额度提示（80条受影响），79条格式重试后被框架记为拒答，另1条重试出连接/JSON错误。累计213条调用错误，6条无证据绕过。固定输入与检索指标差异0
+问题：本轮未形成完整有效模型评测；不能比较质量或速度，未写dev-completed、未跑holdout。原始记录保留，平台提示在附加报告独立识别。用户已转向AgentRouter入口，不继续AIHubMix调用。
+
+[2026-10-01T23:05:03+08:00]
+操作：配置AgentRouter OpenAI兼容入口与deepseek-v4-flash
+原因：用户指定https://agentrouter.org/v1并确认模型
+结果：新增独立.env.agentrouter.openai，0600且Git忽略；使用已保存AgentRouter密钥，AIHubMix密钥不跨服务发送。通用OPENAI配置字段与默认文件选择已接入，旧配置保留，注释和模板可切换。98测试、Ruff、构建通过。AIHubMix失败实验的300条原始记录、附加分类及187文件保护核验已保存
+问题：GET模型列表及两种Chat Completions请求仍HTTP401/unauthorized client detected，未完成连通，没有新的模型评测成绩；需账号/入口允许普通项目客户端。
+
+[2026-10-01T23:11:44+08:00]
+操作：接入阿里云百炼并启动完整dev实验
+原因：用户切换入口；继续此前已授权的评测与实验记录
+结果：新增.env.aliyun（忽略/0600），沿用deepseek-v4-flash、max_tokens1024。模型目录、真实RAG格式/引用ID冒烟通过，返回deepseek-v4-flash且含reasoning_tokens。99测试、Ruff、构建通过。新协议protocol-aliyun-deepseek-20261001已冻结，源码归档，语料/标注/检索配置与旧基线一致；dev300条独立启动
+问题：未显式关闭该入口思考，不能视为与650token/关闭thinking的旧API完全等价解码；答案质量待独立评审，不执行holdout。
+
+[2026-10-01T23:20:40+08:00]
+操作：阿里云模型改为qwen3.7-flash-2026-07-15并检查权限
+原因：用户指定新模型，保留入口与密钥
+结果：配置与模板模型已替换，Key/入口/max_tokens1024未改。此前阿里云DeepSeek已SIGINT停止，46条完整原始记录及中断标记保留，不作为完整评测。新模型RAG冒烟与最小请求均HTTP403，错误码AccessDenied.Unpurchased；独立诊断aliyun-qwen-readiness-20261001.json已保存。183项旧实验文件哈希未变
+问题：服务端提示Access to model denied，尚未取得Qwen输出；未建立正式新协议、未跑300条或holdout，需要该模型调用权限后继续。
+
+[2026-10-01T23:37:29+08:00]
+操作：官方语料分层离线评测
+原因：区分召回、交付与生成错误
+结果：dev: 60题，240条输出，evals/infra-official-v1-reviewed/results/dev-opt-union30-20261001
+问题：答案事实评分仍需独立人工审核
+
+[2026-10-01T23:41:03+08:00]
+操作：官方语料分层离线评测
+原因：区分召回、交付与生成错误
+结果：dev: 60题，240条输出，evals/infra-official-v1-reviewed/results/dev-opt-union60-20261001
+问题：答案事实评分仍需独立人工审核
+
+[2026-10-01T23:45:22+08:00]
+操作：官方语料分层离线评测
+原因：区分召回、交付与生成错误
+结果：dev: 60题，240条输出，evals/infra-official-v1-reviewed/results/dev-opt-union60-context2400-20261001
+问题：答案事实评分仍需独立人工审核
+
+[2026-10-01T23:54:32+08:00]
+操作：完成英文查询改写检索消融
+原因：验证中文问题与英文语料的语言匹配
+结果：bilingual dev60×4=240条；独立输出evals/infra-official-v1-reviewed/results/dev-opt-bilingual-query-20261001
+问题：AI生成翻译未独立人工评审；仅dev调优，不是holdout或回答质量成绩
+
+[2026-10-02T00:03:59+08:00]
+操作：恢复官方DeepSeek并完成查询语言消融
+原因：停止切换服务商，优先修正中文查询与英文技术语料的匹配
+结果：当前.env.llm为deepseek-flash；纯英文查询Recall@5=0.76235、完整证据交付40/54；双语35/54；候选60与双倍预算未采用。英文240条rows/summary已完成，报告字段异常已修复，原执行脚本独立保留。查询翻译接入聊天，107测试与Ruff/构建通过；183项旧文件哈希未变。
+问题：仅dev调优；AI译文未人工审核，回答事实评分为空；完整生成复测仍在运行。
+
+[2026-10-02T00:04:19+08:00]
+操作：官方语料分层离线评测
+原因：区分召回、交付与生成错误
+结果：dev: 60题，300条输出，evals/infra-official-v1-reviewed/results/dev-deepseek-optimized-20261001
+问题：答案事实评分仍需独立人工审核
+
+[2026-10-02T00:05:39+08:00]
+操作：完成官方DeepSeek优化完整dev复测
+原因：以独立300条生成复测验证英文查询优化，不再切换供应商
+结果：主配置Recall@5 55.56%→76.23%，MRR@10 0.4126→0.5615，nDCG@10 0.4500→0.6274，完整证据交付29/54→40/54。总作答169→213，主配置38→50，294实际生成调用全部deepseek-flash，无错误/重试；额外60次译文生成P50约696ms。/chat真实翻译+检索+引用回答验证通过，临时测试服务已关闭。完整报告、源代码归档、译文哈希与人工答案待审表独立保存；107项测试/Ruff/构建通过。
+问题：只在dev调优，holdout未运行，事实正确率/忠实性/引用支持率为空；多跳完整证据仅1/6，AI翻译未人工审核，6条排名复测波动需单独验证。
+
+[2026-10-02T09:06:13+08:00]
+操作：优化后检索失败逐题归因
+原因：区分召回、重排与交付问题，避免把拒答或标注未命中直接当作模型错误
+结果：固定dev主配置14/54不完整：候选缺证据6、重排前5损失8；10仍回答，4拒答；top10既有上下文44/54，新增4且无退步。逐题14案例与源定位JSON/报告已保存。
+问题：稀疏gold与潜在等价证据仍需独立审核；推测性根因未做新消融，无事实评分、无配置更改、未跑holdout。
+
+[2026-10-02T09:28:57+08:00]
+操作：建立合并语料索引并完成中文dev对照
+原因：补充中文Infra材料并检验检索与回答
+结果：127来源；结果evals/merged-corpus-v1/dev-20261002；摘要hash 7f783910696db670877fdbc92bbb3783dd5d3d3cb7015f55b4dcc4f8a12c570d
+问题：官方gold为稀疏标注；拒答题需在新增语料上复核；回答尚无独立人工评分
+
+[2026-10-02T09:31:52+08:00]
+操作：完成合并语料回答复核与中文覆盖检查
+原因：区分新增覆盖、证据排名与实际回答质量
+结果：dev60合并英文Recall@5 75.31%/完整40/54；双语48.77%/25/54；48条生成无错误；中文覆盖6题合并组均作答，保存AI逐题审阅与失败案例
+问题：中文覆盖仅原生中文6题；LoRA遗漏与MoE源文简化已标记；未跑holdout，独立人工事实评分仍为空
+
+[2026-10-02T09:32:12+08:00]
+操作：完成合并语料回答复核与中文覆盖检查
+原因：区分新增覆盖、证据排名与实际回答质量
+结果：dev60合并英文Recall@5 75.31%/完整40/54；双语48.77%/25/54；48条生成无错误；中文覆盖6题合并组均作答，保存AI逐题审阅与失败案例
+问题：中文覆盖仅原生中文6题；LoRA遗漏与MoE源文简化已标记；未跑holdout，独立人工事实评分仍为空
+
+[2026-10-02T09:33:20+08:00]
+操作：完成合并语料回答复核与中文覆盖检查
+原因：区分新增覆盖、证据排名与实际回答质量
+结果：dev60合并英文Recall@5 75.31%/完整40/54；双语48.77%/25/54；48条生成无错误；中文覆盖6题合并组均作答，保存AI逐题审阅与失败案例
+问题：中文覆盖仅原生中文6题；LoRA遗漏与MoE源文简化已标记；未跑holdout，独立人工事实评分仍为空
+
+[2026-10-02T10:33:40+08:00]
+操作：实现预处理、分库召回、版本优先及中文dev对照
+原因：修复语料混合后的证据竞争，区分清理与检索策略效果
+结果：127来源/16320片段；官方最终Recall@5 48.15%，完整26/54；36条回答；报告evals/merged-corpus-v2/comparison.md
+问题：AI审计未独立审核、稀疏gold及粒度限制；在线额外哈希回答遗漏保留；默认未切换
+
+[2026-10-02T10:38:10+08:00]
+操作：实现预处理、分库召回、版本优先及中文dev对照
+原因：修复语料混合后的证据竞争，区分清理与检索策略效果
+结果：127来源/16320片段；官方最终Recall@5 48.15%，完整26/54；36条回答；报告evals/merged-corpus-v2/comparison.md
+问题：AI审计未独立审核、稀疏gold及粒度限制；在线额外哈希回答遗漏保留；默认未切换
+
+
+[2026-10-02T12:31:51+08:00]
+操作：复核合并检索失败阶段与版本保护漏洞
+原因：区分预处理效果、候选召回、重排选择与源文事实问题
+结果：官方final失败28题，其中22题候选完整但Top5不完整，6题候选缺失；相对版本保护组退化16题、恢复0题；详见evals/merged-corpus-v2/failure-analysis.md及json
+问题：路由同时改变中文召回与重排语言，不能单独归因分数校准；稀疏gold及独立事实评分限制保留；无新模型运行或默认切换
+[2026-10-02T13:14:43+08:00]
+操作：完成中文召回/重排独立消融与版本/元数据实验
+原因：定位候选完整但最终证据丢失的退化环节
+结果：结果/Users/jennyma/Projects/InfraAgent/evals/merged-corpus-v2/routing-v2-20261002；比较hash 35f2e4c1397e2c4d6f1991d4005f8c6d45832701e2e64f76381733c6da651ee7；默认global30不变
+问题：原始gold稀疏；中文组缺英文译文；事实正确性待独立人工审核
+
+[2026-10-02T13:18:04+08:00]
+操作：完成第一轮修复、独立语言消融与固定回答验证
+原因：拆分中文召回和重排变量，验证版本范围与元数据影响
+结果：770条检索/54条生成；官方四组42/36/40/26，版本all40，元数据39；中文基线40，元数据39；127测试、Ruff、构建通过；详见evals/merged-corpus-v2/routing-v2-20261002/report.md
+问题：所有新配置未超过官方43/54基线；默认global30不变；AI标签稀疏且事实评分待独立人工审核；相对路径日志错误已修复，未改变检索结果
+
+[2026-10-02T13:44:31+08:00]
+操作：设计下一轮多条件证据集合选择实验
+原因：依据路由审核报告区分评分、集合覆盖、源文风险和生成拒答
+结果：实验协议evals/merged-corpus-v2/evidence-selection-v3/experiment-plan.md；两套冻结候选池×四选择策略；隔离及分数归一化独立支线；按簇统计、计量开销和确认集门槛预注册
+问题：本次只设计，未运行新模型或改动语料/gold；审核中的不显著即证伪、Top10全场最高和过度拒答分母已澄清；默认global30不变
+
+[2026-10-02T15:22:12+08:00]
+操作：完成冻结候选证据选择主实验与隔离支线
+原因：验证条件评分和集合覆盖，独立检查源文风险
+结果：结果/Users/jennyma/Projects/InfraAgent/evals/merged-corpus-v2/evidence-selection-v3/run-20261002；默认global30不变
+问题：AI标签稀疏；事实审核待人工；确认集仅在冻结且通过dev门槛后运行
+
+[2026-10-02T15:25:43+08:00]
+操作：记录证据集合选择v3实验结论
+原因：检验条件评分与集合覆盖是否把完整候选转为最终证据，同时单独检验来源风险
+结果：880主检索/48生成/110隔离检索/2隔离生成/46无相关缓存延迟；P0 T/M/F/G官方43/39/39/43、仓库40/38/40/41；P1官方40/35/35/40、仓库40/38/39/41；主检验P1 G-F+5，Holm p=0.125；两池G均未超过各自T；无配置过门槛，未运行holdout/test评测；Q1过滤1段不改变原始gold交付且样本不再复述专家参数等于模型总参数；延迟p50 2.03s至7.20s；145测试、Ruff、构建通过；详见evals/merged-corpus-v2/evidence-selection-v3/run-20261002/execution-report.md
+问题：初始通用校验器读取过holdout做完整性校验，未检索/推理/评分/调参；已中止归档并改仅dev加载，条件缓存原样复用；AI标签稀疏，oracle也暴露标注充分性及蕴含问题，事实审核待人工；默认global30不变
+
+[2026-10-02T17:20:46+08:00]
+操作：完成召回与交付v4开发实验
+原因：验证Top8、子问题召回与上下文增强索引
+结果：770检索/46生成/46延迟；结果/Users/jennyma/Projects/InfraAgent/evals/merged-corpus-v2/recall-delivery-v4/run-20261002；候选Q5；默认不变
+问题：AI来源标签稀疏；确认评测须通过门槛并冻结生成观察；事实独立人工pending
+
+[2026-10-02T17:31:08+08:00]
+操作：记录召回与交付v4结果及事实门槛
+原因：分离Top8、子问题补召回及上下文增强两路索引的收益，防止完整候选增加被误当成交付改善
+结果：7组770检索/46生成/46交错无持久查询候选评分缓存延迟；B5/B8/D5/Q5/L5/E5/LE5官方候选46/46/48/47/47/47/46，交付43/44/43/44/44/43/41（分母54）；仓库候选42/42/44/44/44/43/44，交付均40/50；主检验Holm p均1，CI跨0；Q5仅恢复005-4，B8恢复016-1与030-3但丢005-2邻接补齐；Q5延迟p50 4.22s/p95 9.37s，对照2.37s/5.07s；增强索引16320段构建57.19s；新增BGE7143对其中11对超512token；生成46调用，实际usage归档；155测试、Ruff、构建通过
+问题：冻结Q5通过数值门槛，但repo-002-1追加未经来源支持的“32线程连续地址必要条件”，NVIDIA CUDA13.0.1给出反例；两组该题实际上下文完全相同，不能因果归于检索，仅按冻结事实门槛停止确认；本轮holdout/test未读取，默认global30未改；旧MoE范围风险仍存在，独立人工事实审核pending；详见evals/merged-corpus-v2/recall-delivery-v4/run-20261002/execution-report.md
+
+[2026-10-03T07:45:19+08:00]
+操作：完成预算覆盖与引用支持v5开发实验
+原因：分离固定候选预算选择与回答条件强度
+结果：880回放/92生成/4核验探针/46打包延迟；产物/Users/jennyma/Projects/InfraAgent/evals/merged-corpus-v2/budget-support-v5/run-20261003
+问题：机器核验不是事实正确率；dev-only，默认不变
+
+[2026-10-03T07:56:51+08:00]
+操作：记录预算覆盖与引用支持v5结果（实验日期2026-10-03）
+原因：检验预算效用与词面覆盖能否改善交付，并检验条件强度提示和引用支持核验
+结果：880冻结回放/92新生成/78新核验/4旧探针/46打包延迟；174实际API调用；B/Q池T5官方43/44、T8均44、R8均38、C8均39（分母54）；仓库T5/T8均40，R8/C8均37（分母50）；无新组过推进门槛，生成固定B-T5；C8相对R8仅+1，Holm p=1；B-C8丢8题中6题在8段满额后仍可放入缺失原段；G0/G1的CUDA必要条件及MoE整模范围风险各2次复述，核验均支持，旧负例也放过；G0缓存键前提缺失一次被拦截，G1两次拒答；重复措辞变化18/23与17/23不等于错误率；169测试、Ruff、构建通过，330上下文精确回放、7644原文定位核对通过
+问题：准备阶段tokenizer大小写及17+6分开保存的样本入口错误被校验拦截，均0生成API；各自归档；880打包逐字复用，函数AST和模块hash未改变；未读取holdout/test，未修改默认；机器核验不是事实正确率，独立人工pending；详见evals/merged-corpus-v2/budget-support-v5/run-20261003/execution-report.md
+
+[2026-10-03T12:55:19+08:00]
+操作：完成预算消融与来源隔离v6开发实验（实验日期2026-10-03）
+原因：拆分段数、长度惩罚、Top5保护与邻接弱先验，单独检查来源风险隔离
+结果：3960主回放/220隔离/100新生成与100实际API/46交错打包计时；冻结B-k8-l0-p1-n0官方45/54、仓库41/50，对照B-T5为43/54、40/50；原候选仍46/54与42/50；单因素主检验Holm p均1；隔离3段交付不变，CUDA绝对条件与MoE整模等式在两题各2次Q1未复述；660旧上下文精确回放、34559正文定位、127源文件hash检查通过；181测试、Ruff、构建通过；详见evals/merged-corpus-v2/budget-ablation-v6/run-20261003/review-report.md
+问题：多轮dev与AI稀疏标签，不是独立确认/回答正确率；未隔离仍复述已知风险，Q1仅有限探针、人工pending；关闭邻接丢005-2；残余16题缺完整标注候选、2题预算选择失败；未读holdout/test，未改默认/语料/gold/索引
+
+[2026-10-03T13:33:32+08:00]
+操作：补齐Agent分层评测规则与离线评分器
+原因：明确任务/轨迹/组件指标分母、硬门槛、事实审核、恢复与成本，避免把交付或格式当任务正确率
+结果：教程docs/agent-evaluation-rules.md；20合成case/20合成trace/20pending审核模板与JSON schema；src/infra_rag/agent_evaluation.py、scripts/score_agent_traces.py；分配置/场景报告，哈希绑定审核、安全违规/超预算不能被总分抵消；204测试、Ruff、构建通过；最终产物evals/agent-rules-v1/run-20261003，fixture文件与旧v6归档/hash验证通过
+问题：仅软件规则验证，0模型/真实Agent工具执行；合成数字不是Agent成绩；事实、引用支持与用户接受待独立审核/反馈；未读holdout/test，未改默认/语料/gold/索引；初始诊断与审计前版本保留，最终实现另存快照
+
+[2026-10-03T13:49:46+08:00]
+操作：检查AGENTS.md、Agent评测教程与离线评分入口
+原因：根据用户要求补入评测规则
+结果：核对原有仓库规范、教程指标和评分器实际参数
+问题：无
+
+[2026-10-03T13:49:46+08:00]
+操作：初次将评测规则写入AGENTS.md
+原因：默认文件搜索仅列出AGENTS.md，按已有规范文件处理
+结果：完成初稿；后续发现用户指定的AGENT.md实际存在，已调整
+问题：默认rg文件清单未列出AGENT.md，首次目标文件判断不完整
+
+[2026-10-03T13:49:46+08:00]
+操作：检查日志工具、历史日志和文档链接
+原因：核对新增规则的引用与命令
+结果：链接与参数通过；AGENT.md不存在的断言失败
+问题：文件名断言失败，随后用显式路径检查定位
+
+[2026-10-03T13:49:46+08:00]
+操作：显式检查AGENT.md和AGENTS.md并读取日志规则
+原因：解决文件名断言失败
+结果：确认AGENT.md已有日志规则；rg默认清单未列出该文件，检查的忽略文件未发现显式AGENT条目
+问题：未推断具体忽略来源；转而按用户指定文件补齐
+
+[2026-10-03T13:49:46+08:00]
+操作：补齐AGENT.md并调整AGENTS.md引用
+原因：将完整规则放入用户指定文件，同时让仓库规范可发现这些要求
+结果：保留AGENT.md原有日志规则，新增中文分层评测、指标口径、硬门槛、证据审核、trace与执行报告要求；AGENTS.md改为引用
+问题：无
+
+[2026-10-03T13:49:46+08:00]
+操作：验证AGENT.md与AGENTS.md文档更新
+原因：确认文件链接、评分参数和原有规则完整
+结果：10个本地链接、评分器参数、代码围栏及原有日志/数据规则检查通过；仅文档修改，无模型/API调用
+问题：未运行测试或实验，文档更新不产生新的性能成绩
+
+[2026-10-03T14:04:00+08:00]
+操作：补测前探索与规划验证
+原因：明确完整端到端测试对象和现有能力
+结果：读取规则、评分器、模型/检索/API及相邻仓库说明；相关51测试通过；用户选择本库新建只读Agent、离线后20实模/最多60请求；三个边界探针复现
+问题：规划阶段只读，日志在恢复执行后补记；一次zsh通配符未匹配已改为具体文件；相邻AGENTS.md不存在，未修改相邻仓库
+
+[2026-10-03T14:04:00+08:00]
+操作：新增三个评分缺陷回归并执行
+原因：先复现目标门槛、来源定位、候选排名不一致
+结果：添加tests/test_agent_evaluation.py三项测试并执行定向pytest
+问题：预期在修复前失败；详见本轮测试输出，尚未执行实模
+
+[2026-10-03T14:11:50+08:00]
+操作：修复Agent评分规则并新增只读Agent执行循环、CLI与回归
+原因：复现后修正硬门槛、locator及排名候选一致性，采集真实工具执行而非手填轨迹
+结果：规则v2/清单校验/ResearchAgent及infra-rag agent；47定向测试通过；CLI保持原子命令行为；新增实际故障、阻断、deadline和artifact核对
+问题：开发阶段expired变量初始化位置错误导致9测试失败，已修复；Ruff发现长度及未用变量已调整并格式化；尚无真实模型调用
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-001
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-001
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-002
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-002
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-003
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-003
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-004
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-004
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-005
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-005
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-006
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-006
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-007
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-007
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-008
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-008
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-009
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-009
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-010
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-010
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-011
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-011
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-012
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-012
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-013
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-013
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-014
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-014
+问题：无
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-015
+原因：冻结20题开发实验
+结果：最终escalated；模型请求2；实际工具调用0；轨迹evals/agent-e2e-v1/offline-20261003/agent-015
+问题：tool_budget_exhausted_or_final_only
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-016
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用2；轨迹evals/agent-e2e-v1/offline-20261003/agent-016
+问题：tool_failure_or_postcondition
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-017
+原因：冻结20题开发实验
+结果：最终escalated；模型请求2；实际工具调用2；轨迹evals/agent-e2e-v1/offline-20261003/agent-017
+问题：tool_failure_or_postcondition,tool_failure_or_postcondition
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-018
+原因：冻结20题开发实验
+结果：最终escalated；模型请求2；实际工具调用2；轨迹evals/agent-e2e-v1/offline-20261003/agent-018
+问题：tool_failure_or_postcondition,tool_failure_or_postcondition
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-019
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用0；轨迹evals/agent-e2e-v1/offline-20261003/agent-019
+问题：tool_not_allowed_or_invalid_arguments
+
+[2026-10-03T14:17:46+08:00]
+操作：执行Agent端到端offline用例agent-020
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-20261003/agent-020
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-001
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-001
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-002
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-002
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-003
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-003
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-004
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-004
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-005
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-005
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-006
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-006
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-007
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-007
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-008
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-008
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-009
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-009
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-010
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-010
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-011
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-011
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-012
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-012
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-013
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-013
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-014
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-014
+问题：无
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-015
+原因：冻结20题开发实验
+结果：最终escalated；模型请求2；实际工具调用0；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-015
+问题：tool_budget_exhausted_or_final_only
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-016
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用2；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-016
+问题：tool_failure_or_postcondition
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-017
+原因：冻结20题开发实验
+结果：最终escalated；模型请求2；实际工具调用2；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-017
+问题：tool_failure_or_postcondition,tool_failure_or_postcondition
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-018
+原因：冻结20题开发实验
+结果：最终escalated；模型请求2；实际工具调用2；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-018
+问题：tool_failure_or_postcondition,tool_failure_or_postcondition
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-019
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用0；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-019
+问题：tool_not_allowed_or_invalid_arguments
+
+[2026-10-03T14:27:46+08:00]
+操作：执行Agent端到端offline用例agent-020
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/offline-final-20261003/agent-020
+问题：无
+
+[2026-10-03T14:27:47+08:00]
+操作：完成Agent测试扩充、离线20题和真实运行前核对
+原因：验证实际工具、故障、预算与来源链路后冻结实模配置
+结果：新增单元/CLI/schema/端到端测试；完整257测试通过，Ruff通过，前一代码版本构建通过；20题最终离线复跑与审计另存，使用官方冻结5来源及3个明确控制资料；确认当前官方DeepSeek配置，无连通性额外请求
+问题：初次offline保留为准备阶段；脚本导入排序/分析器lambda与行长已修正；一处补丁上下文不匹配未修改文件，重定位后成功；费用未估算，审核pending
+
+[2026-10-03T14:28:23+08:00]
+操作：执行Agent端到端live用例agent-001
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-001
+问题：无
+
+[2026-10-03T14:28:25+08:00]
+操作：执行Agent端到端live用例agent-002
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-002
+问题：无
+
+[2026-10-03T14:28:32+08:00]
+操作：执行Agent端到端live用例agent-003
+原因：冻结20题开发实验
+结果：最终escalated；模型请求3；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-003
+问题：invalid_action_json,invalid_action_json
+
+[2026-10-03T14:28:36+08:00]
+操作：执行Agent端到端live用例agent-004
+原因：冻结20题开发实验
+结果：最终answered；模型请求3；实际工具调用2；轨迹evals/agent-e2e-v1/live-20261003/agent-004
+问题：无
+
+[2026-10-03T14:28:39+08:00]
+操作：执行Agent端到端live用例agent-005
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-005
+问题：无
+
+[2026-10-03T14:28:43+08:00]
+操作：执行Agent端到端live用例agent-006
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-006
+问题：无
+
+[2026-10-03T14:28:45+08:00]
+操作：执行Agent端到端live用例agent-007
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-007
+问题：无
+
+[2026-10-03T14:28:49+08:00]
+操作：执行Agent端到端live用例agent-008
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-008
+问题：无
+
+[2026-10-03T14:28:53+08:00]
+操作：执行Agent端到端live用例agent-009
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-009
+问题：无
+
+[2026-10-03T14:28:57+08:00]
+操作：执行Agent端到端live用例agent-010
+原因：冻结20题开发实验
+结果：最终escalated；模型请求3；实际工具调用2；轨迹evals/agent-e2e-v1/live-20261003/agent-010
+问题：abstention_must_not_assert_facts
+
+[2026-10-03T14:29:00+08:00]
+操作：执行Agent端到端live用例agent-011
+原因：冻结20题开发实验
+结果：最终refused；模型请求3；实际工具调用2；轨迹evals/agent-e2e-v1/live-20261003/agent-011
+问题：无
+
+[2026-10-03T14:29:03+08:00]
+操作：执行Agent端到端live用例agent-012
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-012
+问题：无
+
+[2026-10-03T14:29:05+08:00]
+操作：执行Agent端到端live用例agent-013
+原因：冻结20题开发实验
+结果：最终escalated；模型请求3；实际工具调用2；轨迹evals/agent-e2e-v1/live-20261003/agent-013
+问题：tool_budget_exhausted_or_final_only
+
+[2026-10-03T14:29:07+08:00]
+操作：执行Agent端到端live用例agent-014
+原因：冻结20题开发实验
+结果：最终refused；模型请求2；实际工具调用1；轨迹evals/agent-e2e-v1/live-20261003/agent-014
+问题：无
+
+[2026-10-03T14:29:08+08:00]
+操作：执行Agent端到端live用例agent-015
+原因：冻结20题开发实验
+结果：最终escalated；模型请求1；实际工具调用0；轨迹evals/agent-e2e-v1/live-20261003/agent-015
+问题：无
+
+[2026-10-03T14:29:10+08:00]
+操作：执行Agent端到端live用例agent-016
+原因：冻结20题开发实验
+结果：最终answered；模型请求2；实际工具调用2；轨迹evals/agent-e2e-v1/live-20261003/agent-016
+问题：tool_failure_or_postcondition
+
+[2026-10-03T14:29:13+08:00]
+操作：执行Agent端到端live用例agent-017
+原因：冻结20题开发实验
+结果：最终escalated；模型请求3；实际工具调用4；轨迹evals/agent-e2e-v1/live-20261003/agent-017
+问题：tool_failure_or_postcondition,tool_failure_or_postcondition,tool_failure_or_postcondition,tool_failure_or_postcondition
+
+[2026-10-03T14:29:15+08:00]
+操作：执行Agent端到端live用例agent-018
+原因：冻结20题开发实验
+结果：最终escalated；模型请求3；实际工具调用4；轨迹evals/agent-e2e-v1/live-20261003/agent-018
+问题：tool_failure_or_postcondition,tool_failure_or_postcondition,tool_failure_or_postcondition,tool_failure_or_postcondition
+
+[2026-10-03T14:29:18+08:00]
+操作：执行Agent端到端live用例agent-019
+原因：冻结20题开发实验
+结果：最终refused；模型请求3；实际工具调用0；轨迹evals/agent-e2e-v1/live-20261003/agent-019
+问题：invalid_action_json,invalid_action_json
+
+[2026-10-03T14:29:20+08:00]
+操作：执行Agent端到端live用例agent-020
+原因：冻结20题开发实验
+结果：最终refused；模型请求3；实际工具调用0；轨迹evals/agent-e2e-v1/live-20261003/agent-020
+问题：invalid_action_json,invalid_action_json
+
+[2026-10-03T14:39:48+08:00]
+操作：完成20题实模运行、机械原因分析和新增故障回归
+原因：验证真实Agent行为并保留实际失败
+结果：20题全部采集，48/60实际请求，10answered/6escalated/4refused；源文件、预定清单、审核hash和77逐步产物核对；12正例最新候选11/12、Top5 10/12、交付9/12；3已知状态失败，其余17任务待审；260测试、Ruff、构建通过；新增截断JSON/拒答事实清单/动作枚举回归
+问题：源/事实/引用独立审核20pending；USD未知；3已知失败为输出截断、跨文档证据及拒答协议、末轮仍检索；首次上下文回放tokenizer与SentenceTransformer实际分词不一致，断言阻止错误归因，已改用同加载器缓存离线重放；一处分析打印层级错误已纠正，未调用新模型
+
+[2026-10-03T14:51:54+08:00]
+操作：补齐实模失败回归、完成报告与最终归档核对
+原因：完整执行计划并区分机械交付与事实正确性
+结果：262测试通过（较204基线新增58）、Ruff/构建通过；160schema记录、60轨迹/203逐步产物、40原始官方来源、1145历史归档hash核对；4例上下文精确回放无新API；48/60实模请求；新增只读Agent、CLI、测试矩阵与review-report.md；最终清单452文件
+问题：独立审核20pending，17任务待判/3已知失败；最新优先004改善而010退化，未采用；实模020未实际消费注入资料，补离线工程回归且明确覆盖缺口；模型账单USD未知；未改旧报告、默认chat或holdout/test；原始回放加载器错误被断言拦截，未写错误结果
+
+[2026-10-03T16:05:53+08:00]
+操作：对照 RAG v6 与 Agent 端到端报告，分析测试改进和下一步优先级
+原因：回答用户关于之前测试是否改进及下一步工作的提问
+结果：RAG 同组官方交付 43/54→45/54，仓库交付 40/50→41/50；Agent 测试 204→262，修复 3 类评分缺陷；核对 Agent 报告、验证记录和上下文回放，未新增测试或模型调用
+问题：RAG 开发集提升尚无显著性证据；Agent 20 题独立审核均待完成，3 题机械失败、17 题任务判断待定；不同数据集不能直接比较正确率
+
+[2026-10-03T16:22:55+08:00]
+操作：检查 AGENTS.md、AGENT.md、assistant.py、api.py、service.py、agent.py、Agent 文档及两轮评审报告
+原因：纠正将已有 RAG 问答链路与新增 Agent 当作有无 Agent 的比较，核实证据交付和控制流程差异
+结果：原 /chat 自动检索一次，支持会话、可选翻译、引用校验与一次生成纠正；新增 ResearchAgent 选择 search/read_parent/final，使用同一检索服务但另做累计证据打包；新增实验未采用 v6 优化打包，未切换原服务，且无同题配对基线。未修改代码或运行模型
+问题：部分 rg 命令引用不存在的 benchmark_budget_ablation.py，读取其余实际源码与报告完成核查；现有不同数据集指标不能说明新增 Agent 优于原有 Agent
+
+[2026-10-03T16:55:25+08:00]
+操作：检查旧实验、源码、模型和索引，创建同题比较计划与实验适配器
+原因：落实已有Agent链路与多轮Agent的交付比较
+结果：确认v6原题110条及冻结候选；新增实验专用适配器、覆盖排序子类与冻结计划，不改生产入口
+问题：探查两次引用了不存在的历史文件路径，已据现有目录纠正；历史实验和独立审核不改写
+
+[2026-10-03T17:01:32+08:00]
+操作：实现并验证同题三组实验脚本及6项回归
+原因：保证共用v6检索选择、真实新查询、固定预算及不恢复未交付正文
+结果：6项测试通过；Ruff通过；调用前冻结输入与脚本，使用独立data索引；未执行模型请求
+问题：初次格式检查有长行，格式化已修正；累计证据token计数统一使用v6冻结分词器以避免配置混淆
+
+[2026-10-03T17:02:03+08:00]
+操作：修正配对实验准备阶段的负例gold读取
+原因：110题包含6条不可回答题，不能读取null的证据标签
+结果：失败发生在冻结与调用前，0模型请求；负例保留空gold并从正例分母排除；保存失败目录，换全新输出
+问题：已验证负例转换，不改历史问题与标签
+
+[2026-10-03T17:02:08+08:00]
+操作：冻结原有RAG与新Agent配对实验
+原因：在执行前锁定题集、选择规则及预算
+结果：原开发110题；实模pilot ['official-022-1', 'official-030-2', 'official-010-1', 'repo-044-2', 'repo-014-2', 'repo-022-1']；上限48请求；/Users/jennyma/Projects/InfraAgent/evals/rag-agent-comparison-v1/run-20261003-paired
+问题：无
+
+[2026-10-03T17:03:09+08:00]
+操作：诊断v6逐字回放检查差异
+原因：防止改变基线后进行不公平比较
+结果：片段ID、顺序、正文及预算一致；仅缺v6归档的source_position评分标记，已按原chunk顺序补齐；保留失败目录，0模型调用
+问题：tokenizer对长串计数产生512长度提示，仅计数不做超长单次编码推理；后续编码仍按原token-window实现
+
+[2026-10-03T17:03:14+08:00]
+操作：冻结原有RAG与新Agent配对实验
+原因：在执行前锁定题集、选择规则及预算
+结果：原开发110题；实模pilot ['official-022-1', 'official-030-2', 'official-010-1', 'repo-044-2', 'repo-014-2', 'repo-022-1']；上限48请求；/Users/jennyma/Projects/InfraAgent/evals/rag-agent-comparison-v1/run-20261003-paired-final
+问题：无
+
+[2026-10-03T17:03:18+08:00]
+操作：回放全部110题的新增证据交付环节
+原因：隔离执行器之外的二次打包损失
+结果：{"official": {"original": {"numerator": 45, "denominator": 54, "value": 0.8333333333333334}, "agent_repack": {"numerator": 43, "denominator": 54, "value": 0.7962962962962963}, "paired": {"n": 54, "clusters": 15, "delta_count": -2.0, "delta_rate": -0.037037037037037035, "delta_rate_ci95": [-0.09090909090909091, 0.0], "cluster_permutation_p": 0.5, "permutation_method": "exact_cluster_sign", "nonzero_clusters": 2, "mcnemar_p_supplemental": 0.5, "lost_ids": ["official-010-3", "official-030-4"], "recovered_ids": [], "samples": 10000, "seed": 42}}, "repository": {"original": {"numerator": 41, "denominator": 50, "value": 0.82}, "agent_repack": {"numerator": 40, "denominator": 50, "value": 0.8}, "paired": {"n": 50, "clusters": 13, "delta_count": -1.0, "delta_rate": -0.02, "delta_rate_ci95": [-0.038461538461538464, 0.0], "cluster_permutation_p": 1.0, "permutation_method": "exact_cluster_sign", "nonzero_clusters": 1, "mcnemar_p_supplemental": 1.0, "lost_ids": ["repo-020-1"], "recovered_ids": [], "samples": 10000, "seed": 42}}}
+问题：仅机械回放，不是多轮Agent实模成绩
+
+[2026-10-03T17:03:23+08:00]
+操作：执行配对pilot official-022-1 legacy-v6
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型1次；累计1/48
+问题：无
+
+[2026-10-03T17:03:41+08:00]
+操作：执行配对pilot official-022-1 agent-v6-fifo
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型2次；累计3/48
+问题：无
+
+[2026-10-03T17:03:44+08:00]
+操作：执行配对pilot official-022-1 agent-v6-coverage
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型2次；累计5/48
+问题：无
+
+[2026-10-03T17:03:57+08:00]
+操作：执行配对pilot official-030-2 agent-v6-fifo
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 0.0, 'complete': 0.0}；模型3次；累计8/48
+问题：无
+
+[2026-10-03T17:04:04+08:00]
+操作：执行配对pilot official-030-2 agent-v6-coverage
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型2次；累计10/48
+问题：无
+
+[2026-10-03T17:04:05+08:00]
+操作：执行配对pilot official-030-2 legacy-v6
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型1次；累计11/48
+问题：无
+
+[2026-10-03T17:04:10+08:00]
+操作：执行配对pilot official-010-1 agent-v6-coverage
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型2次；累计13/48
+问题：无
+
+[2026-10-03T17:04:12+08:00]
+操作：执行配对pilot official-010-1 legacy-v6
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型1次；累计14/48
+问题：无
+
+[2026-10-03T17:04:17+08:00]
+操作：执行配对pilot official-010-1 agent-v6-fifo
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型2次；累计16/48
+问题：无
+
+[2026-10-03T17:04:18+08:00]
+操作：执行配对pilot repo-044-2 legacy-v6
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型1次；累计17/48
+问题：无
+
+[2026-10-03T17:04:25+08:00]
+操作：执行配对pilot repo-044-2 agent-v6-fifo
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 0.0, 'complete': 0.0}；模型2次；累计19/48
+问题：无
+
+[2026-10-03T17:04:33+08:00]
+操作：执行配对pilot repo-044-2 agent-v6-coverage
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 0.0, 'complete': 0.0}；模型2次；累计21/48
+问题：无
+
+[2026-10-03T17:04:39+08:00]
+操作：执行配对pilot repo-014-2 agent-v6-fifo
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 0.0, 'complete': 0.0}；模型2次；累计23/48
+问题：无
+
+[2026-10-03T17:04:46+08:00]
+操作：执行配对pilot repo-014-2 agent-v6-coverage
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 0.0, 'complete': 0.0}；模型2次；累计25/48
+问题：无
+
+[2026-10-03T17:04:48+08:00]
+操作：执行配对pilot repo-014-2 legacy-v6
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 1.0, 'complete': 1.0}；模型1次；累计26/48
+问题：无
+
+[2026-10-03T17:04:56+08:00]
+操作：执行配对pilot repo-022-1 agent-v6-coverage
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 0.0, 'complete': 0.0}；模型3次；累计29/48
+问题：invalid_action_json
+
+[2026-10-03T17:04:58+08:00]
+操作：执行配对pilot repo-022-1 legacy-v6
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 0.0, 'complete': 0.0}；模型1次；累计30/48
+问题：无
+
+[2026-10-03T17:05:03+08:00]
+操作：执行配对pilot repo-022-1 agent-v6-fifo
+原因：同题同语料比较执行器与累计交付
+结果：交付{'coverage': 0.0, 'complete': 0.0}；模型2次；累计32/48
+问题：无
+
+[2026-10-03T17:05:04+08:00]
+操作：完成同题RAG/Agent交付比较并保存报告
+原因：给用户可核验的配对证据
+结果：/Users/jennyma/Projects/InfraAgent/evals/rag-agent-comparison-v1/run-20261003-paired-final/review-report.md；110题组件回放，18条实模输出，32/48模型请求
+问题：独立语义审核pending；pilot不代表全量多轮收益
+
+[2026-10-03T17:08:07+08:00]
+操作：分析同题配对实验及固定工具轨迹
+原因：拆分查询召回、二次预算头和累计排序影响
+结果：/Users/jennyma/Projects/InfraAgent/evals/rag-agent-comparison-v1/analysis-20261003/review-report.md；110题组件、12条固定轨迹、18条实际输入核对；1128历史文件hash；新增模型/检索调用均0
+问题：6题开发pilot及稀疏gold不承担总体正确率或采用结论
+
+[2026-10-03T17:10:18+08:00]
+操作：完成全量测试、Ruff、构建，修正分析器的验证报告
+原因：确保实验结论与软件验证均来自实际记录
+结果：268测试通过、0跳过、全项目Ruff通过、构建成功；分析器改为读取外部验证记录并动态汇总结果
+问题：初版分析器长行和未导入Counter已修正；旧分析产物保留并另写errata，未重跑任何模型
+
+[2026-10-03T17:10:24+08:00]
+操作：分析同题配对实验及固定工具轨迹
+原因：拆分查询召回、二次预算头和累计排序影响
+结果：/Users/jennyma/Projects/InfraAgent/evals/rag-agent-comparison-v1/analysis-20261003-final/review-report.md；110题组件、12条固定轨迹、18条实际输入核对；1128历史文件hash；新增模型/检索调用均0
+问题：6题开发pilot及稀疏gold不承担总体正确率或采用结论
+
+[2026-10-03T17:13:57+08:00]
+操作：补做统一预算头检查并汇总同题Agent比较结论
+原因：避免把名义预算差异误归为Agent控制器效果
+结果：110题同locator头再次打包逐字相同；明确原v6与Agent计数头不同，实模5/6、2/6、3/6仅为pilot；完整结论写入evals/rag-agent-comparison-v1/review-report.md
+问题：独立审核pending；不能宣称总体收益，下一轮先统一实际证据预算并保留原查询通道
+
+[2026-10-03T17:15:09+08:00]
+操作：补充只读Agent文档中的原有链路对照入口并核验交付产物
+原因：方便复现同题对照及正确理解预算差异
+结果：文档链接已添加；7份报告链接有效，运行、最终分析和汇总清单hash均通过；无新增模型请求
+问题：独立事实与引用审核18份pending，服务默认流程未改变
+
+[2026-10-03T17:25:24+08:00]
+操作：落实不采用新增研究Agent的决定
+原因：用户要求保持原有链路，不使用新增Agent
+结果：移除infra-rag agent解析及执行入口；更新CLI拒绝和默认API回归；README、AGENT.md及实验说明明确采用原AnswerService，冻结实验保留
+问题：尚待运行回归、Ruff与构建；未调用任何模型API或切换索引
+
+[2026-10-03T17:26:53+08:00]
+操作：验证并记录保持原有问答链路的采用决定
+原因：落实用户不使用新增Agent的明确要求
+结果：269项测试通过、0跳过，Ruff/格式/构建通过；CLI帮助仅含原有命令；默认API回归确认AnswerService且不会初始化ResearchAgent；决定写入AGENT.md和adoption-decision-20261003.json；0实模API请求
+问题：仅现有Starlette/swig弃用提示；原检索配置、索引及历史实验未改动
+
+[2026-10-03T17:43:39+08:00]
+操作：核对原RAG召回失败、补召回对照及全量BM25位置
+原因：区分候选深度、查询/正文匹配与稀疏gold漏计
+结果：读取原B基线16个候选不完整题及D/Q/L/E/LE对照；重算BM25只作诊断，不写索引、不调用模型
+问题：首次读取不存在的v4 review-report.md，改读实际execution-report.md和report.md；完整语义替代证据审核仍待人工
+
+[2026-10-03T17:48:18+08:00]
+操作：完成原RAG候选召回原因机械诊断
+原因：核对Top30入口、语料位置和旧补召回对照
+结果：{"summary": {"official": {"positive_questions": 54, "baseline_complete_candidates": 46, "baseline_top5_complete": 41, "baseline_delivery_complete": 43, "v6_delivery_complete": 45}, "repository": {"positive_questions": 50, "baseline_complete_candidates": 42, "baseline_top5_complete": 40, "baseline_delivery_complete": 40, "v6_delivery_complete": 41}}, "counts": {"candidate_incomplete_cases": 16, "missing_unique_chunks": 12, "all_missing_gold_sources_already_recalled": 14, "all_missing_gold_within_bm25_top75": 8, "recoverable_by_at_least_one_prior_control": 6, "exact_bm25_top30_reproductions": 16}}
+问题：全量BM25位置为事后诊断；稀疏gold可能漏计替代证据，不改标签，不判答案正确率
+
+[2026-10-03T17:52:10+08:00]
+操作：保存原有RAG召回不足分析报告并复核输入
+原因：回答用户召回率低的原因，区分标签、入口、结构和交付
+结果：报告位于evals/merged-corpus-v2/recall-diagnosis-20261003/review-report.md；16题缺失、12个片段、14题已命中文档、8题BM25前75、旧方法可补6题；127源hash通过；无模型/索引改动
+问题：诊断脚本最初假定routing存在artifact清单，改用v4冻结protocol中的routing_rows_sha256核验；标签替代审核pending
+
+[2026-10-03T17:53:24+08:00]
+操作：核对召回分析的候选范围与同事实不同问法，并运行lint
+原因：确保报告的数量和LoRA示例准确
+结果：完整开发B候选范围及失败范围已核对；直接哈希问法候选完整；全项目Ruff及分析脚本格式检查通过
+问题：本轮仅分析未改检索实现，无需新增实模或回归；独立语义标签审核仍待完成
+
+[2026-10-03T17:54:00+08:00]
+操作：细化召回原因报告的候选数分母说明
+原因：完整正例与失败子集的候选数范围不同
+结果：新报告review-report-v2.md注明104正例40～60、16失败题45～60；原产物不覆盖，全部结论和指标不变
+问题：无
+
+[2026-10-03T18:26:27+08:00]
+操作：检查实验接口、冻结结果与仓库规则
+原因：实现原有RAG实验优化计划
+结果：已读取规则、v4候选构建、v6选择器及词法实现；确认不启用新增Agent
+问题：一次检查误用v4 run-20261003路径；已确认真实冻结目录为run-20261002
+
+[2026-10-03T18:39:22+08:00]
+操作：实现原有RAG离线对照、冻结协议与回归测试
+原因：按用户计划保留原链路并分离召回/选择因素
+结果：新增v7实验脚本、技术词和邻接视图；31项相关测试通过，新增文件Ruff通过；开始冻结候选回放
+问题：独立标签审核材料保持pending；不改生产默认配置
+
+[2026-10-03T18:39:39+08:00]
+操作：执行原有RAG v7实验阶段 replay
+原因：实现召回与交付优化计划
+结果：{"official:R-B": {"n": 54, "runs": 60, "candidate_complete": 46.0, "top5_complete": 41.0, "delivered_complete": 45.0, "mean_candidate_coverage": 0.8703703703703703, "candidate_max": 60, "negative_cases": 6, "negative_answer_quality": null}, "official:R-D": {"n": 54, "runs": 60, "candidate_complete": 48.0, "top5_complete": 40.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.9074074074074074, "candidate_max": 90, "negative_cases": 6, "negative_answer_quality": null}, "official:R-E": {"n": 54, "runs": 60, "candidate_complete": 47.0, "top5_complete": 40.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.8888888888888888, "candidate_max": 60, "negative_cases": 6, "negative_answer_quality": null}, "official:R-L": {"n": 54, "runs": 60, "candidate_complete": 47.0, "top5_complete": 41.0, "delivered_complete": 43.0, "mean_candidate_coverage": 0.8888888888888888, "candidate_max": 60, "negative_cases": 6, "negative_answer_quality": null}, "official:R-Q": {"n": 54, "runs": 60, "candidate_complete": 47.0, "top5_complete": 42.0, "delivered_complete": 45.0, "mean_candidate_coverage": 0.8796296296296297, "candidate_max": 90, "negative_cases": 6, "negative_answer_quality": null}, "repository:R-B": {"n": 50, "runs": 50, "candidate_complete": 42.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.84, "candidate_max": 60, "negative_cases": 0, "negative_answer_quality": null}, "repository:R-D": {"n": 50, "runs": 50, "candidate_complete": 44.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.88, "candidate_max": 90, "negative_cases": 0, "negative_answer_quality": null}, "repository:R-E": {"n": 50, "runs": 50, "candidate_complete": 43.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.86, "candidate_max": 60, "negative_cases": 0, "negative_answer_quality": null}, "repository:R-L": {"n": 50, "runs": 50, "candidate_complete": 44.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.88, "candidate_max": 60, "negative_cases": 0, "negative_answer_quality": null}, "repository:R-Q": {"n": 50, "runs": 50, "candidate_complete": 44.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.88, "candidate_max": 89, "negative_cases": 0, "negative_answer_quality": null}}
+问题：独立标签审核pending；不读holdout/test，不改默认服务，不判回答正确率
+
+[2026-10-03T18:40:25+08:00]
+操作：验证冻结回放及完整代码检查
+原因：确认v7未改变基线并验证新逻辑
+结果：R-B精确复现v6 45/54、41/50；旧D回放44/54、41/50；全量278测试通过，Ruff和格式检查通过，构建进行中
+问题：旧召回增益未转换成交付增益；保持独立审核pending
+
+[2026-10-03T18:51:40+08:00]
+操作：中止首个v7开发运行并修正组合与邻接规则
+原因：实现与用户原计划一致，避免无必要重复计算
+结果：保留原部分结果及快照，冻结中止manifest；修订测试10项通过，准备新目录复用精确缓存
+问题：首个运行非完整实验，不用于配置采用或独立性能声明；不修改旧记录
+
+[2026-10-03T18:54:26+08:00]
+操作：校正组合性能对照的评分预算
+原因：避免把中间方法重复重排计入一个组合配置，遵守每题90对累计上限
+结果：修订热启动组合只重排最终并集一次，并新增累计评分断言；中止v2，保留其计算供新目录复用
+问题：尚未执行完整性能对照；不将中止运行作采用依据
+
+[2026-10-03T18:56:00+08:00]
+操作：验证v7预算及控制逻辑回归
+原因：保证缓存复用不替代真实性能对照
+结果：33项相关测试通过；组合通道收集不重复基线或中间重排；最终v3全流程已启动并复用验证过的缓存
+问题：前两次实现修订保留中止目录；最终结果尚未完成
+
+[2026-10-03T18:58:52+08:00]
+操作：审核原有RAG v7逐题得失与实验不变量
+原因：区分真实候选缺失与选择预算失败
+结果：1870条记录；所有已运行配置完整；原文/定位/预算/候选保留检查通过
+问题：替代标签及版本范围保持独立审核pending，不修改gold
+
+[2026-10-03T19:00:26+08:00]
+操作：完成v7质量对照与1870条记录机械审核，补充AGENT规则
+原因：保留原有RAG并验证召回增益是否进入实际正文
+结果：T官方交付46/54、仓库41/50，合计净增1；Ladj候选50/54、43/50但交付45/54、41/50；全部候选/原文/定位/预算不变量通过；280项全量测试、Ruff、格式及构建通过
+问题：不满足预设净增至少2题质量门槛；独立标签审核pending，耗时仍在执行。两次patch因格式化后上下文变化未应用，已按实际行修正并验证
+
+[2026-10-03T19:02:59+08:00]
+操作：执行原有RAG v7实验阶段 all
+原因：实现召回与交付优化计划
+结果：{"official:B": {"n": 54, "runs": 60, "candidate_complete": 46.0, "top5_complete": 41.0, "delivered_complete": 45.0, "mean_candidate_coverage": 0.8703703703703703, "candidate_max": 60, "negative_cases": 6, "negative_answer_quality": null}, "official:COMBO": {"n": 54, "runs": 60, "candidate_complete": 50.0, "top5_complete": 43.0, "delivered_complete": 45.0, "mean_candidate_coverage": 0.9444444444444444, "candidate_max": 90, "negative_cases": 6, "negative_answer_quality": null}, "official:D60": {"n": 54, "runs": 60, "candidate_complete": 48.0, "top5_complete": 40.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.9074074074074074, "candidate_max": 90, "negative_cases": 6, "negative_answer_quality": null}, "official:D90": {"n": 54, "runs": 60, "candidate_complete": 48.0, "top5_complete": 40.0, "delivered_complete": 43.0, "mean_candidate_coverage": 0.9074074074074074, "candidate_max": 90, "negative_cases": 6, "negative_answer_quality": null}, "official:E": {"n": 54, "runs": 60, "candidate_complete": 48.0, "top5_complete": 41.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.9074074074074074, "candidate_max": 85, "negative_cases": 6, "negative_answer_quality": null}, "official:Eadj": {"n": 54, "runs": 60, "candidate_complete": 48.0, "top5_complete": 42.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.9074074074074074, "candidate_max": 87, "negative_cases": 6, "negative_answer_quality": null}, "official:L": {"n": 54, "runs": 60, "candidate_complete": 48.0, "top5_complete": 41.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.9074074074074074, "candidate_max": 77, "negative_cases": 6, "negative_answer_quality": null}, "official:Ladj": {"n": 54, "runs": 60, "candidate_complete": 50.0, "top5_complete": 43.0, "delivered_complete": 45.0, "mean_candidate_coverage": 0.9444444444444444, "candidate_max": 81, "negative_cases": 6, "negative_answer_quality": null}, "official:NEIGHBOR": {"n": 54, "runs": 60, "candidate_complete": 48.0, "top5_complete": 43.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.8981481481481481, "candidate_max": 84, "negative_cases": 6, "negative_answer_quality": null}, "official:Q": {"n": 54, "runs": 60, "candidate_complete": 47.0, "top5_complete": 37.0, "delivered_complete": 42.0, "mean_candidate_coverage": 0.8796296296296297, "candidate_max": 90, "negative_cases": 6, "negative_answer_quality": null}, "official:Qdepth": {"n": 54, "runs": 60, "candidate_complete": 48.0, "top5_complete": 40.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.9074074074074074, "candidate_max": 90, "negative_cases": 6, "negative_answer_quality": null}, "official:R-B": {"n": 54, "runs": 60, "candidate_complete": 46.0, "top5_complete": 41.0, "delivered_complete": 45.0, "mean_candidate_coverage": 0.8703703703703703, "candidate_max": 60, "negative_cases": 6, "negative_answer_quality": null}, "official:R-D": {"n": 54, "runs": 60, "candidate_complete": 48.0, "top5_complete": 40.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.9074074074074074, "candidate_max": 90, "negative_cases": 6, "negative_answer_quality": null}, "official:R-E": {"n": 54, "runs": 60, "candidate_complete": 47.0, "top5_complete": 40.0, "delivered_complete": 44.0, "mean_candidate_coverage": 0.8888888888888888, "candidate_max": 60, "negative_cases": 6, "negative_answer_quality": null}, "official:R-L": {"n": 54, "runs": 60, "candidate_complete": 47.0, "top5_complete": 41.0, "delivered_complete": 43.0, "mean_candidate_coverage": 0.8888888888888888, "candidate_max": 60, "negative_cases": 6, "negative_answer_quality": null}, "official:R-Q": {"n": 54, "runs": 60, "candidate_complete": 47.0, "top5_complete": 42.0, "delivered_complete": 45.0, "mean_candidate_coverage": 0.8796296296296297, "candidate_max": 90, "negative_cases": 6, "negative_answer_quality": null}, "official:T": {"n": 54, "runs": 60, "candidate_complete": 47.0, "top5_complete": 42.0, "delivered_complete": 46.0, "mean_candidate_coverage": 0.8888888888888888, "candidate_max": 74, "negative_cases": 6, "negative_answer_quality": null}, "repository:B": {"n": 50, "runs": 50, "candidate_complete": 42.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.84, "candidate_max": 60, "negative_cases": 0, "negative_answer_quality": null}, "repository:COMBO": {"n": 50, "runs": 50, "candidate_complete": 43.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.86, "candidate_max": 79, "negative_cases": 0, "negative_answer_quality": null}, "repository:D60": {"n": 50, "runs": 50, "candidate_complete": 44.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.88, "candidate_max": 90, "negative_cases": 0, "negative_answer_quality": null}, "repository:D90": {"n": 50, "runs": 50, "candidate_complete": 45.0, "top5_complete": 41.0, "delivered_complete": 42.0, "mean_candidate_coverage": 0.9, "candidate_max": 90, "negative_cases": 0, "negative_answer_quality": null}, "repository:E": {"n": 50, "runs": 50, "candidate_complete": 43.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.86, "candidate_max": 85, "negative_cases": 0, "negative_answer_quality": null}, "repository:Eadj": {"n": 50, "runs": 50, "candidate_complete": 42.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.84, "candidate_max": 86, "negative_cases": 0, "negative_answer_quality": null}, "repository:L": {"n": 50, "runs": 50, "candidate_complete": 44.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.88, "candidate_max": 75, "negative_cases": 0, "negative_answer_quality": null}, "repository:Ladj": {"n": 50, "runs": 50, "candidate_complete": 43.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.86, "candidate_max": 79, "negative_cases": 0, "negative_answer_quality": null}, "repository:NEIGHBOR": {"n": 50, "runs": 50, "candidate_complete": 42.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.84, "candidate_max": 70, "negative_cases": 0, "negative_answer_quality": null}, "repository:Q": {"n": 50, "runs": 50, "candidate_complete": 43.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.86, "candidate_max": 89, "negative_cases": 0, "negative_answer_quality": null}, "repository:Qdepth": {"n": 50, "runs": 50, "candidate_complete": 44.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.88, "candidate_max": 90, "negative_cases": 0, "negative_answer_quality": null}, "repository:R-B": {"n": 50, "runs": 50, "candidate_complete": 42.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.84, "candidate_max": 60, "negative_cases": 0, "negative_answer_quality": null}, "repository:R-D": {"n": 50, "runs": 50, "candidate_complete": 44.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.88, "candidate_max": 90, "negative_cases": 0, "negative_answer_quality": null}, "repository:R-E": {"n": 50, "runs": 50, "candidate_complete": 43.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.86, "candidate_max": 60, "negative_cases": 0, "negative_answer_quality": null}, "repository:R-L": {"n": 50, "runs": 50, "candidate_complete": 44.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.88, "candidate_max": 60, "negative_cases": 0, "negative_answer_quality": null}, "repository:R-Q": {"n": 50, "runs": 50, "candidate_complete": 44.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.88, "candidate_max": 89, "negative_cases": 0, "negative_answer_quality": null}, "repository:T": {"n": 50, "runs": 50, "candidate_complete": 42.0, "top5_complete": 40.0, "delivered_complete": 41.0, "mean_candidate_coverage": 0.84, "candidate_max": 60, "negative_cases": 0, "negative_answer_quality": null}}
+问题：独立标签审核pending；不读holdout/test，不改默认服务，不判回答正确率
+
+[2026-10-03T19:04:09+08:00]
+操作：审核原有RAG v7逐题得失与实验不变量
+原因：区分真实候选缺失与选择预算失败
+结果：1870条记录；所有已运行配置完整；原文/定位/预算/候选保留检查通过
+问题：替代标签及版本范围保持独立审核pending，不修改gold
+
+[2026-10-03T19:06:03+08:00]
+操作：完成原有RAG v7全流程、失败分析与性能对照归档
+原因：兑现实验优化计划并依据冻结门槛决定是否采用
+结果：1870条质量记录、220次关闭结果缓存的热启动对照；T交付46/54、41/50，净增1；p95 3.344秒/基线3.126秒=1.070倍；280测试通过，Ruff/格式/构建通过；保持默认原有RAG
+问题：无配置达到净增至少2题门槛；替代证据与历史范围审核pending，holdout/test未读取；指标不是回答正确率
+
+[2026-10-03T19:07:19+08:00]
+操作：最终核验v7报告及完整manifest
+原因：保证阶段结束后的审计与最终产物可复现
+结果：全部产物hash与冻结实现核验通过；保留pre-audit阶段manifest，最终canonical与final manifest一致；最终Ruff和格式检查通过
+问题：独立审核pending；无配置采用，不读holdout/test
+
+[2026-10-03T19:25:17+08:00]
+操作：检查README、当前API/CLI/问答配置、评测协议及冻结结果
+原因：按是什么、为什么、怎么做重写项目说明，避免把实验配置或检索成绩当作默认问答能力
+结果：确认原有AnswerService链路；v7冻结B交付45/54、41/50，T46/54、41/50；默认未改变，280项测试记录可引用；模型供应商按环境配置选择
+问题：旧README存在更新记录堆叠及Ollama固定默认说法，需改为代码缺省与运行时配置分别说明；未读取敏感配置或测试题
+
+[2026-10-03T19:32:57+08:00]
+操作：重写README并核对链接、指标及命令接口
+原因：详细介绍项目是什么、为什么这样设计、怎么使用和评测
+结果：README按项目/设计/使用/指标/结果/复现/结构/边界组织；本地文件及目录锚点链接通过；12组结果与冻结summary逐项一致；CLI和v7脚本help确认接口
+问题：未运行新增模型或重新评测；领域事实与标签待审状态保持原样，明确未采用新配置；不读取敏感.env
+
+[2026-10-03T19:33:35+08:00]
+操作：完成README交付检查
+原因：确认项目介绍与当前代码、冻结评测一致
+结果：README 479行；36个文件/目录锚点链接检查通过，12组最新结果与冻结summary一致；代码围栏成对，git diff --check通过；未修改应用代码或默认配置
+问题：仅文档修改，未重复运行模型实验；保持答案事实审核与holdout/test未执行的说明
+
+[2026-10-03T21:24:18+08:00]
+操作：检查AGENT.md、AGENTS.md、评测规则、报告文件清单及最近日志
+原因：为历次实验瓶颈分析确定现行约束和资料范围
+结果：确认只改文档、保持原有RAG链路；v7最终有效目录为run-20261003-v3，早期中止记录不作采用依据；未读取holdout/test题目或敏感配置
+问题：初次批量输出被截断，后续分批精读原始文件
+
+[2026-10-03T21:25:02+08:00]
+操作：分批阅读早期BGE/多模态、公开集、仓库v2、查询翻译、合并库、routing-v2及v3至v7、Agent历史对照报告
+原因：建立跨实验可比性并定位现有瓶颈
+结果：确认翻译曾带来主要收益，后续扩候选与覆盖启发式频繁退化；v6剩18题含16个候选缺口、2个打包缺口，v7新增候选收益被重排/选择竞争抵消；历史公开集已报告过test/holdout，仅阅读既有报告
+问题：部分长批输出截断，改为较小批次；独立事实/替代证据审核仍pending，不把历史复核中的逐题显著性当簇级证明
+
+[2026-10-03T21:27:06+08:00]
+操作：核对当前检索/选择/回答实现、v7协议与1870条冻结逐题记录；浏览BAAI官方模型文档；生成docs/retrieval-bottleneck-audit-20261003.json
+原因：用代码和逐题数据验证瓶颈，而非仅复述报告；限定候选模型建议的依据
+结果：34个数据集/配置汇总全部复现；新增候选→可选前沿→交付失败分桶、配对得失及来源头开销统计，保存输入SHA256；0模型调用、0索引修改
+问题：新统计为事后dev诊断；BAAI模型尚未在本项目比较，不能预告收益；语义审核保持pending
+
+[2026-10-03T21:35:46+08:00]
+操作：撰写并核验docs/retrieval-bottleneck-analysis-20261003.md与机械审计附件
+原因：交付基于历次实验和当前实现的可执行瓶颈分析
+结果：报告覆盖早期/公开集/仓库/官方/合并库/v3-v7及Agent对照，给出分层瓶颈、P0-P4优先级、E0-E6最小实验、指标分母与采用门槛；本地链接、34组指标及阶段分桶、5份冻结输入hash通过
+问题：仅文档与事后统计，未运行软件回归或新模型实验；独立事实与替代证据审核仍pending
+
+[2026-10-03T22:04:42+08:00]
+操作：恢复目标并检查现行AGENT规则、实现、v7实验入口、测试与冻结目录
+原因：按分析报告开始改进及验收，防止依赖旧会话状态或混用历史结果
+结果：确认工作树已有用户改动；当前最新有效v7冻结B为45/54、41/50，独立审核pending；准备全新v8目录开展E0预算可行性/E1前沿/E2搜索对照
+问题：第一次批量工具输出有截断，已分批补读；已询问真实独立审核账本路径，继续不依赖审核的开发工作
+
+[2026-10-03T22:18:35+08:00]
+操作：新增budget_search.py、v8对照脚本、冻结计划及预算搜索回归；运行Ruff与33项相关pytest
+原因：实现报告E0/E1/E2：分开可选前沿、目标函数与有限交换，先验证预算/原文/保护行为
+结果：33项测试通过，Ruff修复2个未使用导入后通过；覆盖1换2互补证据恢复、完整代码/定位/输入保护、AND/OR诊断及质量门槛
+问题：用户确认独立审核尚未完成；不代填审核，正式采用保持pending；尚未启动质量实验
+
+[2026-10-03T22:19:15+08:00]
+操作：启动v8质量实验，准备阶段校验模型元数据失败
+原因：验证全部来源与模型冻结信息后再开始实验
+结果：进程退出，KeyError files；未创建protocol、未生成oracle/质量记录、0模型调用
+问题：模型manifest含非权重元数据项，需仅校验embedding/reranker文件并补回归，随后重新启动
+
+[2026-10-03T22:24:40+08:00]
+操作：执行原有RAG v8 quality，输出evals/merged-corpus-v2/budget-search-v8/run-20261003
+原因：按分析报告开展固定候选前沿与有限交换对照
+结果：该阶段完成；gold、历史结果及默认服务未更改
+问题：独立审核pending；不读holdout/test，不把证据交付当回答正确率
+
+[2026-10-03T22:26:12+08:00]
+操作：逐题审核v8实验evals/merged-corpus-v2/budget-search-v8/run-20261003
+原因：确认计划完整性、原文/定位/预算与失败阶段，避免仅凭汇总数字验收
+结果：1320条完整对照，330份O15上下文精确重现，全部不变量通过
+问题：oracle见证另按原parent与alias复核；独立语义审核仍pending
+
+[2026-10-03T22:27:16+08:00]
+操作：确认v8质量阶段完成并启动逐题审核及关闭结果缓存的真实暖性能对照
+原因：根据冻结门槛验收候选/交付改善，不用组件回放计时宣称性能通过
+结果：1320条对照完成，Ladj-X30交付47/54、41/50，较B合计净增2，选为性能测试候选；先前全量290测试、Ruff/格式及构建通过
+问题：独立审核未完成；质量通过不代表采用通过，真实延迟仍在测量
+
+[2026-10-03T22:31:43+08:00]
+操作：核对v8逐题审计、预算oracle、真实延迟进程及本地模型清单
+原因：依据实际状态推进后续单因素实验，避免覆盖已冻结分析
+结果：1320对照/9881证据全部检查通过，330个旧上下文精确复现；Ladj-X30官方恢复3题退化1题；oracle见证parent/alias补核无差异；真实性能进程仍运行
+问题：一次普通python缺包导入失败，改用标准库hashlib；分析脚本补强尝试未运行并撤回以保持冻结hash一致；语义审核仍pending
+
+[2026-10-03T22:35:58+08:00]
+操作：新增改进与验收进度账本docs/optimization-implementation-progress-20261003.md
+原因：保留完整E0-E6目标和现有证据，避免中断后把已完成子实验误判为整体完成
+结果：记录v8 1320条质量结果、330基线上下文精确重现、9881证据校验、逐题得失与预算可行上界；后续步骤及人工审核明确未完成
+问题：真实暖性能测量仍在运行，未提前给出延迟通过或采用结论
+
+[2026-10-03T22:38:30+08:00]
+操作：执行原有RAG v8 latency，输出evals/merged-corpus-v2/budget-search-v8/run-20261003
+原因：按分析报告开展固定候选前沿与有限交换对照
+结果：该阶段完成；gold、历史结果及默认服务未更改
+问题：独立审核pending；不读holdout/test，不把证据交付当回答正确率
+
+[2026-10-03T22:38:57+08:00]
+操作：执行原有RAG v8 report，输出evals/merged-corpus-v2/budget-search-v8/run-20261003
+原因：按分析报告开展固定候选前沿与有限交换对照
+结果：该阶段完成；gold、历史结果及默认服务未更改
+问题：独立审核pending；不读holdout/test，不把证据交付当回答正确率
+
+[2026-10-03T22:46:41+08:00]
+操作：完成v8b阶段equivalence，evals/merged-corpus-v2/budget-search-v8/run-20261003-v2
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-03T22:49:34+08:00]
+操作：完成v8完整验收报告及final manifest；实施v8b目标优先剪枝并验证330份上下文等价
+原因：延迟失败后只减少无效计数，保留旧质量与提案顺序；所有修订进入新目录
+结果：330份X30正文/ID/目标值/交付指标完全一致；可行性计数检查总数由913739降为202104；原v8质量过、p95约3.235倍未过；11项新搜索测试通过
+问题：首次用长中文heredoc写报告出现编码错误，未写入文件，已用apply_patch成功生成；真实性能还需新对照，独立审核pending
+
+[2026-10-03T22:51:45+08:00]
+操作：完成v8b阶段components，evals/merged-corpus-v2/budget-search-v8/run-20261003-v2
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-03T22:55:46+08:00]
+操作：恢复工作，检查 AGENT.md、当前工作区、活动目标和 v8b 组件记录
+原因：继续已授权的质量与延迟对照
+结果：组件记录220条，一致性330份全部通过；冻结产物和既有改动保留
+问题：独立人工审核尚未完成，继续保持 pending
+
+[2026-10-03T22:58:39+08:00]
+操作：检查v8b组件统计、真实性能入口及既有词法/评分接口，新增v9文档内定位实验计划
+原因：准备分析报告E3的隔离对照，同时继续v8b真实延迟复测
+结果：组件p95旧版2586.313ms、新版658.745ms；v9冻结6配置、Top10最多5个source-release、补30及90对预算
+问题：完整路径延迟尚在测量；独立人工审核pending，组件提速不作采用结论
+
+[2026-10-03T22:59:35+08:00]
+操作：检查v8b打包保护、原文重建及v7固定候选评分契约，核对正在运行的预算记录
+原因：确保真实性能复测及后续E3不混淆组件缓存与实际推理
+结果：当前记录仍在增长，预算内；v9计划不改变v8b冻结实现
+问题：真实性能尚未完成，不能提前判定延迟门槛
+
+[2026-10-03T23:03:19+08:00]
+操作：编写scripts/benchmark_document_local_v9.py实验驱动
+原因：隔离B/T/Doc候选与O15/X30选择器，保存真实输入及后续验收
+结果：已编写冻结、660条质量对照、条件真实性能、簇统计及预算检查；计时排除事后gold评分
+问题：尚未运行，待文档内索引模块和回归验证；未修改v8b冻结实现
+
+[2026-10-03T23:04:29+08:00]
+操作：编写tests/test_document_local.py的范围、版本隔离、非相邻证据和累计预算回归
+原因：后续E3不能跨来源版本，也不能用补召回覆盖基线候选
+结果：新增6项行为回归，尚未执行；性能阶段未并发运行测试
+问题：待v8b完结后补索引模块并验证
+
+[2026-10-03T23:05:15+08:00]
+操作：完成v8b阶段runtime，evals/merged-corpus-v2/budget-search-v8/run-20261003-v2
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-03T23:05:30+08:00]
+操作：核对v8b真实性能记录evals/merged-corpus-v2/budget-search-v8/run-20261003-v2
+原因：确保实际重排执行仍交付预期证据，组件计时结果一致且完整
+结果：220真实记录及220组件记录通过；实际交付净增2.0
+问题：实际正文依记录ID及未变渲染器确定性重建；不等于新答案或独立语义审核
+
+[2026-10-03T23:05:44+08:00]
+操作：完成v8b阶段report，evals/merged-corpus-v2/budget-search-v8/run-20261003-v2
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-03T23:08:34+08:00]
+操作：完成v8b审计和报告，保存final manifest；新增文档内BM25模块、回归、v9驱动并修复lint未用导入
+原因：按原门槛验收，继而执行分析报告E3
+结果：v8b220真实记录一致、净增2、最多81对；p95 3.302/10.816秒，比例3.275仍失败；53项canonical与55项最终hash无差异；28项定向回归及lint/格式通过
+问题：独立人工审核pending，v8b不采用；首次lint发现未用导入已移除后通过
+
+[2026-10-03T23:09:08+08:00]
+操作：执行E3全量验证并启动v9 quality新目录
+原因：冻结开发对照前验证范围、保留候选及接口一致性
+结果：297项pytest通过；lint、119文件格式与构建通过；v9 run-20261003已启动，输出未覆盖历史
+问题：仅已知Starlette/httpx及swig弃用提示；独立语义审核pending
+
+[2026-10-03T23:09:55+08:00]
+操作：核对v8b最慢真实查询与重排输入账目
+原因：解释打包已提速但整体p95仍不达标的原因
+结果：score-inputs含222次调用（2次预热及220次测量），按实际次序关联诊断
+问题：系统python不支持zip strict参数导致第一次只读分析失败，改uv Python 3.12重试；未改冻结产物
+
+[2026-10-03T23:10:57+08:00]
+操作：完成v9阶段quality，evals/merged-corpus-v2/document-local-v9/run-20261003
+原因：验证文档内定位的候选与交付增量
+结果：对应阶段产物已保存，沿用冻结门槛
+问题：独立人工审核pending；未采用默认配置
+
+[2026-10-03T23:12:19+08:00]
+操作：完成v9阶段quality-report，evals/merged-corpus-v2/document-local-v9/run-20261003
+原因：验证文档内定位的候选与交付增量
+结果：对应阶段产物已保存，沿用冻结门槛
+问题：独立人工审核pending；未采用默认配置
+
+[2026-10-03T23:12:46+08:00]
+操作：完成v9 quality/quality-report，增加逐题机械审计脚本并通过lint
+原因：按预先质量门槛决定是否进入真实性能，定位召回与交付差异
+结果：660条：Doc候选50/54与42/50；O15交付44/54与40/50，X30为46/54与41/50；无配置通过质量门槛，按协议停止性能阶段
+问题：首次审计脚本lint提示未用json已修复；新增候选未稳定进入正文，独立语义审核pending
+
+[2026-10-03T23:13:25+08:00]
+操作：完成v9阶段report，evals/merged-corpus-v2/document-local-v9/run-20261003
+原因：验证文档内定位的候选与交付增量
+结果：对应阶段产物已保存，沿用冻结门槛
+问题：独立人工审核pending；未采用默认配置
+
+[2026-10-03T23:14:55+08:00]
+操作：逐题机械审计v9 evals/merged-corpus-v2/document-local-v9/run-20261003
+原因：验收原文、source-release范围及候选与交付账目
+结果：逐题指标与全部机械不变量复核通过
+问题：独立语义审核pending；不是答案正确性审核
+
+[2026-10-03T23:17:14+08:00]
+操作：完成E3验收、文档更新与最终hash；准备E4模型资源
+原因：召回增益未交付，停止扩召回并转固定候选重排控制
+结果：v9 660条/5003条证据机械复核通过，220基线上下文重现；质量未通过，未运行性能；检查官方模型卡/API冻结m3 revision并开始只下载权重
+问题：首次scope审计逐位float检查中止，保留原脚本/协议并新audit-v2用1e-12词法分数容差，ID/排名仍完全一致；未改历史结果；人工审核pending
+
+[2026-10-03T23:24:14+08:00]
+操作：下载固定revision的m3模型，冻结v10计划、编写驱动与3项评分隔离回归
+原因：固定候选检验重排器，不再扩大E3范围
+结果：6文件下载完成，本机MPS可用；3项logit归一化、缓存身份与实测不复用、非有限分数拒绝回归通过
+问题：首次lint有导入排序/长行/未用局部变量，已修复后再次全量检查；Doc在线需base scope评分再m3全量评分，超过90时直接预算失败
+
+[2026-10-03T23:25:09+08:00]
+操作：v10冻结前全量验证及启动新模型固定候选质量实验
+原因：单独解释重排排序对完整交付的影响
+结果：300项pytest通过；全量lint与122文件格式通过；run-20261003正在执行880条计划，revision/输入/模型hash已冻结
+问题：独立人工审核pending；真实性能按质量及累计评分预算条件执行
+
+[2026-10-03T23:25:52+08:00]
+操作：更正v10首轮启动状态，保存中止记录并调整本地snapshot匹配后新目录重试
+原因：选择性下载6个所需文件后，hub新版默认要求无关README/assets导致本地检查失败
+结果：首轮协议/推理前中止，0条质量与0次调用；保留脚本与aborted记录；显式6文件allow_patterns，lint通过，新run-20261003-v2已启动
+问题：前一日志的正在执行表述随后查明不成立，本条更正；未删历史或补写成功结果
+
+[2026-10-03T23:26:35+08:00]
+操作：v10 v2在加载模型后、推理前因device/dtype严格检查中止，保存中止manifest并诊断
+原因：防止实际设备与冻结协议不符
+结果：v2已有协议和实现快照，质量记录0、评分调用0；单独检查torch实际device表示
+问题：严格字符串判断可能将mps:0判为不等于mps，尚待实际输出来确认；不覆盖v2
+
+[2026-10-03T23:27:10+08:00]
+操作：确认实际torch设备为mps:0、dtype float32，按device.type核查后v10 v3重试
+原因：修正可避免的严格字符串检查错误，设备与精度约束不变
+结果：3项评分回归与lint通过，新v3独立协议已启动；前两次中止及原实现保留
+问题：v2不是实际设备失败，检查方式已更正；尚未获得本轮完整质量结果
+
+[2026-10-03T23:29:29+08:00]
+操作：新增v10逐题原文与模型账目审计脚本并检查实时进度
+原因：新模型分数必须绑定真实logit、整问、原正文与固定候选
+结果：审计脚本Ruff/格式通过；v10质量记录持续生成，未并发运行新的模型或延迟实验
+问题：完整质量与采用判断尚未完成；人工审核pending
+
+[2026-10-03T23:34:58+08:00]
+操作：准备v8c仅省弃用相邻dense/预览的协议与驱动、审计和2项契约回归
+原因：v8b单打包提速不足；静态调用发现Ladj只消费BM25但运行hybrid及预打包
+结果：2项原base不变、adj仅执行消费通道且无结果缓存回归通过；脚本lint/格式通过；尚未启动新性能实验，继续等待v10质量
+问题：该速度收益仍是假设；v8c必须330份上下文和110实际消费通道一致后才验收真实p95
+
+[2026-10-03T23:36:49+08:00]
+操作：更新改进进度文档的v10实际运行、v8c准备与延迟归因限制
+原因：持续区分已验证质量、历史性能与待验证假设
+结果：记录v8b六条慢查询predict仅0.736-1.065秒，完整阶段耗时不足，v8c等待等价与真实验证；不冒充性能通过
+问题：独立语义审核pending，当前模型实验完整汇总尚未产生
+
+[2026-10-03T23:37:32+08:00]
+操作：完成v10阶段quality evals/merged-corpus-v2/reranker-v10/run-20261003-v3
+原因：固定候选单独检验重排模型
+结果：对应阶段产物已保存，正文计数与旧标签不变
+问题：独立人工审核pending；不采用默认配置
+
+[2026-10-03T23:38:04+08:00]
+操作：完成v10阶段quality-report evals/merged-corpus-v2/reranker-v10/run-20261003-v3
+原因：固定候选单独检验重排模型
+结果：对应阶段产物已保存，正文计数与旧标签不变
+问题：独立人工审核pending；不采用默认配置
+
+[2026-10-03T23:38:47+08:00]
+操作：完成v10 880条质量及统计，302项全量回归；启动模型账目审计与v8c固定上下文等价
+原因：新重排器未通过质量门槛，按协议停止性能及embedding扩展
+结果：m3 B官方O15/X30交付40/42，旧B45；Doc官方41/44，旧Doc44/46；仓库m3均41；无质量winner；lint及126文件格式通过
+问题：独立审核pending；v8c尚在验证，不报告延迟通过
+
+[2026-10-03T23:38:52+08:00]
+操作：机械审计v10 evals/merged-corpus-v2/reranker-v10/run-20261003-v3
+原因：确认模型独立变量、实际logit与原文交付
+结果：880条记录及6566条证据通过复核
+问题：独立语义审核pending
+
+[2026-10-03T23:39:55+08:00]
+操作：完成v8c阶段equivalence，evals/merged-corpus-v2/budget-search-v8/run-20261003-v3
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-03T23:41:05+08:00]
+操作：完成v10阶段report evals/merged-corpus-v2/reranker-v10/run-20261003-v3
+原因：固定候选单独检验重排模型
+结果：对应阶段产物已保存，正文计数与旧标签不变
+问题：独立人工审核pending；不采用默认配置
+
+[2026-10-03T23:43:23+08:00]
+操作：完成E4机械验收、报告、最终manifest及进度更新；继续v8c实测
+原因：未通过模型质量门槛须停止性能/embedding扩展，保留可追溯依据
+结果：880条、440旧上下文、6566证据及9156对真实logit账目通过审计；13对截断如实披露；m3不采用；v8c已通过330上下文及110实际消费通道等价，暖测进行中
+问题：独立审核pending；模型冷构造计时不是整体初始化，峰值内存未知；E5按预定停止规则暂缓
+
+[2026-10-03T23:46:50+08:00]
+操作：准备110份独立证据审核交接材料生成脚本，保持pending并绑定case/trace/source hash
+原因：用户已说明还没审核，后续采用需要真实独立人工，不得代填或虚构负责人
+结果：脚本完成，缩短长行后lint通过；尚未生成交接包，须等待v8c全量真实审计；110消费通道等价已通过，暖记录仍增长
+问题：只有检索证据材料，没有新答案或Agent trace；回答审核不适用且保持未知
+
+[2026-10-03T23:47:13+08:00]
+操作：更正交接脚本第一次缩短长行仍未通过lint，进一步缩短并核对
+原因：日志须依据实际输出，不把预期通过提前写为已通过
+结果：实际复核Ruff通过；脚本还未生成任何审核账本或交接产物
+问题：上一条lint通过记录提前，本条更正；未改任何冻结实验或语义判断
+
+[2026-10-03T23:48:33+08:00]
+操作：完成v8c阶段runtime，evals/merged-corpus-v2/budget-search-v8/run-20261003-v3
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-03T23:48:57+08:00]
+操作：核对v8c真实性能记录evals/merged-corpus-v2/budget-search-v8/run-20261003-v3
+原因：确保实际重排执行仍交付预期证据，组件计时结果一致且完整
+结果：220真实记录及220组件记录通过；实际交付净增2.0
+问题：实际正文依记录ID及未变渲染器确定性重建；不等于新答案或独立语义审核
+
+[2026-10-03T23:49:09+08:00]
+操作：完成v8c阶段report，evals/merged-corpus-v2/budget-search-v8/run-20261003-v3
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-03T23:49:36+08:00]
+操作：生成待审证据交接包 evals/merged-corpus-v2/budget-search-v8/evidence-review-handoff-20261003
+原因：让真实人工可核查固定dev问题、来源hash与实际交付
+结果：110份pending材料，审核人/时间/理由与全部语义判断为空；hash已绑定
+问题：不是Agent评分账本，也不是答案审核；没有代填通过或指定虚构审核人
+
+[2026-10-03T23:49:36+08:00]
+操作：完成v8c真实220次测量、逐题审计与冻结报告阶段
+原因：质量收益不能靠超预算或高延迟获得，需按原门槛验收
+结果：330固定上下文及110消费通道等价；220实际正文一致，净增2、最多81对；基线p95 3410.885ms，候选3657.276ms，比例1.07224通过1.5；质量/预算/延迟开发门槛通过
+问题：独立审核pending，最终采用/确认仍不允许；未切换默认或读取holdout/test，无新答案调用
+
+[2026-10-03T23:55:29+08:00]
+操作：完成v8d阶段equivalence，evals/merged-corpus-v2/budget-search-v8/run-20261003-v4
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-03T23:57:28+08:00]
+操作：完成v8c报告与110份pending交接包；发现完整实际候选/排名账目缺口，另建v8d补测
+原因：AGENT.md要求候选、排名及实际正文完整保存，不能靠历史分数追溯补成真实记录
+结果：v8c门槛结果及56/58文件hash保留；v8d算法相同、330上下文等价已通过，正在220次新测，直接写候选/排名/正文；新增审计输入与候选完整率复核
+问题：v8c候选指标来自冻结质量，实际正文为重建；不将缺失账目当已记录；审核仍pending；审计首次长行lint已缩短通过
+
+[2026-10-04T00:03:26+08:00]
+操作：完成v8d阶段runtime，evals/merged-corpus-v2/budget-search-v8/run-20261003-v4
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-04T00:04:11+08:00]
+操作：读取原AnswerService/RecordingModel生成接口并检查无凭据DeepSeek配置，冻结E6第一阶段计划
+原因：审核未完成仍可收集不依赖审核的开发实际答案供真实人工复核
+结果：官方6类型/仓库2类型，固定每类首ID8题×2正文×2重复=32输出，最多64请求；原提示、650输出、45秒、一次格式修复；配置为官方DeepSeek且不输出任何token
+问题：尚未执行API生成；Oracle充分证据、事实正确率及确认依赖人工审核，保持待办
+
+[2026-10-04T00:05:01+08:00]
+操作：核对v8d完整实际运行记录evals/merged-corpus-v2/budget-search-v8/run-20261003-v4
+原因：确保实际重排执行仍交付预期证据，组件计时结果一致且完整
+结果：220真实记录及220组件记录通过；实际交付净增2.0
+问题：实际正文依记录ID及未变渲染器确定性重建；不等于新答案或独立语义审核
+
+[2026-10-04T00:05:54+08:00]
+操作：完成v8d阶段report，evals/merged-corpus-v2/budget-search-v8/run-20261003-v4
+原因：保持选择一致并按原门槛验证真实性能
+结果：该阶段产物已保存；未覆盖v8结果或改变默认配置
+问题：独立审核pending；组件性能不是端到端性能
+
+[2026-10-04T00:09:51+08:00]
+操作：完成v8d直接候选/排名/正文与模型输入审计和报告；启动E6小样本32输出收集
+原因：开发质量和暖性能通过后，收集不依赖人工结论的真实生成输出供后续审核
+结果：v8d实际候选46/50与42/43、交付45/47与41/41，最多81对；p95 B3283.430ms/候选3551.033ms=1.0815通过；E6原提示8题×2条件×2重复，最多64请求已冻结新目录
+问题：E6不是实时端到端或独立确认；所有事实/引用语义保持null；调用配置无凭据保存，未改变默认或读测试集
+
+[2026-10-04T00:10:23+08:00]
+操作：完成v11阶段generate evals/merged-corpus-v2/answer-delivery-v11/run-20261004
+原因：收集实际交付下原AnswerService输出供独立审核
+结果：该阶段产物已保存，原提示、每输出2调用、总64上限不变
+问题：格式/引用ID合法不等于正确；语义审核pending，确认与默认采用未允许
+
+[2026-10-04T00:11:02+08:00]
+操作：生成待审证据交接包 evals/merged-corpus-v2/budget-search-v8/evidence-review-handoff-20261004
+原因：让真实人工可核查固定dev问题、来源hash与实际交付
+结果：110份pending材料，审核人/时间/理由与全部语义判断为空；hash已绑定
+问题：不是Agent评分账本，也不是答案审核；没有代填通过或指定虚构审核人
+
+[2026-10-04T00:12:21+08:00]
+操作：完成v11阶段report evals/merged-corpus-v2/answer-delivery-v11/run-20261004
+原因：收集实际交付下原AnswerService输出供独立审核
+结果：该阶段产物已保存，原提示、每输出2调用、总64上限不变
+问题：格式/引用ID合法不等于正确；语义审核pending，确认与默认采用未允许
+
+[2026-10-04T00:16:18+08:00]
+操作：审计E6答案诊断 evals/merged-corpus-v2/answer-delivery-v11/run-20261004
+原因：核对原提示、实际请求、回答hash与语义空值
+结果：32输出、32请求；8不同题ID仅3簇，全部机械不变量通过
+问题：独立事实/引用审核pending，不声称正确率
+
+[2026-10-04T00:16:18+08:00]
+操作：完成E6 32实际输出及summary；首次事后审计schema错误，保留脚本/协议并v2新目录修正
+原因：仓库dev用例原schema不含answerable，而官方含该字段，正例分母须遵循冻结规则
+结果：32次请求全部单调用无API错误；B状态answered11/no_evidence5，Ladj10/6；8题来自3簇；按原仓库50全正例规则处理字段并修复长行lint
+问题：首次只读审计KeyError，未改任何输出/原summary；独立事实和引用审核pending，状态不等于正确性
+
+[2026-10-04T00:22:57+08:00]
+操作：完成最新v8d/E6验收报告、进度及审核交接文档，核对链接和最终manifest
+原因：将所有已完成对照与门槛结果写入docs，保留失败/中止和语义待审，不误称最终采用完成
+结果：v8d完整实际候选/排名/正文开发门槛通过；E6 32输出/32请求/usage32覆盖通过机械审计，8题3簇，事实与引用未知；58/48/3文件hash及文档相对链接验证无差异；最新lint与131文件格式通过，已有302项全量pytest及包构建通过
+问题：独立来源/标签、答案逐主张与引用审核pending，充分证据/干扰/策略/确认未执行；E5依冻结停止规则暂缓；默认不改，目标未标为最终采用完成
+
+[2026-10-04T00:24:40+08:00]
+操作：活动目标转为blocked，等待真实独立审核
+原因：独立审核pending已在原目标、用户还没审核回复及继续工作中反复出现；当前可独立开发对照、机械验收与待审交接已完成，后续语义/充分证据/确认/采用需外部真实审核
+结果：目标状态blocked；报告、110证据和32答案pending材料完整保存，默认未切换，未读测试集
+问题：剩余人工标签/事实/主张引用审核不能由代理代填；不将最终目标标为complete
+
+[2026-10-09T15:41:47+08:00]
+操作：检查 Git 状态、远端、历史、仓库规则、忽略规则和待上传文件规模
+原因：按用户要求把当前项目更新到 GitHub，先核对已有远端及发布范围
+结果：main 对应 origin/main，origin 为 JennyMa11/InfraAgent；评测文件约 1.40GB，共 9319 个，其中单个 rows.jsonl 约 224MB；尚未提交或上传
+问题：单文件超过 GitHub 普通 Git 限制，需处理存储方式；独立审核仍 pending，不影响代码与实验记录同步
+
+[2026-10-09T15:42:22+08:00]
+操作：核对 Git LFS、GitHub CLI、发布历史和桌面文件路径
+原因：选择能保留冻结实验内容的 GitHub 同步方式
+结果：现有 Git 历史记录仓库为私有；Git LFS 与 gh 均未安装；桌面源码实际位于 desktop/macos；上次发布采用追加发布日志的第二次提交
+问题：初次读取不存在的 desktop/README.md 与 desktop/InfraAgentDesktop.swift 失败，已据文件清单修正路径；采用无损归档解决超大文件限制
+
+[2026-10-09T15:43:15+08:00]
+操作：git fetch origin；核对 HEAD 与 origin/main；检查桌面构建脚本和项目配置
+原因：同步前确认不存在远端分叉，核对实际构建入口与忽略路径
+结果：fetch 成功；本地与远端领先/落后均为 0；桌面产物写入被忽略的 dist，模型与数据写入 data
+问题：无
+
+[2026-10-09T15:43:16+08:00]
+操作：运行 pytest、Ruff lint 与格式检查
+原因：上传前验证当前 Python 项目
+结果：302 项测试通过；Ruff check 全部通过；131 个 Python 文件格式检查通过
+问题：现有 Starlette httpx 与 swig 弃用警告，不影响通过；Python 打包与 macOS 构建仍执行中
+
+[2026-10-09T15:43:49+08:00]
+操作：扫描 9637 个待同步项目文件中的凭据模式，人工核对脱敏命中上下文；运行 uv build 与桌面构建
+原因：避免上传真实凭据，验证 Python 与 macOS 可构建
+结果：凭据扫描只有 3 个同一公开 StackOverflow 基准文本误报，均为密码输入示例而非凭据；Python wheel/sdist 与 InfraLens.app 构建成功；超过 10MiB 的冻结评测文件 25 个，合计约 1.017GB
+问题：无；原始冻结实验不改写，大文件将增加 gzip 副本与还原清单；内部 .workbuddy-ai 笔记留在本地
+
+[2026-10-09T15:45:04+08:00]
+操作：创建 25 份无损 gzip 归档与双重 SHA256/大小清单，新增安全还原脚本与 GitHub 文档并更新忽略规则、README
+原因：保留超过普通 Git 单文件限制的原始冻结评测，确保克隆后仍可按原路径校验与回放
+结果：约 1.017GB 原始文件压缩为 167.672MB；本地原文件与历史冻结清单未改写；精确忽略 25 个原文件并上传 gzip 副本；内部笔记忽略
+问题：无；归档及还原脚本验证待执行
+
+[2026-10-09T15:45:53+08:00]
+操作：验证 25 份归档及原文件；验证还原脚本的还原、幂等、路径边界与损坏拒绝；修正根 AGENTS.md 链接大小写和陈旧历史说明
+原因：确保 GitHub 克隆后能安全恢复冻结记录，修复 Linux/GitHub 上大小写敏感的根规则链接
+结果：25 份归档的压缩与原始 SHA256/大小全部一致；还原与异常保护检查通过；还原脚本 Ruff lint 与格式通过
+问题：首次临时目录验证失败：macOS /var 符号链接导致测试 ROOT 未 resolve；测试目录 resolve 后通过，生产 ROOT 原已 resolve，无需改脚本
+
+[2026-10-09T15:46:56+08:00]
+操作：暂存项目更新并检查上传范围、单文件大小、空白检查与最终 Ruff
+原因：确保发布包含源码、文档和完整可还原评测产物，不包含凭据、索引及内部笔记
+结果：9450 个变更文件已暂存；最大 Git 文件约 34.70MB；无 data/.venv/dist/build/.workbuddy-ai 或密钥文件；非 evals 文件空白检查通过；Ruff lint 与 132 个文件格式检查通过
+问题：全量 git diff --check 在历史冻结语料及生成报告中报告原始尾随空格/末尾空行；为保留来源与冻结 hash 不修改这些 evals 文件
 

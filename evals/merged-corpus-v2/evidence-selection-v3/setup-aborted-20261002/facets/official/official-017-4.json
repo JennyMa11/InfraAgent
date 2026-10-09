@@ -1,0 +1,49 @@
+{
+  "original_query": "SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？",
+  "scoring_query": "SGLang v0.5.2: Based solely on the current official materials, can you give the exact P95 latency in milliseconds for my private deployment under the sampling_params scenario, without the hardware, model, and logs I have not provided?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "Does SGLang v0.5.2 official documentation provide exact P95 latency in milliseconds for a private deployment under the sampling_params scenario?",
+      "anchor_quote": "SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？"
+    },
+    {
+      "question": "Can the exact P95 latency in milliseconds be determined solely from current official materials for SGLang v0.5.2?",
+      "anchor_quote": "仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？"
+    },
+    {
+      "question": "Is it possible to provide the exact P95 latency in milliseconds without the hardware, model, and logs that were not provided?",
+      "anchor_quote": "能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？"
+    },
+    {
+      "question": "Does the request concern a private deployment under the sampling_params scenario for SGLang v0.5.2?",
+      "anchor_quote": "SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？\", \"scoring_query\": \"SGLang v0.5.2: Based solely on the current official materials, can you give the exact P95 latency in milliseconds for my private deployment under the sampling_params scenario, without the hardware, model, and logs I have not provided?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"Does SGLang v0.5.2 official documentation provide exact P95 latency in milliseconds for a private deployment under the sampling_params scenario?\",\"anchor_quote\":\"SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？\"},{\"question\":\"Can the exact P95 latency in milliseconds be determined solely from current official materials for SGLang v0.5.2?\",\"anchor_quote\":\"仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？\"},{\"question\":\"Is it possible to provide the exact P95 latency in milliseconds without the hardware, model, and logs that were not provided?\",\"anchor_quote\":\"能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？\"},{\"question\":\"Does the request concern a private deployment under the sampling_params scenario for SGLang v0.5.2?\",\"anchor_quote\":\"SGLang v0.5.2：仅凭当前官方资料，能给出我未提供硬件、模型和日志的私有部署在sampling_params场景下精确的P95延迟毫秒值吗？\"}]}",
+  "provider_response": {
+    "id": "2201d096-dc8b-42d9-9367-04688896aada",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 228,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 299,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 1664.5353329367936,
+  "sha256": "f0c38ea007b19428950b1c1d58e7d0c505630f8222b71a010a2892233df2f387"
+}

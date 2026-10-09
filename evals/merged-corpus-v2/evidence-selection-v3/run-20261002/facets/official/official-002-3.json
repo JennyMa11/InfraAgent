@@ -1,0 +1,37 @@
+{
+  "original_query": "vLLM v0.10.2：多租户前缀相同但需要隔离，应检查缓存键中的什么信息？",
+  "scoring_query": "vLLM v0.10.2: For multi-tenant prefixes that are identical but need to be isolated, what information in the cache key should be checked?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In vLLM v0.10.2, for multi-tenant scenarios where prefixes are identical but need to be isolated, what information in the cache key should be checked?",
+      "anchor_quote": "vLLM v0.10.2：多租户前缀相同但需要隔离，应检查缓存键中的什么信息？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：多租户前缀相同但需要隔离，应检查缓存键中的什么信息？\", \"scoring_query\": \"vLLM v0.10.2: For multi-tenant prefixes that are identical but need to be isolated, what information in the cache key should be checked?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In vLLM v0.10.2, for multi-tenant scenarios where prefixes are identical but need to be isolated, what information in the cache key should be checked?\",\"anchor_quote\":\"vLLM v0.10.2：多租户前缀相同但需要隔离，应检查缓存键中的什么信息？\"}]}",
+  "provider_response": {
+    "id": "16d6001f-d134-4799-91ac-af7472db3bd3",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 193,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 78,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 833.5194579558447,
+  "sha256": "0bf220746bcaaff13b46ea2aa4efd203632998696cd4f97e8691c6fb3a061c94"
+}

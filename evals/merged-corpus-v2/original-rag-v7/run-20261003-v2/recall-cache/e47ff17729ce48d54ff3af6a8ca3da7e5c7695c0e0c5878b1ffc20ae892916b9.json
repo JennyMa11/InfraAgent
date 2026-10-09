@@ -1,0 +1,318 @@
+{
+  "query": "Question anchor: 模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？\nSpecific requirement: 模型参数很大但每token只运行少数FFN子网络，应该怎样解释其存储与计算规模差异？",
+  "candidate_k": 30,
+  "channels": {
+    "bm25": {
+      "score_kind": "bm25_score",
+      "ranking": [
+        {
+          "chunk_id": "e08c295df3c40b1b6e185353",
+          "rank": 1,
+          "score": 64.08029167618582
+        },
+        {
+          "chunk_id": "bd8d841dd4989e355a8eb617",
+          "rank": 2,
+          "score": 54.076922685410466
+        },
+        {
+          "chunk_id": "b904d23b62900e8edebec5f0",
+          "rank": 3,
+          "score": 50.36382308805753
+        },
+        {
+          "chunk_id": "5c1bd8ed39df43503a99a005",
+          "rank": 4,
+          "score": 50.207994338201814
+        },
+        {
+          "chunk_id": "4c4ec67f724cc15968c7ca54",
+          "rank": 5,
+          "score": 50.0745378502971
+        },
+        {
+          "chunk_id": "3f5946be3b0e9b4698072b6c",
+          "rank": 6,
+          "score": 49.45392168378834
+        },
+        {
+          "chunk_id": "67a9bf864e6e7bfbda915ddd",
+          "rank": 7,
+          "score": 48.490035493868305
+        },
+        {
+          "chunk_id": "c90a451847f2f62b6b87747d",
+          "rank": 8,
+          "score": 47.94199684226377
+        },
+        {
+          "chunk_id": "a2f77115b5d9bb892dd3bc0e",
+          "rank": 9,
+          "score": 47.89746041545827
+        },
+        {
+          "chunk_id": "a73edb7189dc56c6121836ad",
+          "rank": 10,
+          "score": 47.84687826438398
+        },
+        {
+          "chunk_id": "a317ae590a2736eeaca6d123",
+          "rank": 11,
+          "score": 47.71731777727524
+        },
+        {
+          "chunk_id": "3c7ef1100a0c330ab2461884",
+          "rank": 12,
+          "score": 46.58600794245207
+        },
+        {
+          "chunk_id": "a54c1861ce3edebf21a18aed",
+          "rank": 13,
+          "score": 45.98800059737783
+        },
+        {
+          "chunk_id": "9955e31329b8075a5ee4563f",
+          "rank": 14,
+          "score": 45.88614042653922
+        },
+        {
+          "chunk_id": "701b779d5e07f74c70fee190",
+          "rank": 15,
+          "score": 45.30130138240478
+        },
+        {
+          "chunk_id": "569d5fd6683351ac78b1e1ec",
+          "rank": 16,
+          "score": 44.92357726521823
+        },
+        {
+          "chunk_id": "ceb5a088f94fa16f5aa962de",
+          "rank": 17,
+          "score": 44.791900439855816
+        },
+        {
+          "chunk_id": "20395ced1fe99b5304e5c8bb",
+          "rank": 18,
+          "score": 43.500399164694294
+        },
+        {
+          "chunk_id": "b7a4a9933632de2a1d82a369",
+          "rank": 19,
+          "score": 43.438806157950715
+        },
+        {
+          "chunk_id": "3b102e32dae1ffc3d0b92f25",
+          "rank": 20,
+          "score": 42.87844668988989
+        },
+        {
+          "chunk_id": "c0be8f6e180449172e2c0351",
+          "rank": 21,
+          "score": 42.80419891195564
+        },
+        {
+          "chunk_id": "0e783344e2402ff6d7029bb0",
+          "rank": 22,
+          "score": 42.720050078248605
+        },
+        {
+          "chunk_id": "b5514687fda94a3125f7ab63",
+          "rank": 23,
+          "score": 42.57495599168474
+        },
+        {
+          "chunk_id": "20c58144d38252b649d73db9",
+          "rank": 24,
+          "score": 42.30495639138487
+        },
+        {
+          "chunk_id": "9cdb332016c5a15c8191f0e2",
+          "rank": 25,
+          "score": 42.106076476798634
+        },
+        {
+          "chunk_id": "7a657236062d7190749cb3b4",
+          "rank": 26,
+          "score": 42.01139172692997
+        },
+        {
+          "chunk_id": "56819d67f509a46684051d30",
+          "rank": 27,
+          "score": 41.90207012187961
+        },
+        {
+          "chunk_id": "297858f78fb03d4360cf403e",
+          "rank": 28,
+          "score": 41.59367556842532
+        },
+        {
+          "chunk_id": "8b3e066a6d27e0b0c5cbbb63",
+          "rank": 29,
+          "score": 41.57026292460409
+        },
+        {
+          "chunk_id": "b564eadc9047c0d8af57cb9c",
+          "rank": 30,
+          "score": 41.484139162741236
+        }
+      ]
+    },
+    "dense": {
+      "score_kind": "cosine_distance",
+      "ranking": [
+        {
+          "chunk_id": "7f1fa97ba474df8d4d0b717e",
+          "rank": 1,
+          "score": 0.25005584955215454
+        },
+        {
+          "chunk_id": "3e50306a9fd08d6368fe2fc9",
+          "rank": 2,
+          "score": 0.2522159218788147
+        },
+        {
+          "chunk_id": "f9264e6bac8589a4f4d28d3b",
+          "rank": 3,
+          "score": 0.2770705819129944
+        },
+        {
+          "chunk_id": "7be2ba4f92fea4abce9ba479",
+          "rank": 4,
+          "score": 0.2789103388786316
+        },
+        {
+          "chunk_id": "602a4bf44ab76b9212369a1e",
+          "rank": 5,
+          "score": 0.2825614809989929
+        },
+        {
+          "chunk_id": "a711bb2dcfb85e7c4bbc4304",
+          "rank": 6,
+          "score": 0.285089910030365
+        },
+        {
+          "chunk_id": "f389eaef4d18a271dce7c166",
+          "rank": 7,
+          "score": 0.2895053029060364
+        },
+        {
+          "chunk_id": "3be3b3388a511897ca1df63f",
+          "rank": 8,
+          "score": 0.2914004325866699
+        },
+        {
+          "chunk_id": "a4fbbb43e82ff28d397ce882",
+          "rank": 9,
+          "score": 0.29378384351730347
+        },
+        {
+          "chunk_id": "e08c295df3c40b1b6e185353",
+          "rank": 10,
+          "score": 0.2939879894256592
+        },
+        {
+          "chunk_id": "765fde3b6ac8677882bcb185",
+          "rank": 11,
+          "score": 0.2947838306427002
+        },
+        {
+          "chunk_id": "e03993994bbc66b0c853c418",
+          "rank": 12,
+          "score": 0.29849761724472046
+        },
+        {
+          "chunk_id": "1790144704dc72205dd5c119",
+          "rank": 13,
+          "score": 0.29886507987976074
+        },
+        {
+          "chunk_id": "94a6b9c956255d4ef9d2eaee",
+          "rank": 14,
+          "score": 0.3010479211807251
+        },
+        {
+          "chunk_id": "3e0855ce78e2a651396d70c9",
+          "rank": 15,
+          "score": 0.30150532722473145
+        },
+        {
+          "chunk_id": "6be8c936d16a5867faee483c",
+          "rank": 16,
+          "score": 0.30171775817871094
+        },
+        {
+          "chunk_id": "fd60d6f0a568d8a693dd9827",
+          "rank": 17,
+          "score": 0.3031293749809265
+        },
+        {
+          "chunk_id": "c90a451847f2f62b6b87747d",
+          "rank": 18,
+          "score": 0.30450332164764404
+        },
+        {
+          "chunk_id": "989702f1f8981a0d5ff33482",
+          "rank": 19,
+          "score": 0.3067871332168579
+        },
+        {
+          "chunk_id": "3afe67abbee4a08cdb1efed0",
+          "rank": 20,
+          "score": 0.3074902296066284
+        },
+        {
+          "chunk_id": "c987e78a71c5e44ae48160d1",
+          "rank": 21,
+          "score": 0.3077079653739929
+        },
+        {
+          "chunk_id": "aa068ae6784fd957c5c9561b",
+          "rank": 22,
+          "score": 0.3080417513847351
+        },
+        {
+          "chunk_id": "944e7a151dd5644e07554a73",
+          "rank": 23,
+          "score": 0.308579683303833
+        },
+        {
+          "chunk_id": "423b39fe9d2993c39f3bc059",
+          "rank": 24,
+          "score": 0.3085836172103882
+        },
+        {
+          "chunk_id": "cd7fab3781fbea9e4a1e2608",
+          "rank": 25,
+          "score": 0.3091644048690796
+        },
+        {
+          "chunk_id": "7aff7c47d7153579ea0b6538",
+          "rank": 26,
+          "score": 0.31156444549560547
+        },
+        {
+          "chunk_id": "3984a2a0c76a9a64b51db9b3",
+          "rank": 27,
+          "score": 0.31410038471221924
+        },
+        {
+          "chunk_id": "635995ef34f5823ee299c13d",
+          "rank": 28,
+          "score": 0.3143027424812317
+        },
+        {
+          "chunk_id": "b5b0a65ec130c62c1b65c749",
+          "rank": 29,
+          "score": 0.31603384017944336
+        },
+        {
+          "chunk_id": "42169418168db4992cad4b7d",
+          "rank": 30,
+          "score": 0.3167226314544678
+        }
+      ]
+    }
+  },
+  "latency_ms": 479.9627501051873,
+  "kind": "base"
+}

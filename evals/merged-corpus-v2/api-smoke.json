@@ -1,0 +1,4773 @@
+{
+  "health": {
+    "backend": "bge",
+    "semantic_model": true,
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "reranker_model": "BAAI/bge-reranker-base",
+    "reranker_scope": "text_and_image_captions",
+    "candidate_k": 30,
+    "fusion_candidates": "union",
+    "lexical_query_mode": "raw",
+    "heading_context": false,
+    "context_chars": 4000,
+    "context_tokens": 1200,
+    "context_mode": "neighbors",
+    "rerank": true,
+    "multimodal": false,
+    "chunks": 16320,
+    "sources": 127,
+    "fingerprint": {
+      "backend": "bge",
+      "embedding_model": "BAAI/bge-small-zh-v1.5",
+      "multimodal": false,
+      "chunk_size": 450,
+      "chunk_strategy": "semantic",
+      "refinement_threshold": 0.55,
+      "image_merge_threshold": 0.88,
+      "image_max_side": 768,
+      "image_min_area": 0.005,
+      "image_max_regions": 24,
+      "clip_text_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+      "clip_image_model": "sentence-transformers/clip-ViT-B-32",
+      "semantic_threshold": 0.72,
+      "preprocessing_version": "rules-structure-v1",
+      "schema_version": 2,
+      "embedding_pooling": "token-window-mean-v1"
+    },
+    "source_partitioning": true,
+    "bank_candidate_k": 30,
+    "language_route": true,
+    "version_priority": true,
+    "assistant": {
+      "provider": "anthropic-compatible",
+      "model": "deepseek-flash"
+    }
+  },
+  "search": {
+    "query": "vLLM v0.10.2 prefix cache hash",
+    "configuration": {
+      "backend": "bge",
+      "semantic_model": true,
+      "embedding_model": "BAAI/bge-small-zh-v1.5",
+      "reranker_model": "BAAI/bge-reranker-base",
+      "reranker_scope": "text_and_image_captions",
+      "candidate_k": 30,
+      "fusion_candidates": "union",
+      "lexical_query_mode": "raw",
+      "heading_context": false,
+      "context_chars": 4000,
+      "context_tokens": 1200,
+      "context_mode": "neighbors",
+      "rerank": true,
+      "multimodal": false,
+      "chunks": 16320,
+      "sources": 127,
+      "fingerprint": {
+        "backend": "bge",
+        "embedding_model": "BAAI/bge-small-zh-v1.5",
+        "multimodal": false,
+        "chunk_size": 450,
+        "chunk_strategy": "semantic",
+        "refinement_threshold": 0.55,
+        "image_merge_threshold": 0.88,
+        "image_max_side": 768,
+        "image_min_area": 0.005,
+        "image_max_regions": 24,
+        "clip_text_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+        "clip_image_model": "sentence-transformers/clip-ViT-B-32",
+        "semantic_threshold": 0.72,
+        "preprocessing_version": "rules-structure-v1",
+        "schema_version": 2,
+        "embedding_pooling": "token-window-mean-v1"
+      },
+      "source_partitioning": true,
+      "bank_candidate_k": 30,
+      "language_route": true,
+      "version_priority": true
+    },
+    "hits": [
+      {
+        "chunk": {
+          "id": "6d941118fc906ea21ee58302",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "content": "**Cache Isolation for Security**\nTo improve privacy in shared environments, vLLM supports isolating prefix cache reuse through optional per-request salting.\nBy including a `cache_salt` in the request, this value is injected into the hash of the first block, ensuring that only requests with the same salt can reuse cached KV blocks.\nThis prevents timing-based attacks where an adversary could infer cached content by observing latency differences.",
+          "domain": "infra",
+          "heading": "Automatic Prefix Caching",
+          "modality": "text",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L81-L82",
+          "page": null,
+          "start_line": 81,
+          "end_line": 82,
+          "image_path": null,
+          "bbox": null,
+          "chunk_type": "condition",
+          "coordinate_space": null,
+          "parent_bbox": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "visual_features": {},
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "condition",
+            "original_lines": [
+              81,
+              82
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "4d76112419b3dedaddc121f8",
+              "5d0deace325a4e6f0db68487",
+              "8d6240eabf6c5fa7554004b0",
+              "c5526f786791064d3e121af5",
+              "fa3783b786a5a34f47d17bd8"
+            ]
+          }
+        },
+        "score": 0.015873015873015872,
+        "channels": [
+          "official"
+        ],
+        "rerank_score": 0.9391693472862244,
+        "context": "[E81323e7463b06b06736e226d] Automatic Prefix Caching\n**Cache Isolation for Security**\nTo improve privacy in shared environments, vLLM supports isolating prefix cache reuse through optional per-request salting.\nBy including a `cache_salt` in the request, this value is injected into the hash of the first block, ensuring that only requests with the same salt can reuse cached KV blocks.\nThis prevents timing-based attacks where an adversary could infer cached content by observing latency differences.\n\n[E67bd2114a97b0bf090567874] Automatic Prefix Caching\nWhile there are many ways to implement prefix caching, vLLM chooses a hash-based approach. Specifically, we hash each kv-cache block by the tokens in the block and the tokens in the prefix before the block:\n\n[Ec7f61dbe54a702f487007e68] Automatic Prefix Caching\nSince prefix caching is almost a free lunch and won’t change model outputs, it has been widely used by many public endpoints (e.g., OpenAI, Anthropic, etc) and most open source LLM inference frameworks (e.g., SGLang).\n\n[Eb3e553641b20c08a05c35bd7] Automatic Prefix Caching\n```text\n                    Block 1                  Block 2                  Block 3\n         [A gentle breeze stirred] [the leaves as children] [laughed in the distance]\nBlock 1: |<--- block tokens ---->|\nBlock 2: |<------- prefix ------>| |<--- block tokens --->|\nBlock 3: |<------------------ prefix -------------------->| |<--- block tokens ---->|\n```\n\n[E80c7850c44b6b66c0d421d0a] Automatic Prefix Caching\nIn the rest of this document, we first introduce the data structure used for prefix caching in vLLM v1, followed by the prefix caching workflow of major KV cache operators (e.g., allocate, append, free, eviction). Finally, we use an example to illustrate the end to end prefix caching workflow.\n\n[E72b9a56cf654f6429a53a8cf] Automatic Prefix Caching\nThis offers protection without compromising performance.\n\n[Ec321150a5b7f3f91dba0cc21] Automatic Prefix Caching\n# Automatic Prefix Caching\n\n[E303bd4355691dee98763220d] Automatic Prefix Caching\n!!!",
+        "sibling_ids": [
+          "6d941118fc906ea21ee58302",
+          "b80dfad8674c446c4742c2d1",
+          "99b14eddddc61183dae03fdc",
+          "2f99e3825a7ab9154b902bf5",
+          "53a946596df9f0cda230affe",
+          "f6f8971c767fe84537a9a09c",
+          "acb5b587fd34f6b5beaed8b1",
+          "1bf7d506989ba2cdb6fd3ce3"
+        ],
+        "context_ref": "2b1bb7e8a9dfe47e1a43df32",
+        "evidence": [
+          {
+            "citation_id": "E81323e7463b06b06736e226d",
+            "chunk_id": "6d941118fc906ea21ee58302",
+            "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L81-L82",
+            "page": null,
+            "start_line": 81,
+            "end_line": 82,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "**Cache Isolation for Security**\nTo improve privacy in shared environments, vLLM supports isolating prefix cache reuse through optional per-request salting.\nBy including a `cache_salt` in the request, this value is injected into the hash of the first block, ensuring that only requests with the same salt can reuse cached KV blocks.\nThis prevents timing-based attacks where an adversary could infer cached content by observing latency differences.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                81,
+                82
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "4d76112419b3dedaddc121f8",
+                "5d0deace325a4e6f0db68487",
+                "8d6240eabf6c5fa7554004b0",
+                "c5526f786791064d3e121af5",
+                "fa3783b786a5a34f47d17bd8"
+              ]
+            },
+            "provenance": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                81,
+                82
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "4d76112419b3dedaddc121f8",
+                "5d0deace325a4e6f0db68487",
+                "8d6240eabf6c5fa7554004b0",
+                "c5526f786791064d3e121af5",
+                "fa3783b786a5a34f47d17bd8"
+              ]
+            }
+          },
+          {
+            "citation_id": "E67bd2114a97b0bf090567874",
+            "chunk_id": "b80dfad8674c446c4742c2d1",
+            "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L5-L5",
+            "page": null,
+            "start_line": 5,
+            "end_line": 5,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "While there are many ways to implement prefix caching, vLLM chooses a hash-based approach. Specifically, we hash each kv-cache block by the tokens in the block and the tokens in the prefix before the block:",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                5,
+                5
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "7fe8fba98c8538a9fc5039ea",
+                "f745eaf9bb5a6d6eedd27a98"
+              ]
+            },
+            "provenance": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                5,
+                5
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "7fe8fba98c8538a9fc5039ea",
+                "f745eaf9bb5a6d6eedd27a98"
+              ]
+            }
+          },
+          {
+            "citation_id": "Ec7f61dbe54a702f487007e68",
+            "chunk_id": "99b14eddddc61183dae03fdc",
+            "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L3-L3",
+            "page": null,
+            "start_line": 3,
+            "end_line": 3,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "Since prefix caching is almost a free lunch and won’t change model outputs, it has been widely used by many public endpoints (e.g., OpenAI, Anthropic, etc) and most open source LLM inference frameworks (e.g., SGLang).",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                3,
+                3
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "7fe8fba98c8538a9fc5039ea",
+                "f745eaf9bb5a6d6eedd27a98"
+              ]
+            },
+            "provenance": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                3,
+                3
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "7fe8fba98c8538a9fc5039ea",
+                "f745eaf9bb5a6d6eedd27a98"
+              ]
+            }
+          },
+          {
+            "citation_id": "Eb3e553641b20c08a05c35bd7",
+            "chunk_id": "2f99e3825a7ab9154b902bf5",
+            "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L7-L13",
+            "page": null,
+            "start_line": 7,
+            "end_line": 13,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "```text\n                    Block 1                  Block 2                  Block 3\n         [A gentle breeze stirred] [the leaves as children] [laughed in the distance]\nBlock 1: |<--- block tokens ---->|\nBlock 2: |<------- prefix ------>| |<--- block tokens --->|\nBlock 3: |<------------------ prefix -------------------->| |<--- block tokens ---->|\n```",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "code",
+              "original_lines": [
+                7,
+                13
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "description_lines": [
+                5,
+                5
+              ],
+              "original_chunk_ids": [
+                "47a8a3a804e4497c937560cd",
+                "52d06965a14a4454a59d58ee",
+                "94b777157ed4ca867fa7d39a"
+              ]
+            },
+            "provenance": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "code",
+              "original_lines": [
+                7,
+                13
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "description_lines": [
+                5,
+                5
+              ],
+              "original_chunk_ids": [
+                "47a8a3a804e4497c937560cd",
+                "52d06965a14a4454a59d58ee",
+                "94b777157ed4ca867fa7d39a"
+              ]
+            }
+          },
+          {
+            "citation_id": "E80c7850c44b6b66c0d421d0a",
+            "chunk_id": "53a946596df9f0cda230affe",
+            "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L79-L79",
+            "page": null,
+            "start_line": 79,
+            "end_line": 79,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "In the rest of this document, we first introduce the data structure used for prefix caching in vLLM v1, followed by the prefix caching workflow of major KV cache operators (e.g., allocate, append, free, eviction). Finally, we use an example to illustrate the end to end prefix caching workflow.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                79,
+                79
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "4d76112419b3dedaddc121f8",
+                "5d0deace325a4e6f0db68487",
+                "8d6240eabf6c5fa7554004b0",
+                "c5526f786791064d3e121af5",
+                "fa3783b786a5a34f47d17bd8"
+              ]
+            },
+            "provenance": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                79,
+                79
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "4d76112419b3dedaddc121f8",
+                "5d0deace325a4e6f0db68487",
+                "8d6240eabf6c5fa7554004b0",
+                "c5526f786791064d3e121af5",
+                "fa3783b786a5a34f47d17bd8"
+              ]
+            }
+          },
+          {
+            "citation_id": "E72b9a56cf654f6429a53a8cf",
+            "chunk_id": "f6f8971c767fe84537a9a09c",
+            "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L81-L82",
+            "page": null,
+            "start_line": 81,
+            "end_line": 82,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "This offers protection without compromising performance.",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                81,
+                82
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "4d76112419b3dedaddc121f8",
+                "5d0deace325a4e6f0db68487",
+                "8d6240eabf6c5fa7554004b0",
+                "c5526f786791064d3e121af5",
+                "fa3783b786a5a34f47d17bd8"
+              ]
+            },
+            "provenance": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                81,
+                82
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "4d76112419b3dedaddc121f8",
+                "5d0deace325a4e6f0db68487",
+                "8d6240eabf6c5fa7554004b0",
+                "c5526f786791064d3e121af5",
+                "fa3783b786a5a34f47d17bd8"
+              ]
+            }
+          },
+          {
+            "citation_id": "Ec321150a5b7f3f91dba0cc21",
+            "chunk_id": "acb5b587fd34f6b5beaed8b1",
+            "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L1-L1",
+            "page": null,
+            "start_line": 1,
+            "end_line": 1,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "# Automatic Prefix Caching",
+            "truncated": false,
+            "metadata": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "heading",
+              "original_lines": [
+                1,
+                1
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "7fe8fba98c8538a9fc5039ea",
+                "f745eaf9bb5a6d6eedd27a98"
+              ]
+            },
+            "provenance": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "heading",
+              "original_lines": [
+                1,
+                1
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "7fe8fba98c8538a9fc5039ea",
+                "f745eaf9bb5a6d6eedd27a98"
+              ]
+            }
+          },
+          {
+            "citation_id": "E303bd4355691dee98763220d",
+            "chunk_id": "1bf7d506989ba2cdb6fd3ce3",
+            "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L21-L22",
+            "page": null,
+            "start_line": 21,
+            "end_line": 22,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "!!!",
+            "truncated": true,
+            "metadata": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                21,
+                22
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "1bf7d506989ba2cdb6fd3ce3"
+              ]
+            },
+            "provenance": {
+              "collection": "official",
+              "document_id": "vllm-prefix_caching",
+              "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "product": "vllm",
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "condition",
+              "original_lines": [
+                21,
+                22
+              ],
+              "topic": "Automatic Prefix Caching",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "1bf7d506989ba2cdb6fd3ce3"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "chunk": {
+          "id": "b80dfad8674c446c4742c2d1",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "content": "While there are many ways to implement prefix caching, vLLM chooses a hash-based approach. Specifically, we hash each kv-cache block by the tokens in the block and the tokens in the prefix before the block:",
+          "domain": "infra",
+          "heading": "Automatic Prefix Caching",
+          "modality": "text",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L5-L5",
+          "page": null,
+          "start_line": 5,
+          "end_line": 5,
+          "image_path": null,
+          "bbox": null,
+          "chunk_type": "explanation",
+          "coordinate_space": null,
+          "parent_bbox": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "visual_features": {},
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              5,
+              5
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "7fe8fba98c8538a9fc5039ea",
+              "f745eaf9bb5a6d6eedd27a98"
+            ]
+          }
+        },
+        "score": 0.02938045560996381,
+        "channels": [
+          "official"
+        ],
+        "rerank_score": 0.9029582738876343,
+        "context": "",
+        "sibling_ids": [],
+        "context_ref": "2b1bb7e8a9dfe47e1a43df32",
+        "evidence": []
+      },
+      {
+        "chunk": {
+          "id": "c2ad363fd43717dee674d52f",
+          "parent_id": "501fb5b9d6cae14aba5a24b3",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "content": "新请求进来时，vLLM 逐块计算前缀哈希，拿去缓存表（hash → block ID 的映射）里查：",
+          "domain": "infra",
+          "heading": "3. vLLM 的 Automatic Prefix Caching > 3.2 匹配与复用流程",
+          "modality": "text",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L82-L82",
+          "page": null,
+          "start_line": 82,
+          "end_line": 82,
+          "image_path": null,
+          "bbox": null,
+          "chunk_type": "explanation",
+          "coordinate_space": null,
+          "parent_bbox": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "visual_features": {},
+          "metadata": {
+            "collection": "community",
+            "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+            "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+            "release": null,
+            "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+            "product": null,
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              82,
+              82
+            ],
+            "topic": "3. vLLM 的 Automatic Prefix Caching > 3.2 匹配与复用流程",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "ad1f8f47e87dc5e61b8388d7"
+            ]
+          }
+        },
+        "score": 0.015873015873015872,
+        "channels": [
+          "community"
+        ],
+        "rerank_score": 0.9921149611473083,
+        "context": "[E902f962702d6a00dba3300e4] 3. vLLM 的 Automatic Prefix Caching > 3.2 匹配与复用流程\n新请求进来时，vLLM 逐块计算前缀哈希，拿去缓存表（hash → block ID 的映射）里查：",
+        "sibling_ids": [
+          "c2ad363fd43717dee674d52f"
+        ],
+        "context_ref": "501fb5b9d6cae14aba5a24b3",
+        "evidence": [
+          {
+            "citation_id": "E902f962702d6a00dba3300e4",
+            "chunk_id": "c2ad363fd43717dee674d52f",
+            "parent_id": "501fb5b9d6cae14aba5a24b3",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L82-L82",
+            "page": null,
+            "start_line": 82,
+            "end_line": 82,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "新请求进来时，vLLM 逐块计算前缀哈希，拿去缓存表（hash → block ID 的映射）里查：",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                82,
+                82
+              ],
+              "topic": "3. vLLM 的 Automatic Prefix Caching > 3.2 匹配与复用流程",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "ad1f8f47e87dc5e61b8388d7"
+              ]
+            },
+            "provenance": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                82,
+                82
+              ],
+              "topic": "3. vLLM 的 Automatic Prefix Caching > 3.2 匹配与复用流程",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "ad1f8f47e87dc5e61b8388d7"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "chunk": {
+          "id": "cfd5cf016d76e5df055bceda",
+          "parent_id": "be99c3f8dc4fc99e4fd4e47c",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "content": "真实业务里，海量请求往往共享同一段开头——同一个几百 Token 的 System Prompt、同一份 Few-shot 示例、多轮对话里不断重复的历史。每来一个请求就把这段共享前缀重新 Prefill 一遍，是巨大的浪费。Prefix Cache 就是把这段共享前缀的 KV Cache 缓存下来、后续请求直接复用的技术。这一节讲清 vLLM 基于 Hash 的自动前缀缓存怎么工作，以及 SGLang 的 RadixAttention 在此之上的进阶思路。",
+          "domain": "infra",
+          "heading": "",
+          "modality": "text",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L11-L11",
+          "page": null,
+          "start_line": 11,
+          "end_line": 11,
+          "image_path": null,
+          "bbox": null,
+          "chunk_type": "explanation",
+          "coordinate_space": null,
+          "parent_bbox": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "visual_features": {},
+          "metadata": {
+            "collection": "community",
+            "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+            "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+            "release": null,
+            "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+            "product": null,
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              11,
+              11
+            ],
+            "topic": "",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "cfd5cf016d76e5df055bceda"
+            ]
+          }
+        },
+        "score": 0.02782608695652174,
+        "channels": [
+          "community"
+        ],
+        "rerank_score": 0.9882397651672363,
+        "context": "[E920d5fd30b391d87ed884dfd] \n真实业务里，海量请求往往共享同一段开头——同一个几百 Token 的 System Prompt、同一份 Few-shot 示例、多轮对话里不断重复的历史。每来一个请求就把这段共享前缀重新 Prefill 一遍，是巨大的浪费。Prefix Cache 就是把这段共享前缀的 KV Cache 缓存下来、后续请求直接复用的技术。这一节讲清 vLLM 基于 Hash 的自动前缀缓存怎么工作，以及 SGLang 的 RadixAttention 在此之上的进阶思路。",
+        "sibling_ids": [
+          "cfd5cf016d76e5df055bceda"
+        ],
+        "context_ref": "be99c3f8dc4fc99e4fd4e47c",
+        "evidence": [
+          {
+            "citation_id": "E920d5fd30b391d87ed884dfd",
+            "chunk_id": "cfd5cf016d76e5df055bceda",
+            "parent_id": "be99c3f8dc4fc99e4fd4e47c",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L11-L11",
+            "page": null,
+            "start_line": 11,
+            "end_line": 11,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "真实业务里，海量请求往往共享同一段开头——同一个几百 Token 的 System Prompt、同一份 Few-shot 示例、多轮对话里不断重复的历史。每来一个请求就把这段共享前缀重新 Prefill 一遍，是巨大的浪费。Prefix Cache 就是把这段共享前缀的 KV Cache 缓存下来、后续请求直接复用的技术。这一节讲清 vLLM 基于 Hash 的自动前缀缓存怎么工作，以及 SGLang 的 RadixAttention 在此之上的进阶思路。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                11,
+                11
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "cfd5cf016d76e5df055bceda"
+              ]
+            },
+            "provenance": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                11,
+                11
+              ],
+              "topic": "",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "cfd5cf016d76e5df055bceda"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "chunk": {
+          "id": "1d6406df1d90d6310335de50",
+          "parent_id": "0cac0695b1d49488c0d8172b",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "content": "💡 **提示**：vLLM 自 v0.11 起默认使用 `sha256` 作为哈希算法，也可通过 `--prefix-caching-hash-algo` 切换为 `sha256_cbor`（跨语言可复现）、`xxhash`、`xxhash_cbor` 等。非加密算法（如 xxhash）更快，但碰撞风险略高。",
+          "domain": "infra",
+          "heading": "3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"",
+          "modality": "text",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L78-L78",
+          "page": null,
+          "start_line": 78,
+          "end_line": 78,
+          "image_path": null,
+          "bbox": null,
+          "chunk_type": "explanation",
+          "coordinate_space": null,
+          "parent_bbox": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "visual_features": {},
+          "metadata": {
+            "collection": "community",
+            "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+            "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+            "release": null,
+            "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+            "product": null,
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              78,
+              78
+            ],
+            "topic": "3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "b2a05e4b0eca1a58cf6c3a65"
+            ]
+          }
+        },
+        "score": 0.014285714285714285,
+        "channels": [
+          "community"
+        ],
+        "rerank_score": 0.9874010682106018,
+        "context": "[Eb9802a4925e4ae38176f9239] 3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"\n💡 **提示**：vLLM 自 v0.11 起默认使用 `sha256` 作为哈希算法，也可通过 `--prefix-caching-hash-algo` 切换为 `sha256_cbor`（跨语言可复现）、`xxhash`、`xxhash_cbor` 等。非加密算法（如 xxhash）更快，但碰撞风险略高。",
+        "sibling_ids": [
+          "1d6406df1d90d6310335de50"
+        ],
+        "context_ref": "0cac0695b1d49488c0d8172b",
+        "evidence": [
+          {
+            "citation_id": "Eb9802a4925e4ae38176f9239",
+            "chunk_id": "1d6406df1d90d6310335de50",
+            "parent_id": "0cac0695b1d49488c0d8172b",
+            "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L78-L78",
+            "page": null,
+            "start_line": 78,
+            "end_line": 78,
+            "modality": "text",
+            "bbox": null,
+            "coordinate_space": null,
+            "image_path": null,
+            "caption_source": null,
+            "caption_locator": null,
+            "content": "💡 **提示**：vLLM 自 v0.11 起默认使用 `sha256` 作为哈希算法，也可通过 `--prefix-caching-hash-algo` 切换为 `sha256_cbor`（跨语言可复现）、`xxhash`、`xxhash_cbor` 等。非加密算法（如 xxhash）更快，但碰撞风险略高。",
+            "truncated": false,
+            "metadata": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                78,
+                78
+              ],
+              "topic": "3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "b2a05e4b0eca1a58cf6c3a65"
+              ]
+            },
+            "provenance": {
+              "collection": "community",
+              "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+              "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+              "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+              "release": null,
+              "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+              "product": null,
+              "metadata_method": "frozen_manifest",
+              "preprocessing_version": "rules-structure-v1",
+              "body_type": "explanation",
+              "original_lines": [
+                78,
+                78
+              ],
+              "topic": "3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"",
+              "hardware_mentions": [],
+              "original_chunk_ids": [
+                "b2a05e4b0eca1a58cf6c3a65"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "diagnostics": {
+      "banks": {
+        "official": {
+          "query": "vLLM v0.10.2 prefix cache hash",
+          "channels": {
+            "bm25": {
+              "score_kind": "bm25_score",
+              "ranking": [
+                {
+                  "chunk_id": "b80dfad8674c446c4742c2d1",
+                  "rank": 1,
+                  "score": 19.253876936740156
+                },
+                {
+                  "chunk_id": "0d08fcb4e0a57783495580de",
+                  "rank": 2,
+                  "score": 16.423873351548604
+                },
+                {
+                  "chunk_id": "6d941118fc906ea21ee58302",
+                  "rank": 3,
+                  "score": 15.807123573722391
+                },
+                {
+                  "chunk_id": "d2ff94675785a324f32b455e",
+                  "rank": 4,
+                  "score": 14.623647930726339
+                },
+                {
+                  "chunk_id": "9586f1a07d2ac48817ca2b1d",
+                  "rank": 5,
+                  "score": 14.444600603597184
+                },
+                {
+                  "chunk_id": "6210f446111fccc709a0c242",
+                  "rank": 6,
+                  "score": 14.098530962436143
+                },
+                {
+                  "chunk_id": "c2bf40896d1c1179a680caf3",
+                  "rank": 7,
+                  "score": 13.948347601596895
+                },
+                {
+                  "chunk_id": "ad6589f279597f0aa5dbe4c7",
+                  "rank": 8,
+                  "score": 13.538711191158763
+                },
+                {
+                  "chunk_id": "de8991e31eabf27462520567",
+                  "rank": 9,
+                  "score": 13.125300296637535
+                },
+                {
+                  "chunk_id": "53a946596df9f0cda230affe",
+                  "rank": 10,
+                  "score": 12.268972486044174
+                },
+                {
+                  "chunk_id": "10287b33ecfdc4a8f9efc318",
+                  "rank": 11,
+                  "score": 11.980218032222592
+                },
+                {
+                  "chunk_id": "60ee612ba8544d8284be0e24",
+                  "rank": 12,
+                  "score": 11.702200559837692
+                },
+                {
+                  "chunk_id": "581bae0c8c85f0b2a9395fbd",
+                  "rank": 13,
+                  "score": 11.227445260281405
+                },
+                {
+                  "chunk_id": "4d20ccb31ab7a838984c34bc",
+                  "rank": 14,
+                  "score": 10.954815444037639
+                },
+                {
+                  "chunk_id": "fb07d0834e4827f007318a23",
+                  "rank": 15,
+                  "score": 10.881602880850316
+                },
+                {
+                  "chunk_id": "eefe639725828cd616a3a57e",
+                  "rank": 16,
+                  "score": 10.852438762446681
+                },
+                {
+                  "chunk_id": "1bf7d506989ba2cdb6fd3ce3",
+                  "rank": 17,
+                  "score": 10.74603822831643
+                },
+                {
+                  "chunk_id": "6fc3257fc3e272de865a0f52",
+                  "rank": 18,
+                  "score": 10.516367070331498
+                },
+                {
+                  "chunk_id": "0e7fd51db46fb0cd2f48256a",
+                  "rank": 19,
+                  "score": 10.199673812004544
+                },
+                {
+                  "chunk_id": "efa45d7c653f74c3ef31a118",
+                  "rank": 20,
+                  "score": 10.163988384805865
+                },
+                {
+                  "chunk_id": "1fa1de637bd5e4de99c15b93",
+                  "rank": 21,
+                  "score": 10.061368601397302
+                },
+                {
+                  "chunk_id": "aac93702291fd391afe28157",
+                  "rank": 22,
+                  "score": 9.661965206062776
+                },
+                {
+                  "chunk_id": "ab0659082fd2148716dfb3f3",
+                  "rank": 23,
+                  "score": 9.570324579314347
+                },
+                {
+                  "chunk_id": "020c11a656973e4f7ba32e1d",
+                  "rank": 24,
+                  "score": 9.472314976107807
+                },
+                {
+                  "chunk_id": "2b8c1c5cd705c5df61f75b41",
+                  "rank": 25,
+                  "score": 9.426095322556055
+                },
+                {
+                  "chunk_id": "91b33162088e48fbf9c66571",
+                  "rank": 26,
+                  "score": 9.380303495272138
+                },
+                {
+                  "chunk_id": "301c65f0b1848fe07cd71f14",
+                  "rank": 27,
+                  "score": 9.262583533913212
+                },
+                {
+                  "chunk_id": "6ab7bed7c4ffb7916abae93e",
+                  "rank": 28,
+                  "score": 9.262583533913212
+                },
+                {
+                  "chunk_id": "42aa57a009a9b06d500fa00e",
+                  "rank": 29,
+                  "score": 9.048261153030758
+                },
+                {
+                  "chunk_id": "fbcb89627b9d79c216709544",
+                  "rank": 30,
+                  "score": 8.968550846224993
+                }
+              ]
+            },
+            "dense": {
+              "score_kind": "cosine_distance",
+              "ranking": [
+                {
+                  "chunk_id": "f0df40a23184e7beaf11cf8c",
+                  "rank": 1,
+                  "score": 0.2712327241897583
+                },
+                {
+                  "chunk_id": "ad6589f279597f0aa5dbe4c7",
+                  "rank": 2,
+                  "score": 0.27955693006515503
+                },
+                {
+                  "chunk_id": "6459a9e3597f8dc0347f8eaf",
+                  "rank": 3,
+                  "score": 0.3008647561073303
+                },
+                {
+                  "chunk_id": "a09ffae860564ffa125e3ac5",
+                  "rank": 4,
+                  "score": 0.3043487071990967
+                },
+                {
+                  "chunk_id": "cd603af8448e2d932eb8f7ec",
+                  "rank": 5,
+                  "score": 0.3080013394355774
+                },
+                {
+                  "chunk_id": "572b65a164a69893274ef4ab",
+                  "rank": 6,
+                  "score": 0.3123677372932434
+                },
+                {
+                  "chunk_id": "6fc3257fc3e272de865a0f52",
+                  "rank": 7,
+                  "score": 0.3172385096549988
+                },
+                {
+                  "chunk_id": "70521c36a7bd76d9c631ec9c",
+                  "rank": 8,
+                  "score": 0.3192937970161438
+                },
+                {
+                  "chunk_id": "4ee317e973514ff9fd1e59fa",
+                  "rank": 9,
+                  "score": 0.32596462965011597
+                },
+                {
+                  "chunk_id": "0e7fd51db46fb0cd2f48256a",
+                  "rank": 10,
+                  "score": 0.326260507106781
+                },
+                {
+                  "chunk_id": "f287d26cc7dfb48f6d93042e",
+                  "rank": 11,
+                  "score": 0.32660984992980957
+                },
+                {
+                  "chunk_id": "66e5ce7266db5a2d800d0ba8",
+                  "rank": 12,
+                  "score": 0.32692939043045044
+                },
+                {
+                  "chunk_id": "da028e78c2e473a89b3a1ec6",
+                  "rank": 13,
+                  "score": 0.32721084356307983
+                },
+                {
+                  "chunk_id": "e80e05f41a6b813619320805",
+                  "rank": 14,
+                  "score": 0.334225058555603
+                },
+                {
+                  "chunk_id": "53a946596df9f0cda230affe",
+                  "rank": 15,
+                  "score": 0.33525145053863525
+                },
+                {
+                  "chunk_id": "610cb66f5f3c31c7876e0816",
+                  "rank": 16,
+                  "score": 0.339705228805542
+                },
+                {
+                  "chunk_id": "b80dfad8674c446c4742c2d1",
+                  "rank": 17,
+                  "score": 0.34259355068206787
+                },
+                {
+                  "chunk_id": "3185323f5619f7db16b236f1",
+                  "rank": 18,
+                  "score": 0.34341132640838623
+                },
+                {
+                  "chunk_id": "fb07d0834e4827f007318a23",
+                  "rank": 19,
+                  "score": 0.3457688093185425
+                },
+                {
+                  "chunk_id": "234b666be29c395f17a24917",
+                  "rank": 20,
+                  "score": 0.3472442626953125
+                },
+                {
+                  "chunk_id": "49fc6dc2ca4996b19546853f",
+                  "rank": 21,
+                  "score": 0.3509122133255005
+                },
+                {
+                  "chunk_id": "2dde3bf2583676d41b904be0",
+                  "rank": 22,
+                  "score": 0.3512333631515503
+                },
+                {
+                  "chunk_id": "137730b89e388f33dd4d7692",
+                  "rank": 23,
+                  "score": 0.3516750931739807
+                },
+                {
+                  "chunk_id": "a8c7a8de9a102da944112557",
+                  "rank": 24,
+                  "score": 0.3529379367828369
+                },
+                {
+                  "chunk_id": "5499d7c745929ce6fdfa563f",
+                  "rank": 25,
+                  "score": 0.35324668884277344
+                },
+                {
+                  "chunk_id": "decabf748f292242e76ea6e5",
+                  "rank": 26,
+                  "score": 0.3551468849182129
+                },
+                {
+                  "chunk_id": "1fa1de637bd5e4de99c15b93",
+                  "rank": 27,
+                  "score": 0.3552825450897217
+                },
+                {
+                  "chunk_id": "64c1088e4e8f09debd6cb8c5",
+                  "rank": 28,
+                  "score": 0.3589339852333069
+                },
+                {
+                  "chunk_id": "45f8004089a2b2684cd48f96",
+                  "rank": 29,
+                  "score": 0.36013513803482056
+                },
+                {
+                  "chunk_id": "864c4f57a71feda39ad5e8ab",
+                  "rank": 30,
+                  "score": 0.3617165684700012
+                }
+              ]
+            }
+          },
+          "timings_ms": {
+            "lock_wait": 0.002374988980591297,
+            "filter": 0.05237502045929432,
+            "bm25": 359.42449991125613,
+            "dense": 775.1599999610335,
+            "fusion": 0.36237493623048067,
+            "rerank": 0.005042064003646374,
+            "context": 56.535208015702665,
+            "total": 1191.5582499932498
+          },
+          "rerank": {
+            "enabled": false
+          },
+          "eligible_chunks": 2671,
+          "candidate_k": 30,
+          "dense_query": {
+            "input_tokens": 32,
+            "window_limit": 510,
+            "windows": 1,
+            "handling": "token_window_mean"
+          },
+          "fusion": [
+            {
+              "chunk_id": "ad6589f279597f0aa5dbe4c7",
+              "rank": 1,
+              "rrf_score": 0.030834914611005692,
+              "retained": true
+            },
+            {
+              "chunk_id": "b80dfad8674c446c4742c2d1",
+              "rank": 2,
+              "rrf_score": 0.02938045560996381,
+              "retained": true
+            },
+            {
+              "chunk_id": "6fc3257fc3e272de865a0f52",
+              "rank": 3,
+              "rrf_score": 0.027745885954841176,
+              "retained": true
+            },
+            {
+              "chunk_id": "53a946596df9f0cda230affe",
+              "rank": 4,
+              "rrf_score": 0.02761904761904762,
+              "retained": true
+            },
+            {
+              "chunk_id": "0e7fd51db46fb0cd2f48256a",
+              "rank": 5,
+              "rrf_score": 0.02694394213381555,
+              "retained": true
+            },
+            {
+              "chunk_id": "fb07d0834e4827f007318a23",
+              "rank": 6,
+              "rrf_score": 0.0259915611814346,
+              "retained": true
+            },
+            {
+              "chunk_id": "1fa1de637bd5e4de99c15b93",
+              "rank": 7,
+              "rrf_score": 0.023839931885908897,
+              "retained": true
+            },
+            {
+              "chunk_id": "f0df40a23184e7beaf11cf8c",
+              "rank": 8,
+              "rrf_score": 0.01639344262295082,
+              "retained": true
+            },
+            {
+              "chunk_id": "0d08fcb4e0a57783495580de",
+              "rank": 9,
+              "rrf_score": 0.016129032258064516,
+              "retained": true
+            },
+            {
+              "chunk_id": "6459a9e3597f8dc0347f8eaf",
+              "rank": 10,
+              "rrf_score": 0.015873015873015872,
+              "retained": true
+            },
+            {
+              "chunk_id": "6d941118fc906ea21ee58302",
+              "rank": 11,
+              "rrf_score": 0.015873015873015872,
+              "retained": true
+            },
+            {
+              "chunk_id": "a09ffae860564ffa125e3ac5",
+              "rank": 12,
+              "rrf_score": 0.015625,
+              "retained": true
+            },
+            {
+              "chunk_id": "d2ff94675785a324f32b455e",
+              "rank": 13,
+              "rrf_score": 0.015625,
+              "retained": true
+            },
+            {
+              "chunk_id": "9586f1a07d2ac48817ca2b1d",
+              "rank": 14,
+              "rrf_score": 0.015384615384615385,
+              "retained": true
+            },
+            {
+              "chunk_id": "cd603af8448e2d932eb8f7ec",
+              "rank": 15,
+              "rrf_score": 0.015384615384615385,
+              "retained": true
+            },
+            {
+              "chunk_id": "572b65a164a69893274ef4ab",
+              "rank": 16,
+              "rrf_score": 0.015151515151515152,
+              "retained": true
+            },
+            {
+              "chunk_id": "6210f446111fccc709a0c242",
+              "rank": 17,
+              "rrf_score": 0.015151515151515152,
+              "retained": true
+            },
+            {
+              "chunk_id": "c2bf40896d1c1179a680caf3",
+              "rank": 18,
+              "rrf_score": 0.014925373134328358,
+              "retained": true
+            },
+            {
+              "chunk_id": "70521c36a7bd76d9c631ec9c",
+              "rank": 19,
+              "rrf_score": 0.014705882352941176,
+              "retained": true
+            },
+            {
+              "chunk_id": "4ee317e973514ff9fd1e59fa",
+              "rank": 20,
+              "rrf_score": 0.014492753623188406,
+              "retained": true
+            },
+            {
+              "chunk_id": "de8991e31eabf27462520567",
+              "rank": 21,
+              "rrf_score": 0.014492753623188406,
+              "retained": true
+            },
+            {
+              "chunk_id": "10287b33ecfdc4a8f9efc318",
+              "rank": 22,
+              "rrf_score": 0.014084507042253521,
+              "retained": true
+            },
+            {
+              "chunk_id": "f287d26cc7dfb48f6d93042e",
+              "rank": 23,
+              "rrf_score": 0.014084507042253521,
+              "retained": true
+            },
+            {
+              "chunk_id": "60ee612ba8544d8284be0e24",
+              "rank": 24,
+              "rrf_score": 0.013888888888888888,
+              "retained": true
+            },
+            {
+              "chunk_id": "66e5ce7266db5a2d800d0ba8",
+              "rank": 25,
+              "rrf_score": 0.013888888888888888,
+              "retained": true
+            },
+            {
+              "chunk_id": "581bae0c8c85f0b2a9395fbd",
+              "rank": 26,
+              "rrf_score": 0.0136986301369863,
+              "retained": true
+            },
+            {
+              "chunk_id": "da028e78c2e473a89b3a1ec6",
+              "rank": 27,
+              "rrf_score": 0.0136986301369863,
+              "retained": true
+            },
+            {
+              "chunk_id": "4d20ccb31ab7a838984c34bc",
+              "rank": 28,
+              "rrf_score": 0.013513513513513514,
+              "retained": true
+            },
+            {
+              "chunk_id": "e80e05f41a6b813619320805",
+              "rank": 29,
+              "rrf_score": 0.013513513513513514,
+              "retained": true
+            },
+            {
+              "chunk_id": "610cb66f5f3c31c7876e0816",
+              "rank": 30,
+              "rrf_score": 0.013157894736842105,
+              "retained": true
+            },
+            {
+              "chunk_id": "eefe639725828cd616a3a57e",
+              "rank": 31,
+              "rrf_score": 0.013157894736842105,
+              "retained": true
+            },
+            {
+              "chunk_id": "1bf7d506989ba2cdb6fd3ce3",
+              "rank": 32,
+              "rrf_score": 0.012987012987012988,
+              "retained": true
+            },
+            {
+              "chunk_id": "3185323f5619f7db16b236f1",
+              "rank": 33,
+              "rrf_score": 0.01282051282051282,
+              "retained": true
+            },
+            {
+              "chunk_id": "234b666be29c395f17a24917",
+              "rank": 34,
+              "rrf_score": 0.0125,
+              "retained": true
+            },
+            {
+              "chunk_id": "efa45d7c653f74c3ef31a118",
+              "rank": 35,
+              "rrf_score": 0.0125,
+              "retained": true
+            },
+            {
+              "chunk_id": "49fc6dc2ca4996b19546853f",
+              "rank": 36,
+              "rrf_score": 0.012345679012345678,
+              "retained": true
+            },
+            {
+              "chunk_id": "2dde3bf2583676d41b904be0",
+              "rank": 37,
+              "rrf_score": 0.012195121951219513,
+              "retained": true
+            },
+            {
+              "chunk_id": "aac93702291fd391afe28157",
+              "rank": 38,
+              "rrf_score": 0.012195121951219513,
+              "retained": true
+            },
+            {
+              "chunk_id": "137730b89e388f33dd4d7692",
+              "rank": 39,
+              "rrf_score": 0.012048192771084338,
+              "retained": true
+            },
+            {
+              "chunk_id": "ab0659082fd2148716dfb3f3",
+              "rank": 40,
+              "rrf_score": 0.012048192771084338,
+              "retained": true
+            },
+            {
+              "chunk_id": "020c11a656973e4f7ba32e1d",
+              "rank": 41,
+              "rrf_score": 0.011904761904761904,
+              "retained": true
+            },
+            {
+              "chunk_id": "a8c7a8de9a102da944112557",
+              "rank": 42,
+              "rrf_score": 0.011904761904761904,
+              "retained": true
+            },
+            {
+              "chunk_id": "2b8c1c5cd705c5df61f75b41",
+              "rank": 43,
+              "rrf_score": 0.011764705882352941,
+              "retained": true
+            },
+            {
+              "chunk_id": "5499d7c745929ce6fdfa563f",
+              "rank": 44,
+              "rrf_score": 0.011764705882352941,
+              "retained": true
+            },
+            {
+              "chunk_id": "91b33162088e48fbf9c66571",
+              "rank": 45,
+              "rrf_score": 0.011627906976744186,
+              "retained": true
+            },
+            {
+              "chunk_id": "decabf748f292242e76ea6e5",
+              "rank": 46,
+              "rrf_score": 0.011627906976744186,
+              "retained": true
+            },
+            {
+              "chunk_id": "301c65f0b1848fe07cd71f14",
+              "rank": 47,
+              "rrf_score": 0.011494252873563218,
+              "retained": true
+            },
+            {
+              "chunk_id": "64c1088e4e8f09debd6cb8c5",
+              "rank": 48,
+              "rrf_score": 0.011363636363636364,
+              "retained": true
+            },
+            {
+              "chunk_id": "6ab7bed7c4ffb7916abae93e",
+              "rank": 49,
+              "rrf_score": 0.011363636363636364,
+              "retained": true
+            },
+            {
+              "chunk_id": "42aa57a009a9b06d500fa00e",
+              "rank": 50,
+              "rrf_score": 0.011235955056179775,
+              "retained": true
+            },
+            {
+              "chunk_id": "45f8004089a2b2684cd48f96",
+              "rank": 51,
+              "rrf_score": 0.011235955056179775,
+              "retained": true
+            },
+            {
+              "chunk_id": "864c4f57a71feda39ad5e8ab",
+              "rank": 52,
+              "rrf_score": 0.011111111111111112,
+              "retained": true
+            },
+            {
+              "chunk_id": "fbcb89627b9d79c216709544",
+              "rank": 53,
+              "rrf_score": 0.011111111111111112,
+              "retained": true
+            }
+          ],
+          "candidates": [
+            "ad6589f279597f0aa5dbe4c7",
+            "b80dfad8674c446c4742c2d1",
+            "6fc3257fc3e272de865a0f52",
+            "53a946596df9f0cda230affe",
+            "0e7fd51db46fb0cd2f48256a",
+            "fb07d0834e4827f007318a23",
+            "1fa1de637bd5e4de99c15b93",
+            "f0df40a23184e7beaf11cf8c",
+            "0d08fcb4e0a57783495580de",
+            "6459a9e3597f8dc0347f8eaf",
+            "6d941118fc906ea21ee58302",
+            "a09ffae860564ffa125e3ac5",
+            "d2ff94675785a324f32b455e",
+            "9586f1a07d2ac48817ca2b1d",
+            "cd603af8448e2d932eb8f7ec",
+            "572b65a164a69893274ef4ab",
+            "6210f446111fccc709a0c242",
+            "c2bf40896d1c1179a680caf3",
+            "70521c36a7bd76d9c631ec9c",
+            "4ee317e973514ff9fd1e59fa",
+            "de8991e31eabf27462520567",
+            "10287b33ecfdc4a8f9efc318",
+            "f287d26cc7dfb48f6d93042e",
+            "60ee612ba8544d8284be0e24",
+            "66e5ce7266db5a2d800d0ba8",
+            "581bae0c8c85f0b2a9395fbd",
+            "da028e78c2e473a89b3a1ec6",
+            "4d20ccb31ab7a838984c34bc",
+            "e80e05f41a6b813619320805",
+            "610cb66f5f3c31c7876e0816",
+            "eefe639725828cd616a3a57e",
+            "1bf7d506989ba2cdb6fd3ce3",
+            "3185323f5619f7db16b236f1",
+            "234b666be29c395f17a24917",
+            "efa45d7c653f74c3ef31a118",
+            "49fc6dc2ca4996b19546853f",
+            "2dde3bf2583676d41b904be0",
+            "aac93702291fd391afe28157",
+            "137730b89e388f33dd4d7692",
+            "ab0659082fd2148716dfb3f3",
+            "020c11a656973e4f7ba32e1d",
+            "a8c7a8de9a102da944112557",
+            "2b8c1c5cd705c5df61f75b41",
+            "5499d7c745929ce6fdfa563f",
+            "91b33162088e48fbf9c66571",
+            "decabf748f292242e76ea6e5",
+            "301c65f0b1848fe07cd71f14",
+            "64c1088e4e8f09debd6cb8c5",
+            "6ab7bed7c4ffb7916abae93e",
+            "42aa57a009a9b06d500fa00e",
+            "45f8004089a2b2684cd48f96",
+            "864c4f57a71feda39ad5e8ab",
+            "fbcb89627b9d79c216709544"
+          ],
+          "final": [
+            {
+              "chunk_id": "ad6589f279597f0aa5dbe4c7",
+              "rank": 1,
+              "before_rerank_rank": 1,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "b80dfad8674c446c4742c2d1",
+              "rank": 2,
+              "before_rerank_rank": 2,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "6fc3257fc3e272de865a0f52",
+              "rank": 3,
+              "before_rerank_rank": 3,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "53a946596df9f0cda230affe",
+              "rank": 4,
+              "before_rerank_rank": 4,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "0e7fd51db46fb0cd2f48256a",
+              "rank": 5,
+              "before_rerank_rank": 5,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "fb07d0834e4827f007318a23",
+              "rank": 6,
+              "before_rerank_rank": 6,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "1fa1de637bd5e4de99c15b93",
+              "rank": 7,
+              "before_rerank_rank": 7,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "f0df40a23184e7beaf11cf8c",
+              "rank": 8,
+              "before_rerank_rank": 8,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "0d08fcb4e0a57783495580de",
+              "rank": 9,
+              "before_rerank_rank": 9,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "6459a9e3597f8dc0347f8eaf",
+              "rank": 10,
+              "before_rerank_rank": 10,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "6d941118fc906ea21ee58302",
+              "rank": 11,
+              "before_rerank_rank": 11,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "a09ffae860564ffa125e3ac5",
+              "rank": 12,
+              "before_rerank_rank": 12,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "d2ff94675785a324f32b455e",
+              "rank": 13,
+              "before_rerank_rank": 13,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "9586f1a07d2ac48817ca2b1d",
+              "rank": 14,
+              "before_rerank_rank": 14,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "cd603af8448e2d932eb8f7ec",
+              "rank": 15,
+              "before_rerank_rank": 15,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "572b65a164a69893274ef4ab",
+              "rank": 16,
+              "before_rerank_rank": 16,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "6210f446111fccc709a0c242",
+              "rank": 17,
+              "before_rerank_rank": 17,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "c2bf40896d1c1179a680caf3",
+              "rank": 18,
+              "before_rerank_rank": 18,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "70521c36a7bd76d9c631ec9c",
+              "rank": 19,
+              "before_rerank_rank": 19,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "4ee317e973514ff9fd1e59fa",
+              "rank": 20,
+              "before_rerank_rank": 20,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "de8991e31eabf27462520567",
+              "rank": 21,
+              "before_rerank_rank": 21,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "10287b33ecfdc4a8f9efc318",
+              "rank": 22,
+              "before_rerank_rank": 22,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "f287d26cc7dfb48f6d93042e",
+              "rank": 23,
+              "before_rerank_rank": 23,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "60ee612ba8544d8284be0e24",
+              "rank": 24,
+              "before_rerank_rank": 24,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "66e5ce7266db5a2d800d0ba8",
+              "rank": 25,
+              "before_rerank_rank": 25,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "581bae0c8c85f0b2a9395fbd",
+              "rank": 26,
+              "before_rerank_rank": 26,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "da028e78c2e473a89b3a1ec6",
+              "rank": 27,
+              "before_rerank_rank": 27,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "4d20ccb31ab7a838984c34bc",
+              "rank": 28,
+              "before_rerank_rank": 28,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "e80e05f41a6b813619320805",
+              "rank": 29,
+              "before_rerank_rank": 29,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "610cb66f5f3c31c7876e0816",
+              "rank": 30,
+              "before_rerank_rank": 30,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "eefe639725828cd616a3a57e",
+              "rank": 31,
+              "before_rerank_rank": 31,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "1bf7d506989ba2cdb6fd3ce3",
+              "rank": 32,
+              "before_rerank_rank": 32,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "3185323f5619f7db16b236f1",
+              "rank": 33,
+              "before_rerank_rank": 33,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "234b666be29c395f17a24917",
+              "rank": 34,
+              "before_rerank_rank": 34,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "efa45d7c653f74c3ef31a118",
+              "rank": 35,
+              "before_rerank_rank": 35,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "49fc6dc2ca4996b19546853f",
+              "rank": 36,
+              "before_rerank_rank": 36,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "2dde3bf2583676d41b904be0",
+              "rank": 37,
+              "before_rerank_rank": 37,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "aac93702291fd391afe28157",
+              "rank": 38,
+              "before_rerank_rank": 38,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "137730b89e388f33dd4d7692",
+              "rank": 39,
+              "before_rerank_rank": 39,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "ab0659082fd2148716dfb3f3",
+              "rank": 40,
+              "before_rerank_rank": 40,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "020c11a656973e4f7ba32e1d",
+              "rank": 41,
+              "before_rerank_rank": 41,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "a8c7a8de9a102da944112557",
+              "rank": 42,
+              "before_rerank_rank": 42,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "2b8c1c5cd705c5df61f75b41",
+              "rank": 43,
+              "before_rerank_rank": 43,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "5499d7c745929ce6fdfa563f",
+              "rank": 44,
+              "before_rerank_rank": 44,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "91b33162088e48fbf9c66571",
+              "rank": 45,
+              "before_rerank_rank": 45,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "decabf748f292242e76ea6e5",
+              "rank": 46,
+              "before_rerank_rank": 46,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "301c65f0b1848fe07cd71f14",
+              "rank": 47,
+              "before_rerank_rank": 47,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "64c1088e4e8f09debd6cb8c5",
+              "rank": 48,
+              "before_rerank_rank": 48,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "6ab7bed7c4ffb7916abae93e",
+              "rank": 49,
+              "before_rerank_rank": 49,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "42aa57a009a9b06d500fa00e",
+              "rank": 50,
+              "before_rerank_rank": 50,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "45f8004089a2b2684cd48f96",
+              "rank": 51,
+              "before_rerank_rank": 51,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "864c4f57a71feda39ad5e8ab",
+              "rank": 52,
+              "before_rerank_rank": 52,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "fbcb89627b9d79c216709544",
+              "rank": 53,
+              "before_rerank_rank": 53,
+              "rerank_score": null
+            }
+          ],
+          "returned_chunk_ids": [
+            "ad6589f279597f0aa5dbe4c7",
+            "b80dfad8674c446c4742c2d1",
+            "6fc3257fc3e272de865a0f52",
+            "53a946596df9f0cda230affe",
+            "0e7fd51db46fb0cd2f48256a"
+          ]
+        },
+        "community": {
+          "query": "vLLM v0.10.2 prefix cache hash",
+          "channels": {
+            "bm25": {
+              "score_kind": "bm25_score",
+              "ranking": [
+                {
+                  "chunk_id": "4599043450dd742aaffcebcc",
+                  "rank": 1,
+                  "score": 31.493334150854526
+                },
+                {
+                  "chunk_id": "6bbfa5ed85c9f848211489d0",
+                  "rank": 2,
+                  "score": 27.76489667468077
+                },
+                {
+                  "chunk_id": "c2ad363fd43717dee674d52f",
+                  "rank": 3,
+                  "score": 25.525174451311372
+                },
+                {
+                  "chunk_id": "8a38411333a6f3578875cee6",
+                  "rank": 4,
+                  "score": 24.808854357897
+                },
+                {
+                  "chunk_id": "ee1ea3f1220bbbf43640396e",
+                  "rank": 5,
+                  "score": 24.78249676133402
+                },
+                {
+                  "chunk_id": "4a822b4da16adb058b1968b6",
+                  "rank": 6,
+                  "score": 23.33174489686742
+                },
+                {
+                  "chunk_id": "61138deab9ddf8775e983394",
+                  "rank": 7,
+                  "score": 22.386485570592164
+                },
+                {
+                  "chunk_id": "152028b5aa95763d3a390d86",
+                  "rank": 8,
+                  "score": 22.157548161106995
+                },
+                {
+                  "chunk_id": "cfd5cf016d76e5df055bceda",
+                  "rank": 9,
+                  "score": 21.359295798066835
+                },
+                {
+                  "chunk_id": "1d6406df1d90d6310335de50",
+                  "rank": 10,
+                  "score": 21.138360612332065
+                },
+                {
+                  "chunk_id": "c7e237107738388dceee1009",
+                  "rank": 11,
+                  "score": 21.08023249910582
+                },
+                {
+                  "chunk_id": "b0dceb518870f77bb7aeeeed",
+                  "rank": 12,
+                  "score": 20.982738972526366
+                },
+                {
+                  "chunk_id": "95cf8ffadf5cac79fda49c6c",
+                  "rank": 13,
+                  "score": 20.773761896438163
+                },
+                {
+                  "chunk_id": "fcc003b003d7495d13ceadd9",
+                  "rank": 14,
+                  "score": 20.301070788639464
+                },
+                {
+                  "chunk_id": "c957cb091c78861e2f78afae",
+                  "rank": 15,
+                  "score": 20.079695684121447
+                },
+                {
+                  "chunk_id": "338ae23fa65bd7f02f1301c8",
+                  "rank": 16,
+                  "score": 19.46918807247535
+                },
+                {
+                  "chunk_id": "0324e621f9f5b5b5dc16c37d",
+                  "rank": 17,
+                  "score": 19.39048880147775
+                },
+                {
+                  "chunk_id": "05f58a318fd3acbcb84a4615",
+                  "rank": 18,
+                  "score": 19.135607316241448
+                },
+                {
+                  "chunk_id": "efb19ccfa00975aad3706fe4",
+                  "rank": 19,
+                  "score": 18.560650588945343
+                },
+                {
+                  "chunk_id": "540b9b921cc7a55f25f7fc25",
+                  "rank": 20,
+                  "score": 18.514020834796785
+                },
+                {
+                  "chunk_id": "30b9a08bdc33b5ddd8be13cf",
+                  "rank": 21,
+                  "score": 18.0779135402231
+                },
+                {
+                  "chunk_id": "0c79159d80490921d1982dd4",
+                  "rank": 22,
+                  "score": 17.746215211343028
+                },
+                {
+                  "chunk_id": "b33576ab226c3ee861e22c40",
+                  "rank": 23,
+                  "score": 17.654170949613494
+                },
+                {
+                  "chunk_id": "026f2d1ff15ebdac67bb02a5",
+                  "rank": 24,
+                  "score": 17.452558036558628
+                },
+                {
+                  "chunk_id": "ea4a0c6d6e7b2ebfd057d90d",
+                  "rank": 25,
+                  "score": 17.411660125540653
+                },
+                {
+                  "chunk_id": "c71411463a066e8e7ceb19a4",
+                  "rank": 26,
+                  "score": 17.377312781909286
+                },
+                {
+                  "chunk_id": "3e79b975763790f179a6b36c",
+                  "rank": 27,
+                  "score": 17.2444427964575
+                },
+                {
+                  "chunk_id": "7e5fbd94c408ce330699c1af",
+                  "rank": 28,
+                  "score": 17.182457477291734
+                },
+                {
+                  "chunk_id": "3f9f0e0a9251d5c95dccf866",
+                  "rank": 29,
+                  "score": 17.172240745580723
+                },
+                {
+                  "chunk_id": "4c8789141c93aff4a2a1dfe1",
+                  "rank": 30,
+                  "score": 17.14041248190541
+                }
+              ]
+            },
+            "dense": {
+              "score_kind": "cosine_distance",
+              "ranking": [
+                {
+                  "chunk_id": "3e79b975763790f179a6b36c",
+                  "rank": 1,
+                  "score": 0.2195402979850769
+                },
+                {
+                  "chunk_id": "4599043450dd742aaffcebcc",
+                  "rank": 2,
+                  "score": 0.2698501944541931
+                },
+                {
+                  "chunk_id": "0c79159d80490921d1982dd4",
+                  "rank": 3,
+                  "score": 0.2699292302131653
+                },
+                {
+                  "chunk_id": "b184e4b417f032799969f2fe",
+                  "rank": 4,
+                  "score": 0.28184282779693604
+                },
+                {
+                  "chunk_id": "152028b5aa95763d3a390d86",
+                  "rank": 5,
+                  "score": 0.2862192988395691
+                },
+                {
+                  "chunk_id": "b17c54642648ac3c3c3c3d92",
+                  "rank": 6,
+                  "score": 0.2929404377937317
+                },
+                {
+                  "chunk_id": "c71411463a066e8e7ceb19a4",
+                  "rank": 7,
+                  "score": 0.3014528155326843
+                },
+                {
+                  "chunk_id": "8462f501af70e80c78055daa",
+                  "rank": 8,
+                  "score": 0.30391180515289307
+                },
+                {
+                  "chunk_id": "75324acd965b9255a1a401b6",
+                  "rank": 9,
+                  "score": 0.31128573417663574
+                },
+                {
+                  "chunk_id": "0036e026dcd5e358a2a6f132",
+                  "rank": 10,
+                  "score": 0.3139340877532959
+                },
+                {
+                  "chunk_id": "5822a5600ab6add61c4921af",
+                  "rank": 11,
+                  "score": 0.3141598105430603
+                },
+                {
+                  "chunk_id": "a9ef8c9dbdcda286da2c0338",
+                  "rank": 12,
+                  "score": 0.32036256790161133
+                },
+                {
+                  "chunk_id": "c7e237107738388dceee1009",
+                  "rank": 13,
+                  "score": 0.32060134410858154
+                },
+                {
+                  "chunk_id": "8885ef633cfec8a001c9a095",
+                  "rank": 14,
+                  "score": 0.32123035192489624
+                },
+                {
+                  "chunk_id": "cfd5cf016d76e5df055bceda",
+                  "rank": 15,
+                  "score": 0.32199496030807495
+                },
+                {
+                  "chunk_id": "5760ba35ef2e5a38684b679e",
+                  "rank": 16,
+                  "score": 0.3221880793571472
+                },
+                {
+                  "chunk_id": "b33576ab226c3ee861e22c40",
+                  "rank": 17,
+                  "score": 0.3228450417518616
+                },
+                {
+                  "chunk_id": "80eb6dc68aff54510a3bda8c",
+                  "rank": 18,
+                  "score": 0.3244035840034485
+                },
+                {
+                  "chunk_id": "ac87b0b93f36f1ca62835a73",
+                  "rank": 19,
+                  "score": 0.3244783282279968
+                },
+                {
+                  "chunk_id": "05f58a318fd3acbcb84a4615",
+                  "rank": 20,
+                  "score": 0.3253558278083801
+                },
+                {
+                  "chunk_id": "99e0dd6d0fd1a02afeb05bc7",
+                  "rank": 21,
+                  "score": 0.32574915885925293
+                },
+                {
+                  "chunk_id": "853979e7029e31551dc16e96",
+                  "rank": 22,
+                  "score": 0.3313531279563904
+                },
+                {
+                  "chunk_id": "e43e4dbd37ab6ae075076331",
+                  "rank": 23,
+                  "score": 0.3324955701828003
+                },
+                {
+                  "chunk_id": "13301ad433de075e2b914eff",
+                  "rank": 24,
+                  "score": 0.332497775554657
+                },
+                {
+                  "chunk_id": "961164cdda9a172692bce82c",
+                  "rank": 25,
+                  "score": 0.33305299282073975
+                },
+                {
+                  "chunk_id": "3330e0cb21078c14b2d21f64",
+                  "rank": 26,
+                  "score": 0.3338608145713806
+                },
+                {
+                  "chunk_id": "aa53ba4f352fac9b60b1f947",
+                  "rank": 27,
+                  "score": 0.33462387323379517
+                },
+                {
+                  "chunk_id": "30b9a08bdc33b5ddd8be13cf",
+                  "rank": 28,
+                  "score": 0.338298499584198
+                },
+                {
+                  "chunk_id": "ce12e273c2a5843e77c7bc1a",
+                  "rank": 29,
+                  "score": 0.3390312194824219
+                },
+                {
+                  "chunk_id": "8f9f42a2130dccdd4e74cc64",
+                  "rank": 30,
+                  "score": 0.33907026052474976
+                }
+              ]
+            }
+          },
+          "timings_ms": {
+            "lock_wait": 0.0036249402910470963,
+            "filter": 0.16666692681610584,
+            "bm25": 2877.5742090074345,
+            "dense": 518.1959999026731,
+            "fusion": 1.543541089631617,
+            "rerank": 0.0014159595593810081,
+            "context": 100.38224991876632,
+            "total": 3497.920082998462
+          },
+          "rerank": {
+            "enabled": false
+          },
+          "eligible_chunks": 13649,
+          "candidate_k": 30,
+          "dense_query": {
+            "input_tokens": 32,
+            "window_limit": 510,
+            "windows": 1,
+            "handling": "token_window_mean"
+          },
+          "fusion": [
+            {
+              "chunk_id": "4599043450dd742aaffcebcc",
+              "rank": 1,
+              "rrf_score": 0.03252247488101534,
+              "retained": true
+            },
+            {
+              "chunk_id": "152028b5aa95763d3a390d86",
+              "rank": 2,
+              "rrf_score": 0.030090497737556562,
+              "retained": true
+            },
+            {
+              "chunk_id": "0c79159d80490921d1982dd4",
+              "rank": 3,
+              "rrf_score": 0.028068137824235385,
+              "retained": true
+            },
+            {
+              "chunk_id": "3e79b975763790f179a6b36c",
+              "rank": 4,
+              "rrf_score": 0.02788769549651404,
+              "retained": true
+            },
+            {
+              "chunk_id": "cfd5cf016d76e5df055bceda",
+              "rank": 5,
+              "rrf_score": 0.02782608695652174,
+              "retained": true
+            },
+            {
+              "chunk_id": "c7e237107738388dceee1009",
+              "rank": 6,
+              "rrf_score": 0.027783137179239824,
+              "retained": true
+            },
+            {
+              "chunk_id": "c71411463a066e8e7ceb19a4",
+              "rank": 7,
+              "rrf_score": 0.026553280111072546,
+              "retained": true
+            },
+            {
+              "chunk_id": "05f58a318fd3acbcb84a4615",
+              "rank": 8,
+              "rrf_score": 0.02532051282051282,
+              "retained": true
+            },
+            {
+              "chunk_id": "b33576ab226c3ee861e22c40",
+              "rank": 9,
+              "rrf_score": 0.025035205758097326,
+              "retained": true
+            },
+            {
+              "chunk_id": "30b9a08bdc33b5ddd8be13cf",
+              "rank": 10,
+              "rrf_score": 0.023709315375982042,
+              "retained": true
+            },
+            {
+              "chunk_id": "6bbfa5ed85c9f848211489d0",
+              "rank": 11,
+              "rrf_score": 0.016129032258064516,
+              "retained": true
+            },
+            {
+              "chunk_id": "c2ad363fd43717dee674d52f",
+              "rank": 12,
+              "rrf_score": 0.015873015873015872,
+              "retained": true
+            },
+            {
+              "chunk_id": "8a38411333a6f3578875cee6",
+              "rank": 13,
+              "rrf_score": 0.015625,
+              "retained": true
+            },
+            {
+              "chunk_id": "b184e4b417f032799969f2fe",
+              "rank": 14,
+              "rrf_score": 0.015625,
+              "retained": true
+            },
+            {
+              "chunk_id": "ee1ea3f1220bbbf43640396e",
+              "rank": 15,
+              "rrf_score": 0.015384615384615385,
+              "retained": true
+            },
+            {
+              "chunk_id": "4a822b4da16adb058b1968b6",
+              "rank": 16,
+              "rrf_score": 0.015151515151515152,
+              "retained": true
+            },
+            {
+              "chunk_id": "b17c54642648ac3c3c3c3d92",
+              "rank": 17,
+              "rrf_score": 0.015151515151515152,
+              "retained": true
+            },
+            {
+              "chunk_id": "61138deab9ddf8775e983394",
+              "rank": 18,
+              "rrf_score": 0.014925373134328358,
+              "retained": true
+            },
+            {
+              "chunk_id": "8462f501af70e80c78055daa",
+              "rank": 19,
+              "rrf_score": 0.014705882352941176,
+              "retained": true
+            },
+            {
+              "chunk_id": "75324acd965b9255a1a401b6",
+              "rank": 20,
+              "rrf_score": 0.014492753623188406,
+              "retained": true
+            },
+            {
+              "chunk_id": "0036e026dcd5e358a2a6f132",
+              "rank": 21,
+              "rrf_score": 0.014285714285714285,
+              "retained": true
+            },
+            {
+              "chunk_id": "1d6406df1d90d6310335de50",
+              "rank": 22,
+              "rrf_score": 0.014285714285714285,
+              "retained": true
+            },
+            {
+              "chunk_id": "5822a5600ab6add61c4921af",
+              "rank": 23,
+              "rrf_score": 0.014084507042253521,
+              "retained": true
+            },
+            {
+              "chunk_id": "a9ef8c9dbdcda286da2c0338",
+              "rank": 24,
+              "rrf_score": 0.013888888888888888,
+              "retained": true
+            },
+            {
+              "chunk_id": "b0dceb518870f77bb7aeeeed",
+              "rank": 25,
+              "rrf_score": 0.013888888888888888,
+              "retained": true
+            },
+            {
+              "chunk_id": "95cf8ffadf5cac79fda49c6c",
+              "rank": 26,
+              "rrf_score": 0.0136986301369863,
+              "retained": true
+            },
+            {
+              "chunk_id": "8885ef633cfec8a001c9a095",
+              "rank": 27,
+              "rrf_score": 0.013513513513513514,
+              "retained": true
+            },
+            {
+              "chunk_id": "fcc003b003d7495d13ceadd9",
+              "rank": 28,
+              "rrf_score": 0.013513513513513514,
+              "retained": true
+            },
+            {
+              "chunk_id": "c957cb091c78861e2f78afae",
+              "rank": 29,
+              "rrf_score": 0.013333333333333334,
+              "retained": true
+            },
+            {
+              "chunk_id": "338ae23fa65bd7f02f1301c8",
+              "rank": 30,
+              "rrf_score": 0.013157894736842105,
+              "retained": true
+            },
+            {
+              "chunk_id": "5760ba35ef2e5a38684b679e",
+              "rank": 31,
+              "rrf_score": 0.013157894736842105,
+              "retained": true
+            },
+            {
+              "chunk_id": "0324e621f9f5b5b5dc16c37d",
+              "rank": 32,
+              "rrf_score": 0.012987012987012988,
+              "retained": true
+            },
+            {
+              "chunk_id": "80eb6dc68aff54510a3bda8c",
+              "rank": 33,
+              "rrf_score": 0.01282051282051282,
+              "retained": true
+            },
+            {
+              "chunk_id": "ac87b0b93f36f1ca62835a73",
+              "rank": 34,
+              "rrf_score": 0.012658227848101266,
+              "retained": true
+            },
+            {
+              "chunk_id": "efb19ccfa00975aad3706fe4",
+              "rank": 35,
+              "rrf_score": 0.012658227848101266,
+              "retained": true
+            },
+            {
+              "chunk_id": "540b9b921cc7a55f25f7fc25",
+              "rank": 36,
+              "rrf_score": 0.0125,
+              "retained": true
+            },
+            {
+              "chunk_id": "99e0dd6d0fd1a02afeb05bc7",
+              "rank": 37,
+              "rrf_score": 0.012345679012345678,
+              "retained": true
+            },
+            {
+              "chunk_id": "853979e7029e31551dc16e96",
+              "rank": 38,
+              "rrf_score": 0.012195121951219513,
+              "retained": true
+            },
+            {
+              "chunk_id": "e43e4dbd37ab6ae075076331",
+              "rank": 39,
+              "rrf_score": 0.012048192771084338,
+              "retained": true
+            },
+            {
+              "chunk_id": "026f2d1ff15ebdac67bb02a5",
+              "rank": 40,
+              "rrf_score": 0.011904761904761904,
+              "retained": true
+            },
+            {
+              "chunk_id": "13301ad433de075e2b914eff",
+              "rank": 41,
+              "rrf_score": 0.011904761904761904,
+              "retained": true
+            },
+            {
+              "chunk_id": "961164cdda9a172692bce82c",
+              "rank": 42,
+              "rrf_score": 0.011764705882352941,
+              "retained": true
+            },
+            {
+              "chunk_id": "ea4a0c6d6e7b2ebfd057d90d",
+              "rank": 43,
+              "rrf_score": 0.011764705882352941,
+              "retained": true
+            },
+            {
+              "chunk_id": "3330e0cb21078c14b2d21f64",
+              "rank": 44,
+              "rrf_score": 0.011627906976744186,
+              "retained": true
+            },
+            {
+              "chunk_id": "aa53ba4f352fac9b60b1f947",
+              "rank": 45,
+              "rrf_score": 0.011494252873563218,
+              "retained": true
+            },
+            {
+              "chunk_id": "7e5fbd94c408ce330699c1af",
+              "rank": 46,
+              "rrf_score": 0.011363636363636364,
+              "retained": true
+            },
+            {
+              "chunk_id": "3f9f0e0a9251d5c95dccf866",
+              "rank": 47,
+              "rrf_score": 0.011235955056179775,
+              "retained": true
+            },
+            {
+              "chunk_id": "ce12e273c2a5843e77c7bc1a",
+              "rank": 48,
+              "rrf_score": 0.011235955056179775,
+              "retained": true
+            },
+            {
+              "chunk_id": "4c8789141c93aff4a2a1dfe1",
+              "rank": 49,
+              "rrf_score": 0.011111111111111112,
+              "retained": true
+            },
+            {
+              "chunk_id": "8f9f42a2130dccdd4e74cc64",
+              "rank": 50,
+              "rrf_score": 0.011111111111111112,
+              "retained": true
+            }
+          ],
+          "candidates": [
+            "4599043450dd742aaffcebcc",
+            "152028b5aa95763d3a390d86",
+            "0c79159d80490921d1982dd4",
+            "3e79b975763790f179a6b36c",
+            "cfd5cf016d76e5df055bceda",
+            "c7e237107738388dceee1009",
+            "c71411463a066e8e7ceb19a4",
+            "05f58a318fd3acbcb84a4615",
+            "b33576ab226c3ee861e22c40",
+            "30b9a08bdc33b5ddd8be13cf",
+            "6bbfa5ed85c9f848211489d0",
+            "c2ad363fd43717dee674d52f",
+            "8a38411333a6f3578875cee6",
+            "b184e4b417f032799969f2fe",
+            "ee1ea3f1220bbbf43640396e",
+            "4a822b4da16adb058b1968b6",
+            "b17c54642648ac3c3c3c3d92",
+            "61138deab9ddf8775e983394",
+            "8462f501af70e80c78055daa",
+            "75324acd965b9255a1a401b6",
+            "0036e026dcd5e358a2a6f132",
+            "1d6406df1d90d6310335de50",
+            "5822a5600ab6add61c4921af",
+            "a9ef8c9dbdcda286da2c0338",
+            "b0dceb518870f77bb7aeeeed",
+            "95cf8ffadf5cac79fda49c6c",
+            "8885ef633cfec8a001c9a095",
+            "fcc003b003d7495d13ceadd9",
+            "c957cb091c78861e2f78afae",
+            "338ae23fa65bd7f02f1301c8",
+            "5760ba35ef2e5a38684b679e",
+            "0324e621f9f5b5b5dc16c37d",
+            "80eb6dc68aff54510a3bda8c",
+            "ac87b0b93f36f1ca62835a73",
+            "efb19ccfa00975aad3706fe4",
+            "540b9b921cc7a55f25f7fc25",
+            "99e0dd6d0fd1a02afeb05bc7",
+            "853979e7029e31551dc16e96",
+            "e43e4dbd37ab6ae075076331",
+            "026f2d1ff15ebdac67bb02a5",
+            "13301ad433de075e2b914eff",
+            "961164cdda9a172692bce82c",
+            "ea4a0c6d6e7b2ebfd057d90d",
+            "3330e0cb21078c14b2d21f64",
+            "aa53ba4f352fac9b60b1f947",
+            "7e5fbd94c408ce330699c1af",
+            "3f9f0e0a9251d5c95dccf866",
+            "ce12e273c2a5843e77c7bc1a",
+            "4c8789141c93aff4a2a1dfe1",
+            "8f9f42a2130dccdd4e74cc64"
+          ],
+          "final": [
+            {
+              "chunk_id": "4599043450dd742aaffcebcc",
+              "rank": 1,
+              "before_rerank_rank": 1,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "152028b5aa95763d3a390d86",
+              "rank": 2,
+              "before_rerank_rank": 2,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "0c79159d80490921d1982dd4",
+              "rank": 3,
+              "before_rerank_rank": 3,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "3e79b975763790f179a6b36c",
+              "rank": 4,
+              "before_rerank_rank": 4,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "cfd5cf016d76e5df055bceda",
+              "rank": 5,
+              "before_rerank_rank": 5,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "c7e237107738388dceee1009",
+              "rank": 6,
+              "before_rerank_rank": 6,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "c71411463a066e8e7ceb19a4",
+              "rank": 7,
+              "before_rerank_rank": 7,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "05f58a318fd3acbcb84a4615",
+              "rank": 8,
+              "before_rerank_rank": 8,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "b33576ab226c3ee861e22c40",
+              "rank": 9,
+              "before_rerank_rank": 9,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "30b9a08bdc33b5ddd8be13cf",
+              "rank": 10,
+              "before_rerank_rank": 10,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "6bbfa5ed85c9f848211489d0",
+              "rank": 11,
+              "before_rerank_rank": 11,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "c2ad363fd43717dee674d52f",
+              "rank": 12,
+              "before_rerank_rank": 12,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "8a38411333a6f3578875cee6",
+              "rank": 13,
+              "before_rerank_rank": 13,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "b184e4b417f032799969f2fe",
+              "rank": 14,
+              "before_rerank_rank": 14,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "ee1ea3f1220bbbf43640396e",
+              "rank": 15,
+              "before_rerank_rank": 15,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "4a822b4da16adb058b1968b6",
+              "rank": 16,
+              "before_rerank_rank": 16,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "b17c54642648ac3c3c3c3d92",
+              "rank": 17,
+              "before_rerank_rank": 17,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "61138deab9ddf8775e983394",
+              "rank": 18,
+              "before_rerank_rank": 18,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "8462f501af70e80c78055daa",
+              "rank": 19,
+              "before_rerank_rank": 19,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "75324acd965b9255a1a401b6",
+              "rank": 20,
+              "before_rerank_rank": 20,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "0036e026dcd5e358a2a6f132",
+              "rank": 21,
+              "before_rerank_rank": 21,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "1d6406df1d90d6310335de50",
+              "rank": 22,
+              "before_rerank_rank": 22,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "5822a5600ab6add61c4921af",
+              "rank": 23,
+              "before_rerank_rank": 23,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "a9ef8c9dbdcda286da2c0338",
+              "rank": 24,
+              "before_rerank_rank": 24,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "b0dceb518870f77bb7aeeeed",
+              "rank": 25,
+              "before_rerank_rank": 25,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "95cf8ffadf5cac79fda49c6c",
+              "rank": 26,
+              "before_rerank_rank": 26,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "8885ef633cfec8a001c9a095",
+              "rank": 27,
+              "before_rerank_rank": 27,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "fcc003b003d7495d13ceadd9",
+              "rank": 28,
+              "before_rerank_rank": 28,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "c957cb091c78861e2f78afae",
+              "rank": 29,
+              "before_rerank_rank": 29,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "338ae23fa65bd7f02f1301c8",
+              "rank": 30,
+              "before_rerank_rank": 30,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "5760ba35ef2e5a38684b679e",
+              "rank": 31,
+              "before_rerank_rank": 31,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "0324e621f9f5b5b5dc16c37d",
+              "rank": 32,
+              "before_rerank_rank": 32,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "80eb6dc68aff54510a3bda8c",
+              "rank": 33,
+              "before_rerank_rank": 33,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "ac87b0b93f36f1ca62835a73",
+              "rank": 34,
+              "before_rerank_rank": 34,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "efb19ccfa00975aad3706fe4",
+              "rank": 35,
+              "before_rerank_rank": 35,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "540b9b921cc7a55f25f7fc25",
+              "rank": 36,
+              "before_rerank_rank": 36,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "99e0dd6d0fd1a02afeb05bc7",
+              "rank": 37,
+              "before_rerank_rank": 37,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "853979e7029e31551dc16e96",
+              "rank": 38,
+              "before_rerank_rank": 38,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "e43e4dbd37ab6ae075076331",
+              "rank": 39,
+              "before_rerank_rank": 39,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "026f2d1ff15ebdac67bb02a5",
+              "rank": 40,
+              "before_rerank_rank": 40,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "13301ad433de075e2b914eff",
+              "rank": 41,
+              "before_rerank_rank": 41,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "961164cdda9a172692bce82c",
+              "rank": 42,
+              "before_rerank_rank": 42,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "ea4a0c6d6e7b2ebfd057d90d",
+              "rank": 43,
+              "before_rerank_rank": 43,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "3330e0cb21078c14b2d21f64",
+              "rank": 44,
+              "before_rerank_rank": 44,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "aa53ba4f352fac9b60b1f947",
+              "rank": 45,
+              "before_rerank_rank": 45,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "7e5fbd94c408ce330699c1af",
+              "rank": 46,
+              "before_rerank_rank": 46,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "3f9f0e0a9251d5c95dccf866",
+              "rank": 47,
+              "before_rerank_rank": 47,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "ce12e273c2a5843e77c7bc1a",
+              "rank": 48,
+              "before_rerank_rank": 48,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "4c8789141c93aff4a2a1dfe1",
+              "rank": 49,
+              "before_rerank_rank": 49,
+              "rerank_score": null
+            },
+            {
+              "chunk_id": "8f9f42a2130dccdd4e74cc64",
+              "rank": 50,
+              "before_rerank_rank": 50,
+              "rerank_score": null
+            }
+          ],
+          "returned_chunk_ids": [
+            "4599043450dd742aaffcebcc",
+            "152028b5aa95763d3a390d86",
+            "0c79159d80490921d1982dd4",
+            "3e79b975763790f179a6b36c",
+            "cfd5cf016d76e5df055bceda"
+          ]
+        }
+      },
+      "candidates": [
+        "ad6589f279597f0aa5dbe4c7",
+        "b80dfad8674c446c4742c2d1",
+        "6fc3257fc3e272de865a0f52",
+        "53a946596df9f0cda230affe",
+        "0e7fd51db46fb0cd2f48256a",
+        "fb07d0834e4827f007318a23",
+        "1fa1de637bd5e4de99c15b93",
+        "f0df40a23184e7beaf11cf8c",
+        "0d08fcb4e0a57783495580de",
+        "6459a9e3597f8dc0347f8eaf",
+        "6d941118fc906ea21ee58302",
+        "a09ffae860564ffa125e3ac5",
+        "d2ff94675785a324f32b455e",
+        "9586f1a07d2ac48817ca2b1d",
+        "cd603af8448e2d932eb8f7ec",
+        "572b65a164a69893274ef4ab",
+        "6210f446111fccc709a0c242",
+        "c2bf40896d1c1179a680caf3",
+        "70521c36a7bd76d9c631ec9c",
+        "4ee317e973514ff9fd1e59fa",
+        "de8991e31eabf27462520567",
+        "10287b33ecfdc4a8f9efc318",
+        "f287d26cc7dfb48f6d93042e",
+        "60ee612ba8544d8284be0e24",
+        "66e5ce7266db5a2d800d0ba8",
+        "581bae0c8c85f0b2a9395fbd",
+        "da028e78c2e473a89b3a1ec6",
+        "4d20ccb31ab7a838984c34bc",
+        "e80e05f41a6b813619320805",
+        "610cb66f5f3c31c7876e0816",
+        "eefe639725828cd616a3a57e",
+        "1bf7d506989ba2cdb6fd3ce3",
+        "3185323f5619f7db16b236f1",
+        "234b666be29c395f17a24917",
+        "efa45d7c653f74c3ef31a118",
+        "49fc6dc2ca4996b19546853f",
+        "2dde3bf2583676d41b904be0",
+        "aac93702291fd391afe28157",
+        "137730b89e388f33dd4d7692",
+        "ab0659082fd2148716dfb3f3",
+        "020c11a656973e4f7ba32e1d",
+        "a8c7a8de9a102da944112557",
+        "2b8c1c5cd705c5df61f75b41",
+        "5499d7c745929ce6fdfa563f",
+        "91b33162088e48fbf9c66571",
+        "decabf748f292242e76ea6e5",
+        "301c65f0b1848fe07cd71f14",
+        "64c1088e4e8f09debd6cb8c5",
+        "6ab7bed7c4ffb7916abae93e",
+        "42aa57a009a9b06d500fa00e",
+        "45f8004089a2b2684cd48f96",
+        "864c4f57a71feda39ad5e8ab",
+        "fbcb89627b9d79c216709544",
+        "4599043450dd742aaffcebcc",
+        "152028b5aa95763d3a390d86",
+        "0c79159d80490921d1982dd4",
+        "3e79b975763790f179a6b36c",
+        "cfd5cf016d76e5df055bceda",
+        "c7e237107738388dceee1009",
+        "c71411463a066e8e7ceb19a4",
+        "05f58a318fd3acbcb84a4615",
+        "b33576ab226c3ee861e22c40",
+        "30b9a08bdc33b5ddd8be13cf",
+        "6bbfa5ed85c9f848211489d0",
+        "c2ad363fd43717dee674d52f",
+        "8a38411333a6f3578875cee6",
+        "b184e4b417f032799969f2fe",
+        "ee1ea3f1220bbbf43640396e",
+        "4a822b4da16adb058b1968b6",
+        "b17c54642648ac3c3c3c3d92",
+        "61138deab9ddf8775e983394",
+        "8462f501af70e80c78055daa",
+        "75324acd965b9255a1a401b6",
+        "0036e026dcd5e358a2a6f132",
+        "1d6406df1d90d6310335de50",
+        "5822a5600ab6add61c4921af",
+        "a9ef8c9dbdcda286da2c0338",
+        "b0dceb518870f77bb7aeeeed",
+        "95cf8ffadf5cac79fda49c6c",
+        "8885ef633cfec8a001c9a095",
+        "fcc003b003d7495d13ceadd9",
+        "c957cb091c78861e2f78afae",
+        "338ae23fa65bd7f02f1301c8",
+        "5760ba35ef2e5a38684b679e",
+        "0324e621f9f5b5b5dc16c37d",
+        "80eb6dc68aff54510a3bda8c",
+        "ac87b0b93f36f1ca62835a73",
+        "efb19ccfa00975aad3706fe4",
+        "540b9b921cc7a55f25f7fc25",
+        "99e0dd6d0fd1a02afeb05bc7",
+        "853979e7029e31551dc16e96",
+        "e43e4dbd37ab6ae075076331",
+        "026f2d1ff15ebdac67bb02a5",
+        "13301ad433de075e2b914eff",
+        "961164cdda9a172692bce82c",
+        "ea4a0c6d6e7b2ebfd057d90d",
+        "3330e0cb21078c14b2d21f64",
+        "aa53ba4f352fac9b60b1f947",
+        "7e5fbd94c408ce330699c1af",
+        "3f9f0e0a9251d5c95dccf866",
+        "ce12e273c2a5843e77c7bc1a",
+        "4c8789141c93aff4a2a1dfe1",
+        "8f9f42a2130dccdd4e74cc64"
+      ],
+      "version_preference": {
+        "requested": [
+          [
+            "vllm",
+            "0.10.2"
+          ]
+        ],
+        "enabled": true,
+        "protected_ids": [
+          "6d941118fc906ea21ee58302",
+          "b80dfad8674c446c4742c2d1"
+        ],
+        "missing_version_evidence": false
+      },
+      "query_expansion": {
+        "original": "vLLM v0.10.2 prefix cache hash",
+        "english": "vLLM v0.10.2 prefix cache hash",
+        "mode": "by_collection"
+      },
+      "final": [
+        {
+          "chunk_id": "c2ad363fd43717dee674d52f",
+          "rank": 1,
+          "before_rerank_rank": 23,
+          "rerank_score": 0.9921149611473083
+        },
+        {
+          "chunk_id": "cfd5cf016d76e5df055bceda",
+          "rank": 2,
+          "before_rerank_rank": 7,
+          "rerank_score": 0.9882397651672363
+        },
+        {
+          "chunk_id": "1d6406df1d90d6310335de50",
+          "rank": 3,
+          "before_rerank_rank": 43,
+          "rerank_score": 0.9874010682106018
+        },
+        {
+          "chunk_id": "b33576ab226c3ee861e22c40",
+          "rank": 4,
+          "before_rerank_rank": 15,
+          "rerank_score": 0.9805392026901245
+        },
+        {
+          "chunk_id": "4599043450dd742aaffcebcc",
+          "rank": 5,
+          "before_rerank_rank": 1,
+          "rerank_score": 0.9769930839538574
+        },
+        {
+          "chunk_id": "efb19ccfa00975aad3706fe4",
+          "rank": 6,
+          "before_rerank_rank": 68,
+          "rerank_score": 0.9723324775695801
+        },
+        {
+          "chunk_id": "6d941118fc906ea21ee58302",
+          "rank": 7,
+          "before_rerank_rank": 22,
+          "rerank_score": 0.9391693472862244
+        },
+        {
+          "chunk_id": "b80dfad8674c446c4742c2d1",
+          "rank": 8,
+          "before_rerank_rank": 4,
+          "rerank_score": 0.9029582738876343
+        },
+        {
+          "chunk_id": "0324e621f9f5b5b5dc16c37d",
+          "rank": 9,
+          "before_rerank_rank": 63,
+          "rerank_score": 0.8859781622886658
+        },
+        {
+          "chunk_id": "853979e7029e31551dc16e96",
+          "rank": 10,
+          "before_rerank_rank": 75,
+          "rerank_score": 0.8083255887031555
+        },
+        {
+          "chunk_id": "ad6589f279597f0aa5dbe4c7",
+          "rank": 11,
+          "before_rerank_rank": 2,
+          "rerank_score": 0.7943480610847473
+        },
+        {
+          "chunk_id": "5822a5600ab6add61c4921af",
+          "rank": 12,
+          "before_rerank_rank": 45,
+          "rerank_score": 0.7758643627166748
+        },
+        {
+          "chunk_id": "540b9b921cc7a55f25f7fc25",
+          "rank": 13,
+          "before_rerank_rank": 70,
+          "rerank_score": 0.7602499127388
+        },
+        {
+          "chunk_id": "30b9a08bdc33b5ddd8be13cf",
+          "rank": 14,
+          "before_rerank_rank": 17,
+          "rerank_score": 0.7101120948791504
+        },
+        {
+          "chunk_id": "c7e237107738388dceee1009",
+          "rank": 15,
+          "before_rerank_rank": 8,
+          "rerank_score": 0.6954357624053955
+        },
+        {
+          "chunk_id": "05f58a318fd3acbcb84a4615",
+          "rank": 16,
+          "before_rerank_rank": 14,
+          "rerank_score": 0.6097613573074341
+        },
+        {
+          "chunk_id": "3330e0cb21078c14b2d21f64",
+          "rank": 17,
+          "before_rerank_rank": 88,
+          "rerank_score": 0.5669602751731873
+        },
+        {
+          "chunk_id": "8a38411333a6f3578875cee6",
+          "rank": 18,
+          "before_rerank_rank": 24,
+          "rerank_score": 0.5456686615943909
+        },
+        {
+          "chunk_id": "b184e4b417f032799969f2fe",
+          "rank": 19,
+          "before_rerank_rank": 26,
+          "rerank_score": 0.5344693064689636
+        },
+        {
+          "chunk_id": "53a946596df9f0cda230affe",
+          "rank": 20,
+          "before_rerank_rank": 10,
+          "rerank_score": 0.5101484656333923
+        },
+        {
+          "chunk_id": "b0dceb518870f77bb7aeeeed",
+          "rank": 21,
+          "before_rerank_rank": 50,
+          "rerank_score": 0.4784148335456848
+        },
+        {
+          "chunk_id": "0d08fcb4e0a57783495580de",
+          "rank": 22,
+          "before_rerank_rank": 19,
+          "rerank_score": 0.3946177065372467
+        },
+        {
+          "chunk_id": "4a822b4da16adb058b1968b6",
+          "rank": 23,
+          "before_rerank_rank": 31,
+          "rerank_score": 0.3907972574234009
+        },
+        {
+          "chunk_id": "95cf8ffadf5cac79fda49c6c",
+          "rank": 24,
+          "before_rerank_rank": 52,
+          "rerank_score": 0.2745738625526428
+        },
+        {
+          "chunk_id": "fb07d0834e4827f007318a23",
+          "rank": 25,
+          "before_rerank_rank": 13,
+          "rerank_score": 0.2437162548303604
+        },
+        {
+          "chunk_id": "152028b5aa95763d3a390d86",
+          "rank": 26,
+          "before_rerank_rank": 3,
+          "rerank_score": 0.24064065515995026
+        },
+        {
+          "chunk_id": "efa45d7c653f74c3ef31a118",
+          "rank": 27,
+          "before_rerank_rank": 71,
+          "rerank_score": 0.22087255120277405
+        },
+        {
+          "chunk_id": "8885ef633cfec8a001c9a095",
+          "rank": 28,
+          "before_rerank_rank": 55,
+          "rerank_score": 0.2119012176990509
+        },
+        {
+          "chunk_id": "f287d26cc7dfb48f6d93042e",
+          "rank": 29,
+          "before_rerank_rank": 46,
+          "rerank_score": 0.21013294160366058
+        },
+        {
+          "chunk_id": "3f9f0e0a9251d5c95dccf866",
+          "rank": 30,
+          "before_rerank_rank": 96,
+          "rerank_score": 0.14062751829624176
+        },
+        {
+          "chunk_id": "6bbfa5ed85c9f848211489d0",
+          "rank": 31,
+          "before_rerank_rank": 20,
+          "rerank_score": 0.13899247348308563
+        },
+        {
+          "chunk_id": "64c1088e4e8f09debd6cb8c5",
+          "rank": 32,
+          "before_rerank_rank": 93,
+          "rerank_score": 0.13712891936302185
+        },
+        {
+          "chunk_id": "ab0659082fd2148716dfb3f3",
+          "rank": 33,
+          "before_rerank_rank": 78,
+          "rerank_score": 0.12519006431102753
+        },
+        {
+          "chunk_id": "6459a9e3597f8dc0347f8eaf",
+          "rank": 34,
+          "before_rerank_rank": 21,
+          "rerank_score": 0.10445555299520493
+        },
+        {
+          "chunk_id": "0e7fd51db46fb0cd2f48256a",
+          "rank": 35,
+          "before_rerank_rank": 11,
+          "rerank_score": 0.10171239078044891
+        },
+        {
+          "chunk_id": "ee1ea3f1220bbbf43640396e",
+          "rank": 36,
+          "before_rerank_rank": 30,
+          "rerank_score": 0.10115470737218857
+        },
+        {
+          "chunk_id": "e43e4dbd37ab6ae075076331",
+          "rank": 37,
+          "before_rerank_rank": 79,
+          "rerank_score": 0.09355180710554123
+        },
+        {
+          "chunk_id": "0c79159d80490921d1982dd4",
+          "rank": 38,
+          "before_rerank_rank": 5,
+          "rerank_score": 0.09028246253728867
+        },
+        {
+          "chunk_id": "ea4a0c6d6e7b2ebfd057d90d",
+          "rank": 39,
+          "before_rerank_rank": 87,
+          "rerank_score": 0.08345764130353928
+        },
+        {
+          "chunk_id": "7e5fbd94c408ce330699c1af",
+          "rank": 40,
+          "before_rerank_rank": 95,
+          "rerank_score": 0.0821107029914856
+        },
+        {
+          "chunk_id": "026f2d1ff15ebdac67bb02a5",
+          "rank": 41,
+          "before_rerank_rank": 81,
+          "rerank_score": 0.07840827852487564
+        },
+        {
+          "chunk_id": "42aa57a009a9b06d500fa00e",
+          "rank": 42,
+          "before_rerank_rank": 97,
+          "rerank_score": 0.07761038094758987
+        },
+        {
+          "chunk_id": "4d20ccb31ab7a838984c34bc",
+          "rank": 43,
+          "before_rerank_rank": 54,
+          "rerank_score": 0.06806009262800217
+        },
+        {
+          "chunk_id": "a09ffae860564ffa125e3ac5",
+          "rank": 44,
+          "before_rerank_rank": 25,
+          "rerank_score": 0.05768587067723274
+        },
+        {
+          "chunk_id": "cd603af8448e2d932eb8f7ec",
+          "rank": 45,
+          "before_rerank_rank": 29,
+          "rerank_score": 0.05718053877353668
+        },
+        {
+          "chunk_id": "e80e05f41a6b813619320805",
+          "rank": 46,
+          "before_rerank_rank": 56,
+          "rerank_score": 0.05577309429645538
+        },
+        {
+          "chunk_id": "234b666be29c395f17a24917",
+          "rank": 47,
+          "before_rerank_rank": 69,
+          "rerank_score": 0.05189243331551552
+        },
+        {
+          "chunk_id": "13301ad433de075e2b914eff",
+          "rank": 48,
+          "before_rerank_rank": 82,
+          "rerank_score": 0.04364273324608803
+        },
+        {
+          "chunk_id": "99e0dd6d0fd1a02afeb05bc7",
+          "rank": 49,
+          "before_rerank_rank": 73,
+          "rerank_score": 0.040770161896944046
+        },
+        {
+          "chunk_id": "6fc3257fc3e272de865a0f52",
+          "rank": 50,
+          "before_rerank_rank": 9,
+          "rerank_score": 0.036256127059459686
+        },
+        {
+          "chunk_id": "5499d7c745929ce6fdfa563f",
+          "rank": 51,
+          "before_rerank_rank": 85,
+          "rerank_score": 0.03539776802062988
+        },
+        {
+          "chunk_id": "338ae23fa65bd7f02f1301c8",
+          "rank": 52,
+          "before_rerank_rank": 59,
+          "rerank_score": 0.03225962445139885
+        },
+        {
+          "chunk_id": "66e5ce7266db5a2d800d0ba8",
+          "rank": 53,
+          "before_rerank_rank": 48,
+          "rerank_score": 0.03221750631928444
+        },
+        {
+          "chunk_id": "70521c36a7bd76d9c631ec9c",
+          "rank": 54,
+          "before_rerank_rank": 37,
+          "rerank_score": 0.03159796819090843
+        },
+        {
+          "chunk_id": "aac93702291fd391afe28157",
+          "rank": 55,
+          "before_rerank_rank": 76,
+          "rerank_score": 0.028345100581645966
+        },
+        {
+          "chunk_id": "80eb6dc68aff54510a3bda8c",
+          "rank": 56,
+          "before_rerank_rank": 66,
+          "rerank_score": 0.027752455323934555
+        },
+        {
+          "chunk_id": "c957cb091c78861e2f78afae",
+          "rank": 57,
+          "before_rerank_rank": 58,
+          "rerank_score": 0.02647470124065876
+        },
+        {
+          "chunk_id": "eefe639725828cd616a3a57e",
+          "rank": 58,
+          "before_rerank_rank": 62,
+          "rerank_score": 0.0239646565169096
+        },
+        {
+          "chunk_id": "61138deab9ddf8775e983394",
+          "rank": 59,
+          "before_rerank_rank": 35,
+          "rerank_score": 0.02247888781130314
+        },
+        {
+          "chunk_id": "4ee317e973514ff9fd1e59fa",
+          "rank": 60,
+          "before_rerank_rank": 39,
+          "rerank_score": 0.022370891645550728
+        },
+        {
+          "chunk_id": "3e79b975763790f179a6b36c",
+          "rank": 61,
+          "before_rerank_rank": 6,
+          "rerank_score": 0.0184678565710783
+        },
+        {
+          "chunk_id": "8f9f42a2130dccdd4e74cc64",
+          "rank": 62,
+          "before_rerank_rank": 102,
+          "rerank_score": 0.01617884635925293
+        },
+        {
+          "chunk_id": "8462f501af70e80c78055daa",
+          "rank": 63,
+          "before_rerank_rank": 38,
+          "rerank_score": 0.016134044155478477
+        },
+        {
+          "chunk_id": "fcc003b003d7495d13ceadd9",
+          "rank": 64,
+          "before_rerank_rank": 57,
+          "rerank_score": 0.015278064645826817
+        },
+        {
+          "chunk_id": "9586f1a07d2ac48817ca2b1d",
+          "rank": 65,
+          "before_rerank_rank": 28,
+          "rerank_score": 0.014161703176796436
+        },
+        {
+          "chunk_id": "decabf748f292242e76ea6e5",
+          "rank": 66,
+          "before_rerank_rank": 90,
+          "rerank_score": 0.013953420333564281
+        },
+        {
+          "chunk_id": "c2bf40896d1c1179a680caf3",
+          "rank": 67,
+          "before_rerank_rank": 36,
+          "rerank_score": 0.012366853654384613
+        },
+        {
+          "chunk_id": "1bf7d506989ba2cdb6fd3ce3",
+          "rank": 68,
+          "before_rerank_rank": 64,
+          "rerank_score": 0.011651291511952877
+        },
+        {
+          "chunk_id": "c71411463a066e8e7ceb19a4",
+          "rank": 69,
+          "before_rerank_rank": 12,
+          "rerank_score": 0.011078004725277424
+        },
+        {
+          "chunk_id": "b17c54642648ac3c3c3c3d92",
+          "rank": 70,
+          "before_rerank_rank": 34,
+          "rerank_score": 0.01039139274507761
+        },
+        {
+          "chunk_id": "3185323f5619f7db16b236f1",
+          "rank": 71,
+          "before_rerank_rank": 65,
+          "rerank_score": 0.00981984008103609
+        },
+        {
+          "chunk_id": "2b8c1c5cd705c5df61f75b41",
+          "rank": 72,
+          "before_rerank_rank": 84,
+          "rerank_score": 0.00961077306419611
+        },
+        {
+          "chunk_id": "49fc6dc2ca4996b19546853f",
+          "rank": 73,
+          "before_rerank_rank": 72,
+          "rerank_score": 0.008890846744179726
+        },
+        {
+          "chunk_id": "a8c7a8de9a102da944112557",
+          "rank": 74,
+          "before_rerank_rank": 83,
+          "rerank_score": 0.008803857490420341
+        },
+        {
+          "chunk_id": "75324acd965b9255a1a401b6",
+          "rank": 75,
+          "before_rerank_rank": 40,
+          "rerank_score": 0.007271766196936369
+        },
+        {
+          "chunk_id": "6210f446111fccc709a0c242",
+          "rank": 76,
+          "before_rerank_rank": 33,
+          "rerank_score": 0.006453682668507099
+        },
+        {
+          "chunk_id": "581bae0c8c85f0b2a9395fbd",
+          "rank": 77,
+          "before_rerank_rank": 51,
+          "rerank_score": 0.006224309094250202
+        },
+        {
+          "chunk_id": "0036e026dcd5e358a2a6f132",
+          "rank": 78,
+          "before_rerank_rank": 42,
+          "rerank_score": 0.005418052896857262
+        },
+        {
+          "chunk_id": "2dde3bf2583676d41b904be0",
+          "rank": 79,
+          "before_rerank_rank": 74,
+          "rerank_score": 0.0038106853608042
+        },
+        {
+          "chunk_id": "610cb66f5f3c31c7876e0816",
+          "rank": 80,
+          "before_rerank_rank": 61,
+          "rerank_score": 0.00336090219207108
+        },
+        {
+          "chunk_id": "de8991e31eabf27462520567",
+          "rank": 81,
+          "before_rerank_rank": 41,
+          "rerank_score": 0.0030852302443236113
+        },
+        {
+          "chunk_id": "572b65a164a69893274ef4ab",
+          "rank": 82,
+          "before_rerank_rank": 32,
+          "rerank_score": 0.0028279325924813747
+        },
+        {
+          "chunk_id": "d2ff94675785a324f32b455e",
+          "rank": 83,
+          "before_rerank_rank": 27,
+          "rerank_score": 0.0025835458654910326
+        },
+        {
+          "chunk_id": "5760ba35ef2e5a38684b679e",
+          "rank": 84,
+          "before_rerank_rank": 60,
+          "rerank_score": 0.0024721515364944935
+        },
+        {
+          "chunk_id": "45f8004089a2b2684cd48f96",
+          "rank": 85,
+          "before_rerank_rank": 98,
+          "rerank_score": 0.002427652943879366
+        },
+        {
+          "chunk_id": "aa53ba4f352fac9b60b1f947",
+          "rank": 86,
+          "before_rerank_rank": 92,
+          "rerank_score": 0.0022900551557540894
+        },
+        {
+          "chunk_id": "020c11a656973e4f7ba32e1d",
+          "rank": 87,
+          "before_rerank_rank": 80,
+          "rerank_score": 0.002256794599816203
+        },
+        {
+          "chunk_id": "60ee612ba8544d8284be0e24",
+          "rank": 88,
+          "before_rerank_rank": 47,
+          "rerank_score": 0.0020479115191847086
+        },
+        {
+          "chunk_id": "1fa1de637bd5e4de99c15b93",
+          "rank": 89,
+          "before_rerank_rank": 16,
+          "rerank_score": 0.001994001679122448
+        },
+        {
+          "chunk_id": "fbcb89627b9d79c216709544",
+          "rank": 90,
+          "before_rerank_rank": 103,
+          "rerank_score": 0.001967448741197586
+        },
+        {
+          "chunk_id": "da028e78c2e473a89b3a1ec6",
+          "rank": 91,
+          "before_rerank_rank": 53,
+          "rerank_score": 0.0017242240719497204
+        },
+        {
+          "chunk_id": "ce12e273c2a5843e77c7bc1a",
+          "rank": 92,
+          "before_rerank_rank": 99,
+          "rerank_score": 0.0012546321377158165
+        },
+        {
+          "chunk_id": "4c8789141c93aff4a2a1dfe1",
+          "rank": 93,
+          "before_rerank_rank": 100,
+          "rerank_score": 0.0005987380864098668
+        },
+        {
+          "chunk_id": "10287b33ecfdc4a8f9efc318",
+          "rank": 94,
+          "before_rerank_rank": 44,
+          "rerank_score": 0.0005361026269383729
+        },
+        {
+          "chunk_id": "f0df40a23184e7beaf11cf8c",
+          "rank": 95,
+          "before_rerank_rank": 18,
+          "rerank_score": 0.0005094895022921264
+        },
+        {
+          "chunk_id": "6ab7bed7c4ffb7916abae93e",
+          "rank": 96,
+          "before_rerank_rank": 94,
+          "rerank_score": 0.0003809861373156309
+        },
+        {
+          "chunk_id": "91b33162088e48fbf9c66571",
+          "rank": 97,
+          "before_rerank_rank": 89,
+          "rerank_score": 0.00030076943221502006
+        },
+        {
+          "chunk_id": "301c65f0b1848fe07cd71f14",
+          "rank": 98,
+          "before_rerank_rank": 91,
+          "rerank_score": 0.0002777667832560837
+        },
+        {
+          "chunk_id": "a9ef8c9dbdcda286da2c0338",
+          "rank": 99,
+          "before_rerank_rank": 49,
+          "rerank_score": 0.00017556034435983747
+        },
+        {
+          "chunk_id": "ac87b0b93f36f1ca62835a73",
+          "rank": 100,
+          "before_rerank_rank": 67,
+          "rerank_score": 0.0001557050709379837
+        },
+        {
+          "chunk_id": "137730b89e388f33dd4d7692",
+          "rank": 101,
+          "before_rerank_rank": 77,
+          "rerank_score": 0.00014632786042056978
+        },
+        {
+          "chunk_id": "864c4f57a71feda39ad5e8ab",
+          "rank": 102,
+          "before_rerank_rank": 101,
+          "rerank_score": 0.00013985433906782418
+        },
+        {
+          "chunk_id": "961164cdda9a172692bce82c",
+          "rank": 103,
+          "before_rerank_rank": 86,
+          "rerank_score": 0.00010894406295847148
+        }
+      ],
+      "returned_chunk_ids": [
+        "6d941118fc906ea21ee58302",
+        "b80dfad8674c446c4742c2d1",
+        "c2ad363fd43717dee674d52f",
+        "cfd5cf016d76e5df055bceda",
+        "1d6406df1d90d6310335de50"
+      ],
+      "timings_ms": {
+        "total": 9509.067332954146
+      }
+    },
+    "context_pack": {
+      "evidence": [
+        {
+          "citation_id": "E81323e7463b06b06736e226d",
+          "chunk_id": "6d941118fc906ea21ee58302",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L81-L82",
+          "page": null,
+          "start_line": 81,
+          "end_line": 82,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "**Cache Isolation for Security**\nTo improve privacy in shared environments, vLLM supports isolating prefix cache reuse through optional per-request salting.\nBy including a `cache_salt` in the request, this value is injected into the hash of the first block, ensuring that only requests with the same salt can reuse cached KV blocks.\nThis prevents timing-based attacks where an adversary could infer cached content by observing latency differences.",
+          "truncated": false,
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "condition",
+            "original_lines": [
+              81,
+              82
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "4d76112419b3dedaddc121f8",
+              "5d0deace325a4e6f0db68487",
+              "8d6240eabf6c5fa7554004b0",
+              "c5526f786791064d3e121af5",
+              "fa3783b786a5a34f47d17bd8"
+            ]
+          },
+          "provenance": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "condition",
+            "original_lines": [
+              81,
+              82
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "4d76112419b3dedaddc121f8",
+              "5d0deace325a4e6f0db68487",
+              "8d6240eabf6c5fa7554004b0",
+              "c5526f786791064d3e121af5",
+              "fa3783b786a5a34f47d17bd8"
+            ]
+          }
+        },
+        {
+          "citation_id": "E67bd2114a97b0bf090567874",
+          "chunk_id": "b80dfad8674c446c4742c2d1",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L5-L5",
+          "page": null,
+          "start_line": 5,
+          "end_line": 5,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "While there are many ways to implement prefix caching, vLLM chooses a hash-based approach. Specifically, we hash each kv-cache block by the tokens in the block and the tokens in the prefix before the block:",
+          "truncated": false,
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              5,
+              5
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "7fe8fba98c8538a9fc5039ea",
+              "f745eaf9bb5a6d6eedd27a98"
+            ]
+          },
+          "provenance": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              5,
+              5
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "7fe8fba98c8538a9fc5039ea",
+              "f745eaf9bb5a6d6eedd27a98"
+            ]
+          }
+        },
+        {
+          "citation_id": "E902f962702d6a00dba3300e4",
+          "chunk_id": "c2ad363fd43717dee674d52f",
+          "parent_id": "501fb5b9d6cae14aba5a24b3",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L82-L82",
+          "page": null,
+          "start_line": 82,
+          "end_line": 82,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "新请求进来时，vLLM 逐块计算前缀哈希，拿去缓存表（hash → block ID 的映射）里查：",
+          "truncated": false,
+          "metadata": {
+            "collection": "community",
+            "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+            "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+            "release": null,
+            "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+            "product": null,
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              82,
+              82
+            ],
+            "topic": "3. vLLM 的 Automatic Prefix Caching > 3.2 匹配与复用流程",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "ad1f8f47e87dc5e61b8388d7"
+            ]
+          },
+          "provenance": {
+            "collection": "community",
+            "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+            "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+            "release": null,
+            "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+            "product": null,
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              82,
+              82
+            ],
+            "topic": "3. vLLM 的 Automatic Prefix Caching > 3.2 匹配与复用流程",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "ad1f8f47e87dc5e61b8388d7"
+            ]
+          }
+        },
+        {
+          "citation_id": "E920d5fd30b391d87ed884dfd",
+          "chunk_id": "cfd5cf016d76e5df055bceda",
+          "parent_id": "be99c3f8dc4fc99e4fd4e47c",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L11-L11",
+          "page": null,
+          "start_line": 11,
+          "end_line": 11,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "真实业务里，海量请求往往共享同一段开头——同一个几百 Token 的 System Prompt、同一份 Few-shot 示例、多轮对话里不断重复的历史。每来一个请求就把这段共享前缀重新 Prefill 一遍，是巨大的浪费。Prefix Cache 就是把这段共享前缀的 KV Cache 缓存下来、后续请求直接复用的技术。这一节讲清 vLLM 基于 Hash 的自动前缀缓存怎么工作，以及 SGLang 的 RadixAttention 在此之上的进阶思路。",
+          "truncated": false,
+          "metadata": {
+            "collection": "community",
+            "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+            "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+            "release": null,
+            "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+            "product": null,
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              11,
+              11
+            ],
+            "topic": "",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "cfd5cf016d76e5df055bceda"
+            ]
+          },
+          "provenance": {
+            "collection": "community",
+            "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+            "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+            "release": null,
+            "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+            "product": null,
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              11,
+              11
+            ],
+            "topic": "",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "cfd5cf016d76e5df055bceda"
+            ]
+          }
+        },
+        {
+          "citation_id": "Eb9802a4925e4ae38176f9239",
+          "chunk_id": "1d6406df1d90d6310335de50",
+          "parent_id": "0cac0695b1d49488c0d8172b",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L78-L78",
+          "page": null,
+          "start_line": 78,
+          "end_line": 78,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "💡 **提示**：vLLM 自 v0.11 起默认使用 `sha256` 作为哈希算法，也可通过 `--prefix-caching-hash-algo` 切换为 `sha256_cbor`（跨语言可复现）、`xxhash`、`xxhash_cbor` 等。非加密算法（如 xxhash）更快，但碰撞风险略高。",
+          "truncated": false,
+          "metadata": {
+            "collection": "community",
+            "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+            "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+            "release": null,
+            "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+            "product": null,
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              78,
+              78
+            ],
+            "topic": "3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "b2a05e4b0eca1a58cf6c3a65"
+            ]
+          },
+          "provenance": {
+            "collection": "community",
+            "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+            "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+            "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+            "release": null,
+            "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+            "product": null,
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              78,
+              78
+            ],
+            "topic": "3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "b2a05e4b0eca1a58cf6c3a65"
+            ]
+          }
+        },
+        {
+          "citation_id": "Ec7f61dbe54a702f487007e68",
+          "chunk_id": "99b14eddddc61183dae03fdc",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L3-L3",
+          "page": null,
+          "start_line": 3,
+          "end_line": 3,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "Since prefix caching is almost a free lunch and won’t change model outputs, it has been widely used by many public endpoints (e.g., OpenAI, Anthropic, etc) and most open source LLM inference frameworks (e.g., SGLang).",
+          "truncated": false,
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              3,
+              3
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "7fe8fba98c8538a9fc5039ea",
+              "f745eaf9bb5a6d6eedd27a98"
+            ]
+          },
+          "provenance": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              3,
+              3
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "7fe8fba98c8538a9fc5039ea",
+              "f745eaf9bb5a6d6eedd27a98"
+            ]
+          }
+        },
+        {
+          "citation_id": "Eb3e553641b20c08a05c35bd7",
+          "chunk_id": "2f99e3825a7ab9154b902bf5",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L7-L13",
+          "page": null,
+          "start_line": 7,
+          "end_line": 13,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "```text\n                    Block 1                  Block 2                  Block 3\n         [A gentle breeze stirred] [the leaves as children] [laughed in the distance]\nBlock 1: |<--- block tokens ---->|\nBlock 2: |<------- prefix ------>| |<--- block tokens --->|\nBlock 3: |<------------------ prefix -------------------->| |<--- block tokens ---->|\n```",
+          "truncated": false,
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "code",
+            "original_lines": [
+              7,
+              13
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "description_lines": [
+              5,
+              5
+            ],
+            "original_chunk_ids": [
+              "47a8a3a804e4497c937560cd",
+              "52d06965a14a4454a59d58ee",
+              "94b777157ed4ca867fa7d39a"
+            ]
+          },
+          "provenance": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "code",
+            "original_lines": [
+              7,
+              13
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "description_lines": [
+              5,
+              5
+            ],
+            "original_chunk_ids": [
+              "47a8a3a804e4497c937560cd",
+              "52d06965a14a4454a59d58ee",
+              "94b777157ed4ca867fa7d39a"
+            ]
+          }
+        },
+        {
+          "citation_id": "E80c7850c44b6b66c0d421d0a",
+          "chunk_id": "53a946596df9f0cda230affe",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L79-L79",
+          "page": null,
+          "start_line": 79,
+          "end_line": 79,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "In the rest of this document, we first introduce the data structure used for prefix caching in vLLM v1, followed by the prefix caching workflow of major KV cache operators (e.g., allocate, append, free, eviction). Finally, we use an example to illustrate the end to end prefix caching workflow.",
+          "truncated": false,
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              79,
+              79
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "4d76112419b3dedaddc121f8",
+              "5d0deace325a4e6f0db68487",
+              "8d6240eabf6c5fa7554004b0",
+              "c5526f786791064d3e121af5",
+              "fa3783b786a5a34f47d17bd8"
+            ]
+          },
+          "provenance": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "explanation",
+            "original_lines": [
+              79,
+              79
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "4d76112419b3dedaddc121f8",
+              "5d0deace325a4e6f0db68487",
+              "8d6240eabf6c5fa7554004b0",
+              "c5526f786791064d3e121af5",
+              "fa3783b786a5a34f47d17bd8"
+            ]
+          }
+        },
+        {
+          "citation_id": "E72b9a56cf654f6429a53a8cf",
+          "chunk_id": "f6f8971c767fe84537a9a09c",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L81-L82",
+          "page": null,
+          "start_line": 81,
+          "end_line": 82,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "This offers protection without compromising performance.",
+          "truncated": false,
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "condition",
+            "original_lines": [
+              81,
+              82
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "4d76112419b3dedaddc121f8",
+              "5d0deace325a4e6f0db68487",
+              "8d6240eabf6c5fa7554004b0",
+              "c5526f786791064d3e121af5",
+              "fa3783b786a5a34f47d17bd8"
+            ]
+          },
+          "provenance": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "condition",
+            "original_lines": [
+              81,
+              82
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "4d76112419b3dedaddc121f8",
+              "5d0deace325a4e6f0db68487",
+              "8d6240eabf6c5fa7554004b0",
+              "c5526f786791064d3e121af5",
+              "fa3783b786a5a34f47d17bd8"
+            ]
+          }
+        },
+        {
+          "citation_id": "Ec321150a5b7f3f91dba0cc21",
+          "chunk_id": "acb5b587fd34f6b5beaed8b1",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L1-L1",
+          "page": null,
+          "start_line": 1,
+          "end_line": 1,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "# Automatic Prefix Caching",
+          "truncated": false,
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "heading",
+            "original_lines": [
+              1,
+              1
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "7fe8fba98c8538a9fc5039ea",
+              "f745eaf9bb5a6d6eedd27a98"
+            ]
+          },
+          "provenance": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "heading",
+            "original_lines": [
+              1,
+              1
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "7fe8fba98c8538a9fc5039ea",
+              "f745eaf9bb5a6d6eedd27a98"
+            ]
+          }
+        },
+        {
+          "citation_id": "E303bd4355691dee98763220d",
+          "chunk_id": "1bf7d506989ba2cdb6fd3ce3",
+          "parent_id": "2b1bb7e8a9dfe47e1a43df32",
+          "source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "locator": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md#L21-L22",
+          "page": null,
+          "start_line": 21,
+          "end_line": 22,
+          "modality": "text",
+          "bbox": null,
+          "coordinate_space": null,
+          "image_path": null,
+          "caption_source": null,
+          "caption_locator": null,
+          "content": "!!!",
+          "truncated": true,
+          "metadata": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "condition",
+            "original_lines": [
+              21,
+              22
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "1bf7d506989ba2cdb6fd3ce3"
+            ]
+          },
+          "provenance": {
+            "collection": "official",
+            "document_id": "vllm-prefix_caching",
+            "url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+            "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+            "release": "v0.10.2",
+            "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+            "product": "vllm",
+            "metadata_method": "frozen_manifest",
+            "preprocessing_version": "rules-structure-v1",
+            "body_type": "condition",
+            "original_lines": [
+              21,
+              22
+            ],
+            "topic": "Automatic Prefix Caching",
+            "hardware_mentions": [],
+            "original_chunk_ids": [
+              "1bf7d506989ba2cdb6fd3ce3"
+            ]
+          }
+        }
+      ],
+      "context": "[E81323e7463b06b06736e226d] Automatic Prefix Caching\n**Cache Isolation for Security**\nTo improve privacy in shared environments, vLLM supports isolating prefix cache reuse through optional per-request salting.\nBy including a `cache_salt` in the request, this value is injected into the hash of the first block, ensuring that only requests with the same salt can reuse cached KV blocks.\nThis prevents timing-based attacks where an adversary could infer cached content by observing latency differences.\n\n[E67bd2114a97b0bf090567874] Automatic Prefix Caching\nWhile there are many ways to implement prefix caching, vLLM chooses a hash-based approach. Specifically, we hash each kv-cache block by the tokens in the block and the tokens in the prefix before the block:\n\n[E902f962702d6a00dba3300e4] 3. vLLM 的 Automatic Prefix Caching > 3.2 匹配与复用流程\n新请求进来时，vLLM 逐块计算前缀哈希，拿去缓存表（hash → block ID 的映射）里查：\n\n[E920d5fd30b391d87ed884dfd] \n真实业务里，海量请求往往共享同一段开头——同一个几百 Token 的 System Prompt、同一份 Few-shot 示例、多轮对话里不断重复的历史。每来一个请求就把这段共享前缀重新 Prefill 一遍，是巨大的浪费。Prefix Cache 就是把这段共享前缀的 KV Cache 缓存下来、后续请求直接复用的技术。这一节讲清 vLLM 基于 Hash 的自动前缀缓存怎么工作，以及 SGLang 的 RadixAttention 在此之上的进阶思路。\n\n[Eb9802a4925e4ae38176f9239] 3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"\n💡 **提示**：vLLM 自 v0.11 起默认使用 `sha256` 作为哈希算法，也可通过 `--prefix-caching-hash-algo` 切换为 `sha256_cbor`（跨语言可复现）、`xxhash`、`xxhash_cbor` 等。非加密算法（如 xxhash）更快，但碰撞风险略高。\n\n[Ec7f61dbe54a702f487007e68] Automatic Prefix Caching\nSince prefix caching is almost a free lunch and won’t change model outputs, it has been widely used by many public endpoints (e.g., OpenAI, Anthropic, etc) and most open source LLM inference frameworks (e.g., SGLang).\n\n[Eb3e553641b20c08a05c35bd7] Automatic Prefix Caching\n```text\n                    Block 1                  Block 2                  Block 3\n         [A gentle breeze stirred] [the leaves as children] [laughed in the distance]\nBlock 1: |<--- block tokens ---->|\nBlock 2: |<------- prefix ------>| |<--- block tokens --->|\nBlock 3: |<------------------ prefix -------------------->| |<--- block tokens ---->|\n```\n\n[E80c7850c44b6b66c0d421d0a] Automatic Prefix Caching\nIn the rest of this document, we first introduce the data structure used for prefix caching in vLLM v1, followed by the prefix caching workflow of major KV cache operators (e.g., allocate, append, free, eviction). Finally, we use an example to illustrate the end to end prefix caching workflow.\n\n[E72b9a56cf654f6429a53a8cf] Automatic Prefix Caching\nThis offers protection without compromising performance.\n\n[Ec321150a5b7f3f91dba0cc21] Automatic Prefix Caching\n# Automatic Prefix Caching\n\n[E303bd4355691dee98763220d] Automatic Prefix Caching\n!!!",
+      "budget": {
+        "tokens": 1200,
+        "characters": 4000
+      },
+      "used_tokens": 1199,
+      "used_characters": 2675,
+      "omitted_chunk_ids": [
+        "0e7fd51db46fb0cd2f48256a",
+        "6210f446111fccc709a0c242",
+        "9586f1a07d2ac48817ca2b1d",
+        "87d78b98a276adb2094b86b9",
+        "d2ff94675785a324f32b455e",
+        "10287b33ecfdc4a8f9efc318",
+        "2b8c1c5cd705c5df61f75b41",
+        "aac93702291fd391afe28157",
+        "6fc3257fc3e272de865a0f52",
+        "0d08fcb4e0a57783495580de",
+        "d6b36aa278e1fa44be411f7a",
+        "5b7cc2789bb4972ba7cdfedb",
+        "897f49ec2e20f6289d3cc93b",
+        "4a46ef7f39097cc4b53949b0",
+        "5e35650296a1b55e160fd9e4",
+        "64ab012c7bb54167f11a111f",
+        "080a3e517d2f8e28e1dfee05",
+        "f78d72387d687d19b3cb6f2a",
+        "29ea3b73acdd054804aa1821",
+        "78be0857f598e4d4f695be55",
+        "6bbfa5ed85c9f848211489d0",
+        "026f2d1ff15ebdac67bb02a5",
+        "abef0ff09d8e8cfe1ff7558b",
+        "d1647da694ce2e38122b0ebb"
+      ]
+    }
+  },
+  "chat": {
+    "conversation_id": "02646a81-cabd-4ad6-9e80-cf578a220bc7",
+    "answer": "vLLM 给每个填满的块算哈希，该哈希由三部分组成，除文本（块内 token 内容）外，还包含父块哈希等额外信息，用于刻画“前缀相同”。[E1f07b1f1a9d730299d82fabc][E7f7ed0e551f27212f9e1e0db]",
+    "citations": [
+      {
+        "citation_id": "E1f07b1f1a9d730299d82fabc",
+        "chunk_id": "abef0ff09d8e8cfe1ff7558b",
+        "parent_id": "0cac0695b1d49488c0d8172b",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L66-L66",
+        "page": null,
+        "start_line": 66,
+        "end_line": 66,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "关键问题是：怎么快速判断一个新请求的某个前缀块，和缓存里的某个块\"内容相同\"？vLLM 的做法是给每个**填满的块**算一个哈希值，这个哈希由三部分组成：",
+        "truncated": false,
+        "metadata": {
+          "collection": "community",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "release": null,
+          "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "explanation",
+          "original_lines": [
+            66,
+            66
+          ],
+          "topic": "3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "0cbf7204896b7a78da72feb9"
+          ]
+        },
+        "provenance": {
+          "collection": "community",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "release": null,
+          "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "explanation",
+          "original_lines": [
+            66,
+            66
+          ],
+          "topic": "3. vLLM 的 Automatic Prefix Caching > 3.1 块哈希：如何判断\"前缀相同\"",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "0cbf7204896b7a78da72feb9"
+          ]
+        }
+      },
+      {
+        "citation_id": "E7f7ed0e551f27212f9e1e0db",
+        "chunk_id": "efb19ccfa00975aad3706fe4",
+        "parent_id": "8ba569310b9a3d9d188baa07",
+        "source": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+        "locator": "/Users/jennyma/Projects/InfraAgent/data/datasets/infra-repos-v1/corpus/AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md#L224-L231",
+        "page": null,
+        "start_line": 224,
+        "end_line": 231,
+        "modality": "text",
+        "bbox": null,
+        "coordinate_space": null,
+        "image_path": null,
+        "caption_source": null,
+        "caption_locator": null,
+        "content": "- 能解释为什么\"前缀相同\"的请求可以复用同一份 KV（Attention 因果性）\n- 能说清 Prefix Cache 与 PagedAttention 块共享在时间维度上的联系\n- 能描述 vLLM 块哈希为什么要包含\"父块哈希\"，以及它如何刻画\"前缀相同\"\n- 能说清链式块哈希如何把前缀匹配变成 $O(1)$ 查表，以及为何只缓存填满的块\n- 能说明前缀缓存命中主要优化的是哪个指标（TTFT）及原因\n- 能解释 vLLM 释放块时\"逆序入队\"背后的直觉\n- 能对比 Hash 方案与 RadixAttention 的数据结构与擅长场景\n- 能指出哪些 Prompt 组织方式能/不能命中前缀缓存",
+        "truncated": false,
+        "metadata": {
+          "collection": "community",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "release": null,
+          "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "condition",
+          "original_lines": [
+            224,
+            231
+          ],
+          "topic": "🎯 自我检验清单",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "56a35daa2c4186521f0f43bb"
+          ]
+        },
+        "provenance": {
+          "collection": "community",
+          "document_id": "AIInfraGuide/docs/guides/模块四-推理优化/第2章-推理引擎核心技术/2.3-Prefix Cache 与 RadixAttention.md",
+          "url": "https://github.com/caomaolufei/AIInfraGuide/blob/a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1/docs/guides/%E6%A8%A1%E5%9D%97%E5%9B%9B-%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96/%E7%AC%AC2%E7%AB%A0-%E6%8E%A8%E7%90%86%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/2.3-Prefix%20Cache%20%E4%B8%8E%20RadixAttention.md",
+          "commit": "a3b63eeb81d6d36a3c42c8cfc5a1bdd96e36bab1",
+          "release": null,
+          "sha256": "870f1a0091ee5f5d2079faa925bfeecd788ec5f71e473baf13effd102f56e1cf",
+          "product": null,
+          "metadata_method": "frozen_manifest",
+          "preprocessing_version": "rules-structure-v1",
+          "body_type": "condition",
+          "original_lines": [
+            224,
+            231
+          ],
+          "topic": "🎯 自我检验清单",
+          "hardware_mentions": [],
+          "original_chunk_ids": [
+            "56a35daa2c4186521f0f43bb"
+          ]
+        }
+      }
+    ],
+    "status": "answered",
+    "trace": [
+      {
+        "step": "query_translate",
+        "original_query": "vLLM v0.10.2：缓存块身份除了文本还需要哪些额外哈希？",
+        "english_query": "vLLM v0.10.2: What additional hashes are needed for cache block identity besides the text?",
+        "mode": "by_collection",
+        "cached": false,
+        "duration_ms": 756.1
+      },
+      {
+        "step": "retrieve",
+        "duration_ms": 7266.9,
+        "query": "vLLM v0.10.2：缓存块身份除了文本还需要哪些额外哈希？",
+        "hits": 5,
+        "evidence": 10
+      },
+      {
+        "step": "generate",
+        "duration_ms": 1335.3,
+        "provider": "anthropic-compatible",
+        "model": "deepseek-flash",
+        "validated": true
+      }
+    ]
+  },
+  "http_status": {
+    "search": 200,
+    "chat": 200,
+    "ingest": 422,
+    "delete": 409
+  }
+}

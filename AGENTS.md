@@ -36,8 +36,12 @@ Name tests `tests/test_*.py` and functions `test_*`. Use pytest fixtures and tem
 
 ## Commit & Pull Request Guidelines
 
-This workspace has no Git history available, so no existing commit convention can be verified. Use concise imperative messages, such as `Fix lexical cache invalidation`. PRs should describe the problem, behavior changes, validation commands, and relevant issues. For retrieval changes, include dataset and configuration details alongside measured results.
+Use concise imperative messages, such as `Fix lexical cache invalidation`. PRs should describe the problem, behavior changes, validation commands, and relevant issues. For retrieval changes, include dataset and configuration details alongside measured results.
 
 ## Dataset & Configuration Discipline
 
 Use dev queries for tuning; keep test queries fixed. Preserve repository commits, hashes, and evidence provenance. Label AI-authored datasets accurately and disclose sparse relevance judgments. Never ingest benchmark questions or answers into the knowledge corpus. Use separate index directories when changing fingerprinted settings. Keep credentials in ignored `.env` files.
+
+## Agent Evaluation Rules
+
+Follow [Agent.md](Agent.md) for operation logging and Agent evaluation requirements, including metric denominators, hard gates, evidence review, trace collection, and experiment reporting. Detailed formulas and scorer usage are documented in [the evaluation guide](docs/agent-evaluation-rules.md).

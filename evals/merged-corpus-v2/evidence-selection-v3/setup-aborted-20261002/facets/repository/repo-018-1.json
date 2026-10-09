@@ -1,0 +1,37 @@
+{
+  "original_query": "SmoothQuant针对激活离群值采用什么变换？",
+  "scoring_query": "SmoothQuant针对激活离群值采用什么变换？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "SmoothQuant针对激活离群值采用什么变换？",
+      "anchor_quote": "SmoothQuant针对激活离群值采用什么变换？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"SmoothQuant针对激活离群值采用什么变换？\", \"scoring_query\": \"SmoothQuant针对激活离群值采用什么变换？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"SmoothQuant针对激活离群值采用什么变换？\",\"anchor_quote\":\"SmoothQuant针对激活离群值采用什么变换？\"}]}",
+  "provider_response": {
+    "id": "272fadb2-9056-4fae-b2ee-6400f71e60d9",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 157,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 39,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 753.0254588928074,
+  "sha256": "3055afc24621fecee7ab7d8a7c282fabcec54ff13f0bc4dc40c4ac09ed979030"
+}

@@ -1,0 +1,37 @@
+{
+  "original_query": "参数已经分片但前向激活仍占太多显存，还可以在哪些中间结果上选择保存或重算？",
+  "scoring_query": "参数已经分片但前向激活仍占太多显存，还可以在哪些中间结果上选择保存或重算？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "参数已经分片但前向激活仍占太多显存时，可以在哪些中间结果上选择保存或重算？",
+      "anchor_quote": "参数已经分片但前向激活仍占太多显存，还可以在哪些中间结果上选择保存或重算？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"参数已经分片但前向激活仍占太多显存，还可以在哪些中间结果上选择保存或重算？\", \"scoring_query\": \"参数已经分片但前向激活仍占太多显存，还可以在哪些中间结果上选择保存或重算？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"参数已经分片但前向激活仍占太多显存时，可以在哪些中间结果上选择保存或重算？\",\"anchor_quote\":\"参数已经分片但前向激活仍占太多显存，还可以在哪些中间结果上选择保存或重算？\"}]}",
+  "provider_response": {
+    "id": "01a09dc3-97cc-4f9a-8b20-0f57cca85271",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 185,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 67,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 662.867832928896,
+  "sha256": "2d3fcc4da3c172914b939de06971200c853491851be37fdb6f6833ac97f59273"
+}

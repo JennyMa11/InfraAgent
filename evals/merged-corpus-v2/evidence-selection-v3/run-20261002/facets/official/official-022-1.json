@@ -1,0 +1,49 @@
+{
+  "original_query": "CUDA 13.0.1：local与shared memory的作用域和生命周期有何区别？",
+  "scoring_query": "CUDA 13.0.1: What are the differences between local and shared memory in terms of scope and lifetime?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In CUDA 13.0.1, what is the scope of local memory?",
+      "anchor_quote": "local与shared memory的作用域和生命周期有何区别？"
+    },
+    {
+      "question": "In CUDA 13.0.1, what is the lifetime of local memory?",
+      "anchor_quote": "local与shared memory的作用域和生命周期有何区别？"
+    },
+    {
+      "question": "In CUDA 13.0.1, what is the scope of shared memory?",
+      "anchor_quote": "local与shared memory的作用域和生命周期有何区别？"
+    },
+    {
+      "question": "In CUDA 13.0.1, what is the lifetime of shared memory?",
+      "anchor_quote": "local与shared memory的作用域和生命周期有何区别？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：local与shared memory的作用域和生命周期有何区别？\", \"scoring_query\": \"CUDA 13.0.1: What are the differences between local and shared memory in terms of scope and lifetime?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In CUDA 13.0.1, what is the scope of local memory?\",\"anchor_quote\":\"local与shared memory的作用域和生命周期有何区别？\"},{\"question\":\"In CUDA 13.0.1, what is the lifetime of local memory?\",\"anchor_quote\":\"local与shared memory的作用域和生命周期有何区别？\"},{\"question\":\"In CUDA 13.0.1, what is the scope of shared memory?\",\"anchor_quote\":\"local与shared memory的作用域和生命周期有何区别？\"},{\"question\":\"In CUDA 13.0.1, what is the lifetime of shared memory?\",\"anchor_quote\":\"local与shared memory的作用域和生命周期有何区别？\"}]}",
+  "provider_response": {
+    "id": "47e65bc7-dadb-4604-8a5b-d81a152a7dc7",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 177,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 158,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 1231.6951249958947,
+  "sha256": "1758ad4ff3fc5a0d2011448b70d6d83b07589bcfb597d128f30d4cbcf1bbdd05"
+}

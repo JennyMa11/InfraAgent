@@ -1,0 +1,37 @@
+{
+  "original_query": "SGLang v0.5.2：请求JSON中想启用贪心采样，temperature应设置成多少？",
+  "scoring_query": "SGLang v0.5.2: To enable greedy sampling in the request JSON, what should temperature be set to?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In SGLang v0.5.2, to enable greedy sampling in the request JSON, what should temperature be set to?",
+      "anchor_quote": "请求JSON中想启用贪心采样，temperature应设置成多少？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"SGLang v0.5.2：请求JSON中想启用贪心采样，temperature应设置成多少？\", \"scoring_query\": \"SGLang v0.5.2: To enable greedy sampling in the request JSON, what should temperature be set to?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In SGLang v0.5.2, to enable greedy sampling in the request JSON, what should temperature be set to?\",\"anchor_quote\":\"请求JSON中想启用贪心采样，temperature应设置成多少？\"}]}",
+  "provider_response": {
+    "id": "395d4e50-d843-457f-bdf8-1c96d360afe4",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 183,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 57,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 604.7302499646321,
+  "sha256": "2fb32ba3979145781de53a5387fe12387823fd49cdb801e10b336f90b83d5c05"
+}

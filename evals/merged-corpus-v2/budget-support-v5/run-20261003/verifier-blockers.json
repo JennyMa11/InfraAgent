@@ -1,0 +1,21 @@
+[
+  {
+    "review_key": "official:official-002-4:B-T5:G0:r1",
+    "id": "official-002-4",
+    "prompt": "G0",
+    "repetition": 1,
+    "verdict": "unsupported",
+    "issues": [
+      {
+        "claim": "因此，即使两个 LoRA 请求的文本相同，缓存键仍需额外区分身份，因为不同 LoRA 适配器由全局唯一 ID 标识，身份不同则适配器不同 [E84032c59952b25f6711a2833]。",
+        "citation_ids": [
+          "E84032c59952b25f6711a2833"
+        ],
+        "type": "missing",
+        "reason": "证据仅说明 LoRARequest 的第二个参数是适配器的全局唯一 ID，并未提及缓存键、缓存键需额外区分身份，或文本相同与缓存键之间的关系；该结论缺少直接支持。"
+      }
+    ],
+    "verification_error": null,
+    "answer": "服务模型支持 LoRA 时，可用 `--lora-modules {name}={path}` 在启动服务器时指定 LoRA 模块 [E5e801c761a85c7d2f8d43c6d]。提交请求时通过 `lora_request` 参数调用，其中 `LoRARequest` 的第一个参数是人类可识别的名称，第二个参数是适配器的全局唯一 ID，第三个参数是 LoRA 适配器路径 [E84032c59952b25f6711a2833]。因此，即使两个 LoRA 请求的文本相同，缓存键仍需额外区分身份，因为不同 LoRA 适配器由全局唯一 ID 标识，身份不同则适配器不同 [E84032c59952b25f6711a2833]。"
+  }
+]

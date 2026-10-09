@@ -1,0 +1,41 @@
+{
+  "original_query": "vLLM v0.10.2：根据SGLang说明先识别分离阶段的作用，再依据vLLM限制判断能否把解耦直接当作吞吐提升保证。",
+  "scoring_query": "vLLM v0.10.2: According to the SGLang description, first identify the role of the disaggregation phase, then based on vLLM limitations determine whether decoupling can be directly treated as a guarantee of throughput improvement.",
+  "language": "English",
+  "facets": [
+    {
+      "question": "According to the SGLang description, what is the role of the disaggregation phase?",
+      "anchor_quote": "根据SGLang说明先识别分离阶段的作用"
+    },
+    {
+      "question": "Based on vLLM v0.10.2 limitations, can decoupling be directly treated as a guarantee of throughput improvement?",
+      "anchor_quote": "再依据vLLM限制判断能否把解耦直接当作吞吐提升保证"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"vLLM v0.10.2：根据SGLang说明先识别分离阶段的作用，再依据vLLM限制判断能否把解耦直接当作吞吐提升保证。\", \"scoring_query\": \"vLLM v0.10.2: According to the SGLang description, first identify the role of the disaggregation phase, then based on vLLM limitations determine whether decoupling can be directly treated as a guarantee of throughput improvement.\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"According to the SGLang description, what is the role of the disaggregation phase?\",\"anchor_quote\":\"根据SGLang说明先识别分离阶段的作用\"},{\"question\":\"Based on vLLM v0.10.2 limitations, can decoupling be directly treated as a guarantee of throughput improvement?\",\"anchor_quote\":\"再依据vLLM限制判断能否把解耦直接当作吞吐提升保证\"}]}",
+  "provider_response": {
+    "id": "9be091e2-b1d0-4220-84a6-84bb2ac14a1c",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 221,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 95,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 913.1958750076592,
+  "sha256": "017235ff83ef84a0c1051d09b10c152a68ffdb98481d6fad28c88d4a167c7e14"
+}

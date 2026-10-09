@@ -1,0 +1,45 @@
+{
+  "original_query": "同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？",
+  "scoring_query": "同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "同一模型的序列长度翻倍时，KV Cache容量大致变为几倍？",
+      "anchor_quote": "同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？"
+    },
+    {
+      "question": "同一模型的并发数翻倍时，KV Cache容量大致变为几倍？",
+      "anchor_quote": "同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？"
+    },
+    {
+      "question": "同一模型的序列长度和并发数都翻倍时，KV Cache容量大致变为几倍？",
+      "anchor_quote": "同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？\", \"scoring_query\": \"同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"同一模型的序列长度翻倍时，KV Cache容量大致变为几倍？\",\"anchor_quote\":\"同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？\"},{\"question\":\"同一模型的并发数翻倍时，KV Cache容量大致变为几倍？\",\"anchor_quote\":\"同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？\"},{\"question\":\"同一模型的序列长度和并发数都翻倍时，KV Cache容量大致变为几倍？\",\"anchor_quote\":\"同一模型的序列长度和并发数都翻倍，KV Cache容量大致变为几倍？\"}]}",
+  "provider_response": {
+    "id": "c95eb2b9-baf0-4c9b-b14f-d1c02d11db39",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 171,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 142,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 941.9636249076575,
+  "sha256": "40592fd854c8600e3afb893c98726ae428adf15817b4164ab6c96d84fef48dbd"
+}

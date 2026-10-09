@@ -1,0 +1,37 @@
+{
+  "original_query": "不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？",
+  "scoring_query": "不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？",
+  "language": "Chinese",
+  "facets": [
+    {
+      "question": "不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？",
+      "anchor_quote": "不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？\", \"scoring_query\": \"不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？\", \"output_language\": \"Chinese\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？\",\"anchor_quote\":\"不想训练完整小语言模型，而想利用Target隐藏特征生成草稿，应考虑哪条投机路线？\"}]}",
+  "provider_response": {
+    "id": "e234e735-c956-4e30-a357-4fd61f92e16a",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 179,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 61,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 431.19883292820305,
+  "sha256": "9e356513cc79031eb920f0c2df400799921d8689ef8f15dd2f62639524ba6594"
+}

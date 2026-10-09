@@ -1,0 +1,137 @@
+Building prefix dict from the default dictionary ...
+Loading model from cache /var/folders/bb/2w2254vn1qd13jb1gtq3l7m80000gn/T/jieba.cache
+Loading model cost 0.187 seconds.
+Prefix dict has been built successfully.
+frozen replay complete
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (599 > 512). Running this sequence through the model will result in indexing errors
+Loading weights:   0%|          | 0/71 [00:00<?, ?it/s]Loading weights: 100%|██████████| 71/71 [00:00<00:00, 10504.99it/s]
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 8929.72it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (556 > 512). Running this sequence through the model will result in indexing errors
+encoding adjacency views 16320
+retrieval 1 110 official official-002-1
+retrieval 2 110 official official-002-2
+retrieval 3 110 official official-002-3
+retrieval 4 110 official official-002-4
+retrieval 5 110 official official-004-1
+retrieval 6 110 official official-004-2
+retrieval 7 110 official official-004-3
+retrieval 8 110 official official-004-4
+retrieval 9 110 official official-005-1
+retrieval 10 110 official official-005-2
+retrieval 11 110 official official-005-3
+retrieval 12 110 official official-005-4
+retrieval 13 110 official official-008-1
+retrieval 14 110 official official-008-2
+retrieval 15 110 official official-008-3
+retrieval 16 110 official official-008-4
+retrieval 17 110 official official-010-1
+retrieval 18 110 official official-010-2
+retrieval 19 110 official official-010-3
+retrieval 20 110 official official-010-4
+retrieval 21 110 official official-012-1
+retrieval 22 110 official official-012-2
+retrieval 23 110 official official-012-3
+retrieval 24 110 official official-012-4
+retrieval 25 110 official official-014-1
+retrieval 26 110 official official-014-2
+retrieval 27 110 official official-014-3
+retrieval 28 110 official official-014-4
+retrieval 29 110 official official-016-1
+retrieval 30 110 official official-016-2
+retrieval 31 110 official official-016-3
+retrieval 32 110 official official-016-4
+retrieval 33 110 official official-017-1
+retrieval 34 110 official official-017-2
+retrieval 35 110 official official-017-3
+retrieval 36 110 official official-017-4
+retrieval 37 110 official official-020-1
+retrieval 38 110 official official-020-2
+retrieval 39 110 official official-020-3
+retrieval 40 110 official official-020-4
+retrieval 41 110 official official-022-1
+retrieval 42 110 official official-022-2
+retrieval 43 110 official official-022-3
+retrieval 44 110 official official-022-4
+retrieval 45 110 official official-024-1
+retrieval 46 110 official official-024-2
+retrieval 47 110 official official-024-3
+retrieval 48 110 official official-024-4
+retrieval 49 110 official official-026-1
+retrieval 50 110 official official-026-2
+retrieval 51 110 official official-026-3
+retrieval 52 110 official official-026-4
+retrieval 53 110 official official-028-1
+retrieval 54 110 official official-028-2
+retrieval 55 110 official official-028-3
+retrieval 56 110 official official-028-4
+retrieval 57 110 official official-030-1
+retrieval 58 110 official official-030-2
+retrieval 59 110 official official-030-3
+retrieval 60 110 official official-030-4
+retrieval 61 110 repository repo-002-1
+retrieval 62 110 repository repo-002-2
+retrieval 63 110 repository repo-014-1
+retrieval 64 110 repository repo-014-2
+retrieval 65 110 repository repo-016-1
+retrieval 66 110 repository repo-016-2
+retrieval 67 110 repository repo-017-1
+retrieval 68 110 repository repo-017-2
+retrieval 69 110 repository repo-018-1
+retrieval 70 110 repository repo-018-2
+retrieval 71 110 repository repo-020-1
+retrieval 72 110 repository repo-020-2
+retrieval 73 110 repository repo-022-1
+retrieval 74 110 repository repo-022-2
+retrieval 75 110 repository repo-025-1
+retrieval 76 110 repository repo-025-2
+retrieval 77 110 repository repo-032-1
+retrieval 78 110 repository repo-032-2
+retrieval 79 110 repository repo-035-1
+retrieval 80 110 repository repo-035-2
+retrieval 81 110 repository repo-037-1
+retrieval 82 110 repository repo-037-2
+retrieval 83 110 repository repo-038-1
+retrieval 84 110 repository repo-038-2
+retrieval 85 110 repository repo-042-1
+retrieval 86 110 repository repo-042-2
+retrieval 87 110 repository repo-044-1
+retrieval 88 110 repository repo-044-2
+retrieval 89 110 repository repo-045-1
+retrieval 90 110 repository repo-045-2
+retrieval 91 110 repository repo-046-1
+retrieval 92 110 repository repo-046-2
+retrieval 93 110 repository repo-047-1
+retrieval 94 110 repository repo-047-2
+retrieval 95 110 repository repo-048-1
+retrieval 96 110 repository repo-048-2
+retrieval 97 110 repository repo-049-1
+Traceback (most recent call last):
+  File "/Users/jennyma/Projects/InfraAgent/scripts/benchmark_original_rag_v7.py", line 878, in <module>
+    main()
+  File "/Users/jennyma/Projects/InfraAgent/scripts/benchmark_original_rag_v7.py", line 852, in main
+    retrieval(run, engine, mapping, bundles, facets, chunks, count)
+  File "/Users/jennyma/Projects/InfraAgent/scripts/benchmark_original_rag_v7.py", line 505, in retrieval
+    output = evaluation(row, arm, bundle, chunks, count)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jennyma/Projects/InfraAgent/scripts/benchmark_original_rag_v7.py", line 166, in evaluation
+    chosen, context, trace = pack_bundle(bundle, chunks, scoring, count, frontier_ids=frontier)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jennyma/Projects/InfraAgent/src/infra_rag/original_rag_experiments.py", line 156, in pack_bundle
+    return p.pack(limit=8, length_power=0.0, protect=1, neighbors=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jennyma/Projects/InfraAgent/src/infra_rag/budget_ablation.py", line 117, in pack
+    if not fits(texts[cid]):
+           ^^^^^^^^^^^^^^^^
+  File "/Users/jennyma/Projects/InfraAgent/src/infra_rag/budget_ablation.py", line 95, in fits
+    return len(combined) <= char_budget and self.count(combined) <= token_budget
+                                            ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jennyma/Projects/InfraAgent/scripts/benchmark_original_rag_v7.py", line 159, in count
+    return len(tokenizer.encode(text, add_special_tokens=False))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jennyma/Projects/InfraAgent/.venv/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 2278, in encode
+    encoded_inputs = self._encode_plus(
+                     ^^^^^^^^^^^^^^^^^^
+  File "/Users/jennyma/Projects/InfraAgent/.venv/lib/python3.12/site-packages/transformers/tokenization_utils_tokenizers.py", line 1074, in _encode_plus
+    encodings = self._tokenizer.encode_batch(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

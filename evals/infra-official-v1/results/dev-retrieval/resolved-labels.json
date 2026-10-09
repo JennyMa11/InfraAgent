@@ -1,0 +1,4273 @@
+{
+  "derived_after_run": true,
+  "purpose": "audit metadata only; no new rankings or label changes",
+  "index_sha256": "09617fc2d86ef0d1b43cfca8cf7aa6a583b6a7937b537f8bba16abc61f9b545a",
+  "dev_sha256": "d61141876792f17453bdad54ab7a963dd00750681d0b1bb4ad77e251a61ab691",
+  "rows_verified": 216,
+  "gold": {
+    "official-002-1": {
+      "id": "official-002-1",
+      "group_id": "official-scenario-002",
+      "query": "vLLM v0.10.2：缓存块身份除了文本还需要哪些额外哈希？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "额外哈希包含LoRA ID、多模态输入哈希和租户隔离盐。"
+        ],
+        "forbidden_claims": [
+          "缓存键只需文本token，适配器和图像不影响身份。"
+        ]
+      },
+      "expected_answer": "额外哈希包含LoRA ID、多模态输入哈希和租户隔离盐。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-prefix_caching",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "text": "Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+          "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 19,
+          "line_end": 19,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-prefix_caching",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+              "text": "Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 19,
+              "line_end": 19,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md"
+            }
+          ],
+          "requirements": [
+            [
+              "94b777157ed4ca867fa7d39a"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "94b777157ed4ca867fa7d39a"
+      ]
+    },
+    "official-002-2": {
+      "id": "official-002-2",
+      "group_id": "official-scenario-002",
+      "query": "vLLM v0.10.2：两个适配器使用相同文本，是否可以只按文本共享缓存？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "额外哈希包含LoRA ID、多模态输入哈希和租户隔离盐。"
+        ],
+        "forbidden_claims": [
+          "缓存键只需文本token，适配器和图像不影响身份。"
+        ]
+      },
+      "expected_answer": "额外哈希包含LoRA ID、多模态输入哈希和租户隔离盐。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-prefix_caching",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "text": "Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+          "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 19,
+          "line_end": 19,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-prefix_caching",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+              "text": "Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 19,
+              "line_end": 19,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md"
+            }
+          ],
+          "requirements": [
+            [
+              "94b777157ed4ca867fa7d39a"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "94b777157ed4ca867fa7d39a"
+      ]
+    },
+    "official-002-3": {
+      "id": "official-002-3",
+      "group_id": "official-scenario-002",
+      "query": "vLLM v0.10.2：多租户前缀相同但需要隔离，应检查缓存键中的什么信息？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "额外哈希包含LoRA ID、多模态输入哈希和租户隔离盐。"
+        ],
+        "forbidden_claims": [
+          "缓存键只需文本token，适配器和图像不影响身份。"
+        ]
+      },
+      "expected_answer": "额外哈希包含LoRA ID、多模态输入哈希和租户隔离盐。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-prefix_caching",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "text": "Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+          "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 19,
+          "line_end": 19,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-prefix_caching",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+              "text": "Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 19,
+              "line_end": 19,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md"
+            }
+          ],
+          "requirements": [
+            [
+              "94b777157ed4ca867fa7d39a"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "94b777157ed4ca867fa7d39a"
+      ]
+    },
+    "official-002-4": {
+      "id": "official-002-4",
+      "group_id": "official-scenario-002",
+      "query": "vLLM v0.10.2：先确认服务模型支持LoRA，再考虑两个LoRA请求文本相同，为什么缓存键仍需额外区分身份？",
+      "question_type": "multi_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "额外哈希包含LoRA ID、多模态输入哈希和租户隔离盐。",
+          "服务模型须支持LoRA；切换适配器时缓存键还需要适配器身份。"
+        ],
+        "forbidden_claims": [
+          "缓存键只需文本token，适配器和图像不影响身份。"
+        ]
+      },
+      "expected_answer": "额外哈希包含LoRA ID、多模态输入哈希和租户隔离盐。；服务模型须支持LoRA；切换适配器时缓存键还需要适配器身份。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-prefix_caching",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+          "text": "Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+          "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 19,
+          "line_end": 19,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+          "coordinate": "normalized frozen document lines"
+        },
+        {
+          "document_id": "vllm-lora",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-lora.md",
+          "text": "LoRA adapters can be used with any vLLM model that implements",
+          "sha256": "ea46686b99b86733243e952f49574c17f9011b5a96ca270a48f4d140c1a3d6c8",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 5,
+          "line_end": 5,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/lora.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-prefix_caching",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md",
+              "text": "Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+              "sha256": "0a8a9e9095055c4f8e0cdaf078e3194ab06428222d65abb9c827f6879607ce61",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 19,
+              "line_end": 19,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/design/prefix_caching.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-prefix_caching.md"
+            },
+            {
+              "document_id": "vllm-lora",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-lora.md",
+              "text": "LoRA adapters can be used with any vLLM model that implements",
+              "sha256": "ea46686b99b86733243e952f49574c17f9011b5a96ca270a48f4d140c1a3d6c8",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 5,
+              "line_end": 5,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/lora.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-lora.md"
+            }
+          ],
+          "requirements": [
+            [
+              "94b777157ed4ca867fa7d39a"
+            ],
+            [
+              "f708ecd1d6d6d4a455053055"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [
+        "先由第一段证据确定适用条件或技术对象。",
+        "用该条件关联第二份资料，给出配置或收益边界。"
+      ],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "94b777157ed4ca867fa7d39a",
+        "f708ecd1d6d6d4a455053055"
+      ]
+    },
+    "official-004-1": {
+      "id": "official-004-1",
+      "group_id": "official-scenario-004",
+      "query": "vLLM v0.10.2：Ampere在此版本支持的FP8配置与kernel是什么？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "Ampere的该支持是使用Marlin的W8A16权重量化。"
+        ],
+        "forbidden_claims": [
+          "Ampere文档中的该支持等同于W8A8。"
+        ]
+      },
+      "expected_answer": "Ampere的该支持是使用Marlin的W8A16权重量化。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-fp8",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-fp8.md",
+          "text": "Ampere GPUs are supported for W8A16 (weight-only FP8) utilizing Marlin kernels.",
+          "sha256": "a8df8bd97e708315f83286e9390250a0e8292d8d205fe4c12e2a1ff23dadfb43",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 5,
+          "line_end": 5,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/quantization/fp8.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-fp8",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-fp8.md",
+              "text": "Ampere GPUs are supported for W8A16 (weight-only FP8) utilizing Marlin kernels.",
+              "sha256": "a8df8bd97e708315f83286e9390250a0e8292d8d205fe4c12e2a1ff23dadfb43",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 5,
+              "line_end": 5,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/quantization/fp8.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-fp8.md"
+            }
+          ],
+          "requirements": [
+            [
+              "a2df220c82c59eb08a6b868e"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "a2df220c82c59eb08a6b868e"
+      ]
+    },
+    "official-004-2": {
+      "id": "official-004-2",
+      "group_id": "official-scenario-004",
+      "query": "vLLM v0.10.2：能否把Ampere的W8A16支持解释为W8A8？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "Ampere的该支持是使用Marlin的W8A16权重量化。"
+        ],
+        "forbidden_claims": [
+          "Ampere文档中的该支持等同于W8A8。"
+        ]
+      },
+      "expected_answer": "Ampere的该支持是使用Marlin的W8A16权重量化。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-fp8",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-fp8.md",
+          "text": "Ampere GPUs are supported for W8A16 (weight-only FP8) utilizing Marlin kernels.",
+          "sha256": "a8df8bd97e708315f83286e9390250a0e8292d8d205fe4c12e2a1ff23dadfb43",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 5,
+          "line_end": 5,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/quantization/fp8.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-fp8",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-fp8.md",
+              "text": "Ampere GPUs are supported for W8A16 (weight-only FP8) utilizing Marlin kernels.",
+              "sha256": "a8df8bd97e708315f83286e9390250a0e8292d8d205fe4c12e2a1ff23dadfb43",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 5,
+              "line_end": 5,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/quantization/fp8.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-fp8.md"
+            }
+          ],
+          "requirements": [
+            [
+              "a2df220c82c59eb08a6b868e"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "a2df220c82c59eb08a6b868e"
+      ]
+    },
+    "official-004-3": {
+      "id": "official-004-3",
+      "group_id": "official-scenario-004",
+      "query": "vLLM v0.10.2：在Ampere部署FP8模型时把激活也按8bit支持处理，应先核对哪个限制？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "Ampere的该支持是使用Marlin的W8A16权重量化。"
+        ],
+        "forbidden_claims": [
+          "Ampere文档中的该支持等同于W8A8。"
+        ]
+      },
+      "expected_answer": "Ampere的该支持是使用Marlin的W8A16权重量化。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-fp8",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-fp8.md",
+          "text": "Ampere GPUs are supported for W8A16 (weight-only FP8) utilizing Marlin kernels.",
+          "sha256": "a8df8bd97e708315f83286e9390250a0e8292d8d205fe4c12e2a1ff23dadfb43",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 5,
+          "line_end": 5,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/quantization/fp8.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-fp8",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-fp8.md",
+              "text": "Ampere GPUs are supported for W8A16 (weight-only FP8) utilizing Marlin kernels.",
+              "sha256": "a8df8bd97e708315f83286e9390250a0e8292d8d205fe4c12e2a1ff23dadfb43",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 5,
+              "line_end": 5,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/quantization/fp8.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-fp8.md"
+            }
+          ],
+          "requirements": [
+            [
+              "a2df220c82c59eb08a6b868e"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "a2df220c82c59eb08a6b868e"
+      ]
+    },
+    "official-004-4": {
+      "id": "official-004-4",
+      "group_id": "official-scenario-004",
+      "query": "vLLM v0.10.2：先界定vLLM Ampere FP8支持的精度组合，再判断能否把它照搬到SGLang AMD DeepSeekV3，应核对PR中的哪种FP8格式？",
+      "question_type": "multi_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "Ampere的该支持是使用Marlin的W8A16权重量化。",
+          "Ampere的W8A16不是通用W8A8保证；AMD DeepSeekV3修复另涉及e4m3fnuz，需按硬件和模型核验。"
+        ],
+        "forbidden_claims": [
+          "Ampere文档中的该支持等同于W8A8。"
+        ]
+      },
+      "expected_answer": "Ampere的该支持是使用Marlin的W8A16权重量化。；Ampere的W8A16不是通用W8A8保证；AMD DeepSeekV3修复另涉及e4m3fnuz，需按硬件和模型核验。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-fp8",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-fp8.md",
+          "text": "Ampere GPUs are supported for W8A16 (weight-only FP8) utilizing Marlin kernels.",
+          "sha256": "a8df8bd97e708315f83286e9390250a0e8292d8d205fe4c12e2a1ff23dadfb43",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 5,
+          "line_end": 5,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/quantization/fp8.md",
+          "coordinate": "normalized frozen document lines"
+        },
+        {
+          "document_id": "sglang-pr-2601",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-pr-2601.md",
+          "text": "Add proper fix for AMD FP8 ```e4m3fnuz``` to support DeepseekV3 FP8 model",
+          "sha256": "e28cfb8d7430a6e546c1052f45e6c67fc4244acc4b891214436e8c516f6ac88f",
+          "commit": "c7ae474a49f9167c6ef3046c5a968e1442b926c8",
+          "release": "historical fix",
+          "line_start": 9,
+          "line_end": 9,
+          "source_url": "https://github.com/sgl-project/sglang/pull/2601",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-fp8",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-fp8.md",
+              "text": "Ampere GPUs are supported for W8A16 (weight-only FP8) utilizing Marlin kernels.",
+              "sha256": "a8df8bd97e708315f83286e9390250a0e8292d8d205fe4c12e2a1ff23dadfb43",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 5,
+              "line_end": 5,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/quantization/fp8.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-fp8.md"
+            },
+            {
+              "document_id": "sglang-pr-2601",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-pr-2601.md",
+              "text": "Add proper fix for AMD FP8 ```e4m3fnuz``` to support DeepseekV3 FP8 model",
+              "sha256": "e28cfb8d7430a6e546c1052f45e6c67fc4244acc4b891214436e8c516f6ac88f",
+              "commit": "c7ae474a49f9167c6ef3046c5a968e1442b926c8",
+              "release": "historical fix",
+              "line_start": 9,
+              "line_end": 9,
+              "source_url": "https://github.com/sgl-project/sglang/pull/2601",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-pr-2601.md"
+            }
+          ],
+          "requirements": [
+            [
+              "a2df220c82c59eb08a6b868e"
+            ],
+            [
+              "d8d46d9520e81b96110bb9de"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [
+        "先由第一段证据确定适用条件或技术对象。",
+        "用该条件关联第二份资料，给出配置或收益边界。"
+      ],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "a2df220c82c59eb08a6b868e",
+        "d8d46d9520e81b96110bb9de"
+      ]
+    },
+    "official-005-1": {
+      "id": "official-005-1",
+      "group_id": "official-scenario-005",
+      "query": "vLLM v0.10.2：KV空间不足导致抢占后，请求如何恢复执行？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "被抢占请求会在KV空间足够时重新计算。"
+        ],
+        "forbidden_claims": [
+          "抢占后请求必然丢弃或无需重新计算。"
+        ]
+      },
+      "expected_answer": "被抢占请求会在KV空间足够时重新计算。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-optimization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-optimization.md",
+          "text": "Preempted requests are recomputed when sufficient KV cache space becomes\navailable again.",
+          "sha256": "3e1569ff97083516ee6a7df4da07712ace4c5d7cfafb9e7a328ce2583d24dacb",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 11,
+          "line_end": 12,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/optimization.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-optimization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-optimization.md",
+              "text": "Preempted requests are recomputed when sufficient KV cache space becomes\navailable again.",
+              "sha256": "3e1569ff97083516ee6a7df4da07712ace4c5d7cfafb9e7a328ce2583d24dacb",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 11,
+              "line_end": 12,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/optimization.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-optimization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "88cacc10b75c5c9ac0694b09"
+            ],
+            [
+              "55f4b5efc12621b5a5ce8e2b"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "55f4b5efc12621b5a5ce8e2b",
+        "88cacc10b75c5c9ac0694b09"
+      ]
+    },
+    "official-005-2": {
+      "id": "official-005-2",
+      "group_id": "official-scenario-005",
+      "query": "vLLM v0.10.2：抢占是否意味着后续恢复完全不需要重算？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "被抢占请求会在KV空间足够时重新计算。"
+        ],
+        "forbidden_claims": [
+          "抢占后请求必然丢弃或无需重新计算。"
+        ]
+      },
+      "expected_answer": "被抢占请求会在KV空间足够时重新计算。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-optimization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-optimization.md",
+          "text": "Preempted requests are recomputed when sufficient KV cache space becomes\navailable again.",
+          "sha256": "3e1569ff97083516ee6a7df4da07712ace4c5d7cfafb9e7a328ce2583d24dacb",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 11,
+          "line_end": 12,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/optimization.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-optimization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-optimization.md",
+              "text": "Preempted requests are recomputed when sufficient KV cache space becomes\navailable again.",
+              "sha256": "3e1569ff97083516ee6a7df4da07712ace4c5d7cfafb9e7a328ce2583d24dacb",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 11,
+              "line_end": 12,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/optimization.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-optimization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "88cacc10b75c5c9ac0694b09"
+            ],
+            [
+              "55f4b5efc12621b5a5ce8e2b"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "55f4b5efc12621b5a5ce8e2b",
+        "88cacc10b75c5c9ac0694b09"
+      ]
+    },
+    "official-005-3": {
+      "id": "official-005-3",
+      "group_id": "official-scenario-005",
+      "query": "vLLM v0.10.2：并发过高出现preemption警告，应如何解释恢复阶段的额外计算？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "被抢占请求会在KV空间足够时重新计算。"
+        ],
+        "forbidden_claims": [
+          "抢占后请求必然丢弃或无需重新计算。"
+        ]
+      },
+      "expected_answer": "被抢占请求会在KV空间足够时重新计算。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-optimization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-optimization.md",
+          "text": "Preempted requests are recomputed when sufficient KV cache space becomes\navailable again.",
+          "sha256": "3e1569ff97083516ee6a7df4da07712ace4c5d7cfafb9e7a328ce2583d24dacb",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 11,
+          "line_end": 12,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/optimization.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-optimization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-optimization.md",
+              "text": "Preempted requests are recomputed when sufficient KV cache space becomes\navailable again.",
+              "sha256": "3e1569ff97083516ee6a7df4da07712ace4c5d7cfafb9e7a328ce2583d24dacb",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 11,
+              "line_end": 12,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/optimization.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-optimization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "88cacc10b75c5c9ac0694b09"
+            ],
+            [
+              "55f4b5efc12621b5a5ce8e2b"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "55f4b5efc12621b5a5ce8e2b",
+        "88cacc10b75c5c9ac0694b09"
+      ]
+    },
+    "official-005-4": {
+      "id": "official-005-4",
+      "group_id": "official-scenario-005",
+      "query": "vLLM v0.10.2：先解释KV空间不足时抢占请求的恢复成本，再从内存优化指南找出将模型跨GPU拆分的参数。",
+      "question_type": "multi_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "被抢占请求会在KV空间足够时重新计算。",
+          "KV抢占恢复需要重算；内存优化文档提供tensor_parallel_size将模型分布到多GPU的选项。"
+        ],
+        "forbidden_claims": [
+          "抢占后请求必然丢弃或无需重新计算。"
+        ]
+      },
+      "expected_answer": "被抢占请求会在KV空间足够时重新计算。；KV抢占恢复需要重算；内存优化文档提供tensor_parallel_size将模型分布到多GPU的选项。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-optimization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-optimization.md",
+          "text": "Preempted requests are recomputed when sufficient KV cache space becomes\navailable again.",
+          "sha256": "3e1569ff97083516ee6a7df4da07712ace4c5d7cfafb9e7a328ce2583d24dacb",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 11,
+          "line_end": 12,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/optimization.md",
+          "coordinate": "normalized frozen document lines"
+        },
+        {
+          "document_id": "vllm-conserving_memory",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-conserving_memory.md",
+          "text": "Tensor parallelism (`tensor_parallel_size` option) can be used to split the model across multiple GPUs.",
+          "sha256": "647b5b15894217d540c83354e6db5afd01c9a0e7b20555cd0de12152e7972e32",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 7,
+          "line_end": 7,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/conserving_memory.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-optimization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-optimization.md",
+              "text": "Preempted requests are recomputed when sufficient KV cache space becomes\navailable again.",
+              "sha256": "3e1569ff97083516ee6a7df4da07712ace4c5d7cfafb9e7a328ce2583d24dacb",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 11,
+              "line_end": 12,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/optimization.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-optimization.md"
+            },
+            {
+              "document_id": "vllm-conserving_memory",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-conserving_memory.md",
+              "text": "Tensor parallelism (`tensor_parallel_size` option) can be used to split the model across multiple GPUs.",
+              "sha256": "647b5b15894217d540c83354e6db5afd01c9a0e7b20555cd0de12152e7972e32",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 7,
+              "line_end": 7,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/configuration/conserving_memory.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-conserving_memory.md"
+            }
+          ],
+          "requirements": [
+            [
+              "88cacc10b75c5c9ac0694b09"
+            ],
+            [
+              "55f4b5efc12621b5a5ce8e2b"
+            ],
+            [
+              "0728a34bbb52c8e69360f696"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [
+        "先由第一段证据确定适用条件或技术对象。",
+        "用该条件关联第二份资料，给出配置或收益边界。"
+      ],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "0728a34bbb52c8e69360f696",
+        "55f4b5efc12621b5a5ce8e2b",
+        "88cacc10b75c5c9ac0694b09"
+      ]
+    },
+    "official-008-1": {
+      "id": "official-008-1",
+      "group_id": "official-scenario-008",
+      "query": "vLLM v0.10.2：文档对解耦prefill的吞吐收益作出什么限制？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "文档明确不应把解耦prefill描述成吞吐提升。"
+        ],
+        "forbidden_claims": [
+          "该版本解耦prefill必然提高吞吐。"
+        ]
+      },
+      "expected_answer": "文档明确不应把解耦prefill描述成吞吐提升。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-disagg_prefill",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md",
+          "text": "Disaggregated prefill DOES NOT improve throughput.",
+          "sha256": "bb703f15614132c96c72fa8dd84c6d65c77343381675b538274728820399ccf1",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 16,
+          "line_end": 16,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/disagg_prefill.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-disagg_prefill",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md",
+              "text": "Disaggregated prefill DOES NOT improve throughput.",
+              "sha256": "bb703f15614132c96c72fa8dd84c6d65c77343381675b538274728820399ccf1",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 16,
+              "line_end": 16,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/disagg_prefill.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md"
+            }
+          ],
+          "requirements": [
+            [
+              "8d5ea86b3daf4e030cf5cae6"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "8d5ea86b3daf4e030cf5cae6"
+      ]
+    },
+    "official-008-2": {
+      "id": "official-008-2",
+      "group_id": "official-scenario-008",
+      "query": "vLLM v0.10.2：能否仅凭启用prefill/decode解耦就宣称吞吐提升？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "文档明确不应把解耦prefill描述成吞吐提升。"
+        ],
+        "forbidden_claims": [
+          "该版本解耦prefill必然提高吞吐。"
+        ]
+      },
+      "expected_answer": "文档明确不应把解耦prefill描述成吞吐提升。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-disagg_prefill",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md",
+          "text": "Disaggregated prefill DOES NOT improve throughput.",
+          "sha256": "bb703f15614132c96c72fa8dd84c6d65c77343381675b538274728820399ccf1",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 16,
+          "line_end": 16,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/disagg_prefill.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-disagg_prefill",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md",
+              "text": "Disaggregated prefill DOES NOT improve throughput.",
+              "sha256": "bb703f15614132c96c72fa8dd84c6d65c77343381675b538274728820399ccf1",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 16,
+              "line_end": 16,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/disagg_prefill.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md"
+            }
+          ],
+          "requirements": [
+            [
+              "8d5ea86b3daf4e030cf5cae6"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "8d5ea86b3daf4e030cf5cae6"
+      ]
+    },
+    "official-008-3": {
+      "id": "official-008-3",
+      "group_id": "official-scenario-008",
+      "query": "vLLM v0.10.2：切换解耦prefill后吞吐没有提升，是否违背文档承诺？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "文档明确不应把解耦prefill描述成吞吐提升。"
+        ],
+        "forbidden_claims": [
+          "该版本解耦prefill必然提高吞吐。"
+        ]
+      },
+      "expected_answer": "文档明确不应把解耦prefill描述成吞吐提升。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-disagg_prefill",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md",
+          "text": "Disaggregated prefill DOES NOT improve throughput.",
+          "sha256": "bb703f15614132c96c72fa8dd84c6d65c77343381675b538274728820399ccf1",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 16,
+          "line_end": 16,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/disagg_prefill.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-disagg_prefill",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md",
+              "text": "Disaggregated prefill DOES NOT improve throughput.",
+              "sha256": "bb703f15614132c96c72fa8dd84c6d65c77343381675b538274728820399ccf1",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 16,
+              "line_end": 16,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/disagg_prefill.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md"
+            }
+          ],
+          "requirements": [
+            [
+              "8d5ea86b3daf4e030cf5cae6"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "8d5ea86b3daf4e030cf5cae6"
+      ]
+    },
+    "official-008-4": {
+      "id": "official-008-4",
+      "group_id": "official-scenario-008",
+      "query": "vLLM v0.10.2：根据SGLang说明先识别分离阶段的作用，再依据vLLM限制判断能否把解耦直接当作吞吐提升保证。",
+      "question_type": "multi_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "v0.10.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "文档明确不应把解耦prefill描述成吞吐提升。",
+          "先识别prefill/decode阶段干扰，再解释分离阶段用于针对性优化，不能据此宣称vLLM该版本吞吐必涨。"
+        ],
+        "forbidden_claims": [
+          "该版本解耦prefill必然提高吞吐。"
+        ]
+      },
+      "expected_answer": "文档明确不应把解耦prefill描述成吞吐提升。；先识别prefill/decode阶段干扰，再解释分离阶段用于针对性优化，不能据此宣称vLLM该版本吞吐必涨。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-disagg_prefill",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md",
+          "text": "Disaggregated prefill DOES NOT improve throughput.",
+          "sha256": "bb703f15614132c96c72fa8dd84c6d65c77343381675b538274728820399ccf1",
+          "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+          "release": "v0.10.2",
+          "line_start": 16,
+          "line_end": 16,
+          "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/disagg_prefill.md",
+          "coordinate": "normalized frozen document lines"
+        },
+        {
+          "document_id": "sglang-pd_disaggregation",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-pd_disaggregation.md",
+          "text": "PD Disaggregation resolves these by separating the two stages, enabling tailored optimizations for each.",
+          "sha256": "ec630b346ab475567b5a119383f98d5e5a5778af16206b195f08d97fdc50fb2b",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 14,
+          "line_end": 14,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/pd_disaggregation.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-disagg_prefill",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md",
+              "text": "Disaggregated prefill DOES NOT improve throughput.",
+              "sha256": "bb703f15614132c96c72fa8dd84c6d65c77343381675b538274728820399ccf1",
+              "commit": "01efc7ef781391e744ed08c3292817a773d654e6",
+              "release": "v0.10.2",
+              "line_start": 16,
+              "line_end": 16,
+              "source_url": "https://github.com/vllm-project/vllm/blob/01efc7ef781391e744ed08c3292817a773d654e6/docs/features/disagg_prefill.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-disagg_prefill.md"
+            },
+            {
+              "document_id": "sglang-pd_disaggregation",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-pd_disaggregation.md",
+              "text": "PD Disaggregation resolves these by separating the two stages, enabling tailored optimizations for each.",
+              "sha256": "ec630b346ab475567b5a119383f98d5e5a5778af16206b195f08d97fdc50fb2b",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 14,
+              "line_end": 14,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/pd_disaggregation.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-pd_disaggregation.md"
+            }
+          ],
+          "requirements": [
+            [
+              "8d5ea86b3daf4e030cf5cae6"
+            ],
+            [
+              "1fda398ee5984864a64dff6b"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [
+        "先由第一段证据确定适用条件或技术对象。",
+        "用该条件关联第二份资料，给出配置或收益边界。"
+      ],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "1fda398ee5984864a64dff6b",
+        "8d5ea86b3daf4e030cf5cae6"
+      ]
+    },
+    "official-010-1": {
+      "id": "official-010-1",
+      "group_id": "official-scenario-010",
+      "query": "历史修复 PR21611：PR21611怎样让connector区分不同多模态输入的KV？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "historical fix",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "修复把请求的mm_hashes带入connector缓存键，区分不同多模态输入。"
+        ],
+        "forbidden_claims": [
+          "图像只需尺寸一致便能安全共用KV。"
+        ]
+      },
+      "expected_answer": "修复把请求的mm_hashes带入connector缓存键，区分不同多模态输入。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-pr-21611",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md",
+          "text": "It brings in the mm_hashes from the Request to the connector to form a proper key; that can help distinguish kv for different mm input.",
+          "sha256": "7d3033ada2ece1525b5728dc8ffd910fb884c75a2b660c144aa9c29e56048989",
+          "commit": "4904e53c3277e92c881bf2a1442805bdc3da983f",
+          "release": "historical fix",
+          "line_start": 17,
+          "line_end": 17,
+          "source_url": "https://github.com/vllm-project/vllm/pull/21611",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-pr-21611",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md",
+              "text": "It brings in the mm_hashes from the Request to the connector to form a proper key; that can help distinguish kv for different mm input.",
+              "sha256": "7d3033ada2ece1525b5728dc8ffd910fb884c75a2b660c144aa9c29e56048989",
+              "commit": "4904e53c3277e92c881bf2a1442805bdc3da983f",
+              "release": "historical fix",
+              "line_start": 17,
+              "line_end": 17,
+              "source_url": "https://github.com/vllm-project/vllm/pull/21611",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md"
+            }
+          ],
+          "requirements": [
+            [
+              "e595fa3d2cfb8f1f5364bb60"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "e595fa3d2cfb8f1f5364bb60"
+      ]
+    },
+    "official-010-2": {
+      "id": "official-010-2",
+      "group_id": "official-scenario-010",
+      "query": "历史修复 PR21611：相同文本和相同图像尺寸是否足以安全复用多模态KV？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "historical fix",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "修复把请求的mm_hashes带入connector缓存键，区分不同多模态输入。"
+        ],
+        "forbidden_claims": [
+          "图像只需尺寸一致便能安全共用KV。"
+        ]
+      },
+      "expected_answer": "修复把请求的mm_hashes带入connector缓存键，区分不同多模态输入。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-pr-21611",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md",
+          "text": "It brings in the mm_hashes from the Request to the connector to form a proper key; that can help distinguish kv for different mm input.",
+          "sha256": "7d3033ada2ece1525b5728dc8ffd910fb884c75a2b660c144aa9c29e56048989",
+          "commit": "4904e53c3277e92c881bf2a1442805bdc3da983f",
+          "release": "historical fix",
+          "line_start": 17,
+          "line_end": 17,
+          "source_url": "https://github.com/vllm-project/vllm/pull/21611",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-pr-21611",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md",
+              "text": "It brings in the mm_hashes from the Request to the connector to form a proper key; that can help distinguish kv for different mm input.",
+              "sha256": "7d3033ada2ece1525b5728dc8ffd910fb884c75a2b660c144aa9c29e56048989",
+              "commit": "4904e53c3277e92c881bf2a1442805bdc3da983f",
+              "release": "historical fix",
+              "line_start": 17,
+              "line_end": 17,
+              "source_url": "https://github.com/vllm-project/vllm/pull/21611",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md"
+            }
+          ],
+          "requirements": [
+            [
+              "e595fa3d2cfb8f1f5364bb60"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "e595fa3d2cfb8f1f5364bb60"
+      ]
+    },
+    "official-010-3": {
+      "id": "official-010-3",
+      "group_id": "official-scenario-010",
+      "query": "历史修复 PR21611：SharedStorageConnector因图片变化返回旧答案，应核对修复中的哪项缓存键信息？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "historical fix",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "修复把请求的mm_hashes带入connector缓存键，区分不同多模态输入。"
+        ],
+        "forbidden_claims": [
+          "图像只需尺寸一致便能安全共用KV。"
+        ]
+      },
+      "expected_answer": "修复把请求的mm_hashes带入connector缓存键，区分不同多模态输入。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-pr-21611",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md",
+          "text": "It brings in the mm_hashes from the Request to the connector to form a proper key; that can help distinguish kv for different mm input.",
+          "sha256": "7d3033ada2ece1525b5728dc8ffd910fb884c75a2b660c144aa9c29e56048989",
+          "commit": "4904e53c3277e92c881bf2a1442805bdc3da983f",
+          "release": "historical fix",
+          "line_start": 17,
+          "line_end": 17,
+          "source_url": "https://github.com/vllm-project/vllm/pull/21611",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-pr-21611",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md",
+              "text": "It brings in the mm_hashes from the Request to the connector to form a proper key; that can help distinguish kv for different mm input.",
+              "sha256": "7d3033ada2ece1525b5728dc8ffd910fb884c75a2b660c144aa9c29e56048989",
+              "commit": "4904e53c3277e92c881bf2a1442805bdc3da983f",
+              "release": "historical fix",
+              "line_start": 17,
+              "line_end": 17,
+              "source_url": "https://github.com/vllm-project/vllm/pull/21611",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md"
+            }
+          ],
+          "requirements": [
+            [
+              "e595fa3d2cfb8f1f5364bb60"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "e595fa3d2cfb8f1f5364bb60"
+      ]
+    },
+    "official-010-4": {
+      "id": "official-010-4",
+      "group_id": "official-scenario-010",
+      "query": "历史修复 PR21611：先从Issue21175辨认错误输出与KV复用的关系，再说明PR21611在哪个输入身份信息上修复了connector缓存键。",
+      "question_type": "multi_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "vllm",
+        "release": "historical fix",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "修复把请求的mm_hashes带入connector缓存键，区分不同多模态输入。",
+          "Issue描述不同图像请求误复用KV；对应PR通过请求mm_hashes修正connector键。"
+        ],
+        "forbidden_claims": [
+          "图像只需尺寸一致便能安全共用KV。"
+        ]
+      },
+      "expected_answer": "修复把请求的mm_hashes带入connector缓存键，区分不同多模态输入。；Issue描述不同图像请求误复用KV；对应PR通过请求mm_hashes修正connector键。",
+      "relevant_spans": [
+        {
+          "document_id": "vllm-pr-21611",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md",
+          "text": "It brings in the mm_hashes from the Request to the connector to form a proper key; that can help distinguish kv for different mm input.",
+          "sha256": "7d3033ada2ece1525b5728dc8ffd910fb884c75a2b660c144aa9c29e56048989",
+          "commit": "4904e53c3277e92c881bf2a1442805bdc3da983f",
+          "release": "historical fix",
+          "line_start": 17,
+          "line_end": 17,
+          "source_url": "https://github.com/vllm-project/vllm/pull/21611",
+          "coordinate": "normalized frozen document lines"
+        },
+        {
+          "document_id": "vllm-issue-21175",
+          "source": "../../data/official-evals/infra-official-v1/corpus/vllm-issue-21175.md",
+          "text": "It wrongly reuses KV for the later request, which cause it wrongly returning an identical output with the previous request.",
+          "sha256": "ec9fc7e9ae51f94262d64c578ea0adb2f447d977b7521232250110e014e36b49",
+          "commit": null,
+          "release": "historical bug",
+          "line_start": 11,
+          "line_end": 11,
+          "source_url": "https://github.com/vllm-project/vllm/issues/21175",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "vllm-pr-21611",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md",
+              "text": "It brings in the mm_hashes from the Request to the connector to form a proper key; that can help distinguish kv for different mm input.",
+              "sha256": "7d3033ada2ece1525b5728dc8ffd910fb884c75a2b660c144aa9c29e56048989",
+              "commit": "4904e53c3277e92c881bf2a1442805bdc3da983f",
+              "release": "historical fix",
+              "line_start": 17,
+              "line_end": 17,
+              "source_url": "https://github.com/vllm-project/vllm/pull/21611",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-pr-21611.md"
+            },
+            {
+              "document_id": "vllm-issue-21175",
+              "source": "../../data/official-evals/infra-official-v1/corpus/vllm-issue-21175.md",
+              "text": "It wrongly reuses KV for the later request, which cause it wrongly returning an identical output with the previous request.",
+              "sha256": "ec9fc7e9ae51f94262d64c578ea0adb2f447d977b7521232250110e014e36b49",
+              "commit": null,
+              "release": "historical bug",
+              "line_start": 11,
+              "line_end": 11,
+              "source_url": "https://github.com/vllm-project/vllm/issues/21175",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/vllm-issue-21175.md"
+            }
+          ],
+          "requirements": [
+            [
+              "e595fa3d2cfb8f1f5364bb60"
+            ],
+            [
+              "fc882d40b2784a69f3eaedc6"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [
+        "先由第一段证据确定适用条件或技术对象。",
+        "用该条件关联第二份资料，给出配置或收益边界。"
+      ],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "e595fa3d2cfb8f1f5364bb60",
+        "fc882d40b2784a69f3eaedc6"
+      ]
+    },
+    "official-012-1": {
+      "id": "official-012-1",
+      "group_id": "official-scenario-012",
+      "query": "SGLang v0.5.2：频繁出现queue-req为零提示什么供给问题？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "频繁队列为空提示客户端提交速度可能太慢。"
+        ],
+        "forbidden_claims": [
+          "队列为空必然说明GPU算力不足。"
+        ]
+      },
+      "expected_answer": "频繁队列为空提示客户端提交速度可能太慢。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-hyperparameter_tuning",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md",
+          "text": "If you frequently see `#queue-req: 0`, it suggests that your client code is submitting requests too slowly.",
+          "sha256": "4db4ce65864acf8211583ec0e68820869cffc9bf7603edf6e9a4afe73a8f9f00",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 13,
+          "line_end": 13,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/hyperparameter_tuning.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-hyperparameter_tuning",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md",
+              "text": "If you frequently see `#queue-req: 0`, it suggests that your client code is submitting requests too slowly.",
+              "sha256": "4db4ce65864acf8211583ec0e68820869cffc9bf7603edf6e9a4afe73a8f9f00",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 13,
+              "line_end": 13,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/hyperparameter_tuning.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md"
+            }
+          ],
+          "requirements": [
+            [
+              "81e1d302399f428df5069aff"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "81e1d302399f428df5069aff"
+      ]
+    },
+    "official-012-2": {
+      "id": "official-012-2",
+      "group_id": "official-scenario-012",
+      "query": "SGLang v0.5.2：能否仅凭queue-req为零就判定GPU太慢？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "频繁队列为空提示客户端提交速度可能太慢。"
+        ],
+        "forbidden_claims": [
+          "队列为空必然说明GPU算力不足。"
+        ]
+      },
+      "expected_answer": "频繁队列为空提示客户端提交速度可能太慢。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-hyperparameter_tuning",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md",
+          "text": "If you frequently see `#queue-req: 0`, it suggests that your client code is submitting requests too slowly.",
+          "sha256": "4db4ce65864acf8211583ec0e68820869cffc9bf7603edf6e9a4afe73a8f9f00",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 13,
+          "line_end": 13,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/hyperparameter_tuning.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-hyperparameter_tuning",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md",
+              "text": "If you frequently see `#queue-req: 0`, it suggests that your client code is submitting requests too slowly.",
+              "sha256": "4db4ce65864acf8211583ec0e68820869cffc9bf7603edf6e9a4afe73a8f9f00",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 13,
+              "line_end": 13,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/hyperparameter_tuning.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md"
+            }
+          ],
+          "requirements": [
+            [
+              "81e1d302399f428df5069aff"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "81e1d302399f428df5069aff"
+      ]
+    },
+    "official-012-3": {
+      "id": "official-012-3",
+      "group_id": "official-scenario-012",
+      "query": "SGLang v0.5.2：离线吞吐低且队列经常为空，应先检查请求提交的哪一环？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "频繁队列为空提示客户端提交速度可能太慢。"
+        ],
+        "forbidden_claims": [
+          "队列为空必然说明GPU算力不足。"
+        ]
+      },
+      "expected_answer": "频繁队列为空提示客户端提交速度可能太慢。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-hyperparameter_tuning",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md",
+          "text": "If you frequently see `#queue-req: 0`, it suggests that your client code is submitting requests too slowly.",
+          "sha256": "4db4ce65864acf8211583ec0e68820869cffc9bf7603edf6e9a4afe73a8f9f00",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 13,
+          "line_end": 13,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/hyperparameter_tuning.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-hyperparameter_tuning",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md",
+              "text": "If you frequently see `#queue-req: 0`, it suggests that your client code is submitting requests too slowly.",
+              "sha256": "4db4ce65864acf8211583ec0e68820869cffc9bf7603edf6e9a4afe73a8f9f00",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 13,
+              "line_end": 13,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/hyperparameter_tuning.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md"
+            }
+          ],
+          "requirements": [
+            [
+              "81e1d302399f428df5069aff"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "81e1d302399f428df5069aff"
+      ]
+    },
+    "official-012-4": {
+      "id": "official-012-4",
+      "group_id": "official-scenario-012",
+      "query": "SGLang v0.5.2：先根据queue-req诊断客户端供给，再查服务器内存参数默认值，为什么不能把默认0.9当作队列为空的直接根因？",
+      "question_type": "multi_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "频繁队列为空提示客户端提交速度可能太慢。",
+          "先检查队列供给而非直接加大内存；mem-fraction-static默认0.9不是所有低吞吐现象的解决办法。"
+        ],
+        "forbidden_claims": [
+          "队列为空必然说明GPU算力不足。"
+        ]
+      },
+      "expected_answer": "频繁队列为空提示客户端提交速度可能太慢。；先检查队列供给而非直接加大内存；mem-fraction-static默认0.9不是所有低吞吐现象的解决办法。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-hyperparameter_tuning",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md",
+          "text": "If you frequently see `#queue-req: 0`, it suggests that your client code is submitting requests too slowly.",
+          "sha256": "4db4ce65864acf8211583ec0e68820869cffc9bf7603edf6e9a4afe73a8f9f00",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 13,
+          "line_end": 13,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/hyperparameter_tuning.md",
+          "coordinate": "normalized frozen document lines"
+        },
+        {
+          "document_id": "sglang-server_arguments",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-server_arguments.md",
+          "text": "The default value is `0.9`.",
+          "sha256": "3e31923a7a8de9baa0fd32e2c175dca1f630ea9003bf81a8f851d5a132544061",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 23,
+          "line_end": 23,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/server_arguments.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-hyperparameter_tuning",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md",
+              "text": "If you frequently see `#queue-req: 0`, it suggests that your client code is submitting requests too slowly.",
+              "sha256": "4db4ce65864acf8211583ec0e68820869cffc9bf7603edf6e9a4afe73a8f9f00",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 13,
+              "line_end": 13,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/hyperparameter_tuning.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-hyperparameter_tuning.md"
+            },
+            {
+              "document_id": "sglang-server_arguments",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-server_arguments.md",
+              "text": "The default value is `0.9`.",
+              "sha256": "3e31923a7a8de9baa0fd32e2c175dca1f630ea9003bf81a8f851d5a132544061",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 23,
+              "line_end": 23,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/server_arguments.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-server_arguments.md"
+            }
+          ],
+          "requirements": [
+            [
+              "81e1d302399f428df5069aff"
+            ],
+            [
+              "21447c55f510f4cae4f9fabf"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [
+        "先由第一段证据确定适用条件或技术对象。",
+        "用该条件关联第二份资料，给出配置或收益边界。"
+      ],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "21447c55f510f4cae4f9fabf",
+        "81e1d302399f428df5069aff"
+      ]
+    },
+    "official-014-1": {
+      "id": "official-014-1",
+      "group_id": "official-scenario-014",
+      "query": "SGLang v0.5.2：加载预量化模型时应避免哪个重复量化动作？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "预量化模型不应同时通过quantization参数启用在线量化。"
+        ],
+        "forbidden_claims": [
+          "预量化模型总要再执行一次在线量化。"
+        ]
+      },
+      "expected_answer": "预量化模型不应同时通过quantization参数启用在线量化。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-quantization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-quantization.md",
+          "text": "If you use a pre-quantized model, do not add `--quantization` to enable online quantization at the same time.",
+          "sha256": "962c27de0d84fac54f92d0e550bb8442efe52b559bdc6a19be9ed4efa86a6045",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 14,
+          "line_end": 14,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/quantization.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-quantization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-quantization.md",
+              "text": "If you use a pre-quantized model, do not add `--quantization` to enable online quantization at the same time.",
+              "sha256": "962c27de0d84fac54f92d0e550bb8442efe52b559bdc6a19be9ed4efa86a6045",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 14,
+              "line_end": 14,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/quantization.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-quantization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "c13e763d01c2ecff093a8882"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "c13e763d01c2ecff093a8882"
+      ]
+    },
+    "official-014-2": {
+      "id": "official-014-2",
+      "group_id": "official-scenario-014",
+      "query": "SGLang v0.5.2：模型已经离线量化，是否总应再传quantization启用在线量化？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "预量化模型不应同时通过quantization参数启用在线量化。"
+        ],
+        "forbidden_claims": [
+          "预量化模型总要再执行一次在线量化。"
+        ]
+      },
+      "expected_answer": "预量化模型不应同时通过quantization参数启用在线量化。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-quantization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-quantization.md",
+          "text": "If you use a pre-quantized model, do not add `--quantization` to enable online quantization at the same time.",
+          "sha256": "962c27de0d84fac54f92d0e550bb8442efe52b559bdc6a19be9ed4efa86a6045",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 14,
+          "line_end": 14,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/quantization.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-quantization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-quantization.md",
+              "text": "If you use a pre-quantized model, do not add `--quantization` to enable online quantization at the same time.",
+              "sha256": "962c27de0d84fac54f92d0e550bb8442efe52b559bdc6a19be9ed4efa86a6045",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 14,
+              "line_end": 14,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/quantization.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-quantization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "c13e763d01c2ecff093a8882"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "c13e763d01c2ecff093a8882"
+      ]
+    },
+    "official-014-3": {
+      "id": "official-014-3",
+      "group_id": "official-scenario-014",
+      "query": "SGLang v0.5.2：启动预量化模型时应如何处理用于在线量化的quantization参数？",
+      "question_type": "code_api",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "预量化模型不应同时通过quantization参数启用在线量化。"
+        ],
+        "forbidden_claims": [
+          "预量化模型总要再执行一次在线量化。"
+        ]
+      },
+      "expected_answer": "预量化模型不应同时通过quantization参数启用在线量化。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-quantization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-quantization.md",
+          "text": "If you use a pre-quantized model, do not add `--quantization` to enable online quantization at the same time.",
+          "sha256": "962c27de0d84fac54f92d0e550bb8442efe52b559bdc6a19be9ed4efa86a6045",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 14,
+          "line_end": 14,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/quantization.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-quantization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-quantization.md",
+              "text": "If you use a pre-quantized model, do not add `--quantization` to enable online quantization at the same time.",
+              "sha256": "962c27de0d84fac54f92d0e550bb8442efe52b559bdc6a19be9ed4efa86a6045",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 14,
+              "line_end": 14,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/quantization.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-quantization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "c13e763d01c2ecff093a8882"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "c13e763d01c2ecff093a8882"
+      ]
+    },
+    "official-016-1": {
+      "id": "official-016-1",
+      "group_id": "official-scenario-016",
+      "query": "SGLang v0.5.2：该路由器有哪些policy选项？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "policy可选cache_aware、random、round_robin、power_of_two。"
+        ],
+        "forbidden_claims": [
+          "路由策略只有轮询一种。"
+        ]
+      },
+      "expected_answer": "policy可选cache_aware、random、round_robin、power_of_two。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-router",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-router.md",
+          "text": "--policy cache_aware  # or random, round_robin, power_of_two",
+          "sha256": "4906500752aa9a178eee16d41b2b852625431831b53573849fb8387e7180cf39",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 113,
+          "line_end": 113,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/router.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-router",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-router.md",
+              "text": "--policy cache_aware  # or random, round_robin, power_of_two",
+              "sha256": "4906500752aa9a178eee16d41b2b852625431831b53573849fb8387e7180cf39",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 113,
+              "line_end": 113,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/router.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-router.md"
+            }
+          ],
+          "requirements": [
+            [
+              "876167b1120d5b91253a04bd"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "876167b1120d5b91253a04bd"
+      ]
+    },
+    "official-016-2": {
+      "id": "official-016-2",
+      "group_id": "official-scenario-016",
+      "query": "SGLang v0.5.2：cache_aware是否是路由器唯一可用策略？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "policy可选cache_aware、random、round_robin、power_of_two。"
+        ],
+        "forbidden_claims": [
+          "路由策略只有轮询一种。"
+        ]
+      },
+      "expected_answer": "policy可选cache_aware、random、round_robin、power_of_two。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-router",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-router.md",
+          "text": "--policy cache_aware  # or random, round_robin, power_of_two",
+          "sha256": "4906500752aa9a178eee16d41b2b852625431831b53573849fb8387e7180cf39",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 113,
+          "line_end": 113,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/router.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-router",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-router.md",
+              "text": "--policy cache_aware  # or random, round_robin, power_of_two",
+              "sha256": "4906500752aa9a178eee16d41b2b852625431831b53573849fb8387e7180cf39",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 113,
+              "line_end": 113,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/router.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-router.md"
+            }
+          ],
+          "requirements": [
+            [
+              "876167b1120d5b91253a04bd"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "876167b1120d5b91253a04bd"
+      ]
+    },
+    "official-016-3": {
+      "id": "official-016-3",
+      "group_id": "official-scenario-016",
+      "query": "SGLang v0.5.2：启动路由器时希望选择缓存感知策略，policy参数应填什么？",
+      "question_type": "code_api",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "policy可选cache_aware、random、round_robin、power_of_two。"
+        ],
+        "forbidden_claims": [
+          "路由策略只有轮询一种。"
+        ]
+      },
+      "expected_answer": "policy可选cache_aware、random、round_robin、power_of_two。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-router",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-router.md",
+          "text": "--policy cache_aware  # or random, round_robin, power_of_two",
+          "sha256": "4906500752aa9a178eee16d41b2b852625431831b53573849fb8387e7180cf39",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 113,
+          "line_end": 113,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/router.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-router",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-router.md",
+              "text": "--policy cache_aware  # or random, round_robin, power_of_two",
+              "sha256": "4906500752aa9a178eee16d41b2b852625431831b53573849fb8387e7180cf39",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 113,
+              "line_end": 113,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/advanced_features/router.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-router.md"
+            }
+          ],
+          "requirements": [
+            [
+              "876167b1120d5b91253a04bd"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "876167b1120d5b91253a04bd"
+      ]
+    },
+    "official-017-1": {
+      "id": "official-017-1",
+      "group_id": "official-scenario-017",
+      "query": "SGLang v0.5.2：temperature为零与提高温度分别改变什么采样行为？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "温度零对应贪心采样，较高温度增加多样性。"
+        ],
+        "forbidden_claims": [
+          "温度零等于均匀随机采样。"
+        ]
+      },
+      "expected_answer": "温度零对应贪心采样，较高温度增加多样性。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-sampling_params",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-sampling_params.md",
+          "text": "`temperature = 0` corresponds to greedy sampling, a higher temperature leads to more diversity.",
+          "sha256": "eb278aedc08be30c0453931457c12381f13c2099720ef468bfe9473803c2b7ce",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 40,
+          "line_end": 40,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/basic_usage/sampling_params.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-sampling_params",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-sampling_params.md",
+              "text": "`temperature = 0` corresponds to greedy sampling, a higher temperature leads to more diversity.",
+              "sha256": "eb278aedc08be30c0453931457c12381f13c2099720ef468bfe9473803c2b7ce",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 40,
+              "line_end": 40,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/basic_usage/sampling_params.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-sampling_params.md"
+            }
+          ],
+          "requirements": [
+            [
+              "4abc9a5a5601c2913b93e551"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "4abc9a5a5601c2913b93e551"
+      ]
+    },
+    "official-017-2": {
+      "id": "official-017-2",
+      "group_id": "official-scenario-017",
+      "query": "SGLang v0.5.2：temperature为零是否意味着均匀随机选择下一token？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "温度零对应贪心采样，较高温度增加多样性。"
+        ],
+        "forbidden_claims": [
+          "温度零等于均匀随机采样。"
+        ]
+      },
+      "expected_answer": "温度零对应贪心采样，较高温度增加多样性。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-sampling_params",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-sampling_params.md",
+          "text": "`temperature = 0` corresponds to greedy sampling, a higher temperature leads to more diversity.",
+          "sha256": "eb278aedc08be30c0453931457c12381f13c2099720ef468bfe9473803c2b7ce",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 40,
+          "line_end": 40,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/basic_usage/sampling_params.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-sampling_params",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-sampling_params.md",
+              "text": "`temperature = 0` corresponds to greedy sampling, a higher temperature leads to more diversity.",
+              "sha256": "eb278aedc08be30c0453931457c12381f13c2099720ef468bfe9473803c2b7ce",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 40,
+              "line_end": 40,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/basic_usage/sampling_params.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-sampling_params.md"
+            }
+          ],
+          "requirements": [
+            [
+              "4abc9a5a5601c2913b93e551"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "4abc9a5a5601c2913b93e551"
+      ]
+    },
+    "official-017-3": {
+      "id": "official-017-3",
+      "group_id": "official-scenario-017",
+      "query": "SGLang v0.5.2：请求JSON中想启用贪心采样，temperature应设置成多少？",
+      "question_type": "code_api",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "温度零对应贪心采样，较高温度增加多样性。"
+        ],
+        "forbidden_claims": [
+          "温度零等于均匀随机采样。"
+        ]
+      },
+      "expected_answer": "温度零对应贪心采样，较高温度增加多样性。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-sampling_params",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-sampling_params.md",
+          "text": "`temperature = 0` corresponds to greedy sampling, a higher temperature leads to more diversity.",
+          "sha256": "eb278aedc08be30c0453931457c12381f13c2099720ef468bfe9473803c2b7ce",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 40,
+          "line_end": 40,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/basic_usage/sampling_params.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-sampling_params",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-sampling_params.md",
+              "text": "`temperature = 0` corresponds to greedy sampling, a higher temperature leads to more diversity.",
+              "sha256": "eb278aedc08be30c0453931457c12381f13c2099720ef468bfe9473803c2b7ce",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 40,
+              "line_end": 40,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/basic_usage/sampling_params.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-sampling_params.md"
+            }
+          ],
+          "requirements": [
+            [
+              "4abc9a5a5601c2913b93e551"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "4abc9a5a5601c2913b93e551"
+      ]
+    },
+    "official-020-1": {
+      "id": "official-020-1",
+      "group_id": "official-scenario-020",
+      "query": "SGLang v0.5.2：哪个环境变量控制torch.compile，默认值是什么？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "SGLANG_ENABLE_TORCH_COMPILE控制torch.compile，文档默认true。"
+        ],
+        "forbidden_claims": [
+          "该环境变量默认禁用torch.compile。"
+        ]
+      },
+      "expected_answer": "SGLANG_ENABLE_TORCH_COMPILE控制torch.compile，文档默认true。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-environment_variables",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-environment_variables.md",
+          "text": "`SGLANG_ENABLE_TORCH_COMPILE` | Enable torch.compile | `true`",
+          "sha256": "8c46ce4c475139ecb1daa8e9d94a606095e129ee843750eada9185565d73e737",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 23,
+          "line_end": 23,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/references/environment_variables.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-environment_variables",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-environment_variables.md",
+              "text": "`SGLANG_ENABLE_TORCH_COMPILE` | Enable torch.compile | `true`",
+              "sha256": "8c46ce4c475139ecb1daa8e9d94a606095e129ee843750eada9185565d73e737",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 23,
+              "line_end": 23,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/references/environment_variables.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-environment_variables.md"
+            }
+          ],
+          "requirements": [
+            [
+              "d218c9f18f846638b0ec75c6"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "d218c9f18f846638b0ec75c6"
+      ]
+    },
+    "official-020-2": {
+      "id": "official-020-2",
+      "group_id": "official-scenario-020",
+      "query": "SGLang v0.5.2：能否假定SGLANG_ENABLE_TORCH_COMPILE默认关闭？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "SGLANG_ENABLE_TORCH_COMPILE控制torch.compile，文档默认true。"
+        ],
+        "forbidden_claims": [
+          "该环境变量默认禁用torch.compile。"
+        ]
+      },
+      "expected_answer": "SGLANG_ENABLE_TORCH_COMPILE控制torch.compile，文档默认true。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-environment_variables",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-environment_variables.md",
+          "text": "`SGLANG_ENABLE_TORCH_COMPILE` | Enable torch.compile | `true`",
+          "sha256": "8c46ce4c475139ecb1daa8e9d94a606095e129ee843750eada9185565d73e737",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 23,
+          "line_end": 23,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/references/environment_variables.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-environment_variables",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-environment_variables.md",
+              "text": "`SGLANG_ENABLE_TORCH_COMPILE` | Enable torch.compile | `true`",
+              "sha256": "8c46ce4c475139ecb1daa8e9d94a606095e129ee843750eada9185565d73e737",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 23,
+              "line_end": 23,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/references/environment_variables.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-environment_variables.md"
+            }
+          ],
+          "requirements": [
+            [
+              "d218c9f18f846638b0ec75c6"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "d218c9f18f846638b0ec75c6"
+      ]
+    },
+    "official-020-3": {
+      "id": "official-020-3",
+      "group_id": "official-scenario-020",
+      "query": "SGLang v0.5.2：排查编译开关时，环境变量SGLANG_ENABLE_TORCH_COMPILE的意义和默认值是什么？",
+      "question_type": "code_api",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "sglang",
+        "release": "v0.5.2",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "SGLANG_ENABLE_TORCH_COMPILE控制torch.compile，文档默认true。"
+        ],
+        "forbidden_claims": [
+          "该环境变量默认禁用torch.compile。"
+        ]
+      },
+      "expected_answer": "SGLANG_ENABLE_TORCH_COMPILE控制torch.compile，文档默认true。",
+      "relevant_spans": [
+        {
+          "document_id": "sglang-environment_variables",
+          "source": "../../data/official-evals/infra-official-v1/corpus/sglang-environment_variables.md",
+          "text": "`SGLANG_ENABLE_TORCH_COMPILE` | Enable torch.compile | `true`",
+          "sha256": "8c46ce4c475139ecb1daa8e9d94a606095e129ee843750eada9185565d73e737",
+          "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+          "release": "v0.5.2",
+          "line_start": 23,
+          "line_end": 23,
+          "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/references/environment_variables.md",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "sglang-environment_variables",
+              "source": "../../data/official-evals/infra-official-v1/corpus/sglang-environment_variables.md",
+              "text": "`SGLANG_ENABLE_TORCH_COMPILE` | Enable torch.compile | `true`",
+              "sha256": "8c46ce4c475139ecb1daa8e9d94a606095e129ee843750eada9185565d73e737",
+              "commit": "b0d25e72c401f37b55d689ddbf05b8c583afe854",
+              "release": "v0.5.2",
+              "line_start": 23,
+              "line_end": 23,
+              "source_url": "https://github.com/sgl-project/sglang/blob/b0d25e72c401f37b55d689ddbf05b8c583afe854/docs/references/environment_variables.md",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/sglang-environment_variables.md"
+            }
+          ],
+          "requirements": [
+            [
+              "d218c9f18f846638b0ec75c6"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "d218c9f18f846638b0ec75c6"
+      ]
+    },
+    "official-022-1": {
+      "id": "official-022-1",
+      "group_id": "official-scenario-022",
+      "query": "CUDA 13.0.1：local与shared memory的作用域和生命周期有何区别？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "local memory属于线程，shared memory可见范围和生命周期属于线程块。"
+        ],
+        "forbidden_claims": [
+          "普通shared memory天然对所有grid线程共享。"
+        ]
+      },
+      "expected_answer": "local memory属于线程，shared memory可见范围和生命周期属于线程块。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-memory-hierarchy",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md",
+          "text": "Each thread has private local memory. Each thread block has shared memory visible to all threads of the block and with the same lifetime as the block.",
+          "sha256": "ef0620cf5fe38149d48980cb5f30d4b1936ba18b19785f54bc60eb894491b883",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 3,
+          "line_end": 3,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#memory-hierarchy",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-memory-hierarchy",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md",
+              "text": "Each thread has private local memory. Each thread block has shared memory visible to all threads of the block and with the same lifetime as the block.",
+              "sha256": "ef0620cf5fe38149d48980cb5f30d4b1936ba18b19785f54bc60eb894491b883",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 3,
+              "line_end": 3,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#memory-hierarchy",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md"
+            }
+          ],
+          "requirements": [
+            [
+              "06cce622e227594786e83c38"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "06cce622e227594786e83c38"
+      ]
+    },
+    "official-022-2": {
+      "id": "official-022-2",
+      "group_id": "official-scenario-022",
+      "query": "CUDA 13.0.1：能否把一个普通线程块的shared memory当全grid共享空间？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "local memory属于线程，shared memory可见范围和生命周期属于线程块。"
+        ],
+        "forbidden_claims": [
+          "普通shared memory天然对所有grid线程共享。"
+        ]
+      },
+      "expected_answer": "local memory属于线程，shared memory可见范围和生命周期属于线程块。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-memory-hierarchy",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md",
+          "text": "Each thread has private local memory. Each thread block has shared memory visible to all threads of the block and with the same lifetime as the block.",
+          "sha256": "ef0620cf5fe38149d48980cb5f30d4b1936ba18b19785f54bc60eb894491b883",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 3,
+          "line_end": 3,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#memory-hierarchy",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-memory-hierarchy",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md",
+              "text": "Each thread has private local memory. Each thread block has shared memory visible to all threads of the block and with the same lifetime as the block.",
+              "sha256": "ef0620cf5fe38149d48980cb5f30d4b1936ba18b19785f54bc60eb894491b883",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 3,
+              "line_end": 3,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#memory-hierarchy",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md"
+            }
+          ],
+          "requirements": [
+            [
+              "06cce622e227594786e83c38"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "06cce622e227594786e83c38"
+      ]
+    },
+    "official-022-3": {
+      "id": "official-022-3",
+      "group_id": "official-scenario-022",
+      "query": "CUDA 13.0.1：代码中的普通线程块shared memory，其可见范围和生命周期应怎样理解？",
+      "question_type": "code_api",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "local memory属于线程，shared memory可见范围和生命周期属于线程块。"
+        ],
+        "forbidden_claims": [
+          "普通shared memory天然对所有grid线程共享。"
+        ]
+      },
+      "expected_answer": "local memory属于线程，shared memory可见范围和生命周期属于线程块。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-memory-hierarchy",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md",
+          "text": "Each thread has private local memory. Each thread block has shared memory visible to all threads of the block and with the same lifetime as the block.",
+          "sha256": "ef0620cf5fe38149d48980cb5f30d4b1936ba18b19785f54bc60eb894491b883",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 3,
+          "line_end": 3,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#memory-hierarchy",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-memory-hierarchy",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md",
+              "text": "Each thread has private local memory. Each thread block has shared memory visible to all threads of the block and with the same lifetime as the block.",
+              "sha256": "ef0620cf5fe38149d48980cb5f30d4b1936ba18b19785f54bc60eb894491b883",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 3,
+              "line_end": 3,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#memory-hierarchy",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-memory-hierarchy.md"
+            }
+          ],
+          "requirements": [
+            [
+              "06cce622e227594786e83c38"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "06cce622e227594786e83c38"
+      ]
+    },
+    "official-024-1": {
+      "id": "official-024-1",
+      "group_id": "official-scenario-024",
+      "query": "CUDA 13.0.1：矩阵乘示例里shared memory作为缓存主要减少哪种访问？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "shared memory可作为软件管理缓存来减少线程块的global memory访问。"
+        ],
+        "forbidden_claims": [
+          "使用shared memory意味着取消矩阵乘所需计算。"
+        ]
+      },
+      "expected_answer": "shared memory可作为软件管理缓存来减少线程块的global memory访问。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-shared-memory",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-shared-memory.md",
+          "text": "It can be used as scratchpad memory (or software managed cache) to minimize global memory accesses from a CUDA block as illustrated by the following matrix multiplication example.",
+          "sha256": "b70b2ef84dca6f5946c119f5f0b34ddb4f898b610f324afb548c48c69f5c56ea",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 5,
+          "line_end": 5,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#shared-memory",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-shared-memory",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-shared-memory.md",
+              "text": "It can be used as scratchpad memory (or software managed cache) to minimize global memory accesses from a CUDA block as illustrated by the following matrix multiplication example.",
+              "sha256": "b70b2ef84dca6f5946c119f5f0b34ddb4f898b610f324afb548c48c69f5c56ea",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 5,
+              "line_end": 5,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#shared-memory",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-shared-memory.md"
+            }
+          ],
+          "requirements": [
+            [
+              "637cc10a03080ae929b3195c"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "637cc10a03080ae929b3195c"
+      ]
+    },
+    "official-024-2": {
+      "id": "official-024-2",
+      "group_id": "official-scenario-024",
+      "query": "CUDA 13.0.1：shared memory优化是否意味着矩阵乘法运算不再执行？",
+      "question_type": "conditional",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "shared memory可作为软件管理缓存来减少线程块的global memory访问。"
+        ],
+        "forbidden_claims": [
+          "使用shared memory意味着取消矩阵乘所需计算。"
+        ]
+      },
+      "expected_answer": "shared memory可作为软件管理缓存来减少线程块的global memory访问。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-shared-memory",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-shared-memory.md",
+          "text": "It can be used as scratchpad memory (or software managed cache) to minimize global memory accesses from a CUDA block as illustrated by the following matrix multiplication example.",
+          "sha256": "b70b2ef84dca6f5946c119f5f0b34ddb4f898b610f324afb548c48c69f5c56ea",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 5,
+          "line_end": 5,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#shared-memory",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-shared-memory",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-shared-memory.md",
+              "text": "It can be used as scratchpad memory (or software managed cache) to minimize global memory accesses from a CUDA block as illustrated by the following matrix multiplication example.",
+              "sha256": "b70b2ef84dca6f5946c119f5f0b34ddb4f898b610f324afb548c48c69f5c56ea",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 5,
+              "line_end": 5,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#shared-memory",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-shared-memory.md"
+            }
+          ],
+          "requirements": [
+            [
+              "637cc10a03080ae929b3195c"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "637cc10a03080ae929b3195c"
+      ]
+    },
+    "official-024-3": {
+      "id": "official-024-3",
+      "group_id": "official-scenario-024",
+      "query": "CUDA 13.0.1：__shared__缓冲区为何可以作为减少global访问的暂存空间？",
+      "question_type": "code_api",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "shared memory可作为软件管理缓存来减少线程块的global memory访问。"
+        ],
+        "forbidden_claims": [
+          "使用shared memory意味着取消矩阵乘所需计算。"
+        ]
+      },
+      "expected_answer": "shared memory可作为软件管理缓存来减少线程块的global memory访问。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-shared-memory",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-shared-memory.md",
+          "text": "It can be used as scratchpad memory (or software managed cache) to minimize global memory accesses from a CUDA block as illustrated by the following matrix multiplication example.",
+          "sha256": "b70b2ef84dca6f5946c119f5f0b34ddb4f898b610f324afb548c48c69f5c56ea",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 5,
+          "line_end": 5,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#shared-memory",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-shared-memory",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-shared-memory.md",
+              "text": "It can be used as scratchpad memory (or software managed cache) to minimize global memory accesses from a CUDA block as illustrated by the following matrix multiplication example.",
+              "sha256": "b70b2ef84dca6f5946c119f5f0b34ddb4f898b610f324afb548c48c69f5c56ea",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 5,
+              "line_end": 5,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#shared-memory",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-shared-memory.md"
+            }
+          ],
+          "requirements": [
+            [
+              "637cc10a03080ae929b3195c"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "637cc10a03080ae929b3195c"
+      ]
+    },
+    "official-026-1": {
+      "id": "official-026-1",
+      "group_id": "official-scenario-026",
+      "query": "CUDA 13.0.1：Async内存拷贝何时仍可能同步？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "涉及未锁页主机内存时，Async拷贝也可能同步。"
+        ],
+        "forbidden_claims": [
+          "所有带Async后缀的调用都无条件异步。"
+        ]
+      },
+      "expected_answer": "涉及未锁页主机内存时，Async拷贝也可能同步。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-asynchronous-concurrent-execution",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+          "text": "Async memory copies might also be synchronous if they involve host memory that is not page-locked.",
+          "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 35,
+          "line_end": 35,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-asynchronous-concurrent-execution",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+              "text": "Async memory copies might also be synchronous if they involve host memory that is not page-locked.",
+              "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 35,
+              "line_end": 35,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md"
+            }
+          ],
+          "requirements": [
+            [
+              "84a635d0979bd5e8958734ff"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "84a635d0979bd5e8958734ff"
+      ]
+    },
+    "official-026-2": {
+      "id": "official-026-2",
+      "group_id": "official-scenario-026",
+      "query": "CUDA 13.0.1：调用Async传输却未得到预期重叠，应先检查主机缓冲区的什么属性？",
+      "question_type": "code_api",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "涉及未锁页主机内存时，Async拷贝也可能同步。"
+        ],
+        "forbidden_claims": [
+          "所有带Async后缀的调用都无条件异步。"
+        ]
+      },
+      "expected_answer": "涉及未锁页主机内存时，Async拷贝也可能同步。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-asynchronous-concurrent-execution",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+          "text": "Async memory copies might also be synchronous if they involve host memory that is not page-locked.",
+          "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 35,
+          "line_end": 35,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-asynchronous-concurrent-execution",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+              "text": "Async memory copies might also be synchronous if they involve host memory that is not page-locked.",
+              "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 35,
+              "line_end": 35,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md"
+            }
+          ],
+          "requirements": [
+            [
+              "84a635d0979bd5e8958734ff"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "84a635d0979bd5e8958734ff"
+      ]
+    },
+    "official-026-3": {
+      "id": "official-026-3",
+      "group_id": "official-scenario-026",
+      "query": "CUDA 13.0.1：排查该主题时，有人声称“所有带Async后缀的调用都无条件异步。”，根据文档这个说法哪里需要纠正？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "涉及未锁页主机内存时，Async拷贝也可能同步。"
+        ],
+        "forbidden_claims": [
+          "所有带Async后缀的调用都无条件异步。"
+        ]
+      },
+      "expected_answer": "涉及未锁页主机内存时，Async拷贝也可能同步。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-asynchronous-concurrent-execution",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+          "text": "Async memory copies might also be synchronous if they involve host memory that is not page-locked.",
+          "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 35,
+          "line_end": 35,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-asynchronous-concurrent-execution",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+              "text": "Async memory copies might also be synchronous if they involve host memory that is not page-locked.",
+              "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 35,
+              "line_end": 35,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md"
+            }
+          ],
+          "requirements": [
+            [
+              "84a635d0979bd5e8958734ff"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "84a635d0979bd5e8958734ff"
+      ]
+    },
+    "official-026-4": {
+      "id": "official-026-4",
+      "group_id": "official-scenario-026",
+      "query": "CUDA 13.0.1：对asynchronous-concurrent-execution相关代码进行review时，为何不能接受“所有带Async后缀的调用都无条件异步。”作为正确性依据？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "涉及未锁页主机内存时，Async拷贝也可能同步。"
+        ],
+        "forbidden_claims": [
+          "所有带Async后缀的调用都无条件异步。"
+        ]
+      },
+      "expected_answer": "涉及未锁页主机内存时，Async拷贝也可能同步。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-asynchronous-concurrent-execution",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+          "text": "Async memory copies might also be synchronous if they involve host memory that is not page-locked.",
+          "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 35,
+          "line_end": 35,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-asynchronous-concurrent-execution",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md",
+              "text": "Async memory copies might also be synchronous if they involve host memory that is not page-locked.",
+              "sha256": "6167d857cfa9fd78264f595af7ef8e0b2dc9add6720cf00c56f97e6cf12d8f28",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 35,
+              "line_end": 35,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-asynchronous-concurrent-execution.md"
+            }
+          ],
+          "requirements": [
+            [
+              "84a635d0979bd5e8958734ff"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "84a635d0979bd5e8958734ff"
+      ]
+    },
+    "official-028-1": {
+      "id": "official-028-1",
+      "group_id": "official-scenario-028",
+      "query": "CUDA 13.0.1：CUDA Graph如何表达操作关系以及定义与执行？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "CUDA Graph用依赖连接操作，并将定义和执行分开。"
+        ],
+        "forbidden_claims": [
+          "CUDA Graph只是把相互依赖的kernel无条件同时启动。"
+        ]
+      },
+      "expected_answer": "CUDA Graph用依赖连接操作，并将定义和执行分开。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-cuda-graphs",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+          "text": "A graph is a series of operations, such as kernel launches, connected by dependencies, which is defined separately from its execution.",
+          "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 3,
+          "line_end": 3,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-cuda-graphs",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+              "text": "A graph is a series of operations, such as kernel launches, connected by dependencies, which is defined separately from its execution.",
+              "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 3,
+              "line_end": 3,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md"
+            }
+          ],
+          "requirements": [
+            [
+              "64ddc5dc0f5a34a652d0dd1d"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "64ddc5dc0f5a34a652d0dd1d"
+      ]
+    },
+    "official-028-2": {
+      "id": "official-028-2",
+      "group_id": "official-scenario-028",
+      "query": "CUDA 13.0.1：审核Graph节点依赖代码时，应怎样区分图定义与实际执行？",
+      "question_type": "code_api",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "CUDA Graph用依赖连接操作，并将定义和执行分开。"
+        ],
+        "forbidden_claims": [
+          "CUDA Graph只是把相互依赖的kernel无条件同时启动。"
+        ]
+      },
+      "expected_answer": "CUDA Graph用依赖连接操作，并将定义和执行分开。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-cuda-graphs",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+          "text": "A graph is a series of operations, such as kernel launches, connected by dependencies, which is defined separately from its execution.",
+          "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 3,
+          "line_end": 3,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-cuda-graphs",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+              "text": "A graph is a series of operations, such as kernel launches, connected by dependencies, which is defined separately from its execution.",
+              "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 3,
+              "line_end": 3,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md"
+            }
+          ],
+          "requirements": [
+            [
+              "64ddc5dc0f5a34a652d0dd1d"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "64ddc5dc0f5a34a652d0dd1d"
+      ]
+    },
+    "official-028-3": {
+      "id": "official-028-3",
+      "group_id": "official-scenario-028",
+      "query": "CUDA 13.0.1：排查该主题时，有人声称“CUDA Graph只是把相互依赖的kernel无条件同时启动。”，根据文档这个说法哪里需要纠正？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "CUDA Graph用依赖连接操作，并将定义和执行分开。"
+        ],
+        "forbidden_claims": [
+          "CUDA Graph只是把相互依赖的kernel无条件同时启动。"
+        ]
+      },
+      "expected_answer": "CUDA Graph用依赖连接操作，并将定义和执行分开。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-cuda-graphs",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+          "text": "A graph is a series of operations, such as kernel launches, connected by dependencies, which is defined separately from its execution.",
+          "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 3,
+          "line_end": 3,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-cuda-graphs",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+              "text": "A graph is a series of operations, such as kernel launches, connected by dependencies, which is defined separately from its execution.",
+              "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 3,
+              "line_end": 3,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md"
+            }
+          ],
+          "requirements": [
+            [
+              "64ddc5dc0f5a34a652d0dd1d"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "64ddc5dc0f5a34a652d0dd1d"
+      ]
+    },
+    "official-028-4": {
+      "id": "official-028-4",
+      "group_id": "official-scenario-028",
+      "query": "CUDA 13.0.1：对cuda-graphs相关代码进行review时，为何不能接受“CUDA Graph只是把相互依赖的kernel无条件同时启动。”作为正确性依据？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "CUDA Graph用依赖连接操作，并将定义和执行分开。"
+        ],
+        "forbidden_claims": [
+          "CUDA Graph只是把相互依赖的kernel无条件同时启动。"
+        ]
+      },
+      "expected_answer": "CUDA Graph用依赖连接操作，并将定义和执行分开。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-cuda-graphs",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+          "text": "A graph is a series of operations, such as kernel launches, connected by dependencies, which is defined separately from its execution.",
+          "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 3,
+          "line_end": 3,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-cuda-graphs",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md",
+              "text": "A graph is a series of operations, such as kernel launches, connected by dependencies, which is defined separately from its execution.",
+              "sha256": "38a73acf853bd504b51cd5863d0073ab54f20298c5ed584da8908772b1ff42c8",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 3,
+              "line_end": 3,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#cuda-graphs",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-cuda-graphs.md"
+            }
+          ],
+          "requirements": [
+            [
+              "64ddc5dc0f5a34a652d0dd1d"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "64ddc5dc0f5a34a652d0dd1d"
+      ]
+    },
+    "official-030-1": {
+      "id": "official-030-1",
+      "group_id": "official-scenario-030",
+      "query": "CUDA 13.0.1：CUDA利用率指南建议怎样划分host与device工作？",
+      "question_type": "single_hop",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "串行工作适合host，并行工作适合device。"
+        ],
+        "forbidden_claims": [
+          "所有串行工作都应无条件搬到GPU。"
+        ]
+      },
+      "expected_answer": "串行工作适合host，并行工作适合device。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-maximize-utilization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+          "text": "It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+          "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 7,
+          "line_end": 7,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-maximize-utilization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+              "text": "It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+              "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 7,
+              "line_end": 7,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "996cb336c90a8ca8e7babcab"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "996cb336c90a8ca8e7babcab"
+      ]
+    },
+    "official-030-2": {
+      "id": "official-030-2",
+      "group_id": "official-scenario-030",
+      "query": "CUDA 13.0.1：异构代码中的串行控制循环与数据并行运算，按指南应分别放在host还是device？",
+      "question_type": "code_api",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "串行工作适合host，并行工作适合device。"
+        ],
+        "forbidden_claims": [
+          "所有串行工作都应无条件搬到GPU。"
+        ]
+      },
+      "expected_answer": "串行工作适合host，并行工作适合device。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-maximize-utilization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+          "text": "It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+          "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 7,
+          "line_end": 7,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-maximize-utilization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+              "text": "It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+              "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 7,
+              "line_end": 7,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "996cb336c90a8ca8e7babcab"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "996cb336c90a8ca8e7babcab"
+      ]
+    },
+    "official-030-3": {
+      "id": "official-030-3",
+      "group_id": "official-scenario-030",
+      "query": "CUDA 13.0.1：排查该主题时，有人声称“所有串行工作都应无条件搬到GPU。”，根据文档这个说法哪里需要纠正？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "串行工作适合host，并行工作适合device。"
+        ],
+        "forbidden_claims": [
+          "所有串行工作都应无条件搬到GPU。"
+        ]
+      },
+      "expected_answer": "串行工作适合host，并行工作适合device。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-maximize-utilization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+          "text": "It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+          "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 7,
+          "line_end": 7,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-maximize-utilization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+              "text": "It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+              "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 7,
+              "line_end": 7,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "996cb336c90a8ca8e7babcab"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "996cb336c90a8ca8e7babcab"
+      ]
+    },
+    "official-030-4": {
+      "id": "official-030-4",
+      "group_id": "official-scenario-030",
+      "query": "CUDA 13.0.1：对maximize-utilization相关代码进行review时，为何不能接受“所有串行工作都应无条件搬到GPU。”作为正确性依据？",
+      "question_type": "debugging",
+      "domain": "infra",
+      "modality": "text",
+      "answerable": true,
+      "conditions": {
+        "project": "cuda",
+        "release": "13.0.1",
+        "hardware": "not specified; do not infer"
+      },
+      "answer_key": {
+        "required_points": [
+          "串行工作适合host，并行工作适合device。"
+        ],
+        "forbidden_claims": [
+          "所有串行工作都应无条件搬到GPU。"
+        ]
+      },
+      "expected_answer": "串行工作适合host，并行工作适合device。",
+      "relevant_spans": [
+        {
+          "document_id": "cuda-maximize-utilization",
+          "source": "../../data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+          "text": "It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+          "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+          "commit": null,
+          "release": "13.0.1",
+          "line_start": 7,
+          "line_end": 7,
+          "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+          "coordinate": "normalized frozen document lines"
+        }
+      ],
+      "evidence_alternatives": [
+        {
+          "id": "primary",
+          "spans": [
+            {
+              "document_id": "cuda-maximize-utilization",
+              "source": "../../data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md",
+              "text": "It should assign to each processor the type of work it does best: serial workloads to the host; parallel workloads to the devices.",
+              "sha256": "a9a415a77b13676be9949caf74e7989415ce1e7379adcbfe9eed0ef7a4555044",
+              "commit": null,
+              "release": "13.0.1",
+              "line_start": 7,
+              "line_end": 7,
+              "source_url": "https://docs.nvidia.com/cuda/archive/13.0.1/cuda-c-programming-guide/index.html#maximize-utilization",
+              "coordinate": "normalized frozen document lines",
+              "absolute_source": "/Users/jennyma/Projects/InfraAgent/data/official-evals/infra-official-v1/corpus/cuda-maximize-utilization.md"
+            }
+          ],
+          "requirements": [
+            [
+              "996cb336c90a8ca8e7babcab"
+            ]
+          ]
+        }
+      ],
+      "reasoning_steps": [],
+      "missing_information": "",
+      "review": {
+        "status": "pending",
+        "method": "AI-authored",
+        "reviewer": "",
+        "reviewed_at": "",
+        "notes": ""
+      },
+      "annotation_method": "Codex-authored from frozen official source; not human gold",
+      "relevant": [
+        "996cb336c90a8ca8e7babcab"
+      ]
+    }
+  }
+}

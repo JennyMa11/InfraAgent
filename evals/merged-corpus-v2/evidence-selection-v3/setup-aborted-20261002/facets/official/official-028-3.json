@@ -1,0 +1,37 @@
+{
+  "original_query": "CUDA 13.0.1：排查该主题时，有人声称“CUDA Graph只是把相互依赖的kernel无条件同时启动。”，根据文档这个说法哪里需要纠正？",
+  "scoring_query": "CUDA 13.0.1: When investigating this topic, someone claimed that \"CUDA Graph just unconditionally launches mutually dependent kernels simultaneously.\" According to the documentation, where does this statement need to be corrected?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "According to the CUDA 13.0.1 documentation, where does the claim that \"CUDA Graph just unconditionally launches mutually dependent kernels simultaneously\" need to be corrected?",
+      "anchor_quote": "CUDA 13.0.1：排查该主题时，有人声称“CUDA Graph只是把相互依赖的kernel无条件同时启动。”，根据文档这个说法哪里需要纠正？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：排查该主题时，有人声称“CUDA Graph只是把相互依赖的kernel无条件同时启动。”，根据文档这个说法哪里需要纠正？\", \"scoring_query\": \"CUDA 13.0.1: When investigating this topic, someone claimed that \\\"CUDA Graph just unconditionally launches mutually dependent kernels simultaneously.\\\" According to the documentation, where does this statement need to be corrected?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"According to the CUDA 13.0.1 documentation, where does the claim that \\\"CUDA Graph just unconditionally launches mutually dependent kernels simultaneously\\\" need to be corrected?\",\"anchor_quote\":\"CUDA 13.0.1：排查该主题时，有人声称“CUDA Graph只是把相互依赖的kernel无条件同时启动。”，根据文档这个说法哪里需要纠正？\"}]}",
+  "provider_response": {
+    "id": "0f502ef1-a308-4d5f-a2ce-ddcf52a3fb6e",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 216,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 90,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 836.2561670364812,
+  "sha256": "7b01b771092b2fa008a88f64b795d57a02801b7c57b888c5b490b7a15cc0048f"
+}

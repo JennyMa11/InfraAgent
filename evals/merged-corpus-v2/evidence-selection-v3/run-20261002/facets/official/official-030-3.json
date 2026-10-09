@@ -1,0 +1,37 @@
+{
+  "original_query": "CUDA 13.0.1：排查该主题时，有人声称“所有串行工作都应无条件搬到GPU。”，根据文档这个说法哪里需要纠正？",
+  "scoring_query": "CUDA 13.0.1: When investigating this topic, someone claimed that \"all serial work should be unconditionally moved to the GPU.\" According to the documentation, where does this claim need to be corrected?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "According to the documentation for CUDA 13.0.1, where does the claim that \"all serial work should be unconditionally moved to the GPU\" need to be corrected?",
+      "anchor_quote": "CUDA 13.0.1：排查该主题时，有人声称“所有串行工作都应无条件搬到GPU。”，根据文档这个说法哪里需要纠正？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"CUDA 13.0.1：排查该主题时，有人声称“所有串行工作都应无条件搬到GPU。”，根据文档这个说法哪里需要纠正？\", \"scoring_query\": \"CUDA 13.0.1: When investigating this topic, someone claimed that \\\"all serial work should be unconditionally moved to the GPU.\\\" According to the documentation, where does this claim need to be corrected?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"According to the documentation for CUDA 13.0.1, where does the claim that \\\"all serial work should be unconditionally moved to the GPU\\\" need to be corrected?\",\"anchor_quote\":\"CUDA 13.0.1：排查该主题时，有人声称“所有串行工作都应无条件搬到GPU。”，根据文档这个说法哪里需要纠正？\"}]}",
+  "provider_response": {
+    "id": "19e1a7b3-c275-4114-8fb9-c4166042c3ce",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 212,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 87,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 790.2564579853788,
+  "sha256": "f371d00eec658b79a4ce1766288b9002dbaf5740944ee01f34082168f480a4ef"
+}

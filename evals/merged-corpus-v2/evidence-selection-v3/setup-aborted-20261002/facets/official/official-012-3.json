@@ -1,0 +1,37 @@
+{
+  "original_query": "SGLang v0.5.2：离线吞吐低且队列经常为空，应先检查请求提交的哪一环？",
+  "scoring_query": "SGLang v0.5.2: Offline throughput is low and the queue is often empty; which part of request submission should be checked first?",
+  "language": "English",
+  "facets": [
+    {
+      "question": "In SGLang v0.5.2, when offline throughput is low and the queue is often empty, which part of request submission should be checked first?",
+      "anchor_quote": "SGLang v0.5.2：离线吞吐低且队列经常为空，应先检查请求提交的哪一环？"
+    }
+  ],
+  "fallback": null,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract at most four distinct requirements explicitly asked by the question. Do not answer it, infer examples, add facts, or invent conditions. Preserve products, versions, identifiers, negation and uncertainty. Each requirement must be a retrieval question in the requested language, with a verbatim anchor_quote from original_query covering the relevant clause, not just its product name. Return only JSON: {\"facets\":[{\"question\":\"...\",\"anchor_quote\":\"...\"}]}. If it cannot be decomposed, return one requirement with the complete question."
+    },
+    {
+      "role": "user",
+      "content": "{\"original_query\": \"SGLang v0.5.2：离线吞吐低且队列经常为空，应先检查请求提交的哪一环？\", \"scoring_query\": \"SGLang v0.5.2: Offline throughput is low and the queue is often empty; which part of request submission should be checked first?\", \"output_language\": \"English\"}"
+    }
+  ],
+  "raw": "{\"facets\":[{\"question\":\"In SGLang v0.5.2, when offline throughput is low and the queue is often empty, which part of request submission should be checked first?\",\"anchor_quote\":\"SGLang v0.5.2：离线吞吐低且队列经常为空，应先检查请求提交的哪一环？\"}]}",
+  "provider_response": {
+    "id": "7006af36-38bd-4861-ac5c-6ef65369c496",
+    "model": "deepseek-flash",
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 190,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 74,
+      "service_tier": "standard"
+    }
+  },
+  "latency_ms": 562.7665419597179,
+  "sha256": "52e1043eeac36cce2ff3e92f4a3d86ee9c72681f9705f5ede2ae67f08bbf67e9"
+}
