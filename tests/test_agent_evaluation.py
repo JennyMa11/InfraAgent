@@ -321,6 +321,10 @@ def test_user_acceptance_needs_actual_feedback_and_cache_cannot_hit_without_look
 
 def test_twenty_synthetic_examples_have_explicit_provenance_and_pending_semantics(monkeypatch):
     root = Path(__file__).resolve().parents[1]
+    if not all(
+        (root / "examples" / name).is_file() for name in ("eval-cases.jsonl", "eval-traces.jsonl")
+    ):
+        pytest.skip("Local evaluation examples are not distributed with code")
     monkeypatch.syspath_prepend(str(root / "scripts"))
     scorer = importlib.import_module("score_agent_traces")
     cases = scorer.read(root / "examples/eval-cases.jsonl")
@@ -344,6 +348,16 @@ def test_examples_match_json_schemas_when_optional_validator_installed():
 
     jsonschema = pytest.importorskip("jsonschema")
     root = Path(__file__).resolve().parents[1] / "examples"
+    if not all(
+        (root / name).is_file()
+        for name in (
+            "eval-case-schema.json",
+            "eval-cases.jsonl",
+            "trace-schema.json",
+            "eval-traces.jsonl",
+        )
+    ):
+        pytest.skip("Local evaluation examples and schemas are not distributed with code")
     for schemafile, datafile in (
         ("eval-case-schema.json", "eval-cases.jsonl"),
         ("trace-schema.json", "eval-traces.jsonl"),

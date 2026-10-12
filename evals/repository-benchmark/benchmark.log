@@ -1,17 +1,0 @@
-Building prefix dict from the default dictionary ...
-Loading model from cache /var/folders/bb/2w2254vn1qd13jb1gtq3l7m80000gn/T/jieba.cache
-Loading model cost 0.184 seconds.
-Prefix dict has been built successfully.
-Validated source hashes, evidence lines, unique IDs and disjoint concept groups
-Using existing index {'backend': 'bge', 'semantic_model': True, 'embedding_model': 'BAAI/bge-small-zh-v1.5', 'reranker_model': None, 'reranker_scope': 'text_and_image_captions', 'candidate_k': 30, 'context_chars': 4000, 'rerank': False, 'multimodal': False, 'chunks': 11168, 'sources': 87, 'fingerprint': {'backend': 'bge', 'embedding_model': 'BAAI/bge-small-zh-v1.5', 'multimodal': False, 'chunk_size': 450, 'chunk_strategy': 'semantic', 'refinement_threshold': 0.55, 'image_merge_threshold': 0.88, 'image_max_side': 768, 'image_min_area': 0.005, 'image_max_regions': 24, 'clip_text_model': 'sentence-transformers/clip-ViT-B-32-multilingual-v1', 'clip_image_model': 'sentence-transformers/clip-ViT-B-32', 'semantic_threshold': 0.72, 'schema_version': 2, 'embedding_pooling': 'token-window-mean-v1'}}
-dev bm25 {'recall': 0.68, 'precision': 0.136, 'f1': 0.22666666666666668, 'mrr': 0.5036666666666667, 'ndcg': 0.5473819274184801}
-test bm25 {'recall': 0.715, 'precision': 0.14400000000000002, 'f1': 0.23952380952380956, 'mrr': 0.5438333333333333, 'ndcg': 0.5865373211226497}
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/71 [00:00<?, ?it/s]Loading weights: 100%|██████████| 71/71 [00:00<00:00, 15827.56it/s]
-dev dense {'recall': 0.42, 'precision': 0.084, 'f1': 0.14, 'mrr': 0.30966666666666665, 'ndcg': 0.33718061880799527}
-test dense {'recall': 0.525, 'precision': 0.10600000000000001, 'f1': 0.1761904761904762, 'mrr': 0.38183333333333336, 'ndcg': 0.41675669967306733}
-dev hybrid {'recall': 0.56, 'precision': 0.112, 'f1': 0.18666666666666668, 'mrr': 0.43566666666666665, 'ndcg': 0.4666706249862402}
-test hybrid {'recall': 0.645, 'precision': 0.13, 'f1': 0.2161904761904762, 'mrr': 0.49133333333333334, 'ndcg': 0.5285905706489523}
-Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 8295.91it/s]
-dev hybrid_rerank {'recall': 0.78, 'precision': 0.156, 'f1': 0.26, 'mrr': 0.629, 'ndcg': 0.6668249675918753}
-test hybrid_rerank {'recall': 0.765, 'precision': 0.154, 'f1': 0.25619047619047625, 'mrr': 0.6648333333333334, 'ndcg': 0.6875003952431221}

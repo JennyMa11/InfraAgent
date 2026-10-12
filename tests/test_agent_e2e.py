@@ -10,6 +10,12 @@ import pytest
 from infra_rag.benchmarking import digest
 
 ROOT = Path(__file__).resolve().parents[1]
+pytestmark = pytest.mark.skipif(
+    not (ROOT / "evals/agent-e2e-v1/corpus").is_dir()
+    or not (ROOT / "evals/agent-e2e-v1/offline-20261003/traces.jsonl").is_file()
+    or not (ROOT / "examples/trace-schema.json").is_file(),
+    reason="Historical evaluation materials are kept locally and are not distributed with code",
+)
 
 
 def test_twenty_offline_tasks_execute_real_tools_and_freeze_complete_schedule(

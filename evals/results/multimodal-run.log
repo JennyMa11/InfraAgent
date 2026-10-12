@@ -1,14 +1,0 @@
-Building prefix dict from the default dictionary ...
-Loading model from cache /var/folders/bb/2w2254vn1qd13jb1gtq3l7m80000gn/T/jieba.cache
-Loading model cost 0.190 seconds.
-Prefix dict has been built successfully.
-Ingesting real multimodal models
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/71 [00:00<?, ?it/s]Loading weights: 100%|██████████| 71/71 [00:00<00:00, 11567.12it/s]
-Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 10419.66it/s]
-Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights: 100%|██████████| 100/100 [00:00<00:00, 23181.92it/s]
-clip {'recall': 1.0, 'precision': 0.23333333333333334, 'f1': 0.3730158730158731, 'mrr': 0.9166666666666666, 'ndcg': 0.9384882922619096, 'latency_ms': 7.417062666111936}
-hybrid {'recall': 1.0, 'precision': 0.23333333333333334, 'f1': 0.3730158730158731, 'mrr': 1.0, 'ndcg': 1.0, 'latency_ms': 11.204000154975802}
-Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 8405.50it/s]
-hybrid_rerank {'recall': 0.9166666666666666, 'precision': 0.2, 'f1': 0.32539682539682546, 'mrr': 1.0, 'ndcg': 0.9355245321275764, 'latency_ms': 114.32327768610169}
-CLIP collection contains text and image embeddings in the same native space.

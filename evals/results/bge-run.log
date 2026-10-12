@@ -1,12 +1,0 @@
-Building prefix dict from the default dictionary ...
-Loading model from cache /var/folders/bb/2w2254vn1qd13jb1gtq3l7m80000gn/T/jieba.cache
-Loading model cost 0.190 seconds.
-Prefix dict has been built successfully.
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/71 [00:00<?, ?it/s]Loading weights: 100%|██████████| 71/71 [00:00<00:00, 19071.12it/s]
-window-hybrid {"recall": 1.0, "precision": 0.2, "f1": 0.33333333333333337, "mrr": 0.8680555555555556, "ndcg": 0.902212722575039}
-semantic-bm25 {"recall": 0.975, "precision": 0.21333333333333335, "f1": 0.34682539682539687, "mrr": 0.8930555555555556, "ndcg": 0.9098543629901752}
-semantic-dense {"recall": 0.9833333333333333, "precision": 0.21666666666666667, "f1": 0.3515873015873016, "mrr": 0.9125, "ndcg": 0.9287400024735274}
-semantic-hybrid {"recall": 0.9833333333333333, "precision": 0.21666666666666667, "f1": 0.3515873015873016, "mrr": 0.9305555555555556, "ndcg": 0.9415681724358944}
-Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 20071.31it/s]
-semantic-hybrid_rerank {"recall": 0.9833333333333333, "precision": 0.21666666666666667, "f1": 0.3515873015873016, "mrr": 0.8833333333333333, "ndcg": 0.9101655779769579}

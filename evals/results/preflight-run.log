@@ -1,15 +1,0 @@
-Building prefix dict from the default dictionary ...
-Loading model from cache /var/folders/bb/2w2254vn1qd13jb1gtq3l7m80000gn/T/jieba.cache
-Loading model cost 0.191 seconds.
-Prefix dict has been built successfully.
-Loading bge
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/71 [00:00<?, ?it/s]Loading weights: 100%|██████████| 71/71 [00:00<00:00, 20789.97it/s]
-bge {'status': 'passed', 'seconds': 9.223078415961936, 'output_length': 512}
-Loading reranker
-Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 14104.28it/s]
-reranker {'status': 'passed', 'seconds': 7.382515290984884, 'output_length': 1}
-Loading clip
-Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 10241.62it/s]
-Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights: 100%|██████████| 100/100 [00:00<00:00, 8705.49it/s]
-clip {'status': 'passed', 'seconds': 23.618223582976498, 'output_length': 512}
