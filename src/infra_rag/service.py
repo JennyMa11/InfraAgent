@@ -442,7 +442,7 @@ class RetrievalService:
                             self.vectors,
                         )
                     filters = []
-                    if domain:
+                    if domain is not None:
                         filters.append({"domain": domain})
                     if modality:
                         filters.append({"modality": modality})

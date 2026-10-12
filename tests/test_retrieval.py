@@ -9,6 +9,7 @@ from infra_rag.chunking import chunk_text
 from infra_rag.config import Settings
 from infra_rag.encoding import DemoEncoder
 from infra_rag.evaluation import metrics
+from infra_rag.models import Chunk
 from infra_rag.service import RetrievalService, bm25, fuse
 
 
@@ -116,6 +117,70 @@ def test_api_search_and_delete(service, tmp_path):
         assert client.delete("/sources", params={"source": str(file.resolve())}).json()[
             "deleted_chunks"
         ]
+
+
+@pytest.mark.parametrize("strategy", ["dense", "hybrid", "clip"])
+@pytest.mark.parametrize("domain", [None, "", "training"])
+@pytest.mark.parametrize("modality", [None, "text"])
+def test_api_vector_search_preserves_explicit_domain(tmp_path, strategy, domain, modality):
+    service = RetrievalService(Settings(data_dir=tmp_path, backend="bge", multimodal=True))
+    # Deterministic doubles exercise the vector-query contract without model downloads.
+    service.encoder = DemoEncoder()
+    service.chunks = [
+        Chunk(
+            id=cid,
+            parent_id=cid,
+            source=f"{cid}.md",
+            content="KV Cache evidence.",
+            domain=chunk_domain,
+            modality=chunk_modality,
+        )
+        for cid, chunk_domain, chunk_modality in [
+            ("training", "training", "text"),
+            ("empty-text", "", "text"),
+            ("empty-image", "", "image"),
+        ]
+    ]
+    service._index_parents()
+
+    class Collection:
+        def query(self, *, query_embeddings, n_results, where):
+            conditions = where.get("$and", [where]) if where is not None else []
+            selected = [
+                chunk
+                for chunk in service.chunks
+                if all(
+                    getattr(chunk, field) == value
+                    for condition in conditions
+                    for field, value in condition.items()
+                )
+            ][:n_results]
+            return {"ids": [[c.id for c in selected]], "distances": [[0.1] * len(selected)]}
+
+    class Clip:
+        def encode_query(self, query):
+            return [[1.0, 0.0]]
+
+    service.text_collection = service.clip_collection = Collection()
+    service.clip = Clip()
+    with TestClient(create_app(service), raise_server_exceptions=False) as client:
+        response = client.post(
+            "/search",
+            json={
+                "query": "KV Cache",
+                "strategy": strategy,
+                "domain": domain,
+                "modality": modality,
+            },
+        )
+    assert response.status_code == 200, response.text
+    expected = {
+        c.id
+        for c in service.chunks
+        if (domain is None or c.domain == domain) and (modality is None or c.modality == modality)
+    }
+    assert {hit["chunk"]["id"] for hit in response.json()["hits"]} == expected
+    assert {item["chunk_id"] for item in response.json()["context_pack"]["evidence"]} == expected
 
 
 def test_snapshot_fingerprint_is_json_serializable(service):
