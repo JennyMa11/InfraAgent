@@ -10,7 +10,7 @@ from prepare_corpus_v2 import OUT, ROOT, build, load_unprocessed_banks, prepare
 
 from infra_rag.benchmarking import digest, validate_dataset
 from infra_rag.context import pack_context
-from infra_rag.model_clients import AnthropicClient
+from infra_rag.legacy_model_clients import AnthropicClient
 from infra_rag.offline_evaluation import (
     answer_review_template,
     enrich_questions,

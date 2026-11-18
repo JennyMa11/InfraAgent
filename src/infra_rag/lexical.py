@@ -46,7 +46,7 @@ class BM25Index:
 
     def search(self, query, top_k=None):
         scores = defaultdict(float)
-        for term in query_terms(query, self.query_mode):
+        for term in sorted(query_terms(query, self.query_mode)):
             for index, frequency in self.postings.get(term, ()):
                 scores[index] += (
                     self.idf[term] * frequency * 2.5 / (frequency + self.normalizers[index])

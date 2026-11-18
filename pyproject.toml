@@ -6,9 +6,16 @@ requires-python = ">=3.12"
 dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.32,<1", "jieba==0.42.1"]
 
 [project.optional-dependencies]
-models = ["sentence-transformers>=3.3,<6", "chromadb>=1,<2"]
+evaluation = [
+    "ragas==0.4.3",
+    "openai>=1.109,<3",
+    "langchain-community>=0.3.31,<0.4",
+    "langchain>=0.3.27,<0.4",
+    "langchain-openai>=0.3,<0.4",
+]
+models = ["sentence-transformers>=3.3,<6", "transformers>=4.51,<6", "chromadb>=1,<2"]
 pdf = ["pymupdf>=1.24,<2", "pillow>=11,<13"]
-multimodal = ["sentence-transformers>=3.3,<6", "chromadb>=1,<2", "pillow>=11,<13", "opencv-python-headless>=4.10,<5"]
+multimodal = ["sentence-transformers>=3.3,<6", "transformers>=4.51,<6", "chromadb>=1,<2", "pillow>=11,<13", "opencv-python-headless>=4.10,<5"]
 dev = ["pytest>=8,<9", "httpx>=0.27,<1", "ruff>=0.8,<1"]
 
 [project.scripts]
@@ -20,6 +27,9 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/infra_rag"]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src/infra_rag", "scripts", "tests", "pyproject.toml", "uv.lock"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -4,7 +4,7 @@ import re
 from fastapi.testclient import TestClient
 
 from infra_rag.api import create_app
-from infra_rag.assistant import AnswerService, ModelUnavailable, OllamaClient
+from infra_rag.assistant import AnswerService, ModelUnavailable
 from infra_rag.config import Settings
 from infra_rag.service import RetrievalService
 
@@ -137,16 +137,49 @@ def test_chat_validation_and_model_failure(tmp_path):
         assert client.get("/conversations/00000000-0000-0000-0000-000000000000").status_code == 404
 
 
-def test_ollama_preload_matches_answer_context(monkeypatch):
-    model = OllamaClient()
-    requests = []
+def test_chat_normalizes_term_for_retrieval_but_keeps_original_question(tmp_path, monkeypatch):
+    model = FakeModel()
+    client, service = make_client(tmp_path, model)
+    queries = []
+    search = service.search
 
-    def capture(payload):
-        requests.append(payload)
-        return {"message": {"content": "{}"}}
+    def observed(query, **kwargs):
+        queries.append(query)
+        return search(query, **kwargs)
 
-    monkeypatch.setattr(model, "_request", capture)
-    model.preload()
-    model.generate([{"role": "user", "content": "question"}])
-    assert [request["keep_alive"] for request in requests] == ["10m", "10m"]
-    assert [request["options"]["num_ctx"] for request in requests] == [8192, 8192]
+    monkeypatch.setattr(service, "search", observed)
+    question = "Page Attention是什么"
+    with client:
+        result = client.post("/chat", json={"message": question}).json()
+        assert result["status"] == "answered"
+        assert queries == ["PagedAttention是什么"]
+        assert [s["step"] for s in result["trace"]] == ["query_normalize", "retrieve", "generate"]
+        assert result["trace"][0]["original_query"] == question
+        assert f"当前问题：{question}" in model.messages[0][-1]["content"]
+        assert "检索术语规范化" in model.messages[0][-1]["content"]
+        history = client.get(f"/conversations/{result['conversation_id']}").json()
+        assert history["turns"][0]["content"] == question
+        assert len(model.messages) == 1
+
+
+def test_term_alias_does_not_bypass_missing_evidence_or_invalid_citations(tmp_path):
+    class InvalidCitationModel(FakeModel):
+        def generate(self, messages):
+            self.messages.append(messages)
+            return json.dumps({"supported": True, "answer": "无效引用", "citations": ["Ebad"]})
+
+    model = InvalidCitationModel()
+    client, _ = make_client(tmp_path, model)
+    with client:
+        missing = client.post(
+            "/chat",
+            json={
+                "message": "Page Attention是什么",
+                "domain": "not-in-index",
+            },
+        ).json()
+        assert missing["status"] == "no_evidence" and missing["citations"] == []
+        assert not model.messages
+        invalid = client.post("/chat", json={"message": "Page Attention是什么"}).json()
+        assert invalid["status"] == "no_evidence" and invalid["citations"] == []
+        assert len(model.messages) == 2

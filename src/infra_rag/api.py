@@ -2,6 +2,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from .assistant import AnswerService, ConversationNotFound, ModelUnavailable
@@ -24,12 +25,18 @@ class IngestRequest(BaseModel):
 
 
 class ChatRequest(BaseModel):
+    experimental_pagination: bool = False
     message: str = Field(min_length=1, max_length=4000)
     conversation_id: str | None = None
     domain: str | None = None
 
 
-def create_app(service: RetrievalService, assistant: AnswerService | None = None):
+def create_app(
+    service: RetrievalService,
+    assistant: AnswerService | None = None,
+    *,
+    web_dir: Path | None = None,
+):
     app = FastAPI(title="Infra Knowledge Assistant", version="0.2.0")
     assistant = assistant or AnswerService(service)
 
@@ -42,8 +49,9 @@ def create_app(service: RetrievalService, assistant: AnswerService | None = None
         if not request.message.strip():
             raise HTTPException(422, "message must not be blank")
         try:
+            options = {"experimental_pagination": True} if request.experimental_pagination else {}
             return assistant.answer(
-                request.message.strip(), request.conversation_id, request.domain
+                request.message.strip(), request.conversation_id, request.domain, **options
             )
         except (ValueError, TypeError) as exc:
             raise HTTPException(422, str(exc)) from exc
@@ -108,5 +116,8 @@ def create_app(service: RetrievalService, assistant: AnswerService | None = None
             return {"deleted_chunks": service.delete(source)}
         except ValueError as exc:
             raise HTTPException(409, str(exc)) from exc
+
+    if web_dir is not None:
+        app.mount("/", StaticFiles(directory=web_dir, html=True), name="web")
 
     return app

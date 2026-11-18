@@ -22,7 +22,7 @@ from infra_rag.evidence_selection import (
     parse_facets,
     select_order,
 )
-from infra_rag.model_clients import AnthropicClient
+from infra_rag.legacy_model_clients import AnthropicClient
 from infra_rag.models import Hit
 from infra_rag.offline_evaluation import (
     answer_review_template,

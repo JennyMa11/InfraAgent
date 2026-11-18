@@ -6,7 +6,7 @@ from dataclasses import replace
 from merge_corpus import OUT, ROOT, ProvenanceRetrieval, settings
 
 from infra_rag.benchmarking import digest
-from infra_rag.model_clients import AnthropicClient
+from infra_rag.legacy_model_clients import AnthropicClient
 from infra_rag.offline_evaluation import generate_answer
 from infra_rag.service import RetrievalService
 

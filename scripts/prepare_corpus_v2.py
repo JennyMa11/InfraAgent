@@ -220,7 +220,7 @@ def load_unprocessed_banks():
 
 
 def audit_ai(directory, risk_only=False):
-    from infra_rag.model_clients import AnthropicClient
+    from infra_rag.legacy_model_clients import AnthropicClient
 
     client = AnthropicClient.from_environment(path=ROOT / ".env.llm", max_tokens=2200)
     manifest = json.loads((directory / "manifest.json").read_text())
@@ -351,7 +351,7 @@ def main():
 
             from infra_rag.api import create_app
             from infra_rag.assistant import AnswerService
-            from infra_rag.model_clients import AnthropicClient
+            from infra_rag.legacy_model_clients import AnthropicClient
             from infra_rag.query_expansion import QueryTranslator
 
             if args.profile.startswith("global"):

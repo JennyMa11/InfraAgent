@@ -8,6 +8,7 @@
 !/scripts/
 !/tests/
 !/desktop/
+!/web/
 
 # Track Python source under the approved roots.
 /src/**
@@ -25,3 +26,10 @@
 !/desktop/**/
 !/desktop/**/*.swift
 !/desktop/**/*.sh
+
+# Keep generated caches and OS metadata out even when a parent is re-included.
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.DS_Store

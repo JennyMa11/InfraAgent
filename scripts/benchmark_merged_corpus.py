@@ -8,7 +8,7 @@ from merge_corpus import OUT, ROOT, ProvenanceRetrieval, build, settings
 from operation_log import record_operation
 
 from infra_rag.benchmarking import canonical_hash, digest, validate_dataset
-from infra_rag.model_clients import AnthropicClient
+from infra_rag.legacy_model_clients import AnthropicClient
 from infra_rag.offline_evaluation import (
     answer_review_template,
     enrich_questions,

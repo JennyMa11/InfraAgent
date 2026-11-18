@@ -12,7 +12,6 @@ from time import perf_counter
 from operation_log import ROOT, record_operation
 from prepare_official_benchmark import DATASET
 
-from infra_rag.assistant import OllamaClient
 from infra_rag.benchmarking import (
     VARIANTS,
     bootstrap_groups,
@@ -25,7 +24,7 @@ from infra_rag.benchmarking import (
     write_new,
 )
 from infra_rag.config import Settings
-from infra_rag.model_clients import AnthropicClient, OpenAICompatibleClient
+from infra_rag.legacy_model_clients import AnthropicClient, OllamaClient, OpenAICompatibleClient
 from infra_rag.offline_evaluation import (
     answer_review_template,
     evaluation_rows,

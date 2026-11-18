@@ -9,9 +9,18 @@ from threading import RLock
 from time import perf_counter
 
 from .chunking import IMAGE_SUFFIXES, TEXT_SUFFIXES, parse_file, stable_id
+from .complete_context import pack_complete_context
 from .config import Settings
 from .context import pack_context
-from .encoding import BGEEncoder, CLIPEncoder, DemoEncoder, dot, tokenize
+from .encoding import (
+    QWEN_QUERY_PROMPT,
+    BGEEncoder,
+    CLIPEncoder,
+    DemoEncoder,
+    QwenEncoder,
+    dot,
+    tokenize,
+)
 from .lexical import BM25Index
 from .models import Chunk, Hit
 from .vector_cache import CachedEncoder, VectorCache, content_hash
@@ -19,6 +28,15 @@ from .vector_cache import CachedEncoder, VectorCache, content_hash
 
 def search_text(chunk):
     return f"{Path(chunk.source).stem}\n{chunk.heading}\n{chunk.content}"
+
+
+def _collection_metadata(chunk):
+    return {
+        "domain": chunk.domain,
+        "modality": chunk.modality,
+        "parent_id": chunk.parent_id,
+        "chunk_type": chunk.chunk_type,
+    }
 
 
 def lexical_statistics(chunks, heading_context=False):
@@ -36,7 +54,7 @@ def bm25(query, chunks, statistics=None, top_k=None):
     if isinstance(statistics, BM25Index):
         return statistics.search(query, top_k=top_k)
     documents, frequencies, lengths, average = statistics or lexical_statistics(chunks)
-    terms = set(tokenize(query))
+    terms = sorted(set(tokenize(query)))
     results = []
     for chunk, doc, length in zip(chunks, documents, lengths, strict=True):
         score = 0.0
@@ -67,9 +85,10 @@ def fuse(rankings, constant=60):
 
 
 class RetrievalService:
-    def __init__(self, settings=None):
+    def __init__(self, settings=None, *, context_counter=None):
         settings = settings or Settings()
         self.settings = settings
+        self.context_counter = context_counter
         self.index_fingerprint = settings.fingerprint()
         self.lock = RLock()
         self.snapshot = settings.data_dir / "index.json"
@@ -103,11 +122,23 @@ class RetrievalService:
 
     def _encoder(self):
         if self.encoder is None:
-            self.encoder = (
-                DemoEncoder()
-                if self.settings.backend == "demo"
-                else BGEEncoder(self.settings.embedding_model)
-            )
+            options = {
+                "revision": self.settings.embedding_revision,
+                "device": self.settings.embedding_device,
+                "batch_size": self.settings.embedding_batch_size,
+            }
+            if not self.settings.uses_semantic_embeddings:
+                self.encoder = DemoEncoder()
+            elif self.settings.backend == "qwen":
+                options["batch_size"] = self.settings.embedding_batch_size or 2
+                self.encoder = QwenEncoder(
+                    self.settings.embedding_model,
+                    query_prompt=self.settings.embedding_query_prompt or QWEN_QUERY_PROMPT,
+                    max_length=self.settings.embedding_max_length,
+                    **options,
+                )
+            else:
+                self.encoder = BGEEncoder(self.settings.embedding_model, **options)
         return self.encoder
 
     def _clip(self):
@@ -115,15 +146,18 @@ class RetrievalService:
             self.clip = CLIPEncoder(self.settings.clip_image_model, self.settings.clip_text_model)
         return self.clip
 
+    def _collection_version(self, chunks):
+        return stable_id(
+            json.dumps(self.settings.fingerprint(), sort_keys=True),
+            json.dumps([asdict(c) for c in chunks], sort_keys=True),
+        )
+
     def _collections(self, chunks, vectors):
         import chromadb
 
         if self.client is None:
             self.client = chromadb.PersistentClient(path=str(self.settings.data_dir / "chroma"))
-        version = stable_id(
-            json.dumps(self.settings.fingerprint(), sort_keys=True),
-            json.dumps([asdict(c) for c in chunks], sort_keys=True),
-        )
+        version = self._collection_version(chunks)
         text_collection = self.client.get_or_create_collection(
             "text-" + version,
             embedding_function=None,
@@ -136,15 +170,7 @@ class RetrievalService:
                     ids=[c.id for c in batch],
                     embeddings=vectors[start : start + 128],
                     documents=[c.content for c in batch],
-                    metadatas=[
-                        {
-                            "domain": c.domain,
-                            "modality": c.modality,
-                            "parent_id": c.parent_id,
-                            "chunk_type": c.chunk_type,
-                        }
-                        for c in batch
-                    ],
+                    metadatas=[_collection_metadata(c) for c in batch],
                 )
         clip_collection = None
         if self.settings.multimodal:
@@ -157,29 +183,39 @@ class RetrievalService:
                 cached = self._clip_vectors(chunks)
                 for start in range(0, len(chunks), 64):
                     batch = chunks[start : start + 64]
-                    ordered = batch
                     clip_collection.upsert(
-                        ids=[c.id for c in ordered],
-                        embeddings=[cached[c.id] for c in ordered],
-                        documents=[c.content for c in ordered],
-                        metadatas=[
-                            {
-                                "domain": c.domain,
-                                "modality": c.modality,
-                                "parent_id": c.parent_id,
-                                "chunk_type": c.chunk_type,
-                            }
-                            for c in ordered
-                        ],
+                        ids=[c.id for c in batch],
+                        embeddings=[cached[c.id] for c in batch],
+                        documents=[c.content for c in batch],
+                        metadatas=[_collection_metadata(c) for c in batch],
                     )
         return text_collection, clip_collection
 
     def _text_namespace(self):
-        return {
+        namespace = {
             "backend": self.settings.backend,
-            "model": self.settings.embedding_model if self.settings.backend == "bge" else "hash-v1",
+            "model": self.settings.embedding_model
+            if self.settings.uses_semantic_embeddings
+            else "hash-v1",
             "pooling": "token-window-mean-v1",
         }
+        if self.settings.embedding_revision is not None:
+            namespace["revision"] = self.settings.embedding_revision
+        if self.settings.backend == "qwen":
+            fp = self.settings.fingerprint()
+            namespace.update(
+                pooling=fp["embedding_pooling"],
+                dimension=fp["embedding_dimension"],
+                query_prompt=fp["embedding_query_prompt"],
+                max_length=fp["embedding_max_length"],
+            )
+        return namespace
+
+    def _clip_namespace(self, modality):
+        model = (
+            self.settings.clip_image_model if modality == "image" else self.settings.clip_text_model
+        )
+        return {"model": model, "modality": modality, "pooling": "token-window-mean-v1"}
 
     def _clip_vectors(self, chunks):
         vectors = {}
@@ -187,13 +223,7 @@ class RetrievalService:
         for modality in ("text", "image"):
             group = [c for c in chunks if c.modality == modality]
             inputs = [c.image_path if modality == "image" else c.content for c in group]
-            namespace = {
-                "model": self.settings.clip_image_model
-                if modality == "image"
-                else self.settings.clip_text_model,
-                "modality": modality,
-                "pooling": "token-window-mean-v1",
-            }
+            namespace = self._clip_namespace(modality)
             identities = [content_hash(path) for path in inputs] if modality == "image" else inputs
             encoded, counts = (
                 self.vector_cache.encode(
@@ -239,7 +269,7 @@ class RetrievalService:
         )
         manifest = self.source_manifest if source_manifest is None else source_manifest
         collections = None
-        if self.settings.backend == "bge":
+        if self.settings.uses_semantic_embeddings:
             collections = self._collections(chunks, vectors)
         self.settings.data_dir.mkdir(parents=True, exist_ok=True)
         temporary = self.snapshot.with_suffix(".tmp")
@@ -424,7 +454,7 @@ class RetrievalService:
             timings["bm25"] = (perf_counter() - phase) * 1000
             phase = perf_counter()
             if strategy in {"dense", "hybrid", "clip"}:
-                if self.settings.backend == "demo":
+                if not self.settings.uses_semantic_embeddings:
                     vector = self._encoder().encode([query], query=True)[0]
                     allowed = {c.id for c in eligible}
                     rankings["dense"] = sorted(
@@ -479,7 +509,7 @@ class RetrievalService:
                                 strict=True,
                             )
                         )
-            if self.settings.backend == "demo":
+            if not self.settings.uses_semantic_embeddings:
                 timings["dense"] = (perf_counter() - phase) * 1000
             elif "clip" in rankings:
                 timings["clip"] = (perf_counter() - phase) * 1000
@@ -489,7 +519,7 @@ class RetrievalService:
                 diagnostics["channels"] = {
                     name: {
                         "score_kind": "cosine_distance"
-                        if name in {"dense", "clip"} and self.settings.backend == "bge"
+                        if name in {"dense", "clip"} and self.settings.uses_semantic_embeddings
                         else "bm25_score"
                         if name == "bm25"
                         else "cosine_similarity",
@@ -503,22 +533,32 @@ class RetrievalService:
             if diagnostics is not None and "dense" in rankings:
                 encoder = self._encoder()
                 if hasattr(encoder, "token_length"):
-                    input_text = getattr(encoder, "instruction", "") + query
+                    native_qwen = self.settings.backend == "qwen"
+                    prefix = (
+                        getattr(encoder, "query_prompt", "")
+                        if native_qwen
+                        else getattr(encoder, "instruction", "")
+                    )
+                    input_text = prefix + query
                     length = encoder.token_length(input_text)
                     limit = encoder.token_limit
                     diagnostics["dense_query"] = {
                         "input_tokens": length,
                         "window_limit": limit,
-                        "windows": max(1, math.ceil(length / limit)),
-                        "handling": "token_window_mean",
+                        "windows": 1 if native_qwen else max(1, math.ceil(length / limit)),
+                        "handling": "native_last_token_reject_overflow"
+                        if native_qwen
+                        else "token_window_mean",
                     }
                 else:
                     diagnostics["dense_query"] = {"handling": "deterministic_hash"}
-            fused, channels = fuse(rankings)
+            fused, channels = fuse(rankings, self.settings.rrf_constant)
             by_id = {c.id: c for c in eligible}
             candidates = (
                 fused if self.settings.fusion_candidates == "union" else fused[:candidate_k]
             )
+            if self.settings.candidate_pool_cap is not None:
+                candidates = candidates[: self.settings.candidate_pool_cap]
             hits = [
                 Hit(by_id[chunk_id], score, channels[chunk_id]) for chunk_id, score in candidates
             ]
@@ -533,6 +573,7 @@ class RetrievalService:
             before_rerank = {h.chunk.id: rank for rank, h in enumerate(hits, 1)}
             phase = perf_counter()
             if self.settings.rerank and hits:
+                rerank_hits = hits[: self.settings.rerank_top_n]
                 if self.reranker is None:
                     from sentence_transformers import CrossEncoder
 
@@ -544,31 +585,46 @@ class RetrievalService:
                         if self.settings.heading_context
                         else hit.chunk.content,
                     )
-                    for hit in hits
+                    for hit in rerank_hits
                 ]
                 if diagnostics is not None:
                     diagnostics["rerank"] = self._rerank_diagnostics(pairs)
                 scores = self.reranker.predict(pairs)
-                for hit, score in zip(hits, scores, strict=True):
+                for hit, score in zip(rerank_hits, scores, strict=True):
                     hit.rerank_score = float(score)
-                hits.sort(key=lambda h: (-h.rerank_score, -h.score, h.chunk.id))
+                rerank_hits.sort(key=lambda h: (-h.rerank_score, -h.score, h.chunk.id))
+                hits = rerank_hits + hits[len(rerank_hits) :]
             timings["rerank"] = (perf_counter() - phase) * 1000
             phase = perf_counter()
             selected_hits = hits[:top_k]
             if self.settings.context_mode == "neighbors":
-                encoder = self._encoder()
-                count = getattr(encoder, "token_length", len)
-                packed = pack_context(
-                    selected_hits,
-                    self.parent_index,
-                    count,
-                    self.settings.context_tokens,
-                    self.settings.context_chars,
-                    domain,
-                    modality,
+                encoder = self._encoder() if self.context_counter is None else None
+                count = self.context_counter or getattr(encoder, "token_length", len)
+                packed = (
+                    pack_context(
+                        selected_hits,
+                        self.parent_index,
+                        count,
+                        self.settings.context_tokens,
+                        self.settings.context_chars,
+                        domain,
+                        modality,
+                        neighbor_expansion=self.settings.neighbor_expansion,
+                    )
+                    if self.settings.context_policy == "prefix"
+                    else pack_complete_context(
+                        selected_hits,
+                        hits,
+                        query,
+                        count,
+                        self.settings.context_tokens,
+                        self.settings.context_chars,
+                    )
                 )
                 packed["token_count_method"] = (
-                    "embedding_tokenizer"
+                    "fixed_external_tokenizer"
+                    if self.context_counter is not None
+                    else "embedding_tokenizer"
                     if hasattr(encoder, "token_length")
                     else "unicode_characters"
                 )
@@ -598,6 +654,7 @@ class RetrievalService:
             timings["context"] = (perf_counter() - phase) * 1000
             timings["total"] = (perf_counter() - started) * 1000
             if diagnostics is not None:
+                diagnostics["ranked_ids"] = [h.chunk.id for h in hits]
                 diagnostics["final"] = [
                     {
                         "chunk_id": h.chunk.id,
@@ -609,6 +666,116 @@ class RetrievalService:
                 ]
                 diagnostics["returned_chunk_ids"] = [h.chunk.id for h in selected_hits]
             return selected_hits
+
+    def search_queries(
+        self,
+        queries,
+        top_k=5,
+        domain=None,
+        modality=None,
+        strategy="hybrid",
+        diagnostics=None,
+        context_pack=None,
+    ):
+        """Fuse BM25/dense rankings from several queries, then pack one delivery context."""
+        unique = []
+        for query in queries:
+            if isinstance(query, str) and query.strip() and query.strip() not in unique:
+                unique.append(query.strip())
+        if not unique:
+            raise ValueError("queries must contain nonempty text")
+        if len(unique) == 1:
+            return self.search(
+                unique[0],
+                top_k=top_k,
+                domain=domain,
+                modality=modality,
+                strategy=strategy,
+                diagnostics=diagnostics,
+                context_pack=context_pack,
+            )
+        if self.settings.context_mode != "neighbors" or self.settings.context_policy != "prefix":
+            raise ValueError("multi-query retrieval requires neighbors/prefix context")
+        started = perf_counter()
+        depth = max(top_k, self.settings.candidate_k)
+        channels = ("bm25", "dense") if strategy == "hybrid" else (strategy,)
+        rankings, chunks = {}, {}
+        for index, query in enumerate(unique, 1):
+            for channel in channels:
+                hits = self.search(
+                    query,
+                    top_k=depth,
+                    domain=domain,
+                    modality=modality,
+                    strategy=channel,
+                )
+                rankings[f"q{index}_{channel}"] = [(hit.chunk.id, hit.score) for hit in hits]
+                chunks.update({hit.chunk.id: hit.chunk for hit in hits})
+        fused, hit_channels = fuse(rankings, self.settings.rrf_constant)
+        selected = [
+            Hit(chunks[chunk_id], score, hit_channels[chunk_id])
+            for chunk_id, score in fused[:top_k]
+        ]
+        encoder = self._encoder() if self.context_counter is None else None
+        count = self.context_counter or getattr(encoder, "token_length", len)
+        packed = pack_context(
+            selected,
+            self.parent_index,
+            count,
+            self.settings.context_tokens,
+            self.settings.context_chars,
+            domain,
+            modality,
+            neighbor_expansion=self.settings.neighbor_expansion,
+        )
+        packed["token_count_method"] = (
+            "fixed_external_tokenizer"
+            if self.context_counter is not None
+            else "embedding_tokenizer"
+            if hasattr(encoder, "token_length")
+            else "unicode_characters"
+        )
+        if context_pack is not None:
+            context_pack.clear()
+            context_pack.update(packed)
+        if diagnostics is not None:
+            diagnostics.clear()
+            diagnostics.update(
+                {
+                    "queries": unique,
+                    "channels": {name: len(ranking) for name, ranking in rankings.items()},
+                    "candidate_k": depth,
+                    "ranked_ids": [hit.chunk.id for hit in selected],
+                    "timings_ms": {"total": round((perf_counter() - started) * 1000, 1)},
+                    "rerank": {
+                        "enabled": self.settings.rerank,
+                        "scope": "per_query_channel",
+                    },
+                }
+            )
+        return selected
+
+    def evidence_pages(self, hits, domain=None, modality=None):
+        """Read only the selected parents; never rerun retrieval or widen candidates."""
+        from .experimental_pages import pages_from_chunks
+
+        with self.lock:
+            chunks, seen = [], set()
+            for hit in hits:
+                candidates = [hit.chunk, *self.parent_index.get(hit.chunk.parent_id, [])]
+                for chunk in candidates:
+                    if (
+                        chunk.id not in seen
+                        and (domain is None or chunk.domain == domain)
+                        and (modality is None or chunk.modality == modality)
+                    ):
+                        chunks.append(chunk)
+                        seen.add(chunk.id)
+            encoder = self._encoder() if self.context_counter is None else None
+            count = self.context_counter or getattr(encoder, "token_length", len)
+            return pages_from_chunks(
+                chunks, count, self.settings.context_tokens, self.settings.context_chars
+            )
 
     def _rerank_diagnostics(self, pairs):
         tokenizer = getattr(self.reranker, "tokenizer", None)
@@ -645,13 +812,13 @@ class RetrievalService:
                     raise ValueError("active snapshot changed; restart before cleanup")
             elif self.chunks:
                 raise ValueError("cannot clean an unpublished index")
-            version = stable_id(
-                json.dumps(self.settings.fingerprint(), sort_keys=True),
-                json.dumps([asdict(c) for c in self.chunks], sort_keys=True),
-            )
+            version = self._collection_version(self.chunks)
             active = {"text-" + version, "clip-" + version}
             unused_collections = []
-            if self.settings.backend == "bge" and (self.settings.data_dir / "chroma").exists():
+            if (
+                self.settings.uses_semantic_embeddings
+                and (self.settings.data_dir / "chroma").exists()
+            ):
                 import chromadb
 
                 if self.client is None:
@@ -686,13 +853,7 @@ class RetrievalService:
             }
             if self.settings.multimodal:
                 for c in self.chunks:
-                    namespace = {
-                        "model": self.settings.clip_image_model
-                        if c.modality == "image"
-                        else self.settings.clip_text_model,
-                        "modality": c.modality,
-                        "pooling": "token-window-mean-v1",
-                    }
+                    namespace = self._clip_namespace(c.modality)
                     identity = content_hash(c.image_path) if c.modality == "image" else c.content
                     keys.add(self.vector_cache.key(namespace, identity))
             cache = self.vector_cache.prune(keys, apply=apply)
@@ -711,19 +872,24 @@ class RetrievalService:
     def status(self):
         return {
             "backend": self.settings.backend,
-            "semantic_model": self.settings.backend == "bge",
+            "semantic_model": self.settings.uses_semantic_embeddings,
             "embedding_model": self.settings.embedding_model
-            if self.settings.backend == "bge"
+            if self.settings.uses_semantic_embeddings
             else "deterministic-hash",
             "reranker_model": self.settings.reranker_model if self.settings.rerank else None,
             "reranker_scope": "text_and_image_captions",
             "candidate_k": self.settings.candidate_k,
+            "rrf_constant": self.settings.rrf_constant,
+            "rerank_top_n": self.settings.rerank_top_n,
+            "candidate_pool_cap": self.settings.candidate_pool_cap,
+            "neighbor_expansion": self.settings.neighbor_expansion,
             "fusion_candidates": self.settings.fusion_candidates,
             "lexical_query_mode": self.settings.lexical_query_mode,
             "heading_context": self.settings.heading_context,
             "context_chars": self.settings.context_chars,
             "context_tokens": self.settings.context_tokens,
             "context_mode": self.settings.context_mode,
+            "context_policy": self.settings.context_policy,
             "rerank": self.settings.rerank,
             "multimodal": self.settings.multimodal,
             "chunks": len(self.chunks),

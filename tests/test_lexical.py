@@ -37,3 +37,28 @@ def test_technical_query_keeps_identifiers_chinese_and_numeric_conditions():
     assert {"local_rank", "kv", "cache", "32", "显存管理"} <= terms
     assert not {"how", "can", "i", "with", "?"} & terms
     assert Settings().fingerprint() == Settings(lexical_query_mode="technical").fingerprint()
+
+
+def test_bm25_scores_are_identical_across_hash_seeds():
+    import os
+    import subprocess
+    import sys
+
+    code = """
+import json
+from infra_rag.models import Chunk
+from infra_rag.service import lexical_statistics, bm25
+from infra_rag.lexical import BM25Index
+text='alpha beta gamma delta epsilon zeta '
+chunks=[Chunk(str(i),'p','s',text*(i+1)+'alpha '*i,'infra') for i in range(5)]
+stats=lexical_statistics(chunks)
+q='alpha beta gamma delta epsilon zeta'
+print(json.dumps([BM25Index(chunks,statistics=stats).search(q),bm25(q,chunks,stats)]))
+"""
+    outputs = [
+        subprocess.check_output(
+            [sys.executable, "-c", code], env={**os.environ, "PYTHONHASHSEED": seed}, text=True
+        )
+        for seed in ("1", "17", "42")
+    ]
+    assert outputs[0] == outputs[1] == outputs[2]

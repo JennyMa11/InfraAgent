@@ -1,4 +1,4 @@
-"""Blank-line blocks -> heading/semantic aggregation -> sentence refinement."""
+"""Structure-aware semantic chunks or token-bounded character windows."""
 
 import hashlib
 import re
@@ -6,7 +6,7 @@ from pathlib import Path
 
 from .encoding import dot
 from .models import Chunk
-from .text_chunking import centroid, heading_line, semantic_refine, window_pieces
+from .text_chunking import centroid, heading_line, semantic_refine, window_ranges
 
 TEXT_SUFFIXES = {".md", ".markdown", ".txt", ".rst"}
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
@@ -21,21 +21,32 @@ def chunk_text(text, source, domain, encoder, settings, *, page=None):
     blocks, current, heading, start = [], [], "", 1
     heading_stack = []
     markdown = Path(source).suffix.lower() in {".md", ".markdown"}
-    if settings.chunk_strategy == "window":
-        pieces = window_pieces(text, settings.chunk_size, encoder)
-        return [
-            Chunk(
-                id=stable_id(source, page, "window", i, piece),
-                parent_id=stable_id(source, page, "window", i),
-                source=source,
-                content=piece,
-                domain=domain,
-                page=page,
-                chunk_type="window",
-                locator=f"{source}#page={page}" if page else f"{source}#L1-L{len(lines)}",
+    if settings.chunk_strategy in {"window", "window_overlap"}:
+        strategy = settings.chunk_strategy
+        ranges = window_ranges(text, settings.chunk_size, encoder, settings.chunk_overlap)
+        result = []
+        for i, (first, last) in enumerate(ranges):
+            piece = text[first:last]
+            start_line = text.count("\n", 0, first) + 1
+            end_line = text.count("\n", 0, max(first, last - 1)) + 1
+            result.append(
+                Chunk(
+                    id=stable_id(source, page, strategy, i, piece),
+                    parent_id=stable_id(source, page, strategy, i),
+                    source=source,
+                    content=piece,
+                    domain=domain,
+                    page=page,
+                    chunk_type=strategy,
+                    locator=f"{source}#page={page}"
+                    if page
+                    else f"{source}#L{start_line}-L{end_line}",
+                    start_line=start_line,
+                    end_line=end_line,
+                    metadata={"text_char_range": [first, last]},
+                )
             )
-            for i, piece in enumerate(pieces)
-        ]
+        return result
 
     def flush(end):
         nonlocal current

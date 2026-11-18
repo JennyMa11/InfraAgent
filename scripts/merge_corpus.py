@@ -187,7 +187,7 @@ def main():
 
         from infra_rag.api import create_app
         from infra_rag.assistant import AnswerService
-        from infra_rag.model_clients import AnthropicClient
+        from infra_rag.legacy_model_clients import AnthropicClient
 
         service = ProvenanceRetrieval(
             replace(settings(directory), query_language=args.query_language)

@@ -1,4 +1,4 @@
-"""Title-aware paragraph aggregation and model-aware semantic sentence refinement."""
+"""Title-aware aggregation, semantic sentence refinement, and token-bounded windows."""
 
 import math
 import re
@@ -43,6 +43,20 @@ def fits(text, size, encoder):
     )
 
 
+def _fitting_length(text, size, encoder):
+    """Largest prefix satisfying both the character and token limits."""
+    if not text:
+        return 0
+    low, high = 1, min(size, len(text))
+    while low < high:
+        middle = (low + high + 1) // 2
+        if fits(text[:middle], size, encoder):
+            low = middle
+        else:
+            high = middle - 1
+    return low
+
+
 def bounded_units(text, size, encoder):
     """Keep punctuation; split oversize single sentences without model truncation."""
     units = []
@@ -60,15 +74,9 @@ def bounded_units(text, size, encoder):
                 if fits(remainder, size, encoder):
                     units.append(remainder)
                     break
-                low, high = 1, min(size, len(remainder))
-                while low < high:
-                    middle = (low + high + 1) // 2
-                    if fits(remainder[:middle], size, encoder):
-                        low = middle
-                    else:
-                        high = middle - 1
-                units.append(remainder[:low])
-                remainder = remainder[low:].lstrip()
+                length = _fitting_length(remainder, size, encoder)
+                units.append(remainder[:length])
+                remainder = remainder[length:].lstrip()
     return units
 
 
@@ -101,17 +109,17 @@ def centroid(left, right, count):
     return [value / norm for value in total]
 
 
-def window_pieces(text, size, encoder):
-    pieces = []
-    remaining = text
-    while remaining:
-        low, high = 1, min(size, len(remaining))
-        while low < high:
-            middle = (low + high + 1) // 2
-            if fits(remaining[:middle], size, encoder):
-                low = middle
-            else:
-                high = middle - 1
-        pieces.append(remaining[:low])
-        remaining = remaining[low:]
-    return pieces
+def window_ranges(text, size, encoder, overlap=0):
+    """Character intervals with optional overlap, bounded by one fixed tokenizer."""
+    if size < 1 or not 0 <= overlap < size:
+        raise ValueError("window requires positive size and 0 <= overlap < size")
+    ranges, start = [], 0
+    while start < len(text):
+        end = start + _fitting_length(text[start:], size, encoder)
+        if not fits(text[start:end], size, encoder):
+            raise ValueError("one character exceeds the tokenizer limit")
+        ranges.append((start, end))
+        if end == len(text):
+            break
+        start = max(start + 1, end - overlap)
+    return ranges

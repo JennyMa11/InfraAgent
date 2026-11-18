@@ -8,13 +8,31 @@ from .chunking import stable_id
 from .models import Chunk
 from .text_chunking import bounded_units, fits
 
-VERSION = "rules-structure-v1"
+VERSION = "rules-structure-v2-fences"
+
+
+def fence_open(line):
+    # Protect fences nested inside Markdown lists, including indentation beyond 3 spaces.
+    match = re.match(r"^\s*(`{3,}|~{3,})(.*)$", line)
+    if not match:
+        return None
+    marker, rest = match.groups()
+    inline = bool(
+        rest.strip() and re.search(re.escape(marker[0]) + "{" + str(len(marker)) + r",}\s*$", rest)
+    )
+    return marker, inline
+
+
+def fence_close(line, marker):
+    return bool(
+        re.fullmatch(r"\s*" + re.escape(marker[0]) + "{" + str(len(marker)) + r",}\s*", line)
+    )
 
 
 def clean_lines(text):
     lines = text.splitlines()
     changes = []
-    fenced, frontmatter, toc = False, False, False
+    fenced, frontmatter, toc = None, False, False
     for i, line in enumerate(lines):
         stripped = line.strip()
         if i == 0 and stripped == "---":
@@ -24,9 +42,14 @@ def clean_lines(text):
             changes.append({"line": i + 1, "reason": "frontmatter"})
             lines[i] = ""
             continue
-        if stripped.startswith(("```", "~~~")):
-            fenced = not fenced
-        if fenced or stripped.startswith(("```", "~~~")):
+        if fenced:
+            if fence_close(line, fenced):
+                fenced = None
+            continue
+        opening = fence_open(line)
+        if opening:
+            marker, inline = opening
+            fenced = None if inline else marker
             continue
         heading = re.match(r"^#{1,6}\s+(.+)", stripped)
         if heading:
@@ -77,11 +100,11 @@ def units(lines):
             heading = " > ".join(t for _, t in stack)
             i += 1
             kind = "heading"
-        elif line.strip().startswith(("```", "~~~")):
-            marker = line.strip()[:3]
+        elif opening := fence_open(line):
+            marker, inline = opening
             i += 1
-            while i < len(lines):
-                closing = lines[i].strip().startswith(marker)
+            while not inline and i < len(lines):
+                closing = fence_close(lines[i], marker)
                 i += 1
                 if closing:
                     break

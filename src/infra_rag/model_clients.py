@@ -1,4 +1,4 @@
-"""Compatible API transports and project-local credential configuration."""
+"""Moerouter OpenAI-compatible transport and project-local credential configuration."""
 
 import json
 import os
@@ -8,42 +8,26 @@ import urllib.request
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from .assistant import ModelUnavailable, OllamaClient
+from .assistant import ModelUnavailable
 
 ENV_KEYS = {
     "INFRA_RAG_QUERY_LANGUAGE",
-    "INFRA_RAG_LLM_PROVIDER",
-    "ANTHROPIC_BASE_URL",
-    "ANTHROPIC_MODEL",
-    "ANTHROPIC_AUTH_TOKEN",
-    "ANTHROPIC_API_KEY",
-    "AIHUBMIX_API_KEY",
-    "AIHUBMIX_BASE_URL",
-    "AIHUBMIX_MODEL",
-    "AIHUBMIX_MAX_TOKENS",
     "OPENAI_API_KEY",
     "OPENAI_BASE_URL",
     "OPENAI_MODEL",
     "OPENAI_MAX_TOKENS",
-    "DASHSCOPE_API_KEY",
+    "OPENAI_SYSTEM_IN_USER",
 }
+DEFAULT_BASE_URL = "https://moerouter.com/v1"
+DEFAULT_MODEL = "glm-5.3-flash"
+DEFAULT_MAX_TOKENS = 2048
 
 
 def model_environment(path=None):
     """Read literal assignments without executing shell code; environment takes precedence."""
     default = next(
-        (
-            name
-            for name in (
-                ".env.llm",
-                ".env.aliyun",
-                ".env.agentrouter.openai",
-                ".env.aihubmix",
-                ".env.deepseek",
-            )
-            if Path(name).exists()
-        ),
-        ".env.agentrouter",
+        (name for name in (".env.llm", ".env.moerouter") if Path(name).exists()),
+        ".env.llm",
     )
     path = Path(path or os.environ.get("INFRA_RAG_LLM_ENV_FILE", default))
     values = {}
@@ -67,12 +51,23 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
         return None
 
 
-class AnthropicClient:
-    provider = "anthropic-compatible"
+class MoerouterClient:
+    """OpenAI Chat Completions client fixed to the project's moerouter entry."""
 
-    def __init__(self, *, token, model, base_url, max_tokens=650, timeout=180):
+    provider = "moerouter"
+
+    def __init__(
+        self,
+        *,
+        token,
+        model=DEFAULT_MODEL,
+        base_url=DEFAULT_BASE_URL,
+        max_tokens=DEFAULT_MAX_TOKENS,
+        timeout=180,
+        system_in_user=True,
+    ):
         if not token or "替换" in token or token == "YOUR_API_KEY":
-            raise ModelUnavailable("Model API Key is missing")
+            raise ModelUnavailable("Moerouter API Key is missing")
         parsed = urlsplit(base_url)
         if (
             parsed.scheme not in {"https", "http"}
@@ -89,22 +84,34 @@ class AnthropicClient:
         self._token = token
         self.model = model
         self.base_url = base_url.rstrip("/")
-        self.deepseek = parsed.hostname == "api.deepseek.com"
+        self.max_tokens = max_tokens
+        self.timeout = timeout
+        self.system_in_user = system_in_user
         self.endpoint = self.base_url + (
-            "/messages" if self.base_url.endswith("/v1") else "/v1/messages"
+            "/chat/completions" if self.base_url.endswith("/v1") else "/v1/chat/completions"
         )
-        self.max_tokens, self.timeout = max_tokens, timeout
         self.last_call = None
         self.opener = urllib.request.build_opener(NoRedirect())
 
     @classmethod
-    def from_environment(cls, *, path=None, model=None, base_url=None, max_tokens=650):
+    def from_environment(
+        cls, *, path=None, model=None, base_url=None, max_tokens=None, system_in_user=None
+    ):
         env = model_environment(path)
+        if system_in_user is None:
+            system_in_user = env.get("OPENAI_SYSTEM_IN_USER", "1").lower() in {
+                "1",
+                "true",
+                "yes",
+            }
         return cls(
-            token=env.get("ANTHROPIC_AUTH_TOKEN") or env.get("ANTHROPIC_API_KEY", ""),
-            model=model or env.get("ANTHROPIC_MODEL", "deepseek-v4-flash"),
-            base_url=base_url or env.get("ANTHROPIC_BASE_URL", "https://agentrouter.org"),
-            max_tokens=max_tokens,
+            token=env.get("OPENAI_API_KEY", ""),
+            model=model or env.get("OPENAI_MODEL", DEFAULT_MODEL),
+            base_url=base_url or env.get("OPENAI_BASE_URL", DEFAULT_BASE_URL),
+            max_tokens=max_tokens
+            if max_tokens is not None
+            else int(env.get("OPENAI_MAX_TOKENS", DEFAULT_MAX_TOKENS)),
+            system_in_user=system_in_user,
         )
 
     def configuration(self):
@@ -115,10 +122,9 @@ class AnthropicClient:
             "options": {
                 "temperature": 0,
                 "max_tokens": self.max_tokens,
-                **({"thinking": {"type": "disabled"}} if self.deepseek else {}),
+                "system_in_user": self.system_in_user,
             },
-            "authentication": "x-api-key" if self.deepseek else "bearer",
-            "api_version": "2023-06-01",
+            "authentication": "bearer",
             "format": "JSON requested by unchanged system prompt; no transport JSON constraint",
         }
 
@@ -129,16 +135,7 @@ class AnthropicClient:
             data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
             headers={
                 "Content-Type": "application/json",
-                **(
-                    {"x-api-key": self._token}
-                    if self.deepseek
-                    else {"Authorization": "Bearer " + self._token}
-                ),
-                **(
-                    {"anthropic-version": "2023-06-01"}
-                    if self.provider == "anthropic-compatible"
-                    else {}
-                ),
+                "Authorization": "Bearer " + self._token,
                 "User-Agent": "infra-rag/0.2",
             },
         )
@@ -156,106 +153,24 @@ class AnthropicClient:
 
     def _generate(self, messages, max_tokens):
         self.last_call = None
-        system, conversation = [], []
-        for message in messages:
-            if message["role"] == "system":
-                system.append(message["content"])
-            elif message["role"] in {"user", "assistant"}:
-                conversation.append(dict(message))
-            else:
-                raise ValueError("Only text system/user/assistant messages are supported")
-        payload = {
-            "model": self.model,
-            "max_tokens": max_tokens,
-            "temperature": 0,
-            "stream": False,
-            "messages": conversation,
-        }
-        if system:
-            payload["system"] = "\n\n".join(system)
-        if self.deepseek:
-            payload["thinking"] = {"type": "disabled"}
-        result = self._request(payload)
-        if not isinstance(result, dict):
-            raise ModelUnavailable("Model API returned an invalid message")
-        self.last_call = {key: result.get(key) for key in ("id", "model", "stop_reason", "usage")}
-        # Metadata is diagnostic data, not a verified identity of underlying weights.
-        self.last_call = json.loads(json.dumps(self.last_call).replace(self._token, "[redacted]"))
-        blocks = result.get("content", [])
-        if not isinstance(blocks, list) or any(
-            not isinstance(b, dict)
-            or b.get("type") == "tool_use"
-            or (b.get("type") == "text" and not isinstance(b.get("text"), str))
-            for b in blocks
-        ):
-            raise ModelUnavailable("Model API returned unsupported content blocks")
-        content = "\n".join(b["text"] for b in blocks if b.get("type") == "text")
-        if not content.strip():
-            raise ModelUnavailable("Model API returned no answer text")
-        return content
-
-    def generate(self, messages):
-        return self._generate(messages, self.max_tokens)
-
-    def preload(self):
-        self._generate([{"role": "user", "content": "Reply only OK."}], 8)
-
-
-class OpenAICompatibleClient(AnthropicClient):
-    """Chat Completions wire format, using the existing secret-safe HTTP transport."""
-
-    provider = "openai-compatible"
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.deepseek = False
-        self.endpoint = self.base_url + (
-            "/chat/completions" if self.base_url.endswith("/v1") else "/v1/chat/completions"
-        )
-
-    @classmethod
-    def from_environment(cls, *, path=None, model=None, base_url=None, max_tokens=None):
-        env = model_environment(path)
-        base_url = (
-            base_url
-            or env.get("OPENAI_BASE_URL")
-            or env.get("AIHUBMIX_BASE_URL", "https://aihubmix.com/v1")
-        )
-        token = env.get("OPENAI_API_KEY") or env.get("AIHUBMIX_API_KEY", "")
-        hostname = urlsplit(base_url).hostname or ""
-        if hostname.endswith(".maas.aliyuncs.com") or hostname in {
-            "dashscope.aliyuncs.com",
-            "dashscope-intl.aliyuncs.com",
-            "dashscope-us.aliyuncs.com",
-        }:
-            token = env.get("DASHSCOPE_API_KEY") or token
-        return cls(
-            token=token,
-            model=model or env.get("OPENAI_MODEL") or env.get("AIHUBMIX_MODEL", "hy3-free"),
-            base_url=base_url,
-            max_tokens=max_tokens
-            if max_tokens is not None
-            else int(env.get("OPENAI_MAX_TOKENS") or env.get("AIHUBMIX_MAX_TOKENS", "1024")),
-        )
-
-    def configuration(self):
-        return {
-            "provider": self.provider,
-            "base_url": self.base_url,
-            "model": self.model,
-            "options": {"temperature": 0, "max_tokens": self.max_tokens},
-            "authentication": "bearer",
-            "format": "JSON requested by unchanged system prompt; no transport JSON constraint",
-        }
-
-    def _generate(self, messages, max_tokens):
-        self.last_call = None
         if any(
             m.get("role") not in {"system", "user", "assistant"}
             or not isinstance(m.get("content"), str)
             for m in messages
         ):
             raise ValueError("Only text system/user/assistant messages are supported")
+        if self.system_in_user:
+            instructions = [m["content"] for m in messages if m["role"] == "system"]
+            messages = [m for m in messages if m["role"] != "system"]
+            if instructions:
+                prefix = "\n\n".join(instructions)
+                if messages and messages[0]["role"] == "user":
+                    messages = [
+                        {**messages[0], "content": prefix + "\n\n" + messages[0]["content"]},
+                        *messages[1:],
+                    ]
+                else:
+                    messages = [{"role": "user", "content": prefix}, *messages]
         result = self._request(
             {
                 "model": self.model,
@@ -286,17 +201,12 @@ class OpenAICompatibleClient(AnthropicClient):
             raise ModelUnavailable("Model API returned no answer text")
         return content
 
+    def generate(self, messages):
+        return self._generate(messages, self.max_tokens)
+
     def preload(self):
-        self._generate([{"role": "user", "content": "Reply only OK."}], self.max_tokens)
+        self._generate([{"role": "user", "content": "Reply only OK."}], 8)
 
 
 def configured_model():
-    env = model_environment()
-    provider = env.get("INFRA_RAG_LLM_PROVIDER", "ollama")
-    if provider == "anthropic":
-        return AnthropicClient.from_environment()
-    if provider == "openai":
-        return OpenAICompatibleClient.from_environment()
-    if provider != "ollama":
-        raise ValueError("INFRA_RAG_LLM_PROVIDER must be ollama, anthropic or openai")
-    return OllamaClient()
+    return MoerouterClient.from_environment()

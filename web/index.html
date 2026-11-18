@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InfraAgent 本地知识检索</title>
+  <meta name="description" content="AI Infra 技术资料问答。连接本地知识库，答案附原文定位，证据可逐条核对。">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="top-stripe" aria-hidden="true"></div>
+
+  <header class="masthead">
+    <a class="wordmark" href="./" aria-label="InfraAgent 首页">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span class="wordmark-text">InfraAgent</span>
+      <span class="wordmark-sub">本地 Infra 知识检索</span>
+    </a>
+    <p class="mode-note"><span class="mode-dot" aria-hidden="true"></span><span id="service-status">正在连接本地服务</span></p>
+  </header>
+
+  <main class="page">
+    <section class="bench" aria-labelledby="bench-title">
+      <h1 id="bench-title">问一个 AI Infra 问题，<br>每条结论都能回到原文。</h1>
+      <p class="bench-intro">训练通信、推理引擎、GPU 与系统软件。检索本地资料，结合原文证据回答问题。</p>
+
+      <form class="ask" id="ask-form" role="search">
+        <label class="visually-hidden" for="query">输入检索问题</label>
+        <input id="query" name="query" type="search" autocomplete="off" spellcheck="false"
+               placeholder="例如：GQA 到底省下了什么？" maxlength="4000">
+        <button class="ask-button" id="ask-button" type="submit">检索</button>
+      </form>
+
+      <div class="bench-meta">
+        <p id="snapshot-note">正在读取知识库状态。</p>
+        <p class="shortcut"><kbd>/</kbd> 聚焦输入</p>
+      </div>
+
+      <div class="suggestions">
+        <p class="suggestions-title" id="suggestions-title">可以这样问</p>
+        <ul class="suggestion-list" id="suggestion-list" aria-labelledby="suggestions-title"></ul>
+      </div>
+
+      <div class="history" id="history" hidden>
+        <p class="history-title">最近查看</p>
+        <ul class="history-list" id="history-list"></ul>
+      </div>
+    </section>
+
+    <section class="result" id="result" aria-labelledby="result-question" hidden>
+      <article class="answer">
+        <h2 id="result-question" tabindex="-1"></h2>
+        <div class="answer-body" id="answer-body" aria-live="polite"></div>
+        <dl class="trace" id="trace"></dl>
+      </article>
+
+      <aside class="evidence" aria-labelledby="evidence-title">
+        <header class="evidence-head">
+          <h3 id="evidence-title">证据</h3>
+          <p id="evidence-count"></p>
+        </header>
+        <ol class="evidence-list" id="evidence-list"></ol>
+      </aside>
+    </section>
+
+    <section class="empty" id="empty" aria-labelledby="empty-title" hidden>
+      <h2 id="empty-title">暂未找到可用证据</h2>
+      <p id="empty-copy"></p>
+      <ul class="suggestion-list suggestion-list-alt" id="empty-suggestions"></ul>
+    </section>
+
+    <section class="loading" id="loading" aria-live="polite" hidden>
+      <p class="loading-label">正在检索知识库并生成回答，首次请求可能需要加载模型</p>
+      <div class="loading-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>InfraAgent 本地知识检索。</p>
+    <p>答案由模型依据检索证据生成，请结合原文核对适用条件。</p>
+  </footer>
+
+  <noscript><p class="noscript">这个页面需要 JavaScript 来连接本地问答服务。</p></noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

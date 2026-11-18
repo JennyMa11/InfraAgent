@@ -1,5 +1,6 @@
 import json
 from dataclasses import replace
+from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
@@ -46,6 +47,41 @@ def test_ingestion_replacement_persistence_and_filter(service, tmp_path):
     assert all(c.domain == "training" for c in service.chunks)
     assert service.delete(str(file.resolve())) == len(service.chunks) + 1
     assert not RetrievalService(service.settings).chunks
+
+
+def test_multi_query_fusion_returns_and_packs_each_query(tmp_path):
+    service = RetrievalService(Settings(data_dir=tmp_path / "index", chunk_size=100))
+    first, second = tmp_path / "a.md", tmp_path / "b.md"
+    first.write_text("# Alpha\n\nUniqueAlphaTerm describes the alpha scheduler.")
+    second.write_text("# Beta\n\nUniqueBetaTerm describes the beta cache.")
+    service.ingest(tmp_path)
+    diagnostics, context = {}, {}
+    hits = service.search_queries(
+        ["UniqueAlphaTerm", "UniqueBetaTerm"],
+        top_k=2,
+        diagnostics=diagnostics,
+        context_pack=context,
+    )
+    assert {Path(hit.chunk.source).name for hit in hits} == {"a.md", "b.md"}
+    assert context["evidence"]
+    assert diagnostics["queries"] == ["UniqueAlphaTerm", "UniqueBetaTerm"]
+    assert set(diagnostics["channels"]) == {
+        "q1_bm25",
+        "q1_dense",
+        "q2_bm25",
+        "q2_dense",
+    }
+
+
+def test_multi_query_requires_neighbors_prefix(tmp_path):
+    service = RetrievalService(
+        Settings(data_dir=tmp_path / "index", context_mode="legacy", chunk_size=100)
+    )
+    document = tmp_path / "a.md"
+    document.write_text("# Alpha\n\nUniqueAlphaTerm.")
+    service.ingest(document)
+    with pytest.raises(ValueError, match="neighbors/prefix"):
+        service.search_queries(["UniqueAlphaTerm", "other"], top_k=1)
 
 
 def test_atomic_parse_failure(service, tmp_path):

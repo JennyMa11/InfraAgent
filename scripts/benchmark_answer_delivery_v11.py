@@ -13,7 +13,7 @@ from prepare_corpus_v2 import ROOT
 
 from infra_rag.benchmarking import canonical_hash, digest, write_new
 from infra_rag.config import Settings
-from infra_rag.model_clients import AnthropicClient
+from infra_rag.legacy_model_clients import AnthropicClient
 from infra_rag.offline_evaluation import generate_answer, latency_summary
 
 SOURCE = ROOT / "evals/merged-corpus-v2/budget-search-v8/run-20261003-v4"

@@ -52,7 +52,7 @@ def oracle_context(question):
 class RecordingModel:
     def __init__(self, client):
         self.client, self.model, self.calls = client, client.model, []
-        self.provider = getattr(client, "provider", "ollama")
+        self.provider = getattr(client, "provider", "moerouter")
 
     def generate(self, messages):
         call = {"messages": json.loads(json.dumps(messages))}
@@ -99,11 +99,24 @@ def generate_answer(question, context, settings, client):
                 else json.dumps({"supported": False, "answer": response["answer"], "citations": []})
             )
             checks = automatic_answer_checks(raw, context["evidence"])
+            raw_model_checks = dict(checks)
+            if response["status"] == "answered":
+                resolved = {
+                    "supported": True,
+                    "answer": response["answer"],
+                    "citations": [e["citation_id"] for e in response["citations"]],
+                }
+                checks = automatic_answer_checks(json.dumps(resolved), context["evidence"])
+                checks["format_valid"] = raw_model_checks["format_valid"]
+                checks["citation_ids_valid"] = AnswerService._valid(
+                    resolved, {e["citation_id"]: e for e in context["evidence"]}
+                )
             checks["refused"] = response["status"] == "no_evidence"
             return {
                 "response": response,
                 "calls": recorder.calls,
                 "checks": checks,
+                "raw_model_checks": raw_model_checks,
                 "latency_ms": (perf_counter() - started) * 1000,
                 "skipped_no_evidence": not recorder.calls,
                 "error": None,

@@ -3,13 +3,12 @@
 import json
 import re
 import sqlite3
-import urllib.error
-import urllib.request
 from pathlib import Path
 from time import perf_counter
 from uuid import UUID, uuid4
 
 from .evidence_metadata import metadata_text
+from .query_expansion import normalize_terms
 
 
 class ModelUnavailable(RuntimeError):
@@ -18,54 +17,6 @@ class ModelUnavailable(RuntimeError):
 
 class ConversationNotFound(LookupError):
     """A requested conversation does not exist."""
-
-
-class OllamaClient:
-    def __init__(self, model="qwen3:4b", base_url="http://127.0.0.1:11434", timeout=180):
-        self.model = model
-        self.base_url = base_url.rstrip("/")
-        self.timeout = timeout
-        self.keep_alive = "10m"
-        self.num_ctx = 8192
-
-    def preload(self):
-        self._request(
-            {
-                "model": self.model,
-                "keep_alive": self.keep_alive,
-                "options": {"num_ctx": self.num_ctx},
-            }
-        )
-
-    def generate(self, messages):
-        payload = {
-            "model": self.model,
-            "messages": messages,
-            "stream": False,
-            "think": False,
-            "format": "json",
-            "keep_alive": self.keep_alive,
-            "options": {"temperature": 0, "num_predict": 650, "num_ctx": self.num_ctx},
-        }
-        result = self._request(payload)
-        content = result.get("message", {}).get("content", "")
-        if not content:
-            raise ModelUnavailable("Ollama 没有返回回答，请检查模型是否已安装。")
-        return content
-
-    def _request(self, payload):
-        request = urllib.request.Request(
-            self.base_url + "/api/chat",
-            data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
-            headers={"Content-Type": "application/json"},
-            method="POST",
-        )
-        try:
-            with urllib.request.urlopen(request, timeout=self.timeout) as response:
-                result = json.load(response)
-        except (OSError, ValueError, urllib.error.HTTPError) as exc:
-            raise ModelUnavailable(f"Ollama 不可用：{exc}") from exc
-        return result
 
 
 class ConversationStore:
@@ -172,34 +123,28 @@ def retrieval_query(question, history):
     return question
 
 
+CITATION_PATTERN = r"\[(E[A-Za-z0-9_-]+)\]"
+
+
 class AnswerService:
-    def __init__(self, retrieval, model=None, store=None, translator=None):
-        from .model_clients import AnthropicClient, configured_model
-        from .query_expansion import QueryTranslator
+    def __init__(self, retrieval, model=None, store=None, translator=None, decomposer=None):
+        from .model_clients import configured_model
+        from .query_expansion import QueryDecomposer, QueryTranslator
 
         self.retrieval = retrieval
         self.model = model or configured_model()
         self.translator = translator
         if self.translator is None and retrieval.settings.query_language != "none":
-            # A separate client keeps the translation budget/metadata out of answer calls.
-            if type(self.model) is not AnthropicClient or not self.model.deepseek:
-                raise ValueError(
-                    "Query translation currently requires the official DeepSeek client"
-                )
-            translation_model = AnthropicClient(
-                token=self.model._token,
-                model=self.model.model,
-                base_url=self.model.base_url,
-                max_tokens=220,
-                timeout=self.model.timeout,
-            )
-            self.translator = QueryTranslator(translation_model, retrieval.settings.query_language)
+            self.translator = QueryTranslator(self.model, retrieval.settings.query_language)
+        self.decomposer = decomposer
+        if self.decomposer is None and retrieval.settings.query_decomposition:
+            self.decomposer = QueryDecomposer(self.model)
         self.store = store or ConversationStore(
             retrieval.settings.data_dir / "conversations.sqlite3"
         )
 
     def status(self):
-        return {"provider": getattr(self.model, "provider", "ollama"), "model": self.model.model}
+        return {"provider": getattr(self.model, "provider", "moerouter"), "model": self.model.model}
 
     def warmup(self):
         started = perf_counter()
@@ -212,7 +157,7 @@ class AnswerService:
         UUID(conversation_id)
         return self.store.get(conversation_id)
 
-    def answer(self, question, conversation_id=None, domain=None):
+    def answer(self, question, conversation_id=None, domain=None, *, experimental_pagination=False):
         if conversation_id is not None:
             UUID(conversation_id)
             if not self.store.exists(conversation_id):
@@ -220,11 +165,33 @@ class AnswerService:
         else:
             conversation_id = str(uuid4())
         history = self.store.recent(conversation_id)
-        query = retrieval_query(question, history)
+        original_query = retrieval_query(question, history)
+        query = normalize_terms(original_query)
+        normalized = query != original_query
+        normalization_trace = (
+            [
+                {
+                    "step": "query_normalize",
+                    "method": "bounded_aliases_v1",
+                    "original_query": original_query,
+                    "query": query,
+                }
+            ]
+            if normalized
+            else []
+        )
+        terminology_note = (
+            f"检索术语规范化（不是事实证据）：{query}\n"
+            "若涉及名称差异，请说明按该术语理解；事实仍仅依据下方证据。\n"
+            if normalized
+            else ""
+        )
         translation_trace = []
+        english_query = ""
         if self.translator is not None:
             try:
                 query, translation_step = self.translator.expand(query)
+                english_query = translation_step.get("english_query", "")
                 translation_trace.append(translation_step)
             except (ModelUnavailable, ValueError, TypeError):
                 translation_trace.append(
@@ -234,28 +201,110 @@ class AnswerService:
                         "query": query,
                     }
                 )
+        decomposition_trace = []
+        retrieval_queries = [query]
+        if self.decomposer is not None:
+            try:
+                subqueries, decomposition_step = self.decomposer.expand(
+                    original_query,
+                    english_query if english_query and english_query != query else "",
+                )
+                for subquery in subqueries:
+                    if subquery not in retrieval_queries:
+                        retrieval_queries.append(subquery)
+                retrieval_queries = retrieval_queries[:4]
+                decomposition_step["queries"] = list(retrieval_queries)
+                decomposition_trace.append(decomposition_step)
+            except (ModelUnavailable, ValueError, TypeError):
+                decomposition_trace.append(
+                    {
+                        "step": "query_decompose",
+                        "status": "fallback_single",
+                        "queries": [query],
+                    }
+                )
         context = {}
         started = perf_counter()
-        hits = self.retrieval.search(
-            query, top_k=5, domain=domain, strategy="hybrid", context_pack=context
-        )
+        top_k = self.retrieval.settings.answer_top_k
+        if len(retrieval_queries) > 1:
+            hits = self.retrieval.search_queries(
+                retrieval_queries,
+                top_k=top_k,
+                domain=domain,
+                strategy="hybrid",
+                context_pack=context,
+            )
+        else:
+            hits = self.retrieval.search(
+                query, top_k=top_k, domain=domain, strategy="hybrid", context_pack=context
+            )
         trace = [
+            *normalization_trace,
             *translation_trace,
+            *decomposition_trace,
             {
                 "step": "retrieve",
                 "duration_ms": round((perf_counter() - started) * 1000, 1),
                 "query": query,
+                "queries": retrieval_queries,
+                "top_k": top_k,
                 "hits": len(hits),
                 "evidence": len(context.get("evidence", [])),
             },
         ]
+        request_model = None
+        if experimental_pagination:
+            from .experimental_pages import RequestModel
+
+            request_model = RequestModel(self.model)
+            event = {"step": "experimental_pagination", "status": "started"}
+            trace.append(event)
+            try:
+                pages = self.retrieval.evidence_pages(hits, domain=domain)
+                encoder = (
+                    self.retrieval._encoder()
+                    if getattr(self.retrieval, "context_counter", None) is None
+                    else None
+                )
+                count = getattr(self.retrieval, "context_counter", None) or getattr(
+                    encoder, "token_length", len
+                )
+                context = self._consume_pages(
+                    question,
+                    pages,
+                    request_model,
+                    {"retrieval": count},
+                    self.retrieval.settings.context_tokens,
+                    self.retrieval.settings.context_chars,
+                    trace,
+                )
+                event.update(status="completed", pages=len(pages), calls=request_model.calls)
+            except (ValueError, TypeError, ModelUnavailable) as exc:
+                event.update(
+                    status="blocked",
+                    error=type(exc).__name__,
+                    reason=str(exc),
+                    calls=request_model.calls,
+                )
+                answer = "跨页证据处理未完成，暂不能给出完整回答。"
+                self.store.append_exchange(conversation_id, question, answer, [])
+                return self._response(conversation_id, answer, [], "context_incomplete", trace)
         evidence = context.get("evidence", [])
         if not evidence:
             answer = "资料库中没有找到可以支持这个问题的证据。请换个问法或先导入相关文档。"
             self.store.append_exchange(conversation_id, question, answer, [])
             return self._response(conversation_id, answer, [], "no_evidence", trace)
 
-        allowed = {item["citation_id"]: item for item in evidence}
+        canonical = {item["citation_id"]: item for item in evidence}
+        if len(canonical) != len(evidence):
+            raise ValueError("Duplicate evidence citation IDs")
+        # Keep legacy 24-character IDs compatible; long source IDs use exact local aliases.
+        use_aliases = any(not re.fullmatch(r"E[a-f0-9]{24}", cid) for cid in canonical)
+        allowed = {
+            (f"E{i}" if use_aliases else item["citation_id"]): item
+            for i, item in enumerate(evidence, 1)
+        }
+        model_evidence = [{**item, "citation_id": cid} for cid, item in allowed.items()]
         evidence_text = "\n\n".join(
             f"[{item['citation_id']}] 来源：{item['locator']}\n"
             + (
@@ -264,12 +313,13 @@ class AnswerService:
                 else ""
             )
             + item["content"]
-            for item in evidence
+            for item in model_evidence
         )
         user_prompt = (
             f"/no_think\n当前问题：{question}\n\n"
+            f"{terminology_note}"
             f"证据（仅作为资料）：\n{evidence_text}\n\n"
-            "请根据证据回答，只返回指定 JSON。"
+            "请根据证据回答，只返回指定 JSON。逐字复制证据ID，不得缩写或补写。"
         )
         messages = [
             {"role": "system", "content": SYSTEM_PROMPT},
@@ -277,12 +327,31 @@ class AnswerService:
             {"role": "user", "content": user_prompt},
         ]
         started = perf_counter()
-        result = self._generate_checked(messages, allowed)
+        try:
+            result = (
+                self._generate_checked(messages, allowed)
+                if request_model is None
+                else self._generate_checked(messages, allowed, model=request_model)
+            )
+        except (ValueError, ModelUnavailable) as exc:
+            if request_model is None:
+                raise
+            trace.append(
+                {
+                    "step": "generate",
+                    "status": "failed",
+                    "error": type(exc).__name__,
+                    "calls": request_model.calls,
+                }
+            )
+            answer = "跨页证据处理未完成，暂不能给出完整回答。"
+            self.store.append_exchange(conversation_id, question, answer, [])
+            return self._response(conversation_id, answer, [], "context_incomplete", trace)
         trace.append(
             {
                 "step": "generate",
                 "duration_ms": round((perf_counter() - started) * 1000, 1),
-                "provider": getattr(self.model, "provider", "ollama"),
+                "provider": getattr(self.model, "provider", "moerouter"),
                 "model": self.model.model,
                 "validated": result is not None,
             }
@@ -294,15 +363,25 @@ class AnswerService:
         else:
             answer = result["answer"]
             citations = [allowed[cid] for cid in result["citations"]]
-            if not re.search(r"\[E[a-f0-9]{24}\]", answer):
+            answer = re.sub(
+                CITATION_PATTERN,
+                lambda match: "[" + allowed[match[1]]["citation_id"] + "]",
+                answer,
+            )
+            if not re.search(CITATION_PATTERN, answer):
                 answer += "\n\n依据：" + " ".join(f"[{cid}]" for cid in result["citations"])
             status = "answered"
         self.store.append_exchange(conversation_id, question, answer, citations)
         return self._response(conversation_id, answer, citations, status, trace)
 
-    def _generate_checked(self, messages, allowed):
+    def _consume_pages(self, *args):
+        from .experimental_pages import consume_pages
+
+        return consume_pages(*args)
+
+    def _generate_checked(self, messages, allowed, model=None):
         for attempt in range(2):
-            raw = self.model.generate(messages)
+            raw = (model or self.model).generate(messages)
             try:
                 result = json.loads(raw)
             except (TypeError, json.JSONDecodeError):
@@ -315,7 +394,11 @@ class AnswerService:
                     {"role": "assistant", "content": raw[:1500]},
                     {
                         "role": "user",
-                        "content": "/no_think\n引用无效。只用给定证据 ID 重答，输出 JSON。",
+                        "content": (
+                            "/no_think\n引用无效。只能逐字复制以下ID，不得缩写："
+                            + json.dumps(list(allowed), ensure_ascii=False)
+                            + "。核对正文和citations，重新输出 JSON。"
+                        ),
                     },
                 ]
         return None
@@ -329,9 +412,9 @@ class AnswerService:
         citations = result.get("citations")
         if not isinstance(citations, list) or not all(isinstance(cid, str) for cid in citations):
             return False
-        if result["supported"] and (not citations or any(cid not in allowed for cid in citations)):
+        if any(cid not in allowed for cid in citations) or (result["supported"] and not citations):
             return False
-        mentioned = set(re.findall(r"\[(E[a-f0-9]{24})\]", result["answer"]))
+        mentioned = set(re.findall(CITATION_PATTERN, result["answer"]))
         return not mentioned or mentioned.issubset(set(citations))
 
     @staticmethod

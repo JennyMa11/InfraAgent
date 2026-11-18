@@ -10,7 +10,7 @@ from operation_log import ROOT, record_operation
 
 from infra_rag.benchmarking import canonical_hash, create_run, digest, validate_dataset, write_new
 from infra_rag.config import Settings
-from infra_rag.model_clients import AnthropicClient
+from infra_rag.legacy_model_clients import AnthropicClient
 from infra_rag.offline_evaluation import evaluation_rows, summarize
 from infra_rag.service import RetrievalService
 

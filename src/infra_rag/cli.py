@@ -3,7 +3,7 @@ import json
 from dataclasses import asdict
 from pathlib import Path
 
-from .config import Settings
+from .config import BACKENDS, CHUNK_STRATEGIES, Settings, default_embedding_model
 from .context import response_payload
 from .evaluation import evaluate, resolve_spans
 from .service import RetrievalService
@@ -14,8 +14,12 @@ def main():
 
     parser = argparse.ArgumentParser(description="Infra RAG retrieval service")
     parser.add_argument("--data-dir", type=Path, default=Path("data/default-v2"))
-    parser.add_argument("--backend", choices=["demo", "bge"], default="demo")
-    parser.add_argument("--embedding-model", default="BAAI/bge-small-zh-v1.5")
+    parser.add_argument("--backend", choices=BACKENDS, default="demo")
+    parser.add_argument("--embedding-model")
+    parser.add_argument("--embedding-revision")
+    parser.add_argument("--embedding-device")
+    parser.add_argument("--embedding-batch-size", type=int)
+    parser.add_argument("--embedding-max-length", type=int, default=8192)
     parser.add_argument("--rerank", action="store_true")
     parser.add_argument(
         "--query-language",
@@ -28,11 +32,25 @@ def main():
     parser.add_argument("--fusion-candidates", choices=["truncate", "union"], default="truncate")
     parser.add_argument("--lexical-query-mode", choices=["raw", "technical"], default="raw")
     parser.add_argument("--candidate-k", type=int, default=30)
+    parser.add_argument(
+        "--answer-top-k", type=int, default=5, help="Delivered chunks for chat answers"
+    )
+    parser.add_argument(
+        "--query-decomposition",
+        action="store_true",
+        help="Generate 1-3 retrieval sub-queries before chat retrieval",
+    )
+    parser.add_argument("--rrf-constant", type=int, default=60)
+    parser.add_argument("--rerank-top-n", type=int, default=90)
+    parser.add_argument("--candidate-pool-cap", type=int)
+    parser.add_argument("--no-neighbor-expansion", action="store_true")
     parser.add_argument("--context-mode", choices=["legacy", "neighbors"], default="neighbors")
+    parser.add_argument("--context-policy", choices=["prefix", "complete"], default="prefix")
     parser.add_argument("--context-tokens", type=int, default=1200)
     parser.add_argument("--context-chars", type=int, default=4000)
     parser.add_argument("--chunk-size", type=int, default=450)
-    parser.add_argument("--chunk-strategy", choices=["semantic", "window"], default="semantic")
+    parser.add_argument("--chunk-strategy", choices=CHUNK_STRATEGIES, default="semantic")
+    parser.add_argument("--chunk-overlap", type=int, default=0)
     sub = parser.add_subparsers(dest="command", required=True)
     ingest = sub.add_parser("ingest")
     ingest.add_argument("path", type=Path)
@@ -65,7 +83,11 @@ def main():
         Settings(
             data_dir=args.data_dir,
             backend=args.backend,
-            embedding_model=args.embedding_model,
+            embedding_model=args.embedding_model or default_embedding_model(args.backend),
+            embedding_revision=args.embedding_revision,
+            embedding_device=args.embedding_device,
+            embedding_batch_size=args.embedding_batch_size,
+            embedding_max_length=args.embedding_max_length,
             rerank=args.rerank,
             query_language=args.query_language,
             multimodal=args.multimodal,
@@ -73,11 +95,19 @@ def main():
             fusion_candidates=args.fusion_candidates,
             lexical_query_mode=args.lexical_query_mode,
             candidate_k=args.candidate_k,
+            answer_top_k=args.answer_top_k,
+            query_decomposition=args.query_decomposition,
+            rrf_constant=args.rrf_constant,
+            rerank_top_n=args.rerank_top_n,
+            candidate_pool_cap=args.candidate_pool_cap,
+            neighbor_expansion=not args.no_neighbor_expansion,
             context_mode=args.context_mode,
+            context_policy=args.context_policy,
             context_tokens=args.context_tokens,
             context_chars=args.context_chars,
             chunk_size=args.chunk_size,
             chunk_strategy=args.chunk_strategy,
+            chunk_overlap=args.chunk_overlap,
         )
     )
     if args.command == "ingest":

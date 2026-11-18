@@ -20,7 +20,17 @@ def snippet(text, fits):
     return selected.rstrip()
 
 
-def pack_context(hits, parents, count, token_budget, char_budget, domain=None, modality=None):
+def pack_context(
+    hits,
+    parents,
+    count,
+    token_budget,
+    char_budget,
+    domain=None,
+    modality=None,
+    *,
+    neighbor_expansion=True,
+):
     owners, candidates, seen = {}, [], set()
     # All matched evidence has priority over neighboring context.
     for hit in hits:
@@ -34,7 +44,7 @@ def pack_context(hits, parents, count, token_budget, char_budget, domain=None, m
         hit.evidence = []
         hit.context_ref = parent
     # Structural descriptions stay ahead of unrelated neighboring paragraphs.
-    for hit in hits:
+    for hit in hits if neighbor_expansion else []:
         description = hit.chunk.metadata.get("description_lines")
         if description:
             for chunk in parents[hit.chunk.parent_id]:
@@ -45,7 +55,7 @@ def pack_context(hits, parents, count, token_budget, char_budget, domain=None, m
                 ):
                     candidates.append(chunk)
                     seen.add(chunk.id)
-    for parent in owners:
+    for parent in owners if neighbor_expansion else []:
         siblings = [
             c
             for c in parents[parent]

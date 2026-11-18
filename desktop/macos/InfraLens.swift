@@ -293,7 +293,7 @@ private struct LensView: View {
             }
             .padding(.horizontal, 16).padding(.top, 14).padding(.bottom, 8)
             HStack {
-                Text("\(model.health?.backend.uppercased() ?? "BGE") · \(model.health?.assistant?.model ?? "Ollama")")
+                Text("\(model.health?.backend.uppercased() ?? "BGE") · \(model.health?.assistant?.model ?? "moerouter")")
                 Spacer()
                 Text("\(model.health?.sources ?? 0) 来源")
             }

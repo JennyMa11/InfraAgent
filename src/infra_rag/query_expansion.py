@@ -1,9 +1,26 @@
 """Translate retrieval queries without giving the translator answers or evidence."""
 
 import json
+import re
 from collections import OrderedDict
 from threading import Lock
 from time import perf_counter
+
+_PAGED_ATTENTION = re.compile(
+    r"(?<![A-Za-z0-9_./-])paged?[ \t]*attention(?![A-Za-z0-9_./(-])", re.IGNORECASE
+)
+_LITERAL_QUERY_PARTS = re.compile(
+    r"(```[\s\S]*?(?:```|\Z)|`[^`\n]*(?:`|(?=\n)|\Z)|https?://\S+)", re.IGNORECASE
+)
+
+
+def normalize_terms(query):
+    """Resolve bounded prose aliases without rewriting code, URLs, or adjacent identifiers."""
+    return "".join(
+        part if index % 2 else _PAGED_ATTENTION.sub("PagedAttention", part)
+        for index, part in enumerate(_LITERAL_QUERY_PARTS.split(query))
+    )
+
 
 TRANSLATION_PROMPT = (
     "Translate the user's technical retrieval question into English. Do not answer it. "
@@ -11,6 +28,38 @@ TRANSLATION_PROMPT = (
     "Do not add facts, evidence or an inferred answer. Return only a JSON object with one "
     'nonempty string field: {"english_query":"translated question"}.'
 )
+
+DECOMPOSITION_PROMPT = (
+    "Generate 1-3 English retrieval sub-queries for the user's technical question. Do not "
+    "answer it. Keep one sub-query close to the original English question; add focused "
+    "sub-queries for each required fact, condition, comparison or step. Preserve every "
+    "product/version and code/API identifier. Do not add facts or evidence. Return only a "
+    'JSON object: {"sub_queries":["first","second"]}.'
+)
+
+
+def decompose_query(query, english, model):
+    messages = [
+        {"role": "system", "content": DECOMPOSITION_PROMPT},
+        {
+            "role": "user",
+            "content": f"Original question: {query}\nEnglish retrieval question: {english}",
+        },
+    ]
+    raw = model.generate(messages)
+    obj = json.loads(raw)
+    values = obj.get("sub_queries") if isinstance(obj, dict) else None
+    if not isinstance(values, list) or not 1 <= len(values) <= 3:
+        raise ValueError("Invalid sub-query list")
+    result = []
+    for value in values:
+        if not isinstance(value, str) or not value.strip() or len(value) > 500:
+            raise ValueError("Invalid sub-query")
+        if value.strip() not in result:
+            result.append(value.strip())
+    if not result:
+        raise ValueError("Empty sub-query list")
+    return result
 
 
 def translate_query(query, model):
@@ -75,6 +124,39 @@ class QueryTranslator:
             "original_query": query,
             "english_query": english,
             "mode": self.mode,
+            "cached": cached,
+            "duration_ms": round((perf_counter() - started) * 1000, 1),
+        }
+
+
+class QueryDecomposer:
+    """Bounded sub-query cache; failures are surfaced to the caller for fallback."""
+
+    def __init__(self, model, cache_size=128):
+        if cache_size < 1:
+            raise ValueError("Invalid query decomposition configuration")
+        self.model, self.cache_size = model, cache_size
+        self.cache = OrderedDict()
+        self.lock = Lock()
+
+    def expand(self, query, english=None):
+        started = perf_counter()
+        english = english or ""
+        key = (query, english)
+        with self.lock:
+            cached = key in self.cache
+            if cached:
+                subqueries = self.cache.pop(key)
+            else:
+                subqueries = decompose_query(query, english, self.model)
+            self.cache[key] = subqueries
+            while len(self.cache) > self.cache_size:
+                self.cache.popitem(last=False)
+        return list(subqueries), {
+            "step": "query_decompose",
+            "original_query": query,
+            "english_query": english,
+            "sub_queries": list(subqueries),
             "cached": cached,
             "duration_ms": round((perf_counter() - started) * 1000, 1),
         }
