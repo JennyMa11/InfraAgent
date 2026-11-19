@@ -187,9 +187,7 @@ def test_decomposition_failure_falls_back_to_single_query(tmp_path):
         def expand(self, query, english=None):
             raise ModelUnavailable("unavailable")
 
-    service = RetrievalService(
-        Settings(data_dir=tmp_path / "index", query_decomposition=True)
-    )
+    service = RetrievalService(Settings(data_dir=tmp_path / "index", query_decomposition=True))
     result = AnswerService(
         service,
         model=type("Model", (), {"model": "test"})(),

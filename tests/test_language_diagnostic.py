@@ -50,9 +50,7 @@ def rows_for_cases():
     return [
         {
             **entry,
-            "query": by_id[entry["id"]][
-                "query" if entry["query_language"] == "zh" else "query_en"
-            ],
+            "query": by_id[entry["id"]]["query" if entry["query_language"] == "zh" else "query_en"],
             "group_id": "shared",
             "status": "completed",
             "source_language": "en",

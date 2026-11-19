@@ -9,6 +9,7 @@ FIELDS = ("candidate", "top5", "first_page", "all_pages")
 def validate_pairs(cases, original):
     def identity(c):
         return c["id"], c["query"], c["group_id"]
+
     if not cases or len({c["id"] for c in cases}) != len(cases):
         raise ValueError("Empty or duplicate bilingual cases")
     if list(map(identity, cases)) != list(map(identity, original)):

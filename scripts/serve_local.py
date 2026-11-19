@@ -18,6 +18,15 @@ from infra_rag.config import Settings
 
 DEFAULT_INDEX = ROOT / "data/merged-corpus-v4/e624132ff5b8a3d6/index.json"
 DEFAULT_DATA = ROOT / "data/local-web/index"
+LOCAL_PROFILE = ROOT / "data/local-web/launcher.json"
+
+
+def launcher_paths(index: Path | None, data_dir: Path | None) -> tuple[Path, Path]:
+    """Resolve each path independently: explicit flag, then local profile, then built-in default."""
+    profile = json.loads(LOCAL_PROFILE.read_text()) if LOCAL_PROFILE.is_file() else {}
+    index = index or (ROOT / profile["index"] if "index" in profile else DEFAULT_INDEX)
+    data_dir = data_dir or (ROOT / profile["data_dir"] if "data_dir" in profile else DEFAULT_DATA)
+    return index, data_dir
 
 
 def runtime_settings(source: Path, data_dir: Path):
@@ -47,8 +56,8 @@ def runtime_settings(source: Path, data_dir: Path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--index", type=Path, default=DEFAULT_INDEX)
-    parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA)
+    parser.add_argument("--index", type=Path)
+    parser.add_argument("--data-dir", type=Path)
     parser.add_argument("--port", type=int, default=8000)
     parser.add_argument("--background", action="store_true")
     parser.add_argument("--batch-size", type=int, default=32)
@@ -60,7 +69,8 @@ def main():
         parser.error("port must be between 1 and 65535")
     if args.batch_size < 1 or args.retrieval_cache_size < 0:
         parser.error("batch size must be positive; cache size must be nonnegative")
-    args.index, args.data_dir = args.index.resolve(), args.data_dir.resolve()
+    index, data_dir = launcher_paths(args.index, args.data_dir)
+    args.index, args.data_dir = index.resolve(), data_dir.resolve()
     if args.background:
         with socket.socket() as probe:
             probe.bind(("127.0.0.1", args.port))

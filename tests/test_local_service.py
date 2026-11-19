@@ -21,6 +21,34 @@ def launcher(monkeypatch):
     return module
 
 
+def test_launcher_profile_selects_index_and_runtime_but_explicit_flags_win(launcher, tmp_path):
+    profile = tmp_path / "launcher.json"
+    profile.write_text(
+        json.dumps(
+            {
+                "index": "data/local-web-m3/snapshot/index.json",
+                "data_dir": "data/local-web-m3/index",
+            }
+        )
+    )
+    launcher.ROOT, launcher.LOCAL_PROFILE = tmp_path, profile
+
+    index, data_dir = launcher.launcher_paths(None, None)
+    assert index == tmp_path / "data/local-web-m3/snapshot/index.json"
+    assert data_dir == tmp_path / "data/local-web-m3/index"
+
+    chosen = tmp_path / "other/index.json"
+    assert launcher.launcher_paths(chosen, None) == (chosen, tmp_path / "data/local-web-m3/index")
+    assert launcher.launcher_paths(None, tmp_path / "other") == (
+        tmp_path / "data/local-web-m3/snapshot/index.json",
+        tmp_path / "other",
+    )
+    assert launcher.launcher_paths(chosen, tmp_path / "other") == (chosen, tmp_path / "other")
+
+    profile.unlink()
+    assert launcher.launcher_paths(None, None) == (launcher.DEFAULT_INDEX, launcher.DEFAULT_DATA)
+
+
 def test_local_index_copies_snapshot_and_preserves_source_and_runtime(launcher, tmp_path):
     source = tmp_path / "frozen/index.json"
     source.parent.mkdir()
