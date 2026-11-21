@@ -497,9 +497,13 @@ def report(args) -> None:
         return {
             "answerable": len(positive),
             "answered": sum(r["status"] == "answered" for r in positive),
-            "incorrect_refusal": sum(r["status"] == "no_evidence" for r in positive),
+            "incorrect_refusal": sum(r.get("agent_status") == "refused" for r in positive),
+            "escalated_answerable": sum(r.get("agent_status") == "escalated" for r in positive),
             "unanswerable": len(negative),
-            "correct_refusal_unanswerable": sum(r["status"] == "no_evidence" for r in negative),
+            "correct_refusal_unanswerable": sum(
+                r.get("agent_status") == "refused" for r in negative
+            ),
+            "escalated_unanswerable": sum(r.get("agent_status") == "escalated" for r in negative),
             "generation_failures": sum(bool(r.get("error")) for r in rows),
             "complete_delivery": sum(bool(r.get("delivered_complete")) for r in positive),
         }
