@@ -325,6 +325,24 @@ def validated_collection(output: Path) -> list[dict]:
     return rows
 
 
+def validate_judge(scorer, frozen_judge):
+    configuration = scorer.configuration
+    expected = {
+        "model": frozen_judge["judge_model"],
+        "embedding_model": frozen_judge["embedding_model"],
+        "embedding_backend": "huggingface",
+        "max_tokens": frozen_judge["max_tokens"],
+        "disable_thinking": frozen_judge["disable_thinking"],
+        "timeout_seconds": frozen_judge["timeout_seconds"],
+        "max_retries": frozen_judge["http_retries"],
+        "ragas_version": frozen_judge["dependencies"]["ragas"],
+    }
+    if any(configuration.get(key) != value for key, value in expected.items()):
+        raise ValueError("ragas_judge_configuration_differs_from_frozen_baseline")
+    if frozen_judge["embedding_backend"] != "huggingface CPU":
+        raise ValueError("unexpected_frozen_embedding_backend")
+
+
 def score_shard(args) -> None:
     rows = validated_collection(args.output.resolve())[args.shard :: 8]
     directory = args.output.resolve() / "ragas"
@@ -332,8 +350,7 @@ def score_shard(args) -> None:
     path = directory / f"rows-shard-{args.shard}.jsonl"
     frozen_judge = load(FROZEN / "ragas/protocol.json")
     scorer = judge(args)
-    if scorer.configuration != frozen_judge["configuration"]:
-        raise ValueError("ragas_judge_configuration_differs_from_frozen_baseline")
+    validate_judge(scorer, frozen_judge)
     from infra_rag.ragas_evaluation import run_scoring
 
     with path.open("x", encoding="utf-8") as stream:
@@ -351,13 +368,23 @@ def score(args) -> None:
     validated_collection(output)
     (output / "ragas").mkdir(exist_ok=False)
     frozen_protocol = load(FROZEN / "ragas/protocol.json")
+    scorer = judge(args)
+    validate_judge(scorer, frozen_protocol)
     save(
         output / "ragas/protocol.json",
-        {**frozen_protocol, "source_complete": load(output / "complete.json")},
+        {
+            **frozen_protocol,
+            "source_complete": load(output / "complete.json"),
+            "runtime_configuration": scorer.configuration,
+        },
     )
     processes = []
     for shard in range(8):
         env = {**os.environ, "HF_HUB_OFFLINE": "1", "OMP_NUM_THREADS": "2"}
+        env["RAGAS_DO_NOT_TRACK"] = "true"
+        env["TOKENIZERS_PARALLELISM"] = "false"
+        env.pop("NO_PROXY", None)
+        env.pop("no_proxy", None)
         command = [
             sys.executable,
             str(Path(__file__).resolve()),
@@ -381,6 +408,11 @@ def score(args) -> None:
             failed.append({"shard": shard, "exit_code": code})
     if failed:
         raise RuntimeError(f"ragas_shards_failed:{failed}; inspect score-shard logs")
+    for shard in range(8):
+        shard_path = output / "ragas" / f"rows-shard-{shard}.jsonl"
+        expected = len(validated_collection(output)[shard::8])
+        if len(records(shard_path)) != expected:
+            raise RuntimeError(f"ragas_shard_incomplete:{shard}:{expected}")
     shards = [records(output / "ragas" / f"rows-shard-{i}.jsonl") for i in range(8)]
     by_id = {row["case_id"]: row for shard in shards for row in shard}
     ordered = [by_id[r["case_id"]] for r in validated_collection(output)]
