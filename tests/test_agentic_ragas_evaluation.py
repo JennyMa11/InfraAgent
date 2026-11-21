@@ -110,6 +110,27 @@ def test_resume_uses_new_log_without_overwriting_history(tmp_path):
     assert third.name == "score-shard-1-attempt-3.log"
 
 
+def test_metric_repair_preserves_successes_and_original_error():
+    row = {
+        "case_id": "case",
+        "ragas": {name: 0.5 for name in adapter.METRICS},
+        "judge_errors": {"faithfulness": "ValueError"},
+        "judge_calls": [{"usage": {"total_tokens": 10}}],
+    }
+    row["ragas"]["faithfulness"] = None
+    patch = {
+        "case_id": "case",
+        "ragas": {**row["ragas"], "faithfulness": 0.8, "context_precision": 0.0},
+        "judge_calls": [{"usage": {"total_tokens": 20}}],
+        "judge_latency_ms": 100,
+    }
+    merged = adapter.merge_repaired_rows([row], [patch])[0]
+    assert merged["ragas"] == {**row["ragas"], "faithfulness": 0.8}
+    assert merged["judge_errors"] == {}
+    assert len(merged["judge_calls"]) == 2
+    assert merged["ragas_repairs"][0]["original_error"] == "ValueError"
+
+
 def test_official_completion_requires_all_120(tmp_path):
     with pytest.raises(FileNotFoundError):
         adapter.validated_collection(tmp_path)

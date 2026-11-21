@@ -435,9 +435,48 @@ def score(args, shard_ids=range(8)) -> None:
         expected = len(validated_collection(output)[shard::8])
         if len(records(shard_path)) != expected:
             raise RuntimeError(f"ragas_shard_incomplete:{shard}:{expected}")
+    finalize_scores(output)
+
+
+def merge_repaired_rows(original: list[dict], repaired: list[dict]) -> list[dict]:
+    by_id = {row["case_id"]: row for row in repaired}
+    result = []
+    for row in original:
+        patch = by_id.get(row["case_id"])
+        if patch is None:
+            result.append(row)
+            continue
+        merged = dict(row)
+        merged["ragas"] = dict(row["ragas"])
+        merged["judge_errors"] = dict(row["judge_errors"])
+        merged["judge_calls"] = list(row["judge_calls"])
+        merged["ragas_repairs"] = list(row.get("ragas_repairs", []))
+        for metric, value in patch["ragas"].items():
+            if row["ragas"].get(metric) is not None or value is None:
+                continue
+            merged["ragas"][metric] = value
+            merged["judge_errors"].pop(metric, None)
+            calls = patch.get("judge_calls", [])
+            merged["judge_calls"].extend(calls)
+            merged["ragas_repairs"].append(
+                {
+                    "metric": metric,
+                    "original_error": row["judge_errors"].get(metric),
+                    "repaired_calls": len(calls),
+                    "judge_latency_ms": patch.get("judge_latency_ms"),
+                }
+            )
+        result.append(merged)
+    return result
+
+
+def finalize_scores(output: Path) -> None:
     shards = [records(output / "ragas" / f"rows-shard-{i}.jsonl") for i in range(8)]
     by_id = {row["case_id"]: row for shard in shards for row in shard}
     ordered = [by_id[r["case_id"]] for r in validated_collection(output)]
+    repairs_path = output / "ragas/rows-repaired.jsonl"
+    if repairs_path.exists():
+        ordered = merge_repaired_rows(ordered, records(repairs_path))
     from infra_rag.ragas_evaluation import summarize
 
     save(output / "ragas/rows.json", ordered)
@@ -452,6 +491,63 @@ def score(args, shard_ids=range(8)) -> None:
             ),
         },
     )
+
+
+def repair_scores(args) -> None:
+    output = args.output.resolve()
+    rows = load(output / "ragas/rows.json")
+    path = output / "ragas/rows-repaired.jsonl"
+    from infra_rag.ragas_evaluation import METRICS as SCORER_METRICS
+    from infra_rag.ragas_evaluation import score_records
+
+    async def run(scorer):
+        result = []
+        for row in rows:
+            missing = [name for name in METRICS if row["ragas"].get(name) is None]
+            if not missing:
+                continue
+            patch = {**row, "ragas": {name: None for name in SCORER_METRICS}, "judge_errors": {}}
+            # Reuse the unchanged scorer; restrict this attempt to missing metrics only.
+            original = scorer.scorers
+            scorer.scorers = {name: original[name] for name in missing}
+            try:
+                scored = await score_records([patch], scorer)
+                result.extend(scored)
+            finally:
+                scorer.scorers = original
+        return result
+
+    import asyncio
+
+    scorer = judge(args)
+    validate_judge(scorer, load(FROZEN / "ragas/protocol.json"))
+
+    async def execute():
+        try:
+            return await run(scorer)
+        finally:
+            await scorer.close()
+
+    repaired = asyncio.run(execute())
+    with path.open("x", encoding="utf-8") as stream:
+        for row in repaired:
+            stream.write(json.dumps(row, ensure_ascii=False, allow_nan=False) + "\n")
+    print(json.dumps({"repaired_cases": len(repaired)}, indent=2))
+
+
+def finalize_repair(args) -> None:
+    output = args.output.resolve()
+    if not (output / "ragas/rows-repaired.jsonl").is_file():
+        raise ValueError("no_ragas_repair_file")
+    if (output / "ragas/rows-repaired-final.json").exists():
+        raise FileExistsError("ragas_repaired_final_already_exists")
+    ordered = merge_repaired_rows(
+        load(output / "ragas/rows.json"), records(output / "ragas/rows-repaired.jsonl")
+    )
+    from infra_rag.ragas_evaluation import summarize
+
+    save(output / "ragas/rows-repaired-final.json", ordered)
+    save(output / "ragas/summary-repaired.json", summarize(ordered))
 
 
 def paired(a: list[float], b: list[float], cases: list[dict], draws=10000) -> dict:
@@ -517,7 +613,8 @@ def report(args) -> None:
     verify_baseline()
     output = args.output.resolve()
     baseline = load(FROZEN / "ragas/rows.json")
-    agentic = load(output / "ragas/rows.json")
+    agentic_path = output / "ragas/rows-repaired-final.json"
+    agentic = load(agentic_path if agentic_path.exists() else output / "ragas/rows.json")
     cases = load_cases()
     if len(agentic) != 120:
         raise ValueError("120_scored_agentic_rows_required")
@@ -636,7 +733,11 @@ def report(args) -> None:
             if r["status"] != "answered" or r.get("error")
         ],
         "baseline_summary": load(FROZEN / "ragas/summary.json")["p2_full"],
-        "agentic_summary": load(output / "ragas/summary.json")[CONFIG_ID],
+        "agentic_summary": load(
+            output
+            / "ragas"
+            / ("summary-repaired.json" if agentic_path.exists() else "summary.json")
+        )[CONFIG_ID],
         "limitations": [
             "RAGAS is a same-provider LLM judge, not independent human factual verification.",
             (
@@ -700,7 +801,16 @@ def report(args) -> None:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    for name in ("collect", "score", "score-shards", "score-shard", "report"):
+    commands = (
+        "collect",
+        "score",
+        "score-shards",
+        "score-shard",
+        "repair-scores",
+        "finalize-repair",
+        "report",
+    )
+    for name in commands:
         child = sub.add_parser(name)
         if name == "score-shards":
             child.add_argument("--shards", type=int, nargs="+", required=True)
@@ -718,9 +828,15 @@ def main():
         args.command = "score"
     if args.command == "score" and hasattr(args, "shards"):
         return score(args, shard_ids=args.shards)
-    {"collect": collect, "score": score, "score-shard": score_shard, "report": report}[
-        args.command
-    ](args)
+    handlers = {
+        "collect": collect,
+        "score": score,
+        "score-shard": score_shard,
+        "repair-scores": repair_scores,
+        "finalize-repair": finalize_repair,
+        "report": report,
+    }
+    handlers[args.command](args)
 
 
 if __name__ == "__main__":
