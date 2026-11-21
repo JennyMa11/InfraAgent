@@ -376,11 +376,20 @@ def score(args, shard_ids=range(8)) -> None:
         "runtime_configuration": scorer.configuration,
     }
     protocol_path = output / "ragas/protocol.json"
+    runtime_path = output / "ragas/runtime-configuration.json"
     if protocol_path.exists():
-        if load(protocol_path) != judge_protocol:
+        existing = load(protocol_path)
+        if existing.get("runtime_configuration") is not None:
+            if existing != judge_protocol:
+                raise ValueError("existing_ragas_protocol_mismatch")
+        elif existing != frozen_protocol | {"source_complete": load(output / "complete.json")}:
             raise ValueError("existing_ragas_protocol_mismatch")
+        if runtime_path.exists() and load(runtime_path) != scorer.configuration:
+            raise ValueError("existing_ragas_runtime_configuration_mismatch")
     else:
         save(protocol_path, judge_protocol)
+    if not runtime_path.exists():
+        save(runtime_path, scorer.configuration)
     processes = []
     for shard in shard_ids:
         env = {**os.environ, "HF_HUB_OFFLINE": "1", "OMP_NUM_THREADS": "2"}
