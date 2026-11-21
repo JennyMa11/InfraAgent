@@ -451,19 +451,20 @@ def merge_repaired_rows(original: list[dict], repaired: list[dict]) -> list[dict
         merged["judge_errors"] = dict(row["judge_errors"])
         merged["judge_calls"] = list(row["judge_calls"])
         merged["ragas_repairs"] = list(row.get("ragas_repairs", []))
+        start = len(merged["judge_calls"])
+        merged["judge_calls"].extend(patch.get("judge_calls", []))
+        calls = merged["judge_calls"][start:]
         for metric, value in patch["ragas"].items():
             if row["ragas"].get(metric) is not None or value is None:
                 continue
             merged["ragas"][metric] = value
             merged["judge_errors"].pop(metric, None)
-            calls = patch.get("judge_calls", [])
-            merged["judge_calls"].extend(calls)
             merged["ragas_repairs"].append(
                 {
                     "metric": metric,
                     "original_error": row["judge_errors"].get(metric),
-                    "repaired_calls": len(calls),
-                    "judge_latency_ms": patch.get("judge_latency_ms"),
+                    "repaired_calls": calls,
+                    "repaired_judge_latency_ms": patch.get("judge_latency_ms"),
                 }
             )
         result.append(merged)
@@ -612,6 +613,8 @@ def format_score(value):
 def report(args) -> None:
     verify_baseline()
     output = args.output.resolve()
+    if any((output / name).exists() for name in ("comparison.json", "report.md")):
+        raise FileExistsError("comparison_report_exists_use_new_analysis_directory")
     baseline = load(FROZEN / "ragas/rows.json")
     agentic_path = output / "ragas/rows-repaired-final.json"
     agentic = load(agentic_path if agentic_path.exists() else output / "ragas/rows.json")
@@ -638,16 +641,36 @@ def report(args) -> None:
         selected = [c for c in cases if c["case_id"] in ids]
         comparisons[scope] = {"cases": len(ids), "metrics": {}}
         for metric in METRICS:
-            x = [b[i]["ragas"].get(metric) for i in ids]
-            y = [a[i]["ragas"].get(metric) for i in ids]
-            complete_scores = all(v is not None for v in x + y)
+            available = [
+                i
+                for i in ids
+                if b[i]["ragas"].get(metric) is not None and a[i]["ragas"].get(metric) is not None
+            ]
+            x = [b[i]["ragas"][metric] for i in available]
+            y = [a[i]["ragas"][metric] for i in available]
+            paired_cases = [c for c in selected if c["case_id"] in available]
+            complete_scores = len(available) == len(ids)
             comparisons[scope]["metrics"][metric] = {
                 "baseline_mean": mean(x) if complete_scores else None,
                 "agentic_mean": mean(y) if complete_scores else None,
                 "delta": mean(y) - mean(x) if complete_scores else None,
-                "paired": paired(x, y, selected)
-                if complete_scores
-                else {"error": "missing scores not imputed"},
+                "paired": (
+                    paired(x, y, selected)
+                    if complete_scores
+                    else {"error": "missing scores not imputed"}
+                ),
+                "paired_complete": {
+                    "cases": len(available),
+                    "baseline_mean": mean(x),
+                    "agentic_mean": mean(y),
+                    "delta": mean(y) - mean(x) if available else None,
+                    "paired": (
+                        paired(x, y, paired_cases) if available else {"error": "no complete pairs"}
+                    ),
+                    "selection_warning": (
+                        "Conditional on both scores available; not a full-cohort estimate."
+                    ),
+                },
             }
 
     def counts(rows):
@@ -701,10 +724,18 @@ def report(args) -> None:
             },
         }
         for metric in METRICS:
-            groups[question_type].setdefault("metrics", {})[metric] = {
-                name: mean([rows[i]["ragas"].get(metric) for i in ids if rows[i]["answerable"]])
-                for name, rows in (("baseline", b), ("agentic", a))
-            }
+            groups[question_type].setdefault("metrics", {})[metric] = {}
+            for name, rows in (("baseline", b), ("agentic", a)):
+                available = [
+                    rows[i]["ragas"][metric]
+                    for i in ids
+                    if rows[i]["answerable"] and rows[i]["ragas"].get(metric) is not None
+                ]
+                groups[question_type]["metrics"][metric][name] = {
+                    "mean": mean(available),
+                    "n": len(available),
+                    "answerable_cases": sum(c["answerable"] for c in cases if c["case_id"] in ids),
+                }
     result = {
         "protocol": (
             "frozen P2 Baseline; Agentic-only live collection; "
@@ -727,11 +758,37 @@ def report(args) -> None:
                 "agent_status": r.get("agent_status"),
                 "events": r["trace"]["events"],
                 "error": r.get("error"),
-                "judge_errors": r.get("judge_errors", {}),
+                "judge_errors": a[r["case_id"]].get("judge_errors", {}),
             }
             for r in agentic
-            if r["status"] != "answered" or r.get("error")
+            if (
+                r["status"] != "answered"
+                or r.get("error")
+                or any(v is None for v in r["ragas"].values())
+            )
         ],
+        "ragas_repair": {
+            "initial_missing_cases": load(output / "ragas/process-status.json")[
+                "rows_with_missing_scores"
+            ],
+            "attempted_metrics": (
+                sum(
+                    value is None
+                    for row in load(output / "ragas/rows.json")
+                    for value in row["ragas"].values()
+                )
+                if (output / "ragas/rows-repaired.jsonl").exists()
+                else 0
+            ),
+            "successful_metrics": sum(len(r.get("ragas_repairs", [])) for r in agentic),
+            "remaining_missing_cases": sum(
+                any(v is None for v in r["ragas"].values()) for r in agentic
+            ),
+            "remaining_missing_metrics": sum(
+                v is None for r in agentic for v in r["ragas"].values()
+            ),
+            "missing_scores_never_imputed": True,
+        },
         "baseline_summary": load(FROZEN / "ragas/summary.json")["p2_full"],
         "agentic_summary": load(
             output
@@ -739,6 +796,10 @@ def report(args) -> None:
             / ("summary-repaired.json" if agentic_path.exists() else "summary.json")
         )[CONFIG_ID],
         "limitations": [
+            (
+                "RAGAS首轮109/120完整；补跑恢复2个指标后111/120完整。"
+                "缺失不填0；完整配对子集按评分可用性选择，不等于全量效果。"
+            ),
             "RAGAS is a same-provider LLM judge, not independent human factual verification.",
             (
                 "Agent uses concise structured-output prompting and disabled thinking; "
@@ -771,10 +832,20 @@ def report(args) -> None:
     for scope, item in comparisons.items():
         for metric in METRICS:
             value = item["metrics"][metric]
+            conditional = value["paired_complete"]
             lines.append(
                 f"| {scope} | {metric} | {format_score(value['baseline_mean'])} "
                 f"| {format_score(value['agentic_mean'])} | {format_score(value['delta'])} |"
             )
+            if value["delta"] is None:
+                p = conditional["paired"]
+                lines.append(
+                    f"| ↳ 双方评分完整 n={conditional['cases']}（选择性子集） | {metric} "
+                    f"| {format_score(conditional['baseline_mean'])} "
+                    f"| {format_score(conditional['agentic_mean'])} "
+                    f"| {format_score(conditional['delta'])} "
+                    f"95% CI [{format_score(p['ci95'][0])}, {format_score(p['ci95'][1])}] |"
+                )
     lines += [
         "",
         "## 拒答与执行",
@@ -785,12 +856,13 @@ def report(args) -> None:
         "",
         (
             "逐题指标、配对区间、题型、失败事件和用量见 `comparison.json`、"
-            "`ragas/rows.json` 和 `traces/`。"
+            "`ragas/rows.json`、`ragas/rows-repaired-final.json` 和 `traces/`。"
         ),
         "",
         "RAGAS 不是独立人审；这是单次真实运行，不推断所有 Agentic 系统优劣。holdout 已消耗。",
     ]
     save(output / "report.md", "\n".join(lines) + "\n")
+
     print(
         json.dumps(
             {"counts": result["counts"], "comparisons": comparisons}, ensure_ascii=False, indent=2
