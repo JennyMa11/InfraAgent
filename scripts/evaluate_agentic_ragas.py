@@ -330,6 +330,10 @@ def score_shard(args) -> None:
     directory = args.output.resolve() / "ragas"
     directory.mkdir(exist_ok=True)
     path = directory / f"rows-shard-{args.shard}.jsonl"
+    frozen_judge = load(FROZEN / "ragas/protocol.json")
+    scorer = judge(args)
+    if scorer.configuration != frozen_judge["configuration"]:
+        raise ValueError("ragas_judge_configuration_differs_from_frozen_baseline")
     from infra_rag.ragas_evaluation import run_scoring
 
     with path.open("x", encoding="utf-8") as stream:
@@ -436,10 +440,14 @@ def usage_summary(rows: list[dict]) -> dict:
     return {
         "calls": len(calls),
         "input_tokens": sum(
-            (row.get("trace", {}).get("resources") or {}).get("input_tokens", 0) for row in rows
+            (call.get("usage") or {}).get("prompt_tokens", 0)
+            for row in rows
+            for call in row.get("generation_calls", [])
         ),
         "output_tokens": sum(
-            (row.get("trace", {}).get("resources") or {}).get("output_tokens", 0) for row in rows
+            (call.get("usage") or {}).get("completion_tokens", 0)
+            for row in rows
+            for call in row.get("generation_calls", [])
         ),
         "reasoning_tokens": reasoning,
         "length_truncated_calls": sum(call.get("stop_reason") == "length" for call in calls),
@@ -494,16 +502,39 @@ def report(args) -> None:
     def counts(rows):
         positive = [r for r in rows if r["answerable"]]
         negative = [r for r in rows if not r["answerable"]]
+        statuses = [
+            r.get("agent_status") or ("refused" if r["status"] == "no_evidence" else "answered")
+            for r in rows
+        ]
+
+        def refused(status):
+            return status in ("refused", "no_evidence")
+
+        def escalated(status):
+            return status == "escalated"
+
         return {
             "answerable": len(positive),
             "answered": sum(r["status"] == "answered" for r in positive),
-            "incorrect_refusal": sum(r.get("agent_status") == "refused" for r in positive),
-            "escalated_answerable": sum(r.get("agent_status") == "escalated" for r in positive),
+            "incorrect_refusal": sum(
+                refused(status) for r, status in zip(rows, statuses, strict=True) if r["answerable"]
+            ),
+            "escalated_answerable": sum(
+                escalated(status)
+                for r, status in zip(rows, statuses, strict=True)
+                if r["answerable"]
+            ),
             "unanswerable": len(negative),
             "correct_refusal_unanswerable": sum(
-                r.get("agent_status") == "refused" for r in negative
+                refused(status)
+                for r, status in zip(rows, statuses, strict=True)
+                if not r["answerable"]
             ),
-            "escalated_unanswerable": sum(r.get("agent_status") == "escalated" for r in negative),
+            "escalated_unanswerable": sum(
+                escalated(status)
+                for r, status in zip(rows, statuses, strict=True)
+                if not r["answerable"]
+            ),
             "generation_failures": sum(bool(r.get("error")) for r in rows),
             "complete_delivery": sum(bool(r.get("delivered_complete")) for r in positive),
         }
