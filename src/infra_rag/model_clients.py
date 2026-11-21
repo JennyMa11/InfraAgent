@@ -65,6 +65,7 @@ class MoerouterClient:
         max_tokens=DEFAULT_MAX_TOKENS,
         timeout=180,
         system_in_user=True,
+        disable_thinking=False,
     ):
         if not token or "替换" in token or token == "YOUR_API_KEY":
             raise ModelUnavailable("Moerouter API Key is missing")
@@ -87,6 +88,7 @@ class MoerouterClient:
         self.max_tokens = max_tokens
         self.timeout = timeout
         self.system_in_user = system_in_user
+        self.disable_thinking = disable_thinking
         self.endpoint = self.base_url + (
             "/chat/completions" if self.base_url.endswith("/v1") else "/v1/chat/completions"
         )
@@ -123,6 +125,7 @@ class MoerouterClient:
                 "temperature": 0,
                 "max_tokens": self.max_tokens,
                 "system_in_user": self.system_in_user,
+                "disable_thinking": self.disable_thinking,
             },
             "authentication": "bearer",
             "format": "JSON requested by unchanged system prompt; no transport JSON constraint",
@@ -178,6 +181,7 @@ class MoerouterClient:
                 "max_tokens": max_tokens,
                 "temperature": 0,
                 "stream": False,
+                **({"thinking": {"type": "disabled"}} if self.disable_thinking else {}),
             }
         )
         if not isinstance(result, dict):
