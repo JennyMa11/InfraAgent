@@ -363,6 +363,16 @@ def score_shard(args) -> None:
         run_scoring(rows, scorer, on_row=persist)
 
 
+def unused_path(path: Path) -> Path:
+    if not path.exists():
+        return path
+    for attempt in range(2, 1000):
+        candidate = path.with_name(f"{path.stem}-attempt-{attempt}{path.suffix}")
+        if not candidate.exists():
+            return candidate
+    raise FileExistsError(f"too_many_attempt_logs:{path}")
+
+
 def score(args, shard_ids=range(8)) -> None:
     output = args.output.resolve()
     validated_collection(output)
@@ -408,7 +418,7 @@ def score(args, shard_ids=range(8)) -> None:
         ]
         if args.env_file:
             command += ["--env-file", args.env_file]
-        log = (output / f"score-shard-{shard}.log").open("x", encoding="utf-8")
+        log = unused_path(output / f"score-shard-{shard}.log").open("x", encoding="utf-8")
         processes.append(
             (subprocess.Popen(command, env=env, stdout=log, stderr=subprocess.STDOUT), log)
         )

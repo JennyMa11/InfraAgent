@@ -99,6 +99,17 @@ def test_refusal_is_scored_and_execution_error_is_not_zero_imputed():
     )
 
 
+def test_resume_uses_new_log_without_overwriting_history(tmp_path):
+    original = tmp_path / "score-shard-1.log"
+    original.write_text("original failure")
+    second = adapter.unused_path(original)
+    second.write_text("new attempt")
+    third = adapter.unused_path(original)
+    assert original.read_text() == "original failure"
+    assert second.name == "score-shard-1-attempt-2.log"
+    assert third.name == "score-shard-1-attempt-3.log"
+
+
 def test_official_completion_requires_all_120(tmp_path):
     with pytest.raises(FileNotFoundError):
         adapter.validated_collection(tmp_path)
