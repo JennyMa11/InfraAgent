@@ -8,6 +8,7 @@ from infra_rag.rag_comparison import (
     HybridRAGChain,
     OfflineAgentModel,
     RAGComparisonRunner,
+    evaluate_result,
     evidence_integrity,
     prepare_cases,
 )
@@ -125,6 +126,60 @@ def test_delivered_text_tampering_is_not_a_valid_citation(retrieval):
     integrity = evidence_integrity(service, raw["evidence"])
     assert integrity["status"] == "invalid"
     assert integrity["failures"][0]["error"] == "delivered_text_not_in_source_chunk"
+
+
+def test_citation_identity_is_checked_not_only_chunk_content(retrieval):
+    service, _ = retrieval
+    raw = HybridRAGChain(service).retrieve("PagedAttention", domain="infra")
+    raw["evidence"][0]["citation_id"] = "E0000000000000000"
+    integrity = evidence_integrity(service, raw["evidence"])
+    assert integrity["status"] == "invalid"
+    assert "citation_id_mismatch" in {item["error"] for item in integrity["failures"]}
+
+
+def test_cumulative_agent_candidates_not_only_last_round_are_evaluated(retrieval):
+    service, _ = retrieval
+    first, second = service.chunks[0].id, service.chunks[-1].id
+    result = {
+        "evidence": {
+            "delivered": [],
+            "candidate_ids": [second],
+            "cumulative_candidate_ids": [first, second],
+            "ranked_ids": [second],
+        }
+    }
+    case = {
+        "relevant": [first],
+        "label": "chunk",
+    }
+    evaluation = evaluate_result(service, case, result, label="chunk", k=2)
+    assert evaluation["candidate"]["recall"] == 1.0
+    assert evaluation["ranked"]["recall"] == 0.0
+
+
+def test_agent_domain_is_applied_and_reset_between_cases(retrieval, tmp_path):
+    service, source = retrieval
+    runner = RAGComparisonRunner(
+        service, chains=["agentic_rag"], model=OfflineAgentModel(), top_k=1
+    )
+    valid = labeled_case(service, source)
+    runner.run_case(valid, output_dir=tmp_path / "valid", run_id="domain")
+    other = {"id": "other", "query": "PagedAttention", "domain": "other"}
+    runner.run_case(other, output_dir=tmp_path / "other", run_id="domain")
+    result = runner.run_case({**valid, "id": "last"}, output_dir=tmp_path / "last", run_id="domain")
+    assert result["results"]["agentic_rag"]["evidence"]["delivered"]
+    assert all(
+        row["source"] == str(source.resolve())
+        for row in result["results"]["agentic_rag"]["evidence"]["delivered"]
+    )
+
+
+def test_unsafe_case_path_is_rejected_before_artifact_write(retrieval):
+    service, source = retrieval
+    case = labeled_case(service, source)
+    case["id"] = "../outside"
+    with pytest.raises(ValueError, match="safe path"):
+        RAGComparisonRunner(service, chains=["baseline"]).run_case(case)
 
 
 def test_domain_is_passed_to_chain_and_empty_index_is_not_invented(retrieval, tmp_path):

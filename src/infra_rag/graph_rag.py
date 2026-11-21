@@ -377,7 +377,7 @@ class GraphRAGChain:
                 inherited = source_state["base_score"] or 1.0
                 if source_state["origin"] == "expanded":
                     inherited = source_state["graph_score"]
-                score = inherited * edge["weight"] * (0.5**source_state["hop"])
+                score = inherited * edge["weight"] * (0.5 ** source_state["hop"])
                 state = {
                     "chunk_id": target_id,
                     "origin": "expanded",

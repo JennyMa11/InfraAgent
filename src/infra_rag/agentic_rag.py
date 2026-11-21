@@ -60,9 +60,7 @@ class AgenticRAGChain:
             for item in detail.get("ranking", []):
                 chunk_id = item["chunk_id"]
                 scores.setdefault(chunk_id, {})[channel] = item["score"]
-                reasons.setdefault(chunk_id, []).append(
-                    {"channel": channel, "rank": item["rank"]}
-                )
+                reasons.setdefault(chunk_id, []).append({"channel": channel, "rank": item["rank"]})
         fusion = {
             item["chunk_id"]: item
             for item in diagnostics.get("fusion", [])
@@ -78,8 +76,7 @@ class AgenticRAGChain:
             for chunk_id in round_data["candidate_ids"]
         }
         ranked = [
-            {**item, **detail.get(item["chunk_id"], {})}
-            for item in diagnostics.get("final", [])
+            {**item, **detail.get(item["chunk_id"], {})} for item in diagnostics.get("final", [])
         ]
         return detail, ranked
 

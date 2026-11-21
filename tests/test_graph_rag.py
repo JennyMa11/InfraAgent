@@ -174,9 +174,9 @@ def test_adjacent_and_entity_relations_support_multi_hop_expansion(tmp_path):
     retrieval._commit(
         [*chunks, chunk("adjacent", "TransitionBridge neighbor.", parent="p4", line=21)]
     )
-    multi_hop = GraphRAGChain(
-        retrieval, top_k=1, max_seed_hits=1, context_counter=len
-    ).retrieve("AlphaTrigger")
+    multi_hop = GraphRAGChain(retrieval, top_k=1, max_seed_hits=1, context_counter=len).retrieve(
+        "AlphaTrigger"
+    )
     assert expansion(multi_hop, "adjacent")["hop"] == 2
     assert expansion(multi_hop, "target")["hop"] == 1
     assert any(
@@ -265,9 +265,10 @@ def test_empty_base_retrieval_returns_no_evidence_or_expansion(tmp_path):
     )
     result = GraphRAGChain(retrieval, context_counter=len).retrieve("Known", domain="missing")
     assert result["candidates"] == result["ranked"] == result["evidence"] == []
-    assert next(step for step in result["trace"] if step["step"] == "graph_expand")[
-        "expanded_count"
-    ] == 0
+    assert (
+        next(step for step in result["trace"] if step["step"] == "graph_expand")["expanded_count"]
+        == 0
+    )
 
 
 def test_cache_invalidates_when_chunk_or_source_identity_changes(tmp_path):

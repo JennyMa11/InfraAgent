@@ -11,6 +11,7 @@ from pathlib import Path
 from time import perf_counter
 
 from .benchmarking import canonical_hash, create_run, digest, write_new
+from .chunking import stable_id
 from .evaluation import metrics, resolve_alternatives, resolve_spans
 
 CHAIN_NAMES = ("baseline", "graph_rag", "agentic_rag")
@@ -37,7 +38,7 @@ def _evidence_parts(result):
     if isinstance(evidence, dict):
         return (
             evidence.get("delivered", []),
-            evidence.get("candidate_ids", []),
+            evidence.get("cumulative_candidate_ids", evidence.get("candidate_ids", [])),
             evidence.get("ranked_ids", []),
         )
     return evidence, result.get("candidates", []), result.get("ranked", [])
@@ -142,7 +143,7 @@ def build_chain(name, retrieval, *, model=None, top_k=None):
             raise ValueError("agentic_rag requires an explicit live or offline model")
         from .agentic_rag import AgenticRAGChain
 
-        return AgenticRAGChain(retrieval, model)
+        return AgenticRAGChain(retrieval, model, top_k=top_k)
     raise ValueError(f"unknown RAG chain: {name}; choose from {', '.join(CHAIN_NAMES)}")
 
 
@@ -162,9 +163,19 @@ def prepare_cases(retrieval, dataset, dataset_path, label="source"):
         if not isinstance(item, dict) or not isinstance(item.get("query"), str):
             raise ValueError("every comparison case requires a query")
         case_id = item.get("id")
-        if not isinstance(case_id, str) or not case_id or case_id in ids:
-            raise ValueError("comparison case IDs must be unique nonempty strings")
+        if (
+            not isinstance(case_id, str)
+            or not case_id
+            or case_id in ids
+            or "/" in case_id
+            or "\\" in case_id
+            or case_id in {".", ".."}
+        ):
+            raise ValueError("comparison case IDs must be unique safe path components")
         ids.add(case_id)
+        domain = item.get("domain")
+        if domain is not None and (not isinstance(domain, str) or not domain.strip()):
+            raise ValueError(f"{case_id}: domain must be null or a nonempty string")
         relevant = item.get("relevant")
         if not isinstance(relevant, list) or not relevant:
             raise ValueError(f"{case_id}: comparison currently requires labeled relevant items")
@@ -179,7 +190,7 @@ def prepare_cases(retrieval, dataset, dataset_path, label="source"):
             {
                 "id": case_id,
                 "query": item["query"],
-                "domain": item.get("domain"),
+                "domain": domain,
                 "relevant": relevant,
                 "group_id": item.get("group_id", case_id),
                 "evidence_alternatives": item.get("evidence_alternatives"),
@@ -201,7 +212,7 @@ def _label_for_evidence(row, label):
 
 
 def evidence_integrity(retrieval, evidence):
-    """Check actual delivered text against indexed chunks and frozen source hashes."""
+    """Check delivered text, citation identity and source hashes; not fact support."""
     by_id = {chunk.id: chunk for chunk in retrieval.chunks}
     failures = []
     for row in evidence:
@@ -209,6 +220,9 @@ def evidence_integrity(retrieval, evidence):
         if chunk is None:
             failures.append({"chunk_id": row.get("chunk_id"), "error": "unknown_chunk"})
             continue
+        citation = row.get("citation_id", row.get("id"))
+        if citation != "E" + stable_id(chunk.id):
+            failures.append({"chunk_id": chunk.id, "error": "citation_id_mismatch"})
         for field in ("source", "parent_id", "locator"):
             if row.get(field) != getattr(chunk, field):
                 failures.append({"chunk_id": chunk.id, "error": f"{field}_mismatch"})
@@ -378,17 +392,23 @@ class RAGComparisonRunner:
             name: build_chain(name, retrieval, model=model, top_k=self.top_k) for name in names
         }
         if "agentic_rag" in self.implementations:
-            self.model = self.implementations["agentic_rag"].agent.model
+            self.model = self.implementations["agentic_rag"].model
 
     def run_case(self, case, *, output_dir=None, run_id="comparison", repetition=1):
+        case_id = case.get("id", "comparison")
+        if "/" in case_id or "\\" in case_id or case_id in {"", ".", ".."}:
+            raise ValueError("case ID must be a single safe path component")
         results = {}
         for name in self.chains:
             started = perf_counter()
             try:
                 kwargs = {"domain": case.get("domain")}
                 if name == "agentic_rag":
+                    kwargs.pop("domain")
                     if output_dir is None:
                         raise ValueError("agentic comparison requires an explicit output_dir")
+                    # Domain is part of the executable chain, not a model-controlled argument.
+                    self.implementations[name].domain = case.get("domain")
                     kwargs.update(
                         run_id=run_id,
                         case_id=case["id"],
@@ -411,7 +431,7 @@ class RAGComparisonRunner:
             except Exception as exc:
                 result = _error_result(name, case, exc, _elapsed(started))
             results[name] = result
-        return {"id": case["id"], "group_id": case["group_id"], "results": results}
+        return {"id": case_id, "group_id": case.get("group_id", case_id), "results": results}
 
     def compare(
         self,
@@ -469,8 +489,17 @@ class RAGComparisonRunner:
             "results": rows,
         }
         write_new(run_dir / "report.json", report)
-        if require_complete and any(
-            row["results"][name]["status"] != "ok" for row in rows for name in self.chains
+        integrity_failures = [
+            (row["id"], name, row["results"][name]["evaluation"]["evidence_integrity"])
+            for row in rows
+            for name in self.chains
+            if row["results"][name]["status"] == "ok"
+            and row["results"][name].get("evaluation")
+            and row["results"][name]["evaluation"]["evidence_integrity"]["status"] != "valid"
+        ]
+        if require_complete and (
+            integrity_failures
+            or any(row["results"][name]["status"] != "ok" for row in rows for name in self.chains)
         ):
             raise RuntimeError(f"incomplete comparison preserved at {run_dir / 'report.json'}")
         return report

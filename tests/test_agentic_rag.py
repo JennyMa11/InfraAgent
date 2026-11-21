@@ -54,9 +54,7 @@ def answer(state):
         "action": "final",
         "status": "answered",
         "answer": f"资料结论：{evidence['content']} [{evidence['id']}]",
-        "claims": [
-            {"id": "c1", "text": evidence["content"], "evidence_ids": [evidence["id"]]}
-        ],
+        "claims": [{"id": "c1", "text": evidence["content"], "evidence_ids": [evidence["id"]]}],
     }
 
 
@@ -176,12 +174,11 @@ def test_cumulative_candidates_latest_ranking_and_delivery_are_distinct(tmp_path
     assert trace["events"] == [], trace["steps"]
     assert len(trace["retrieval_rounds"]) == 2
     assert result["final"]["status"] == "answered"
-    assert result["trace"]["evidence"]["candidate_ids"] == trace["retrieval_rounds"][-1][
-        "candidate_ids"
-    ]
-    assert {item["chunk_id"] for item in result["ranked"]} == set(
-        result["evidence"]["ranked_ids"]
+    assert (
+        result["trace"]["evidence"]["candidate_ids"]
+        == trace["retrieval_rounds"][-1]["candidate_ids"]
     )
+    assert {item["chunk_id"] for item in result["ranked"]} == set(result["evidence"]["ranked_ids"])
     assert all(item["retrieval_round"] == 2 for item in result["ranked"])
     assert {item["chunk_id"] for item in result["candidates"]} == set(
         result["evidence"]["cumulative_candidate_ids"]
@@ -203,8 +200,7 @@ def test_cumulative_candidates_latest_ranking_and_delivery_are_distinct(tmp_path
         assert item["chunk_id"] and isinstance(item["scores"], dict)
         assert isinstance(item["reasons"], list)
     assert all(
-        {"chunk_id", "rank", "before_rerank_rank", "rerank_score", "scores", "reasons"}
-        <= set(item)
+        {"chunk_id", "rank", "before_rerank_rank", "rerank_score", "scores", "reasons"} <= set(item)
         for item in result["ranked"]
     )
     cited = {edge["evidence_id"] for edge in result["final"]["citations"]}
