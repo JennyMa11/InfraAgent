@@ -2,6 +2,8 @@ import json
 
 import pytest
 
+from infra_rag.agentic_rag import AgenticRAGChain
+from infra_rag.assistant import AnswerService
 from infra_rag.config import Settings
 from infra_rag.rag_comparison import (
     CHAIN_NAMES,
@@ -43,6 +45,25 @@ def labeled_case(retrieval, source):
     }
 
 
+def test_agentic_defaults_to_the_exact_native_model_factory(retrieval, monkeypatch):
+    service, _ = retrieval
+    from infra_rag import model_clients
+
+    model = OfflineAgentModel()
+    calls = []
+    monkeypatch.setattr(
+        model_clients,
+        "configured_model",
+        lambda path=None: calls.append(path) or model,
+    )
+    assert AnswerService(service).model is model
+    assert AgenticRAGChain(service).model is model
+    assert RAGComparisonRunner(service, chains=["agentic_rag"]).model is model
+    assert calls == [None, None, None]
+    assert model_clients.configured_model(path="selected.env") is model
+    assert calls[-1] == "selected.env"
+
+
 def test_baseline_uses_actual_ranked_and_delivered_layers(retrieval):
     service, source = retrieval
     result = HybridRAGChain(service, top_k=2).retrieve("PagedAttention", domain="infra")
@@ -69,9 +90,6 @@ def test_chain_does_not_receive_labels_and_case_is_not_mutated(retrieval):
 
 def test_comparison_is_immutable_and_failed_chains_have_no_fake_zero(retrieval, tmp_path):
     service, source = retrieval
-    with pytest.raises(ValueError, match="explicit live or offline model"):
-        RAGComparisonRunner(service, chains=["baseline", "agentic_rag"], model=None)
-
     runner = RAGComparisonRunner(service, chains=["baseline"], top_k=2)
     report = runner.compare(
         [labeled_case(service, source)],

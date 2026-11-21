@@ -36,7 +36,7 @@ class AgenticRAGChain:
     def __init__(
         self,
         retrieval,
-        model,
+        model=None,
         *,
         domain=None,
         limits=None,
@@ -44,6 +44,10 @@ class AgenticRAGChain:
         fault=None,
         top_k=None,
     ):
+        if model is None:
+            from .model_clients import configured_model
+
+            model = configured_model()
         self.retrieval, self.model = retrieval, model
         self.domain, self.limits = domain, limits or AgentLimits()
         self.budget, self.fault = budget or RequestBudget(), fault
