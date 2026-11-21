@@ -208,5 +208,6 @@ class MoerouterClient:
         self._generate([{"role": "user", "content": "Reply only OK."}], 8)
 
 
-def configured_model():
-    return MoerouterClient.from_environment()
+def configured_model(path=None):
+    """Construct the one model configuration shared by native and experimental chains."""
+    return MoerouterClient.from_environment(path=path)

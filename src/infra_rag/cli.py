@@ -179,9 +179,13 @@ def main():
         from .rag_comparison import OfflineAgentModel, RAGComparisonRunner, prepare_cases
 
         if "agentic_rag" in args.chain and args.agent_model == "live":
-            from .model_clients import MoerouterClient
+            from .model_clients import configured_model
 
-            model = MoerouterClient.from_environment(path=args.env_file)
+            if args.env_file is not None:
+                # Use the same native model factory, with an explicit environment override.
+                model = configured_model(path=args.env_file)
+            else:
+                model = configured_model()
         else:
             model = OfflineAgentModel()
         runner = RAGComparisonRunner(service, chains=args.chain, model=model, top_k=args.top_k)

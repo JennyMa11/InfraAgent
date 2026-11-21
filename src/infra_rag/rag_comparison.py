@@ -139,10 +139,9 @@ def build_chain(name, retrieval, *, model=None, top_k=None):
 
         return GraphRAGChain(retrieval, top_k=top_k or retrieval.settings.answer_top_k)
     if name == "agentic_rag":
-        if model is None:
-            raise ValueError("agentic_rag requires an explicit live or offline model")
         from .agentic_rag import AgenticRAGChain
 
+        # None deliberately selects the native AnswerService model factory.
         return AgenticRAGChain(retrieval, model, top_k=top_k)
     raise ValueError(f"unknown RAG chain: {name}; choose from {', '.join(CHAIN_NAMES)}")
 
