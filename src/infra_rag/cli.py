@@ -78,6 +78,33 @@ def main():
         "--strategy", choices=["bm25", "dense", "hybrid", "clip"], default="hybrid"
     )
     evaluation.add_argument("--output", type=Path)
+    chains = sub.add_parser(
+        "chains", help="Run explicitly selected experimental RAG chains (does not change /chat)"
+    )
+    chains.add_argument("query")
+    chains.add_argument(
+        "--chain", action="append", choices=["baseline", "graph_rag", "agentic_rag"], required=True
+    )
+    chains.add_argument("--agent-model", choices=["live", "offline"], default="live")
+    chains.add_argument("--env-file", type=Path)
+    chains.add_argument("--top-k", type=int, default=5)
+    chains.add_argument("--domain")
+    chains.add_argument("--output", type=Path)
+    chains.add_argument("--run-id", default="interactive")
+    comparison = sub.add_parser("compare-rag", help="Paired evaluation with frozen labels")
+    comparison.add_argument("dataset", type=Path)
+    comparison.add_argument(
+        "--chain", action="append", choices=["baseline", "graph_rag", "agentic_rag"], required=True
+    )
+    comparison.add_argument("--agent-model", choices=["live", "offline"], default="live")
+    comparison.add_argument("--env-file", type=Path)
+    comparison.add_argument("--top-k", type=int, default=5)
+    comparison.add_argument("--label", choices=["source", "chunk", "parent"], default="source")
+    comparison.add_argument("--output", type=Path, required=True)
+    comparison.add_argument("--run-id", default="paired")
+    comparison.add_argument(
+        "--require-complete", action="store_true", help="Fail after preserving any failed run"
+    )
     args = parser.parse_args()
     service = RetrievalService(
         Settings(
@@ -147,6 +174,58 @@ def main():
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)
             args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2))
+    elif args.command in {"chains", "compare-rag"}:
+        from .benchmarking import create_run, write_new
+        from .rag_comparison import OfflineAgentModel, RAGComparisonRunner, prepare_cases
+
+        if "agentic_rag" in args.chain and args.agent_model == "live":
+            from .model_clients import MoerouterClient
+
+            model = MoerouterClient.from_environment(path=args.env_file)
+        else:
+            model = OfflineAgentModel()
+        runner = RAGComparisonRunner(service, chains=args.chain, model=model, top_k=args.top_k)
+        if args.command == "chains":
+            run_dir = create_run(
+                args.output,
+                {
+                    "run_id": args.run_id,
+                    "chains": args.chain,
+                    "index_fingerprint": service.index_fingerprint,
+                    "mode": "single_unlabeled_query; no relevance or correctness metric",
+                },
+            )
+            row = runner.run_case(
+                {
+                    "id": args.run_id,
+                    "query": args.query,
+                    "domain": args.domain,
+                    "group_id": args.run_id,
+                },
+                output_dir=run_dir,
+                run_id=args.run_id,
+            )
+            write_new(run_dir / "result.json", row)
+            if any(item["status"] != "ok" for item in row["results"].values()):
+                failures = {
+                    name: {"error_type": item["error_type"], "error": item["error"]}
+                    for name, item in row["results"].items()
+                    if item["status"] != "ok"
+                }
+                raise RuntimeError(f"chain failed; inspect {run_dir}: {failures}")
+            result = row
+        else:
+            cases = prepare_cases(
+                service, json.loads(args.dataset.read_text()), args.dataset, args.label
+            )
+            result = runner.compare(
+                cases,
+                args.output,
+                dataset_path=args.dataset,
+                run_id=args.run_id,
+                label=args.label,
+                require_complete=args.require_complete,
+            )
     else:
         import uvicorn
 
@@ -155,3 +234,7 @@ def main():
         uvicorn.run(create_app(service), host="127.0.0.1", port=args.port)
         return
     print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()
