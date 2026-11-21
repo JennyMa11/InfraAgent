@@ -360,13 +360,13 @@ def score_shard(args) -> None:
             stream.flush()
             print(f"shard={args.shard} case={row['case_id']}", flush=True)
 
-        run_scoring(rows, judge(args), on_row=persist)
+        run_scoring(rows, scorer, on_row=persist)
 
 
-def score(args) -> None:
+def score(args, shard_ids=range(8)) -> None:
     output = args.output.resolve()
     validated_collection(output)
-    (output / "ragas").mkdir(exist_ok=False)
+    (output / "ragas").mkdir(exist_ok=True)
     frozen_protocol = load(FROZEN / "ragas/protocol.json")
     scorer = judge(args)
     validate_judge(scorer, frozen_protocol)
@@ -379,7 +379,7 @@ def score(args) -> None:
         },
     )
     processes = []
-    for shard in range(8):
+    for shard in shard_ids:
         env = {**os.environ, "HF_HUB_OFFLINE": "1", "OMP_NUM_THREADS": "2"}
         env["RAGAS_DO_NOT_TRACK"] = "true"
         env["TOKENIZERS_PARALLELISM"] = "false"
@@ -678,8 +678,10 @@ def report(args) -> None:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    for name in ("collect", "score", "score-shard", "report"):
+    for name in ("collect", "score", "score-shards", "score-shard", "report"):
         child = sub.add_parser(name)
+        if name == "score-shards":
+            child.add_argument("--shards", type=int, nargs="+", required=True)
         child.add_argument("--output", type=Path, required=True)
         if name != "report":
             child.add_argument("--env-file")
@@ -690,6 +692,10 @@ def main():
         if name == "score-shard":
             child.add_argument("--shard", type=int, required=True, choices=range(8))
     args = parser.parse_args()
+    if args.command == "score-shards":
+        args.command = "score"
+    if args.command == "score" and hasattr(args, "shards"):
+        return score(args, shard_ids=args.shards)
     {"collect": collect, "score": score, "score-shard": score_shard, "report": report}[
         args.command
     ](args)
