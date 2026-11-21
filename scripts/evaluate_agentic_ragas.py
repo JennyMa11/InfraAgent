@@ -370,14 +370,17 @@ def score(args, shard_ids=range(8)) -> None:
     frozen_protocol = load(FROZEN / "ragas/protocol.json")
     scorer = judge(args)
     validate_judge(scorer, frozen_protocol)
-    save(
-        output / "ragas/protocol.json",
-        {
-            **frozen_protocol,
-            "source_complete": load(output / "complete.json"),
-            "runtime_configuration": scorer.configuration,
-        },
-    )
+    judge_protocol = {
+        **frozen_protocol,
+        "source_complete": load(output / "complete.json"),
+        "runtime_configuration": scorer.configuration,
+    }
+    protocol_path = output / "ragas/protocol.json"
+    if protocol_path.exists():
+        if load(protocol_path) != judge_protocol:
+            raise ValueError("existing_ragas_protocol_mismatch")
+    else:
+        save(protocol_path, judge_protocol)
     processes = []
     for shard in shard_ids:
         env = {**os.environ, "HF_HUB_OFFLINE": "1", "OMP_NUM_THREADS": "2"}
