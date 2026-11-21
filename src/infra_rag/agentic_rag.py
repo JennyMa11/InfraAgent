@@ -6,8 +6,24 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from .agent import AgentLimits, RequestBudget, ResearchAgent
+from .benchmarking import write_new
 
 __all__ = ["AgenticRAGChain"]
+
+
+def _with_search_top_k(retrieval, top_k):
+    """Return a narrow search proxy while preserving the original service for all other state."""
+
+    class SearchProxy:
+        def __getattr__(self, name):
+            return getattr(retrieval, name)
+
+        def search(self, query, **kwargs):
+            # Every ResearchAgent/ReadOnlyTools hybrid search receives this configured value.
+            # The keyword is supplied by ResearchAgent, never by model-generated arguments.
+            return retrieval.search(query, **{**kwargs, "top_k": top_k})
+
+    return SearchProxy()
 
 
 class AgenticRAGChain:
@@ -17,10 +33,23 @@ class AgenticRAGChain:
     returned trace remains complete, but its artifact paths are removed when ``retrieve`` returns.
     """
 
-    def __init__(self, retrieval, model, *, domain=None, limits=None, budget=None, fault=None):
+    def __init__(
+        self,
+        retrieval,
+        model,
+        *,
+        domain=None,
+        limits=None,
+        budget=None,
+        fault=None,
+        top_k=None,
+    ):
         self.retrieval, self.model = retrieval, model
         self.domain, self.limits = domain, limits or AgentLimits()
         self.budget, self.fault = budget or RequestBudget(), fault
+        self.top_k = retrieval.settings.answer_top_k if top_k is None else top_k
+        if type(self.top_k) is not int or not 1 <= self.top_k <= 100:
+            raise ValueError("top_k must be an integer in [1, 100]")
 
     @staticmethod
     def _round_diagnostics(round_data, step):
@@ -87,7 +116,7 @@ class AgenticRAGChain:
                 stack.callback(workspace.cleanup)
             # Keep construction inside the temporary workspace so failures also clean it up.
             agent = ResearchAgent(
-                self.retrieval,
+                _with_search_top_k(self.retrieval, self.top_k),
                 self.model,
                 domain=self.domain,
                 limits=self.limits,
@@ -101,17 +130,19 @@ class AgenticRAGChain:
                 run_id=run_id,
                 config_id="agentic_rag",
             )
-            # The complete trace preserves round-local delivery. At the top level expose the
-            # cumulative _pack state, which is also the evidence seen by the last model request.
-            # Re-packing here avoids mutating ResearchAgent's frozen trace/artifact schema.
+            # Keep ResearchAgent's returned trace byte-equivalent to trace.json. Cumulative
+            # evidence is derived from successful observations for the adapter only.
             observed = {}
             for step in trace["steps"]:
                 if step["kind"] == "tool" and step["status"] == "ok":
                     for item in json.loads(step["observation"]).get("evidence", []):
                         observed[item["id"]] = item
-            trace["evidence"]["delivered"] = agent._pack(observed)
+            evidence = {**trace["evidence"], "delivered": agent._pack(observed)}
+            evidence["delivery_scope"] = "cumulative_observed_packed"
             candidates, ranked = self._diagnostics(trace)
-            evidence = trace["evidence"]
+            # The complete returned trace, including this derived ledger, has an unambiguous
+            # durable representation without replacing ResearchAgent's original trace.json.
+            write_new(output / "agentic_trace.json", {**trace, "evidence": evidence})
             return {
                 "chain": "agentic_rag",
                 "query": query,

@@ -138,12 +138,18 @@ def test_model_directed_multi_step_and_actual_packed_delivery(tmp_path, retrieva
     json.dumps(result, ensure_ascii=False, allow_nan=False)
 
     delivered = result["evidence"]["delivered"]
-    assert delivered == result["trace"]["evidence"]["delivered"]
+    assert result["evidence"]["delivery_scope"] == "cumulative_observed_packed"
+    assert len(delivered) == 2
+    # Original trace evidence remains the ledger from the final pre-model request.
+    assert result["trace"]["evidence"]["delivered"] == delivered
     for step in tools:
         for artifact in step["artifacts"]:
             assert digest(artifact["path"]) == artifact["sha256"]
     trace_path = tmp_path / "run" / "trace.json"
-    assert json.loads(trace_path.read_text())["run_id"] == "agentic-interactive"
+    assert json.loads(trace_path.read_text()) == result["trace"]
+    complete = json.loads((tmp_path / "run" / "agentic_trace.json").read_text())
+    assert complete == {**result["trace"], "evidence": result["evidence"]}
+    assert complete["evidence"]["delivered"] == delivered
 
 
 def test_model_selected_parent_read_delivers_full_parent(tmp_path, retrieval):
@@ -209,6 +215,47 @@ def test_cumulative_candidates_latest_ranking_and_delivery_are_distinct(tmp_path
         ][-1]["content"]
     )
     assert cited <= {item["id"] for item in final_model_state["evidence"]}
+
+
+@pytest.mark.parametrize("top_k", [None, 1, 2])
+def test_search_top_k_is_configurable_without_changing_agent_limits(retrieval, top_k):
+    service = _SearchRecorder(retrieval)
+    model = ScriptedModel([search("AlphaUnique"), search("BetaUnique"), answer])
+    chain = AgenticRAGChain(service, model)
+    if top_k is not None:
+        chain = AgenticRAGChain(service, model, top_k=top_k)
+    result = chain.retrieve("AlphaCache 与 BetaScheduler 管理什么？")
+    expected = retrieval.settings.answer_top_k if top_k is None else top_k
+    assert service.top_ks == [expected, expected]
+    assert len(result["ranked"]) <= expected
+    assert result["trace"]["limits"] == {
+        "model_calls": 3,
+        "tool_calls": 4,
+        "seconds": 180,
+        "retries": 1,
+    }
+    for step in result["trace"]["steps"]:
+        if step["kind"] == "tool":
+            assert set(step["arguments"]) == {"query"}
+
+
+class _SearchRecorder:
+    def __init__(self, retrieval):
+        self.retrieval = retrieval
+        self.settings = retrieval.settings
+        self.index_fingerprint = retrieval.index_fingerprint
+        self.source_manifest = retrieval.source_manifest
+        self.top_ks = []
+
+    def _encoder(self):
+        return self.retrieval._encoder()
+
+    def search(self, query, **kwargs):
+        self.top_ks.append(kwargs["top_k"])
+        return self.retrieval.search(query, **kwargs)
+
+    def get_parent(self, parent_id):
+        return self.retrieval.get_parent(parent_id)
 
 
 def test_final_citations_must_reference_exactly_delivered_text(tmp_path, retrieval):
@@ -315,6 +362,14 @@ def test_credentials_redacted_from_result_and_artifacts(tmp_path, retrieval):
     assert model._token not in serialized
     assert model._token not in (tmp_path / "run" / "trace.json").read_text()
     assert model._token not in (tmp_path / "run" / "s1.json").read_text()
+
+
+@pytest.mark.parametrize("top_k", [0, 101, True, 1.5, "1"])
+def test_invalid_top_k_rejected_without_retrieval(retrieval, top_k):
+    model = ScriptedModel([search("AlphaUnique")])
+    with pytest.raises(ValueError, match=r"top_k must be an integer in \[1, 100\]"):
+        AgenticRAGChain(retrieval, model, top_k=top_k)
+    assert model.calls == 0
 
 
 def test_budget_limits_are_not_silently_increased(retrieval):
