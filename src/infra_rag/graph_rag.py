@@ -294,7 +294,10 @@ class GraphRAGChain:
             {
                 "step": "rank",
                 "duration_ms": _elapsed(phase),
-                "algorithm": "seeds_keep_base_order_then_expansion_score_v1",
+                "algorithm": "base_retrieval_plus_graph_support_v1",
+                "formula": (
+                    "base_score + graph_score; ties prefer seeds, then base_rank, hop, chunk_id"
+                ),
                 "candidate_count": len(candidates),
                 "ranked_count": len(ranked),
             }
@@ -396,24 +399,27 @@ class GraphRAGChain:
 
     @staticmethod
     def _rank(candidates):
+        # One fixed score scale for both origins: base retrieval plus graph support.
+        # Expanded chunks have no direct retrieval score, so support must exceed a
+        # retained seed's base score to outrank it; no origin gets a reserved slot.
+        scored = [
+            {
+                **candidate,
+                "score": candidate["base_score"] + candidate["graph_score"],
+            }
+            for candidate in candidates
+        ]
         ordered = sorted(
-            candidates,
+            scored,
             key=lambda item: (
+                -item["score"],
                 0 if item["origin"] == "seed" else 1,
-                item["base_rank"] if item["origin"] == "seed" else -item["graph_score"],
+                item["base_rank"] if item["base_rank"] is not None else len(scored) + 1,
                 item["hop"],
                 item["chunk_id"],
             ),
         )
-        result = []
-        for rank, candidate in enumerate(ordered, 1):
-            score = (
-                candidate["base_score"]
-                if candidate["origin"] == "seed"
-                else candidate["graph_score"]
-            )
-            result.append({**candidate, "rank": rank, "score": score})
-        return result
+        return [{**candidate, "rank": rank} for rank, candidate in enumerate(ordered, 1)]
 
     def _pack(self, ranked, graph):
         token_budget = self.retrieval.settings.context_tokens

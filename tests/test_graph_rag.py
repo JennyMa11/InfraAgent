@@ -111,6 +111,49 @@ def test_expansion_is_bounded_and_counts_are_actual(tmp_path):
     assert len(result["ranked"]) == 3
 
 
+def test_fused_ranking_admits_supported_expansion_without_displacing_stronger_seed(tmp_path):
+    chunks = [
+        chunk("first", "UniqueSignal first seed.", line=1),
+        chunk("second", "UniqueSignal second seed.", line=2),
+        chunk("expanded", "SharedTopic supporting context.", line=3),
+    ]
+    retrieval = service(tmp_path, chunks)
+    chain = GraphRAGChain(
+        retrieval, top_k=3, max_seed_hits=2, max_expanded_chunks=1, context_counter=len
+    )
+    result = chain.retrieve("UniqueSignal")
+    candidates = {item["chunk_id"]: item for item in result["candidates"]}
+    assert candidates["first"]["origin"] == "seed"
+    assert candidates["second"]["origin"] == "seed"
+    assert candidates["expanded"]["origin"] == "expanded"
+    assert candidates["expanded"]["graph_score"] > 0
+    selected = result["ranked"][:3]
+    assert selected[0]["chunk_id"] == "first"
+    assert selected[0]["score"] == candidates["expanded"]["graph_score"]
+    assert any(item["chunk_id"] == "expanded" for item in selected)
+    delivered_expansion = next(item for item in selected if item["chunk_id"] == "expanded")
+    assert delivered_expansion["hop"] >= 1 and delivered_expansion["expansion_reasons"]
+    assert {item["chunk_id"] for item in result["evidence"]} == {
+        item["chunk_id"] for item in selected
+    }
+
+    # Fixed-score fusion has no reserved expansion slot: stronger seeds win ties.
+    first_score = candidates["first"]["base_score"]
+    second_score = candidates["second"]["base_score"]
+    candidates["expanded"]["graph_score"] = min(first_score, second_score) / 2
+    fused = chain._rank(list(candidates.values()))
+    assert [item["chunk_id"] for item in fused[:2]] == ["first", "second"]
+    assert all(item["score"] == item["base_score"] + item["graph_score"] for item in fused)
+
+    # Real retrieval has no reserved expansion slot: strongest support still loses
+    # to the best seed, and a single-result cutoff returns that seed.
+    limited = GraphRAGChain(
+        retrieval, top_k=1, max_seed_hits=2, max_expanded_chunks=1, context_counter=len
+    ).retrieve("UniqueSignal")
+    assert [item["chunk_id"] for item in limited["ranked"][:1]] == ["first"]
+    assert [item["chunk_id"] for item in limited["evidence"]] == ["first"]
+
+
 def test_adjacent_and_entity_relations_support_multi_hop_expansion(tmp_path):
     chunks = [
         chunk("seed", "AlphaTrigger begins the sequence.", parent="p1", line=1),
