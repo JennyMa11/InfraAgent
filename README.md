@@ -113,10 +113,10 @@ BGE 和 CLIP 各自在自己的向量空间编码和检索。BGE 向量不作为
 
 ### 3.1 先运行不依赖真实模型的检索流程
 
-要求 `uv`。下面统一显式写 `--python 3.12`：uv 可能默认选到更高的解释器，而 `onnxruntime` 目前没有 3.15 的 wheel。在仓库根目录执行：
+要求 `uv`。仓库带 `.python-version`（3.12），`uv sync` 会据此选解释器；如果你的 uv 忽略该文件而默认选了 3.15，会因 `onnxruntime` 尚无对应 wheel 失败，此时显式加 `--python 3.12`。在仓库根目录执行：
 
 ```bash
-uv sync --python 3.12 --extra dev
+uv sync --extra dev
 
 # 演示语料不随仓库分发（`examples/` 不公开），先建一份最小 Markdown 再导入；
 # 也可以把 demo-corpus 换成自己的资料目录。
@@ -577,7 +577,7 @@ uv run python scripts/score_agent_traces.py \
 | `dist/` | 本地构建产物（wheel、macOS app） | 忽略 |
 | `日志.log` | 操作原因、实际结果、失败与实验结论；只追加 | 否，本地保留 |
 
-`.gitignore` 采用白名单：只发布代码、构建配置与本 README（`pyproject.toml`、`uv.lock`、`src/`、`scripts/`、`tests/`、`desktop/`、`web/`、`README.md`）。实验数据、报告、日志与个人笔记不随仓库分发，克隆后上述“否”的路径不存在；README 里对它们的引用是本地工作副本中的位置说明。
+`.gitignore` 采用白名单：只发布代码、构建配置与本 README（`pyproject.toml`、`uv.lock`、`.python-version`、`src/`、`scripts/`、`tests/`、`desktop/`、`web/`、`README.md`）。实验数据、报告、日志与个人笔记不随仓库分发，克隆后上述“否”的路径不存在；README 里对它们的引用是本地工作副本中的位置说明。
 
 按需要继续阅读（以下均为本地路径）：
 
