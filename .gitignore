@@ -1,7 +1,8 @@
-# Publish project code and build configuration only.
+# Publish project code, build configuration, and the top-level README only.
 # Documentation, corpora, experiments, archives, and logs stay local.
 /*
 !/.gitignore
+!/README.md
 !/pyproject.toml
 !/uv.lock
 !/src/

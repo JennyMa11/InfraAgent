@@ -17,7 +17,15 @@ SPEC = importlib.util.spec_from_file_location(
 adapter = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(adapter)
 
+requires_local_materials = pytest.mark.skipif(
+    not (adapter.FROZEN / "ragas/rows.json").is_file()
+    or not (ROOT / "evals/ragas-full-v1/run-20261111/report.py").is_file()
+    or not (adapter.SOURCE_INDEX / "index.json").is_file(),
+    reason="Frozen Agentic/RAGAS artifacts are kept locally and are not distributed with code",
+)
 
+
+@requires_local_materials
 def test_frozen_baseline_and_gold_are_exactly_paired():
     protocol = adapter.verify_baseline()
     cases = adapter.load_cases()
@@ -33,6 +41,7 @@ def test_frozen_baseline_and_gold_are_exactly_paired():
     assert all(not case["relevant"] for case in cases if not case["answerable"])
 
 
+@requires_local_materials
 def test_relocated_index_preserves_chunks_vectors_and_verifies_sources(tmp_path):
     target = adapter.relocated_index(tmp_path / "index")
     original = adapter.load(adapter.SOURCE_INDEX / "index.json")
@@ -56,6 +65,7 @@ def test_relocated_index_preserves_chunks_vectors_and_verifies_sources(tmp_path)
     assert len(retrieval.chunks) == 2037
 
 
+@requires_local_materials
 def test_paired_stats_match_frozen_cluster_bootstrap_reference():
     source = (ROOT / "evals/ragas-full-v1/run-20261111/report.py").read_text()
     tree = ast.parse(source)
@@ -83,12 +93,14 @@ def test_paired_stats_match_frozen_cluster_bootstrap_reference():
     assert adapter.paired(first, second, cases) == expected
 
 
+@requires_local_materials
 def test_relocated_source_hash_is_not_bypassed(tmp_path, monkeypatch):
     monkeypatch.setattr(adapter, "ROOT", tmp_path)
     with pytest.raises(ValueError, match="relocated_source_missing_or_changed"):
         adapter.relocated_index(tmp_path / "new-index")
 
 
+@requires_local_materials
 def test_refusal_is_scored_and_execution_error_is_not_zero_imputed():
     baseline = adapter.load(adapter.FROZEN / "ragas/rows.json")
     assert any(row["status"] == "no_evidence" for row in baseline)
