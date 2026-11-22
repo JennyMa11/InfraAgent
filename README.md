@@ -113,7 +113,7 @@ BGE 和 CLIP 各自在自己的向量空间编码和检索。BGE 向量不作为
 
 ### 3.1 先运行不依赖真实模型的检索流程
 
-要求 Python 3.12+、`uv`，在仓库根目录执行：
+要求 `uv`。下面统一显式写 `--python 3.12`：uv 可能默认选到更高的解释器，而 `onnxruntime` 目前没有 3.15 的 wheel。在仓库根目录执行：
 
 ```bash
 uv sync --python 3.12 --extra dev
@@ -180,7 +180,7 @@ INFRA_RAG_LLM_ENV_FILE=.env.moerouter uv run --all-extras infra-rag \
 
 默认读取 `.env.llm`，不存在时读取 `.env.moerouter`；环境变量优先于文件。`OPENAI_BASE_URL` 必须是 `https://moerouter.com/v1`，`OPENAI_MODEL` 为 `glm-5.3-flash`。该入口会丢弃 system 消息，因此 `OPENAI_SYSTEM_IN_USER=1` 会把系统提示合并到 user 消息；输出预算默认 2048，避免思考 token 截断正文。查询翻译当前关闭（`INFRA_RAG_QUERY_LANGUAGE=none`）。
 
-启动后以 `/health` 显示的实际 provider/model 为准；预热会发起真实模型请求。详细配置与限制见回答模型配置（`docs/api-models.md`）。
+启动后以 `/health` 显示的实际 provider/model 为准；预热会发起真实模型请求。没有配置密钥时服务仍可启动，`/health` 返回 `assistant.available=false` 并给出原因，`/ingest`、`/search`、`/sources` 照常可用，`/chat` 与 `/warmup` 返回 503——所以只想试检索时不需要先办密钥。详细配置与限制见回答模型配置（`docs/api-models.md`）。
 
 ### 3.4 调用 API
 
@@ -203,7 +203,7 @@ curl -X POST http://127.0.0.1:8000/chat \
 | `POST /ingest` | `path`、可选 `domain`；导入本地文件或目录 | 处理与索引更新统计 |
 | `POST /search` | `query`、`top_k`、`domain`、`modality`、`strategy`、`debug` | 排名 hit、唯一 `context_pack`；debug 时附各阶段诊断 |
 | `POST /chat` | `message`、可选 `conversation_id`、`domain` | `answer`、`citations`、`status`、`trace`、会话 ID |
-| `POST /warmup` | 预加载检索和回答模型 | 准备状态与耗时 |
+| `POST /warmup` | 预加载检索和回答模型 | 准备状态与耗时；无密钥时 503 |
 | `GET /conversations/{id}` | 当前索引内的会话 ID | 保存的对话记录 |
 | `GET /parents/{id}` | 父块 ID | 兄弟块及关联整图信息 |
 | `GET /sources` / `DELETE /sources` | 查看来源，或按完整 `source` 路径移除活动来源 | 来源列表或删除块数 |
@@ -490,7 +490,7 @@ uv run --extra dev ruff format --check src tests scripts
 uv build
 ```
 
-在本地完整工作副本（含 `evals/`、`examples/` 和冻结索引）中，截至 **2026-11-21** 为 **575 项测试通过**（`pytest -q`，10 秒），`ruff check` 与 `ruff format --check` 均无问题。刚克隆的仓库没有这些本地评测材料，依赖它们的用例会显式 `skip`：同一提交在干净副本中为 **565 passed / 10 skipped**，跳过的是历史评测回归与冻结产物校验，不是失败。2026-10-03 的 v7 归档记录为 280 项测试通过；1870 条质量记录的候选上限、原候选保留、正文/定位、预算及最多 8 段检查均通过。测试通过验证工程约束，不代表问答准确率。
+在本地完整工作副本（含 `evals/`、`examples/` 和冻结索引）中，截至 **2026-11-21** 为 **576 项测试通过**（`pytest -q`，10 秒），`ruff check` 与 `ruff format --check` 均无问题。刚克隆的仓库没有这些本地评测材料，依赖它们的用例会显式 `skip`：同一提交在干净副本中为 **566 passed / 10 skipped**，跳过的是历史评测回归与冻结产物校验，不是失败。2026-10-03 的 v7 归档记录为 280 项测试通过；1870 条质量记录的候选上限、原候选保留、正文/定位、预算及最多 8 段检查均通过。测试通过验证工程约束，不代表问答准确率。
 
 实际模型行为由独立脚本验证；demo测试主要验证流程、过滤、持久化、缓存失效、证据解析和API契约：
 
@@ -577,7 +577,7 @@ uv run python scripts/score_agent_traces.py \
 | `dist/` | 本地构建产物（wheel、macOS app） | 忽略 |
 | `日志.log` | 操作原因、实际结果、失败与实验结论；只追加 | 否，本地保留 |
 
-`.gitignore` 采用白名单：只发布代码与构建配置（`pyproject.toml`、`uv.lock`、`src/`、`scripts/`、`tests/`、`desktop/`、`web/`）。实验数据、报告、日志与个人笔记不随仓库分发，克隆后上述“否”的路径不存在；README 里对它们的引用是本地工作副本中的位置说明。
+`.gitignore` 采用白名单：只发布代码、构建配置与本 README（`pyproject.toml`、`uv.lock`、`src/`、`scripts/`、`tests/`、`desktop/`、`web/`、`README.md`）。实验数据、报告、日志与个人笔记不随仓库分发，克隆后上述“否”的路径不存在；README 里对它们的引用是本地工作副本中的位置说明。
 
 按需要继续阅读（以下均为本地路径）：
 
