@@ -183,3 +183,18 @@ def test_term_alias_does_not_bypass_missing_evidence_or_invalid_citations(tmp_pa
         invalid = client.post("/chat", json={"message": "Page Attention是什么"}).json()
         assert invalid["status"] == "no_evidence" and invalid["citations"] == []
         assert len(model.messages) == 2
+
+
+def test_search_works_without_answer_model_credentials(tmp_path, monkeypatch):
+    """A clone with no .env file must still serve retrieval; /chat reports the missing key."""
+    monkeypatch.setenv("INFRA_RAG_LLM_ENV_FILE", str(tmp_path / "absent.env"))
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    service = RetrievalService(Settings(data_dir=tmp_path / "index", chunk_size=100))
+    document = tmp_path / "notes.md"
+    document.write_text("# PagedAttention\n\nPagedAttention 用分页管理 KV Cache。")
+    service.ingest(document, "inference")
+    with TestClient(create_app(service), raise_server_exceptions=False) as client:
+        assert client.get("/health").json()["assistant"]["available"] is False
+        assert client.post("/search", json={"query": "PagedAttention"}).status_code == 200
+        assert client.post("/chat", json={"message": "PagedAttention"}).status_code == 503
+        assert client.post("/warmup").status_code == 503

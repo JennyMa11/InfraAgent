@@ -38,11 +38,26 @@ def create_app(
     web_dir: Path | None = None,
 ):
     app = FastAPI(title="Infra Knowledge Assistant", version="0.2.0")
-    assistant = assistant or AnswerService(service)
+    bound: dict[str, AnswerService] = {"assistant": assistant} if assistant is not None else {}
+
+    def answer_service() -> AnswerService:
+        """Build the answer service on first use so search-only work needs no credentials."""
+        if "assistant" not in bound:
+            bound["assistant"] = AnswerService(service)
+        return bound["assistant"]
 
     @app.get("/health")
     def health():
-        return {**service.status(), "assistant": assistant.status()}
+        try:
+            assistant_status = {**answer_service().status(), "available": True}
+        except ModelUnavailable as exc:
+            assistant_status = {
+                "provider": "moerouter",
+                "model": None,
+                "available": False,
+                "error": str(exc),
+            }
+        return {**service.status(), "assistant": assistant_status}
 
     @app.post("/chat")
     def chat(request: ChatRequest):
@@ -50,7 +65,7 @@ def create_app(
             raise HTTPException(422, "message must not be blank")
         try:
             options = {"experimental_pagination": True} if request.experimental_pagination else {}
-            return assistant.answer(
+            return answer_service().answer(
                 request.message.strip(), request.conversation_id, request.domain, **options
             )
         except (ValueError, TypeError) as exc:
@@ -63,18 +78,20 @@ def create_app(
     @app.post("/warmup")
     def warmup():
         try:
-            return assistant.warmup()
+            return answer_service().warmup()
         except ModelUnavailable as exc:
             raise HTTPException(503, str(exc)) from exc
 
     @app.get("/conversations/{conversation_id}")
     def conversation(conversation_id: str):
         try:
-            return assistant.conversation(conversation_id)
+            return answer_service().conversation(conversation_id)
         except ValueError as exc:
             raise HTTPException(422, "invalid conversation ID") from exc
         except ConversationNotFound as exc:
             raise HTTPException(404, "conversation not found") from exc
+        except ModelUnavailable as exc:
+            raise HTTPException(503, str(exc)) from exc
 
     @app.post("/search")
     def search(request: SearchRequest):
