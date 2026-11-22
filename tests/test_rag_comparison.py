@@ -3,7 +3,7 @@ import json
 import pytest
 
 from infra_rag.agentic_rag import AgenticRAGChain
-from infra_rag.assistant import AnswerService
+from infra_rag.assistant import AnswerService, ModelUnavailable
 from infra_rag.config import Settings
 from infra_rag.rag_comparison import (
     CHAIN_NAMES,
@@ -205,3 +205,32 @@ def test_domain_is_passed_to_chain_and_empty_index_is_not_invented(retrieval, tm
     result = HybridRAGChain(service).retrieve("隔离", domain="other")
     assert all(row["source"] != str(source.resolve()) for row in result["evidence"])
     assert set(CHAIN_NAMES) == {"baseline", "graph_rag", "agentic_rag"}
+
+
+def test_live_agentic_cli_explains_a_missing_answer_model(tmp_path, monkeypatch):
+    from infra_rag import cli, model_clients
+
+    def unavailable(path=None):
+        raise ModelUnavailable("Moerouter API Key is missing")
+
+    monkeypatch.setattr(model_clients, "configured_model", unavailable)
+    monkeypatch.setattr(model_clients, "model_environment", lambda path=None: {})
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "infra-rag",
+            "--data-dir",
+            str(tmp_path / "index"),
+            "chains",
+            "PagedAttention",
+            "--chain",
+            "agentic_rag",
+            "--output",
+            str(tmp_path / "run"),
+        ],
+    )
+    with pytest.raises(SystemExit) as error:
+        cli.main()
+    # A string SystemExit prints the hint and exits 1 instead of raising a traceback.
+    assert "--agent-model offline" in str(error.value.code)
+    assert not (tmp_path / "run").exists()

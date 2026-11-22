@@ -179,13 +179,21 @@ def main():
         from .rag_comparison import OfflineAgentModel, RAGComparisonRunner, prepare_cases
 
         if "agentic_rag" in args.chain and args.agent_model == "live":
+            from .assistant import ModelUnavailable
             from .model_clients import configured_model
 
-            if args.env_file is not None:
-                # Use the same native model factory, with an explicit environment override.
-                model = configured_model(path=args.env_file)
-            else:
-                model = configured_model()
+            try:
+                if args.env_file is not None:
+                    # Use the same native model factory, with an explicit environment override.
+                    model = configured_model(path=args.env_file)
+                else:
+                    model = configured_model()
+            except ModelUnavailable as exc:
+                raise SystemExit(
+                    f"agentic_rag in live mode needs an answer model: {exc}. "
+                    "Configure OPENAI_API_KEY, pass --env-file, or use --agent-model offline "
+                    "to validate wiring with the script model."
+                ) from exc
         else:
             model = OfflineAgentModel()
         runner = RAGComparisonRunner(service, chains=args.chain, model=model, top_k=args.top_k)

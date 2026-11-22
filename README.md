@@ -251,10 +251,15 @@ CLI 缺省配置与冻结实验配置分别说明：v7 的 B 使用每路 Top30 
 uv run infra-rag --data-dir data/demo-v2 chains 'KV Cache 的作用是什么？' \
   --chain baseline --chain graph_rag --top-k 5 --output data/experiments/my-graph-run
 
-# 三链路 + 复用 Native RAG 的回答模型配置（默认即 live）
+# 三链路 + 复用 Native RAG 的回答模型配置（默认即 live，需要 3.3 的密钥）
 uv run infra-rag --data-dir data/demo-v2 chains 'PagedAttention 有什么作用？' \
   --chain baseline --chain graph_rag --chain agentic_rag --top-k 5 \
   --output data/experiments/my-live-run
+
+# 没有密钥时用脚本模型只验证接线与轨迹（不是效果实验）
+uv run infra-rag --data-dir data/demo-v2 chains 'PagedAttention 有什么作用？' \
+  --chain baseline --chain agentic_rag --agent-model offline --top-k 5 \
+  --output data/experiments/my-offline-run
 
 # 有标签的配对对比：题集是本地 JSON，每项含 id/query/relevant。
 # relevant 写来源路径（--label source）或子块/父块标签，相对题集文件所在目录解析；
@@ -490,7 +495,7 @@ uv run --extra dev ruff format --check src tests scripts
 uv build
 ```
 
-在本地完整工作副本（含 `evals/`、`examples/` 和冻结索引）中，截至 **2026-11-21** 为 **576 项测试通过**（`pytest -q`，10 秒），`ruff check` 与 `ruff format --check` 均无问题。刚克隆的仓库没有这些本地评测材料，依赖它们的用例会显式 `skip`：同一提交在干净副本中为 **566 passed / 10 skipped**，跳过的是历史评测回归与冻结产物校验，不是失败。2026-10-03 的 v7 归档记录为 280 项测试通过；1870 条质量记录的候选上限、原候选保留、正文/定位、预算及最多 8 段检查均通过。测试通过验证工程约束，不代表问答准确率。
+在本地完整工作副本（含 `evals/`、`examples/` 和冻结索引）中，截至 **2026-11-21** 为 **577 项测试通过**（`pytest -q`，10 秒），`ruff check` 与 `ruff format --check` 均无问题。刚克隆的仓库没有这些本地评测材料，依赖它们的用例会显式 `skip`：同一提交在干净副本中为 **567 passed / 10 skipped**，跳过的是历史评测回归与冻结产物校验，不是失败。2026-10-03 的 v7 归档记录为 280 项测试通过；1870 条质量记录的候选上限、原候选保留、正文/定位、预算及最多 8 段检查均通过。测试通过验证工程约束，不代表问答准确率。
 
 实际模型行为由独立脚本验证；demo测试主要验证流程、过滤、持久化、缓存失效、证据解析和API契约：
 
